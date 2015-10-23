@@ -3,6 +3,7 @@
 Arduino library for Makeblock electronic modules
 
 This library is version 3.0, we do a lot of modifications in the code structure, It has a very big difference with the 2.0 version. we recommend all Makeblock customers to use this one.
+
 How to use:
 
 1. Download the source from the git https://github.com/Makeblock-official/Makeblock-Libraries
@@ -17,6 +18,7 @@ How to use:
 5. Depending on the type of motherboard you're using, You should modify the header file.
    For example, you are using a mCore, you should change "#include <MeOrion.h>" to "#include <MeMbot.h>"
    Correspondence between the board and the header file is:
+
  Orion --------  MeOrion.h
 
  BaseBoard ----  MeBaseBoard.h
