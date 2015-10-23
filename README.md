@@ -12,11 +12,11 @@ How to use:
 
 3. Open the Arduino Application. If already open it, you need to restart to see changes.
 
-4. Click “File->Examples”. Here are some test program in MakeBlockDrive->example
+4. Click "File->Examples". Here are some test program in MakeBlockDrive->example
 
 5. Depending on the type of motherboard you're using, You should modify the header file.
    For example, you are using a mCore, you should change "#include <MeOrion.h>" to "#include <MeMbot.h>"
-   Correspondence between the board and the header file is：
+   Correspondence between the board and the header file is:
  Orion --------  MeOrion.h
 
  BaseBoard ----  MeBaseBoard.h
