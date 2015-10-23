@@ -1,0 +1,1111 @@
+AccelStepper	src\AccelStepper.cpp	/^AccelStepper::AccelStepper(uint8_t interface, uint8_t pin1, uint8_t pin2, uint8_t pin3, uint8_t pin4, bool enable)$/;"	f	class:AccelStepper
+AccelStepper	src\AccelStepper.cpp	/^AccelStepper::AccelStepper(void (*forward)(), void (*backward)())$/;"	f	class:AccelStepper
+computeNewSpeed	src\AccelStepper.cpp	/^void AccelStepper::computeNewSpeed()$/;"	f	class:AccelStepper
+currentPosition	src\AccelStepper.cpp	/^long AccelStepper::currentPosition()$/;"	f	class:AccelStepper
+disableOutputs	src\AccelStepper.cpp	/^void    AccelStepper::disableOutputs()$/;"	f	class:AccelStepper
+distanceToGo	src\AccelStepper.cpp	/^long AccelStepper::distanceToGo()$/;"	f	class:AccelStepper
+enableOutputs	src\AccelStepper.cpp	/^void    AccelStepper::enableOutputs()$/;"	f	class:AccelStepper
+move	src\AccelStepper.cpp	/^void AccelStepper::move(long relative)$/;"	f	class:AccelStepper
+moveTo	src\AccelStepper.cpp	/^void AccelStepper::moveTo(long absolute)$/;"	f	class:AccelStepper
+run	src\AccelStepper.cpp	/^boolean AccelStepper::run()$/;"	f	class:AccelStepper
+runSpeed	src\AccelStepper.cpp	/^boolean AccelStepper::runSpeed()$/;"	f	class:AccelStepper
+runSpeedToPosition	src\AccelStepper.cpp	/^boolean AccelStepper::runSpeedToPosition()$/;"	f	class:AccelStepper
+runToNewPosition	src\AccelStepper.cpp	/^void AccelStepper::runToNewPosition(long position)$/;"	f	class:AccelStepper
+runToPosition	src\AccelStepper.cpp	/^void AccelStepper::runToPosition()$/;"	f	class:AccelStepper
+setAcceleration	src\AccelStepper.cpp	/^void AccelStepper::setAcceleration(float acceleration)$/;"	f	class:AccelStepper
+setCurrentPosition	src\AccelStepper.cpp	/^void AccelStepper::setCurrentPosition(long position)$/;"	f	class:AccelStepper
+setEnablePin	src\AccelStepper.cpp	/^void AccelStepper::setEnablePin(uint8_t enablePin)$/;"	f	class:AccelStepper
+setMaxSpeed	src\AccelStepper.cpp	/^void AccelStepper::setMaxSpeed(float speed)$/;"	f	class:AccelStepper
+setMinPulseWidth	src\AccelStepper.cpp	/^void AccelStepper::setMinPulseWidth(unsigned int minWidth)$/;"	f	class:AccelStepper
+setOutputPins	src\AccelStepper.cpp	/^void AccelStepper::setOutputPins(uint8_t mask)$/;"	f	class:AccelStepper
+setPinsInverted	src\AccelStepper.cpp	/^void AccelStepper::setPinsInverted(bool directionInvert, bool stepInvert, bool enableInvert)$/;"	f	class:AccelStepper
+setPinsInverted	src\AccelStepper.cpp	/^void AccelStepper::setPinsInverted(bool pin1Invert, bool pin2Invert, bool pin3Invert, bool pin4Invert, bool enableInvert)$/;"	f	class:AccelStepper
+setSpeed	src\AccelStepper.cpp	/^void AccelStepper::setSpeed(float speed)$/;"	f	class:AccelStepper
+speed	src\AccelStepper.cpp	/^float AccelStepper::speed()$/;"	f	class:AccelStepper
+step	src\AccelStepper.cpp	/^void AccelStepper::step(long step)$/;"	f	class:AccelStepper
+step0	src\AccelStepper.cpp	/^void AccelStepper::step0(long step)$/;"	f	class:AccelStepper
+step1	src\AccelStepper.cpp	/^void AccelStepper::step1(long step)$/;"	f	class:AccelStepper
+step2	src\AccelStepper.cpp	/^void AccelStepper::step2(long step)$/;"	f	class:AccelStepper
+step3	src\AccelStepper.cpp	/^void AccelStepper::step3(long step)$/;"	f	class:AccelStepper
+step4	src\AccelStepper.cpp	/^void AccelStepper::step4(long step)$/;"	f	class:AccelStepper
+step6	src\AccelStepper.cpp	/^void AccelStepper::step6(long step)$/;"	f	class:AccelStepper
+step8	src\AccelStepper.cpp	/^void AccelStepper::step8(long step)$/;"	f	class:AccelStepper
+stop	src\AccelStepper.cpp	/^void AccelStepper::stop()$/;"	f	class:AccelStepper
+targetPosition	src\AccelStepper.cpp	/^long AccelStepper::targetPosition()$/;"	f	class:AccelStepper
+AccelStepper	src\AccelStepper.h	/^class AccelStepper$/;"	c
+AccelStepper_h	src\AccelStepper.h	197;"	d
+DIRECTION_CCW	src\AccelStepper.h	/^	DIRECTION_CCW = 0,  \/\/\/< Clockwise$/;"	e	enum:AccelStepper::__anon2
+DIRECTION_CW	src\AccelStepper.h	/^        DIRECTION_CW  = 1   \/\/\/< Counter-Clockwise$/;"	e	enum:AccelStepper::__anon2
+DRIVER	src\AccelStepper.h	/^	DRIVER    = 1, \/\/\/< Stepper Driver, 2 driver pins required$/;"	e	enum:AccelStepper::__anon1
+Direction	src\AccelStepper.h	/^    } Direction;$/;"	t	class:AccelStepper	typeref:enum:AccelStepper::__anon2
+FULL2WIRE	src\AccelStepper.h	/^	FULL2WIRE = 2, \/\/\/< 2 wire stepper, 2 motor pins required$/;"	e	enum:AccelStepper::__anon1
+FULL3WIRE	src\AccelStepper.h	/^	FULL3WIRE = 3, \/\/\/< 3 wire stepper, such as HDD spindle, 3 motor pins required$/;"	e	enum:AccelStepper::__anon1
+FULL4WIRE	src\AccelStepper.h	/^        FULL4WIRE = 4, \/\/\/< 4 wire full stepper, 4 motor pins required$/;"	e	enum:AccelStepper::__anon1
+FUNCTION	src\AccelStepper.h	/^	FUNCTION  = 0, \/\/\/< Use the functional interface, implementing your own driver functions (internal use only)$/;"	e	enum:AccelStepper::__anon1
+HALF3WIRE	src\AccelStepper.h	/^	HALF3WIRE = 6, \/\/\/< 3 wire half stepper, such as HDD spindle, 3 motor pins required$/;"	e	enum:AccelStepper::__anon1
+HALF4WIRE	src\AccelStepper.h	/^	HALF4WIRE = 8  \/\/\/< 4 wire half stepper, 4 motor pins required$/;"	e	enum:AccelStepper::__anon1
+MotorInterfaceType	src\AccelStepper.h	/^    } MotorInterfaceType;$/;"	t	class:AccelStepper	typeref:enum:AccelStepper::__anon1
+_acceleration	src\AccelStepper.h	/^    float          _acceleration;$/;"	m	class:AccelStepper
+_backward	src\AccelStepper.h	/^    void (*_backward)();$/;"	m	class:AccelStepper
+_c0	src\AccelStepper.h	/^    float _c0;$/;"	m	class:AccelStepper
+_cmin	src\AccelStepper.h	/^    float _cmin; \/\/ at max speed$/;"	m	class:AccelStepper
+_cn	src\AccelStepper.h	/^    float _cn;$/;"	m	class:AccelStepper
+_currentPos	src\AccelStepper.h	/^    long           _currentPos;    \/\/ Steps$/;"	m	class:AccelStepper
+_direction	src\AccelStepper.h	/^    boolean _direction; \/\/ 1 == CW$/;"	m	class:AccelStepper
+_enableInverted	src\AccelStepper.h	/^    bool           _enableInverted;$/;"	m	class:AccelStepper
+_enablePin	src\AccelStepper.h	/^    uint8_t        _enablePin;$/;"	m	class:AccelStepper
+_forward	src\AccelStepper.h	/^    void (*_forward)();$/;"	m	class:AccelStepper
+_interface	src\AccelStepper.h	/^    uint8_t        _interface;          \/\/ 0, 1, 2, 4, 8, See MotorInterfaceType$/;"	m	class:AccelStepper
+_lastStepTime	src\AccelStepper.h	/^    unsigned long  _lastStepTime;$/;"	m	class:AccelStepper
+_maxSpeed	src\AccelStepper.h	/^    float          _maxSpeed;$/;"	m	class:AccelStepper
+_minPulseWidth	src\AccelStepper.h	/^    unsigned int   _minPulseWidth;$/;"	m	class:AccelStepper
+_n	src\AccelStepper.h	/^    long _n;$/;"	m	class:AccelStepper
+_pin	src\AccelStepper.h	/^    uint8_t        _pin[4];$/;"	m	class:AccelStepper
+_pinInverted	src\AccelStepper.h	/^    uint8_t        _pinInverted[4];$/;"	m	class:AccelStepper
+_speed	src\AccelStepper.h	/^    float          _speed;         \/\/ Steps per second$/;"	m	class:AccelStepper
+_sqrt_twoa	src\AccelStepper.h	/^    float          _sqrt_twoa; \/\/ Precomputed sqrt(2*_acceleration)$/;"	m	class:AccelStepper
+_stepInterval	src\AccelStepper.h	/^    unsigned long  _stepInterval;$/;"	m	class:AccelStepper
+_targetPos	src\AccelStepper.h	/^    long           _targetPos;     \/\/ Steps$/;"	m	class:AccelStepper
+round	src\AccelStepper.h	208;"	d
+EEPROM	src\EEPROM.h	/^static EEPROMClass EEPROM;$/;"	v
+EEPROMClass	src\EEPROM.h	/^struct EEPROMClass{$/;"	s
+EEPROM_h	src\EEPROM.h	22;"	d
+EEPtr	src\EEPROM.h	/^    EEPtr( const int index )$/;"	f	struct:EEPtr
+EEPtr	src\EEPROM.h	/^struct EEPtr{$/;"	s
+EERef	src\EEPROM.h	/^    EERef( const int index )$/;"	f	struct:EERef
+EERef	src\EEPROM.h	/^struct EERef{$/;"	s
+begin	src\EEPROM.h	/^    EEPtr begin()                        { return 0x00; }$/;"	f	struct:EEPROMClass
+end	src\EEPROM.h	/^    EEPtr end()                          { return length(); } \/\/Standards requires this to be the item after the last valid entry. The returned pointer is invalid.$/;"	f	struct:EEPROMClass
+get	src\EEPROM.h	/^    template< typename T > T &get( int idx, T &t ){$/;"	f	struct:EEPROMClass
+index	src\EEPROM.h	/^    int index; \/\/Index of current EEPROM cell.$/;"	m	struct:EEPtr
+index	src\EEPROM.h	/^    int index; \/\/Index of current EEPROM cell.$/;"	m	struct:EERef
+length	src\EEPROM.h	/^    uint16_t length()                    { return E2END + 1; }$/;"	f	struct:EEPROMClass
+operator !=	src\EEPROM.h	/^    bool operator!=( const EEPtr &ptr ) { return index != ptr.index; }$/;"	f	struct:EEPtr
+operator %=	src\EEPROM.h	/^    EERef &operator %=( uint8_t in )     { return *this = **this % in; }$/;"	f	struct:EERef
+operator &=	src\EEPROM.h	/^    EERef &operator &=( uint8_t in )     { return *this = **this & in; }$/;"	f	struct:EERef
+operator *	src\EEPROM.h	/^    EERef operator*()                   { return index; }$/;"	f	struct:EEPtr
+operator *	src\EEPROM.h	/^    uint8_t operator*() const            { return eeprom_read_byte( (uint8_t*) index ); }$/;"	f	struct:EERef
+operator *=	src\EEPROM.h	/^    EERef &operator *=( uint8_t in )     { return *this = **this * in; }$/;"	f	struct:EERef
+operator ++	src\EEPROM.h	/^    EEPtr operator++ (int)              { return index++; }$/;"	f	struct:EEPtr
+operator ++	src\EEPROM.h	/^    EEPtr& operator++()                 { return ++index, *this; }$/;"	f	struct:EEPtr
+operator ++	src\EEPROM.h	/^    EERef& operator++()                  { return *this += 1; }$/;"	f	struct:EERef
+operator ++	src\EEPROM.h	/^    uint8_t operator++ (int){ $/;"	f	struct:EERef
+operator +=	src\EEPROM.h	/^    EERef &operator +=( uint8_t in )     { return *this = **this + in; }$/;"	f	struct:EERef
+operator --	src\EEPROM.h	/^    EEPtr operator-- (int)              { return index--; }$/;"	f	struct:EEPtr
+operator --	src\EEPROM.h	/^    EEPtr& operator--()                 { return --index, *this; }$/;"	f	struct:EEPtr
+operator --	src\EEPROM.h	/^    EERef& operator--()                  { return *this -= 1; }$/;"	f	struct:EERef
+operator --	src\EEPROM.h	/^    uint8_t operator-- (int){ $/;"	f	struct:EERef
+operator -=	src\EEPROM.h	/^    EERef &operator -=( uint8_t in )     { return *this = **this - in; }$/;"	f	struct:EERef
+operator /=	src\EEPROM.h	/^    EERef &operator \/=( uint8_t in )     { return *this = **this \/ in; }$/;"	f	struct:EERef
+operator <<=	src\EEPROM.h	/^    EERef &operator <<=( uint8_t in )    { return *this = **this << in; }$/;"	f	struct:EERef
+operator =	src\EEPROM.h	/^    EEPtr &operator=( int in )          { return index = in, *this; }$/;"	f	struct:EEPtr
+operator =	src\EEPROM.h	/^    EERef &operator=( const EERef &ref ) { return *this = *ref; }$/;"	f	struct:EERef
+operator =	src\EEPROM.h	/^    EERef &operator=( uint8_t in )       { return eeprom_write_byte( (uint8_t*) index, in ), *this;  }$/;"	f	struct:EERef
+operator >>=	src\EEPROM.h	/^    EERef &operator >>=( uint8_t in )    { return *this = **this >> in; }$/;"	f	struct:EERef
+operator []	src\EEPROM.h	/^    EERef operator[]( const int idx )    { return idx; }$/;"	f	struct:EEPROMClass
+operator ^=	src\EEPROM.h	/^    EERef &operator ^=( uint8_t in )     { return *this = **this ^ in; }$/;"	f	struct:EERef
+operator const int	src\EEPROM.h	/^    operator const int() const          { return index; }$/;"	f	struct:EEPtr
+operator const uint8_t	src\EEPROM.h	/^    operator const uint8_t() const       { return **this; }$/;"	f	struct:EERef
+operator |=	src\EEPROM.h	/^    EERef &operator |=( uint8_t in )     { return *this = **this | in; }$/;"	f	struct:EERef
+put	src\EEPROM.h	/^    template< typename T > const T &put( int idx, const T &t ){$/;"	f	struct:EEPROMClass
+read	src\EEPROM.h	/^    uint8_t read( int idx )              { return EERef( idx ); }$/;"	f	struct:EEPROMClass
+update	src\EEPROM.h	/^    EERef &update( uint8_t in )          { return  in != *this ? *this = in : *this; }$/;"	f	struct:EERef
+update	src\EEPROM.h	/^    void update( int idx, uint8_t val )  { EERef( idx ).update( val ); }$/;"	f	struct:EEPROMClass
+write	src\EEPROM.h	/^    void write( int idx, uint8_t val )   { (EERef( idx )) = val; }$/;"	f	struct:EEPROMClass
+I2Cdev	src\I2Cdev.cpp	/^I2Cdev::I2Cdev() {$/;"	f	class:I2Cdev
+SIGNAL	src\I2Cdev.cpp	/^    SIGNAL(TWI_vect) {$/;"	f
+TwoWire	src\I2Cdev.cpp	/^    TwoWire::TwoWire() { }$/;"	f	class:TwoWire
+Wire	src\I2Cdev.cpp	/^    TwoWire Wire;$/;"	v
+address	src\I2Cdev.cpp	/^        uint8_t address;$/;"	m	struct:__anon3	file:
+available	src\I2Cdev.cpp	/^    uint8_t TwoWire::available(void) {$/;"	f	class:TwoWire
+begin	src\I2Cdev.cpp	/^    void TwoWire::begin(void) {$/;"	f	class:TwoWire
+beginTransmission	src\I2Cdev.cpp	/^    void TwoWire::beginTransmission(uint8_t address) {$/;"	f	class:TwoWire
+data	src\I2Cdev.cpp	/^        uint8_t* data;$/;"	m	struct:__anon3	file:
+endTransmission	src\I2Cdev.cpp	/^    uint8_t TwoWire::endTransmission(uint16_t timeout) {$/;"	f	class:TwoWire
+fNextInterruptFunction	src\I2Cdev.cpp	/^    static void (*fNextInterruptFunction)(void) = 0;$/;"	v	file:
+i	src\I2Cdev.cpp	/^        uint8_t i;$/;"	m	struct:__anon3	file:
+length	src\I2Cdev.cpp	/^        uint8_t length;$/;"	m	struct:__anon3	file:
+nbendTransmission	src\I2Cdev.cpp	/^    void TwoWire::nbendTransmission(void (*function)(int)) {$/;"	f	class:TwoWire
+nbrequestFrom	src\I2Cdev.cpp	/^    void TwoWire::nbrequestFrom(uint8_t address, int quantity, void (*function)(int)) {$/;"	f	class:TwoWire
+ptwv	src\I2Cdev.cpp	/^    twi_Write_Vars *ptwv = 0;$/;"	v
+readBit	src\I2Cdev.cpp	/^int8_t I2Cdev::readBit(uint8_t devAddr, uint8_t regAddr, uint8_t bitNum, uint8_t *data, uint16_t timeout) {$/;"	f	class:I2Cdev
+readBitW	src\I2Cdev.cpp	/^int8_t I2Cdev::readBitW(uint8_t devAddr, uint8_t regAddr, uint8_t bitNum, uint16_t *data, uint16_t timeout) {$/;"	f	class:I2Cdev
+readBits	src\I2Cdev.cpp	/^int8_t I2Cdev::readBits(uint8_t devAddr, uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8_t *data, uint16_t timeout) {$/;"	f	class:I2Cdev
+readBitsW	src\I2Cdev.cpp	/^int8_t I2Cdev::readBitsW(uint8_t devAddr, uint8_t regAddr, uint8_t bitStart, uint8_t length, uint16_t *data, uint16_t timeout) {$/;"	f	class:I2Cdev
+readBuf	src\I2Cdev.cpp	/^    byte Fastwire::readBuf(byte device, byte address, byte *data, byte num) {$/;"	f	class:Fastwire
+readByte	src\I2Cdev.cpp	/^int8_t I2Cdev::readByte(uint8_t devAddr, uint8_t regAddr, uint8_t *data, uint16_t timeout) {$/;"	f	class:I2Cdev
+readBytes	src\I2Cdev.cpp	/^int8_t I2Cdev::readBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *data, uint16_t timeout) {$/;"	f	class:I2Cdev
+readTimeout	src\I2Cdev.cpp	/^uint16_t I2Cdev::readTimeout = I2CDEV_DEFAULT_READ_TIMEOUT;$/;"	m	class:I2Cdev	file:
+readWord	src\I2Cdev.cpp	/^int8_t I2Cdev::readWord(uint8_t devAddr, uint8_t regAddr, uint16_t *data, uint16_t timeout) {$/;"	f	class:I2Cdev
+readWords	src\I2Cdev.cpp	/^int8_t I2Cdev::readWords(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint16_t *data, uint16_t timeout) {$/;"	f	class:I2Cdev
+receive	src\I2Cdev.cpp	/^    uint8_t TwoWire::receive(void) {$/;"	f	class:TwoWire
+requestFrom	src\I2Cdev.cpp	/^    uint8_t TwoWire::requestFrom(uint8_t address, int quantity, uint16_t timeout) {$/;"	f	class:TwoWire
+rxBuffer	src\I2Cdev.cpp	/^    uint8_t TwoWire::rxBuffer[NBWIRE_BUFFER_LENGTH];$/;"	m	class:TwoWire	file:
+rxBufferIndex	src\I2Cdev.cpp	/^    uint8_t TwoWire::rxBufferIndex = 0;$/;"	m	class:TwoWire	file:
+rxBufferLength	src\I2Cdev.cpp	/^    uint8_t TwoWire::rxBufferLength = 0;$/;"	m	class:TwoWire	file:
+send	src\I2Cdev.cpp	/^    void TwoWire::send(uint8_t data) {$/;"	f	class:TwoWire
+setup	src\I2Cdev.cpp	/^    void Fastwire::setup(int khz, boolean pullup) {$/;"	f	class:Fastwire
+twi_Done	src\I2Cdev.cpp	/^    static volatile uint8_t twi_Done;$/;"	v	file:
+twi_Finish	src\I2Cdev.cpp	/^    void twi_Finish(byte bRetVal) {$/;"	f
+twi_Return_Value	src\I2Cdev.cpp	/^    static volatile uint8_t twi_Return_Value;$/;"	v	file:
+twi_Write_Vars	src\I2Cdev.cpp	/^    } twi_Write_Vars;$/;"	t	typeref:struct:__anon3	file:
+twi_cbendTransmissionDone	src\I2Cdev.cpp	/^    void (*twi_cbendTransmissionDone)(int);$/;"	v
+twi_cbreadFromDone	src\I2Cdev.cpp	/^    void (*twi_cbreadFromDone)(int);$/;"	v
+twi_error	src\I2Cdev.cpp	/^    static volatile uint8_t twi_error;$/;"	v	file:
+twi_init	src\I2Cdev.cpp	/^    void twi_init() {$/;"	f
+twi_masterBuffer	src\I2Cdev.cpp	/^    static uint8_t twi_masterBuffer[TWI_BUFFER_LENGTH];$/;"	v	file:
+twi_masterBufferIndex	src\I2Cdev.cpp	/^    static volatile uint8_t twi_masterBufferIndex;$/;"	v	file:
+twi_masterBufferLength	src\I2Cdev.cpp	/^    static uint8_t twi_masterBufferLength;$/;"	v	file:
+twi_read00	src\I2Cdev.cpp	/^    void twi_read00() {$/;"	f
+twi_read01	src\I2Cdev.cpp	/^    void twi_read01() {$/;"	f
+twi_readFrom	src\I2Cdev.cpp	/^    void twi_readFrom(uint8_t address, uint8_t* data, uint8_t length) {$/;"	f
+twi_releaseBus	src\I2Cdev.cpp	/^    void twi_releaseBus(void) {$/;"	f
+twi_reply	src\I2Cdev.cpp	/^    void twi_reply(uint8_t ack) {$/;"	f
+twi_rxBuffer	src\I2Cdev.cpp	/^    static uint8_t twi_rxBuffer[TWI_BUFFER_LENGTH];$/;"	v	file:
+twi_rxBufferIndex	src\I2Cdev.cpp	/^    static volatile uint8_t twi_rxBufferIndex;$/;"	v	file:
+twi_slarw	src\I2Cdev.cpp	/^    static uint8_t twi_slarw;$/;"	v	file:
+twi_state	src\I2Cdev.cpp	/^    static volatile uint8_t twi_state;$/;"	v	file:
+twi_stop	src\I2Cdev.cpp	/^    void twi_stop(void) {$/;"	f
+twi_transmitting	src\I2Cdev.cpp	/^    static volatile uint8_t twi_transmitting;$/;"	v	file:
+twi_write00	src\I2Cdev.cpp	/^    void twi_write00() {$/;"	f
+twi_write01	src\I2Cdev.cpp	/^    void twi_write01() {$/;"	f
+twi_writeTo	src\I2Cdev.cpp	/^    void twi_writeTo(uint8_t address, uint8_t* data, uint8_t length, uint8_t wait) {$/;"	f
+twii_CopyFromBuf	src\I2Cdev.cpp	/^    void twii_CopyFromBuf(uint8_t *pData, uint8_t ucLength) {$/;"	f
+twii_CopyToBuf	src\I2Cdev.cpp	/^    void twii_CopyToBuf(uint8_t* pData, uint8_t ucLength) {$/;"	f
+twii_InitBuffer	src\I2Cdev.cpp	/^    void twii_InitBuffer(uint8_t ucPos, uint8_t ucLength) {$/;"	f
+twii_SetError	src\I2Cdev.cpp	/^    void twii_SetError(uint8_t ucError) {$/;"	f
+twii_SetSlaRW	src\I2Cdev.cpp	/^    void twii_SetSlaRW(uint8_t ucSlaRW) {$/;"	f
+twii_SetStart	src\I2Cdev.cpp	/^    void twii_SetStart() {$/;"	f
+twii_SetState	src\I2Cdev.cpp	/^    void twii_SetState(uint8_t ucState) {$/;"	f
+twii_WaitForDone	src\I2Cdev.cpp	/^    uint8_t twii_WaitForDone(uint16_t timeout) {$/;"	f
+txAddress	src\I2Cdev.cpp	/^    uint8_t TwoWire::txAddress = 0;$/;"	m	class:TwoWire	file:
+txBuffer	src\I2Cdev.cpp	/^    uint8_t TwoWire::txBuffer[NBWIRE_BUFFER_LENGTH];$/;"	m	class:TwoWire	file:
+txBufferIndex	src\I2Cdev.cpp	/^    uint8_t TwoWire::txBufferIndex = 0;$/;"	m	class:TwoWire	file:
+txBufferLength	src\I2Cdev.cpp	/^    uint8_t TwoWire::txBufferLength = 0;$/;"	m	class:TwoWire	file:
+user_onReceive	src\I2Cdev.cpp	/^    void (*TwoWire::user_onReceive)(int);$/;"	v
+user_onRequest	src\I2Cdev.cpp	/^    void (*TwoWire::user_onRequest)(void);$/;"	v
+wait	src\I2Cdev.cpp	/^        uint8_t wait;$/;"	m	struct:__anon3	file:
+waitInt	src\I2Cdev.cpp	/^    boolean Fastwire::waitInt() {$/;"	f	class:Fastwire
+write	src\I2Cdev.cpp	/^    byte Fastwire::write(byte device, byte address, byte value) {$/;"	f	class:Fastwire
+writeBit	src\I2Cdev.cpp	/^bool I2Cdev::writeBit(uint8_t devAddr, uint8_t regAddr, uint8_t bitNum, uint8_t data) {$/;"	f	class:I2Cdev
+writeBitW	src\I2Cdev.cpp	/^bool I2Cdev::writeBitW(uint8_t devAddr, uint8_t regAddr, uint8_t bitNum, uint16_t data) {$/;"	f	class:I2Cdev
+writeBits	src\I2Cdev.cpp	/^bool I2Cdev::writeBits(uint8_t devAddr, uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8_t data) {$/;"	f	class:I2Cdev
+writeBitsW	src\I2Cdev.cpp	/^bool I2Cdev::writeBitsW(uint8_t devAddr, uint8_t regAddr, uint8_t bitStart, uint8_t length, uint16_t data) {$/;"	f	class:I2Cdev
+writeByte	src\I2Cdev.cpp	/^bool I2Cdev::writeByte(uint8_t devAddr, uint8_t regAddr, uint8_t data) {$/;"	f	class:I2Cdev
+writeBytes	src\I2Cdev.cpp	/^bool I2Cdev::writeBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t* data) {$/;"	f	class:I2Cdev
+writeWord	src\I2Cdev.cpp	/^bool I2Cdev::writeWord(uint8_t devAddr, uint8_t regAddr, uint16_t data) {$/;"	f	class:I2Cdev
+writeWords	src\I2Cdev.cpp	/^bool I2Cdev::writeWords(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint16_t* data) {$/;"	f	class:I2Cdev
+CPU_FREQ	src\I2Cdev.h	209;"	d
+Fastwire	src\I2Cdev.h	/^    class Fastwire {$/;"	c
+I2CDEV_ARDUINO_WIRE	src\I2Cdev.h	59;"	d
+I2CDEV_BUILTIN_FASTWIRE	src\I2Cdev.h	62;"	d
+I2CDEV_BUILTIN_NBWIRE	src\I2Cdev.h	60;"	d
+I2CDEV_DEFAULT_READ_TIMEOUT	src\I2Cdev.h	84;"	d
+I2CDEV_IMPLEMENTATION	src\I2Cdev.h	50;"	d
+I2CDEV_IMPLEMENTATION_WARNINGS	src\I2Cdev.h	54;"	d
+I2Cdev	src\I2Cdev.h	/^class I2Cdev {$/;"	c
+NBWIRE_BUFFER_LENGTH	src\I2Cdev.h	156;"	d
+TWI_BUFFER_LENGTH	src\I2Cdev.h	211;"	d
+TWI_FREQ	src\I2Cdev.h	210;"	d
+TWI_MRX	src\I2Cdev.h	198;"	d
+TWI_MTX	src\I2Cdev.h	199;"	d
+TWI_READY	src\I2Cdev.h	197;"	d
+TWI_SRX	src\I2Cdev.h	200;"	d
+TWI_STX	src\I2Cdev.h	201;"	d
+TW_BUS_ERROR	src\I2Cdev.h	244;"	d
+TW_ERROR	src\I2Cdev.h	138;"	d
+TW_MR_ARB_LOST	src\I2Cdev.h	131;"	d
+TW_MR_ARB_LOST	src\I2Cdev.h	224;"	d
+TW_MR_DATA_ACK	src\I2Cdev.h	134;"	d
+TW_MR_DATA_ACK	src\I2Cdev.h	227;"	d
+TW_MR_DATA_NACK	src\I2Cdev.h	135;"	d
+TW_MR_DATA_NACK	src\I2Cdev.h	228;"	d
+TW_MR_SLA_ACK	src\I2Cdev.h	132;"	d
+TW_MR_SLA_ACK	src\I2Cdev.h	225;"	d
+TW_MR_SLA_NACK	src\I2Cdev.h	133;"	d
+TW_MR_SLA_NACK	src\I2Cdev.h	226;"	d
+TW_MT_ARB_LOST	src\I2Cdev.h	128;"	d
+TW_MT_ARB_LOST	src\I2Cdev.h	223;"	d
+TW_MT_DATA_ACK	src\I2Cdev.h	126;"	d
+TW_MT_DATA_ACK	src\I2Cdev.h	221;"	d
+TW_MT_DATA_NACK	src\I2Cdev.h	127;"	d
+TW_MT_DATA_NACK	src\I2Cdev.h	207;"	d
+TW_MT_DATA_NACK	src\I2Cdev.h	222;"	d
+TW_MT_SLA_ACK	src\I2Cdev.h	124;"	d
+TW_MT_SLA_ACK	src\I2Cdev.h	219;"	d
+TW_MT_SLA_NACK	src\I2Cdev.h	125;"	d
+TW_MT_SLA_NACK	src\I2Cdev.h	206;"	d
+TW_MT_SLA_NACK	src\I2Cdev.h	220;"	d
+TW_NO_INFO	src\I2Cdev.h	243;"	d
+TW_OK	src\I2Cdev.h	137;"	d
+TW_READ	src\I2Cdev.h	204;"	d
+TW_REP_START	src\I2Cdev.h	121;"	d
+TW_REP_START	src\I2Cdev.h	218;"	d
+TW_SR_ARB_LOST_GCALL_ACK	src\I2Cdev.h	237;"	d
+TW_SR_ARB_LOST_SLA_ACK	src\I2Cdev.h	235;"	d
+TW_SR_DATA_ACK	src\I2Cdev.h	238;"	d
+TW_SR_DATA_NACK	src\I2Cdev.h	239;"	d
+TW_SR_GCALL_ACK	src\I2Cdev.h	236;"	d
+TW_SR_GCALL_DATA_ACK	src\I2Cdev.h	240;"	d
+TW_SR_GCALL_DATA_NACK	src\I2Cdev.h	241;"	d
+TW_SR_SLA_ACK	src\I2Cdev.h	234;"	d
+TW_SR_STOP	src\I2Cdev.h	242;"	d
+TW_START	src\I2Cdev.h	120;"	d
+TW_START	src\I2Cdev.h	217;"	d
+TW_STATUS	src\I2Cdev.h	216;"	d
+TW_STATUS_MASK	src\I2Cdev.h	215;"	d
+TW_ST_ARB_LOST_SLA_ACK	src\I2Cdev.h	230;"	d
+TW_ST_DATA_ACK	src\I2Cdev.h	231;"	d
+TW_ST_DATA_NACK	src\I2Cdev.h	232;"	d
+TW_ST_LAST_DATA	src\I2Cdev.h	233;"	d
+TW_ST_SLA_ACK	src\I2Cdev.h	229;"	d
+TW_WRITE	src\I2Cdev.h	203;"	d
+TwoWire	src\I2Cdev.h	/^    class TwoWire {$/;"	c
+_I2CDEV_H_	src\I2Cdev.h	45;"	d
+cbi	src\I2Cdev.h	254;"	d
+readTimeout	src\I2Cdev.h	/^        static uint16_t readTimeout;$/;"	m	class:I2Cdev
+rxBuffer	src\I2Cdev.h	/^            static uint8_t rxBuffer[];$/;"	m	class:TwoWire
+rxBufferIndex	src\I2Cdev.h	/^            static uint8_t rxBufferIndex;$/;"	m	class:TwoWire
+rxBufferLength	src\I2Cdev.h	/^            static uint8_t rxBufferLength;$/;"	m	class:TwoWire
+sbi	src\I2Cdev.h	250;"	d
+txAddress	src\I2Cdev.h	/^            static uint8_t txAddress;$/;"	m	class:TwoWire
+txBuffer	src\I2Cdev.h	/^            static uint8_t txBuffer[];$/;"	m	class:TwoWire
+txBufferIndex	src\I2Cdev.h	/^            static uint8_t txBufferIndex;$/;"	m	class:TwoWire
+txBufferLength	src\I2Cdev.h	/^            static uint8_t txBufferLength;$/;"	m	class:TwoWire
+user_onReceive	src\I2Cdev.h	/^            static void (*user_onReceive)(int);$/;"	m	class:TwoWire
+user_onRequest	src\I2Cdev.h	/^            static void (*user_onRequest)(void);$/;"	m	class:TwoWire
+Me4Button	src\Me4Button.cpp	/^Me4Button::Me4Button() : MePort(0)$/;"	f	class:Me4Button
+Me4Button	src\Me4Button.cpp	/^Me4Button::Me4Button(uint8_t port) : MePort(port)$/;"	f	class:Me4Button
+pressed	src\Me4Button.cpp	/^uint8_t Me4Button::pressed()$/;"	f	class:Me4Button
+FALSE	src\Me4Button.h	47;"	d
+KEY1	src\Me4Button.h	36;"	d
+KEY1_VALUE	src\Me4Button.h	42;"	d
+KEY2	src\Me4Button.h	37;"	d
+KEY2_VALUE	src\Me4Button.h	43;"	d
+KEY3	src\Me4Button.h	38;"	d
+KEY3_VALUE	src\Me4Button.h	44;"	d
+KEY4	src\Me4Button.h	39;"	d
+KEY4_VALUE	src\Me4Button.h	45;"	d
+Me4Button	src\Me4Button.h	/^ *\/class Me4Button$/;"	c
+Me4Button_H	src\Me4Button.h	24;"	d
+NULL_KEY	src\Me4Button.h	35;"	d
+NULL_KEY_VALUE	src\Me4Button.h	41;"	d
+TRUE	src\Me4Button.h	48;"	d
+Me7SegmentDisplay	src\Me7SegmentDisplay.cpp	/^Me7SegmentDisplay::Me7SegmentDisplay() : MePort()$/;"	f	class:Me7SegmentDisplay
+Me7SegmentDisplay	src\Me7SegmentDisplay.cpp	/^Me7SegmentDisplay::Me7SegmentDisplay(uint8_t dataPin, uint8_t clkPin)$/;"	f	class:Me7SegmentDisplay
+Me7SegmentDisplay	src\Me7SegmentDisplay.cpp	/^Me7SegmentDisplay::Me7SegmentDisplay(uint8_t port) : MePort(port)$/;"	f	class:Me7SegmentDisplay
+TubeTab	src\Me7SegmentDisplay.cpp	/^static uint8_t TubeTab[] =$/;"	v	file:
+clearDisplay	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::clearDisplay(void)$/;"	f	class:Me7SegmentDisplay
+coding	src\Me7SegmentDisplay.cpp	/^uint8_t Me7SegmentDisplay::coding(uint8_t DispData)$/;"	f	class:Me7SegmentDisplay
+coding	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::coding(uint8_t DispData[])$/;"	f	class:Me7SegmentDisplay
+display	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::display(double value, uint8_t digits)$/;"	f	class:Me7SegmentDisplay
+display	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::display(int16_t value)$/;"	f	class:Me7SegmentDisplay
+display	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::display(uint16_t value)$/;"	f	class:Me7SegmentDisplay
+display	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::display(uint8_t BitAddr, uint8_t DispData)$/;"	f	class:Me7SegmentDisplay
+display	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::display(uint8_t DispData[])$/;"	f	class:Me7SegmentDisplay
+init	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::init(void)$/;"	f	class:Me7SegmentDisplay
+set	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::set(uint8_t brightness, uint8_t SetData, uint8_t SetAddr)$/;"	f	class:Me7SegmentDisplay
+start	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::start(void)$/;"	f	class:Me7SegmentDisplay
+stop	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::stop(void)$/;"	f	class:Me7SegmentDisplay
+write	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::write(uint8_t BitAddr, uint8_t SegData)$/;"	f	class:Me7SegmentDisplay
+write	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::write(uint8_t SegData[])$/;"	f	class:Me7SegmentDisplay
+writeByte	src\Me7SegmentDisplay.cpp	/^void Me7SegmentDisplay::writeByte(uint8_t wr_data)$/;"	f	class:Me7SegmentDisplay
+ADDR_AUTO	src\Me7SegmentDisplay.h	/^const uint8_t   ADDR_AUTO  = 0x40;   \/\/Automatic address increment mode$/;"	v
+ADDR_FIXED	src\Me7SegmentDisplay.h	/^const uint8_t   ADDR_FIXED = 0x44;   \/\/Fixed address mode$/;"	v
+BRIGHT_0	src\Me7SegmentDisplay.h	/^const uint8_t  BRIGHT_0 = 0;    \/\/Brightness 1\/16$/;"	v
+BRIGHT_1	src\Me7SegmentDisplay.h	/^const uint8_t  BRIGHT_1 = 1;    \/\/Brightness 2\/16$/;"	v
+BRIGHT_2	src\Me7SegmentDisplay.h	/^const uint8_t  BRIGHT_2 = 2;    \/\/Brightness 4\/16$/;"	v
+BRIGHT_3	src\Me7SegmentDisplay.h	/^const uint8_t  BRIGHT_3 = 3;    \/\/Brightness 10\/16$/;"	v
+BRIGHT_4	src\Me7SegmentDisplay.h	/^const uint8_t  BRIGHT_4 = 4;    \/\/Brightness 11\/16$/;"	v
+BRIGHT_5	src\Me7SegmentDisplay.h	/^const uint8_t  BRIGHT_5 = 5;    \/\/Brightness 12\/16$/;"	v
+BRIGHT_6	src\Me7SegmentDisplay.h	/^const uint8_t  BRIGHT_6 = 6;    \/\/Brightness 13\/16$/;"	v
+BRIGHT_7	src\Me7SegmentDisplay.h	/^const uint8_t  BRIGHT_7 = 7;    \/\/Brightness 14\/16$/;"	v
+Cmd_DispCtrl	src\Me7SegmentDisplay.h	/^    uint8_t Cmd_DispCtrl;$/;"	m	class:Me7SegmentDisplay
+Cmd_SetAddr	src\Me7SegmentDisplay.h	/^    uint8_t Cmd_SetAddr;$/;"	m	class:Me7SegmentDisplay
+Cmd_SetData	src\Me7SegmentDisplay.h	/^    uint8_t Cmd_SetData;$/;"	m	class:Me7SegmentDisplay
+Me7SegmentDisplay	src\Me7SegmentDisplay.h	/^class Me7SegmentDisplay$/;"	c
+Me7SegmentDisplay_H	src\Me7SegmentDisplay.h	2;"	d
+POINT_OFF	src\Me7SegmentDisplay.h	/^const uint8_t   POINT_OFF = 0;$/;"	v
+POINT_ON	src\Me7SegmentDisplay.h	/^const uint8_t   POINT_ON  = 1;$/;"	v
+SEGDIS_OFF	src\Me7SegmentDisplay.h	/^const uint8_t 	SEGDIS_OFF = 0x80; 	\/\/diplay off$/;"	v
+SEGDIS_ON	src\Me7SegmentDisplay.h	/^const uint8_t 	SEGDIS_ON  = 0x88; 	\/\/diplay on$/;"	v
+STARTADDR	src\Me7SegmentDisplay.h	/^const uint8_t   STARTADDR  = 0xc0;   \/\/start address of display register$/;"	v
+_PointFlag	src\Me7SegmentDisplay.h	/^    bool _PointFlag;               \/\/_PointFlag=1:the clock point on$/;"	m	class:Me7SegmentDisplay
+_clkPin	src\Me7SegmentDisplay.h	/^    uint8_t _clkPin;$/;"	m	class:Me7SegmentDisplay
+_dataPin	src\Me7SegmentDisplay.h	/^    uint8_t _dataPin;$/;"	m	class:Me7SegmentDisplay
+MeBluetooth	src\MeBluetooth.cpp	/^MeBluetooth::MeBluetooth() : MeSerial(0)$/;"	f	class:MeBluetooth
+MeBluetooth	src\MeBluetooth.cpp	/^MeBluetooth::MeBluetooth(uint8_t port) : MeSerial(port)$/;"	f	class:MeBluetooth
+MeBluetooth	src\MeBluetooth.h	/^ *\/class MeBluetooth$/;"	c
+MeBluetooth_H	src\MeBluetooth.h	24;"	d
+MeCompass	src\MeCompass.cpp	/^MeCompass::MeCompass():MePort(0)$/;"	f	class:MeCompass
+MeCompass	src\MeCompass.cpp	/^MeCompass::MeCompass(uint8_t port):MePort(port)$/;"	f	class:MeCompass
+MeCompass	src\MeCompass.cpp	/^MeCompass::MeCompass(uint8_t port, uint8_t address):MePort(port)$/;"	f	class:MeCompass
+deviceCalibration	src\MeCompass.cpp	/^void MeCompass::deviceCalibration(void)$/;"	f	class:MeCompass
+getAngle	src\MeCompass.cpp	/^double MeCompass::getAngle(void)$/;"	f	class:MeCompass
+getHeading	src\MeCompass.cpp	/^void MeCompass::getHeading(int16_t *x, int16_t *y, int16_t *z)$/;"	f	class:MeCompass
+getHeadingX	src\MeCompass.cpp	/^int16_t MeCompass::getHeadingX(void)$/;"	f	class:MeCompass
+getHeadingY	src\MeCompass.cpp	/^int16_t MeCompass::getHeadingY(void)$/;"	f	class:MeCompass
+getHeadingZ	src\MeCompass.cpp	/^int16_t MeCompass::getHeadingZ(void)$/;"	f	class:MeCompass
+init	src\MeCompass.cpp	/^void MeCompass::init(void)$/;"	f	class:MeCompass
+read_EEPROM_Buffer	src\MeCompass.cpp	/^void MeCompass::read_EEPROM_Buffer()$/;"	f	class:MeCompass
+testConnection	src\MeCompass.cpp	/^bool MeCompass::testConnection(void)$/;"	f	class:MeCompass
+write_EEPROM_Buffer	src\MeCompass.cpp	/^void MeCompass::write_EEPROM_Buffer(struct Compass_Calibration_Parameter *parameter_pointer)$/;"	f	class:MeCompass
+COMPASS_AVERAGING_1	src\MeCompass.h	42;"	d
+COMPASS_AVERAGING_2	src\MeCompass.h	43;"	d
+COMPASS_AVERAGING_4	src\MeCompass.h	44;"	d
+COMPASS_AVERAGING_8	src\MeCompass.h	45;"	d
+COMPASS_BIAS_NEGATIVE	src\MeCompass.h	61;"	d
+COMPASS_BIAS_NORMAL	src\MeCompass.h	59;"	d
+COMPASS_BIAS_POSITIVE	src\MeCompass.h	60;"	d
+COMPASS_DEFAULT_ADDRESS	src\MeCompass.h	22;"	d
+COMPASS_GAIN_1090	src\MeCompass.h	78;"	d
+COMPASS_GAIN_1370	src\MeCompass.h	77;"	d
+COMPASS_GAIN_220	src\MeCompass.h	84;"	d
+COMPASS_GAIN_330	src\MeCompass.h	83;"	d
+COMPASS_GAIN_390	src\MeCompass.h	82;"	d
+COMPASS_GAIN_440	src\MeCompass.h	81;"	d
+COMPASS_GAIN_660	src\MeCompass.h	80;"	d
+COMPASS_GAIN_820	src\MeCompass.h	79;"	d
+COMPASS_MODE_CONTINUOUS	src\MeCompass.h	88;"	d
+COMPASS_MODE_IDLE	src\MeCompass.h	90;"	d
+COMPASS_MODE_SINGLE	src\MeCompass.h	89;"	d
+COMPASS_PI	src\MeCompass.h	93;"	d
+COMPASS_RATE_0P75	src\MeCompass.h	49;"	d
+COMPASS_RATE_15	src\MeCompass.h	53;"	d
+COMPASS_RATE_1P5	src\MeCompass.h	50;"	d
+COMPASS_RATE_3	src\MeCompass.h	51;"	d
+COMPASS_RATE_30	src\MeCompass.h	54;"	d
+COMPASS_RATE_75	src\MeCompass.h	55;"	d
+COMPASS_RATE_7P5	src\MeCompass.h	52;"	d
+COMPASS_RA_CONFIG_A	src\MeCompass.h	26;"	d
+COMPASS_RA_CONFIG_B	src\MeCompass.h	27;"	d
+COMPASS_RA_DATAX_H	src\MeCompass.h	29;"	d
+COMPASS_RA_DATAX_L	src\MeCompass.h	30;"	d
+COMPASS_RA_DATAY_H	src\MeCompass.h	33;"	d
+COMPASS_RA_DATAY_L	src\MeCompass.h	34;"	d
+COMPASS_RA_DATAZ_H	src\MeCompass.h	31;"	d
+COMPASS_RA_DATAZ_L	src\MeCompass.h	32;"	d
+COMPASS_RA_ID_A	src\MeCompass.h	36;"	d
+COMPASS_RA_ID_B	src\MeCompass.h	37;"	d
+COMPASS_RA_ID_C	src\MeCompass.h	38;"	d
+COMPASS_RA_MODE	src\MeCompass.h	28;"	d
+COMPASS_RA_STATUS	src\MeCompass.h	35;"	d
+COMPASS_SERIAL_DEBUG	src\MeCompass.h	16;"	d
+Cal_parameter	src\MeCompass.h	/^    struct Compass_Calibration_Parameter Cal_parameter;$/;"	m	class:MeCompass	typeref:struct:MeCompass::Compass_Calibration_Parameter
+Calibration_Flag	src\MeCompass.h	/^	bool Calibration_Flag;$/;"	m	class:MeCompass
+Compass_Calibration_Parameter	src\MeCompass.h	/^struct Compass_Calibration_Parameter$/;"	s
+Device_Address	src\MeCompass.h	/^	uint8_t Device_Address;$/;"	m	class:MeCompass
+MeCompass	src\MeCompass.h	/^class MeCompass:public MePort$/;"	c
+Measurement_Mode	src\MeCompass.h	/^	uint8_t Measurement_Mode;$/;"	m	class:MeCompass
+Rotation_Axis	src\MeCompass.h	/^    uint8_t Rotation_Axis;   \/\/1:X_Axis   2:Y_Axis   3:Z_Axis$/;"	m	struct:Compass_Calibration_Parameter
+START_ADDRESS_OF_EEPROM_BUFFER	src\MeCompass.h	94;"	d
+X_excursion	src\MeCompass.h	/^    float X_excursion;$/;"	m	struct:Compass_Calibration_Parameter
+X_gain	src\MeCompass.h	/^    float X_gain;$/;"	m	struct:Compass_Calibration_Parameter
+Y_excursion	src\MeCompass.h	/^    float Y_excursion;$/;"	m	struct:Compass_Calibration_Parameter
+Y_gain	src\MeCompass.h	/^    float Y_gain;$/;"	m	struct:Compass_Calibration_Parameter
+Z_excursion	src\MeCompass.h	/^    float Z_excursion;$/;"	m	struct:Compass_Calibration_Parameter
+Z_gain	src\MeCompass.h	/^    float Z_gain;$/;"	m	struct:Compass_Calibration_Parameter
+_MECOMPASS_H_	src\MeCompass.h	2;"	d
+buffer	src\MeCompass.h	/^    uint8_t buffer[6];$/;"	m	class:MeCompass
+verify_flag	src\MeCompass.h	/^    uint8_t verify_flag;$/;"	m	struct:Compass_Calibration_Parameter
+ME_PORT_DEFINED	src\MeConfig.h	46;"	d
+MeConfig_H	src\MeConfig.h	24;"	d
+MeDIRECT_MODE_INPUT	src\MeConfig.h	54;"	d
+MeDIRECT_MODE_OUTPUT	src\MeConfig.h	55;"	d
+MeDIRECT_READ	src\MeConfig.h	53;"	d
+MeDIRECT_WRITE_HIGH	src\MeConfig.h	57;"	d
+MeDIRECT_WRITE_LOW	src\MeConfig.h	56;"	d
+MeIO_REG_ASM	src\MeConfig.h	52;"	d
+MeIO_REG_TYPE	src\MeConfig.h	51;"	d
+MePIN_TO_BASEREG	src\MeConfig.h	49;"	d
+MePIN_TO_BITMASK	src\MeConfig.h	50;"	d
+_isServoBusy	src\MeConfig.h	/^static bool _isServoBusy = false;$/;"	v
+MeDCMotor	src\MeDCMotor.cpp	/^MeDCMotor::MeDCMotor() : MePort(0)$/;"	f	class:MeDCMotor
+MeDCMotor	src\MeDCMotor.cpp	/^MeDCMotor::MeDCMotor(uint8_t port) : MePort(port)$/;"	f	class:MeDCMotor
+run	src\MeDCMotor.cpp	/^void MeDCMotor::run(int speed)$/;"	f	class:MeDCMotor
+stop	src\MeDCMotor.cpp	/^void MeDCMotor::stop()$/;"	f	class:MeDCMotor
+MeDCMotor	src\MeDCMotor.h	/^class MeDCMotor$/;"	c
+MeDCMotor_H	src\MeDCMotor.h	24;"	d
+CalculateLRC	src\MeEncoderMotor.cpp	/^uint8_t CalculateLRC(uint8_t *data, uint32_t length)$/;"	f
+GetByte	src\MeEncoderMotor.cpp	/^uint8_t MeHost_Parser::GetByte(uint8_t * ch)$/;"	f	class:MeHost_Parser
+GetCurrentPosition	src\MeEncoderMotor.cpp	/^float MeEncoderMotor::GetCurrentPosition()$/;"	f	class:MeEncoderMotor
+GetCurrentSpeed	src\MeEncoderMotor.cpp	/^float MeEncoderMotor::GetCurrentSpeed()$/;"	f	class:MeEncoderMotor
+GetData	src\MeEncoderMotor.cpp	/^uint8_t MeHost_Parser::GetData(uint8_t *buf, uint32_t size)$/;"	f	class:MeHost_Parser
+HEAD	src\MeEncoderMotor.cpp	104;"	d	file:
+MeEncoderMotor	src\MeEncoderMotor.cpp	/^MeEncoderMotor::MeEncoderMotor(uint8_t addr, uint8_t slot): MeWire(addr - 1)$/;"	f	class:MeEncoderMotor
+MeHost_Pack	src\MeEncoderMotor.cpp	/^uint32_t MeHost_Pack(uint8_t * buf,$/;"	f
+MeHost_Parser	src\MeEncoderMotor.cpp	/^MeHost_Parser::MeHost_Parser()$/;"	f	class:MeHost_Parser
+MeHost_Parser	src\MeEncoderMotor.cpp	/^class MeHost_Parser$/;"	c	file:
+Move	src\MeEncoderMotor.cpp	/^boolean MeEncoderMotor::Move(float angle, float speed)$/;"	f	class:MeEncoderMotor
+MoveTo	src\MeEncoderMotor.cpp	/^boolean MeEncoderMotor::MoveTo(float angle, float speed)$/;"	f	class:MeEncoderMotor
+PackageReady	src\MeEncoderMotor.cpp	/^uint8_t MeHost_Parser::PackageReady()$/;"	f	class:MeHost_Parser
+PushByte	src\MeEncoderMotor.cpp	/^uint8_t MeHost_Parser::PushByte(uint8_t ch)$/;"	f	class:MeHost_Parser
+PushStr	src\MeEncoderMotor.cpp	/^uint8_t MeHost_Parser::PushStr(uint8_t * str, uint32_t length)$/;"	f	class:MeHost_Parser
+Reset	src\MeEncoderMotor.cpp	/^boolean MeEncoderMotor::Reset()$/;"	f	class:MeEncoderMotor
+Run	src\MeEncoderMotor.cpp	/^uint8_t MeHost_Parser::Run(void)$/;"	f	class:MeHost_Parser
+RunSpeed	src\MeEncoderMotor.cpp	/^boolean MeEncoderMotor::RunSpeed(float speed)$/;"	f	class:MeEncoderMotor
+RunSpeedAndTime	src\MeEncoderMotor.cpp	/^boolean MeEncoderMotor::RunSpeedAndTime(float speed, float time)$/;"	f	class:MeEncoderMotor
+RunTurns	src\MeEncoderMotor.cpp	/^boolean MeEncoderMotor::RunTurns(float turns, float speed)$/;"	f	class:MeEncoderMotor
+ST_CHECK_READ	src\MeEncoderMotor.cpp	113;"	d	file:
+ST_DATA_READ	src\MeEncoderMotor.cpp	112;"	d	file:
+ST_HEAD_READ	src\MeEncoderMotor.cpp	109;"	d	file:
+ST_LENGTH_READ	src\MeEncoderMotor.cpp	111;"	d	file:
+ST_MODULE_READ	src\MeEncoderMotor.cpp	110;"	d	file:
+ST_WAIT_4_START	src\MeEncoderMotor.cpp	108;"	d	file:
+TAIL	src\MeEncoderMotor.cpp	105;"	d	file:
+begin	src\MeEncoderMotor.cpp	/^void MeEncoderMotor::begin()$/;"	f	class:MeEncoderMotor
+buffer	src\MeEncoderMotor.cpp	/^        uint8_t buffer[BUF_SIZE];$/;"	m	class:MeHost_Parser	file:
+check	src\MeEncoderMotor.cpp	/^        uint8_t check;$/;"	m	class:MeHost_Parser	file:
+currentDataPos	src\MeEncoderMotor.cpp	/^        uint32_t currentDataPos;$/;"	m	class:MeHost_Parser	file:
+data	src\MeEncoderMotor.cpp	/^        uint8_t *data;$/;"	m	class:MeHost_Parser	file:
+encoderParser	src\MeEncoderMotor.cpp	/^MeHost_Parser encoderParser = MeHost_Parser();$/;"	v
+in	src\MeEncoderMotor.cpp	/^        uint32_t in;$/;"	m	class:MeHost_Parser	file:
+length	src\MeEncoderMotor.cpp	/^        uint32_t length;$/;"	m	class:MeHost_Parser	file:
+lengthRead	src\MeEncoderMotor.cpp	/^        uint32_t lengthRead;$/;"	m	class:MeHost_Parser	file:
+module	src\MeEncoderMotor.cpp	/^        uint8_t module;$/;"	m	class:MeHost_Parser	file:
+out	src\MeEncoderMotor.cpp	/^        uint32_t out;$/;"	m	class:MeHost_Parser	file:
+packageReady	src\MeEncoderMotor.cpp	/^        uint8_t packageReady;$/;"	m	class:MeHost_Parser	file:
+state	src\MeEncoderMotor.cpp	/^        int state;$/;"	m	class:MeHost_Parser	file:
+~MeHost_Parser	src\MeEncoderMotor.cpp	/^MeHost_Parser::~MeHost_Parser()$/;"	f	class:MeHost_Parser
+BUF_SIZE	src\MeEncoderMotor.h	68;"	d
+ENCODER_MOTOR_ACKNOWLEDGE	src\MeEncoderMotor.h	52;"	d
+ENCODER_MOTOR_ACKNOWLEDGE	src\MeEncoderMotor.h	67;"	d
+ENCODER_MOTOR_DEBUG_STR	src\MeEncoderMotor.h	51;"	d
+ENCODER_MOTOR_DEBUG_STR	src\MeEncoderMotor.h	66;"	d
+ENCODER_MOTOR_GET_DIFF_POS	src\MeEncoderMotor.h	44;"	d
+ENCODER_MOTOR_GET_DIFF_POS	src\MeEncoderMotor.h	59;"	d
+ENCODER_MOTOR_GET_PARAM	src\MeEncoderMotor.h	39;"	d
+ENCODER_MOTOR_GET_PARAM	src\MeEncoderMotor.h	54;"	d
+ENCODER_MOTOR_GET_POS	src\MeEncoderMotor.h	48;"	d
+ENCODER_MOTOR_GET_POS	src\MeEncoderMotor.h	63;"	d
+ENCODER_MOTOR_GET_SPEED	src\MeEncoderMotor.h	47;"	d
+ENCODER_MOTOR_GET_SPEED	src\MeEncoderMotor.h	62;"	d
+ENCODER_MOTOR_MOVE	src\MeEncoderMotor.h	49;"	d
+ENCODER_MOTOR_MOVE	src\MeEncoderMotor.h	64;"	d
+ENCODER_MOTOR_MOVE_TO	src\MeEncoderMotor.h	50;"	d
+ENCODER_MOTOR_MOVE_TO	src\MeEncoderMotor.h	65;"	d
+ENCODER_MOTOR_RESET	src\MeEncoderMotor.h	45;"	d
+ENCODER_MOTOR_RESET	src\MeEncoderMotor.h	60;"	d
+ENCODER_MOTOR_RUN_STOP	src\MeEncoderMotor.h	43;"	d
+ENCODER_MOTOR_RUN_STOP	src\MeEncoderMotor.h	58;"	d
+ENCODER_MOTOR_SAVE_PARAM	src\MeEncoderMotor.h	40;"	d
+ENCODER_MOTOR_SAVE_PARAM	src\MeEncoderMotor.h	55;"	d
+ENCODER_MOTOR_SHOW_PARAM	src\MeEncoderMotor.h	42;"	d
+ENCODER_MOTOR_SHOW_PARAM	src\MeEncoderMotor.h	57;"	d
+ENCODER_MOTOR_SPEED_TIME	src\MeEncoderMotor.h	46;"	d
+ENCODER_MOTOR_SPEED_TIME	src\MeEncoderMotor.h	61;"	d
+ENCODER_MOTOR_TEST_PARAM	src\MeEncoderMotor.h	41;"	d
+ENCODER_MOTOR_TEST_PARAM	src\MeEncoderMotor.h	56;"	d
+MASK	src\MeEncoderMotor.h	69;"	d
+MeEncoderMotor	src\MeEncoderMotor.h	/^class MeEncoderMotor$/;"	c
+MeEncoderMotor_H	src\MeEncoderMotor.h	24;"	d
+_slot	src\MeEncoderMotor.h	/^    uint8_t _slot;$/;"	m	class:MeEncoderMotor
+MeFlameSensor	src\MeFlameSensor.cpp	/^MeFlameSensor::MeFlameSensor() : MePort(0)$/;"	f	class:MeFlameSensor
+MeFlameSensor	src\MeFlameSensor.cpp	/^MeFlameSensor::MeFlameSensor(uint8_t port) : MePort(port)$/;"	f	class:MeFlameSensor
+readSensor	src\MeFlameSensor.cpp	/^uint8_t MeFlameSensor::readSensor()$/;"	f	class:MeFlameSensor
+Fire	src\MeFlameSensor.h	28;"	d
+MeFlameSensor	src\MeFlameSensor.h	/^class MeFlameSensor$/;"	c
+MeFlameSensor_H	src\MeFlameSensor.h	16;"	d
+NoFire	src\MeFlameSensor.h	29;"	d
+MeGasSensor	src\MeGasSensor.cpp	/^MeGasSensor::MeGasSensor() : MePort(0)$/;"	f	class:MeGasSensor
+MeGasSensor	src\MeGasSensor.cpp	/^MeGasSensor::MeGasSensor(uint8_t port) : MePort(port)$/;"	f	class:MeGasSensor
+readAnalog	src\MeGasSensor.cpp	/^uint8_t MeGasSensor::readAnalog()$/;"	f	class:MeGasSensor
+readDigital	src\MeGasSensor.cpp	/^uint8_t MeGasSensor::readDigital()$/;"	f	class:MeGasSensor
+Gas	src\MeGasSensor.h	28;"	d
+MeGasSensor	src\MeGasSensor.h	/^class MeGasSensor$/;"	c
+MeGasSensor_H	src\MeGasSensor.h	16;"	d
+NoGas	src\MeGasSensor.h	29;"	d
+MeGyro	src\MeGyro.cpp	/^MeGyro::MeGyro()$/;"	f	class:MeGyro
+angleX	src\MeGyro.cpp	/^double MeGyro::angleX()$/;"	f	class:MeGyro
+angleY	src\MeGyro.cpp	/^double MeGyro::angleY()$/;"	f	class:MeGyro
+angleZ	src\MeGyro.cpp	/^double MeGyro::angleZ()$/;"	f	class:MeGyro
+begin	src\MeGyro.cpp	/^void MeGyro::begin()$/;"	f	class:MeGyro
+calibrate	src\MeGyro.cpp	/^void MeGyro::calibrate()$/;"	f	class:MeGyro
+readData	src\MeGyro.cpp	/^int MeGyro::readData(int start, uint8_t *buffer, int size)$/;"	f	class:MeGyro
+update	src\MeGyro.cpp	/^void MeGyro::update()$/;"	f	class:MeGyro
+writeData	src\MeGyro.cpp	/^int MeGyro::writeData(int start, const uint8_t *pData, int size)$/;"	f	class:MeGyro
+writeReg	src\MeGyro.cpp	/^int MeGyro::writeReg(int reg, uint8_t data)$/;"	f	class:MeGyro
+FREQ	src\MeGyro.h	/^	double	FREQ;$/;"	m	class:MeGyro
+MeGyro	src\MeGyro.h	/^ *\/class MeGyro$/;"	c
+MeGyro_H	src\MeGyro.h	24;"	d
+accX	src\MeGyro.h	/^	int16_t accX, accY, accZ;$/;"	m	class:MeGyro
+accY	src\MeGyro.h	/^	int16_t accX, accY, accZ;$/;"	m	class:MeGyro
+accZ	src\MeGyro.h	/^	int16_t accX, accY, accZ;$/;"	m	class:MeGyro
+gSensitivity	src\MeGyro.h	/^	double	gSensitivity; \/* for 500 deg\/s, check data sheet *\/$/;"	m	class:MeGyro
+gx	src\MeGyro.h	/^	double	gx, gy, gz;$/;"	m	class:MeGyro
+gy	src\MeGyro.h	/^	double	gx, gy, gz;$/;"	m	class:MeGyro
+gyrX	src\MeGyro.h	/^	double	gyrX, gyrY, gyrZ;$/;"	m	class:MeGyro
+gyrXoffs	src\MeGyro.h	/^	double	gyrXoffs, gyrYoffs, gyrZoffs;$/;"	m	class:MeGyro
+gyrY	src\MeGyro.h	/^	double	gyrX, gyrY, gyrZ;$/;"	m	class:MeGyro
+gyrYoffs	src\MeGyro.h	/^	double	gyrXoffs, gyrYoffs, gyrZoffs;$/;"	m	class:MeGyro
+gyrZ	src\MeGyro.h	/^	double	gyrX, gyrY, gyrZ;$/;"	m	class:MeGyro
+gyrZoffs	src\MeGyro.h	/^	double	gyrXoffs, gyrYoffs, gyrZoffs;$/;"	m	class:MeGyro
+gz	src\MeGyro.h	/^	double	gx, gy, gz;$/;"	m	class:MeGyro
+i2cData	src\MeGyro.h	/^	uint8_t i2cData[14];$/;"	m	class:MeGyro
+MeInfraredReceiver	src\MeInfraredReceiver.cpp	/^MeInfraredReceiver::MeInfraredReceiver() : MeSerial(0)$/;"	f	class:MeInfraredReceiver
+MeInfraredReceiver	src\MeInfraredReceiver.cpp	/^MeInfraredReceiver::MeInfraredReceiver(uint8_t port) : MeSerial(port)$/;"	f	class:MeInfraredReceiver
+begin	src\MeInfraredReceiver.cpp	/^void MeInfraredReceiver::begin()$/;"	f	class:MeInfraredReceiver
+buttonState	src\MeInfraredReceiver.cpp	/^bool MeInfraredReceiver::buttonState()          \/* Check button press *\/$/;"	f	class:MeInfraredReceiver
+read	src\MeInfraredReceiver.cpp	/^int MeInfraredReceiver::read()$/;"	f	class:MeInfraredReceiver
+IR_BUTTON_0	src\MeInfraredReceiver.h	54;"	d
+IR_BUTTON_1	src\MeInfraredReceiver.h	55;"	d
+IR_BUTTON_2	src\MeInfraredReceiver.h	56;"	d
+IR_BUTTON_3	src\MeInfraredReceiver.h	57;"	d
+IR_BUTTON_4	src\MeInfraredReceiver.h	58;"	d
+IR_BUTTON_5	src\MeInfraredReceiver.h	59;"	d
+IR_BUTTON_6	src\MeInfraredReceiver.h	60;"	d
+IR_BUTTON_7	src\MeInfraredReceiver.h	61;"	d
+IR_BUTTON_8	src\MeInfraredReceiver.h	62;"	d
+IR_BUTTON_9	src\MeInfraredReceiver.h	63;"	d
+IR_BUTTON_A	src\MeInfraredReceiver.h	34;"	d
+IR_BUTTON_B	src\MeInfraredReceiver.h	35;"	d
+IR_BUTTON_C	src\MeInfraredReceiver.h	37;"	d
+IR_BUTTON_CLR	src\MeInfraredReceiver.h	52;"	d
+IR_BUTTON_D	src\MeInfraredReceiver.h	39;"	d
+IR_BUTTON_DOWN	src\MeInfraredReceiver.h	51;"	d
+IR_BUTTON_E	src\MeInfraredReceiver.h	43;"	d
+IR_BUTTON_F	src\MeInfraredReceiver.h	53;"	d
+IR_BUTTON_LEFT	src\MeInfraredReceiver.h	45;"	d
+IR_BUTTON_MENU	src\MeInfraredReceiver.h	36;"	d
+IR_BUTTON_MINUS	src\MeInfraredReceiver.h	50;"	d
+IR_BUTTON_NEXT	src\MeInfraredReceiver.h	48;"	d
+IR_BUTTON_PLAY	src\MeInfraredReceiver.h	46;"	d
+IR_BUTTON_PLUS	src\MeInfraredReceiver.h	40;"	d
+IR_BUTTON_POWER	src\MeInfraredReceiver.h	33;"	d
+IR_BUTTON_PREVIOUS	src\MeInfraredReceiver.h	44;"	d
+IR_BUTTON_RETURN	src\MeInfraredReceiver.h	42;"	d
+IR_BUTTON_RIGHT	src\MeInfraredReceiver.h	49;"	d
+IR_BUTTON_SETTING	src\MeInfraredReceiver.h	47;"	d
+IR_BUTTON_TEST	src\MeInfraredReceiver.h	38;"	d
+IR_BUTTON_UP	src\MeInfraredReceiver.h	41;"	d
+MeInfraredReceiver	src\MeInfraredReceiver.h	/^class MeInfraredReceiver$/;"	c
+MeInfraredReceiver_H	src\MeInfraredReceiver.h	24;"	d
+MeJoystick	src\MeJoystick.cpp	/^MeJoystick::MeJoystick() : MePort(0)$/;"	f	class:MeJoystick
+MeJoystick	src\MeJoystick.cpp	/^MeJoystick::MeJoystick(uint8_t port) : MePort(port)$/;"	f	class:MeJoystick
+angle	src\MeJoystick.cpp	/^float MeJoystick::angle()$/;"	f	class:MeJoystick
+readX	src\MeJoystick.cpp	/^int MeJoystick::readX()$/;"	f	class:MeJoystick
+readY	src\MeJoystick.cpp	/^int MeJoystick::readY()$/;"	f	class:MeJoystick
+strength	src\MeJoystick.cpp	/^float MeJoystick::strength()$/;"	f	class:MeJoystick
+MeJoystick	src\MeJoystick.h	/^class MeJoystick$/;"	c
+MeJoystick_H	src\MeJoystick.h	24;"	d
+MeLightSensor	src\MeLightSensor.cpp	/^MeLightSensor::MeLightSensor() : MePort(0)$/;"	f	class:MeLightSensor
+MeLightSensor	src\MeLightSensor.cpp	/^MeLightSensor::MeLightSensor(uint8_t port) : MePort(port)$/;"	f	class:MeLightSensor
+lightOff	src\MeLightSensor.cpp	/^void MeLightSensor::lightOff()$/;"	f	class:MeLightSensor
+lightOn	src\MeLightSensor.cpp	/^void MeLightSensor::lightOn()$/;"	f	class:MeLightSensor
+read	src\MeLightSensor.cpp	/^int MeLightSensor::read()$/;"	f	class:MeLightSensor
+strength	src\MeLightSensor.cpp	/^float MeLightSensor::strength()$/;"	f	class:MeLightSensor
+MeLightSensor	src\MeLightSensor.h	/^class MeLightSensor$/;"	c
+MeLightSensor_H	src\MeLightSensor.h	24;"	d
+MeLimitSwitch	src\MeLimitSwitch.cpp	/^MeLimitSwitch::MeLimitSwitch() : MePort(0)$/;"	f	class:MeLimitSwitch
+MeLimitSwitch	src\MeLimitSwitch.cpp	/^MeLimitSwitch::MeLimitSwitch(uint8_t port) : MePort(port)$/;"	f	class:MeLimitSwitch
+MeLimitSwitch	src\MeLimitSwitch.cpp	/^MeLimitSwitch::MeLimitSwitch(uint8_t port, uint8_t slot) : MePort(port)$/;"	f	class:MeLimitSwitch
+touched	src\MeLimitSwitch.cpp	/^bool MeLimitSwitch::touched()$/;"	f	class:MeLimitSwitch
+MeLimitSwitch	src\MeLimitSwitch.h	/^class MeLimitSwitch$/;"	c
+MeLimitSwitch_H	src\MeLimitSwitch.h	24;"	d
+_device	src\MeLimitSwitch.h	/^	uint8_t _device;$/;"	m	class:MeLimitSwitch
+MeLineFollower	src\MeLineFollower.cpp	/^MeLineFollower::MeLineFollower() : MePort(0)$/;"	f	class:MeLineFollower
+MeLineFollower	src\MeLineFollower.cpp	/^MeLineFollower::MeLineFollower(uint8_t port) : MePort(port)$/;"	f	class:MeLineFollower
+readSensor1	src\MeLineFollower.cpp	/^bool MeLineFollower::readSensor1()$/;"	f	class:MeLineFollower
+readSensor2	src\MeLineFollower.cpp	/^bool MeLineFollower::readSensor2()$/;"	f	class:MeLineFollower
+readSensors	src\MeLineFollower.cpp	/^uint8_t MeLineFollower::readSensors()$/;"	f	class:MeLineFollower
+MeLineFollower	src\MeLineFollower.h	/^class MeLineFollower$/;"	c
+MeLineFollower_H	src\MeLineFollower.h	25;"	d
+S1_IN_S2_IN	src\MeLineFollower.h	36;"	d
+S1_IN_S2_OUT	src\MeLineFollower.h	37;"	d
+S1_OUT_S2_IN	src\MeLineFollower.h	38;"	d
+S1_OUT_S2_OUT	src\MeLineFollower.h	39;"	d
+MeMbot_H	src\MeMbot.h	24;"	d
+mePort	src\MeMbot.h	/^MePort_Sig mePort[11] =$/;"	v
+MeOneWire	src\MeOneWire.cpp	/^MeOneWire::MeOneWire()$/;"	f	class:MeOneWire
+MeOneWire	src\MeOneWire.cpp	/^MeOneWire::MeOneWire(uint8_t pin)$/;"	f	class:MeOneWire
+depower	src\MeOneWire.cpp	/^void MeOneWire::depower()$/;"	f	class:MeOneWire
+read	src\MeOneWire.cpp	/^uint8_t MeOneWire::read()$/;"	f	class:MeOneWire
+readIO	src\MeOneWire.cpp	/^bool MeOneWire::readIO(void)$/;"	f	class:MeOneWire
+read_bit	src\MeOneWire.cpp	/^uint8_t MeOneWire::read_bit(void)$/;"	f	class:MeOneWire
+read_bytes	src\MeOneWire.cpp	/^void MeOneWire::read_bytes(uint8_t *buf, uint16_t count)$/;"	f	class:MeOneWire
+reset	src\MeOneWire.cpp	/^uint8_t MeOneWire::reset(void)$/;"	f	class:MeOneWire
+reset	src\MeOneWire.cpp	/^void MeOneWire::reset(uint8_t pin)$/;"	f	class:MeOneWire
+reset_search	src\MeOneWire.cpp	/^void MeOneWire::reset_search()$/;"	f	class:MeOneWire
+search	src\MeOneWire.cpp	/^uint8_t MeOneWire::search(uint8_t *newAddr)$/;"	f	class:MeOneWire
+select	src\MeOneWire.cpp	/^void MeOneWire::select(const uint8_t rom[8])$/;"	f	class:MeOneWire
+skip	src\MeOneWire.cpp	/^void MeOneWire::skip()$/;"	f	class:MeOneWire
+target_search	src\MeOneWire.cpp	/^void MeOneWire::target_search(uint8_t family_code)$/;"	f	class:MeOneWire
+write	src\MeOneWire.cpp	/^void MeOneWire::write(uint8_t v, uint8_t power \/* = 0 *\/)$/;"	f	class:MeOneWire
+write_bit	src\MeOneWire.cpp	/^void MeOneWire::write_bit(uint8_t v)$/;"	f	class:MeOneWire
+write_bytes	src\MeOneWire.cpp	/^void MeOneWire::write_bytes(const uint8_t *buf, uint16_t count, bool power \/* = 0 *\/)$/;"	f	class:MeOneWire
+LastDeviceFlag	src\MeOneWire.h	/^	uint8_t			LastDeviceFlag;$/;"	m	class:MeOneWire
+LastDiscrepancy	src\MeOneWire.h	/^	uint8_t			LastDiscrepancy;$/;"	m	class:MeOneWire
+LastFamilyDiscrepancy	src\MeOneWire.h	/^	uint8_t			LastFamilyDiscrepancy;$/;"	m	class:MeOneWire
+MeOneWire	src\MeOneWire.h	/^ *\/class MeOneWire$/;"	c
+MeOneWire_H	src\MeOneWire.h	24;"	d
+ROM_NO	src\MeOneWire.h	/^	unsigned char		ROM_NO[8];$/;"	m	class:MeOneWire
+baseReg	src\MeOneWire.h	/^	volatile MeIO_REG_TYPE	*baseReg;$/;"	m	class:MeOneWire
+bitmask	src\MeOneWire.h	/^	MeIO_REG_TYPE		bitmask;$/;"	m	class:MeOneWire
+MeOrion_H	src\MeOrion.h	24;"	d
+mePort	src\MeOrion.h	/^MePort_Sig mePort[11] =$/;"	v
+MePIRMotionSensor	src\MePIRMotionSensor.cpp	/^MePIRMotionSensor::MePIRMotionSensor() : MePort(0)$/;"	f	class:MePIRMotionSensor
+MePIRMotionSensor	src\MePIRMotionSensor.cpp	/^MePIRMotionSensor::MePIRMotionSensor(uint8_t port) : MePort(port)$/;"	f	class:MePIRMotionSensor
+isPeopleDetected	src\MePIRMotionSensor.cpp	/^bool MePIRMotionSensor::isPeopleDetected()$/;"	f	class:MePIRMotionSensor
+MePIRMotionSensor	src\MePIRMotionSensor.h	/^class MePIRMotionSensor$/;"	c
+MePIRMotionSensor_H	src\MePIRMotionSensor.h	24;"	d
+MePort	src\MePort.cpp	/^MePort::MePort()$/;"	f	class:MePort
+MePort	src\MePort.cpp	/^MePort::MePort(uint8_t port)$/;"	f	class:MePort
+MePort	src\MePort.cpp	/^MePort::MePort(uint8_t port, uint8_t slot)$/;"	f	class:MePort
+aRead1	src\MePort.cpp	/^ *\/int MePort::aRead1()$/;"	f	class:MePort
+aRead2	src\MePort.cpp	/^ *\/int MePort::aRead2()$/;"	f	class:MePort
+aWrite1	src\MePort.cpp	/^ *\/void MePort::aWrite1(int value)$/;"	f	class:MePort
+aWrite2	src\MePort.cpp	/^ *\/void MePort::aWrite2(int value)$/;"	f	class:MePort
+dRead1	src\MePort.cpp	/^ *\/bool MePort::dRead1()$/;"	f	class:MePort
+dRead2	src\MePort.cpp	/^ *\/bool MePort::dRead2()$/;"	f	class:MePort
+dWrite1	src\MePort.cpp	/^ *\/void MePort::dWrite1(bool value)$/;"	f	class:MePort
+dWrite2	src\MePort.cpp	/^ *\/void MePort::dWrite2(bool value)$/;"	f	class:MePort
+getPort	src\MePort.cpp	/^ *\/uint8_t MePort::getPort()$/;"	f	class:MePort
+getSlot	src\MePort.cpp	/^ *\/uint8_t MePort::getSlot()$/;"	f	class:MePort
+pin	src\MePort.cpp	/^ *\/uint8_t MePort::pin()$/;"	f	class:MePort
+pin	src\MePort.cpp	/^ *\/uint8_t MePort::pin(uint8_t port, uint8_t slot)$/;"	f	class:MePort
+pin1	src\MePort.cpp	/^ *\/uint8_t MePort::pin1()$/;"	f	class:MePort
+pin2	src\MePort.cpp	/^ *\/uint8_t MePort::pin2()$/;"	f	class:MePort
+reset	src\MePort.cpp	/^ *\/void MePort::reset(uint8_t port)$/;"	f	class:MePort
+reset	src\MePort.cpp	/^ *\/void MePort::reset(uint8_t port, uint8_t slot)$/;"	f	class:MePort
+FALSE	src\MePort.h	90;"	d
+M1	src\MePort.h	77;"	d
+M2	src\MePort.h	78;"	d
+MEPORT_H_	src\MePort.h	24;"	d
+MePort	src\MePort.h	/^class MePort$/;"	c
+MePort_Sig	src\MePort.h	/^} MePort_Sig;$/;"	t	typeref:struct:__anon4
+NC	src\MePort.h	67;"	d
+PORT_1	src\MePort.h	69;"	d
+PORT_2	src\MePort.h	70;"	d
+PORT_3	src\MePort.h	71;"	d
+PORT_4	src\MePort.h	72;"	d
+PORT_5	src\MePort.h	73;"	d
+PORT_6	src\MePort.h	74;"	d
+PORT_7	src\MePort.h	75;"	d
+PORT_8	src\MePort.h	76;"	d
+PORT_LightSensor	src\MePort.h	82;"	d
+PORT_RGB	src\MePort.h	81;"	d
+SLOT1	src\MePort.h	85;"	d
+SLOT2	src\MePort.h	86;"	d
+SLOT_1	src\MePort.h	87;"	d
+SLOT_2	src\MePort.h	88;"	d
+TRUE	src\MePort.h	91;"	d
+_port	src\MePort.h	/^	uint8_t _port;$/;"	m	class:MePort
+_slot	src\MePort.h	/^	uint8_t _slot;$/;"	m	class:MePort
+s1	src\MePort.h	/^	uint8_t s1;$/;"	m	class:MePort
+s1	src\MePort.h	/^	uint8_t s1;$/;"	m	struct:__anon4
+s2	src\MePort.h	/^	uint8_t s2;$/;"	m	class:MePort
+s2	src\MePort.h	/^	uint8_t s2;$/;"	m	struct:__anon4
+MePotentiometer	src\MePotentiometer.cpp	/^MePotentiometer::MePotentiometer() : MePort(0)$/;"	f	class:MePotentiometer
+MePotentiometer	src\MePotentiometer.cpp	/^MePotentiometer::MePotentiometer(uint8_t port) : MePort(port)$/;"	f	class:MePotentiometer
+read	src\MePotentiometer.cpp	/^uint16_t MePotentiometer::read()$/;"	f	class:MePotentiometer
+MePotentiometer	src\MePotentiometer.h	/^class MePotentiometer$/;"	c
+MePotentiometer_H	src\MePotentiometer.h	24;"	d
+MeRGBLed	src\MeRGBLed.cpp	/^MeRGBLed::MeRGBLed() : MePort()$/;"	f	class:MeRGBLed
+MeRGBLed	src\MeRGBLed.cpp	/^MeRGBLed::MeRGBLed(uint8_t port) : MePort(port)$/;"	f	class:MeRGBLed
+MeRGBLed	src\MeRGBLed.cpp	/^MeRGBLed::MeRGBLed(uint8_t port, uint8_t led_num) : MePort(port)$/;"	f	class:MeRGBLed
+MeRGBLed	src\MeRGBLed.cpp	/^MeRGBLed::MeRGBLed(uint8_t port, uint8_t slot, uint8_t led_num) : MePort(port)$/;"	f	class:MeRGBLed
+getColorAt	src\MeRGBLed.cpp	/^cRGB MeRGBLed::getColorAt(uint8_t index)$/;"	f	class:MeRGBLed
+getNumber	src\MeRGBLed.cpp	/^uint8_t MeRGBLed::getNumber()$/;"	f	class:MeRGBLed
+reset	src\MeRGBLed.cpp	/^void MeRGBLed::reset(uint8_t port)$/;"	f	class:MeRGBLed
+rgbled_sendarray_mask	src\MeRGBLed.cpp	/^void MeRGBLed::rgbled_sendarray_mask(uint8_t *data, uint16_t datlen, uint8_t maskhi, uint8_t *port)$/;"	f	class:MeRGBLed
+setColor	src\MeRGBLed.cpp	/^bool MeRGBLed::setColor(uint8_t index, uint8_t red, uint8_t green, uint8_t blue)$/;"	f	class:MeRGBLed
+setColor	src\MeRGBLed.cpp	/^bool MeRGBLed::setColor(uint8_t red, uint8_t green, uint8_t blue)$/;"	f	class:MeRGBLed
+setColorAt	src\MeRGBLed.cpp	/^bool MeRGBLed::setColorAt(uint8_t index, long value)$/;"	f	class:MeRGBLed
+setColorAt	src\MeRGBLed.cpp	/^bool MeRGBLed::setColorAt(uint8_t index, uint8_t red, uint8_t green, uint8_t blue)$/;"	f	class:MeRGBLed
+setNumber	src\MeRGBLed.cpp	/^void MeRGBLed::setNumber(uint8_t num_leds)$/;"	f	class:MeRGBLed
+show	src\MeRGBLed.cpp	/^void MeRGBLed::show()$/;"	f	class:MeRGBLed
+w1	src\MeRGBLed.cpp	268;"	d	file:
+w1_nops	src\MeRGBLed.cpp	275;"	d	file:
+w1_nops	src\MeRGBLed.cpp	277;"	d	file:
+w2	src\MeRGBLed.cpp	270;"	d	file:
+w2_nops	src\MeRGBLed.cpp	294;"	d	file:
+w2_nops	src\MeRGBLed.cpp	296;"	d	file:
+w3	src\MeRGBLed.cpp	272;"	d	file:
+w3_nops	src\MeRGBLed.cpp	300;"	d	file:
+w3_nops	src\MeRGBLed.cpp	302;"	d	file:
+w_fixedhigh	src\MeRGBLed.cpp	259;"	d	file:
+w_fixedlow	src\MeRGBLed.cpp	258;"	d	file:
+w_fixedtotal	src\MeRGBLed.cpp	260;"	d	file:
+w_lowtime	src\MeRGBLed.cpp	285;"	d	file:
+w_nop1	src\MeRGBLed.cpp	305;"	d	file:
+w_nop16	src\MeRGBLed.cpp	309;"	d	file:
+w_nop2	src\MeRGBLed.cpp	306;"	d	file:
+w_nop4	src\MeRGBLed.cpp	307;"	d	file:
+w_nop8	src\MeRGBLed.cpp	308;"	d	file:
+w_onecycles	src\MeRGBLed.cpp	264;"	d	file:
+w_onepulse	src\MeRGBLed.cpp	254;"	d	file:
+w_totalcycles	src\MeRGBLed.cpp	265;"	d	file:
+w_totalperiod	src\MeRGBLed.cpp	255;"	d	file:
+w_zerocycles	src\MeRGBLed.cpp	263;"	d	file:
+w_zeropulse	src\MeRGBLed.cpp	253;"	d	file:
+~MeRGBLed	src\MeRGBLed.cpp	/^MeRGBLed::~MeRGBLed()$/;"	f	class:MeRGBLed
+MeRGBLed	src\MeRGBLed.h	/^ *\/class MeRGBLed$/;"	c
+MeRGBLed_h	src\MeRGBLed.h	24;"	d
+b	src\MeRGBLed.h	/^	uint8_t b;$/;"	m	struct:cRGB
+cRGB	src\MeRGBLed.h	/^struct cRGB$/;"	s
+count_led	src\MeRGBLed.h	/^	uint16_t	count_led;$/;"	m	class:MeRGBLed
+g	src\MeRGBLed.h	/^	uint8_t g;$/;"	m	struct:cRGB
+pinMask	src\MeRGBLed.h	/^	uint8_t			pinMask;$/;"	m	class:MeRGBLed
+pixels	src\MeRGBLed.h	/^	uint8_t		*pixels;$/;"	m	class:MeRGBLed
+r	src\MeRGBLed.h	/^	uint8_t r;$/;"	m	struct:cRGB
+ws2812_port	src\MeRGBLed.h	/^	const volatile uint8_t	*ws2812_port;$/;"	m	class:MeRGBLed
+ws2812_port_reg	src\MeRGBLed.h	/^	volatile uint8_t	*ws2812_port_reg;$/;"	m	class:MeRGBLed
+MeSerial	src\MeSerial.cpp	/^MeSerial::MeSerial() : MePort(), SoftwareSerial(NC, NC)$/;"	f	class:MeSerial
+MeSerial	src\MeSerial.cpp	/^MeSerial::MeSerial(uint8_t port) : MePort(port), SoftwareSerial(mePort[port].s2, mePort[port].s1)$/;"	f	class:MeSerial
+available	src\MeSerial.cpp	/^int MeSerial::available()$/;"	f	class:MeSerial
+begin	src\MeSerial.cpp	/^void MeSerial::begin(long baudrate)$/;"	f	class:MeSerial
+end	src\MeSerial.cpp	/^void MeSerial::end()$/;"	f	class:MeSerial
+isListening	src\MeSerial.cpp	/^bool MeSerial::isListening()$/;"	f	class:MeSerial
+listen	src\MeSerial.cpp	/^bool MeSerial::listen()$/;"	f	class:MeSerial
+poll	src\MeSerial.cpp	/^int MeSerial::poll()$/;"	f	class:MeSerial
+read	src\MeSerial.cpp	/^int MeSerial::read()$/;"	f	class:MeSerial
+setHardware	src\MeSerial.cpp	/^void MeSerial::setHardware(bool mode)$/;"	f	class:MeSerial
+write	src\MeSerial.cpp	/^size_t MeSerial::write(uint8_t byte)$/;"	f	class:MeSerial
+MeSerial	src\MeSerial.h	/^class MeSerial$/;"	c
+MeSerial_H	src\MeSerial.h	24;"	d
+_bitPeriod	src\MeSerial.h	/^	int	_bitPeriod;$/;"	m	class:MeSerial
+_byte	src\MeSerial.h	/^	int	_byte;$/;"	m	class:MeSerial
+_hard	src\MeSerial.h	/^	bool	_hard;$/;"	m	class:MeSerial
+_lastTime	src\MeSerial.h	/^	long	_lastTime;$/;"	m	class:MeSerial
+_polling	src\MeSerial.h	/^	bool	_polling;$/;"	m	class:MeSerial
+_scratch	src\MeSerial.h	/^	bool	_scratch;$/;"	m	class:MeSerial
+MeShield_H	src\MeShield.h	24;"	d
+mePort	src\MeShield.h	/^MePort_Sig mePort[11] =$/;"	v
+MeShutter	src\MeShutter.cpp	/^MeShutter::MeShutter() : MePort(0)$/;"	f	class:MeShutter
+MeShutter	src\MeShutter.cpp	/^MeShutter::MeShutter(uint8_t port) : MePort(port)$/;"	f	class:MeShutter
+focusOff	src\MeShutter.cpp	/^void MeShutter::focusOff()$/;"	f	class:MeShutter
+focusOn	src\MeShutter.cpp	/^void MeShutter::focusOn()$/;"	f	class:MeShutter
+shotOff	src\MeShutter.cpp	/^void MeShutter::shotOff()$/;"	f	class:MeShutter
+shotOn	src\MeShutter.cpp	/^void MeShutter::shotOn()$/;"	f	class:MeShutter
+MeShutter	src\MeShutter.h	/^class MeShutter$/;"	c
+MeShutter_H	src\MeShutter.h	24;"	d
+MeSoundSensor	src\MeSoundSensor.cpp	/^MeSoundSensor::MeSoundSensor() : MePort(0)$/;"	f	class:MeSoundSensor
+MeSoundSensor	src\MeSoundSensor.cpp	/^MeSoundSensor::MeSoundSensor(uint8_t port) : MePort(port)$/;"	f	class:MeSoundSensor
+strength	src\MeSoundSensor.cpp	/^int MeSoundSensor::strength()$/;"	f	class:MeSoundSensor
+MeSoundSensor	src\MeSoundSensor.h	/^class MeSoundSensor$/;"	c
+MeSoundSensor_H	src\MeSoundSensor.h	24;"	d
+MeTempandHumid	src\MeTempandHumid.cpp	/^MeTempandHumid::MeTempandHumid() : MePort(0)$/;"	f	class:MeTempandHumid
+MeTempandHumid	src\MeTempandHumid.cpp	/^MeTempandHumid::MeTempandHumid(uint8_t port) : MePort(port)$/;"	f	class:MeTempandHumid
+getHumidity	src\MeTempandHumid.cpp	/^uint8_t MeTempandHumid::getHumidity()$/;"	f	class:MeTempandHumid
+getTemperature	src\MeTempandHumid.cpp	/^uint8_t MeTempandHumid::getTemperature()$/;"	f	class:MeTempandHumid
+update	src\MeTempandHumid.cpp	/^void MeTempandHumid::update()$/;"	f	class:MeTempandHumid
+Humidity	src\MeTempandHumid.h	/^	uint8_t Humidity;$/;"	m	class:MeTempandHumid
+MeTempandHumid	src\MeTempandHumid.h	/^class MeTempandHumid$/;"	c
+MeTempandHumid_H	src\MeTempandHumid.h	16;"	d
+Temperature	src\MeTempandHumid.h	/^	uint8_t Temperature;$/;"	m	class:MeTempandHumid
+MeTemperature	src\MeTemperature.cpp	/^MeTemperature::MeTemperature() : MePort()$/;"	f	class:MeTemperature
+MeTemperature	src\MeTemperature.cpp	/^MeTemperature::MeTemperature(uint8_t port) : MePort(port)$/;"	f	class:MeTemperature
+MeTemperature	src\MeTemperature.cpp	/^MeTemperature::MeTemperature(uint8_t port, uint8_t slot) : MePort(port)$/;"	f	class:MeTemperature
+reset	src\MeTemperature.cpp	/^void MeTemperature::reset(uint8_t port, uint8_t slot)$/;"	f	class:MeTemperature
+temperature	src\MeTemperature.cpp	/^float MeTemperature::temperature()$/;"	f	class:MeTemperature
+MeTemperature	src\MeTemperature.h	/^class MeTemperature$/;"	c
+MeTemperature_H	src\MeTemperature.h	24;"	d
+_ts	src\MeTemperature.h	/^	MeOneWire _ts;$/;"	m	class:MeTemperature
+MeTouchSensor	src\MeTouchSensor.cpp	/^MeTouchSensor::MeTouchSensor() : MePort(0)$/;"	f	class:MeTouchSensor
+MeTouchSensor	src\MeTouchSensor.cpp	/^MeTouchSensor::MeTouchSensor(uint8_t port) : MePort(port)$/;"	f	class:MeTouchSensor
+MeTouchSensor	src\MeTouchSensor.cpp	/^MeTouchSensor::MeTouchSensor(uint8_t port, uint8_t slot) : MePort(port)$/;"	f	class:MeTouchSensor
+touched	src\MeTouchSensor.cpp	/^bool MeTouchSensor::touched()$/;"	f	class:MeTouchSensor
+MeTouchSensor	src\MeTouchSensor.h	/^class MeTouchSensor$/;"	c
+MeTouchSensor_H	src\MeTouchSensor.h	2;"	d
+_device	src\MeTouchSensor.h	/^	uint8_t _device;$/;"	m	class:MeTouchSensor
+CH375_RD	src\MeUSBHost.cpp	/^unsigned char MeUSBHost::CH375_RD()$/;"	f	class:MeUSBHost
+CH375_WR	src\MeUSBHost.cpp	/^void MeUSBHost::CH375_WR(unsigned char c)$/;"	f	class:MeUSBHost
+HSerial	src\MeUSBHost.cpp	16;"	d	file:
+HSerial	src\MeUSBHost.cpp	18;"	d	file:
+MeUSBHost	src\MeUSBHost.cpp	/^MeUSBHost::MeUSBHost()$/;"	f	class:MeUSBHost
+clr_stall6	src\MeUSBHost.cpp	/^unsigned char MeUSBHost::clr_stall6(void)$/;"	f	class:MeUSBHost
+cmd_buf	src\MeUSBHost.cpp	/^unsigned char *cmd_buf;$/;"	v
+endp6_mode	src\MeUSBHost.cpp	/^unsigned char endp6_mode, endp7_mode;$/;"	v
+endp7_mode	src\MeUSBHost.cpp	/^unsigned char endp6_mode, endp7_mode;$/;"	v
+endp_in_addr	src\MeUSBHost.cpp	/^unsigned char endp_in_addr;$/;"	v
+endp_out_addr	src\MeUSBHost.cpp	/^unsigned char endp_out_addr;$/;"	v
+endp_out_size	src\MeUSBHost.cpp	/^unsigned char endp_out_size;$/;"	v
+getIrq	src\MeUSBHost.cpp	/^unsigned char MeUSBHost::getIrq()$/;"	f	class:MeUSBHost
+get_desr	src\MeUSBHost.cpp	/^unsigned char MeUSBHost::get_desr(unsigned char type)$/;"	f	class:MeUSBHost
+get_version	src\MeUSBHost.cpp	/^int MeUSBHost::get_version(){$/;"	f	class:MeUSBHost
+host_recv	src\MeUSBHost.cpp	/^unsigned char MeUSBHost::host_recv()$/;"	f	class:MeUSBHost
+init	src\MeUSBHost.cpp	/^void MeUSBHost::init(char type)$/;"	f	class:MeUSBHost
+initHIDDevice	src\MeUSBHost.cpp	/^int MeUSBHost::initHIDDevice()$/;"	f	class:MeUSBHost
+issue_token	src\MeUSBHost.cpp	/^unsigned char MeUSBHost::issue_token( unsigned char endp_and_pid )$/;"	f	class:MeUSBHost
+p_cfg_descr	src\MeUSBHost.cpp	4;"	d	file:
+p_dev_descr	src\MeUSBHost.cpp	3;"	d	file:
+probeDevice	src\MeUSBHost.cpp	/^int MeUSBHost::probeDevice()$/;"	f	class:MeUSBHost
+rd_usb_data	src\MeUSBHost.cpp	/^unsigned char MeUSBHost::rd_usb_data( unsigned char *buf )$/;"	f	class:MeUSBHost
+resetBus	src\MeUSBHost.cpp	/^void MeUSBHost::resetBus()$/;"	f	class:MeUSBHost
+ret_buf	src\MeUSBHost.cpp	/^unsigned char *ret_buf;$/;"	v
+set_addr	src\MeUSBHost.cpp	/^unsigned char MeUSBHost::set_addr( unsigned char addr )$/;"	f	class:MeUSBHost
+set_config	src\MeUSBHost.cpp	/^unsigned char MeUSBHost::set_config(unsigned char cfg){$/;"	f	class:MeUSBHost
+set_freq	src\MeUSBHost.cpp	/^void MeUSBHost::set_freq(void)$/;"	f	class:MeUSBHost
+set_usb_mode	src\MeUSBHost.cpp	/^int MeUSBHost::set_usb_mode(int mode)$/;"	f	class:MeUSBHost
+tmpEp	src\MeUSBHost.cpp	/^PUSB_ENDP_DESCR tmpEp;$/;"	v
+toggle_recv	src\MeUSBHost.cpp	/^void MeUSBHost::toggle_recv()$/;"	f	class:MeUSBHost
+toggle_send	src\MeUSBHost.cpp	/^void MeUSBHost::toggle_send()$/;"	f	class:MeUSBHost
+wr_usb_data	src\MeUSBHost.cpp	/^void MeUSBHost::wr_usb_data( unsigned char len, unsigned char *buf )$/;"	f	class:MeUSBHost
+CH375_MAX_DATA_LEN	src\MeUSBHost.h	34;"	d
+CMD_ABORT_NAK	src\MeUSBHost.h	102;"	d
+CMD_AUTO_SETUP	src\MeUSBHost.h	181;"	d
+CMD_CHECK_EXIST	src\MeUSBHost.h	41;"	d
+CMD_CHK_SUSPEND	src\MeUSBHost.h	167;"	d
+CMD_CLR_STALL	src\MeUSBHost.h	113;"	d
+CMD_DELAY_100US	src\MeUSBHost.h	164;"	d
+CMD_DISK_INIT	src\MeUSBHost.h	129;"	d
+CMD_DISK_RD_GO	src\MeUSBHost.h	142;"	d
+CMD_DISK_READ	src\MeUSBHost.h	138;"	d
+CMD_DISK_RESET	src\MeUSBHost.h	132;"	d
+CMD_DISK_SIZE	src\MeUSBHost.h	135;"	d
+CMD_DISK_WRITE	src\MeUSBHost.h	145;"	d
+CMD_DISK_WR_GO	src\MeUSBHost.h	149;"	d
+CMD_ENTER_SLEEP	src\MeUSBHost.h	159;"	d
+CMD_GET_DESCR	src\MeUSBHost.h	121;"	d
+CMD_GET_IC_VER	src\MeUSBHost.h	155;"	d
+CMD_GET_STATUS	src\MeUSBHost.h	78;"	d
+CMD_GET_TOGGLE	src\MeUSBHost.h	73;"	d
+CMD_ISSUE_TKN_X	src\MeUSBHost.h	184;"	d
+CMD_ISSUE_TOKEN	src\MeUSBHost.h	108;"	d
+CMD_RD_USB_DATA	src\MeUSBHost.h	83;"	d
+CMD_RD_USB_DATA0	src\MeUSBHost.h	161;"	d
+CMD_RESET_ALL	src\MeUSBHost.h	39;"	d
+CMD_RET_ABORT	src\MeUSBHost.h	195;"	d
+CMD_RET_SUCCESS	src\MeUSBHost.h	194;"	d
+CMD_SET_ADDRESS	src\MeUSBHost.h	117;"	d
+CMD_SET_BAUDRATE	src\MeUSBHost.h	98;"	d
+CMD_SET_CONFIG	src\MeUSBHost.h	125;"	d
+CMD_SET_ENDP2	src\MeUSBHost.h	57;"	d
+CMD_SET_ENDP3	src\MeUSBHost.h	62;"	d
+CMD_SET_ENDP4	src\MeUSBHost.h	64;"	d
+CMD_SET_ENDP5	src\MeUSBHost.h	66;"	d
+CMD_SET_ENDP6	src\MeUSBHost.h	68;"	d
+CMD_SET_ENDP7	src\MeUSBHost.h	70;"	d
+CMD_SET_RETRY	src\MeUSBHost.h	104;"	d
+CMD_SET_SYS_FREQ	src\MeUSBHost.h	171;"	d
+CMD_SET_USB_ADDR	src\MeUSBHost.h	48;"	d
+CMD_SET_USB_ID	src\MeUSBHost.h	45;"	d
+CMD_SET_USB_MODE	src\MeUSBHost.h	51;"	d
+CMD_TEST_CONNECT	src\MeUSBHost.h	178;"	d
+CMD_UNLOCK_USB	src\MeUSBHost.h	81;"	d
+CMD_WR_USB_DATA3	src\MeUSBHost.h	86;"	d
+CMD_WR_USB_DATA5	src\MeUSBHost.h	89;"	d
+CMD_WR_USB_DATA7	src\MeUSBHost.h	92;"	d
+DEF_USB_CLR_FEATURE	src\MeUSBHost.h	266;"	d
+DEF_USB_GET_CONFIG	src\MeUSBHost.h	272;"	d
+DEF_USB_GET_DESCR	src\MeUSBHost.h	270;"	d
+DEF_USB_GET_INTERF	src\MeUSBHost.h	274;"	d
+DEF_USB_GET_STATUS	src\MeUSBHost.h	268;"	d
+DEF_USB_PID_ACK	src\MeUSBHost.h	249;"	d
+DEF_USB_PID_DATA0	src\MeUSBHost.h	252;"	d
+DEF_USB_PID_DATA1	src\MeUSBHost.h	253;"	d
+DEF_USB_PID_IN	src\MeUSBHost.h	247;"	d
+DEF_USB_PID_NAK	src\MeUSBHost.h	250;"	d
+DEF_USB_PID_NULL	src\MeUSBHost.h	244;"	d
+DEF_USB_PID_OUT	src\MeUSBHost.h	248;"	d
+DEF_USB_PID_PRE	src\MeUSBHost.h	254;"	d
+DEF_USB_PID_SETUP	src\MeUSBHost.h	246;"	d
+DEF_USB_PID_SOF	src\MeUSBHost.h	245;"	d
+DEF_USB_PID_STALL	src\MeUSBHost.h	251;"	d
+DEF_USB_REQ_CLASS	src\MeUSBHost.h	261;"	d
+DEF_USB_REQ_READ	src\MeUSBHost.h	257;"	d
+DEF_USB_REQ_RESERVE	src\MeUSBHost.h	263;"	d
+DEF_USB_REQ_STAND	src\MeUSBHost.h	260;"	d
+DEF_USB_REQ_TYPE	src\MeUSBHost.h	259;"	d
+DEF_USB_REQ_VENDOR	src\MeUSBHost.h	262;"	d
+DEF_USB_REQ_WRITE	src\MeUSBHost.h	258;"	d
+DEF_USB_SET_ADDRESS	src\MeUSBHost.h	269;"	d
+DEF_USB_SET_CONFIG	src\MeUSBHost.h	273;"	d
+DEF_USB_SET_DESCR	src\MeUSBHost.h	271;"	d
+DEF_USB_SET_FEATURE	src\MeUSBHost.h	267;"	d
+DEF_USB_SET_INTERF	src\MeUSBHost.h	275;"	d
+DEF_USB_SYNC_FRAME	src\MeUSBHost.h	276;"	d
+MaxPower	src\MeUSBHost.h	/^    unsigned char MaxPower;$/;"	m	struct:_USB_CONFIG_DEscriptOR
+MeUSBHost	src\MeUSBHost.h	/^class MeUSBHost$/;"	c
+MeUSBHost_H	src\MeUSBHost.h	15;"	d
+PUSB_CFG_DESCR	src\MeUSBHost.h	/^} USB_CFG_DESCR, *PUSB_CFG_DESCR;$/;"	t	typeref:struct:_USB_CONFIG_DEscriptOR
+PUSB_CFG_DESCR_LONG	src\MeUSBHost.h	/^} USB_CFG_DESCR_LONG, *PUSB_CFG_DESCR_LONG;$/;"	t	typeref:struct:_USB_CONFIG_DEscriptOR_LONG
+PUSB_DEV_DESCR	src\MeUSBHost.h	/^} USB_DEV_DESCR, *PUSB_DEV_DESCR;$/;"	t	typeref:struct:_USB_DEVICE_DEscriptOR
+PUSB_ENDP_DESCR	src\MeUSBHost.h	/^} USB_ENDP_DESCR, *PUSB_ENDP_DESCR;$/;"	t	typeref:struct:_USB_ENDPOINT_DEscriptOR
+PUSB_ITF_DESCR	src\MeUSBHost.h	/^} USB_ITF_DESCR, *PUSB_ITF_DESCR;$/;"	t	typeref:struct:_USB_INTERF_DEscriptOR
+RECV_BUFFER	src\MeUSBHost.h	/^      unsigned char RECV_BUFFER[ CH375_MAX_DATA_LEN ];$/;"	m	class:MeUSBHost
+USB1_0	src\MeUSBHost.h	23;"	d
+USB2_0	src\MeUSBHost.h	22;"	d
+USB_CFG_DESCR	src\MeUSBHost.h	/^} USB_CFG_DESCR, *PUSB_CFG_DESCR;$/;"	t	typeref:struct:_USB_CONFIG_DEscriptOR
+USB_CFG_DESCR_LONG	src\MeUSBHost.h	/^} USB_CFG_DESCR_LONG, *PUSB_CFG_DESCR_LONG;$/;"	t	typeref:struct:_USB_CONFIG_DEscriptOR_LONG
+USB_DEV_DESCR	src\MeUSBHost.h	/^} USB_DEV_DESCR, *PUSB_DEV_DESCR;$/;"	t	typeref:struct:_USB_DEVICE_DEscriptOR
+USB_ENDP_DESCR	src\MeUSBHost.h	/^} USB_ENDP_DESCR, *PUSB_ENDP_DESCR;$/;"	t	typeref:struct:_USB_ENDPOINT_DEscriptOR
+USB_INT_BUF_OVER	src\MeUSBHost.h	237;"	d
+USB_INT_BUS_RESET1	src\MeUSBHost.h	213;"	d
+USB_INT_BUS_RESET2	src\MeUSBHost.h	214;"	d
+USB_INT_BUS_RESET3	src\MeUSBHost.h	215;"	d
+USB_INT_BUS_RESET4	src\MeUSBHost.h	216;"	d
+USB_INT_CONNECT	src\MeUSBHost.h	235;"	d
+USB_INT_DISCONNECT	src\MeUSBHost.h	236;"	d
+USB_INT_DISK_ERR	src\MeUSBHost.h	240;"	d
+USB_INT_DISK_READ	src\MeUSBHost.h	238;"	d
+USB_INT_DISK_WRITE	src\MeUSBHost.h	239;"	d
+USB_INT_EP0_IN	src\MeUSBHost.h	207;"	d
+USB_INT_EP0_OUT	src\MeUSBHost.h	206;"	d
+USB_INT_EP0_SETUP	src\MeUSBHost.h	205;"	d
+USB_INT_EP1_IN	src\MeUSBHost.h	209;"	d
+USB_INT_EP1_OUT	src\MeUSBHost.h	208;"	d
+USB_INT_EP2_IN	src\MeUSBHost.h	211;"	d
+USB_INT_EP2_OUT	src\MeUSBHost.h	210;"	d
+USB_INT_SUCCESS	src\MeUSBHost.h	234;"	d
+USB_INT_USB_SUSPEND	src\MeUSBHost.h	201;"	d
+USB_INT_WAKE_UP	src\MeUSBHost.h	202;"	d
+USB_ITF_DESCR	src\MeUSBHost.h	/^} USB_ITF_DESCR, *PUSB_ITF_DESCR;$/;"	t	typeref:struct:_USB_INTERF_DEscriptOR
+_USB_CONFIG_DEscriptOR	src\MeUSBHost.h	/^typedef struct _USB_CONFIG_DEscriptOR {$/;"	s
+_USB_CONFIG_DEscriptOR_LONG	src\MeUSBHost.h	/^typedef struct _USB_CONFIG_DEscriptOR_LONG {$/;"	s
+_USB_DEVICE_DEscriptOR	src\MeUSBHost.h	/^typedef struct _USB_DEVICE_DEscriptOR {$/;"	s
+_USB_ENDPOINT_DEscriptOR	src\MeUSBHost.h	/^typedef struct _USB_ENDPOINT_DEscriptOR {$/;"	s
+_USB_INTERF_DEscriptOR	src\MeUSBHost.h	/^typedef struct _USB_INTERF_DEscriptOR {$/;"	s
+bAlternateSetting	src\MeUSBHost.h	/^    unsigned char bAlternateSetting;$/;"	m	struct:_USB_INTERF_DEscriptOR
+bConfigurationvalue	src\MeUSBHost.h	/^    unsigned char bConfigurationvalue;$/;"	m	struct:_USB_CONFIG_DEscriptOR
+bDescriptorType	src\MeUSBHost.h	/^    unsigned char bDescriptorType;$/;"	m	struct:_USB_CONFIG_DEscriptOR
+bDescriptorType	src\MeUSBHost.h	/^    unsigned char bDescriptorType;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+bDescriptorType	src\MeUSBHost.h	/^    unsigned char bDescriptorType;$/;"	m	struct:_USB_ENDPOINT_DEscriptOR
+bDescriptorType	src\MeUSBHost.h	/^    unsigned char bDescriptorType;$/;"	m	struct:_USB_INTERF_DEscriptOR
+bDeviceClass	src\MeUSBHost.h	/^    unsigned char bDeviceClass;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+bDeviceProtocol	src\MeUSBHost.h	/^    unsigned char bDeviceProtocol;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+bDeviceSubClass	src\MeUSBHost.h	/^    unsigned char bDeviceSubClass;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+bEndpointAddress	src\MeUSBHost.h	/^    unsigned char bEndpointAddress;$/;"	m	struct:_USB_ENDPOINT_DEscriptOR
+bInterfaceClass	src\MeUSBHost.h	/^    unsigned char bInterfaceClass;$/;"	m	struct:_USB_INTERF_DEscriptOR
+bInterfaceNumber	src\MeUSBHost.h	/^    unsigned char bInterfaceNumber;$/;"	m	struct:_USB_INTERF_DEscriptOR
+bInterfaceProtocol	src\MeUSBHost.h	/^    unsigned char bInterfaceProtocol;$/;"	m	struct:_USB_INTERF_DEscriptOR
+bInterfaceSubClass	src\MeUSBHost.h	/^    unsigned char bInterfaceSubClass;$/;"	m	struct:_USB_INTERF_DEscriptOR
+bInterval	src\MeUSBHost.h	/^    unsigned char bInterval;$/;"	m	struct:_USB_ENDPOINT_DEscriptOR
+bLength	src\MeUSBHost.h	/^    unsigned char bLength;$/;"	m	struct:_USB_CONFIG_DEscriptOR
+bLength	src\MeUSBHost.h	/^    unsigned char bLength;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+bLength	src\MeUSBHost.h	/^    unsigned char bLength;$/;"	m	struct:_USB_ENDPOINT_DEscriptOR
+bLength	src\MeUSBHost.h	/^    unsigned char bLength;$/;"	m	struct:_USB_INTERF_DEscriptOR
+bMaxPacketSize0	src\MeUSBHost.h	/^    unsigned char bMaxPacketSize0;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+bNumConfigurations	src\MeUSBHost.h	/^    unsigned char bNumConfigurations;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+bNumEndpoints	src\MeUSBHost.h	/^    unsigned char bNumEndpoints;$/;"	m	struct:_USB_INTERF_DEscriptOR
+bNumInterfaces	src\MeUSBHost.h	/^    unsigned char bNumInterfaces;$/;"	m	struct:_USB_CONFIG_DEscriptOR
+bcdDevice	src\MeUSBHost.h	/^    unsigned short bcdDevice;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+bcdUSB	src\MeUSBHost.h	/^    unsigned short bcdUSB;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+bmAttributes	src\MeUSBHost.h	/^    unsigned char bmAttributes;$/;"	m	struct:_USB_CONFIG_DEscriptOR
+bmAttributes	src\MeUSBHost.h	/^    unsigned char bmAttributes;$/;"	m	struct:_USB_ENDPOINT_DEscriptOR
+cfg_descr	src\MeUSBHost.h	/^    USB_CFG_DESCR cfg_descr;$/;"	m	struct:_USB_CONFIG_DEscriptOR_LONG
+ch375_online	src\MeUSBHost.h	/^      bool ch375_online;$/;"	m	class:MeUSBHost
+device_online	src\MeUSBHost.h	/^      bool device_online;$/;"	m	class:MeUSBHost
+device_ready	src\MeUSBHost.h	/^      bool device_ready;$/;"	m	class:MeUSBHost
+endp_descr	src\MeUSBHost.h	/^    USB_ENDP_DESCR endp_descr[4];$/;"	m	struct:_USB_CONFIG_DEscriptOR_LONG
+iConfiguration	src\MeUSBHost.h	/^    unsigned char iConfiguration;$/;"	m	struct:_USB_CONFIG_DEscriptOR
+iInterface	src\MeUSBHost.h	/^    unsigned char iInterface;$/;"	m	struct:_USB_INTERF_DEscriptOR
+iManufacturer	src\MeUSBHost.h	/^    unsigned char iManufacturer;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+iProduct	src\MeUSBHost.h	/^    unsigned char iProduct;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+iSerialNumber	src\MeUSBHost.h	/^    unsigned char iSerialNumber;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+idProduct	src\MeUSBHost.h	/^    unsigned short idProduct;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+idVendor	src\MeUSBHost.h	/^    unsigned short idVendor;$/;"	m	struct:_USB_DEVICE_DEscriptOR
+itf_descr	src\MeUSBHost.h	/^    USB_ITF_DESCR itf_descr;$/;"	m	struct:_USB_CONFIG_DEscriptOR_LONG
+stallCount	src\MeUSBHost.h	/^      int stallCount;$/;"	m	class:MeUSBHost
+usbtype	src\MeUSBHost.h	/^      char usbtype;$/;"	m	class:MeUSBHost
+wMaxPacketSize	src\MeUSBHost.h	/^    unsigned short wMaxPacketSize;$/;"	m	struct:_USB_ENDPOINT_DEscriptOR
+wTotalLength	src\MeUSBHost.h	/^    unsigned short wTotalLength;$/;"	m	struct:_USB_CONFIG_DEscriptOR
+MeUltrasonicSensor	src\MeUltrasonicSensor.cpp	/^MeUltrasonicSensor::MeUltrasonicSensor() : MePort(0)$/;"	f	class:MeUltrasonicSensor
+MeUltrasonicSensor	src\MeUltrasonicSensor.cpp	/^MeUltrasonicSensor::MeUltrasonicSensor(uint8_t port) : MePort(port)$/;"	f	class:MeUltrasonicSensor
+distanceCm	src\MeUltrasonicSensor.cpp	/^ double MeUltrasonicSensor::distanceCm(uint16_t MAXcm)$/;"	f	class:MeUltrasonicSensor
+distanceInch	src\MeUltrasonicSensor.cpp	/^ double MeUltrasonicSensor::distanceInch(uint16_t MAXinch)$/;"	f	class:MeUltrasonicSensor
+measure	src\MeUltrasonicSensor.cpp	/^long MeUltrasonicSensor::measure(unsigned long timeout)$/;"	f	class:MeUltrasonicSensor
+MeUltrasonicSensor	src\MeUltrasonicSensor.h	/^class MeUltrasonicSensor$/;"	c
+MeUltrasonicSensor_H	src\MeUltrasonicSensor.h	24;"	d
+MeWifi	src\MeWifi.cpp	/^MeWifi::MeWifi() : MeSerial(0)$/;"	f	class:MeWifi
+MeWifi	src\MeWifi.cpp	/^MeWifi::MeWifi(uint8_t port) : MeSerial(port)$/;"	f	class:MeWifi
+MeWifi	src\MeWifi.h	/^class MeWifi$/;"	c
+MeWifi_H	src\MeWifi.h	24;"	d
+MeWire	src\MeWire.cpp	/^MeWire::MeWire(uint8_t address): MePort()$/;"	f	class:MeWire
+MeWire	src\MeWire.cpp	/^MeWire::MeWire(uint8_t port, uint8_t address): MePort(port)$/;"	f	class:MeWire
+begin	src\MeWire.cpp	/^void MeWire::begin()$/;"	f	class:MeWire
+isRunning	src\MeWire.cpp	/^bool MeWire::isRunning()$/;"	f	class:MeWire
+read	src\MeWire.cpp	/^byte MeWire::read(byte dataAddress)$/;"	f	class:MeWire
+read	src\MeWire.cpp	/^void MeWire::read(byte dataAddress, uint8_t *buf, int len)$/;"	f	class:MeWire
+request	src\MeWire.cpp	/^void MeWire::request(byte *writeData, byte *readData, int wlen, int rlen)$/;"	f	class:MeWire
+setI2CBaseAddress	src\MeWire.cpp	/^void MeWire::setI2CBaseAddress(uint8_t baseAddress)$/;"	f	class:MeWire
+write	src\MeWire.cpp	/^void MeWire::write(byte dataAddress, byte data)$/;"	f	class:MeWire
+MeWire	src\MeWire.h	/^class MeWire$/;"	c
+MeWire_H	src\MeWire.h	24;"	d
+_slaveAddress	src\MeWire.h	/^    int _slaveAddress;$/;"	m	class:MeWire
+Channel	src\Servo.cpp	/^static volatile int8_t Channel[_Nbr_16timers ];             \/\/ counter for the servo being pulsed for each timer (or -1 if refresh interval)$/;"	v	file:
+ISR	src\Servo.cpp	/^ISR(TIMER1_COMPA_vect) $/;"	f
+ISR	src\Servo.cpp	/^ISR(TIMER3_COMPA_vect) $/;"	f
+ISR	src\Servo.cpp	/^ISR(TIMER4_COMPA_vect) $/;"	f
+ISR	src\Servo.cpp	/^ISR(TIMER5_COMPA_vect) $/;"	f
+SERVO	src\Servo.cpp	68;"	d	file:
+SERVO_INDEX	src\Servo.cpp	67;"	d	file:
+SERVO_INDEX_TO_CHANNEL	src\Servo.cpp	66;"	d	file:
+SERVO_INDEX_TO_TIMER	src\Servo.cpp	65;"	d	file:
+SERVO_MAX	src\Servo.cpp	71;"	d	file:
+SERVO_MIN	src\Servo.cpp	70;"	d	file:
+Servo	src\Servo.cpp	/^Servo::Servo()$/;"	f	class:Servo
+ServoCount	src\Servo.cpp	/^uint8_t ServoCount = 0;                                     \/\/ the total number of attached servos$/;"	v
+TRIM_DURATION	src\Servo.cpp	54;"	d	file:
+Timer1Service	src\Servo.cpp	/^void Timer1Service() $/;"	f
+Timer3Service	src\Servo.cpp	/^void Timer3Service() $/;"	f
+attach	src\Servo.cpp	/^uint8_t Servo::attach(int pin)$/;"	f	class:Servo
+attach	src\Servo.cpp	/^uint8_t Servo::attach(int pin, int min, int max)$/;"	f	class:Servo
+attached	src\Servo.cpp	/^bool Servo::attached()$/;"	f	class:Servo
+detach	src\Servo.cpp	/^void Servo::detach()  $/;"	f	class:Servo
+finISR	src\Servo.cpp	/^static void finISR(timer16_Sequence_t timer)$/;"	f	file:
+handle_interrupts	src\Servo.cpp	/^static inline void handle_interrupts(timer16_Sequence_t timer, volatile uint16_t *TCNTn, volatile uint16_t* OCRnA)$/;"	f	file:
+initISR	src\Servo.cpp	/^static void initISR(timer16_Sequence_t timer)$/;"	f	file:
+isTimerActive	src\Servo.cpp	/^static boolean isTimerActive(timer16_Sequence_t timer)$/;"	f	file:
+read	src\Servo.cpp	/^int Servo::read() \/\/ return the value as degrees$/;"	f	class:Servo
+readMicroseconds	src\Servo.cpp	/^int Servo::readMicroseconds()$/;"	f	class:Servo
+servos	src\Servo.cpp	/^static servo_t servos[MAX_SERVOS];                          \/\/ static array of servo structures$/;"	v	file:
+ticksToUs	src\Servo.cpp	51;"	d	file:
+usToTicks	src\Servo.cpp	50;"	d	file:
+write	src\Servo.cpp	/^void Servo::write(int value)$/;"	f	class:Servo
+writeMicroseconds	src\Servo.cpp	/^void Servo::writeMicroseconds(int value)$/;"	f	class:Servo
+DEFAULT_PULSE_WIDTH	src\Servo.h	90;"	d
+INVALID_SERVO	src\Servo.h	96;"	d
+MAX_PULSE_WIDTH	src\Servo.h	89;"	d
+MAX_SERVOS	src\Servo.h	94;"	d
+MIN_PULSE_WIDTH	src\Servo.h	88;"	d
+Pin	src\Servo.h	/^  ServoPin_t Pin;$/;"	m	struct:__anon11
+REFRESH_INTERVAL	src\Servo.h	91;"	d
+SERVOS_PER_TIMER	src\Servo.h	93;"	d
+Servo	src\Servo.h	/^class Servo$/;"	c
+ServoPin_t	src\Servo.h	/^} ServoPin_t   ;  $/;"	t	typeref:struct:__anon10
+Servo_VERSION	src\Servo.h	86;"	d
+Servo_h	src\Servo.h	46;"	d
+_Nbr_16timers	src\Servo.h	/^typedef enum { _timer1, _Nbr_16timers } timer16_Sequence_t ;                  $/;"	e	enum:__anon9
+_Nbr_16timers	src\Servo.h	/^typedef enum { _timer1, _Nbr_16timers } timer16_Sequence_t ;$/;"	e	enum:__anon6
+_Nbr_16timers	src\Servo.h	/^typedef enum { _timer3, _timer1, _Nbr_16timers } timer16_Sequence_t ;$/;"	e	enum:__anon7
+_Nbr_16timers	src\Servo.h	/^typedef enum { _timer3, _timer1, _Nbr_16timers } timer16_Sequence_t ;$/;"	e	enum:__anon8
+_Nbr_16timers	src\Servo.h	/^typedef enum { _timer5, _timer1, _timer3, _timer4, _Nbr_16timers } timer16_Sequence_t ;$/;"	e	enum:__anon5
+_timer1	src\Servo.h	/^typedef enum { _timer1, _Nbr_16timers } timer16_Sequence_t ;                  $/;"	e	enum:__anon9
+_timer1	src\Servo.h	/^typedef enum { _timer1, _Nbr_16timers } timer16_Sequence_t ;$/;"	e	enum:__anon6
+_timer1	src\Servo.h	/^typedef enum { _timer3, _timer1, _Nbr_16timers } timer16_Sequence_t ;$/;"	e	enum:__anon7
+_timer1	src\Servo.h	/^typedef enum { _timer3, _timer1, _Nbr_16timers } timer16_Sequence_t ;$/;"	e	enum:__anon8
+_timer1	src\Servo.h	/^typedef enum { _timer5, _timer1, _timer3, _timer4, _Nbr_16timers } timer16_Sequence_t ;$/;"	e	enum:__anon5
+_timer3	src\Servo.h	/^typedef enum { _timer3, _timer1, _Nbr_16timers } timer16_Sequence_t ;$/;"	e	enum:__anon7
+_timer3	src\Servo.h	/^typedef enum { _timer3, _timer1, _Nbr_16timers } timer16_Sequence_t ;$/;"	e	enum:__anon8
+_timer3	src\Servo.h	/^typedef enum { _timer5, _timer1, _timer3, _timer4, _Nbr_16timers } timer16_Sequence_t ;$/;"	e	enum:__anon5
+_timer4	src\Servo.h	/^typedef enum { _timer5, _timer1, _timer3, _timer4, _Nbr_16timers } timer16_Sequence_t ;$/;"	e	enum:__anon5
+_timer5	src\Servo.h	/^typedef enum { _timer5, _timer1, _timer3, _timer4, _Nbr_16timers } timer16_Sequence_t ;$/;"	e	enum:__anon5
+_useTimer1	src\Servo.h	62;"	d
+_useTimer1	src\Servo.h	68;"	d
+_useTimer1	src\Servo.h	73;"	d
+_useTimer1	src\Servo.h	78;"	d
+_useTimer1	src\Servo.h	82;"	d
+_useTimer3	src\Servo.h	63;"	d
+_useTimer3	src\Servo.h	72;"	d
+_useTimer3	src\Servo.h	77;"	d
+_useTimer4	src\Servo.h	64;"	d
+_useTimer5	src\Servo.h	61;"	d
+isActive	src\Servo.h	/^  uint8_t isActive   :1 ;             \/\/ true if this channel is enabled, pin not pulsed if false $/;"	m	struct:__anon10
+max	src\Servo.h	/^   int8_t max;                       \/\/ maximum is this value times 4 added to MAX_PULSE_WIDTH   $/;"	m	class:Servo
+min	src\Servo.h	/^   int8_t min;                       \/\/ minimum is this value times 4 added to MIN_PULSE_WIDTH    $/;"	m	class:Servo
+nbr	src\Servo.h	/^  uint8_t nbr        :6 ;             \/\/ a pin number from 0 to 63$/;"	m	struct:__anon10
+servoIndex	src\Servo.h	/^   uint8_t servoIndex;               \/\/ index into the channel data for this servo$/;"	m	class:Servo
+servo_t	src\Servo.h	/^} servo_t;$/;"	t	typeref:struct:__anon11
+ticks	src\Servo.h	/^  unsigned int ticks;$/;"	m	struct:__anon11
+timer16_Sequence_t	src\Servo.h	/^typedef enum { _timer1, _Nbr_16timers } timer16_Sequence_t ;                  $/;"	t	typeref:enum:__anon9
+timer16_Sequence_t	src\Servo.h	/^typedef enum { _timer1, _Nbr_16timers } timer16_Sequence_t ;$/;"	t	typeref:enum:__anon6
+timer16_Sequence_t	src\Servo.h	/^typedef enum { _timer3, _timer1, _Nbr_16timers } timer16_Sequence_t ;$/;"	t	typeref:enum:__anon7
+timer16_Sequence_t	src\Servo.h	/^typedef enum { _timer3, _timer1, _Nbr_16timers } timer16_Sequence_t ;$/;"	t	typeref:enum:__anon8
+timer16_Sequence_t	src\Servo.h	/^typedef enum { _timer5, _timer1, _timer3, _timer4, _Nbr_16timers } timer16_Sequence_t ;$/;"	t	typeref:enum:__anon5
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_PROGRAM_VERSION	5.8	//
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/

@@ -1,13 +1,16 @@
-# makeblock_new_lib
+[![alt text](images/Logo.png "Makeblock Logo") Library v3.0.0](https://www.Makeblock.cc)
 
 Arduino library for Makeblock electronic modules
 
-This library is version 3.0, we do a lot of modifications in the code structure, It has a very big difference with the 2.0 version. we recommend all Makeblock customers to use this one.
+> This library is version 3.0, we do a lot of modifications in the code structure, It has a 
+very big difference with the 2.0 version. we recommend all Makeblock customers to use this one.
+
 How to use:
 
 1. Download the source from the git https://github.com/YanMinge/makeblock_new_lib
-2. copy the makeblock folder to your arduino default library, Your Arduino library folder should now look like this 
-   (on Windows): [arduino installation directory]\libraries\makeblock\src
+2. copy the makeblock folder to your arduino default library, Your Arduino library folder should 
+   now look like this (on Windows):
+   [arduino installation directory]\libraries\makeblock\src
 3. Open the Arduino Application. If already open it, you need to restart to see changes.
 4. Click “File->Examples”. Here are some test program in MakeBlockDrive->example
 5. Depending on the type of motherboard you're using, You should modify the header file.
@@ -17,4 +20,3 @@ How to use:
    BaseBoard ----  MeBaseBoard.h
    mCore --------  MeMCore.h
    Shield -------  MeShield.h
-
