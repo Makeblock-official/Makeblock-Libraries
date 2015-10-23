@@ -1,4 +1,4 @@
-# makeblock_new_lib
+# Makeblock Library v3.0
 
 Arduino library for Makeblock electronic modules
 
