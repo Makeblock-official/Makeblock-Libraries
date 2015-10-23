@@ -13,8 +13,8 @@ How to use:
 5. Depending on the type of motherboard you're using, You should modify the header file.
    For example, you are using a mCore, you should change "#include <MeOrion.h>" to "#include <MeMbot.h>"
    Correspondence between the board and the header file is：
-   Orion --------  MeOrion.h
-   BaseBoard ----  MeBaseBoard.h
-   mCore --------  MeMCore.h
-   Shield -------  MeShield.h
+ # Orion --------  MeOrion.h
+ # BaseBoard ----  MeBaseBoard.h
+ # mCore --------  MeMCore.h
+ # Shield -------  MeShield.h
 
