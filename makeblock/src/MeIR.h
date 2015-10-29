@@ -117,62 +117,56 @@ typedef struct {
 } 
 irparams_t;
 
-
-
-
-
 // main class for receiving IR
 class MeIR
 {
-	public:
-		MeIR();
-
-
-		ErrorStatus decode();
-		void begin();
-		void end();
-		void loop();
-		boolean keyPressed(unsigned char r);
-		// void resume();
-		int8_t decode_type; // NEC, SONY, RC5, UNKNOWN
-		unsigned long value; // Decoded value
-		uint8_t bits; // Number of bits in decoded value
-		volatile uint8_t *rawbuf; // Raw intervals in .5 us ticks
-		int rawlen; // Number of records in rawbuf.
-                String getString();
-                unsigned char getCode();
-                void sendString(String s);
-                void sendString(float v);
-		void sendNEC(unsigned long data, int nbits);
-		void sendSony(unsigned long data, int nbits);
-		// Neither Sanyo nor Mitsubishi send is implemented yet
-		//  void sendSanyo(unsigned long data, int nbits);
-		//  void sendMitsubishi(unsigned long data, int nbits);
-		void sendRaw(unsigned int buf[], int len, uint8_t hz);
-		void sendRC5(unsigned long data, int nbits);
-		void sendRC6(unsigned long data, int nbits);
-		void sendDISH(unsigned long data, int nbits);
-		void sendSharp(unsigned int address, unsigned int command);
-		void sendSharpRaw(unsigned long data, int nbits);
-		void sendPanasonic(unsigned int address, unsigned long data);
-		void sendJVC(unsigned long data, int nbits, int repeat); // *Note instead of sending the REPEAT constant if you want the JVC repeat signal sent, send the original code value and change the repeat argument from 0 to 1. JVC protocol repeats by skipping the header NOT by sending a separate code value like NEC does.
-		// private:
-		void sendSAMSUNG(unsigned long data, int nbits);
-		void enableIROut(uint8_t khz);
-		void mark(uint16_t us);
-		void space(uint16_t us);
-	private:
-		// These are called by decode
-		ErrorStatus decodeNEC();
-                int irDelay;
-                int irIndex;
-                char irRead;
-                boolean irReady;
-                boolean irPressed;
-                String irBuffer;
-                double lastIRTime;
-                char floatString[5];
-		
+public:
+  MeIR();
+  ErrorStatus decode();
+  void begin();
+  void end();
+  void loop();
+  boolean keyPressed(unsigned char r);
+  // void resume();
+  int8_t decode_type; // NEC, SONY, RC5, UNKNOWN
+  unsigned long value; // Decoded value
+  uint8_t bits; // Number of bits in decoded value
+  volatile uint8_t *rawbuf; // Raw intervals in .5 us ticks
+  int rawlen; // Number of records in rawbuf.
+  String getString();
+  unsigned char getCode();
+  void sendString(String s);
+  void sendString(float v);
+  void sendNEC(unsigned long data, int nbits);
+  void sendSony(unsigned long data, int nbits);
+  // Neither Sanyo nor Mitsubishi send is implemented yet
+  //  void sendSanyo(unsigned long data, int nbits);
+  //  void sendMitsubishi(unsigned long data, int nbits);
+  void sendRaw(unsigned int buf[], int len, uint8_t hz);
+  void sendRC5(unsigned long data, int nbits);
+  void sendRC6(unsigned long data, int nbits);
+  void sendDISH(unsigned long data, int nbits);
+  void sendSharp(unsigned int address, unsigned int command);
+  void sendSharpRaw(unsigned long data, int nbits);
+  void sendPanasonic(unsigned int address, unsigned long data);
+  void sendJVC(unsigned long data, int nbits, int repeat); // *Note instead of sending the REPEAT constant if you want the JVC repeat signal sent, send the original code value and change the repeat argument from 0 to 1. JVC protocol repeats by skipping the header NOT by sending a separate code value like NEC does.
+  // private:
+  void sendSAMSUNG(unsigned long data, int nbits);
+  void enableIROut(uint8_t khz);
+  void mark(uint16_t us);
+  void space(uint16_t us);
+private:
+  // These are called by decode
+  ErrorStatus decodeNEC();
+  int16_t irIndex;	
+  char irRead;
+  char floatString[5];
+  boolean irReady;
+  boolean irPressed;
+  String irBuffer;
+  String Pre_Str;
+  double irDelayTime;
+  double lastIRTime;
 };
 #endif // !__AVR_ATmega32U4__
 #endif

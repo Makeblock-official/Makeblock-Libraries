@@ -16,7 +16,7 @@ How to use:
 4. Click "File->Examples". Here are some test program in MakeBlockDrive->example
 
 5. Depending on the type of motherboard you're using, You should modify the header file.
-   For example, you are using a mCore, you should change "#include <MeOrion.h>" to "#include <MeMbot.h>"
+   For example, you are using a mCore, you should change "#include <MeOrion.h>" to "#include <MeMCore.h>"
    Correspondence between the board and the header file is:
 
  Orion --------  MeOrion.h

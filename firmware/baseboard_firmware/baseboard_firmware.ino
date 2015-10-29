@@ -1,5 +1,5 @@
 /*************************************************************************
-* File Name          : Firmware.ino
+* File Name          : baseboard_firmware.ino
 * Author             : Ander
 * Updated            : Ander
 * Version            : V1.10101
@@ -24,6 +24,7 @@ Me7SegmentDisplay seg;
 MePort generalDevice;
 MeInfraredReceiver *ir = NULL;
 MeGyro gyro;
+MeJoystick joystick;
 MeStepper steppers[2];
 MeBuzzer buzzer;
 //MeCompass Compass;
@@ -135,8 +136,6 @@ void setup(){
   buzzerOn();
   delay(100);
   buzzerOff();
-  steppers[0] = MeStepper();
-  steppers[1] = MeStepper();
   #if defined(__AVR_ATmega328P__) or defined(__AVR_ATmega168__)
     encoders[0] = MeEncoderMotor(SLOT_1);
     encoders[1] = MeEncoderMotor(SLOT_2);
@@ -157,8 +156,8 @@ void loop(){
     ir->loop();
   }
   readSerial();
-  steppers[0].run();
-  steppers[1].run();
+  steppers[0].runSpeedToPosition();
+  steppers[1].runSpeedToPosition();
   if(isAvailable){
     unsigned char c = serialRead&0xff;
     if(c==0x55&&isStart==false){
@@ -204,9 +203,9 @@ void writeHead(){
   writeSerial(0x55);
 }
 void writeEnd(){
- Serial.println(); 
+  Serial.println(); 
  #if defined(__AVR_ATmega32U4__) 
-   Serial1.println();
+  Serial1.println();
  #endif
 }
 void writeSerial(unsigned char c){
@@ -222,13 +221,13 @@ void readSerial(){
     isBluetooth = false;
     serialRead = Serial.read();
   }
-//#if defined(__AVR_ATmega32U4__) 
-//  if(Serial1.available()>0){
-//    isAvailable = true;
-//    isBluetooth = false;
-//    serialRead = Serial1.read();
-//  }
-// #endif
+#if defined(__AVR_ATmega32U4__) 
+  if(Serial1.available()>0){
+    isAvailable = true;
+    isBluetooth = true;
+    serialRead = Serial1.read();
+  }
+#endif
 }
 /*
 ff 55 len idx action device port  slot  data a
@@ -353,12 +352,14 @@ void runModule(int device){
      int distance = readShort(9);
      if(port==PORT_1){
       steppers[0] = MeStepper(PORT_1);
-      steppers[0].setMaxSpeed(maxSpeed);
       steppers[0].moveTo(distance);
+      steppers[0].setMaxSpeed(maxSpeed);
+      steppers[0].setSpeed(maxSpeed);
      }else if(port==PORT_2){
       steppers[1] = MeStepper(PORT_2);
-      steppers[1].setMaxSpeed(maxSpeed);
       steppers[1].moveTo(distance);
+      steppers[1].setMaxSpeed(maxSpeed);
+      steppers[1].setSpeed(maxSpeed);
      }
    } 
     break;
@@ -524,18 +525,11 @@ void readSensor(int device){
    break;
    case  JOYSTICK:{
      slot = readBuffer(7);
-     if(generalDevice.getPort()!=port){
-       generalDevice.reset(port);
-       pinMode(generalDevice.pin1(),INPUT);
-       pinMode(generalDevice.pin2(),INPUT);
+     if(joystick.getPort() != port){
+       joystick.reset(port);
      }
-     if(slot==1){
-       value = generalDevice.aRead1();
-       sendFloat(value);
-     }else if(slot==2){
-       value = generalDevice.aRead2();
-       sendFloat(value);
-     }
+     value = joystick.read(slot);
+     sendFloat(value);
    }
    break;
    case  INFRARED:
@@ -640,13 +634,13 @@ void readSensor(int device){
    case  GYRO:{
        int axis = readBuffer(7);
        gyro.update();
-       if(axis==1){
+       if(axis == 1){
          value = gyro.getAngleX();
          sendFloat(value);
-       }else if(axis==2){
+       }else if(axis == 2){
          value = gyro.getAngleY();
          sendFloat(value);
-       }else if(axis==3){
+       }else if(axis == 3){
          value = gyro.getAngleZ();
          sendFloat(value);
        }
