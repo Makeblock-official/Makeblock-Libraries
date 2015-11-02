@@ -153,6 +153,7 @@ public:
   // private:
   void sendSAMSUNG(unsigned long data, int nbits);
   void enableIROut(uint8_t khz);
+  void enableIRIn();
   void mark(uint16_t us);
   void space(uint16_t us);
 private:

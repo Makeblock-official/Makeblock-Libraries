@@ -75,6 +75,7 @@ ISR(TIMER_INTR_NAME)
 MeIR::MeIR()
 {
   pinMode(2,INPUT);
+  irparams.recvpin = 2;
   // attachInterrupt(INT0, irISR, CHANGE);
   
   lastIRTime = 0.0;
@@ -225,6 +226,30 @@ void MeIR::enableIROut(uint8_t khz)
   TIMER_CONFIG_KHZ(khz);
 }
 
+// initialization
+void MeIR::enableIRIn() {
+  cli();
+  // setup pulse clock timer interrupt
+  //Prescale /8 (16M/8 = 0.5 microseconds per tick)
+  // Therefore, the timer interval can range from 0.5 to 128 microseconds
+  // depending on the reset value (255 to 0)
+  TIMER_CONFIG_NORMAL();
+
+  //Timer2 Overflow Interrupt Enable
+  TIMER_ENABLE_INTR;
+
+  //TIMER_RESET;
+
+  sei();  // enable interrupts
+
+  // initialize state machine variables
+  irparams.rcvstate = STATE_IDLE;
+  irparams.rawlen = 0;
+
+  // set pin modes
+  pinMode(irparams.recvpin, INPUT);
+}
+
 void MeIR::sendRaw(unsigned int buf[], int len, uint8_t hz)
 {
   enableIROut(hz);
@@ -306,6 +331,7 @@ void MeIR::sendString(String s)
     sendNEC(l,32);
     delay(20);
   }
+  enableIRIn();
 }
 
 void MeIR::sendString(float v)

@@ -86,10 +86,11 @@
 #ifndef MeConfig_H
 #define MeConfig_H
 
-#include <..\..\servo\src\servo.h>
-#include <..\..\..\hardware\arduino\avr\libraries\Wire\Wire.h>
-#include <..\..\..\hardware\arduino\avr\libraries\EEPROM\EEPROM.h>
-#include <..\..\..\hardware\arduino\avr\libraries\SoftwareSerial\SoftwareSerial.h>
+#include <utility\servo.h>
+#include <utility\Wire.h>
+#include <utility\EEPROM.h>
+#include <utility\SoftwareSerial.h>
+#include <utility\SPI.h>
 
 
 #define ME_PORT_DEFINED
