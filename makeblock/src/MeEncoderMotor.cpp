@@ -34,248 +34,252 @@ uint32_t MeHost_Pack(uint8_t * buf,
                      uint8_t * data, 
                      uint32_t length)
 {
-    uint32_t i = 0;
+  uint32_t i = 0;
 
-    //  head: 0xA5
-    buf[i++] = 0xA5;
-    buf[i++] = module;
-    //  pack length
-    buf[i++] = *((uint8_t *)&length + 0);
-    buf[i++] = *((uint8_t *)&length + 1);
-    buf[i++] = *((uint8_t *)&length + 2);
-    buf[i++] = *((uint8_t *)&length + 3);
-    //  pack data
-    for(uint32_t j = 0; j < length; ++j)
-    {
-        buf[i++] = data[j];
-    }
+  //  head: 0xA5
+  buf[i++] = 0xA5;
+  buf[i++] = module;
+  //  pack length
+  buf[i++] = *((uint8_t *)&length + 0);
+  buf[i++] = *((uint8_t *)&length + 1);
+  buf[i++] = *((uint8_t *)&length + 2);
+  buf[i++] = *((uint8_t *)&length + 3);
+  //  pack data
+  for(uint32_t j = 0; j < length; ++j)
+  {
+    buf[i++] = data[j];
+  }
 
-    //  calculate the LRC
-    uint8_t check = 0x00;
-    for(uint32_t j = 0; j < length; ++j)
-    {
-        check ^= data[j];
-    }
-    buf[i++] = check;
+  //  calculate the LRC
+  uint8_t check = 0x00;
+  for(uint32_t j = 0; j < length; ++j)
+  {
+    check ^= data[j];
+  }
+  buf[i++] = check;
 
-    //  tail: 0x5A
-    buf[i++] = 0x5A;
+  //  tail: 0x5A
+  buf[i++] = 0x5A;
 
-    if (i > bufSize)
-    {
-        return 0;
-    }
-    else
-    {
-        return i;
-    }
+  if (i > bufSize)
+  {
+    return 0;
+  }
+  else
+  {
+    return i;
+  }
 }
 
 /*          EncoderMotor        */
 MeEncoderMotor::MeEncoderMotor(uint8_t addr,uint8_t slot): MePort(0)
 {
-    _slot = slot - 1;
-    _slaveAddress = addr+1;
+  _slot = slot - 1;
+  _slaveAddress = addr;
 }
 MeEncoderMotor::MeEncoderMotor(uint8_t slot):MePort(0)
 {
-    _slot = slot - 1;
-    _slaveAddress = 0x9;
+  _slot = slot - 1;
+  _slaveAddress = 0x9;
 }
-MeEncoderMotor::MeEncoderMotor():MePort(0){
-    _slot = 0;
-    _slaveAddress = 0x9;
+MeEncoderMotor::MeEncoderMotor():MePort(0)
+{
+  _slot = 0;
+  _slaveAddress = 0x9;
 }
 void MeEncoderMotor::begin()
 {
-    Wire.begin();
-    reset();
+  Wire.begin();
+  reset();
 }
 
 boolean MeEncoderMotor::reset()
 {
-    uint8_t w[10] = {0};
-    uint8_t r[10] = {0};
+  uint8_t w[10] = {0};
+  uint8_t r[10] = {0};
 
-    uint8_t data[2] = {0};
-    data[0] = _slot;
-    data[1] = ENCODER_MOTOR_RESET;
+  uint8_t data[2] = {0};
+  data[0] = _slot;
+  data[1] = ENCODER_MOTOR_RESET;
 
-    MeHost_Pack(w, 10, 0x01, data, 2);
-    request(w, r, 10, 10);
-    encoderParser.pushStr(r, 10);
+  MeHost_Pack(w, 10, 0x01, data, 2);
+  request(w, r, 10, 10);
+  encoderParser.pushStr(r, 10);
 
-    uint8_t ack[2] = {0};
-    encoderParser.getData(ack, 2);
-    return ack[1];
+  uint8_t ack[2] = {0};
+  encoderParser.getData(ack, 2);
+  return ack[1];
 }
 
 boolean MeEncoderMotor::moveTo(float angle, float speed)
 {
-	if(speed>255){
-		speed=255;
-	}else if(speed<-255){
-		speed=-255;
-	}
-    uint8_t w[18] = {0};
-    uint8_t r[10] = {0};
+  if(speed > 255)
+  {
+     speed = 255;
+  }
+  else if(speed < -255)
+  {
+    speed = -255;
+  }
+  uint8_t w[18] = {0};
+  uint8_t r[10] = {0};
 
-    uint8_t data[10] = {0};
-    data[0] = _slot;
-    data[1] = ENCODER_MOTOR_MOVE_TO;
-    *((float *)(data + 2)) = angle;
-    *((float *)(data + 6)) = speed;
+  uint8_t data[10] = {0};
+  data[0] = _slot;
+  data[1] = ENCODER_MOTOR_MOVE_TO;
+  *((float *)(data + 2)) = angle;
+  *((float *)(data + 6)) = speed;
 
-    MeHost_Pack(w, 18, 0x01, data, 10);
-    request(w, r, 18, 10);
-    encoderParser.pushStr(r, 10);
-    encoderParser.run();
+  MeHost_Pack(w, 18, 0x01, data, 10);
+  request(w, r, 18, 10);
+  encoderParser.pushStr(r, 10);
+  encoderParser.run();
 
-    uint8_t ack[2] = {0};
-    encoderParser.getData(ack, 2);
-    return ack[1];
+  uint8_t ack[2] = {0};
+  encoderParser.getData(ack, 2);
+  return ack[1];
 }
 
 boolean MeEncoderMotor::move(float angle, float speed)
 {
-	if(speed>255){
-		speed=255;
-	}else if(speed<-255){
-		speed=-255;
-	}
-	if(angle==0){
-		return runSpeed(speed);
-	}
-    uint8_t w[18] = {0};
-    uint8_t r[10] = {0};
+  if(speed > 255)
+  {
+    speed = 255;
+  }
+  else if(speed < -255)
+  {
+    speed = -255;
+  }
+  if(angle == 0)
+  {
+    return runSpeed(speed);
+  }
+  uint8_t w[18] = {0};
+  uint8_t r[10] = {0};
 
-    uint8_t data[10] = {0};
-    data[0] = _slot;
-    data[1] = ENCODER_MOTOR_MOVE;
-    *((float *)(data + 2)) = angle;
-    *((float *)(data + 6)) = speed;
+  uint8_t data[10] = {0};
+  data[0] = _slot;
+  data[1] = ENCODER_MOTOR_MOVE;
+  *((float *)(data + 2)) = angle;
+  *((float *)(data + 6)) = speed;
 
-    MeHost_Pack(w, 18, 0x01, data, 10);
-    request(w, r, 18, 10);
-    encoderParser.pushStr(r, 10);
-    encoderParser.run();
+  MeHost_Pack(w, 18, 0x01, data, 10);
+  request(w, r, 18, 10);
+  encoderParser.pushStr(r, 10);
+  encoderParser.run();
 
-    uint8_t ack[2] = {0};
-    encoderParser.getData(ack, 2);
-    return ack[1];
+  uint8_t ack[2] = {0};
+  encoderParser.getData(ack, 2);
+  return ack[1];
 }
 
 boolean MeEncoderMotor::runTurns(float turns, float speed)
 {
-    return move(turns * 360, speed);
+  return move(turns * 360, speed);
 }
 
 boolean MeEncoderMotor::runSpeed(float speed)
 {
-	if(speed>255){
-		speed=255;
-	}else if(speed<-255){
-		speed=-255;
-	}
-    uint8_t w[14] = {0};
-    uint8_t r[10] = {0};
+  if(speed > 255)
+  {
+    speed = 255;
+  }
+  else if(speed < -255)
+  {
+    speed = -255;
+  }
+  uint8_t w[14] = {0};
+  uint8_t r[10] = {0};
 
-    uint8_t data[6] = {0};
-    data[0] = _slot;
-    data[1] = ENCODER_MOTOR_RUN_STOP;
-    *((float *)(data + 2)) = speed;
+  uint8_t data[6] = {0};
+  data[0] = _slot;
+  data[1] = ENCODER_MOTOR_RUN_STOP;
+  *((float *)(data + 2)) = speed;
 
-    MeHost_Pack(w, 14, 0x01, data, 6);
-    request(w, r, 14, 10);
-    encoderParser.pushStr(r, 10);
-    encoderParser.run();
+  MeHost_Pack(w, 14, 0x01, data, 6);
+  request(w, r, 14, 10);
+  encoderParser.pushStr(r, 10);
+  encoderParser.run();
 
-    // uint8_t ack[2] = {0};
-    // encoderParser.GetData(ack, 2);
-    // return ack[1];
-    return 0;
+  // uint8_t ack[2] = {0};
+  // encoderParser.GetData(ack, 2);
+  // return ack[1];
+  return 0;
 }
 
 boolean MeEncoderMotor::runSpeedAndTime(float speed, float time)
 {
-    uint8_t w[18] = {0};
-    uint8_t r[10] = {0};
+  if(_lastTime == 0)
+  {
+     _lastTime = millis();
+	 runSpeed(speed);
+  }
 
-    uint8_t data[10] = {0};
-    data[0] = _slot;
-    data[1] = ENCODER_MOTOR_SPEED_TIME;
-    *((float *)(data + 2)) = speed;
-    *((float *)(data + 6)) = time;
-
-    MeHost_Pack(w, 18, 0x01, data, 10);
-    request(w, r, 18, 10);
-    encoderParser.pushStr(r, 10);
-    encoderParser.run();
-
-    // uint8_t ack[2] = {0};
-    // encoderParser.GetData(ack, 2);
-    // return ack[1];
-    return 0;
+  if(millis() - _lastTime > time)
+  {
+    _lastTime = 0;
+    runSpeed(0);
+  }
 }
 
 float MeEncoderMotor::getCurrentSpeed()
 {
-    uint8_t w[10] = {0};
-    uint8_t r[14] = {0};
+  uint8_t w[10] = {0};
+  uint8_t r[14] = {0};
 
-    uint8_t data[2] = {0};
-    data[0] = _slot;
-    data[1] = ENCODER_MOTOR_GET_SPEED;
+  uint8_t data[2] = {0};
+  data[0] = _slot;
+  data[1] = ENCODER_MOTOR_GET_SPEED;
 
-    MeHost_Pack(w, 10, 0x01, data, 2);
-    request(w, r, 10, 14);
-    encoderParser.pushStr(r, 14);
-    encoderParser.run();
+  MeHost_Pack(w, 10, 0x01, data, 2);
+  request(w, r, 10, 14);
+  encoderParser.pushStr(r, 14);
+  encoderParser.run();
 
-    uint8_t temp[6] = {0};
-    encoderParser.getData(temp, 6);
-    float speed = *((float *)(temp + 2));
-    return speed;
+  uint8_t temp[6] = {0};
+  encoderParser.getData(temp, 6);
+  float speed = *((float *)(temp + 2));
+  return speed;
 }
 
 float MeEncoderMotor::getCurrentPosition()
 {
-    uint8_t w[10] = {0};
-    uint8_t r[14] = {0};
+  uint8_t w[10] = {0};
+  uint8_t r[14] = {0};
 
-    uint8_t data[2] = {0};
-    data[0] = _slot;
-    data[1] = ENCODER_MOTOR_GET_POS;
+  uint8_t data[2] = {0};
+  data[0] = _slot;
+  data[1] = ENCODER_MOTOR_GET_POS;
 
-    MeHost_Pack(w, 10, 0x01, data, 2);
-    request(w, r, 10, 14);
-    encoderParser.pushStr(r, 14);
+  MeHost_Pack(w, 10, 0x01, data, 2);
+  request(w, r, 10, 14);
+  encoderParser.pushStr(r, 14);
 
-    encoderParser.run();
+  encoderParser.run();
 
-    uint8_t temp[6] = {0};
-    uint8_t size = encoderParser.getData(temp, 6);
-    float pos = *((float *)(temp + 2));
-    return pos;
+  uint8_t temp[6] = {0};
+  uint8_t size = encoderParser.getData(temp, 6);
+  float pos = *((float *)(temp + 2));
+  return pos;
 }
 void MeEncoderMotor::request(byte *writeData, byte *readData, int wlen, int rlen)
 {
-    uint8_t rxByte;
-    uint8_t index = 0;
+  uint8_t rxByte;
+  uint8_t index = 0;
 
-    Wire.beginTransmission(_slaveAddress); // transmit to device
+  Wire.beginTransmission(_slaveAddress); // transmit to device
 
-    Wire.write(writeData, wlen);
+  Wire.write(writeData, wlen);
 
-    Wire.endTransmission();
-    delayMicroseconds(2);
-    Wire.requestFrom((int)_slaveAddress, (int)rlen); // request 6 bytes from slave device
-    delayMicroseconds(2);
-    while(Wire.available()) // slave may send less than requested
-    {
-        rxByte = Wire.read(); // receive a byte as character
+  Wire.endTransmission();
+  delayMicroseconds(2);
+  Wire.requestFrom((int)_slaveAddress, (int)rlen); // request 6 bytes from slave device
+  delayMicroseconds(2);
+  while(Wire.available()) // slave may send less than requested
+  {
+    rxByte = Wire.read(); // receive a byte as character
 
-        readData[index] = rxByte;
-        index++;
-    }
+    readData[index] = rxByte;
+    index++;
+  }
 }
