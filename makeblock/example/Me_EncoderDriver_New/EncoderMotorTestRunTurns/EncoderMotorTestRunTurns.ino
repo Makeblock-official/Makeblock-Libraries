@@ -2,7 +2,7 @@
 #include <Wire.h>
 #include <SoftwareSerial.h>
 
-MeEncoderMotor motor2(0x09, SLOT2);   //  motor at slot2
+MeEncoderNew motor2(0x09, SLOT2);   //  motor at slot2
 
 void setup()
 {

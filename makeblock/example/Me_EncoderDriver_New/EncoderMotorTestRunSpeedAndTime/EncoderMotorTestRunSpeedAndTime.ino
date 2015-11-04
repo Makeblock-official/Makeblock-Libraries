@@ -2,13 +2,12 @@
 #include <Wire.h>
 #include <SoftwareSerial.h>
 
-MeEncoderMotor motor2(0x09, SLOT2);   //  motor at slot2
+MeEncoderNew motor2(0x09, SLOT2);   //  motor at slot2
 
 void setup()
 {
-    motor2.begin();
-    Serial.begin(9600);
-    delay(400);
+  motor2.begin();
+  Serial.begin(9600);
 }
 
 void loop()
