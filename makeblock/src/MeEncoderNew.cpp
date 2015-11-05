@@ -1,5 +1,4 @@
 #include "MeEncoderNew.h"
-#include <Wire.h>
 #define HOLD 0x40
 #define SYNC 0x80
 // move state and function
