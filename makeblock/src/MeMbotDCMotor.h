@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include <arduino.h>
+#include <Arduino.h>
 #include "MeConfig.h"
 
 #ifdef ME_PORT_DEFINED
