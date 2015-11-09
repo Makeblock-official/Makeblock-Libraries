@@ -32,8 +32,8 @@
  *    6.    void    Me7SegmentDisplay::write(uint8_t BitAddr, uint8_t SegData);
  *    7.    void    Me7SegmentDisplay::display(uint16_t value);
  *    8.    void    Me7SegmentDisplay::display(int16_t value);
- *    9.    void    Me7SegmentDisplay::display(float value)
- *    10.   int16_t Me7SegmentDisplay::checkNum(float v,int b)
+ *    9.    void    Me7SegmentDisplay::display(float value);
+ *    10.   int16_t Me7SegmentDisplay::checkNum(float v,int16_t b);
  *    11.   void    Me7SegmentDisplay::display(double value, uint8_t digits);
  *    12.   void    Me7SegmentDisplay::display(uint8_t DispData[]);
  *    13.   void    Me7SegmentDisplay::display(uint8_t DispData, uint8_t BitAddr);

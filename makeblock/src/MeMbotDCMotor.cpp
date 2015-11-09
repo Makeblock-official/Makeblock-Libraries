@@ -1,7 +1,8 @@
 /**
  * \par Copyright (C), 2012-2015, MakeBlock
  * \brief   Driver for Mbot DC Motor.
- * \file    MeMbotDCMotor.h
+ * \class   MBotDCMotor
+ * \file    MeMbotDCMotor.cpp
  * @author  MakeBlock
  * @version V1.0.0
  * @date    2015/09/01

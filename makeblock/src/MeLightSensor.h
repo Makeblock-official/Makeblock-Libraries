@@ -1,12 +1,12 @@
 /**
  * \par Copyright (C), 2012-2015, MakeBlock
  * \class   MeLightSensor
- * \brief   Driver for Me-LightSensor module.
+ * \brief   Driver for Me-Light Sensor module.
  * @file    MeLightSensor.h
  * @author  MakeBlock
  * @version V1.0.0
  * @date    2015/09/01
- * @brief   Header file for MeLightSensor.cpp
+ * @brief   Header file for Me-Light Sensor.cpp
  *
  * \par Copyright
  * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
