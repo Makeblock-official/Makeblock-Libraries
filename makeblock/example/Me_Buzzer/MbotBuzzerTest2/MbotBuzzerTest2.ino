@@ -1,7 +1,7 @@
 /*************************************************
  * Public Constants
  *************************************************/
-#include <MeMbot.h>
+#include <MeMCore.h>
 
 #define NOTE_B0  31
 #define NOTE_C1  33
@@ -166,4 +166,3 @@ void play()
     buzzer.noTone();
   }
 }
-

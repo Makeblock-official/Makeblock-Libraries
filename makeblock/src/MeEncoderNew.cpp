@@ -27,7 +27,7 @@
 MeEncoderNew::MeEncoderNew(uint8_t addr,uint8_t slot)
 {
   _slot = slot - 1;
-  address = addr+1;
+  address = addr;
 }
 MeEncoderNew::MeEncoderNew(uint8_t slot)
 {
@@ -86,7 +86,7 @@ void MeEncoderNew::runSpeedAndTime(int speed, float time)
 	 runSpeed(speed);
   }
 
-  if(millis() - _lastTime > time)
+  if(millis() - _lastTime > (1000*time))
   {
     _lastTime = 0;
     runSpeed(0);

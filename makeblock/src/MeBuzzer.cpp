@@ -5,11 +5,13 @@ uint8_t buzzer_pin;
 MeBuzzer::MeBuzzer()
 {
   buzzer_pin = 8;
+  pinMode(buzzer_pin, OUTPUT);
 }
 
 MeBuzzer::MeBuzzer(uint8_t port):MePort(port)
 {
   buzzer_pin = s2;
+  pinMode(buzzer_pin, OUTPUT);
 }
 
 MeBuzzer::MeBuzzer(uint8_t port, uint8_t slot):MePort(port)
@@ -23,6 +25,7 @@ MeBuzzer::MeBuzzer(uint8_t port, uint8_t slot):MePort(port)
   {
     buzzer_pin = s1;
   }
+  pinMode(buzzer_pin, OUTPUT);
 }
 #else // ME_PORT_DEFINED
 MeBuzzer::MeBuzzer(int pin)

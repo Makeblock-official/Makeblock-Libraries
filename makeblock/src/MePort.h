@@ -85,7 +85,7 @@ typedef struct
 
 extern MePort_Sig mePort[11];  // mePort[0] is nonsense
 
-#define NC (-1)
+#define NC (0)  //use UART RX for NULL port
 
 #define PORT_1  (0x01)
 #define PORT_2  (0x02)
@@ -95,6 +95,8 @@ extern MePort_Sig mePort[11];  // mePort[0] is nonsense
 #define PORT_6  (0x06)
 #define PORT_7  (0x07)
 #define PORT_8  (0x08)
+#define PORT_9  (0x09)
+#define PORT_10 (0x0a)
 #define M1      (0x09)
 #define M2      (0x0a)
 

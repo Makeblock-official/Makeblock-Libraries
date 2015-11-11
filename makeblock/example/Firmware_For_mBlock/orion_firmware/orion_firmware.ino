@@ -27,7 +27,6 @@ MeGyro gyro;
 MeJoystick joystick;
 MeStepper steppers[2];
 MeBuzzer buzzer;
-//MeCompass Compass;
 MeHumiture humiture;
 MeFlameSensor FlameSensor;
 MeGasSensor GasSensor;
@@ -361,7 +360,7 @@ void runModule(int device){
       steppers[1].setMaxSpeed(maxSpeed);
       steppers[1].setSpeed(maxSpeed);
      }
-   } 
+    }
     break;
     case ENCODER:{
       int slot = readBuffer(7);

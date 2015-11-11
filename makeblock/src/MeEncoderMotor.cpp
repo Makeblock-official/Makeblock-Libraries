@@ -113,13 +113,13 @@ boolean MeEncoderMotor::reset()
 
 boolean MeEncoderMotor::moveTo(float angle, float speed)
 {
-  if(speed > 255)
+  if(speed > 200)
   {
-     speed = 255;
+     speed = 200;
   }
-  else if(speed < -255)
+  else if(speed < -200)
   {
-    speed = -255;
+    speed = -200;
   }
   uint8_t w[18] = {0};
   uint8_t r[10] = {0};
@@ -142,13 +142,13 @@ boolean MeEncoderMotor::moveTo(float angle, float speed)
 
 boolean MeEncoderMotor::move(float angle, float speed)
 {
-  if(speed > 255)
+  if(speed > 200)
   {
-    speed = 255;
+    speed = 200;
   }
-  else if(speed < -255)
+  else if(speed < -200)
   {
-    speed = -255;
+    speed = -200;
   }
   if(angle == 0)
   {
@@ -180,13 +180,13 @@ boolean MeEncoderMotor::runTurns(float turns, float speed)
 
 boolean MeEncoderMotor::runSpeed(float speed)
 {
-  if(speed > 255)
+  if(speed > 200)
   {
-    speed = 255;
+    speed = 200;
   }
-  else if(speed < -255)
+  else if(speed < -200)
   {
-    speed = -255;
+    speed = -200;
   }
   uint8_t w[14] = {0};
   uint8_t r[10] = {0};
@@ -209,17 +209,29 @@ boolean MeEncoderMotor::runSpeed(float speed)
 
 boolean MeEncoderMotor::runSpeedAndTime(float speed, float time)
 {
-  if(_lastTime == 0)
+  if(speed > 200)
   {
-     _lastTime = millis();
-	 runSpeed(speed);
+    speed = 200;
   }
+  else if(speed < -200)
+  {
+    speed = -200;
+  }
+    uint8_t w[18] = {0};
+    uint8_t r[10] = {0};
 
-  if(millis() - _lastTime > time)
-  {
-    _lastTime = 0;
-    runSpeed(0);
-  }
+    uint8_t data[10] = {0};
+    data[0] = _slot;
+    data[1] = ENCODER_MOTOR_SPEED_TIME;
+    *((float *)(data + 2)) = speed;
+    *((float *)(data + 6)) = time;
+
+    MeHost_Pack(w, 18, 0x01, data, 10);
+    request(w, r, 18, 10);
+    encoderParser.pushStr(r, 10);
+    encoderParser.run();
+
+    return 0;
 }
 
 float MeEncoderMotor::getCurrentSpeed()

@@ -12,6 +12,6 @@ void setup()
 
 void loop()
 {
-  motor2.runSpeedAndTime(50,2000);
-  delay(1000);
+  motor2.runSpeedAndTime(100,5);
+  delay(10000);
 }

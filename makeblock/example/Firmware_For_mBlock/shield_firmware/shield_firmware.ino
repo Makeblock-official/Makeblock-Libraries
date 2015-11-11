@@ -373,7 +373,7 @@ void runModule(int device){
       steppers[3].setMaxSpeed(maxSpeed);
       steppers[3].setSpeed(maxSpeed);
      }
-   } 
+    }
     break;
     case ENCODER:{
       int slot = readBuffer(7);

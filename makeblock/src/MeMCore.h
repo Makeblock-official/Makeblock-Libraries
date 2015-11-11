@@ -32,7 +32,7 @@
 #ifndef MeMCore_H
 #define MeMCore_H
 
-#include <arduino.h>
+#include <Arduino.h>
 #include "MeConfig.h"
 
 /* Supported Modules drive needs to be added here */
