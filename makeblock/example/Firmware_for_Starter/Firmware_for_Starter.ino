@@ -71,7 +71,7 @@ boolean isBluetooth = false;
 
 int len = 52;
 char buffer[52];
-char bufferBt[25];
+char bufferBt[52];
 byte index = 0;
 byte dataLen;
 byte modulesLen=0;

@@ -36,8 +36,8 @@
  *    10.   int16_t Me7SegmentDisplay::checkNum(float v,int16_t b);
  *    11.   void    Me7SegmentDisplay::display(double value, uint8_t digits);
  *    12.   void    Me7SegmentDisplay::display(uint8_t DispData[]);
- *    13.   void    Me7SegmentDisplay::display(uint8_t DispData, uint8_t BitAddr);
- *    14.   void    Me7SegmentDisplay::display(uint8_t DispData, uint8_t BitAddr, uint8_t point_on)
+ *    13.   void    Me7SegmentDisplay::display(uint8_t BitAddr, uint8_t DispData);
+ *    14.   void    Me7SegmentDisplay::display(uint8_t BitAddr, uint8_t DispData, uint8_t point_on);
  *    15.   void    Me7SegmentDisplay::clearDisplay(void);
  *    16.   void    Me7SegmentDisplay::setBrightness(uint8_t brightness);
  *    17.   void    Me7SegmentDisplay::coding(uint8_t DispData[]);
@@ -619,9 +619,9 @@ void Me7SegmentDisplay::display(uint8_t DispData[])
  * \par Description
  *    Display data to certain digit.
  * \param[in]
- *    DispData - Data to display.
- * \param[in]
  *    BitAddr - Address to display.
+ * \param[in]
+ *    DispData - Data to display.
  * \par Output
  *    None
  * \return
@@ -629,7 +629,7 @@ void Me7SegmentDisplay::display(uint8_t DispData[])
  * \par Others
  *    None
  */
-void Me7SegmentDisplay::display(uint8_t DispData, uint8_t BitAddr)
+void Me7SegmentDisplay::display(uint8_t BitAddr, uint8_t DispData)
 {
   uint8_t SegData;
 
@@ -651,9 +651,9 @@ void Me7SegmentDisplay::display(uint8_t DispData, uint8_t BitAddr)
  * \par Description
  *    Display data to certain digit.
  * \param[in]
- *    DispData - Data to display.
- * \param[in]
  *    BitAddr - Address to display.
+ * \param[in]
+ *    DispData - Data to display.
  * \param[in]
  *    point_on - Display the point or not.
  * \par Output
@@ -663,7 +663,7 @@ void Me7SegmentDisplay::display(uint8_t DispData, uint8_t BitAddr)
  * \par Others
  *    None
  */
-void Me7SegmentDisplay::display(uint8_t DispData, uint8_t BitAddr, uint8_t point_on)
+void Me7SegmentDisplay::display(uint8_t BitAddr, uint8_t DispData, uint8_t point_on)
 {
   uint8_t SegData;
 
