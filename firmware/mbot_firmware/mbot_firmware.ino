@@ -61,7 +61,7 @@ const int analogs[12] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11};
 #else
 const int analogs[8] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7};
 #endif
-String mVersion = "1.2.103";
+String mVersion = "06.01.030";
 boolean isAvailable = false;
 
 int len = 52;
@@ -129,6 +129,8 @@ void setup(){
   led.setColor(0,0,0);
   led.show();
   gyro.begin();
+  Serial.print("Version: ");
+  Serial.println(mVersion);
 }
 int irDelay = 0;
 int irIndex = 0;

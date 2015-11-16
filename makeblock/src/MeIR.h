@@ -167,7 +167,6 @@ private:
   String irBuffer;
   String Pre_Str;
   double irDelayTime;
-  double lastIRTime;
 };
 #endif // !__AVR_ATmega32U4__
 #endif

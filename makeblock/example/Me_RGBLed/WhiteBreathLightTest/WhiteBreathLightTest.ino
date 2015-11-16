@@ -25,7 +25,7 @@ int16_t bri = 0, st = 0;
 
 void setup()
 {
-  led1.setNumber(16);
+
 }
 
 void loop()

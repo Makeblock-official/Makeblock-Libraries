@@ -164,6 +164,7 @@ long MeUltrasonicSensor::measure(unsigned long timeout)
   MePort::dWrite2(LOW);
   pinMode(s2, INPUT);
   duration = pulseIn(s2, HIGH, timeout);
+  delayMicroseconds(100);
   return(duration);
 }
 

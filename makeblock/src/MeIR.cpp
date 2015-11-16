@@ -29,7 +29,7 @@ ISR(TIMER_INTR_NAME)
       {
         irparams.rawlen = 0;
         irparams.timer = 0;
-        irparams.rcvstate = STATE_MARK; 
+        irparams.rcvstate = STATE_MARK;
       }
       break;
     case STATE_MARK: // timing MARK
@@ -58,11 +58,18 @@ ISR(TIMER_INTR_NAME)
           // Switch to STOP
           // Don't reset timer; keep counting space width
           irparams.rcvstate = STATE_STOP;
+		  irparams.lastTime = millis();
         } 
       }
       break;
     case STATE_STOP: // waiting, measuring gap
-      if (irdata == MARK)
+      if(millis() - irparams.lastTime > 200)
+      {
+        irparams.rawlen = 0;
+        irparams.timer = 0;
+        irparams.rcvstate = STATE_IDLE;
+      }
+      else if (irdata == MARK)
       { 
         // reset gap timer
         irparams.timer = 0;
@@ -78,7 +85,6 @@ MeIR::MeIR()
   irparams.recvpin = 2;
   // attachInterrupt(INT0, irISR, CHANGE);
   
-  lastIRTime = 0.0;
   irDelayTime = 0;
   irIndex = 0;
   irRead = 0;
@@ -290,6 +296,7 @@ String MeIR::getString()
     {
       if(millis() - irDelayTime > 100)
       {
+        irPressed = false;
         irRead = 0;
         irDelayTime = millis();
 		Pre_Str = "";
@@ -308,10 +315,8 @@ String MeIR::getString()
 }
 
 unsigned char MeIR::getCode(){
-  if(decode())
-  {
-    irRead = ((value >> 8) >>8) & 0xff;
-  }
+  irIndex = 0;
+  loop();
   return irRead;
 }
 
@@ -367,7 +372,6 @@ void MeIR::loop()
   if(decode())
   {
     irRead = ((value >> 8) >> 8) & 0xff;
-    lastIRTime = millis()/1000.0;
     irPressed = true;
     if(irRead == 0xa || irRead == 0xd)
     {
@@ -390,22 +394,20 @@ void MeIR::loop()
   {
     if(irRead > 0)
     {
-     if(millis() - irDelayTime > 100)
-     {
-      irRead = 0;
-      irDelayTime = millis();
-     }
-   }
+      if(millis() - irDelayTime > 200)
+      {
+        irPressed = false;
+        irRead = 0;
+        irDelayTime = millis();
+      }
+    }
   }
 }
 
 boolean MeIR::keyPressed(unsigned char r)
 {
   irIndex = 0;
-  if(millis()/1000.0 - lastIRTime > 0.2)
-  {
-    return false;
-  }
+  loop();
   return irRead == r;
 }
 #endif // !defined(__AVR_ATmega32U4__)
