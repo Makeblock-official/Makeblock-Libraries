@@ -1,3 +1,27 @@
+/**
+ * \par Copyright (C), 2012-2015, MakeBlock
+ * @file    SerialControlStepper.ino
+ * @author  MakeBlock
+ * @version V1.0.0
+ * @date    2015/09/07
+ * @brief   Description: this file is sample code for Stepper Driver device.
+ *
+ * Function List:
+ *
+ *    1. void MeStepper::moveTo(long absolute); 
+ *    2. void MeStepper::move(long relative);
+ *    3. boolean MeStepper::run();
+ *    4. void MeStepper::setMaxSpeed(float speed);
+ *    5. void MeStepper::setAcceleration(float acceleration);
+ *
+ * \par History:
+ * <pre>
+ * <Author>     <Time>        <Version>      <Descr>
+ * Mark Yan     2015/09/07    1.0.0          rebuild the old lib.
+ * forfish      2015/11/19    1.0.0          add some descriptions.
+ * </pre>
+ */
+
 #include "MeOrion.h"
 #include <SoftwareSerial.h>
 

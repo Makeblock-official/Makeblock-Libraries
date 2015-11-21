@@ -1,15 +1,45 @@
-/*************************************************************************
-* File Name          :CH375
-* Author             : Riven
-* Updated            : Riven
-* Version            : V0.0.1
-* Date               : 22/09/2014
-* Description        : Makeblock CH375 driver
-* License            : CC-BY-SA 3.0
-* Copyright (C) 2014 Maker Works Technology Co., Ltd. All right reserved.
-* http://www.makeblock.cc/
-**************************************************************************/
-
+/**
+ * \par Copyright (C), 2012-2015, MakeBlock
+ * \class   MeUSBHost
+ * \brief   Driver for Me USB Host module.
+ * @file    MeUSBHost.h
+ * @author  MakeBlock
+ * @version V1.0.0
+ * @date    2015/11/09
+ * @brief   Header for MeUSBHost.cpp module
+ *
+ * \par Copyright
+ * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * conditions. The main licensing options available are GPL V2 or Commercial: \n
+ *
+ * \par Open Source Licensing GPL V2
+ * This is the appropriate option if you want to share the source code of your \n
+ * application with everyone you distribute it to, and you also want to give them \n
+ * the right to share who uses it. If you wish to use this software under Open \n
+ * Source Licensing, you must contribute all your source code to the open source \n
+ * community in accordance with the GPL Version 2 when your application is \n
+ * distributed. See http://www.gnu.org/copyleft/gpl.html
+ *
+ * \par Description
+ * This file is a drive for Me USB Host device, The USB Host inherited the 
+ * MeSerial class from SoftwareSerial.
+ *
+ * \par Method List:
+ *
+ *    1. void MeUSBHost::init(int8_t type);
+ *    2. int16_t MeUSBHost::initHIDDevice();
+ *    3. int16_t MeUSBHost::probeDevice();
+ *    4. void MeUSBHost::resetBus();
+ *    5. uint8_t MeUSBHost::host_recv();
+ *
+ * \par History:
+ * <pre>
+ * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
+ * forfish         2015/11/10     1.0.0            Add description
+ * </pre>
+ *
+ * @example TestUSBHsot.ino
+ */
 
 #ifndef MeUSBHost_H
 #define MeUSBHost_H
@@ -20,15 +50,6 @@
 #include "MePort.h"
 #define USB2_0 1
 #define USB1_0 0
-
-	/* Define for CH372 & CH375 		 */
-	/* Website:  http://winchiphead.com  */
-	/* Email:	 tech@winchiphead.com	 */
-	/* Author:	 W.ch 2003.09			 */
-	/* V2.0 for CH372A/CH375A			 */
-	/* tranlate to english ver by MakeBlock */
-	/* ********************************************************************************************************************* */
-	/* Hardware Define */
 
 #define	CH375_MAX_DATA_LEN	0x40			/* max package length */
 
@@ -274,6 +295,7 @@
 #define	DEF_USB_SET_INTERF	0x0B
 #define	DEF_USB_SYNC_FRAME	0x0C
 
+//Define struct
 /* ********************************************************************************************************************* */
 typedef struct _USB_DEVICE_DEscriptOR {
     uint8_t bLength;
@@ -330,40 +352,365 @@ typedef struct _USB_CONFIG_DEscriptOR_LONG {
     USB_ENDP_DESCR endp_descr[4];
 } USB_CFG_DESCR_LONG, *PUSB_CFG_DESCR_LONG;
 
+/**
+ * Class: MeUSBHost
+ * \par Description
+ * Declaration of Class MeUSBHost.
+ */
 class MeUSBHost : public MePort
 {
-    public:
-      bool ch375_online;
-      bool device_online;
-      bool device_ready;
-      uint8_t RECV_BUFFER[ CH375_MAX_DATA_LEN ];
-      MeUSBHost();
-      //MeUSBHost(uint8_t s1, uint8_t s2);
-      MeUSBHost(uint8_t port);
-      void init(int8_t type);
-      int16_t initHIDDevice();
-      int16_t probeDevice();
-      void resetBus();
-      uint8_t host_recv();
-    private:
-      SoftwareSerial *HSerial;
-      int16_t stallCount;
-      int8_t usbtype;
-      uint8_t CH375_RD();
-      void CH375_WR(uint8_t c);
-      int16_t set_usb_mode(int16_t mode);
-      uint8_t getIrq();
-      void toggle_send();
-      void toggle_recv();
-      uint8_t issue_token( uint8_t endp_and_pid );
-      void wr_usb_data( uint8_t len, uint8_t *buf );
-      uint8_t rd_usb_data( uint8_t *buf );
-      int16_t get_version();
-      void set_freq(void);
-      uint8_t set_addr( uint8_t addr );
-      uint8_t set_config(uint8_t cfg);
-      uint8_t clr_stall6(void);
-      uint8_t get_desr(uint8_t type);
+public:
+  bool ch375_online;
+  bool device_online;
+  bool device_ready;
+  uint8_t RECV_BUFFER[ CH375_MAX_DATA_LEN ];
+
+/**
+ * Alternate Constructor which can call your own function to map the USB Host to arduino port,
+ * no pins are used or initialized here.
+ * \param[in]
+ *   None
+ */
+  MeUSBHost();
+
+  //MeUSBHost(uint8_t s1, uint8_t s2);
+
+/**
+ *  Alternate Constructor which can call your own function to map the USB Host to arduino port, \n
+ *  the slot2 pin will be used for key pin.
+ * \param[in]
+ *    port - RJ25 port from PORT_1 to M2
+ */
+  MeUSBHost(uint8_t port);
+
+/**
+ * \par Function
+ *    init
+ * \par Description
+ *    Init the data Bus.
+ * \param[in]
+ *    type - The type of data Bus.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+  void init(int8_t type);
+
+/**
+ * \par Function
+ *    initHIDDevice
+ * \par Description
+ *    Init the HID Device.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    The result of initHIDDevice's action.
+ * \par Others
+ *    None
+ */
+  int16_t initHIDDevice();
+
+/**
+ * \par Function
+ *    probeDevice
+ * \par Description
+ *    Prode of USB Host Device.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    The result of device's probe.
+ * \par Others
+ *    None
+ */
+  int16_t probeDevice();
+
+/**
+ * \par Function
+ *    resetBus
+ * \par Description
+ *    Reset the data Bus.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+  void resetBus();
+
+/**
+ * \par Function
+ *    host_recv
+ * \par Description
+ *    The USB Host receive data.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    Return the length of data.
+ * \par Others
+ *    None
+ */
+  uint8_t host_recv();
+
+private:
+  SoftwareSerial *HSerial;
+  int16_t stallCount;
+  int8_t usbtype;
+
+/**
+ * \par Function
+ *    CH375_RD
+ * \par Description
+ *    Read data from USB.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    Return 0;
+ * \par Others
+ *    None
+ */
+  uint8_t CH375_RD();
+
+/**
+ * \par Function
+ *    CH375_WR
+ * \par Description
+ *    Write data to USB device.
+ * \param[in]
+ *    c - The bytes that wrote to device. 
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+  void CH375_WR(uint8_t c);
+
+/**
+ * \par Function
+ *    set_usb_mode
+ * \par Description
+ *    Set the work mode of USB.
+ * \param[in]
+ *    mode - The USB's work mode. 
+ * \par Output
+ *    None
+ * \return
+ *    Return the data that CH375_RD()'s return.
+ * \par Others
+ *    None
+ */
+  int16_t set_usb_mode(int16_t mode);
+
+/**
+ * \par Function
+ *    getIrq
+ * \par Description
+ *    Get the Interrupt Request of USB.
+ * \param[in]
+ *    None 
+ * \par Output
+ *    None
+ * \return
+ *    Return the data that CH375_RD()'s return.
+ * \par Others
+ *    None
+ */
+  uint8_t getIrq();
+
+/**
+ * \par Function
+ *    toggle_send
+ * \par Description
+ *    The toggle used to send data.
+ * \param[in]
+ *    None 
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+  void toggle_send();
+
+/**
+ * \par Function
+ *    toggle_recv
+ * \par Description
+ *    The toggle used to receive data.
+ * \param[in]
+ *    None 
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+  void toggle_recv();
+
+/**
+ * \par Function
+ *    issue_token
+ * \par Description
+ *    USB Host make a token and perform transactions.
+ * \param[in]
+ *    endp_and_pid - The token that USB Host used.
+ * \par Output
+ *    None
+ * \return
+ *    Return the Interrupt Request.
+ * \par Others
+ *    None
+ */
+  uint8_t issue_token( uint8_t endp_and_pid );
+
+/**
+ * \par Function
+ *    wr_usb_data
+ * \par Description
+ *    Write data to USB Host.
+ * \param[in]
+ *    len - The data's length.
+  * \param[in]
+ *    buf - Data in buffer.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+  void wr_usb_data( uint8_t len, uint8_t *buf );
+
+/**
+ * \par Function
+ *    rd_usb_data
+ * \par Description
+ *    Read data from USB Host.
+ * \param[in]
+ *    len - The data's length.
+ * \param[in]
+ *    buf - Data in buffer.
+ * \par Output
+ *    None
+ * \return
+ *    Return the length of read data.
+ * \par Others
+ *    None
+ */
+  uint8_t rd_usb_data( uint8_t *buf );
+
+/**
+ * \par Function
+ *    get_version
+ * \par Description
+ *    Get version of USB Host.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    Return the data that CH375_RD()'s return.
+ * \par Others
+ *    None
+ */
+  int16_t get_version();
+
+/**
+ * \par Function
+ *    set_freq
+ * \par Description
+ *    Set frequency of USB Host.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+  void set_freq(void);
+
+/**
+ * \par Function
+ *    set_addr
+ * \par Description
+ *    Set address of USB Host.
+ * \param[in]
+ *    addr - The address of USB Host.
+ * \par Output
+ *    None
+ * \return
+ *    Return the number of Interrupt Request.
+ * \par Others
+ *    None
+ */
+  uint8_t set_addr( uint8_t addr );
+
+/**
+ * \par Function
+ *    set_config
+ * \par Description
+ *    Set config of USB Host.
+ * \param[in]
+ *    cfg - The config file of USB Host.
+ * \par Output
+ *    None
+ * \return
+ *    Return the number of Interrupt Request.
+ * \par Others
+ *    None
+ */
+  uint8_t set_config(uint8_t cfg);
+
+/**
+ * \par Function
+ *    clr_stall6
+ * \par Description
+ *    Clear all stall in USB Host.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    Return the number of Interrupt Request.
+ * \par Others
+ *    None
+ */
+  uint8_t clr_stall6(void);
+
+/**
+ * \par Function
+ *    get_desr
+ * \par Description
+ *    Get description of USB Host.
+ * \param[in]
+ *    type - The type of description.
+ * \par Output
+ *    None
+ * \return
+ *    Return the number of Interrupt Request.
+ * \par Others
+ *    None
+ */
+  uint8_t get_desr(uint8_t type);
 };
 #endif
 

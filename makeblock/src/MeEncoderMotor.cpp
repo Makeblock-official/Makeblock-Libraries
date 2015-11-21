@@ -1,8 +1,55 @@
-// MeEncoderMotor.cpp
-
+/**
+ * \par Copyright (C), 2012-2015, MakeBlock
+ * \class   MeEncoderMotor
+ * \brief   Driver for Encoder Motor module.
+ * @file    MeEncoderMotor.cpp
+ * @author  MakeBlock
+ * @version V1.0.0
+ * @date    2015/11/09
+ * @brief   Driver for Encoder Motor module
+ *
+ * \par Copyright
+ * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * conditions. The main licensing options available are GPL V2 or Commercial: \n
+ *
+ * \par Open Source Licensing GPL V2
+ * This is the appropriate option if you want to share the source code of your \n
+ * application with everyone you distribute it to, and you also want to give them \n
+ * the right to share who uses it. If you wish to use this software under Open \n
+ * Source Licensing, you must contribute all your source code to the open source \n
+ * community in accordance with the GPL Version 2 when your application is \n
+ * distributed. See http://www.gnu.org/copyleft/gpl.html
+ *
+ * \par Description
+ * This file is a drive for Me EncoderMotor device, The Me EncoderMotor inherited the 
+ * MeSerial class from SoftwareSerial.
+ *
+ * \par Method List:
+ *
+ *    1. void MeEncoderMotor::begin();
+ *    2. boolean MeEncoderMotor::reset();
+ *    3. boolean MeEncoderMotor::move(float angle, float speed);
+ *    4. boolean MeEncoderMotor::moveTo(float angle, float speed);
+ *    5. boolean MeEncoderMotor::runTurns(float turns, float speed);
+ *    6. boolean MeEncoderMotor::runSpeed(float speed);
+ *    7. boolean MeEncoderMotor::runSpeedAndTime(float speed, float time);
+ *    8. float MeEncoderMotor::getCurrentSpeed();
+ *    9. float MeEncoderMotor::getCurrentPosition();
+ *
+ * \par History:
+ * <pre>
+ * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
+ * forfish         2015/11/09     1.0.0            Add description
+ * </pre>
+ *
+ * @example EncoderMotorTestMoveTo.ino
+ * @example EncoderMotorTestRunSpeed.ino
+ * @example EncoderMotorTestRunSpeedAndTime.ino
+ * @example EncoderMotorTestRunTurns.ino
+ */
 #include "MeEncoderMotor.h"
 #include "MeHostParser.h"
-//  frame type
+
 #define ENCODER_MOTOR_GET_PARAM     0x01
 #define ENCODER_MOTOR_SAVE_PARAM    0x02
 #define ENCODER_MOTOR_TEST_PARAM    0x03
@@ -20,14 +67,28 @@
 
 MeHostParser encoderParser = MeHostParser();
 
-//  function:       pack data into a package to send
-//  param:  buf     buffer to save package
-//          bufSize size of buf
-//          module  the associated module of package
-//          data    the data to pack
-//          length  the length(size) of data
-//  return: 0       error
-//          other   package size
+/**
+ * \par Function
+ *    MeHost_Pack
+ * \par Description
+ *    Pack data into a package to send.
+ * \param[in]
+ *    buf - Buffer to save package.
+ * \param[in]
+ *    bufSize - Size of buf.
+ * \param[in]
+ *    module - The associated module of package.
+  * \param[in]
+ *    data - The data to pack.
+ * \param[in]
+ *    length - The length(size) of data.
+ * \par Output
+ *    None
+ * \Return
+ *    0.
+ * \par Others
+ *    package size.
+ */
 uint32_t MeHost_Pack(uint8_t * buf,
                      uint32_t bufSize, 
                      uint8_t module, 
@@ -71,28 +132,78 @@ uint32_t MeHost_Pack(uint8_t * buf,
   }
 }
 
-/*          EncoderMotor        */
+/**
+ * Alternate Constructor which can call your own function to map the Encoder Motor to arduino port,
+ * you can set any slot for the Encoder Motor device. 
+ * \param[in]
+ *   port - RJ25 port from PORT_1 to M2
+ * \param[in]
+ *   slot - SLOT1 or SLOT2
+ */
 MeEncoderMotor::MeEncoderMotor(uint8_t addr,uint8_t slot): MePort(0)
 {
   _slot = slot - 1;
   _slaveAddress = addr;
 }
+
+/**
+ * Alternate Constructor which can call your own function to map the Encoder Motor to arduino port,
+ * you can set any slot for the Encoder Motor device.
+ * \param[in]
+ *   slot - SLOT1 or SLOT2
+ */
 MeEncoderMotor::MeEncoderMotor(uint8_t slot):MePort(0)
 {
   _slot = slot - 1;
   _slaveAddress = 0x9;
 }
+
+/**
+ * Alternate Constructor which can call your own function to map the Encoder Motor to arduino port,
+ * you should initialized slot and slaveAddress here for the Encoder Motor device.
+ * \param[in]
+ *   None
+ */
 MeEncoderMotor::MeEncoderMotor():MePort(0)
 {
   _slot = 0;
   _slaveAddress = 0x9;
 }
+
+/**
+ * \par Function
+ *    begin
+ * \par Description
+ *    Initialize Encoder Motor.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeEncoderMotor::begin()
 {
   Wire.begin();
   reset();
 }
 
+/**
+ * \par Function
+ *   reset
+ * \par Description
+ *   Reset the available data for Encoder Motor.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None 
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
 boolean MeEncoderMotor::reset()
 {
   uint8_t w[10] = {0};
@@ -111,6 +222,22 @@ boolean MeEncoderMotor::reset()
   return ack[1];
 }
 
+/**
+ * \par Function
+ *    moveTo
+ * \par Description
+ *    Motor move to the aim.
+ * \param[in]
+ *    angle - The angle move of Motor.
+ * \param[in]
+ *    speed - The speed move of Motor.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the result of Motor's movement to the aim.
+ * \par Others
+ *    None
+ */
 boolean MeEncoderMotor::moveTo(float angle, float speed)
 {
   if(speed > 200)
@@ -140,6 +267,22 @@ boolean MeEncoderMotor::moveTo(float angle, float speed)
   return ack[1];
 }
 
+/**
+ * \par Function
+ *    move
+ * \par Description
+ *    Motor move.
+ * \param[in]
+ *    angle - The angle move of Motor.
+ * \param[in]
+ *    speed - The speed move of Motor.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the result of Motor's movement.
+ * \par Others
+ *    None
+ */
 boolean MeEncoderMotor::move(float angle, float speed)
 {
   if(speed > 200)
@@ -173,11 +316,41 @@ boolean MeEncoderMotor::move(float angle, float speed)
   return ack[1];
 }
 
+/**
+ * \par Function
+ *    runTurns
+ * \par Description
+ *    Motor move turns.
+ * \param[in]
+ *    turns - The turns move of Motor.
+ * \param[in]
+ *    speed - The speed move of Motor.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the result of Motor's movement.
+ * \par Others
+ *    None
+ */
 boolean MeEncoderMotor::runTurns(float turns, float speed)
 {
   return move(turns * 360, speed);
 }
 
+/**
+ * \par Function
+ *    runSpeed
+ * \par Description
+ *    The speed of Motor's movement.
+ * \param[in]
+ *    speed - The speed move of Motor.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return 0.
+ * \par Others
+ *    None
+ */
 boolean MeEncoderMotor::runSpeed(float speed)
 {
   if(speed > 200)
@@ -207,6 +380,22 @@ boolean MeEncoderMotor::runSpeed(float speed)
   return 0;
 }
 
+/**
+ * \par Function
+ *    runSpeedAndTime
+ * \par Description
+ *    The speed and time of Motor's movement.
+ * \param[in]
+ *    speed - The speed move of Motor.
+ * \param[in]
+ *    time - The time move of Motor.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the result of Motor's movement.
+ * \par Others
+ *    None
+ */
 boolean MeEncoderMotor::runSpeedAndTime(float speed, float time)
 {
   if(speed > 200)
@@ -217,23 +406,37 @@ boolean MeEncoderMotor::runSpeedAndTime(float speed, float time)
   {
     speed = -200;
   }
-    uint8_t w[18] = {0};
-    uint8_t r[10] = {0};
+  uint8_t w[18] = {0};
+  uint8_t r[10] = {0};
 
-    uint8_t data[10] = {0};
-    data[0] = _slot;
-    data[1] = ENCODER_MOTOR_SPEED_TIME;
-    *((float *)(data + 2)) = speed;
-    *((float *)(data + 6)) = time;
+  uint8_t data[10] = {0};
+  data[0] = _slot;
+  data[1] = ENCODER_MOTOR_SPEED_TIME;
+  *((float *)(data + 2)) = speed;
+  *((float *)(data + 6)) = time;
 
-    MeHost_Pack(w, 18, 0x01, data, 10);
-    request(w, r, 18, 10);
-    encoderParser.pushStr(r, 10);
-    encoderParser.run();
+  MeHost_Pack(w, 18, 0x01, data, 10);
+  request(w, r, 18, 10);
+  encoderParser.pushStr(r, 10);
+  encoderParser.run();
 
-    return 0;
+  return 0;
 }
 
+/**
+ * \par Function
+ *    getCurrentSpeed
+ * \par Description
+ *    The current speed of Motor's movement.
+ * \param[in]
+      None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 float MeEncoderMotor::getCurrentSpeed()
 {
   uint8_t w[10] = {0};
@@ -254,6 +457,20 @@ float MeEncoderMotor::getCurrentSpeed()
   return speed;
 }
 
+/**
+ * \par Function
+ *    getCurrentPosition
+ * \par Description
+ *    The current position of Motor.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 float MeEncoderMotor::getCurrentPosition()
 {
   uint8_t w[10] = {0};
@@ -274,6 +491,27 @@ float MeEncoderMotor::getCurrentPosition()
   float pos = *((float *)(temp + 2));
   return pos;
 }
+
+/**
+ * \par Function
+ *    request
+ * \par Description
+ *    The request of Motor.
+ * \param[in]
+ *    writeData - Write data to Encoder Motor.
+  * \param[in]
+ *    readData - Read data from Encoder Motor.
+  * \param[in]
+ *    wlen - The data's length that write to Encoder Motor.
+  * \param[in]
+ *    rlen - The data's length that read from Encoder Motor.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeEncoderMotor::request(byte *writeData, byte *readData, int wlen, int rlen)
 {
   uint8_t rxByte;

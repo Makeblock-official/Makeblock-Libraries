@@ -1,3 +1,26 @@
+/**
+ * \par Copyright (C), 2012-2015, MakeBlock
+ * @file    MeUSBHost.ino
+ * @author  MakeBlock
+ * @version V1.0.0
+ * @date    2015/09/09
+ * @brief   Description: this file is sample code for Me USB Host module.
+ *          The USB Host inherited the MeSerial class from SoftwareSerial.
+ *
+ * \par Method List:
+ *
+ *    1. void MeUSBHost::init(int8_t type);
+ *    2. int16_t MeUSBHost::probeDevice();
+ *    3. uint8_t MeUSBHost::host_recv();
+ *
+ * \par History:
+ * <pre>
+ * <Author>     <Time>        <Version>      <Descr>
+ * Mark Yan     2015/09/09    1.0.0          rebuild the old lib.
+ * forfish      2015/11/19    1.0.0          add some descriptions.
+ * </pre>
+ */
+
 #include "MeOrion.h"
 #include "SoftwareSerial.h"
 //MeUSBHost usbhost(8,13);

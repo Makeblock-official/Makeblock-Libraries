@@ -1,3 +1,23 @@
+/**
+ * \par Copyright (C), 2012-2015, MakeBlock
+ * @file    EncoderMotorTestMoveTo.ino
+ * @author  MakeBlock
+ * @version V1.0.0
+ * @date    2015/09/07
+ * @brief   Description: this file is sample code for Encoder Motor  device.
+ *
+ * Function List:
+ *
+ *    1. void MeEncoderMotor::begin();
+ *    2. boolean MeEncoderMotor::moveTo(float angle, float speed);
+ *
+ * \par History:
+ * <pre>
+ * <Author>     <Time>        <Version>      <Descr>
+ * forfish      2015/11/19    1.0.0          add some descriptions
+ * </pre>
+ */
+
 #include "MeOrion.h"
 #include <Wire.h>
 #include <SoftwareSerial.h>

@@ -1,6 +1,6 @@
 /**
  * \par Copyright (C), 2012-2015, MakeBlock
- * @file    MeHumitureSensorTest.ino
+ * @file    MeHumitureSensorTest1.ino
  * @author  MakeBlock
  * @version V1.0.0
  * @date    2015/09/07
@@ -29,10 +29,10 @@ void setup()
 void loop()
 {
   humiture.update();
-  Serial.print("Humidity=");
+  Serial.print("Humidity (%) =");
   Serial.print( humiture.getHumidity() );
-  Serial.print(",Temperature=");
+  Serial.print(", Temperature (oC) =");
   Serial.println( humiture.getTemperature() );
-  delay(300);
+  Serial.println("###########################");
+  delay(1000);
 }
-

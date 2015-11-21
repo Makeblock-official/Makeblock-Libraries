@@ -1,3 +1,55 @@
+/**
+ * \par Copyright (C), 2012-2015, MakeBlock
+ * \class   MeIR
+ * \brief   Driver for Me IR module.
+ * @file    MeIR.cpp
+ * @author  MakeBlock
+ * @version V1.0.0
+ * @date    2015/11/09
+ * @brief   Driver for Me IR module.
+ *
+ * \par Copyright
+ * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * conditions. The main licensing options available are GPL V2 or Commercial: \n
+ *
+ * \par Open Source Licensing GPL V2
+ * This is the appropriate option if you want to share the source code of your \n
+ * application with everyone you distribute it to, and you also want to give them \n
+ * the right to share who uses it. If you wish to use this software under Open \n
+ * Source Licensing, you must contribute all your source code to the open source \n
+ * community in accordance with the GPL Version 2 when your application is \n
+ * distributed. See http://www.gnu.org/copyleft/gpl.html
+ *
+ * \par Description
+ * This file is a drive for Me IR device, The IR inherited the 
+ * MeSerial class from SoftwareSerial.
+ *
+ * \par Method List:
+ *
+ *    1. ErrorStatus MeIR::decode();
+ *    2. void MeIR::begin();
+ *    3. void MeIR::end();
+ *    4. void MeIR::loop();
+ *    5. boolean MeIR::keyPressed(unsigned char r);
+ *    6. String MeIR::getString();
+ *    7. unsigned char MeIR::getCode()
+ *    8. void MeIR::sendString(String s);
+ *    9. void MeIR::sendString(float v);
+ *    10. void MeIR::sendNEC(unsigned long data, int nbits);
+ *    11. void MeIR::sendRaw(unsigned int buf[], int len, uint8_t hz);
+ *    12. void MeIR::enableIROut(uint8_t khz);
+ *    13. void MeIR::enableIRIn();
+ *    14. void MeIR::mark(uint16_t us);
+ *    15. void MeIR::space(uint16_t us);
+ *
+ * \par History:
+ * <pre>
+ * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
+ * forfish         2015/11/09     1.0.0            Add description
+ * </pre>
+ *
+ */
+ 
 #include "MeIR.h"
 
 // Provides ISR
@@ -79,6 +131,12 @@ ISR(TIMER_INTR_NAME)
   // irparams.lastTime = new_time;
 }
 
+/**
+ * Alternate Constructor which can call your own function to map the IR to arduino port,
+ * no pins are used or initialized here.
+ * \param[in]
+ *   None
+ */
 MeIR::MeIR()
 {
   pinMode(2,INPUT);
@@ -96,6 +154,20 @@ MeIR::MeIR()
   digitalWrite(3, LOW); // When not sending PWM, we want it low
 }
 
+/**
+ * \par Function
+ *    begin
+ * \par Description
+ *    Initialize interrupt.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeIR::begin()
 {
   cli();
@@ -121,14 +193,39 @@ void MeIR::begin()
   // pinMode(irparams.recvpin, INPUT);
 }
 
+/**
+ * \par Function
+ *    end
+ * \par Description
+ *    Close the interrupt.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeIR::end()
 {
   EIMSK &= ~(1 << INT0);
 }
 
-// Decodes the received IR message
-// Returns 0 if no data ready, 1 if data ready.
-// Results of decoding are stored in results
+/**
+ * \par Function
+ *    decode
+ * \par Description
+ *    Decodes the received IR message.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Returns 0 if no data ready, 1 if data ready.
+ * \par Others
+ *    Results of decoding are stored in results.
+ */
 ErrorStatus MeIR::decode()
 {
   rawbuf = irparams.rawbuf;
@@ -147,6 +244,20 @@ ErrorStatus MeIR::decode()
   return ERROR;
 }
 
+/**
+ * \par Function
+ *    decodeNEC
+ * \par Description
+ *    Decodes NEC the received IR message.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Returns ERROR if decode NEC no done, SUCCESS if decode NEC done.
+ * \par Others
+ *    Results of decode NEC.
+ */
 // NECs have a repeat only 4 items long
 ErrorStatus MeIR::decodeNEC()
 {
@@ -209,6 +320,20 @@ ErrorStatus MeIR::decodeNEC()
   return SUCCESS;
 }
 
+/**
+ * \par Function
+ *    mark
+ * \par Description
+ *    Sends an IR mark for the specified number of microseconds.
+ * \param[in]
+ *    us - THe time of a PWM.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeIR::mark(uint16_t us)
 {
   // Sends an IR mark for the specified number of microseconds.
@@ -217,6 +342,20 @@ void MeIR::mark(uint16_t us)
   delayMicroseconds(us);
 }
 
+/**
+ * \par Function
+ *    space
+ * \par Description
+ *    Sends an IR mark for the specified number of microseconds.
+ * \param[in]
+ *    us - THe time of a PWM.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 /* Leave pin off for time (given in microseconds) */
 void MeIR::space(uint16_t us)
 {
@@ -226,12 +365,40 @@ void MeIR::space(uint16_t us)
   delayMicroseconds(us);
 }
 
+/**
+ * \par Function
+ *    enableIROut
+ * \par Description
+ *    Enable an IR for the specified number of khz.
+ * \param[in]
+ *    us - THe time of a INTR.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeIR::enableIROut(uint8_t khz)
 {
   TIMER_DISABLE_INTR; //Timer2 disable Interrupt
   TIMER_CONFIG_KHZ(khz);
 }
 
+/**
+ * \par Function
+ *    enableIRIn
+ * \par Description
+ *    Enable an IR to write in.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 // initialization
 void MeIR::enableIRIn() {
   cli();
@@ -256,6 +423,24 @@ void MeIR::enableIRIn() {
   pinMode(irparams.recvpin, INPUT);
 }
 
+/**
+ * \par Function
+ *    sendRaw
+ * \par Description
+ *    Send the length of data with hz.
+ * \param[in]
+ *    buf[] - The data's buffer.
+  * \param[in]
+ *    len - The data's length.
+  * \param[in]
+ *    hz - The hz for sending data.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeIR::sendRaw(unsigned int buf[], int len, uint8_t hz)
 {
   enableIROut(hz);
@@ -273,6 +458,20 @@ void MeIR::sendRaw(unsigned int buf[], int len, uint8_t hz)
   space(0); // Just to be sure
 }
 
+/**
+ * \par Function
+ *    getString
+ * \par Description
+ *    Get string in a INTR.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the result in a IRQ.
+ * \par Others
+ *    None
+ */
 String MeIR::getString()
 {
   if(decode())
@@ -314,12 +513,40 @@ String MeIR::getString()
   return Pre_Str;
 }
 
+/**
+ * \par Function
+ *    getCode
+ * \par Description
+ *    Get the reading code.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the result of reading.
+ * \par Others
+ *    None
+ */
 unsigned char MeIR::getCode(){
   irIndex = 0;
   loop();
   return irRead;
 }
 
+/**
+ * \par Function
+ *    sendString
+ * \par Description
+ *    Send data.
+ * \param[in]
+ *    s - The string you want to send.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeIR::sendString(String s)
 {
   unsigned long l;
@@ -339,11 +566,42 @@ void MeIR::sendString(String s)
   enableIRIn();
 }
 
+/**
+ * \par Function
+ *    sendString
+ * \par Description
+ *    Send data.
+ * \param[in]
+ *    v - The string you want to send.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeIR::sendString(float v)
 {
   dtostrf(v,5, 2, floatString);
   sendString(floatString);
 }
+
+/**
+ * \par Function
+ *    sendNEC
+ * \par Description
+ *    Send NEC.
+ * \param[in]
+ *    data - The data you want to send.
+  * \param[in]
+ *    nbits - The data bit you want to send.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeIR::sendNEC(unsigned long data, int nbits)
 {
   enableIROut(38);
@@ -367,6 +625,20 @@ void MeIR::sendNEC(unsigned long data, int nbits)
   space(0);
 }
 
+/**
+ * \par Function
+ *    loop
+ * \par Description
+ *    A circle of operation.
+ * \param[in]
+ *    None
+ * \par Output0
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeIR::loop()
 {
   if(decode())
@@ -404,6 +676,20 @@ void MeIR::loop()
   }
 }
 
+/**
+ * \par Function
+ *    keyPressed
+ * \par Description
+ *    Press key.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Return you the pressed key or not.
+ * \par Others
+ *    None
+ */
 boolean MeIR::keyPressed(unsigned char r)
 {
   irIndex = 0;

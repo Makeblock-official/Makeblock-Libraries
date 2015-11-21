@@ -31,14 +31,20 @@
  *    3. uint8_t MeHumiture::getHumidity(void)
  *    4. uint8_t MeHumiture::getTemperature(void)
  *    5. uint8_t MeHumiture::getValue(uint8_t index)
+ *    6. double MeHumiture::getFahrenheit(void)
+ *    7. double MeHumiture::getKelvin(void)
+ *    8. double MeHumiture::getdewPoint(void)
+ *    9. double MeHumiture::getPointFast()
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/08     1.0.0            Rebuild the old lib.
+ * forfish          2015/11/18     1.0.0            Add some functions.
  * </pre>
  *
- * @example MeHumitureSensorTest.ino
+ * @example MeHumitureSensorTest1.ino
+ * @example MeHumitureSensorTest2.ino
  */
 #include "MeHumitureSensor.h"
 
@@ -275,5 +281,98 @@ uint8_t MeHumiture::getValue(uint8_t index)
   {
     return Temperature;
   }
+}
+
+/**
+ * \par Function
+ *    Fahrenheit
+ * \par Description
+ *    Change celsius degrees into Fahrenheit.
+ * \param[in]
+ *    celsius - The number of celsius degrees.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the number of Fahrenheit
+ * \par Others
+ *    None
+ */
+double MeHumiture::getFahrenheit(void)//Celsius degrees to Fahrenheit
+{
+  return 1.8 * Temperature + 32;
+}
+
+
+/**
+ * \par Function
+ *    Kelvin
+ * \par Description
+ *    Change celsius degrees into Kelvin.
+ * \param[in]
+ *    celsius - The number of celsius degrees.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the number of Kelvin temperature.
+ * \par Others
+ *    None
+ */
+double MeHumiture::getKelvin(void)
+{
+  return Temperature + 273.15;
+}
+
+/**
+ * \par Function
+ *    dewPoint
+ * \par Description
+ *    The dew-point temperature (Point at this temperature, the air is saturated and produce dew).
+ * \param[in]
+ *    celsius - The celsius degrees of air.
+  * \param[in]
+ *    humidity - The humidity of air.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the dew-point of air.
+ * \par Others
+ *    None
+ */
+double MeHumiture::getdewPoint(void)
+{
+  double A0= 373.15/(273.15 + Temperature);
+  double SUM = -7.90298 * (A0-1);
+  SUM += 5.02808 * log10(A0);
+  SUM += -1.3816e-7 * (pow(10, (11.344*(1-1/A0)))-1) ;
+  SUM += 8.1328e-3 * (pow(10,(-3.49149*(A0-1)))-1) ;
+  SUM += log10(1013.246);
+  double VP = pow(10, SUM-3) * Humidity;
+  double T = log(VP/0.61078);   // temp var
+  return (241.88 * T) / (17.558-T);
+}
+
+/**
+ * \par Function
+ *    dewPointFast
+ * \par Description
+ *    Fast calculating dew point, peed is 5 times to dewPoint().
+ * \param[in]
+ *    celsius - The celsius degrees of air.
+  * \param[in]
+ *    humidity - The humidity of air.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the Fast calculating dew point of air.
+ * \par Others
+ *    None
+ */
+double MeHumiture::getPointFast()
+{
+  double a = 17.271;
+  double b = 237.7;
+  double temp = (a * Temperature) / (b + Temperature) + log(Humidity/100);
+  //double Td = (b * temp) / (a - temp);
+  return ((b * temp) / (a - temp));
 }
 

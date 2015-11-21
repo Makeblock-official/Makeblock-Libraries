@@ -6,7 +6,7 @@
  * @author  MakeBlock
  * @version V1.0.0
  * @date    2015/09/09
- * @brief   Header for for MeBluetooth.cpp module
+ * @brief   Header for MeBluetooth.cpp module
  *
  * \par Copyright
  * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n

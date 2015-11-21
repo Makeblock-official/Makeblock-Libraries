@@ -7,10 +7,10 @@
  * @brief   Description: this file is sample code for Seven-Segment LED device.
  *          It acts as a timer.
  * Function List:
- *    1. void    Me7SegmentDisplay::init(void)
- *    2. void    Me7SegmentDisplay::set(uint8_t = BRIGHT_2, uint8_t = ADDR_AUTO, \
+ *    1. void Me7SegmentDisplay::init(void)
+ *    2. void Me7SegmentDisplay::set(uint8_t = BRIGHT_2, uint8_t = ADDR_AUTO, \
                                         uint8_t = STARTADDR)
- *    3. void display(uint8_t DispData[]);
+ *    3. void Me7SegmentDisplay::display(uint8_t DispData[]);
  *
  * \par History:
  * <pre>

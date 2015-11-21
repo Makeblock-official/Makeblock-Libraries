@@ -31,11 +31,16 @@
  *    3. uint8_t MeHumiture::getHumidity(void)
  *    4. uint8_t MeHumiture::getTemperature(void)
  *    5. uint8_t MeHumiture::getValue(uint8_t index)
+ *    6. double MeHumiture::getFahrenheit(void)
+ *    7. double MeHumiture::getKelvin(void)
+ *    8. double MeHumiture::getdewPoint(void)
+ *    9. double MeHumiture::getPointFast()
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/08     1.0.0            Rebuild the old lib.
+ * forfish          2015/11/18     1.0.0            Add some functions.
  * </pre>
  */
 #ifndef MeHumitureSensor_H
@@ -170,6 +175,74 @@ public:
  *   None
  */
   uint8_t getValue(uint8_t index);
+
+/**
+ * \par Function
+ *    Fahrenheit
+ * \par Description
+ *    Change celsius degrees into Fahrenheit.
+ * \param[in]
+ *    celsius - The number of celsius degrees.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the number of Fahrenheit
+ * \par Others
+ *    None
+ */
+  double getFahrenheit(void);//Celsius degrees to Fahrenheit
+
+/**
+ * \par Function
+ *    Kelvin
+ * \par Description
+ *    Change celsius degrees into Kelvin.
+ * \param[in]
+ *    celsius - The number of celsius degrees.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the number of Kelvin temperature.
+ * \par Others
+ *    None
+ */
+  double getKelvin(void);
+
+/**
+ * \par Function
+ *    dewPoint
+ * \par Description
+ *    The dew-point temperature (Point at this temperature, the air is saturated and produce dew).
+ * \param[in]
+ *    celsius - The celsius degrees of air.
+  * \param[in]
+ *    humidity - The humidity of air.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the dew-point of air.
+ * \par Others
+ *    None
+ */
+  double getdewPoint(void);
+
+/**
+ * \par Function
+ *    dewPointFast
+ * \par Description
+ *    Fast calculating dew point, Speed is 5 times to dewPoint().
+ * \param[in]
+ *    celsius - The celsius degrees of air.
+  * \param[in]
+ *    humidity - The humidity of air.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the Fast calculating dew point of air.
+ * \par Others
+ *    None
+ */
+  double getPointFast(void);
 
 private:
   uint8_t Humidity;

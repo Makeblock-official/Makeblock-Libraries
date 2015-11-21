@@ -1,7 +1,6 @@
 /**
  * \par Copyright (C), 2012-2015, MakeBlock
  * \brief   Driver for Mbot DC Motor.
- * \class   MBotDCMotor
  * \file    MeMbotDCMotor.cpp
  * @author  MakeBlock
  * @version V1.0.0
@@ -23,6 +22,10 @@
  * \par Description
  * This file is Hardware adaptation layer between Mbot board and all
  * MakeBlock drives
+ * 
+ * \par Method List:
+ *
+ *    1. void MBotDCMotor::move(int direction, int speed);
  *
  * \par History:
  * <pre>
@@ -33,12 +36,34 @@
 
 #include "MeMbotDCMotor.h"
 
+/**
+ * Alternate Constructor which can call your own function to map the MBot DCMotor to arduino port,
+ * the slot2 pin will be used here since specify slot is not be set.
+ * \param[in]
+ *   port - RJ25 port from PORT_1 to M2
+ */
 #ifdef ME_PORT_DEFINED
 MBotDCMotor::MBotDCMotor(uint8_t port) : MeDCMotor(port)
 {
 
 }
 
+/**
+ * \par Function
+ *    move
+ * \par Description
+ *    MBot DCMotor moves with the speed and direction.
+ * \param[in]
+ *    direction - The direction of the MBot DCMotor's movement
+ * \param[in]
+ *    speed - The speed of MBot DCMotor's movement.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MBotDCMotor::move(int direction, int speed)
 {
   int leftSpeed = 0;

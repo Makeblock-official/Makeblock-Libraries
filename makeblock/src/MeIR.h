@@ -1,3 +1,55 @@
+/**
+ * \par Copyright (C), 2012-2015, MakeBlock
+ * \class   MeIR
+ * \brief   Driver for Me IR module.
+ * @file    MeIR.h
+ * @author  MakeBlock
+ * @version V1.0.0
+ * @date    2015/11/09
+ * @brief   Header for MeIR.cpp module
+ *
+ * \par Copyright
+ * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * conditions. The main licensing options available are GPL V2 or Commercial: \n
+ *
+ * \par Open Source Licensing GPL V2
+ * This is the appropriate option if you want to share the source code of your \n
+ * application with everyone you distribute it to, and you also want to give them \n
+ * the right to share who uses it. If you wish to use this software under Open \n
+ * Source Licensing, you must contribute all your source code to the open source \n
+ * community in accordance with the GPL Version 2 when your application is \n
+ * distributed. See http://www.gnu.org/copyleft/gpl.html
+ *
+ * \par Description
+ * This file is a drive for Me IR device, The IR inherited the 
+ * MeSerial class from SoftwareSerial.
+ *
+ * \par Method List:
+ *
+ *    1. ErrorStatus MeIR::decode();
+ *    2. void MeIR::begin();
+ *    3. void MeIR::end();
+ *    4. void MeIR::loop();
+ *    5. boolean MeIR::keyPressed(unsigned char r);
+ *    6. String MeIR::getString();
+ *    7. unsigned char MeIR::getCode()
+ *    8. void MeIR::sendString(String s);
+ *    9. void MeIR::sendString(float v);
+ *    10. void MeIR::sendNEC(unsigned long data, int nbits);
+ *    11. void MeIR::sendRaw(unsigned int buf[], int len, uint8_t hz);
+ *    12. void MeIR::enableIROut(uint8_t khz);
+ *    13. void MeIR::enableIRIn();
+ *    14. void MeIR::mark(uint16_t us);
+ *    15. void MeIR::space(uint16_t us);
+ *
+ * \par History:
+ * <pre>
+ * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
+ * forfish         2015/11/09     1.0.0            Add description
+ * </pre>
+ *
+ */
+ 
 #ifndef MeIR_h
 #define MeIR_h
 
@@ -118,47 +170,293 @@ typedef struct {
 irparams_t;
 
 // main class for receiving IR
+/**
+ * Class: MeIR
+ * \par Description
+ * Declaration of Class MeIR.
+ */
 class MeIR
 {
 public:
+/**
+ * Alternate Constructor which can call your own function to map the IR to arduino port,
+ * no pins are used or initialized here.
+ * \param[in]
+ *   None
+*/
   MeIR();
+
+/**
+ * \par Function
+ *    decode
+ * \par Description
+ *    Decodes the received IR message.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Returns 0 if no data ready, 1 if data ready.
+ * \par Others
+ *    Results of decoding are stored in results.
+ */
   ErrorStatus decode();
+  
+/**
+ * \par Function
+ *    begin
+ * \par Description
+ *    Initialize interrupt.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
   void begin();
+
+/**
+ * \par Function
+ *    end
+ * \par Description
+ *    Close the interrupt.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
   void end();
+  
+/**
+ * \par Function
+ *    loop
+ * \par Description
+ *    A circle of operation.
+ * \param[in]
+ *    None
+ * \par Output0
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
   void loop();
+  
+/**
+ * \par Function
+ *    keyPressed
+ * \par Description
+ *    Press key.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Return you the pressed key or not.
+ * \par Others
+ *    None
+ */
   boolean keyPressed(unsigned char r);
   // void resume();
+
   int8_t decode_type; // NEC, SONY, RC5, UNKNOWN
   unsigned long value; // Decoded value
   uint8_t bits; // Number of bits in decoded value
   volatile uint8_t *rawbuf; // Raw intervals in .5 us ticks
   int rawlen; // Number of records in rawbuf.
+  
+/**
+ * \par Function
+ *    getString
+ * \par Description
+ *    Get string in a INTR.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the result in a IRQ.
+ * \par Others
+ *    None
+ */
   String getString();
+  
+/**
+ * \par Function
+ *    getCode
+ * \par Description
+ *    Get the reading code.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the result of reading.
+ * \par Others
+ *    None
+ */
   unsigned char getCode();
+  
+/**
+ * \par Function
+ *    sendString
+ * \par Description
+ *    Send data.
+ * \param[in]
+ *    s - The string you want to send.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
   void sendString(String s);
+  
+/**
+ * \par Function
+ *    sendString
+ * \par Description
+ *    Send data.
+ * \param[in]
+ *    v - The string you want to send.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
   void sendString(float v);
+  
+/**
+ * \par Function
+ *    sendNEC
+ * \par Description
+ *    Send NEC.
+ * \param[in]
+ *    data - The data you want to send.
+  * \param[in]
+ *    nbits - The data bit you want to send.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
   void sendNEC(unsigned long data, int nbits);
-  void sendSony(unsigned long data, int nbits);
-  // Neither Sanyo nor Mitsubishi send is implemented yet
-  //  void sendSanyo(unsigned long data, int nbits);
-  //  void sendMitsubishi(unsigned long data, int nbits);
+  
+/**
+ * \par Function
+ *    sendRaw
+ * \par Description
+ *    Send the length of data with hz.
+ * \param[in]
+ *    buf[] - The data's buffer.
+  * \param[in]
+ *    len - The data's length.
+  * \param[in]
+ *    hz - The hz for sending data.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
   void sendRaw(unsigned int buf[], int len, uint8_t hz);
-  void sendRC5(unsigned long data, int nbits);
-  void sendRC6(unsigned long data, int nbits);
-  void sendDISH(unsigned long data, int nbits);
-  void sendSharp(unsigned int address, unsigned int command);
-  void sendSharpRaw(unsigned long data, int nbits);
-  void sendPanasonic(unsigned int address, unsigned long data);
-  void sendJVC(unsigned long data, int nbits, int repeat); // *Note instead of sending the REPEAT constant if you want the JVC repeat signal sent, send the original code value and change the repeat argument from 0 to 1. JVC protocol repeats by skipping the header NOT by sending a separate code value like NEC does.
-  // private:
-  void sendSAMSUNG(unsigned long data, int nbits);
+  
+/**
+ * \par Function
+ *    enableIROut
+ * \par Description
+ *    Enable an IR for the specified number of khz.
+ * \param[in]
+ *    us - THe time of a INTR.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
   void enableIROut(uint8_t khz);
+  
+/**
+ * \par Function
+ *    enableIRIn
+ * \par Description
+ *    Enable an IR to write in.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
   void enableIRIn();
+  
+/**
+ * \par Function
+ *    mark
+ * \par Description
+ *    Sends an IR mark for the specified number of microseconds.
+ * \param[in]
+ *    us - THe time of a PWM.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
   void mark(uint16_t us);
+  
+/**
+ * \par Function
+ *    space
+ * \par Description
+ *    Sends an IR mark for the specified number of microseconds.
+ * \param[in]
+ *    us - THe time of a PWM.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
   void space(uint16_t us);
+
 private:
   // These are called by decode
+/**
+ * \par Function
+ *    decodeNEC
+ * \par Description
+ *    Decodes NEC the received IR message.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Returns ERROR if decode NEC no done, SUCCESS if decode NEC done.
+ * \par Others
+ *    Results of decode NEC.
+ */
   ErrorStatus decodeNEC();
+  
   int16_t irIndex;	
   char irRead;
   char floatString[5];

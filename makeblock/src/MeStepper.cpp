@@ -1,4 +1,56 @@
-// MeStepper.cpp
+/**
+ * \par Copyright (C), 2012-2015, MakeBlock
+ * \class MeStepper
+ * \brief   Driver for Me Stepper device.
+ * @file    MeStepper.cpp
+ * @author  MakeBlock
+ * @version V1.0.0
+ * @date    2015/11/11
+ * @brief   Driver for Stepper device.
+ *
+ * \par Copyright
+ * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * conditions. The main licensing options available are GPL V2 or Commercial: \n
+ *
+ * \par Open Source Licensing GPL V2
+ * This is the appropriate option if you want to share the source code of your \n
+ * application with everyone you distribute it to, and you also want to give them \n
+ * the right to share who uses it. If you wish to use this software under Open \n
+ * Source Licensing, you must contribute all your source code to the open source \n
+ * community in accordance with the GPL Version 2 when your application is \n
+ * distributed. See http://www.gnu.org/copyleft/gpl.html
+ *
+ * \par Description
+ * This file is a drive for Me Stepper device, It supports Me Stepper
+ * 18B20 provided by the MakeBlock.
+ *
+ * \par Method List:
+ *
+ *    1. void MeStepper::setpin(uint8_t dir_data, uint8_t step_data);
+ *    2. void MeStepper::moveTo(long absolute); 
+ *    3. void MeStepper::move(long relative);
+ *    4. boolean MeStepper::run();
+ *    5. boolean MeStepper::runSpeed();
+ *    6. void MeStepper::setMaxSpeed(float speed);
+ *    7. void MeStepper::setAcceleration(float acceleration);
+ *    8. void MeStepper::setSpeed(float speed);
+ *    9. float MeStepper::speed();
+ *    10. long MeStepper::distanceToGo();
+ *    11. long MeStepper::targetPosition();
+ *    12. long MeStepper::currentPosition();  
+ *    13. void MeStepper::setCurrentPosition(long position);  
+ *    14. void MeStepper::runToPosition();
+ *    15. boolean MeStepper::runSpeedToPosition();
+ *    16. void MeStepper::runToNewPosition(long position);
+ *    17. void MeStepper::disableOutputs();
+ *    18. void MeStepper::enableOutputs();
+ *
+ * \par History:
+ * <pre>
+ * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
+ * forfish         2015/11/11     1.0.0            Add description.
+ * </pre>
+ */
 
 #include "MeStepper.h"
 
@@ -8,11 +60,23 @@ typedef enum
   DIRECTION_CW  = 1   ///< Counter-Clockwise
 } Direction;
 
+/**
+ * Alternate Constructor which can call your own function to map the stepper to arduino port,
+ * no pins are used or initialized here.
+ * \param[in]
+ *   None
+ */
 MeStepper::MeStepper(): MePort(0)
 {
 
 }
 
+/**
+ * Alternate Constructor which can call your own function to map the stepper to arduino port,
+ * the slot2 pin will be used here since specify slot is not be set.
+ * \param[in]
+ *   port - RJ25 port from PORT_1 to M2
+ */
 MeStepper::MeStepper(uint8_t port): MePort(port)
 {
   _currentPos = 0;
@@ -26,6 +90,49 @@ MeStepper::MeStepper(uint8_t port): MePort(port)
   pinMode(s2,OUTPUT);
 }
 
+/**
+ * \par Function
+ *    setpin
+ * \par Description
+ *    Set pin for Stepper.
+ * \param[in]
+ *    dir_data - The direction data of Stepper's movement.
+ * \param[in]
+ *    step_data - The command data for Stepper.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+void MeStepper::setpin(uint8_t dir_data, uint8_t step_data)
+{
+  _dir_data = dir_data;
+  _step_data = step_data;
+  pinMode(_dir_data, INPUT);
+  pinMode(_step_data, OUTPUT);
+#ifdef ME_PORT_DEFINED
+  s1 = _dir_data;
+  s2 = _step_data;
+#endif // ME_PORT_DEFINED
+}
+
+
+/**
+ * \par Function
+ *    moveTo
+ * \par Description
+ *    Stepper moves to the aim.
+ * \param[in]
+ *    absolute - The absolute length to Stepper's movement.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeStepper::moveTo(long absolute)
 {
   if (_targetPos != absolute)
@@ -35,11 +142,39 @@ void MeStepper::moveTo(long absolute)
   }
 }
 
+/**
+ * \par Function
+ *    move
+ * \par Description
+ *    Stepper moves to the aim.
+ * \param[in]
+ *    relative - The relative length to Stepper's movement.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeStepper::move(long relative)
 {
   moveTo(_currentPos + relative);
 }
 
+/**
+ * \par Function
+ *    runSpeed
+ * \par Description
+ *    The speed of Stepper's running.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Return true or false.
+ * \par Others
+ *    None
+ */
 boolean MeStepper::runSpeed()
 {
   // Dont do anything unless we actually have a step interval
@@ -70,21 +205,77 @@ boolean MeStepper::runSpeed()
   }
 }
 
+/**
+ * \par Function
+ *    distanceToGo
+ * \par Description
+ *    The distance that Stepper should go.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the length of Stepper's running.
+ * \par Others
+ *    None
+ */
 long MeStepper::distanceToGo()
 {
   return _targetPos - _currentPos;
 }
 
+/**
+ * \par Function
+ *    targetPosition
+ * \par Description
+ *    Stepper goes to target position.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the position of Stepper.
+ * \par Others
+ *    None
+ */
 long MeStepper::targetPosition()
 {
   return _targetPos;
 }
 
+/**
+ * \par Function
+ *    currentPosition
+ * \par Description
+ *    Stepper's current position.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the current position of Stepper.
+ * \par Others
+ *    None
+ */
 long MeStepper::currentPosition()
 {
   return _currentPos;
 }
 
+/**
+ * \par Function
+ *    setCurrentPosition
+ * \par Description
+ *    Set Stepper's current position.
+ * \param[in]
+ *    position - The current position for Stepper.
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the current position of Stepper.
+ * \par Others
+ *    None
+ */
 void MeStepper::setCurrentPosition(long position)
 {
   _targetPos = _currentPos = position;
@@ -92,6 +283,20 @@ void MeStepper::setCurrentPosition(long position)
   _stepInterval = 0;
 }
 
+/**
+ * \par Function
+ *    computeNewSpeed
+ * \par Description
+ *    Compute New Speed of Stepper.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeStepper::computeNewSpeed()
 {
   long distanceTo = distanceToGo();
@@ -170,6 +375,20 @@ void MeStepper::computeNewSpeed()
   }
 }
 
+/**
+ * \par Function
+ *    run
+ * \par Description
+ *    Stepper's status----run or not.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the status.
+ * \par Others
+ *    None
+ */
 boolean MeStepper::run()
 {
   if((_speed == 0.0) || (distanceToGo() == 0))
@@ -184,6 +403,20 @@ boolean MeStepper::run()
   }
 }
 
+/**
+ * \par Function
+ *    setMaxSpeed
+ * \par Description
+ *    Set Max Speed for Stepper.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeStepper::setMaxSpeed(float speed)
 {
   if (_maxSpeed != speed)
@@ -199,6 +432,20 @@ void MeStepper::setMaxSpeed(float speed)
   }
 }
 
+/**
+ * \par Function
+ *    setAcceleration
+ * \par Description
+ *    Set Acceleration for Stepper.
+ * \param[in]
+ *    acceleration - The acceleration for Stepper.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeStepper::setAcceleration(float acceleration)
 {
   if(acceleration == 0.0)
@@ -216,6 +463,20 @@ void MeStepper::setAcceleration(float acceleration)
   }
 }
 
+/**
+ * \par Function
+ *    setSpeed
+ * \par Description
+ *    Set Speed for Stepper.
+ * \param[in]
+ *    speed - The speed of Stepper.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeStepper::setSpeed(float speed)
 {
   if (speed == _speed)
@@ -236,11 +497,39 @@ void MeStepper::setSpeed(float speed)
   _speed = speed;
 }
 
+/**
+ * \par Function
+ *    speed
+ * \par Description
+ *    The Speed of Stepper.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Return the Stepper's speed.
+ * \par Others
+ *    None
+ */
 float MeStepper::speed()
 {
   return _speed;
 }
 
+/**
+ * \par Function
+ *    step
+ * \par Description
+ *    Stepper runs step by step.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeStepper::step()
 {
   if(_dir == DIRECTION_CW)
@@ -256,7 +545,20 @@ void MeStepper::step()
   digitalWrite(s2, LOW);
 }
 
-// Blocks until the target position is reached
+/**
+ * \par Function
+ *    runToPosition
+ * \par Description
+ *    Stepper runs to position.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeStepper::runToPosition()
 {
   while (run())
@@ -265,6 +567,20 @@ void MeStepper::runToPosition()
   }
 }
 
+/**
+ * \par Function
+ *    runSpeedToPosition
+ * \par Description
+ *    The speed of Stepper on the way to position.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    Return true or false.
+ * \par Others
+ *    None
+ */
 boolean MeStepper::runSpeedToPosition()
 {
   if (_targetPos == _currentPos)
@@ -282,7 +598,20 @@ boolean MeStepper::runSpeedToPosition()
   return runSpeed();
 }
 
-// Blocks until the new target position is reached
+/**
+ * \par Function
+ *    runToNewPosition
+ * \par Description
+ *    The Stepper runs to new position.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeStepper::runToNewPosition(long position)
 {
   moveTo(position);

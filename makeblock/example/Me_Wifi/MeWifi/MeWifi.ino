@@ -7,11 +7,8 @@
  * @brief   Description: this file is sample code for Me WiFi module.
  *          The wifi inherited the MeSerial class from SoftwareSerial.
  *
- * Function List:
- * 1. void MeBluetooth::begin()
- * 2. int16_t MeBluetooth::available()
- * 3. size_t MeSerial::write(uint8_t byte)
- * 4. int16_t MeSerial::read(void)
+ * \par Method List:
+ *  inherited from MeSerial
  *
  * \par History:
  * <pre>

@@ -1,12 +1,11 @@
 /**
  * \par Copyright (C), 2012-2015, MakeBlock
- * \class   MBotDCMotor
  * \brief   Driver for Mbot DC Motor.
  * \file    MeMbotDCMotor.h
  * @author  MakeBlock
  * @version V1.0.0
  * @date    2015/09/01
- * @brief   Header file for MeMbotDCMotor.cpp.
+ * @brief   Header for MeMbotDCMotor.cpp module
  *
  * \par Copyright
  * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
@@ -23,6 +22,10 @@
  * \par Description
  * This file is Hardware adaptation layer between Mbot board and all
  * MakeBlock drives
+ * 
+ * \par Method List:
+ *
+ *    1. void MBotDCMotor::move(int direction, int speed);
  *
  * \par History:
  * <pre>
@@ -46,11 +49,38 @@
 #ifdef ME_PORT_DEFINED
 #include "MeDCMotor.h"
 
+/**
+ * Class: MBotDCMotor
+ * \par Description
+ * Declaration of Class MBotDCMotor.
+ */
 class MBotDCMotor : public MeDCMotor
 {
 public:
+/**
+ * Alternate Constructor which can call your own function to map the MBot DCMotor to arduino port,
+ * the slot2 pin will be used here since specify slot is not be set.
+ * \param[in]
+ *   port - RJ25 port from PORT_1 to M2
+ */
   MBotDCMotor(uint8_t port);
 
+/**
+ * \par Function
+ *    move
+ * \par Description
+ *    MBot DCMotor moves with the speed and direction.
+ * \param[in]
+ *    direction - The direction of the MBot DCMotor's movement
+ * \param[in]
+ *    speed - The speed of MBot DCMotor's movement.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
   void move(int direction, int speed);
 };
 #endif //ME_PORT_DEFINED
