@@ -1,11 +1,11 @@
 /**
  * \par Copyright (C), 2012-2015, MakeBlock
- * \brief   Driver for mCore Board.
- * \file    MeMCore.h
+ * \brief   Driver for MeOrion board.
+ * @file    MeOrion.h
  * @author  MakeBlock
  * @version V1.0.0
  * @date    2015/09/01
- * @brief   Driver for mCore Board.
+ * @brief   Driver for MeOrion board.
  *
  * \par Copyright
  * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
@@ -20,25 +20,25 @@
  * distributed. See http://www.gnu.org/copyleft/gpl.html
  *
  * \par Description
- * This file is Hardware adaptation layer between Mbot board and all
- * MakeBlock drives
+ * This file is the driver for MeOrion hoard by MakeBlock.
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/01     1.0.0            Rebuild the old lib.
+ * Rafael Lee       2015/09/02     1.0.0            Added some comments and macros.
  * </pre>
  */
-#ifndef MeMCore_H
-#define MeMCore_H
+#ifndef MeOrion_H
+#define MeOrion_H
 
 #include <Arduino.h>
 #include "MeConfig.h"
 
-/* Supported Modules drive needs to be added here */
+// Supported Modules drive needs to be added here
 #include "Me7SegmentDisplay.h"
 #include "MeUltrasonicSensor.h"
-#include "MeMbotDCMotor.h"
+#include "MeDCMotor.h"
 #include "MeRGBLed.h"
 #include "Me4Button.h"
 #include "MePotentiometer.h"
@@ -61,19 +61,22 @@
 #include "MeStepper.h"
 #include "MeEncoderMotor.h"
 #include "MeEncoderNew.h"
-#include "MeIR.h"
-#include "MeLEDMatrix.h"
 #include "MeBuzzer.h"
+#include "MeLEDMatrix.h"
 #include "MeHumitureSensor.h"
 #include "MeFlameSensor.h"
 #include "MeGasSensor.h"
 
-/*********************  Mbot Board GPIO Map *********************************/
+/*********************  Orion Board GPIO Map *********************************/
+// struct defined in MePort.h
 MePort_Sig mePort[15] =
 {
-  { NC, NC }, { 11, 12 }, {  9, 10 }, { A2, A3 }, { A0, A1 },
-  { NC, NC }, { NC, NC }, { A7, 13 }, {  8, A6 }, {  6,  7 },
-  {  5,  4 }, { NC, NC }, { NC, NC }, { NC, NC }, { NC, NC },
+  { NC, NC }, {   5,   4 }, {   3,   2 }, {   7,   6 }, {   9,   8 }, 
+  { 16, 17 }, { A14, A15 }, { A12, A13 }, { A10, A11 }, {  A8,  A9 }, 
+  { A6, A7 }, {  NC,  A3 }, {  NC,  A2 }, {  NC,  A1 }, {  NC,  A5 },
 };
-#endif // MeMCore_H
 
+#define buzzerOn()  pinMode(10,OUTPUT),digitalWrite(10, HIGH)
+#define buzzerOff() pinMode(10,OUTPUT),digitalWrite(10, LOW)
+
+#endif // MeOrion_H

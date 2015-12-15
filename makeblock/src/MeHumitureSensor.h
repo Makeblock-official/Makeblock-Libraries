@@ -247,7 +247,7 @@ public:
 private:
   uint8_t Humidity;
   uint8_t Temperature;
-  static volatile uint8_t  _DataPin;
+  uint8_t  _DataPin;
 };
 
 #endif

@@ -1,0 +1,28 @@
+1. 气体传感器，火焰传感器传输格式为 int16
+2. pulsein(35) 的编号修改成 37
+3. 默认开启的最小模式  直流电机，光线传感器，旋转电位器，声音传感器，摇杆，人体热射电传感器
+   寻线传感器，快门线模块，限位器，按键，内部按键(mbot)，火焰，气体，超声波模块，伺服舵机
+
+4. 步进电机的距离用的是 long 结构
+
+5. 编码电机的距离用的是 long 结构
+
+资源情况:
+
+                          RAM　　　　　　　　　　　　                FLASH
+默认　　　　　　　　　　  1103(剩余945，最好不要使用超过450)         11184(剩余21072)       UNO, mCore, Shield       
+                          1136(剩余1424，最好不要超过785)            14460(剩余14212)       32U4                          
+           
+
+
+DEV_TEMPERATURE_SENSOR    18                         1186
+DEV_GYRO                  70                         3144
+DEV_RGBLED                47                         870
+DEV_SEVSEG                10                         2710
+DEV_ENCODER               11                         3874
+DEV_IR                    59                         2324
+DEV_INFRARED              57                         2090
+DEV_HUMITURE              3                          536
+DEV_COMPASS               330                        5588
+DEV_LEDMATRIX             85                         3072
+DEV_STEPPER               112                        2978

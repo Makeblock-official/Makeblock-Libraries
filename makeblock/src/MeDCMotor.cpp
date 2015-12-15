@@ -39,9 +39,6 @@
  */
 #include "MeDCMotor.h"
 
-volatile uint8_t       MeDCMotor::dc_dir_pin        = 0;
-volatile uint8_t       MeDCMotor::dc_pwm_pin        = 0;
-
 #ifdef ME_PORT_DEFINED
 /**
  * Alternate Constructor which can call your own function to map the DC motor to arduino port,

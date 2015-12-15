@@ -42,9 +42,6 @@
  */
 #include "MeShutter.h"
 
-volatile uint8_t       MeShutter::_ShotPin             = 0;
-volatile uint8_t       MeShutter::_FocusPin            = 0;
-
 #ifdef ME_PORT_DEFINED
 /**
  * Alternate Constructor which can call your own function to map the MeShutter to arduino port,

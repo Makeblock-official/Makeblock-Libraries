@@ -40,8 +40,6 @@
 
 #include "MeSoundSensor.h"
 
-volatile uint8_t       MeSoundSensor::_SoundSensorRead        = 0;
-
 #ifdef ME_PORT_DEFINED
 /**
  * Alternate Constructor which can call your own function to map the Sound Sensor to arduino port,

@@ -138,11 +138,11 @@ public:
  */
   uint8_t pressed(void);
 private:
-  static volatile unsigned long previous_time;
-  static volatile unsigned long key_debounced_count;
-  static volatile unsigned long key_match_count;
-  static volatile unsigned long key_debounced_value;
-  static volatile int16_t  Pre_Button_Value;
-  static volatile uint8_t  _KeyPin;
+  volatile unsigned long previous_time;
+  volatile unsigned long key_debounced_count;
+  volatile unsigned long key_match_count;
+  volatile unsigned long key_debounced_value;
+  volatile int16_t  Pre_Button_Value;
+  volatile uint8_t  _KeyPin;
 };
 #endif // Me4Button_H

@@ -41,8 +41,6 @@
  */
 #include "MeUltrasonicSensor.h"
 
-volatile uint8_t       MeUltrasonicSensor::_SignalPin        = 0;
-
 #ifdef ME_PORT_DEFINED
 /**
  * Alternate Constructor which can call your own function to map the ultrasonic sensor to arduino port,

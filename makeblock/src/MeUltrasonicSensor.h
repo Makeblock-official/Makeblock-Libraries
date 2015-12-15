@@ -163,7 +163,7 @@ public:
  */
   long measure(unsigned long = 30000);
 private:
-  static volatile uint8_t  _SignalPin;
+  volatile uint8_t  _SignalPin;
 };
 
 #endif 

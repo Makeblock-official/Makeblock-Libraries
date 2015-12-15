@@ -41,8 +41,6 @@
  */
 #include "MeTemperature.h"
 
-volatile uint8_t       MeTemperature::_DataPin             = 0;
-
 #ifdef ME_PORT_DEFINED
 /**
  * Alternate Constructor which can call your own function to map the temperature sensor to arduino port,

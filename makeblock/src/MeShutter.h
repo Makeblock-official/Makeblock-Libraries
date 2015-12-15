@@ -163,8 +163,8 @@ public:
  */
   void focusOff(void);
 private:
-  static volatile uint8_t  _ShotPin;
-  static volatile uint8_t  _FocusPin;
+  volatile uint8_t  _ShotPin;
+  volatile uint8_t  _FocusPin;
 };
 #endif
 

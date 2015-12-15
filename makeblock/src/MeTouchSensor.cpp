@@ -41,9 +41,6 @@
 
 #include "MeTouchSensor.h"
 
-volatile uint8_t       MeTouchSensor::_TogPin             = 0;
-volatile uint8_t       MeTouchSensor::_OutputPin          = 0;
-
 #ifdef ME_PORT_DEFINED
 /**
  * Alternate Constructor which can call your own function to map the touch Sensor to arduino port,

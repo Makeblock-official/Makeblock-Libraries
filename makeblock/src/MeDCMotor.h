@@ -134,8 +134,8 @@ public:
  */
   void stop(void);
 private:
-  static volatile uint8_t dc_dir_pin;
-  static volatile uint8_t dc_pwm_pin;
+  volatile uint8_t dc_dir_pin;
+  volatile uint8_t dc_pwm_pin;
 };
 #endif
 

@@ -42,14 +42,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "Me4Button.h"
 
-/* Private variables ---------------------------------------------------------*/
-volatile unsigned long Me4Button::previous_time       = 0;
-volatile unsigned long Me4Button::key_debounced_count = 0;
-volatile unsigned long Me4Button::key_match_count     = 0;
-volatile unsigned long Me4Button::key_debounced_value = 0;
-volatile int16_t       Me4Button::Pre_Button_Value    = 0;
-volatile uint8_t       Me4Button::_KeyPin             = 0;
-
 /* Private functions ---------------------------------------------------------*/
 #ifdef ME_PORT_DEFINED
 
@@ -70,7 +62,7 @@ Me4Button::Me4Button(void) : MePort()
  * \param[in]
  *    port - RJ25 port from PORT_1 to M2
  */
-Me4Button::Me4Button(uint8_t port) : MePort()
+Me4Button::Me4Button(uint8_t port) : MePort(port)
 {
   _KeyPin = s2;
 }

@@ -293,8 +293,8 @@ protected:
   int bufferIndex;
 
 private:
-  static volatile uint8_t _RxPin;
-  static volatile uint8_t _TxPin; 
+  volatile uint8_t _RxPin;
+  volatile uint8_t _TxPin; 
 };
 #endif
 

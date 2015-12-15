@@ -47,9 +47,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-volatile uint8_t MeSerial::_RxPin = 0;
-volatile uint8_t MeSerial::_TxPin = 0;
-
 #ifdef ME_PORT_DEFINED
 /**
  * Alternate Constructor which can call your own function to map the serial to arduino port,

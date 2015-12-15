@@ -138,8 +138,8 @@ public:
  */
   int16_t readAnalog(void);
 private:
-  static volatile uint8_t _digital_pin;
-  static volatile uint8_t _analog_pin;
+  volatile uint8_t _digital_pin;
+  volatile uint8_t _analog_pin;
 };
 #endif
 

@@ -114,6 +114,6 @@ public:
  */
   uint16_t read(void);
 private:
-  static volatile uint8_t _potentiometerPin;
+  volatile uint8_t _potentiometerPin;
 };
 #endif // MePotentiometer_H

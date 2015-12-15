@@ -1,12 +1,12 @@
 /**
  * \par Copyright (C), 2012-2015, MakeBlock
- * \class MeInfraredReceiver
- * \brief   Driver for Me Infrared Receiver device.
- * @file    MeInfraredReceiver.h
+ * \class MeVoice
+ * \brief   Driver for Me voice device.
+ * @file    MeVoice.h
  * @author  MakeBlock
  * @version V1.0.0
  * @date    2015/09/09
- * @brief   Header for for MeInfraredReceiver.cpp module
+ * @brief   Header for for MeVoice.cpp module
  * \par Description
  *
  * \par Copyright
@@ -21,27 +21,27 @@
  * community in accordance with the GPL Version 2 when your application is \n
  * distributed. See http://www.gnu.org/copyleft/gpl.html
  *
- * Description: this file is a drive for Me Infrared Receiver, It supports
-   Infrared Receiver V2.0 and V3.0 device provided by the MakeBlock company.
+ * Description: this file is a drive for Me voice device, It supports
+   the voice device provided by the MakeBlock company.
  *
  * \par Method List:
  *
- *    1. void MeInfraredReceiver::begin(void)
- *    2. int16_t MeInfraredReceiver::read(void)
- *    3. bool MeInfraredReceiver::buttonState(void)
- *    4. uint8_t MeInfraredReceiver::getCode(void)
- *    5. void MeInfraredReceiver::loop(void)
+ *    1. void MeVoice::begin(void)
+ *    2. int16_t MeVoice::read(void)
+ *    3. bool MeVoice::buttonState(void)
+ *    4. uint8_t MeVoice::getCode(void)
+ *    5. void MeVoice::loop(void)
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * Mark Yan         2015/09/09     1.0.0            Rebuild the old lib.
+ * Mark Yan         2015/12/15     1.0.0            Bulid the new .
  * </pre>
  *
  */
 
-#ifndef MeInfraredReceiver_H
-#define MeInfraredReceiver_H
+#ifndef MeVoice_H
+#define MeVoice_H
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -50,73 +50,48 @@
 #include "MeSerial.h"
 
 /* NEC Code table */
-#define IR_BUTTON_POWER     (0x45)
-#define IR_BUTTON_A         (0x45)
-#define IR_BUTTON_B         (0x46)
-#define IR_BUTTON_MENU      (0x47)
-#define IR_BUTTON_C         (0x47)
-#define IR_BUTTON_TEST      (0x44)
-#define IR_BUTTON_D         (0x44)
-#define IR_BUTTON_PLUS      (0x40)
-#define IR_BUTTON_UP        (0x40)
-#define IR_BUTTON_RETURN    (0x43)
-#define IR_BUTTON_E         (0x43)
-#define IR_BUTTON_PREVIOUS  (0x07)
-#define IR_BUTTON_LEFT      (0x07)
-#define IR_BUTTON_PLAY      (0x15)
-#define IR_BUTTON_SETTING   (0x15)
-#define IR_BUTTON_NEXT      (0x09)
-#define IR_BUTTON_RIGHT     (0x09)
-#define IR_BUTTON_MINUS     (0x19)
-#define IR_BUTTON_DOWN      (0x19)
-#define IR_BUTTON_CLR       (0x0D)
-#define IR_BUTTON_F     (0x0D)
-#define IR_BUTTON_0     (0x16)
-#define IR_BUTTON_1     (0x0C)
-#define IR_BUTTON_2     (0x18)
-#define IR_BUTTON_3     (0x5E)
-#define IR_BUTTON_4     (0x08)
-#define IR_BUTTON_5     (0x1C)
-#define IR_BUTTON_6     (0x5A)
-#define IR_BUTTON_7     (0x42)
-#define IR_BUTTON_8     (0x52)
-#define IR_BUTTON_9     (0x4A)
+#define CMD_FORWARD     (11)
+#define CMD_BACK        (13)
+#define CMD_LEFT        (7)
+#define CMD_RIGHT       (9)
+#define CMD_DIS_ON      (3)
+#define CMD_DIS_OFF     (5)
 
 #ifdef ME_PORT_DEFINED
 #include "MePort.h"
 #endif /* ME_PORT_DEFINED */
 
 /**
- * Class: MeInfraredReceiver
+ * Class: MeVoice
  * \par Description
- * Declaration of Class MeInfraredReceiver
+ * Declaration of Class MeVoice
  */
 #ifndef ME_PORT_DEFINED
-class MeInfraredReceiver
+class MeVoice
 #else // !ME_PORT_DEFINED
-class MeInfraredReceiver : public MeSerial
+class MeVoice : public MeSerial
 #endif // !ME_PORT_DEFINED
 {
 public:
 #ifdef ME_PORT_DEFINED
 /**
- * Alternate Constructor which can call your own function to map the Infrared Receiver to arduino port,
+ * Alternate Constructor which can call your own function to map the Voice device to arduino port,
  * no pins are used or initialized here.
  * \param[in]
  *   None
  */
-  MeInfraredReceiver(void);
+  MeVoice(void);
 
 /**
- * Alternate Constructor which can call your own function to map the Infrared Receiver to arduino port,
+ * Alternate Constructor which can call your own function to map the Voice device to arduino port,
  * If the hardware serial was selected, we will used the hardware serial.
  * \param[in]
  *   port - RJ25 port from PORT_1 to M2
  */
-  MeInfraredReceiver(uint8_t port);
+  MeVoice(uint8_t port);
 #else // ME_PORT_DEFINED
 /**
- * Alternate Constructor which can call your own function to map the Infrared Receiver to arduino port,
+ * Alternate Constructor which can call your own function to map the Voice device to arduino port,
  * If the hardware serial was selected, we will used the hardware serial.
  * \param[in]
  *   receivePin - the rx pin of serial(arduino port)
@@ -125,7 +100,7 @@ public:
  * \param[in]
  *   inverse_logic - Whether the Serial level need inv.
  */
-  MeInfraredReceiver(uint8_t receivePin, uint8_t transmitPin, bool inverse_logic);
+  MeVoice(uint8_t receivePin, uint8_t transmitPin, bool inverse_logic);
 #endif // ME_PORT_DEFINED
 
 /**
@@ -133,7 +108,7 @@ public:
  *   begin
  * \par Description
  *   Sets the speed (baud rate) for the serial communication. Supported baud 
- *   rates is 9600bps
+ *   rates is 57600 bps
  * \par Output
  *   None
  * \return
@@ -141,7 +116,7 @@ public:
  * \par Others
  *   None
  */
-  void begin(void);
+  void begin(long = 9600);
 
 /**
  * \par Function
@@ -158,20 +133,6 @@ public:
  *   None
  */
   int16_t read(void);
-
-/**
- * \par Function
- *   buttonState
- * \par Description
- *   Check button press state
- * \par Output
- *   None
- * \return
- *   true: The button is pressed, false: No button is pressed
- * \par Others
- *   None
- */
-  bool buttonState(void);
 
 /**
  * \par Function
@@ -201,8 +162,9 @@ public:
  */
   void loop(void);
 private:
-  volatile uint8_t _RxPin;
-  volatile uint8_t _KeyCheckPin;
+  static volatile uint8_t _RxPin;
+  static volatile uint8_t _TxPin;
+  static volatile unsigned long last_time;
   uint8_t _irCode;
 };
 

@@ -1,12 +1,12 @@
 /**
  * \par Copyright (C), 2012-2015, MakeBlock
- * \class MeInfraredReceiver
- * \brief   Driver for Me Infrared Receiver device.
- * @file    MeInfraredReceiver.cpp
+ * \class MeVoice
+ * \brief   Driver for Me voice device.
+ * @file    MeVoice.cpp
  * @author  MakeBlock
  * @version V1.0.0
- * @date    2015/09/09
- * @brief   Driver for Me Infrared Receiver device.
+ * @date    2015/12/15
+ * @brief   Driver for Me voice device.
  *
  * \par Copyright
  * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
@@ -21,65 +21,69 @@
  * distributed. See http://www.gnu.org/copyleft/gpl.html
  *
  * \par Description
- * Description: this file is a drive for Me Infrared Receiver, It supports
-   Infrared Receiver V2.0 and V3.0 device provided by the MakeBlock company.
+ * Description: this file is a drive for Me voice device, It supports
+   The voice device provided by the MakeBlock company.
  *
  * \par Method List:
  *
- *    1. void MeInfraredReceiver::begin(void)
- *    2. int16_t MeInfraredReceiver::read(void)
- *    3. bool MeInfraredReceiver::buttonState(void)
- *    4. uint8_t MeInfraredReceiver::getCode(void)
- *    5. void MeInfraredReceiver::loop(void)
+ *    1. void MeVoice::begin(void)
+ *    2. int16_t MeVoice::read(void)
+ *    3. bool MeVoice::buttonState(void)
+ *    4. uint8_t MeVoice::getCode(void)
+ *    5. void MeVoice::loop(void)
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * Mark Yan         2015/09/09     1.0.0            Rebuild the old lib.
+ * Mark Yan         2015/12/15     1.0.0            Build the new.
  * </pre>
  *
- * @example InfraredReceiverTest.ino
+ * @example MeVoiceTest.ino
  */
-#include "MeInfraredReceiver.h"
+#include "MeVoice.h"
+
+volatile uint8_t MeVoice::_RxPin = 0;
+volatile uint8_t MeVoice::_TxPin = 0;
+volatile unsigned long MeVoice::last_time = 0;
 
 #ifdef ME_PORT_DEFINED
 /**
- * Alternate Constructor which can call your own function to map the Infrared Receiver to arduino port,
+ * Alternate Constructor which can call your own function to map the Voice device to arduino port,
  * no pins are used or initialized here.
  * \param[in]
  *   None
  */
-MeInfraredReceiver::MeInfraredReceiver(void) : MeSerial(0)
+MeVoice::MeVoice(void) : MeSerial(0)
 {
 }
 
 /**
- * Alternate Constructor which can call your own function to map the Infrared Receiver to arduino port,
+ * Alternate Constructor which can call your own function to map the Voice device to arduino port,
  * If the hardware serial was selected, we will used the hardware serial.
  * \param[in]
  *   port - RJ25 port from PORT_1 to M2
  */
-MeInfraredReceiver::MeInfraredReceiver(uint8_t port) : MeSerial(port)
+MeVoice::MeVoice(uint8_t port) : MeSerial(port)
 {
   _RxPin = s2;
-  _KeyCheckPin = s1;
+  _TxPin = s1;
 }
 #else // ME_PORT_DEFINED
 /**
- * Alternate Constructor which can call your own function to map the Infrared Receiver to arduino port,
+ * Alternate Constructor which can call your own function to map the Voice device to arduino port,
  * If the hardware serial was selected, we will used the hardware serial.
  * \param[in]
- *   receivePin - the rx pin of serial(arduino port)
+ *   rxPin - the rx pin of serial(arduino port)
  * \param[in]
- *   keycheckpin - the pin used for check the pin pressed state(arduino port)
+ *   txpin - the pin used for check the pin pressed state(arduino port)
  * \param[in]
  *   inverse_logic - Whether the Serial level need inv.
  */
-MeInfraredReceiver::MeInfraredReceiver(uint8_t receivePin, uint8_t keycheckpin, bool inverse_logic)\
-                        : MeSerial(receivePin, transmitPin, inverse_logic)
+MeVoice::MeVoice(uint8_t rxPin, uint8_t txpin, bool inverse_logic)\
+                        : MeSerial(rxPin, txpin, inverse_logic)
 {
-  _RxPin = receivePin;
-  _KeyCheckPin = keycheckpin;
+  _RxPin = rxPin;
+  _TxPin = txpin;
 }
 #endif // ME_PORT_DEFINED
 
@@ -88,7 +92,7 @@ MeInfraredReceiver::MeInfraredReceiver(uint8_t receivePin, uint8_t keycheckpin, 
  *   begin
  * \par Description
  *   Sets the speed (baud rate) for the serial communication. Supported baud 
- *   rates is 9600bps
+ *   rates is 57600 bps
  * \par Output
  *   None
  * \return
@@ -96,13 +100,15 @@ MeInfraredReceiver::MeInfraredReceiver(uint8_t receivePin, uint8_t keycheckpin, 
  * \par Others
  *   None
  */
-void MeInfraredReceiver::begin(void)
+void MeVoice::begin(long speed)
 {
-  MeSerial::begin(9600);
+  MeSerial::begin(speed);
 #ifdef ME_PORT_DEFINED
-  pinMode(s1, INPUT);
+  pinMode(s2, INPUT);
+  pinMode(s1, OUTPUT);
 #else // ME_PORT_DEFINED
-  pinMode(_KeyCheckPin, INPUT);
+  pinMode(_RxPin, INPUT);
+  pinMode(_TxPin, OUTPUT);
 #endif // ME_PORT_DEFINED
 }
 
@@ -120,44 +126,13 @@ void MeInfraredReceiver::begin(void)
  * \par Others
  *   None
  */
-int16_t MeInfraredReceiver::read(void)
+int16_t MeVoice::read(void)
 {
   int16_t val;
   uint16_t i;
   val = MeSerial::read();     /* Read serial infrared data */
   val &= 0xff;
   return(val);
-}
-
-/**
- * \par Function
- *   buttonState
- * \par Description
- *   Check button press state
- * \par Output
- *   None
- * \return
- *   true: The button is pressed, false: No button is pressed
- * \par Others
- *   None
- */
-bool MeInfraredReceiver::buttonState(void)
-{
-  bool val;
-  if(_hard)
-  {
-    MeSerial::end();
-  }
-#ifdef ME_PORT_DEFINED
-  val = MePort::dRead1();
-#else // ME_PORT_DEFINED
-  val =  digitalRead(_KeyCheckPin);
-#endif // ME_PORT_DEFINED
-  if(_hard)
-  {
-    begin();
-  }
-  return(!val);
 }
 
 /**
@@ -172,7 +147,7 @@ bool MeInfraredReceiver::buttonState(void)
  * \par Others
  *   None
  */
-uint8_t MeInfraredReceiver::getCode(void)
+uint8_t MeVoice::getCode(void)
 {
   return _irCode;
 }
@@ -189,22 +164,21 @@ uint8_t MeInfraredReceiver::getCode(void)
  * \par Others
  *   This function used with getCode
  */
-void MeInfraredReceiver::loop(void)
+void MeVoice::loop(void)
 {
-  if(buttonState() == 1)
-  { 
-    if(MeSerial::available() > 0)
+  if(MeSerial::available() > 0)
+  {
+    last_time = millis();
+    int r = read();
+    if(r<0xff)
     {
-      int r = read();
-      if(r<0xff)
-	  {
-        _irCode = r;
-      }
+      _irCode = r;
     }
   }
-  else
+  else if((millis() - last_time) > 200)
   {
     _irCode = 0;
+    last_time = millis();
   }
 }
 

@@ -39,9 +39,6 @@
  */
 #include "MeGasSensor.h"
 
-volatile uint8_t       MeGasSensor::_digital_pin    = 0;
-volatile uint8_t       MeGasSensor::_analog_pin     = 0;
-
 #ifdef ME_PORT_DEFINED
 /**
  * Alternate Constructor which can call your own function to map the gas snesor to arduino port,

@@ -83,7 +83,7 @@ typedef struct
   uint8_t s2;
 } MePort_Sig;
 
-extern MePort_Sig mePort[11];  // mePort[0] is nonsense
+extern MePort_Sig mePort[15];  // mePort[0] is nonsense
 
 #define NC (0)  //use UART RX for NULL port
 
@@ -99,6 +99,10 @@ extern MePort_Sig mePort[11];  // mePort[0] is nonsense
 #define PORT_10 (0x0a)
 #define M1      (0x09)
 #define M2      (0x0a)
+#define PORT_11 (0x0b)
+#define PORT_12 (0x0c)
+#define PORT_13 (0x0d)
+#define PORT_14 (0x0e)
 
 #ifdef MeMbot_H
 #define PORT_RGB           (0x05)

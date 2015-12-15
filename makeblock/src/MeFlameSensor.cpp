@@ -39,9 +39,6 @@
  */
 #include "MeFlameSensor.h"
 
-volatile uint8_t       MeFlameSensor::_digital_pin    = 0;
-volatile uint8_t       MeFlameSensor::_analog_pin     = 0;
-
 #ifdef ME_PORT_DEFINED
 /**
  * Alternate Constructor which can call your own function to map the flame snesor to arduino port,

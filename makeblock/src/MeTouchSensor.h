@@ -135,8 +135,8 @@ public:
  */
   void SetTogMode(uint8_t TogMode);
 private:
-  static volatile uint8_t _TogPin;
-  static volatile uint8_t _OutputPin;
+  volatile uint8_t _TogPin;
+  volatile uint8_t _OutputPin;
 };
 
 #endif

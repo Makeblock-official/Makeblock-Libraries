@@ -115,7 +115,7 @@ public:
  */
   int16_t strength(void);
 private:
-  static volatile uint8_t  _SoundSensorRead;
+  volatile uint8_t  _SoundSensorRead;
 };
 
 #endif

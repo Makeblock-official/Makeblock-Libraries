@@ -170,7 +170,7 @@ public:
   float temperature(void);
 private:
 	MeOneWire _ts;
-    static volatile uint8_t  _DataPin;
+    volatile uint8_t  _DataPin;
 };
 
 #endif
