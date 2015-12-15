@@ -22,7 +22,6 @@ MeRGBLed led;
 MeUltrasonicSensor us(PORT_3);
 Me7SegmentDisplay seg;
 MePort generalDevice;
-MeInfraredReceiver infraredReceiverDecode(PORT_6);
 MeJoystick joystick;
 MeStepper steppers[2];
 MeBuzzer buzzer;
@@ -65,7 +64,7 @@ MeModule modules[12];
 #if defined(__AVR_ATmega1280__)|| defined(__AVR_ATmega2560__)
   int analogs[16]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15};
 #endif
-String mVersion = "1.1.103";
+String mVersion = "10.01.001";
 boolean isAvailable = false;
 boolean isBluetooth = false;
 
@@ -135,7 +134,7 @@ int distance=0;
 int randnum = 0;
 boolean leftflag;
 boolean rightflag;
-uint8_t starter_mode = 0;
+int starter_mode = 0;
 
 void Forward()
 {
@@ -200,7 +199,6 @@ void ChangeSpeed(int spd)
 void ultrCarProcess()
 {
   distance = us.distanceCm();
-  Serial.println(distance);
   randomSeed(analogRead(A4));
   if((distance > 10) && (distance < 40))
   {
@@ -236,67 +234,6 @@ void ultrCarProcess()
   }
 }
 
-void IrProcess()
-{
-  infraredReceiverDecode.loop();
-  irRead = infraredReceiverDecode.getCode();
-  if((irRead != IR_BUTTON_TEST) && (starter_mode == 1))
-  {
-    return;
-  }
-  switch(irRead)
-  {
-    case IR_BUTTON_PLUS: 
-      Forward();
-      break;
-    case IR_BUTTON_MINUS:
-      Backward();
-      break;
-    case IR_BUTTON_NEXT:
-      TurnRight();
-      break;
-    case IR_BUTTON_PREVIOUS:
-      TurnLeft();
-      break;
-    case IR_BUTTON_9:
-      ChangeSpeed(factor*9+minSpeed);
-      break;
-    case IR_BUTTON_8:
-      ChangeSpeed(factor*8+minSpeed);
-      break;
-    case IR_BUTTON_7:
-      ChangeSpeed(factor*7+minSpeed);
-      break;
-    case IR_BUTTON_6:
-      ChangeSpeed(factor*6+minSpeed);
-      break;
-    case IR_BUTTON_5:
-      ChangeSpeed(factor*5+minSpeed);
-      break;
-    case IR_BUTTON_4:
-      ChangeSpeed(factor*4+minSpeed);
-      break;
-    case IR_BUTTON_3:
-      ChangeSpeed(factor*3+minSpeed);
-      break;
-    case IR_BUTTON_2:
-      ChangeSpeed(factor*2+minSpeed);
-      break;
-    case IR_BUTTON_1:
-      ChangeSpeed(factor*1+minSpeed);
-      break;
-    case IR_BUTTON_TEST:
-      while(infraredReceiverDecode.getCode() != 0)
-      {
-        infraredReceiverDecode.loop();
-      }
-      if(++starter_mode==2) starter_mode=0;
-      break;
-    default:
-      Stop();
-      break;
-  }
-}
 void setup(){
   pinMode(13,OUTPUT);
   digitalWrite(13,HIGH);
@@ -308,7 +245,6 @@ void setup(){
   delay(100);
   buzzerOff();
   delay(500);
-  infraredReceiverDecode.begin();
   leftflag=false;
   rightflag=false;
   randomSeed(analogRead(0));
@@ -358,7 +294,6 @@ void loop(){
       index=0;
     }
   }
-  IrProcess();
   if(starter_mode == 1)
   {
     ultrCarProcess();    
@@ -555,10 +490,14 @@ void runModule(int device){
      int cmd = readBuffer(9);
      if(SET_STARTER_MODE == subcmd)
      {
-       starter_mode = cmd;
-       if(starter_mode >= 2)
+       Stop();
+       if((cmd == 0x01) || (cmd == 0x00))
        {
-         starter_mode=0;
+         starter_mode = cmd;
+       }
+       else
+       {
+         starter_mode = 0;
        }
      }
    }
@@ -738,16 +677,6 @@ void readSensor(int device){
      sendFloat(value);  
    }
    break;
-//   case COMPASS:{
-//     if(Compass.getPort()!=port){
-//       Compass.reset(port);
-//       Compass.setpin(Compass.pin1(),Compass.pin2());
-//     }
-//     double CompassAngle;
-//     CompassAngle = Compass.getAngle();
-//     sendDouble(CompassAngle);
-//   }
-//   break;
    case HUMITURE:{
      uint8_t index = readBuffer(7);
      if(humiture.getPort()!=port){

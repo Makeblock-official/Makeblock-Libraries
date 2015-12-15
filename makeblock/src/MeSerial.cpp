@@ -471,19 +471,16 @@ String MeSerial::readDataLine(void)
 
 float MeSerial::getValue(String key)
 {
-  if(dataLineAvailable())
+  String s = readDataLine();
+  if(stringLength(s)>2)
   {
-    String s = readDataLine();
-    if(stringLength(s)>2)
+    char * tmp;
+    char * str;
+    str = strtok_r((char*)s.c_str(), "=", &tmp);
+    if(str!=NULL && strcmp(str,key.c_str())==0)
     {
-      char * tmp;
-      char * str;
-      str = strtok_r((char*)s.c_str(), "=", &tmp);
-      if(str!=NULL && strcmp(str,key.c_str())==0)
-      {
-        float v = atof(tmp);
-        return v;
-      }
+      float v = atof(tmp);
+      return v;
     }
   }
   return 0;

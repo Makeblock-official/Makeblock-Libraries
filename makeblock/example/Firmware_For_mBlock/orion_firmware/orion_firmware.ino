@@ -67,7 +67,7 @@ MeModule modules[12];
 #if defined(__AVR_ATmega1280__)|| defined(__AVR_ATmega2560__)
   int analogs[16]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15};
 #endif
-String mVersion = "1.1.103";
+String mVersion = "04.01.030";
 boolean isAvailable = false;
 boolean isBluetooth = false;
 
@@ -94,9 +94,11 @@ char serialRead;
 #define SERVO 11
 #define ENCODER 12
 #define IR 13
+#define IRREMOTE 14
 #define PIRMOTION 15
 #define INFRARED 16
 #define LINEFOLLOWER 17
+#define IRREMOTECODE 18
 #define SHUTTER 20
 #define LIMITSWITCH 21
 #define BUTTON 22
