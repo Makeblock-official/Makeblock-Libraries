@@ -159,7 +159,7 @@ public:
  */
   bool readSensor2(void);
 private:
-  static volatile uint8_t  _Sensor1;
-  static volatile uint8_t  _Sensor2;
+  volatile uint8_t  _Sensor1;
+  volatile uint8_t  _Sensor2;
 };
 #endif

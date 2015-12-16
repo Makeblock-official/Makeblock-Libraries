@@ -43,9 +43,6 @@
 
 #include "MeLineFollower.h"
 
-volatile uint8_t       MeLineFollower::_Sensor1        = 0;
-volatile uint8_t       MeLineFollower::_Sensor2        = 0;
-
 #ifdef ME_PORT_DEFINED
 /**
  * Alternate Constructor which can call your own function to map the line follwer device to arduino port,
