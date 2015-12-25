@@ -46,10 +46,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "MeGyro.h"
 
-/* Private variables ---------------------------------------------------------*/
-volatile uint8_t MeGyro::_AD0 = 0;
-volatile uint8_t MeGyro::_INT = 0;
-
 /* Private functions ---------------------------------------------------------*/
 #ifdef ME_PORT_DEFINED
 /**
@@ -351,7 +347,8 @@ double MeGyro::getAngle(uint8_t index)
 void MeGyro::deviceCalibration(void)
 {
   int8_t return_value;
-  uint16_t x, num = 500;
+  uint16_t x = 0;
+  uint16_t num = 500;
   long xSum	= 0, ySum = 0, zSum = 0;
   for(x = 0; x < num; x++)
   {

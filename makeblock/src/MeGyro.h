@@ -236,8 +236,8 @@ public:
   double getAngle(uint8_t index);
 
 private:
-  static volatile uint8_t  _AD0;
-  static volatile uint8_t  _INT;
+  volatile uint8_t  _AD0;
+  volatile uint8_t  _INT;
   double  gSensitivity; /* for 500 deg/s, check data sheet */
   double  gx, gy, gz;
   double  gyrX, gyrY, gyrZ;

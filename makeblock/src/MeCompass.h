@@ -59,7 +59,7 @@
 #endif /* ME_PORT_DEFINED */
 
 /* Exported macro ------------------------------------------------------------*/
-#define COMPASS_SERIAL_DEBUG
+//#define COMPASS_SERIAL_DEBUG
 
 #define I2C_ERROR                  (-1)
 
