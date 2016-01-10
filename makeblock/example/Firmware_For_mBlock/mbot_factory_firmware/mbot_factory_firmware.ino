@@ -602,13 +602,13 @@ void runModule(int device){
      int r = readBuffer(9);
      int g = readBuffer(10);
      int b = readBuffer(11);
-     led.reset(port,slot);
+     rgb.reset(port,slot);
      if(idx>0){
-       led.setColorAt(idx-1,r,g,b); 
+       rgb.setColorAt(idx-1,r,g,b); 
      }else{
-       led.setColor(r,g,b); 
+       rgb.setColor(r,g,b); 
      }
-     led.show();
+     rgb.show();
    }
    break;
    case SERVO:{
