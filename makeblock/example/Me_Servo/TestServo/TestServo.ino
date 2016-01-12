@@ -17,7 +17,6 @@
  * </pre>
  */
 #include "MeOrion.h"
-#include <Servo.h>
 
 //Parts required:Me RJ25 Adapter and two servo 	
 //Me RJ25 Adapter SLOT1 connect servo1,SLOT2 connect servo2,

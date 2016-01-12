@@ -166,6 +166,8 @@ void MeSerial::begin(long baudrate)
   {
 #if defined(__AVR_ATmega32U4__)
     _scratch ? Serial.begin(baudrate) : Serial1.begin(baudrate);
+#elif defined(__AVR_ATmega2560__)
+    Serial2.begin(baudrate);
 #else
     Serial.begin(baudrate);
 #endif
@@ -194,6 +196,8 @@ void MeSerial::end(void)
   {
 #if defined(__AVR_ATmega32U4__)
     Serial1.end();
+#elif defined(__AVR_ATmega2560__)
+    Serial2.end();
 #else
     Serial.end();
 #endif
@@ -224,6 +228,8 @@ size_t MeSerial::write(uint8_t byte)
   {
 #if defined(__AVR_ATmega32U4__)
     return (_scratch ? Serial.write(byte) : Serial1.write(byte) );
+#elif defined(__AVR_ATmega2560__)
+    return (Serial2.write(byte) );
 #else
     return (Serial.write(byte) );
 #endif
@@ -260,6 +266,8 @@ int16_t MeSerial::read(void)
   {
 #if defined(__AVR_ATmega32U4__)
     return (_scratch ? Serial.read() : Serial1.read() );
+#elif defined(__AVR_ATmega2560__)
+    return (Serial2.read() );
 #else
     return (Serial.read() );
 #endif
@@ -295,6 +303,8 @@ int16_t MeSerial::available(void)
   {
 #if defined(__AVR_ATmega32U4__)
     return (_scratch ? Serial.available() : Serial1.available() );
+#elif defined(__AVR_ATmega2560__)
+    return (Serial2.available() );
 #else
     return (Serial.available() );
 #endif

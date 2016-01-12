@@ -63,8 +63,10 @@
 #include "avr/ServoTimers.h"
 #elif defined(ARDUINO_ARCH_SAM)
 #include "sam/ServoTimers.h"
+#elif defined(ARDUINO_ARCH_SAMD)
+#include "samd/ServoTimers.h"
 #else
-#error "This library only supports boards with an AVR or SAM processor."
+#error "This library only supports boards with an AVR, SAM or SAMD processor."
 #endif
 
 #define Servo_VERSION           2     // software version of this library
@@ -80,7 +82,7 @@
 #define INVALID_SERVO         255     // flag indicating an invalid servo index
 
 typedef struct  {
-  uint8_t nbr        :6 ;             // a pin number from 0 to 63
+  uint8_t nbr        :7 ;             // a pin number from 0 to 127
   uint8_t isActive   :1 ;             // true if this channel is enabled, pin not pulsed if false 
 } ServoPin_t   ;  
 

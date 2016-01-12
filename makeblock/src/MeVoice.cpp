@@ -175,7 +175,7 @@ void MeVoice::loop(void)
       _irCode = r;
     }
   }
-  else if((millis() - last_time) > 200)
+  else if((millis() - last_time) > 500)
   {
     _irCode = 0;
     last_time = millis();

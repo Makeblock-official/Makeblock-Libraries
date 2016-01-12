@@ -43,6 +43,8 @@
 
 #include "MeUSBHost.h"
 
+//#define CH375_DBG
+
 #define p_dev_descr ((PUSB_DEV_DESCR)RECV_BUFFER)
 #define p_cfg_descr ((PUSB_CFG_DESCR_LONG)RECV_BUFFER)
 
@@ -72,10 +74,10 @@ MeUSBHost::MeUSBHost() : MePort(0)
 
 }
 
-/*MeUSBHost::MeUSBHost(uint8_t s1, uint8_t s2)
+MeUSBHost::MeUSBHost(uint8_t s1, uint8_t s2)
 {
   HSerial = new SoftwareSerial(s1,s2);
-}*/
+}
 
 /**
  *  Alternate Constructor which can call your own function to map the USB Host to arduino port, \n

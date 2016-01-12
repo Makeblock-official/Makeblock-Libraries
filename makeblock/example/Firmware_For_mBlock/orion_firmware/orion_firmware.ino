@@ -9,7 +9,6 @@
 * Copyright (C) 2013 - 2014 Maker Works Technology Co., Ltd. All right reserved.
 * http://www.makeblock.cc/
 **************************************************************************/
-#include <Servo.h>
 #include <Wire.h>
 #include <SoftwareSerial.h>
 #include <Arduino.h>
@@ -30,6 +29,8 @@ MeBuzzer buzzer;
 MeHumiture humiture;
 MeFlameSensor FlameSensor;
 MeGasSensor GasSensor;
+MeTouchSensor touchSensor;
+Me4Button buttonSensor;
 
 typedef struct MeModule
 {
@@ -67,7 +68,7 @@ MeModule modules[12];
 #if defined(__AVR_ATmega1280__)|| defined(__AVR_ATmega2560__)
   int analogs[16]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15};
 #endif
-String mVersion = "04.01.030";
+String mVersion = "0a.01.102";
 boolean isAvailable = false;
 boolean isBluetooth = false;
 
@@ -111,11 +112,12 @@ char serialRead;
 #define PWM 32
 #define SERVO_PIN 33
 #define TONE 34
-#define PULSEIN 35
+#define PULSEIN 37
 #define ULTRASONIC_ARDUINO 36
 #define STEPPER 40
 #define LEDMATRIX 41
 #define TIMER 50
+#define TOUCH_SENSOR 51
 
 #define GET 1
 #define RUN 2
@@ -126,6 +128,7 @@ int servo_pins[8]={0,0,0,0,0,0,0,0};
 unsigned char prevc=0;
 double lastTime = 0.0;
 double currentTime = 0.0;
+uint8_t keyPressed = 0;
 
 void setup(){
   pinMode(13,OUTPUT);
@@ -149,8 +152,11 @@ void setup(){
     Serial1.begin(115200);
   #endif
     gyro.begin();
+  Serial.print("Version: ");
+  Serial.println(mVersion);
 }
 void loop(){
+  keyPressed = buttonSensor.pressed();
   currentTime = millis()/1000.0-lastTime;
   if(ir != NULL)
   {
@@ -683,6 +689,22 @@ void readSensor(int device){
    break;
    case TIMER:{
      sendFloat((float)currentTime);
+   }
+   break;
+   case TOUCH_SENSOR:
+   {
+     if(touchSensor.getPort() != port){
+        touchSensor.reset(port);
+     }
+     sendByte(touchSensor.touched());
+   }
+   break;
+   case BUTTON:
+   {
+     if(buttonSensor.getPort() != port){
+        buttonSensor.reset(port);
+     }
+     sendByte(keyPressed == readBuffer(7));
    }
    break;
   }

@@ -1,8 +1,7 @@
-#include <Servo.h>
 #include <Wire.h>
 #include <SoftwareSerial.h>
 #include <MeMCore.h>
-MeRGBLed rgb(0,30);
+MeRGBLed rgb(0,16);
 MeUltrasonicSensor ultr(PORT_3);
 MeLineFollower line(PORT_2);
 MeLEDMatrix ledMx;
@@ -95,7 +94,7 @@ byte dataLen;
 byte modulesLen=0;
 boolean isStart = false;
 char serialRead;
-String mVersion = "06.01.001";
+String mVersion = "06.01.002";
 float angleServo = 90.0;
 unsigned char prevc=0;
 boolean buttonPressed = false;
@@ -142,22 +141,32 @@ int LineFollowFlag=0;
 
 void setup()
 {
+  delay(5);
   Stop();
+  pinMode(13,OUTPUT);
+  digitalWrite(13,HIGH);
+  delay(300);
+  digitalWrite(13,LOW);
   rgb.setpin(13);
   rgb.setColor(0,0,0);
+  rgb.show();
   rgb.setColor(10, 0, 0);
+  rgb.show();
   buzzer.tone(NTD1, 300); 
   delay(300);
   rgb.setColor(0, 10, 0);
+  rgb.show();
   buzzer.tone(NTD2, 300);
   delay(300);
   rgb.setColor(0, 0, 10);
+  rgb.show();
   buzzer.tone(NTD3, 300);
   delay(300);
   rgb.setColor(0,0,0);
+  rgb.show();
   Serial.begin(115200);
   buzzer.noTone();
-  ir.begin();
+  ir.begin(); 
   Serial.print("Version: ");
   Serial.println(mVersion);
 }
@@ -216,7 +225,15 @@ void serialHandle(){
      }
   }
 }
-            int px = 0;
+
+void buzzerOn(){
+  buzzer.tone(500,1000); 
+}
+void buzzerOff(){
+  buzzer.noTone(); 
+}
+
+int px = 0;
 void loop()
 {
   while(1)
@@ -251,37 +268,49 @@ void get_ir_command()
         moveSpeed = 220;
         mode = MODE_A;
         Stop();
-        buzzer.tone(NTD1, 300); 
+        cli();
+        buzzer.tone(NTD1, 300);
+        sei();
         rgb.setColor(0,0,0);
         rgb.setColor(10, 10, 10);
+        rgb.show();
         break;
       case IR_BUTTON_B:
         moveSpeed = 200;
         mode = MODE_B;
         Stop();
-        buzzer.tone(NTD2, 300); 
+        cli();
+        buzzer.tone(NTD2, 300);
+        sei();
+        buzzer.noTone();  
         rgb.setColor(0,0,0);
         rgb.setColor(0, 10, 0);
+        rgb.show();
         break;
       case IR_BUTTON_C:
         mode = MODE_C;
         moveSpeed = 120;
         Stop();
-        buzzer.tone(NTD3, 300); 
+        cli();
+        buzzer.tone(NTD3, 300);
+        sei();
         rgb.setColor(0,0,0);
         rgb.setColor(0, 0, 10);
+        rgb.show();
         break;
       case IR_BUTTON_PLUS:
         motor_sta = RUN_F;
         //buzzer.tone(NTD4, 300); 
         rgb.setColor(0,0,0);
         rgb.setColor(10, 10, 0);
+        rgb.show();
         //               Forward();
         break;
       case IR_BUTTON_MINUS:
         motor_sta = RUN_B;
         rgb.setColor(0,0,0);
         rgb.setColor(10, 0, 0);
+        rgb.show();
         //buzzer.tone(NTD4, 300); 
         //               Backward();
         break;
@@ -290,6 +319,7 @@ void get_ir_command()
         //buzzer.tone(NTD4, 300); 
         rgb.setColor(0,0,0);
         rgb.setColor(1,10, 10, 0);
+        rgb.show();
         //               TurnRight();
         break;
       case IR_BUTTON_PREVIOUS:
@@ -297,51 +327,61 @@ void get_ir_command()
         //buzzer.tone(NTD4, 300); 
         rgb.setColor(0,0,0);
         rgb.setColor(2,10, 10, 0);
+        rgb.show();
         //               TurnLeft();
         break;
       case IR_BUTTON_9:
-        buzzer.tone(NTDH2, 300); 
-        delay(300);
+        cli();
+        buzzer.tone(NTDH2, 300);
+        sei();
         ChangeSpeed(factor * 9 + minSpeed);
         break;
       case IR_BUTTON_8:
-        buzzer.tone(NTDH1, 300); 
-        delay(300);
+        cli();
+        buzzer.tone(NTDH1, 300);
+        sei();
         ChangeSpeed(factor * 8 + minSpeed);
         break;
       case IR_BUTTON_7:
-        buzzer.tone(NTD7, 300); 
-        delay(300);
+        cli();
+        buzzer.tone(NTD7, 300);
+        sei();
         ChangeSpeed(factor * 7 + minSpeed);
         break;
       case IR_BUTTON_6:
-        buzzer.tone(NTD6, 300); 
-        delay(300);
+        cli();
+        buzzer.tone(NTD6, 300);
+        sei();
         ChangeSpeed(factor * 6 + minSpeed);
         break;
       case IR_BUTTON_5:
-        buzzer.tone(NTD5, 300); 
-        delay(300);
+        cli();
+        buzzer.tone(NTD5, 300);
+        sei();
         ChangeSpeed(factor * 5 + minSpeed);
         break;
       case IR_BUTTON_4:
-        buzzer.tone(NTD4, 300); 
-        delay(300);
+        cli();
+        buzzer.tone(NTD4, 300);
+        sei();
         ChangeSpeed(factor * 4 + minSpeed);
         break;
       case IR_BUTTON_3:
-        buzzer.tone(NTD3, 300); 
-        delay(300);
+        cli();
+        buzzer.tone(NTD3, 300);
+        sei();
         ChangeSpeed(factor * 3 + minSpeed);
         break;
       case IR_BUTTON_2:
-        buzzer.tone(NTD2, 300); 
-        delay(300);
+        cli();
+        buzzer.tone(NTD2, 300);
+        sei();
         ChangeSpeed(factor * 2 + minSpeed);
         break;
       case IR_BUTTON_1:
-        buzzer.tone(NTD1, 300); 
-        delay(300);
+        cli();
+        buzzer.tone(NTD1, 300);
+        sei();
         ChangeSpeed(factor * 1 + minSpeed);
         break;
     }
@@ -375,13 +415,14 @@ void TurnRight()
 void Stop()
 {
   rgb.setColor(0,0,0);
+  rgb.show();
   MotorL.run(0);
   MotorR.run(0);
 }
 uint8_t prevState = 0;
 void ChangeSpeed(int spd)
 {
-  buzzer.tone(NTD5, 300); 
+//  buzzer.tone(NTD5, 300); 
   moveSpeed = spd;
 }
 
@@ -602,13 +643,13 @@ void runModule(int device){
      int r = readBuffer(9);
      int g = readBuffer(10);
      int b = readBuffer(11);
-     led.reset(port,slot);
+     rgb.reset(port,slot);
      if(idx>0){
-       led.setColorAt(idx-1,r,g,b); 
+       rgb.setColorAt(idx-1,r,g,b); 
      }else{
-       led.setColor(r,g,b); 
+       rgb.setColor(r,g,b); 
      }
-     led.show();
+     rgb.show();
    }
    break;
    case SERVO:{

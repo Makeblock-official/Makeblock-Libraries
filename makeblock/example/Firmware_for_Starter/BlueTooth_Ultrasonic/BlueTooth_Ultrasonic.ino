@@ -9,7 +9,6 @@
 * Copyright (C) 2013 - 2014 Maker Works Technology Co., Ltd. All right reserved.
 * http://www.makeblock.cc/
 **************************************************************************/
-#include <Servo.h>
 #include <Wire.h>
 #include <SoftwareSerial.h>
 #include <Arduino.h>
@@ -64,7 +63,7 @@ MeModule modules[12];
 #if defined(__AVR_ATmega1280__)|| defined(__AVR_ATmega2560__)
   int analogs[16]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15};
 #endif
-String mVersion = "10.01.001";
+String mVersion = "01.01.102";
 boolean isAvailable = false;
 boolean isBluetooth = false;
 
@@ -248,6 +247,9 @@ void setup(){
   leftflag=false;
   rightflag=false;
   randomSeed(analogRead(0));
+  Stop();
+  Serial.print("Version: ");
+  Serial.println(mVersion);
 }
 void loop(){
   currentTime = millis()/1000.0-lastTime;

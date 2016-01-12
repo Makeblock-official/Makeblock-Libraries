@@ -18,7 +18,6 @@
  * </pre>
  */
 #include "MeOrion.h"
-#include <Servo.h>
 
 MePort port(PORT_3);
 Servo myservo;  // create servo object to control a servo
