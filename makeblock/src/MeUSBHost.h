@@ -373,7 +373,7 @@ public:
  */
   MeUSBHost();
 
-  //MeUSBHost(uint8_t s1, uint8_t s2);
+  MeUSBHost(uint8_t s1, uint8_t s2);
 
 /**
  *  Alternate Constructor which can call your own function to map the USB Host to arduino port, \n

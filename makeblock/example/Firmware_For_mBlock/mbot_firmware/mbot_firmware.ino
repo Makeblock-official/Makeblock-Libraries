@@ -9,7 +9,6 @@
 * Copyright (C) 2013 - 2014 Maker Works Technology Co., Ltd. All right reserved.
 * http://www.makeblock.cc/
 **************************************************************************/
-#include <Servo.h>
 #include <Wire.h>
 #include <MeMCore.h>
 
@@ -29,6 +28,8 @@ MeCompass Compass;
 MeHumiture humiture;
 MeFlameSensor FlameSensor;
 MeGasSensor GasSensor;
+MeTouchSensor touchSensor;
+Me4Button buttonSensor;
 
 typedef struct MeModule
 {
@@ -61,7 +62,7 @@ const int analogs[12] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11};
 #else
 const int analogs[8] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7};
 #endif
-String mVersion = "06.01.030";
+String mVersion = "06.01.102";
 boolean isAvailable = false;
 
 int len = 52;
@@ -105,6 +106,7 @@ char serialRead;
 #define BUTTON_INNER 35
 #define LEDMATRIX 41
 #define TIMER 50
+#define TOUCH_SENSOR 51
 
 #define GET 1
 #define RUN 2
@@ -113,6 +115,24 @@ char serialRead;
 float angleServo = 90.0;
 int servo_pins[8]={0,0,0,0,0,0,0,0};
 unsigned char prevc=0;
+boolean buttonPressed = false;
+uint8_t keyPressed = KEY_NULL;
+
+void readButtonInner(uint8_t pin, int8_t s)
+{
+  pin = pgm_read_byte(&analogs[pin]);
+  pinMode(pin,INPUT);
+  boolean currentPressed = !(analogRead(pin)>10);
+      
+  if(buttonPressed == currentPressed){
+    return;
+  }
+  buttonPressed = currentPressed;
+  writeHead();
+  writeSerial(0x80);
+  sendByte(currentPressed);
+  writeEnd();
+}
 
 void setup(){
   pinMode(13,OUTPUT);
@@ -140,15 +160,15 @@ String irBuffer = "";
 double lastTime = 0.0;
 double currentTime = 0.0;
 double lastIRTime = 0.0;
-boolean buttonPressed = false;
-boolean irPressed = false;
+
 void loop(){
+  readButtonInner(7,0);
+  keyPressed = buttonSensor.pressed();
   currentTime = millis()/1000.0-lastTime;
   if(ir.decode())
   {
     irRead = ((ir.value>>8)>>8)&0xff;
     lastIRTime = millis()/1000.0;
-    irPressed = true;
     if(irRead==0xa||irRead==0xd){
       irIndex = 0;
       irReady = true;
@@ -643,9 +663,7 @@ void readSensor(int device){
        Compass.reset(port);
        Compass.setpin(Compass.pin1(),Compass.pin2());
      }
-     double CompassAngle;
-     CompassAngle = Compass.getAngle();
-     sendDouble(CompassAngle);
+     sendFloat(Compass.getAngle());
    }
    break;
    case HUMITURE:{
@@ -704,6 +722,22 @@ void readSensor(int device){
    break;
    case TIMER:{
      sendFloat(currentTime);
+   }
+   break;
+   case TOUCH_SENSOR:
+   {
+     if(touchSensor.getPort() != port){
+       touchSensor.reset(port);
+     }
+     sendByte(touchSensor.touched());
+   }
+   break;
+   case BUTTON:
+   {
+     if(buttonSensor.getPort() != port){
+       buttonSensor.reset(port);
+     }
+     sendByte(keyPressed == readBuffer(7));
    }
    break;
   }

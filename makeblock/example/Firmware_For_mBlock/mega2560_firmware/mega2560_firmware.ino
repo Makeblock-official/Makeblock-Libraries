@@ -1,5 +1,5 @@
 /*************************************************************************
-* File Name          : shield_firmware.ino
+* File Name          : orion_firmware.ino
 * Author             : Ander
 * Updated            : Ander
 * Version            : V1.10101
@@ -9,11 +9,10 @@
 * Copyright (C) 2013 - 2014 Maker Works Technology Co., Ltd. All right reserved.
 * http://www.makeblock.cc/
 **************************************************************************/
-#include <Servo.h>
 #include <Wire.h>
 #include <SoftwareSerial.h>
 #include <Arduino.h>
-#include <MeShield.h>
+#include <MeOrion.h>
 
 Servo servos[8];  
 MeDCMotor dc;
@@ -25,12 +24,13 @@ MePort generalDevice;
 MeInfraredReceiver *ir = NULL;
 MeGyro gyro;
 MeJoystick joystick;
-MeStepper steppers[4];
+MeStepper steppers[2];
 MeBuzzer buzzer;
-//MeCompass Compass;
 MeHumiture humiture;
 MeFlameSensor FlameSensor;
 MeGasSensor GasSensor;
+MeTouchSensor touchSensor;
+Me4Button buttonSensor;
 
 typedef struct MeModule
 {
@@ -68,7 +68,7 @@ MeModule modules[12];
 #if defined(__AVR_ATmega1280__)|| defined(__AVR_ATmega2560__)
   int analogs[16]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15};
 #endif
-String mVersion = "10.01.030";
+String mVersion = "0d.01.102";
 boolean isAvailable = false;
 boolean isBluetooth = false;
 
@@ -95,9 +95,11 @@ char serialRead;
 #define SERVO 11
 #define ENCODER 12
 #define IR 13
+#define IRREMOTE 14
 #define PIRMOTION 15
 #define INFRARED 16
 #define LINEFOLLOWER 17
+#define IRREMOTECODE 18
 #define SHUTTER 20
 #define LIMITSWITCH 21
 #define BUTTON 22
@@ -110,11 +112,12 @@ char serialRead;
 #define PWM 32
 #define SERVO_PIN 33
 #define TONE 34
-#define PULSEIN 35
+#define PULSEIN 37
 #define ULTRASONIC_ARDUINO 36
 #define STEPPER 40
 #define LEDMATRIX 41
 #define TIMER 50
+#define TOUCH_SENSOR 51
 
 #define GET 1
 #define RUN 2
@@ -125,6 +128,7 @@ int servo_pins[8]={0,0,0,0,0,0,0,0};
 unsigned char prevc=0;
 double lastTime = 0.0;
 double currentTime = 0.0;
+uint8_t keyPressed = 0;
 
 void setup(){
   pinMode(13,OUTPUT);
@@ -148,8 +152,11 @@ void setup(){
     Serial1.begin(115200);
   #endif
     gyro.begin();
+  Serial.print("Version: ");
+  Serial.println(mVersion);
 }
 void loop(){
+  keyPressed = buttonSensor.pressed();
   currentTime = millis()/1000.0-lastTime;
   if(ir != NULL)
   {
@@ -158,8 +165,6 @@ void loop(){
   readSerial();
   steppers[0].runSpeedToPosition();
   steppers[1].runSpeedToPosition();
-  steppers[2].runSpeedToPosition();
-  steppers[3].runSpeedToPosition();
   if(isAvailable){
     unsigned char c = serialRead&0xff;
     if(c==0x55&&isStart==false){
@@ -362,16 +367,6 @@ void runModule(int device){
       steppers[1].moveTo(distance);
       steppers[1].setMaxSpeed(maxSpeed);
       steppers[1].setSpeed(maxSpeed);
-     }else if(port==M1){
-      steppers[2] = MeStepper(M1);
-      steppers[2].moveTo(distance);
-      steppers[2].setMaxSpeed(maxSpeed);
-      steppers[2].setSpeed(maxSpeed);
-     }else if(port==M2){
-      steppers[3] = MeStepper(M2);
-      steppers[3].moveTo(distance);
-      steppers[3].setMaxSpeed(maxSpeed);
-      steppers[3].setSpeed(maxSpeed);
      }
     }
     break;
@@ -694,6 +689,22 @@ void readSensor(int device){
    break;
    case TIMER:{
      sendFloat((float)currentTime);
+   }
+   break;
+   case TOUCH_SENSOR:
+   {
+     if(touchSensor.getPort() != port){
+        touchSensor.reset(port);
+     }
+     sendByte(touchSensor.touched());
+   }
+   break;
+   case BUTTON:
+   {
+     if(buttonSensor.getPort() != port){
+        buttonSensor.reset(port);
+     }
+     sendByte(keyPressed == readBuffer(7));
    }
    break;
   }

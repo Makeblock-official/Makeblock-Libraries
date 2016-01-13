@@ -191,7 +191,7 @@ double lastIRTime = 0.0;
 String irBuffer = "";
 #endif // DEV_IR && PRO_ME_CORE
 
-String mVersion = "10.01.031";
+String mVersion = "10.01.102";
 
 #define VERSION              0
 #define ULTRASONIC_SENSOR    1

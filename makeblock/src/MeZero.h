@@ -1,11 +1,11 @@
 /**
  * \par Copyright (C), 2012-2015, MakeBlock
- * \brief   Driver for MeOrion board.
- * @file    MeOrion.h
+ * \brief   Driver for MeZero board.
+ * @file    MeZero_H.h
  * @author  MakeBlock
  * @version V1.0.0
  * @date    2015/09/01
- * @brief   Driver for MeOrion board.
+ * @brief   Driver for MeZero board.
  *
  * \par Copyright
  * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
@@ -29,8 +29,8 @@
  * Rafael Lee       2015/09/02     1.0.0            Added some comments and macros.
  * </pre>
  */
-#ifndef MeOrion_H
-#define MeOrion_H
+#ifndef MeZero_H
+#define MeZero_H
 
 #include <Arduino.h>
 #include "MeConfig.h"
@@ -69,12 +69,12 @@
 
 /*********************  Orion Board GPIO Map *********************************/
 // struct defined in MePort.h
-MePort_Sig mePort[15] =
-{
-  { NC, NC }, {   5,   4 }, {   3,   2 }, {   7,   6 }, {   9,   8 }, 
-  { 16, 17 }, { A14, A15 }, { A12, A13 }, { A10, A11 }, {  A8,  A9 }, 
-  { A6, A7 }, {  NC,  A3 }, {  NC,  A2 }, {  NC,  A1 }, {  NC,  A5 },
-};
+ MePort_Sig mePort[15] =
+ {
+   { NC, NC }, {   5,   4 }, {   3,   2 }, {   7,   6 }, {   9,   8 }, 
+   { 16, 17 }, {  A8,  A9 }, {  A6,  A7 }, {  A4,  A5 }, {  A2,  A3 }, 
+   { A0, A1 }, {  NC, A13 }, {  NC, A14 }, {  NC, A11 }, {  NC, A12 },
+ };
 
 #define buzzerOn()  pinMode(10,OUTPUT),digitalWrite(10, HIGH)
 #define buzzerOff() pinMode(10,OUTPUT),digitalWrite(10, LOW)
