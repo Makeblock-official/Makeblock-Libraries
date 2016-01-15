@@ -14,116 +14,14 @@
 #include <Arduino.h>
 #include <MeOrion.h>
 
-Servo servos[8];  
 MeDCMotor dc;
-MeTemperature ts;
-MeRGBLed led;
 MeUltrasonicSensor us(PORT_3);
-Me7SegmentDisplay seg;
-MePort generalDevice;
 MeInfraredReceiver infraredReceiverDecode(PORT_6);
-MeJoystick joystick;
-MeStepper steppers[2];
 MeBuzzer buzzer;
-MeHumiture humiture;
-MeFlameSensor FlameSensor;
-MeGasSensor GasSensor;
 
-typedef struct MeModule
-{
-    int device;
-    int port;
-    int slot;
-    int pin;
-    int index;
-    float values[3];
-} MeModule;
-
-union{
-    byte byteVal[4];
-    float floatVal;
-    long longVal;
-}val;
-
-union{
-  byte byteVal[8];
-  double doubleVal;
-}valDouble;
-
-union{
-  byte byteVal[2];
-  short shortVal;
-}valShort;
-MeModule modules[12];
-#if defined(__AVR_ATmega32U4__) 
-  int analogs[12]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11};
-#endif
-#if defined(__AVR_ATmega328P__) or defined(__AVR_ATmega168__)
-  int analogs[8]={A0,A1,A2,A3,A4,A5,A6,A7};
-#endif
-#if defined(__AVR_ATmega1280__)|| defined(__AVR_ATmega2560__)
-  int analogs[16]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15};
-#endif
+int analogs[8]={A0,A1,A2,A3,A4,A5,A6,A7};
 String mVersion = "01.01.002";
-boolean isAvailable = false;
-boolean isBluetooth = false;
-
-int len = 52;
-char buffer[52];
-char bufferBt[52];
-byte index = 0;
-byte dataLen;
-byte modulesLen=0;
-boolean isStart = false;
 unsigned char irRead = 0;
-char serialRead;
-#define VERSION 0
-#define ULTRASONIC_SENSOR 1
-#define TEMPERATURE_SENSOR 2
-#define LIGHT_SENSOR 3
-#define POTENTIONMETER 4
-#define JOYSTICK 5
-#define GYRO 6
-#define SOUND_SENSOR 7
-#define RGBLED 8
-#define SEVSEG 9
-#define MOTOR 10
-#define SERVO 11
-#define ENCODER 12
-#define IR 13
-#define PIRMOTION 15
-#define INFRARED 16
-#define LINEFOLLOWER 17
-#define SHUTTER 20
-#define LIMITSWITCH 21
-#define BUTTON 22
-#define HUMITURE 23
-#define FLAMESENSOR 24
-#define GASSENSOR 25
-#define COMPASS 26
-#define DIGITAL 30
-#define ANALOG 31
-#define PWM 32
-#define SERVO_PIN 33
-#define TONE 34
-#define PULSEIN 35
-#define ULTRASONIC_ARDUINO 36
-#define STEPPER 40
-#define LEDMATRIX 41
-#define TIMER 50
-#define COMMONCMD 60
-  //Secondary command
-  #define SET_STARTER_MODE 0x10
-
-#define GET 1
-#define RUN 2
-#define RESET 4
-#define START 5
-float angleServo = 90.0;
-int servo_pins[8]={0,0,0,0,0,0,0,0};
-unsigned char prevc=0;
-double lastTime = 0.0;
-double currentTime = 0.0;
 
 //Just for Start
 int moveSpeed = 190;

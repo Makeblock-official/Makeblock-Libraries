@@ -334,6 +334,13 @@ float readFloat(int idx){
   val.byteVal[3] = readBuffer(idx+3);
   return val.floatVal;
 }
+long readLong(int idx){
+  val.byteVal[0] = readBuffer(idx);
+  val.byteVal[1] = readBuffer(idx+1);
+  val.byteVal[2] = readBuffer(idx+2);
+  val.byteVal[3] = readBuffer(idx+3);
+  return val.longVal;
+}
 void runModule(int device){
   //0xff 0x55 0x6 0x0 0x1 0xa 0x9 0x0 0x0 0xa
   int port = readBuffer(6);
@@ -356,7 +363,7 @@ void runModule(int device){
     break;
     case STEPPER:{
      int maxSpeed = readShort(7);
-     int distance = readShort(9);
+     long distance = readLong(9);
      if(port==PORT_1){
       steppers[0] = MeStepper(PORT_1);
       steppers[0].moveTo(distance);
@@ -373,7 +380,7 @@ void runModule(int device){
     case ENCODER:{
       int slot = readBuffer(7);
       int maxSpeed = readShort(8);
-      int distance = readShort(10);
+      float distance = readFloat(10);
       #if defined(__AVR_ATmega328P__)
         if(slot==SLOT_1){
            encoders[0].move(distance,maxSpeed);
@@ -694,7 +701,7 @@ void readSensor(int device){
    case TOUCH_SENSOR:
    {
      if(touchSensor.getPort() != port){
-        touchSensor.reset(port);
+       touchSensor.reset(port);
      }
      sendByte(touchSensor.touched());
    }
@@ -702,7 +709,7 @@ void readSensor(int device){
    case BUTTON:
    {
      if(buttonSensor.getPort() != port){
-        buttonSensor.reset(port);
+       buttonSensor.reset(port);
      }
      sendByte(keyPressed == readBuffer(7));
    }

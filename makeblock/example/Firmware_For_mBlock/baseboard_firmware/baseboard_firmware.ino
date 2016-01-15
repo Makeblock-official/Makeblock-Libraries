@@ -26,7 +26,6 @@ MeGyro gyro;
 MeJoystick joystick;
 MeStepper steppers[2];
 MeBuzzer buzzer;
-//MeCompass Compass;
 MeHumiture humiture;
 MeFlameSensor FlameSensor;
 MeGasSensor GasSensor;
@@ -74,8 +73,8 @@ boolean isAvailable = false;
 boolean isBluetooth = false;
 
 int len = 52;
-char buffer[52];
-char bufferBt[52];
+char buffer[32];
+char bufferBt[32];
 byte index = 0;
 byte dataLen;
 byte modulesLen=0;
@@ -96,9 +95,11 @@ char serialRead;
 #define SERVO 11
 #define ENCODER 12
 #define IR 13
+#define IRREMOTE 14
 #define PIRMOTION 15
 #define INFRARED 16
 #define LINEFOLLOWER 17
+#define IRREMOTECODE 18
 #define SHUTTER 20
 #define LIMITSWITCH 21
 #define BUTTON 22
@@ -333,6 +334,13 @@ float readFloat(int idx){
   val.byteVal[3] = readBuffer(idx+3);
   return val.floatVal;
 }
+long readLong(int idx){
+  val.byteVal[0] = readBuffer(idx);
+  val.byteVal[1] = readBuffer(idx+1);
+  val.byteVal[2] = readBuffer(idx+2);
+  val.byteVal[3] = readBuffer(idx+3);
+  return val.longVal;
+}
 void runModule(int device){
   //0xff 0x55 0x6 0x0 0x1 0xa 0x9 0x0 0x0 0xa
   int port = readBuffer(6);
@@ -355,7 +363,7 @@ void runModule(int device){
     break;
     case STEPPER:{
      int maxSpeed = readShort(7);
-     int distance = readShort(9);
+     long distance = readLong(9);
      if(port==PORT_1){
       steppers[0] = MeStepper(PORT_1);
       steppers[0].moveTo(distance);
@@ -367,12 +375,12 @@ void runModule(int device){
       steppers[1].setMaxSpeed(maxSpeed);
       steppers[1].setSpeed(maxSpeed);
      }
-   } 
+    }
     break;
     case ENCODER:{
-      int maxSpeed = readShort(7);
-      int distance = readShort(9);
-      int slot = port;
+      int slot = readBuffer(7);
+      int maxSpeed = readShort(8);
+      float distance = readFloat(10);
       #if defined(__AVR_ATmega328P__)
         if(slot==SLOT_1){
            encoders[0].move(distance,maxSpeed);
