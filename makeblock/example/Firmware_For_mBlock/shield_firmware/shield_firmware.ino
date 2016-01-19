@@ -129,6 +129,7 @@ unsigned char prevc=0;
 double lastTime = 0.0;
 double currentTime = 0.0;
 uint8_t keyPressed = 0;
+uint8_t command_index = 0;
 
 void setup(){
   pinMode(13,OUTPUT);
@@ -245,11 +246,12 @@ ff 55 len idx action device port  slot  data a
 void parseData(){
   isStart = false;
   int idx = readBuffer(3);
+  command_index = (uint8_t)idx;
   int action = readBuffer(4);
   int device = readBuffer(5);
   switch(action){
     case GET:{
-       if(device != ULTRASONIC_SENSOR){
+        if(device != ULTRASONIC_SENSOR){
           writeHead();
           writeSerial(idx);
         }
@@ -530,7 +532,7 @@ void readSensor(int device){
      value = us.distanceCm();
      delayMicroseconds(100);
      writeHead();
-     writeSerial(0);
+     writeSerial(command_index);
      sendFloat(value);
    }
    break;

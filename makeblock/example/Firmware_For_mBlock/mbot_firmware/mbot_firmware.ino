@@ -72,6 +72,7 @@ byte dataLen;
 byte modulesLen=0;
 boolean isStart = false;
 char serialRead;
+uint8_t command_index = 0;
 #define VERSION 0
 #define ULTRASONIC_SENSOR 1
 #define TEMPERATURE_SENSOR 2
@@ -259,6 +260,7 @@ ff 55 len idx action device port slot data a
 void parseData(){
   isStart = false;
   int idx = readBuffer(3);
+  command_index = (uint8_t)idx;
   int action = readBuffer(4);
   int device = readBuffer(5);
   switch(action){
@@ -546,7 +548,7 @@ void readSensor(int device){
      value = (float)us.distanceCm(50000);
      delayMicroseconds(100);
      writeHead();
-     writeSerial(0);
+     writeSerial(command_index);
      sendFloat(value);
    }
    break;

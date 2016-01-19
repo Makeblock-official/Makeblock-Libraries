@@ -134,6 +134,7 @@ int randnum = 0;
 boolean leftflag;
 boolean rightflag;
 int starter_mode = 0;
+uint8_t command_index = 0;
 
 void Forward()
 {
@@ -349,12 +350,15 @@ ff 55 len idx action device port  slot  data a
 void parseData(){
   isStart = false;
   int idx = readBuffer(3);
+  command_index = (uint8_t)idx;
   int action = readBuffer(4);
   int device = readBuffer(5);
   switch(action){
     case GET:{
-        writeHead();
-        writeSerial(idx);
+        if(device != ULTRASONIC_SENSOR){
+          writeHead();
+          writeSerial(idx);
+        }
         readSensor(device);
         writeEnd();
      }
@@ -457,7 +461,7 @@ void runModule(int device){
     break;
     case STEPPER:{
      int maxSpeed = readShort(7);
-     int distance = readShort(9);
+     long distance = readLong(9);
      if(port==PORT_1){
       steppers[0] = MeStepper(PORT_1);
       steppers[0].moveTo(distance);
@@ -613,6 +617,9 @@ void readSensor(int device){
        us.reset(port);
      }
      value = us.distanceCm();
+     delayMicroseconds(100);
+     writeHead();
+     writeSerial(command_index);
      sendFloat(value);
    }
    break;

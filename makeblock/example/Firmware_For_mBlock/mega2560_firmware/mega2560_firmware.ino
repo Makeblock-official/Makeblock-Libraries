@@ -1,5 +1,5 @@
 /*************************************************************************
-* File Name          : baseboard_firmware.ino
+* File Name          : mega2560_firmware.ino
 * Author             : Ander, Mark Yan
 * Updated            : Ander, Mark Yan
 * Version            : V0d.01.103
@@ -129,6 +129,7 @@ unsigned char prevc=0;
 double lastTime = 0.0;
 double currentTime = 0.0;
 uint8_t keyPressed = 0;
+uint8_t command_index = 0;
 
 void setup(){
   pinMode(13,OUTPUT);
@@ -243,12 +244,15 @@ ff 55 len idx action device port  slot  data a
 void parseData(){
   isStart = false;
   int idx = readBuffer(3);
+  command_index = (uint8_t)idx;
   int action = readBuffer(4);
   int device = readBuffer(5);
   switch(action){
     case GET:{
-        writeHead();
-        writeSerial(idx);
+        if(device != ULTRASONIC_SENSOR){
+          writeHead();
+          writeSerial(idx);
+        }
         readSensor(device);
         writeEnd();
      }
@@ -514,6 +518,9 @@ void readSensor(int device){
        us.reset(port);
      }
      value = us.distanceCm();
+     delayMicroseconds(100);
+     writeHead();
+     writeSerial(command_index);
      sendFloat(value);
    }
    break;

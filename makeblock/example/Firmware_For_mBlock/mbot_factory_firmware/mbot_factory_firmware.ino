@@ -112,6 +112,7 @@ boolean buttonPressed = false;
 double lastTime = 0.0;
 double currentTime = 0.0;
 int LineFollowFlag=0;
+uint8_t command_index = 0;
 
 #define VERSION 0
 #define ULTRASONIC_SENSOR 1
@@ -212,7 +213,7 @@ void serialHandle(){
     unsigned char c = serialRead&0xff;
     if(c==0x55&&isStart==false){
      if(prevc==0xff){
-      index=1; 
+      index=1;
       isStart = true;
      }
     }else{
@@ -530,6 +531,7 @@ void modeC()
 void parseData(){
   isStart = false;
   int idx = readBuffer(3);
+  command_index = (uint8_t)idx;
   int action = readBuffer(4);
   int device = readBuffer(5);
   switch(action){
@@ -793,7 +795,7 @@ void readSensor(int device){
      value = (float)ultr.distanceCm(50000);
      delayMicroseconds(100);
      writeHead();
-     writeSerial(0);
+     writeSerial(command_index);
      sendFloat(value);
    }
    break;
