@@ -1,5 +1,5 @@
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * @file    InfraredReceiverTest.ino
  * @author  MakeBlock
  * @version V1.0.0

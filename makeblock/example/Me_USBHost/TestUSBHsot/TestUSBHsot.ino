@@ -1,9 +1,9 @@
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * @file    MeUSBHost.ino
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/09
+ * @version V1.0.1
+ * @date    2015/11/19
  * @brief   Description: this file is sample code for Me USB Host module.
  *          The USB Host inherited the MeSerial class from SoftwareSerial.
  *
@@ -17,7 +17,7 @@
  * <pre>
  * <Author>     <Time>        <Version>      <Descr>
  * Mark Yan     2015/09/09    1.0.0          rebuild the old lib.
- * forfish      2015/11/19    1.0.0          add some descriptions.
+ * forfish      2015/11/19    1.0.1          add some descriptions.
  * </pre>
  */
 

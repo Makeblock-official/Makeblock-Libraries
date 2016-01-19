@@ -1,15 +1,15 @@
-﻿/**
- * \par Copyright (C), 2012-2015, MakeBlock
+﻿/**   
+ * \par Copyright (C), 2012-2016, MakeBlock
  * \class   Me4Button
  * \brief   Driver for Me 4 Button module.
  * @file    Me4Button.cpp
  * @author  MakeBlock
- * @version V1.0.0
+ * @version V1.0.1
  * @date    2015/09/01
  * @brief   Driver for Me 4 Button module
  *
  * \par Copyright
- * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2
@@ -33,7 +33,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/07/24     1.0.0            Rebuild the old lib.
- * Rafael Lee       2015/09/02     1.0.0            Added some comments and macros add setpin function.
+ * Rafael Lee       2015/09/02     1.0.1            Added some comments and macros add setpin function.
  * </pre>
  *
  * @example Me4ButtonTest.ino

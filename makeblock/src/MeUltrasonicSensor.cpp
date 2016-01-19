@@ -1,15 +1,15 @@
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * \class MeUltrasonicSensor
  * \brief   Driver for Me ultrasonic sensor device.
  * @file    MeUltrasonicSensor.cpp
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/04
+ * @version V1.0.1
+ * @date    2015/11/16
  * @brief   Driver for Me ultrasonic sensor device.
  *
  * \par Copyright
- * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2
@@ -35,6 +35,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/04     1.0.0            Rebuild the old lib.
+ * Mark Yan         2015/11/16     1.0.1            Increase 100us delay, avoid ultrasonic read exception.
  * </pre>
  *
  * @example UltrasonicSensorTest.ino
@@ -162,7 +163,7 @@ long MeUltrasonicSensor::measure(unsigned long timeout)
   MePort::dWrite2(LOW);
   pinMode(s2, INPUT);
   duration = pulseIn(s2, HIGH, timeout);
-  delayMicroseconds(100);
+  delayMicroseconds(200);
   return(duration);
 }
 

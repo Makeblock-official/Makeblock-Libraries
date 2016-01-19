@@ -1,12 +1,12 @@
 /*************************************************************************
-* File Name          : mega2560_firmware.ino
-* Author             : Ander
-* Updated            : Ander
-* Version            : V1.10101
-* Date               : 03/06/2014
+* File Name          : baseboard_firmware.ino
+* Author             : Ander, Mark Yan
+* Updated            : Ander, Mark Yan
+* Version            : V0d.01.103
+* Date               : 01/09/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
-* Copyright (C) 2013 - 2014 Maker Works Technology Co., Ltd. All right reserved.
+* Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
 * http://www.makeblock.cc/
 **************************************************************************/
 #include <Wire.h>
@@ -68,7 +68,7 @@ MeModule modules[12];
 #if defined(__AVR_ATmega1280__)|| defined(__AVR_ATmega2560__)
   int analogs[16]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15};
 #endif
-String mVersion = "0d.01.102";
+String mVersion = "0d.01.103";
 boolean isAvailable = false;
 boolean isBluetooth = false;
 

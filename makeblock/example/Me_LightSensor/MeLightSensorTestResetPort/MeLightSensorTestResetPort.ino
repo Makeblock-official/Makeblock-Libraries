@@ -1,9 +1,9 @@
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * \brief   Test
  * @file    MeLightSensorTestResetPort.ino
  * @author  MakeBlock
- * @version V1.0.0
+ * @version V1.0.1
  * @date    2015/09/05
  * @brief   Test Me Light Sensor module with port reconfiguration.
  *
@@ -15,7 +15,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/07/24     1.0.0            rebuild the old lib
- * Rafael Lee       2015/09/05     1.0.0            First Version.
+ * Rafael Lee       2015/09/05     1.0.1            First Version.
  * </pre>
  *
  */

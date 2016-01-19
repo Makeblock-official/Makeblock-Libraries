@@ -1,3 +1,22 @@
+/**
+ * \par Copyright (C), 2012-2016, MakeBlock
+ * @file    Me_I2CScanTest.ino
+ * @author  MakeBlock
+ * @version V1.0.0
+ * @date    2015/09/01
+ * @brief   Description: this file is sample code for Me I2C Scan.
+ *
+ * Function List:
+ * 1. void TwoWire::begin(void)
+ * 2. void    TwoWire::beginTransmission(uint8_t address)
+ * 3. uint8_t TwoWire::endTransmission(void)
+ *
+ * \par History:
+ * <pre>
+ * <Author>     <Time>        <Version>      <Descr>
+ * Mark Yan     2015/09/01    1.0.0          rebuild the old lib
+ * </pre>
+ */
 #include <Wire.h>
 
 void setup()

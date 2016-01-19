@@ -1,27 +1,15 @@
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * \class MePort
  * \brief   Port Mapping for RJ25
  * @file    MePort.cpp
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/01
+ * @version V1.0.1
+ * @date    2015/09/09
  * @brief   Port Mapping for RJ25
  *
  * \par Copyright
- * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
- * conditions. The main licensing options available are GPL V2 or Commercial: \n
- *
- * \par Open Source Licensing GPL V2
- * This is the appropriate option if you want to share the source code of your \n
- * application with everyone you distribute it to, and you also want to give them \n
- * the right to share who uses it. If you wish to use this software under Open \n
- * Source Licensing, you must contribute all your source code to the open source \n
- * community in accordance with the GPL Version 2 when your application is \n
- * distributed. See http://www.gnu.org/copyleft/gpl.html
- *
- * \par Copyright
- * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2
@@ -60,7 +48,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`         `<Descr>`
  * Mark Yan         2015/09/01           1.0.0            Rebuild the old lib.
- * Lawrence         2015/09/09           1.0.0            Add a input parameter of function dRead1 and dRead2.
+ * Lawrence         2015/09/09           1.0.1            Add a input parameter of function dRead1 and dRead2.
  * </pre>
  */
 #include "MePort.h"

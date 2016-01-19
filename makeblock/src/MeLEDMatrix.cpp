@@ -67,7 +67,6 @@ MeLEDMatrix::MeLEDMatrix(uint8_t port): MePort(port)
 	u8_SCKPin = s1;
 	u8_DINPin = s2;
 
-
 	pinMode(u8_SCKPin, OUTPUT);
 	pinMode(u8_DINPin, OUTPUT);
 	digitalWrite(u8_SCKPin,HIGH);
@@ -118,7 +117,7 @@ MeLEDMatrix::MeLEDMatrix(uint8_t SCK_Pin, uint8_t DIN_Pin)
 void MeLEDMatrix::reset(uint8_t port){
     u8_SCKPin = mePort[port].s1;
 	u8_DINPin = mePort[port].s2;
-
+    _port = port;
 
 	pinMode(u8_SCKPin, OUTPUT);
 	pinMode(u8_DINPin, OUTPUT);

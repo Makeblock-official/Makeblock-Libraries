@@ -1,15 +1,15 @@
 ﻿/**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * \class   Me4Button
  * \brief   Driver for Me 4 Button module.
  * @file    Me4Button.h
  * @author  MakeBlock
- * @version V1.0.0
+ * @version V1.0.1
  * @date    2015/08/31
  * @brief   Header for Me4Button.cpp module
  *
  * \par Copyright
- * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2

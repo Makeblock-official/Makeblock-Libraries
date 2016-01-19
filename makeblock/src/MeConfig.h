@@ -25,7 +25,7 @@
  *
  * \par Copyright
  *
- * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2
@@ -40,8 +40,9 @@
  * <pre>
  * Author           Time           Version          Descr
  * Mark Yan         2015/07/24     1.0.0            Rebuild the old lib.
- * Rafael Lee       2015/09/02     1.0.0            Added some comments and macros.
- * Lawrence         2015/09/09     1.0.0            Include some Arduino's official headfiles which path specified.
+ * Rafael Lee       2015/09/02     1.0.1            Added some comments and macros.
+ * Lawrence         2015/09/09     1.0.2            Include some Arduino's official headfiles which path specified.
+ * Mark Yan         2015/11/02     1.0.3            fix bug on MACOS.
  * </pre>
  *
  * \author  Mark Yan (myan@makeblock.com) DO NOT CONTACT THE AUTHOR DIRECTLY: USE THE LISTS
@@ -49,16 +50,16 @@
 
 
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * \brief   Configuration file of library.
  * \file    Meconfig.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/01
+ * @version V1.0.4
+ * @date    2015/11/03
  * @brief   Configuration file of library.
  * \par Copyright
  *
- * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2
@@ -77,8 +78,10 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/07/24         1.0.0            Rebuild the old lib.
- * Rafael Lee       2015/09/02         1.0.0            Added some comments and macros. Fixed some bug and add some methods.
- * Lawrence         2015/09/09         1.0.0            Include some Arduino's official headfiles which path specified.
+ * Rafael Lee       2015/09/02         1.0.1            Added some comments and macros. Fixed some bug and add some methods.
+ * Lawrence         2015/09/09         1.0.2            Include some Arduino's official headfiles which path specified.
+ * Mark Yan         2015/11/02         1.0.3            fix bug on MACOS.
+ * Mark Yan         2015/11/03         1.0.4            fix Segmentation symbols error for file path.
  * </pre>
  */
 

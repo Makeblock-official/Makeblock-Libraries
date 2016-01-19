@@ -6,7 +6,7 @@
 * Date               : 12/05/2015
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
-* Copyright (C) 2013 - 2014 Maker Works Technology Co., Ltd. All right reserved.
+* Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
 * http://www.makeblock.cc/
 **************************************************************************/
 

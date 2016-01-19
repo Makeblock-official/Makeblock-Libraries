@@ -3,7 +3,7 @@
  * @file    EncoderMotorTestRunTurns.ino
  * @author  MakeBlock
  * @version V1.0.0
- * @date    2015/09/07
+ * @date    2015/11/19
  * @brief   Description: this file is sample code for Encoder Motor  device.
  *
  * Function List:

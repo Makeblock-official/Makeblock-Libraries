@@ -1,9 +1,9 @@
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * @file    NumberFlow.ino
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/07
+ * @version V1.0.1
+ * @date    2015/09/02
  * @brief   Description: this file is sample code for Seven-Segment LED device.
  *          It test the number flow display
  * Function List:
@@ -16,7 +16,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/07/24     1.0.0            Rebuild the old lib.
- * Rafael Lee       2015/09/02     1.0.0            Added some comments and macros.
+ * Rafael Lee       2015/09/02     1.0.1            Added some comments and macros.
  * </pre>
  */
 

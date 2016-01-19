@@ -1,3 +1,14 @@
+/*************************************************************************
+* File Name          : mbot_factory_firmware.ino
+* Author             : Ander, Mark Yan
+* Updated            : Ander, Mark Yan
+* Version            : V06.01.003
+* Date               : 01/09/2016
+* Description        : Firmware for Makeblock Electronic modules with Scratch.  
+* License            : CC-BY-SA 3.0
+* Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
+* http://www.makeblock.cc/
+**************************************************************************/
 #include <Wire.h>
 #include <SoftwareSerial.h>
 #include <MeMCore.h>
@@ -94,7 +105,7 @@ byte dataLen;
 byte modulesLen=0;
 boolean isStart = false;
 char serialRead;
-String mVersion = "06.01.002";
+String mVersion = "06.01.003";
 float angleServo = 90.0;
 unsigned char prevc=0;
 boolean buttonPressed = false;
@@ -521,8 +532,10 @@ void parseData(){
   int device = readBuffer(5);
   switch(action){
     case GET:{
-        writeHead();
-        writeSerial(idx);
+       if(device != ULTRASONIC_SENSOR){
+          writeHead();
+          writeSerial(idx);
+        }
         readSensor(device);
         writeEnd();
      }
@@ -791,6 +804,9 @@ void readSensor(int device){
        ultr.reset(port);
      }
      value = (float)ultr.distanceCm(50000);
+     delayMicroseconds(100);
+     writeHead();
+     writeSerial(0);
      sendFloat(value);
    }
    break;

@@ -1,9 +1,9 @@
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * @file    MeTFT.ino
  * @author  MakeBlock
  * @version V1.0.0
- * @date    2015/09/01
+ * @date    2015/11/10
  * @brief   Description: this file is sample program for TFT LCD.
  *
  * Function List:

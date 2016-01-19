@@ -1,9 +1,9 @@
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * @file    MeHumitureSensorTest2.ino
  * @author  MakeBlock
  * @version V1.0.0
- * @date    2015/09/07
+ * @date    2015/11/18
  * @brief   Description: this file is sample code for humiture sensor device.
  *
  * Function List:
@@ -19,7 +19,7 @@
  * <pre>
  * <Author>     <Time>        <Version>      <Descr>
  * Mark Yan     2015/09/07    1.0.0          rebuild the old lib
- * forfish      2015/11/18    1.0.0          Add some functions.
+ * forfish      2015/11/18    1.0.1          Add some functions.
  * </pre>
  */
 #include "MeOrion.h"

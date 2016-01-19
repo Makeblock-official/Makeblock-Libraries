@@ -1,15 +1,15 @@
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * \class   MeCompass
  * \brief   Driver for MeCompass module.
  * @file    MeCompass.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/01
+ * @version V1.0.1
+ * @date    2015/09/08
  * @brief   Header for MeCompass.cpp module.
  *
  * \par Copyright
- * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2
@@ -39,7 +39,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Lawrence         2015/09/03           1.0.0       Rebuild the old lib.
- * Lawrence         2015/09/08           1.0.0       Added some comments and macros.
+ * Lawrence         2015/09/08           1.0.1       Added some comments and macros.
  * </pre>
  *
  */

@@ -1,15 +1,15 @@
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * \class   MeEncoderNew
  * \brief   Driver for Me Encoder New module.
  * @file    MeEncoderNew.h
  * @author  MakeBlock
- * @version V1.0.0
+ * @version V1.0.1
  * @date    2015/11/10
  * @brief   Header for MeEncoderNew.cpp module
  *
  * \par Copyright
- * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2
@@ -53,7 +53,8 @@
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * forfish         2015/11/10     1.0.0            Add description
+ * Mark Yan        2015/11/04     1.0.0            build the new
+ * forfish         2015/11/10     1.0.1            Add description
  * </pre>
  *
  * @example EncoderMotorTestRunSpeedAndTime.ino

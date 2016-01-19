@@ -1,15 +1,15 @@
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * \class   Me7SegmentDisplay
  * \brief   Driver for Me 7-Segment Serial Display module.
  * @file    Me7SegmentDisplay.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/01
+ * @version V1.0.4
+ * @date    2015/11/12
  * @brief   Header file for Me7SegmentDisplay.cpp.
  *
  * \par Copyright
- * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2
@@ -48,6 +48,9 @@
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/07/24     1.0.0            Rebuild the old lib.
  * Rafael Lee       2015/09/02     1.0.0            Added some comments and macros.
+ * Mark Yan         2015/10/29     1.0.2            fix issue when display negative data.
+ * Mark Yan         2015/11/09     1.0.3            fix some comments error.
+ * Mark Yan         2015/11/12     1.0.4            fix driver API.
  * </pre>
  */
 

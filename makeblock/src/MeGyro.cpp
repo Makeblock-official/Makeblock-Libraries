@@ -1,15 +1,15 @@
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * \class   MeGyro
  * \brief   Driver for MeGyro module.
  * @file    MeGyro.cpp
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/01
+ * @version V1.0.1
+ * @date    2015/09/10
  * @brief   Driver for MeGyro module.
  *
  * \par Copyright
- * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2
@@ -37,7 +37,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  *  Lawrence         2015/09/02          1.0.0         rebuild the old lib.
- *  Lawrence         2015/09/10          1.0.0         Added some comments and macros.
+ *  Lawrence         2015/09/10          1.0.1         Added some comments and macros.
  * </pre>
  *
  * @example MeGyroTest.ino

@@ -1,12 +1,12 @@
 /*************************************************************************
-* File Name          : Mbot_Firmware.ino
-* Author             : Ander
-* Updated            : Ander
-* Version            : V1.20101
-* Date               : 12/29/2014
+* File Name          : mbot_firmware.ino
+* Author             : Ander, Mark Yan
+* Updated            : Ander, Mark Yan
+* Version            : V06.01.103
+* Date               : 01/09/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
-* Copyright (C) 2013 - 2014 Maker Works Technology Co., Ltd. All right reserved.
+* Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
 * http://www.makeblock.cc/
 **************************************************************************/
 #include <Wire.h>
@@ -62,7 +62,7 @@ const int analogs[12] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11};
 #else
 const int analogs[8] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7};
 #endif
-String mVersion = "06.01.102";
+String mVersion = "06.01.103";
 boolean isAvailable = false;
 
 int len = 52;
@@ -261,8 +261,10 @@ void parseData(){
   int device = readBuffer(5);
   switch(action){
     case GET:{
-        writeHead();
-        writeSerial(idx);
+        if(device != ULTRASONIC_SENSOR){
+          writeHead();
+          writeSerial(idx);
+        }
         readSensor(device);
         writeEnd();
      }
@@ -555,6 +557,9 @@ void readSensor(int device){
        us.reset(port);
      }
      value = (float)us.distanceCm(50000);
+     delayMicroseconds(100);
+     writeHead();
+     writeSerial(0);
      sendFloat(value);
    }
    break;

@@ -1,12 +1,12 @@
 /*************************************************************************
-* File Name          : orion_firmware.ino
-* Author             : Ander
-* Updated            : Ander
-* Version            : V1.10101
-* Date               : 03/06/2014
+* File Name          : IR_Ultrasonic.ino
+* Author             : Ander, Mark Yan
+* Updated            : Ander, Mark Yan
+* Version            : V01.01.003
+* Date               : 01/19/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
-* Copyright (C) 2013 - 2014 Maker Works Technology Co., Ltd. All right reserved.
+* Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
 * http://www.makeblock.cc/
 **************************************************************************/
 #include <Wire.h>
@@ -20,7 +20,7 @@ MeInfraredReceiver infraredReceiverDecode(PORT_6);
 MeBuzzer buzzer;
 
 int analogs[8]={A0,A1,A2,A3,A4,A5,A6,A7};
-String mVersion = "01.01.002";
+String mVersion = "01.01.003";
 unsigned char irRead = 0;
 
 //Just for Start

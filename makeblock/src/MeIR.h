@@ -1,15 +1,15 @@
 /**
- * \par Copyright (C), 2012-2015, MakeBlock
+ * \par Copyright (C), 2012-2016, MakeBlock
  * \class   MeIR
  * \brief   Driver for Me IR module.
  * @file    MeIR.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/11/09
+ * @version V1.0.4
+ * @date    2015/11/16
  * @brief   Header for MeIR.cpp module
  *
  * \par Copyright
- * This software is Copyright (C), 2012-2015, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2
@@ -45,7 +45,11 @@
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * forfish         2015/11/09     1.0.0            Add description
+ * Mark Yan        2015/10/09     1.0.0            Bulid the new.
+ * Mark Yan        2015/10/29     1.0.1            Fix minor errors on format.
+ * Mark Yan        2015/11/02     1.0.2            Fix bug that IRsend and IRreceive can't work at the same time.
+ * forfish         2015/11/09     1.0.3            Add description.
+ * Mark Yan        2015/11/16     1.0.4            add data recovery when timeout.
  * </pre>
  *
  */
