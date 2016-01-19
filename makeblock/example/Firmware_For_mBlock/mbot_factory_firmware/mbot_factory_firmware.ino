@@ -12,6 +12,7 @@
 #include <Wire.h>
 #include <SoftwareSerial.h>
 #include <MeMCore.h>
+#include <Servo.h>
 MeRGBLed rgb(0,16);
 MeUltrasonicSensor ultr(PORT_3);
 MeLineFollower line(PORT_2);
