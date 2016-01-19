@@ -1,7 +1,7 @@
 /**
  * \par Copyright (C), 2012-2016, MakeBlock
  * \brief   Driver for MeZero board.
- * @file    MeZero_H.h
+ * @file    MeZero.h
  * @author  MakeBlock
  * @version V1.0.1
  * @date    2015/09/02
@@ -25,7 +25,7 @@
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * Mark Yan         2015/09/01     1.0.0            Rebuild the New.
+ * Mark Yan         2015/09/01     1.0.0            Build the New.
  * </pre>
  */
 #ifndef MeZero_H

@@ -180,6 +180,8 @@ void setup()
   ir.begin(); 
   Serial.print("Version: ");
   Serial.println(mVersion);
+  ledMx.setBrightness(6);
+  ledMx.setColorIndex(1);
 }
 unsigned char readBuffer(int index){
  return buffer[index]; 
@@ -689,35 +691,20 @@ void runModule(int device){
      }
      int action = readBuffer(7);
      if(action==1){
-            int brightness = readBuffer(8);
-            int color = readBuffer(9);
-            int px = readShort(10);
-            int py = readShort(12);
-            int len = readBuffer(14);
-            char *s = readString(15,len);
-            ledMx.clearScreen();
-            ledMx.setColorIndex(color);
-            ledMx.setBrightness(brightness);
+            int px = buffer[8];
+            int py = buffer[9];
+            int len = readBuffer(10);
+            char *s = readString(11,len);
             ledMx.drawStr(px,py,s);
-         }else if(action==2){
-           int brightness = readBuffer(8);
-            int dw = readBuffer(9);
-            int px = readShort(10);
-            int py = readShort(12);
-            int len = readBuffer(14);
-            uint8_t *ss = readUint8(15,len);
-            ledMx.clearScreen();
-            ledMx.setColorIndex(1);
-            ledMx.setBrightness(brightness);
-            ledMx.drawBitmap(px,py,dw,ss);
-         }else if(action==3){
-            int brightness = readBuffer(8);
-            int point = readBuffer(9);
-            int hours = readShort(10);
-            int minutes = readShort(12);
-            ledMx.clearScreen();
-            ledMx.setColorIndex(1);
-            ledMx.setBrightness(brightness);
+      }else if(action==2){
+            int px = readBuffer(8);
+            int py = readBuffer(9);
+            uint8_t *ss = readUint8(10,16);
+            ledMx.drawBitmap(px,py,16,ss);
+      }else if(action==3){
+            int point = readBuffer(8);
+            int hours = readBuffer(9);
+            int minutes = readBuffer(10);
             ledMx.showClock(hours,minutes,point);
      }
    }

@@ -4,8 +4,8 @@
  * \brief   Driver for Me LED Matrix module.
  * @file    MeLEDMatrix.cpp
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/11/09
+ * @version V1.0.1
+ * @date    2016/01/19
  * @brief   Driver for Me LED Matrix module.
  *
  * \par Copyright
@@ -21,8 +21,7 @@
  * distributed. See http://www.gnu.org/copyleft/gpl.html
  *
  * \par Description
- * This file is a drive for Me Bluetooth device, The bluetooth inherited the 
- * MeSerial class from SoftwareSerial.
+ * This file is a drive for Me LED Matrix device
  *
  * \par Method List:
  *
@@ -38,6 +37,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * forfish         2015/11/11     1.0.0            Add description
+ * Mark Yan        2016/01/19     1.0.1            Add some new symbol
  * </pre>
  *
  */
