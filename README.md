@@ -1,9 +1,9 @@
-# Makeblock Library v3.0
+# Makeblock Library v3.22
 
 Arduino Library for Makeblock Electronic Modules
 
-This library is v3.0, we've made a lot of modifications in the code structure. Their is now a very big difference
-from v2.0. We strongly recommend that all Makeblock customers use the new v3.0 this version.
+This library is v3.22, we've made a lot of modifications in the code structure. Their is now a very big difference
+from v2.0. We strongly recommend that all Makeblock customers use the new version.
 
 How to use:
 
@@ -11,6 +11,7 @@ How to use:
 
 2. copy the makeblock folder to your arduino default library. Your Arduino library folder should now look like this 
    (on Windows): [arduino installation directory]\libraries\makeblock\src
+   (On MACOS): [arduino Package Contents]\contents\Jave\libraries\makeblock\src
 
 3. Open the Arduino Application. (If it's already open, you will need to restart it to see changes.)
 
