@@ -112,7 +112,7 @@ void MeStepper::setpin(uint8_t dir_data, uint8_t step_data)
 {
   _dir_data = dir_data;
   _step_data = step_data;
-  pinMode(_dir_data, INPUT);
+  pinMode(_dir_data, OUTPUT);
   pinMode(_step_data, OUTPUT);
 #ifdef ME_PORT_DEFINED
   s1 = _dir_data;

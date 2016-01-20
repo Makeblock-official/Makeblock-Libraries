@@ -4,8 +4,8 @@
  * \brief   Driver for serial.
  * @file    MeSerial.cpp
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/08
+ * @version V1.0.1
+ * @date    2016/01/20
  * @brief   this file is a drive for serial
  *
  * \par Copyright
@@ -39,6 +39,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/08     1.0.0            Rebuild the old lib.
+ * Mark Yan         2016/01/20     1.0.1            support arduino pin-setting.
  * </pre>
  * @example MeSerialReceiveTest.ino
  * @example MeSerialTransmitTest.ino
@@ -47,7 +48,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#ifdef ME_PORT_DEFINED
 /**
  * Alternate Constructor which can call your own function to map the serial to arduino port,
  * no pins are used or initialized here. hardware serial will be used by default.
@@ -82,7 +82,7 @@ MeSerial::MeSerial(uint8_t port) : MePort(port), SoftwareSerial(mePort[port].s2,
   _hard = getPort() == PORT_5;
 #endif
 }
-#else // ME_PORT_DEFINED
+
 /**
  * Alternate Constructor which can call your own function to map the serial to arduino port,
  * If the hardware serial was selected, we will used the hardware serial.
@@ -122,7 +122,6 @@ MeSerial::MeSerial(uint8_t receivePin, uint8_t transmitPin, bool inverse_logic)\
   }
 #endif
 }
-#endif // ME_PORT_DEFINED
 
 /**
  * \par Function

@@ -4,8 +4,8 @@
  * \brief   Driver for Me USB Host module.
  * @file    MeUSBHost.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/11/09
+ * @version V1.0.1
+ * @date    2016/01/20
  * @brief   Header for MeUSBHost.cpp module
  *
  * \par Copyright
@@ -36,6 +36,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * forfish         2015/11/10     1.0.0            Add description
+ * Mark Yan        2016/01/20     1.0.1            Support hardware serial automatic Identification
  * </pre>
  *
  * @example TestUSBHsot.ino
@@ -43,11 +44,13 @@
 
 #ifndef MeUSBHost_H
 #define MeUSBHost_H
+
 #include <Arduino.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include "MeConfig.h"
 #include "MePort.h"
+#include "MeSerial.h"
 #define USB2_0 1
 #define USB1_0 0
 
@@ -464,7 +467,7 @@ public:
   uint8_t host_recv();
 
 private:
-  SoftwareSerial *HSerial;
+  MeSerial *HSerial;
   int16_t stallCount;
   int8_t usbtype;
 

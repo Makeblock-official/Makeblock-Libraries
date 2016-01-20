@@ -4,8 +4,8 @@
  * \brief   Driver for Me USB Host module.
  * @file    MeUSBHost.cpp
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/11/09
+ * @version V1.0.1
+ * @date    2016/01/20
  * @brief   Driver for Me USB Host module.
  *
  * \par Copyright
@@ -36,6 +36,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * forfish         2015/11/10     1.0.0            Add description
+ * Mark Yan        2016/01/20     1.0.1            Support hardware serial automatic Identification
  * </pre>
  *
  * @example TestUSBHsot.ino
@@ -56,12 +57,6 @@ uint8_t endp6_mode, endp7_mode;
 uint8_t *cmd_buf;
 uint8_t *ret_buf;
 PUSB_ENDP_DESCR tmpEp;
-// softserial delays too much, only hardware serial now
-//#if defined(__AVR_ATmega32U4__)
-//  #define TSerial Serial1
-//#else
-//  #define TSerial Serial
-//#endif
 
 /**
  * Alternate Constructor which can call your own function to map the USB Host to arduino port,
@@ -76,7 +71,7 @@ MeUSBHost::MeUSBHost() : MePort(0)
 
 MeUSBHost::MeUSBHost(uint8_t s1, uint8_t s2)
 {
-  HSerial = new SoftwareSerial(s1,s2);
+  HSerial = new MeSerial(s1,s2);
 }
 
 /**
@@ -87,7 +82,7 @@ MeUSBHost::MeUSBHost(uint8_t s1, uint8_t s2)
  */
 MeUSBHost::MeUSBHost(uint8_t port) : MePort(port)
 {
-
+  HSerial = new MeSerial(port);
 }
 
 /**
@@ -110,7 +105,9 @@ uint8_t MeUSBHost::CH375_RD()
   if(HSerial->available()){
     uint8_t c = HSerial->read();
 #ifdef CH375_DBG
-    Serial.printf("<<%x\r\n",c);
+    Serial.print("<< 0x");
+    Serial.print(c,HEX);
+    Serial.println();
 #endif
     return c;
   }
@@ -136,7 +133,9 @@ void MeUSBHost::CH375_WR(uint8_t c)
   HSerial->write(c);
   delay(2);
 #ifdef CH375_DBG
-  Serial.printf(">>%x\r\n",c);
+  Serial.print(">> 0x");
+  Serial.print(c,HEX);
+  Serial.println();
 #endif
 }
 
@@ -200,7 +199,9 @@ uint8_t MeUSBHost::getIrq()
 void MeUSBHost::toggle_send()
 {
 #ifdef CH375_DBG
-  Serial.printf("toggle send %x\r\n",endp7_mode);
+  Serial.print("toggle send: 0x");
+  Serial.print(endp7_mode,HEX);
+  Serial.println();
 #endif
   CH375_WR(CMD_SET_ENDP7);
   CH375_WR( endp7_mode );
@@ -226,7 +227,9 @@ void MeUSBHost::toggle_recv()
   CH375_WR( CMD_SET_ENDP6 );
   CH375_WR( endp6_mode );
 #ifdef CH375_DBG
-  Serial.printf("toggle recv:%x\r\n", endp6_mode);
+  Serial.print("toggle recv: 0x");
+  Serial.print(endp6_mode,HEX);
+  Serial.println();
 #endif
   endp6_mode^=0x40;
 }
@@ -250,7 +253,9 @@ uint8_t MeUSBHost::issue_token( uint8_t endp_and_pid )
   CH375_WR( CMD_ISSUE_TOKEN );
   CH375_WR( endp_and_pid );  /* Bit7~4 for EndPoint No, Bit3~0 for Token PID */
 #ifdef CH375_DBG
-  Serial.printf("issue token %x\r\n",endp_and_pid);
+  Serial.print("issue token: 0x");
+  Serial.print(endp_and_pid,HEX);
+  Serial.println();
 #endif
   delay(2);
   return getIrq();
@@ -275,7 +280,9 @@ uint8_t MeUSBHost::issue_token( uint8_t endp_and_pid )
 void MeUSBHost::wr_usb_data( uint8_t len, uint8_t *buf )
 {
 #ifdef CH375_DBG
-  Serial.printf("usb wr %d\r\n",len);
+  Serial.print("usb wr: ");
+  Serial.print(len,DEC);
+  Serial.println();
 #endif
   CH375_WR( CMD_WR_USB_DATA7 );
   CH375_WR( len );
@@ -306,7 +313,9 @@ uint8_t MeUSBHost::rd_usb_data( uint8_t *buf )
   CH375_WR( CMD_RD_USB_DATA );
   len=CH375_RD();
 #ifdef CH375_DBG
-  Serial.printf("usb rd %d\r\n",len);
+  Serial.print("usb rd: ");
+  Serial.print(len,DEC);
+  Serial.println();
 #endif
   for ( i=0; i!=len; i++ ) *buf++=CH375_RD();
   return( len );
@@ -467,7 +476,8 @@ uint8_t MeUSBHost::host_recv()
 #ifdef CH375_DBG
     for(int16_t i=0;i<len;i++){
       // point hid device
-      Serial.printf(" 0x%x",(int16_t)RECV_BUFFER[i]);
+      Serial.print(" 0x");
+      Serial.print((int16_t)RECV_BUFFER[i],HEX);
     }
     Serial.println();
 #endif
@@ -517,12 +527,16 @@ void MeUSBHost::resetBus()
   int16_t c;
   c = set_usb_mode(7);
 #ifdef CH375_DBG
-  Serial.printf("set mode 7: %x\n",c);
+  Serial.print("set mode 7: 0x");
+  Serial.print(c,HEX);
+  Serial.println();
 #endif
   delay(10);
   c = set_usb_mode(6);
 #ifdef CH375_DBG
-  Serial.printf("set mode 6: %x\n",c);
+  Serial.print("set mode 6: 0x");
+  Serial.print(c,HEX);
+  Serial.println();
 #endif
   delay(10);
 }
@@ -547,7 +561,11 @@ void MeUSBHost::init(int8_t type)
   device_online = false;
   device_ready = false;
   usbtype = type;
-  HSerial = new SoftwareSerial(s2, s1);
+  if(HSerial == NULL)
+  {
+    HSerial = new MeSerial(s2, s1);
+  }
+  
   HSerial->begin(9600);
 }
 
@@ -572,12 +590,18 @@ int16_t MeUSBHost::initHIDDevice()
   if(usbtype==USB1_0) set_freq(); //work on a lower freq, necessary for ch375
   irq = get_desr(1);
 #ifdef CH375_DBG
-  Serial.printf("get des irq:%x\n",irq);
+  Serial.print("get des irq: 0x");
+  Serial.print(irq,HEX);
+  Serial.println();
 #endif
   if(irq==USB_INT_SUCCESS){
       len = rd_usb_data( RECV_BUFFER );
 #ifdef CH375_DBG
-      Serial.printf("descr1 len %d type %x\r\n",len,p_dev_descr->bDescriptorType);
+      Serial.print("descr1 len: ");
+      Serial.print(len,DEC);
+      Serial.print(" type: 0x");
+      Serial.print(p_dev_descr->bDescriptorType,HEX);
+      Serial.println();
 #endif
       irq = set_addr(2);
       if(irq==USB_INT_SUCCESS){
@@ -585,15 +609,33 @@ int16_t MeUSBHost::initHIDDevice()
         if(irq==USB_INT_SUCCESS){
           len = rd_usb_data( RECV_BUFFER );
 #ifdef CH375_DBG
-          Serial.printf("descr2 len %d class %x subclass %x\r\n",len,p_cfg_descr->itf_descr.bInterfaceClass, p_cfg_descr->itf_descr.bInterfaceSubClass); // interface class should be 0x03 for HID
-          Serial.printf("num of ep %d\r\n",p_cfg_descr->itf_descr.bNumEndpoints);
-          Serial.printf("ep0 %x %x\r\n",p_cfg_descr->endp_descr[0].bLength, p_cfg_descr->endp_descr[0].bDescriptorType);
+          Serial.print("descr1 len: ");
+          Serial.print(len,DEC);
+          Serial.print(" class: 0x");
+          Serial.print(p_cfg_descr->itf_descr.bInterfaceClass,HEX);
+          Serial.print(" subclass: 0x");
+          Serial.print(p_cfg_descr->itf_descr.bInterfaceSubClass,HEX);
+          Serial.println();
+
+          Serial.print("num of ep: ");
+          Serial.print(p_cfg_descr->itf_descr.bNumEndpoints,DEC);
+          Serial.println();
+
+          Serial.print("ep0: 0x");
+          Serial.print(p_cfg_descr->endp_descr[0].bLength,HEX);
+          Serial.print(" 0x");
+          Serial.print(p_cfg_descr->endp_descr[0].bDescriptorType,HEX);
+          Serial.println();
 #endif
           if(p_cfg_descr->endp_descr[0].bDescriptorType==0x21){ // skip hid des
             tmpEp = (PUSB_ENDP_DESCR)((int8_t*)(&(p_cfg_descr->endp_descr[0]))+p_cfg_descr->endp_descr[0].bLength); // get the real ep position
           }
 #ifdef CH375_DBG
-          Serial.printf("endpoint %x %x\r\n",tmpEp->bEndpointAddress,tmpEp->bDescriptorType);
+          Serial.print("endpoint: 0x");
+          Serial.print(tmpEp->bEndpointAddress,HEX);
+          Serial.print(" 0x");
+          Serial.print(tmpEp->bDescriptorType,HEX);
+          Serial.println();
 #endif
           endp_out_addr=endp_in_addr=0;
           address =tmpEp->bEndpointAddress;  /* Address of First EndPoint */
