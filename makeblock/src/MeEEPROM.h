@@ -1,3 +1,34 @@
+/**
+ * \par Copyright (C), 2012-2016, MakeBlock
+ * \brief   Location map for EEPROM.
+ * @file    MeEEPROM.h
+ * @author  MakeBlock
+ * @version V1.0.
+ * @date    2016/01/21
+ * @brief   EEPROM location map.
+ *
+ * \par Copyright
+ * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
+ * conditions. The main licensing options available are GPL V2 or Commercial: \n
+ *
+ * \par Open Source Licensing GPL V2
+ * This is the appropriate option if you want to share the source code of your \n
+ * application with everyone you distribute it to, and you also want to give them \n
+ * the right to share who uses it. If you wish to use this software under Open \n
+ * Source Licensing, you must contribute all your source code to the open source \n
+ * community in accordance with the GPL Version 2 when your application is \n
+ * distributed. See http://www.gnu.org/copyleft/gpl.html
+ *
+ * \par Description
+ * This file is a location map for EEPROM that used by makeblock libraries.
+ *
+ * \par History:
+ * <pre>
+ * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
+ *  Mark Yan         2015/09/02          1.0.0         build the new
+ * </pre>
+ *
+ */
 #ifndef ME_EEPROM_H
 #define ME_EEPROM_H
 #include <Arduino.h>
@@ -37,3 +68,9 @@
 #define BALANCED_CAR_DIR_PID_ADDR       BALANCED_CAR_SPEED_PID_ADDR + 12                      //PID 4*3
 #define BALANCED_CAR_END_ADDR           BALANCED_CAR_DIR_PID_ADDR + 4                         //only P
 #endif
+
+//0x80 - 0x90
+#define AURIGA_MODE_PARTITION_CHECK    0x80
+#define AURIGA_MODE_START_ADDR         AURIGA_MODE_PARTITION_CHECK + 2                        //Partition checksum
+#define AURIGA_MODE_CONFIGURE          AURIGA_MODE_START_ADDR + 1                             //start data
+#define AURIGA_MODE_END_ADDR           AURIGA_MODE_CONFIGURE + 1                              //auriga mode

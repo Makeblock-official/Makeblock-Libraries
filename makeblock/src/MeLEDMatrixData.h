@@ -3,8 +3,8 @@
  * \brief   Symbol data for Me LED Matrix module.
  * @file    MeLEDMatrixData.h
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2016/01/19
+ * @version V1.0.2
+ * @date    2016/01/27
  * @brief   Supporting Header for MeLEDMatrix.cpp module
  *
  * \par Copyright
@@ -27,6 +27,7 @@
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * forfish         2015/11/09     1.0.0            Add description
  * Mark Yan        2016/01/19     1.0.1            Add some new symbol
+ * Mark Yan        2016/01/27     1.0.2            Add digital printing
  * </pre>
  *
  */
@@ -38,6 +39,8 @@ typedef struct
   uint8_t Character[1];
   uint8_t data[6];
 }LED_Matrix_Font_6x8_TypeDef;
+
+//Terminal
 const LED_Matrix_Font_6x8_TypeDef Character_font_6x8[] PROGMEM =
 {
     ' ',  0x00,0x00,0x00,0x00,0x00,0x00,
@@ -143,7 +146,7 @@ typedef struct
 const LED_Matrix_Clock_Number_Font_3x8_TypeDef Clock_Number_font_3x8[] PROGMEM =
 {
 	0x7C,0x44,0x7C,  //0
-	0x00,0x00,0x7C,  //1
+	0x00,0x7C,0x00,  //1
 	0x5C,0x54,0x74,  //2
 	0x54,0x54,0x7C,  //3
 	0x70,0x10,0x7C,  //4
@@ -152,6 +155,8 @@ const LED_Matrix_Clock_Number_Font_3x8_TypeDef Clock_Number_font_3x8[] PROGMEM =
 	0x40,0x40,0x7C,  //7
 	0x7C,0x54,0x7C,  //8
 	0x74,0x54,0x7C,  //9
+    0x00,0x04,0x00,  //.
+	0x20,0x20,0x20,  //-
 };
 
 #endif

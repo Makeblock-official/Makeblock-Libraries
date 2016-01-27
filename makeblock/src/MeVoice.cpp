@@ -26,7 +26,7 @@
  *
  * \par Method List:
  *
- *    1. void MeVoice::begin(void)
+ *    1. void MeVoice::begin(long speed)
  *    2. int16_t MeVoice::read(void)
  *    3. uint8_t MeVoice::getCode(void)
  *    4. void MeVoice::loop(void)

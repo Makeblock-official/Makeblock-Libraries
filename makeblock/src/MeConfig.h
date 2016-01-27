@@ -6,10 +6,11 @@
  * This is the library provided by makeblock. \n
  * It provides drivers for all makeblock RJ25 jack interface modules. \n
  *
- * The latest version of this documentation can be downloaded from \n
- * http://learn.makeblock.cc/
+ * The latest version of this documentation can see from here \n
+ * http://learn.makeblock.cc/Makeblock-library-for-Arduino/index.html
  *
- * Package can be download from http://learn.makeblock.cc/
+ * Package can be download from https://codeload.github.com/Makeblock-official/Makeblock-Libraries/zip/master \n
+ * If you are familiar with git, you also can clone it from https://github.com/Makeblock-official/Makeblock-Libraries
  *
  * \par Installation
  *
@@ -39,10 +40,11 @@
  * \par History:
  * <pre>
  * Author           Time           Version          Descr
- * Mark Yan         2015/07/24     1.0.0            Rebuild the old lib.
- * Rafael Lee       2015/09/02     1.0.1            Added some comments and macros.
- * Lawrence         2015/09/09     1.0.2            Include some Arduino's official headfiles which path specified.
- * Mark Yan         2015/11/02     1.0.3            fix bug on MACOS.
+ * Mark Yan         2015/07/24     3.0.0            Rebuild the old lib.
+ * Rafael Lee       2015/09/02     3.1.0            Added some comments and macros.
+ * Lawrence         2015/09/09     3.2.0            Include some Arduino's official headfiles which path specified.
+ * Mark Yan         2015/11/02     3.2.1            fix bug on MACOS.
+ * Mark Yan         2016/01/21     3.2.2            fix some library bugs.
  * </pre>
  *
  * \author  Mark Yan (myan@makeblock.com) DO NOT CONTACT THE AUTHOR DIRECTLY: USE THE LISTS

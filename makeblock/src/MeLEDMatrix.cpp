@@ -4,8 +4,8 @@
  * \brief   Driver for Me LED Matrix module.
  * @file    MeLEDMatrix.cpp
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2016/01/19
+ * @version V1.0.2
+ * @date    2016/01/27
  * @brief   Driver for Me LED Matrix module.
  *
  * \par Copyright
@@ -38,6 +38,7 @@
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * forfish         2015/11/11     1.0.0            Add description
  * Mark Yan        2016/01/19     1.0.1            Add some new symbol
+ * Mark Yan        2016/01/27     1.0.2            Add digital printing
  * </pre>
  *
  */
@@ -569,7 +570,7 @@ void MeLEDMatrix::showStr()
  * \par Function
  *    showClock
  * \par Description
- *    Show the clock of LED Matrix.
+ *    Show the clock on LED Matrix.
  * \param[in]
  *    hour - The part of hour in clock.
  * \param[in]
@@ -626,4 +627,133 @@ void MeLEDMatrix::showClock(uint8_t hour, uint8_t minute, bool point_flag)
     }
 
     writeBytesToAddress(0,u8_Display_Buffer,LED_BUFFER_SIZE);
+}
+
+/**
+ * \par Function
+ *    showNum
+ * \par Description
+ *    Show the number on LED Matrix.
+ * \param[in]
+ *    value - The float data need show.
+ * \param[in]
+ *    digits - Number of digits to display.
+ * \par Output
+ *    None
+ * \Return
+ *    None.
+ * \par Others
+ *    None
+ */
+void MeLEDMatrix::showNum(float value,uint8_t digits)
+{
+Posotion_1:
+  uint8_t buf[4] = { ' ', ' ', ' ', ' ' };
+  uint8_t tempBuf[4];
+  uint8_t b = 0;
+  uint8_t bit_num = 0;
+  uint8_t int_num = 0;
+  uint8_t isNeg = 0;
+  double number = value;
+  if (number >= 9999.5 || number <= -999.5)
+  {
+    buf[0] = ' ';
+    buf[1] = ' ';
+    buf[2] = ' ';
+    buf[3] = 0x0e;
+  }
+  else
+  {
+    // Handle negative numbers
+    if (number < 0.0)
+    {
+      number = -number;
+      isNeg = 1;
+    }
+    // Round correctly so that print(1.999, 2) prints as "2.00"
+    double rounding = 0.5;
+    for (uint8_t i = 0; i < digits; ++i)
+    {
+      rounding /= 10.0;
+    }
+    number += rounding;
+
+    // Extract the integer part of the number and print it
+    uint16_t int_part = (uint16_t)number;
+    double remainder = number - (double)int_part;
+    do
+    {
+      uint16_t m = int_part;
+      int_part /= 10;
+      int8_t c = m - 10 * int_part;
+      tempBuf[int_num] = c;
+      int_num++;
+    }
+    while (int_part);
+
+    bit_num = isNeg + int_num + digits;
+
+    if (bit_num > 4)
+    {
+      bit_num = 4;
+      digits = 4 - (isNeg + int_num);
+      goto Posotion_1;
+    }
+    b = 4 - bit_num;
+    if (isNeg)
+    {
+      buf[b++] = 0x0b; // '-' display minus sign
+    }
+    for (uint8_t i = int_num; i > 0; i--)
+    {
+      buf[b++] = tempBuf[i - 1];
+    }
+    // Print the decimal point, but only if there are digits beyond
+    if (digits > 0)
+    {
+      buf[b++] = 0x0a;  // display '.'
+      // Extract digits from the remainder one at a time
+      while (digits-- > 0)
+      {
+        remainder *= 10.0;
+        int16_t toPrint = int16_t(remainder);
+        buf[b++] = toPrint;
+        remainder -= toPrint;
+      }
+    }
+  }
+
+  u8_Display_Buffer[0]  = pgm_read_byte(&Clock_Number_font_3x8[buf[0]].data[0]);
+  u8_Display_Buffer[1]  = pgm_read_byte(&Clock_Number_font_3x8[buf[0]].data[1]);
+  u8_Display_Buffer[2]  = pgm_read_byte(&Clock_Number_font_3x8[buf[0]].data[2]);
+  
+  u8_Display_Buffer[3]  = 0x00;
+  
+  u8_Display_Buffer[4]  = pgm_read_byte(&Clock_Number_font_3x8[buf[1]].data[0]);
+  u8_Display_Buffer[5]  = pgm_read_byte(&Clock_Number_font_3x8[buf[1]].data[1]);
+  u8_Display_Buffer[6]  = pgm_read_byte(&Clock_Number_font_3x8[buf[1]].data[2]);
+  
+  u8_Display_Buffer[7]  = 0x00;
+  
+  u8_Display_Buffer[8]  = pgm_read_byte(&Clock_Number_font_3x8[buf[2]].data[0]);
+  u8_Display_Buffer[9]  = pgm_read_byte(&Clock_Number_font_3x8[buf[2]].data[1]);
+  u8_Display_Buffer[10]  = pgm_read_byte(&Clock_Number_font_3x8[buf[2]].data[2]);
+  
+  u8_Display_Buffer[11]  = 0x00;
+  
+  u8_Display_Buffer[12]  = pgm_read_byte(&Clock_Number_font_3x8[buf[3]].data[0]);
+  u8_Display_Buffer[13]  = pgm_read_byte(&Clock_Number_font_3x8[buf[3]].data[1]);
+  u8_Display_Buffer[14]  = pgm_read_byte(&Clock_Number_font_3x8[buf[3]].data[2]);
+
+  u8_Display_Buffer[15]  = 0x00;
+
+  if(b_Color_Index == 0)
+  {
+    for(uint8_t k=0; k<LED_BUFFER_SIZE; k++)
+    {
+      u8_Display_Buffer[k] = ~u8_Display_Buffer[k];
+    }
+  }
+
+  writeBytesToAddress(0,u8_Display_Buffer,LED_BUFFER_SIZE);
 }

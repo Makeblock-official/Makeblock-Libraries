@@ -47,7 +47,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/07/24     1.0.0            Rebuild the old lib.
- * Rafael Lee       2015/09/02     1.0.0            Added some comments and macros.
+ * Rafael Lee       2015/09/02     1.0.1            Added some comments and macros.
  * Mark Yan         2015/10/29     1.0.2            fix issue when display negative data.
  * Mark Yan         2015/11/09     1.0.3            fix some comments error.
  * Mark Yan         2015/11/12     1.0.4            fix driver API.

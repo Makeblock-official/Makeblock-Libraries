@@ -1,11 +1,11 @@
 /**
  * \par Copyright (C), 2012-2016, MakeBlock
- * \brief   Driver for MeZero board.
- * @file    MeZero.h
+ * \brief   Driver for MeAuriga board.
+ * @file    MeAuriga.h
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2015/09/02
- * @brief   Driver for MeZero board.
+ * @version V1.0.0
+ * @date    2016/01/27
+ * @brief   Driver for MeAuriga board.
  *
  * \par Copyright
  * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
@@ -20,16 +20,16 @@
  * distributed. See http://www.gnu.org/copyleft/gpl.html
  *
  * \par Description
- * This file is the driver for MeOrion hoard by MakeBlock.
+ * This file is the driver for MeAuriga board by MakeBlock.
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * Mark Yan         2015/09/01     1.0.0            Build the New.
+ * Mark Yan         2016/01/27     1.0.0            Build the New.
  * </pre>
  */
-#ifndef MeZero_H
-#define MeZero_H
+#ifndef MeAuriga_H
+#define MeAuriga_H
 
 #include <Arduino.h>
 #include "MeConfig.h"
@@ -66,8 +66,8 @@
 #include "MeFlameSensor.h"
 #include "MeGasSensor.h"
 
-/*********************  Orion Board GPIO Map *********************************/
-// struct defined in MePort.h
+/*********************  Auriga Board GPIO Map *********************************/
+// struct defined in MeAuriga.h
  MePort_Sig mePort[15] =
  {
    { NC, NC }, {   5,   4 }, {   3,   2 }, {   7,   6 }, {   9,   8 }, 
@@ -78,4 +78,4 @@
 #define buzzerOn()  pinMode(10,OUTPUT),digitalWrite(10, HIGH)
 #define buzzerOff() pinMode(10,OUTPUT),digitalWrite(10, LOW)
 
-#endif // MeOrion_H
+#endif // MeAuriga_H

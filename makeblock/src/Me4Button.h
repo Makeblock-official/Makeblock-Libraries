@@ -32,7 +32,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/07/24     1.0.0            Rebuild the old lib.
- * Rafael Lee       2015/08/31     1.0.0            Added some comments and macros.
+ * Rafael Lee       2015/08/31     1.0.1            Added some comments and macros.
  * </pre>
  */
 

@@ -16,6 +16,7 @@
  * <pre>
  * <Author>     <Time>        <Version>      <Descr>
  * Mark Yan     2016/01/19    1.0.0          build the new
+ * Mark Yan     2016/01/27    1.0.1          add digital printing
  * </pre>
  */
 #include "MeMCore.h"
@@ -28,13 +29,15 @@ void setup()
   ledMx.setColorIndex(1);
 }
 
-char *s = "1<2";
+char *s = "AB";
 
 void loop()
 {
   ledMx.showClock(12,03,1);
   delay(2000);
   ledMx.drawStr(0,7,s);
+  delay(2000);
+  ledMx.showNum(12.31,3);
   delay(2000);
 }
 
