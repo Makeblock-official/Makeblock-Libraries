@@ -30,8 +30,9 @@
  *    3.    void MeLEDMatrix::setColorIndex(bool Color_Number);
  *    4.    void MeLEDMatrix::drawBitmap(int8_t x, int8_t y, uint8_t Bitmap_Width, uint8_t *Bitmap);
  *    5.    void MeLEDMatrix::drawStr(int16_t X_position, int8_t Y_position, const char *str);
- *    6.    void MeLEDMatrix::showClock(uint8_t hour, uint8_t minute, bool point_flag)
- *    7.    void MeLEDMatrix::reset(uint8_t port);
+ *    6.    void MeLEDMatrix::showClock(uint8_t hour, uint8_t minute, bool point_flag);
+ *    7.    void MeLEDMatrix::showNum(float value,uint8_t digits);
+ *    8.    void MeLEDMatrix::reset(uint8_t port);
  *
  * \par History:
  * <pre>
