@@ -4,8 +4,8 @@
  * \brief   Driver for Me LED Matrix module.
  * @file    MeLEDMatrix.cpp
  * @author  MakeBlock
- * @version V1.0.2
- * @date    2016/01/27
+ * @version V1.0.3
+ * @date    2016/01/29
  * @brief   Driver for Me LED Matrix module.
  *
  * \par Copyright
@@ -40,6 +40,7 @@
  * forfish         2015/11/11     1.0.0            Add description
  * Mark Yan        2016/01/19     1.0.1            Add some new symbol
  * Mark Yan        2016/01/27     1.0.2            Add digital printing
+ * Mark Yan        2016/01/29     1.0.3            Fix issue when show integer number
  * </pre>
  *
  */
@@ -649,19 +650,26 @@ void MeLEDMatrix::showClock(uint8_t hour, uint8_t minute, bool point_flag)
 void MeLEDMatrix::showNum(float value,uint8_t digits)
 {
 Posotion_1:
-  uint8_t buf[4] = { ' ', ' ', ' ', ' ' };
+  uint8_t buf[4] = { 0x0c, 0x0c, 0x0c, 0x0c};
   uint8_t tempBuf[4];
   uint8_t b = 0;
   uint8_t bit_num = 0;
   uint8_t int_num = 0;
   uint8_t isNeg = 0;
   double number = value;
-  if (number >= 9999.5 || number <= -999.5)
+  if (number >= 9999.5)
   {
-    buf[0] = ' ';
-    buf[1] = ' ';
-    buf[2] = ' ';
-    buf[3] = 0x0e;
+    buf[0] = 9;
+    buf[1] = 9;
+    buf[2] = 9;
+    buf[3] = 9;
+  }
+  else if(number <= -999.5)
+  {
+    buf[0] = 0x0b;
+    buf[1] = 9;
+    buf[2] = 9;
+    buf[3] = 9;  
   }
   else
   {
@@ -712,15 +720,33 @@ Posotion_1:
     // Print the decimal point, but only if there are digits beyond
     if (digits > 0)
     {
-      buf[b++] = 0x0a;  // display '.'
-      // Extract digits from the remainder one at a time
-      while (digits-- > 0)
+      if((b == 3) && (int16_t(remainder*10) == 0))
       {
-        remainder *= 10.0;
-        int16_t toPrint = int16_t(remainder);
-        buf[b++] = toPrint;
-        remainder -= toPrint;
-      }
+        buf[3] = 0x0c;
+	  }
+      else if((b == 2) && (int16_t(remainder*100) == 0))
+      {
+        buf[2] = 0x0c;
+        buf[3] = 0x0c;
+	  }
+	  else if((b == 1) && (int16_t(remainder*1000) == 0))
+      {
+        buf[1] = 0x0c;
+        buf[2] = 0x0c;
+        buf[3] = 0x0c;
+	  }
+	  else
+	  {
+        buf[b++] = 0x0a;  // display '.'
+        // Extract digits from the remainder one at a time
+        while (digits-- > 0)
+        {
+          remainder *= 10.0;
+          int16_t toPrint = int16_t(remainder);
+          buf[b++] = toPrint;
+          remainder -= toPrint;
+        }
+	  }
     }
   }
 

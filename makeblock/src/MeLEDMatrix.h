@@ -4,8 +4,8 @@
  * \brief   Driver for Me LED Matrix module.
  * @file    MeLEDMatrix.h
  * @author  MakeBlock
- * @version V1.0.2
- * @date    2016/01/27
+ * @version V1.0.3
+ * @date    2016/01/29
  * @brief   Header for MeLEDMatrix.cpp module
  *
  * \par Copyright
@@ -40,6 +40,7 @@
  * forfish         2015/11/09     1.0.0            Add description
  * Mark Yan        2016/01/19     1.0.1            Add some new symbol
  * Mark Yan        2016/01/27     1.0.2            Add digital printing
+ * Mark Yan        2016/01/29     1.0.3            Fix issue when show integer number
  * </pre>
  *
  * @example Me_LEDMatrixTest.ino
@@ -242,7 +243,7 @@ public:
  * \par Others
  *    None
  */
-  void showNum(float value,uint8_t = 1);
+  void showNum(float value,uint8_t = 3);
 
 /**
  * \par Function

@@ -19,7 +19,7 @@
  * Mark Yan     2016/01/27    1.0.1          add digital printing
  * </pre>
  */
-#include "MeMCore.h"
+#include "MeOrion.h"
 
 MeLEDMatrix ledMx(PORT_4);
 
@@ -37,7 +37,7 @@ void loop()
   delay(2000);
   ledMx.drawStr(0,7,s);
   delay(2000);
-  ledMx.showNum(12.31,3);
+  ledMx.showNum(1.23);
   delay(2000);
 }
 

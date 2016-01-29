@@ -3,8 +3,8 @@
  * \brief   Symbol data for Me LED Matrix module.
  * @file    MeLEDMatrixData.h
  * @author  MakeBlock
- * @version V1.0.2
- * @date    2016/01/27
+ * @version V1.0.3
+ * @date    2016/01/29
  * @brief   Supporting Header for MeLEDMatrix.cpp module
  *
  * \par Copyright
@@ -28,6 +28,7 @@
  * forfish         2015/11/09     1.0.0            Add description
  * Mark Yan        2016/01/19     1.0.1            Add some new symbol
  * Mark Yan        2016/01/27     1.0.2            Add digital printing
+ * Mark Yan        2016/01/29     1.0.3            Fix issue when show integer number
  * </pre>
  *
  */
@@ -157,6 +158,7 @@ const LED_Matrix_Clock_Number_Font_3x8_TypeDef Clock_Number_font_3x8[] PROGMEM =
 	0x74,0x54,0x7C,  //9
     0x00,0x04,0x00,  //.
 	0x20,0x20,0x20,  //-
+	0x00,0x00,0x00,  //
 };
 
 #endif
