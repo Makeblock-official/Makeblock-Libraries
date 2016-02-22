@@ -314,6 +314,22 @@ bool setColorAt(uint8_t index, uint8_t red, uint8_t green, uint8_t blue);
 
 /**
  * \par Function
+ *   setNumber
+ * \par Description
+ *   Assigned the LED display buffer by the LED number
+ * \param[in]
+ *   num_leds - The LED number you used
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+  void setNumber(uint8_t num_led);
+
+/**
+ * \par Function
  *   show
  * \par Description
  *   Transmission the data to WS2812
@@ -352,22 +368,6 @@ private:
  *   None
  */
   void rgbled_sendarray_mask(uint8_t *array, uint16_t length, uint8_t pinmask, uint8_t *port);
-
-/**
- * \par Function
- *   setNumber
- * \par Description
- *   Assigned the LED display buffer by the LED number
- * \param[in]
- *   num_leds - The LED number you used
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   None
- */
-  void setNumber(uint8_t num_led);
 
   const volatile uint8_t *ws2812_port;
   volatile uint8_t *ws2812_port_reg;
