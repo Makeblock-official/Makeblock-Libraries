@@ -1,12 +1,12 @@
 /**
  * \par Copyright (C), 2012-2016, MakeBlock
  * \class   MeEncoderOnBoard
- * \brief   Driver for Encoder module on mZero.
+ * \brief   Driver for Encoder module on MeAuriga and MeMegaPi.
  * @file    MeEncoderOnBoard.cpp
  * @author  MakeBlock
  * @version V1.0.0
  * @date    2015/11/10
- * @brief   Driver for Encoder module on mZero.
+ * @brief   Driver for Encoder module on MeAuriga and MeMegaPi.
  *
  * \par Copyright
  * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
@@ -21,7 +21,7 @@
  * distributed. See http://www.gnu.org/copyleft/gpl.html
  *
  * \par Description
- * This file is a drive for Encoder On mZero.
+ * This file is a drive for Encoder On MeAuriga and MeMegaPi.
  *
  * \par Method List:
  *
@@ -35,12 +35,6 @@
  */
 
 #include "MeEncoderOnBoard.h"
-
-Encoder_port_type encoder_Port[2] =
-{
-  { 19, 42, 44, 49, 48},
-  { 18, 43, 45, 47, 46},
-};
 
 MeEncoderOnBoard::MeEncoderOnBoard(uint8_t slot)
 {
@@ -57,13 +51,29 @@ MeEncoderOnBoard::MeEncoderOnBoard(uint8_t slot)
   
   encode_structure.pulse_pos = 0;
   
-  if(_Port_A == 19)
+  if(_Port_A == 18)
+  {
+    _IntNum = 5;
+  }
+  else if(_Port_A == 19)
   {
     _IntNum = 4;
   }
-  else if(_Port_A == 18)
+  else if(_Port_A == 20)
   {
-    _IntNum = 5;
+    _IntNum = 3;
+  }
+  else if(_Port_A == 21)
+  {
+    _IntNum = 2;
+  }
+  else if(_Port_A == 3)
+  {
+    _IntNum = 1;
+  }
+  else if(_Port_A == 2)
+  {
+    _IntNum = 0;
   }
 }
 

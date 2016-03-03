@@ -99,8 +99,12 @@ extern MePort_Sig mePort[15];  // mePort[0] is nonsense
 
 #define SLOT1       (1)
 #define SLOT2       (2)
+#define SLOT3       (3)
+#define SLOT4       (4)
 #define SLOT_1  SLOT1
 #define SLOT_2  SLOT2
+#define SLOT_3  SLOT3
+#define SLOT_4  SLOT4
 
 #define FALSE   (0)
 #define TRUE    (1)

@@ -1,11 +1,11 @@
 /**
  * \par Copyright (C), 2012-2016, MakeBlock
- * \brief   Driver for MeAuriga board.
- * @file    MeAuriga.h
+ * \brief   Driver for MegaPi board.
+ * @file    MeMegaPi.h
  * @author  MakeBlock
  * @version V1.0.0
- * @date    2016/01/27
- * @brief   Driver for MeAuriga board.
+ * @date    2016/02/20
+ * @brief   Driver for MegaPi board.
  *
  * \par Copyright
  * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
@@ -20,17 +20,16 @@
  * distributed. See http://www.gnu.org/copyleft/gpl.html
  *
  * \par Description
- * This file is the driver for MeAuriga board by MakeBlock.
+ * This file is the driver for MegaPi board by MakeBlock.
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * Mark Yan         2016/01/27     1.0.0            Build the New.
- * Mark Yan         2016/02/20     1.0.1            Change the port enumeration
+ * Mark Yan         2016/02/20     1.0.0            Build the New.
  * </pre>
  */
-#ifndef MeAuriga_H
-#define MeAuriga_H
+#ifndef MeMegaPi_H
+#define MeMegaPi_H
 
 #include <Arduino.h>
 #include "MeConfig.h"
@@ -67,29 +66,43 @@
 #include "MeFlameSensor.h"
 #include "MeGasSensor.h"
 #include "MeEncoderOnBoard.h"
+#include "MeMegaPiDCMotor.h"
 
-/*********************  Auriga Board GPIO Map *********************************/
-// struct defined in MeAuriga.h
+/*********************  MegaPi Board GPIO Map *********************************/
+// struct defined in MeMegaPi.h
+#define PORT1A  PORT_1
+#define PORT1B  PORT_9
+#define PORT2A  PORT_2
+#define PORT2B  PORT_10
+#define PORT3A  PORT_3
+#define PORT3B  PORT_11
+#define PORT4A  PORT_4
+#define PORT4B  PORT_12
+
  MePort_Sig mePort[15] =
  {
-   { NC, NC }, {   5,   4 }, {   3,   2 }, {   7,   6 }, {   9,   8 }, 
-   { 16, 17 }, { A10, A15 }, {  A9, A14 }, {  A8, A13 }, {  A7, A12 }, 
-   //             LIGHT2        LIGHT1        TEMP          SOUND
-   { A6,A11 }, {  NC,  A2 }, {  NC,  A3 }, {  NC,  A0 }, {  NC,  A1 },
+   { NC, NC }, {  NC,  NC }, {  NC,  NC }, {  NC,  NC }, {  NC,  NC }, 
+   { 16, 17 }, {  A8,  A9 }, { A10, A11 }, { A13, A12 }, {  NC,  NC }, 
+   { NC, NC }, {  NC,  NC }, {  NC,  NC }, {  NC,  NC }, {  NC,  NC },
  };
- 
+
 Encoder_port_type encoder_Port[6] =
 {
   { NC,     NC,     NC,     NC,     NC},
-  //ENA A   ENA B   PWMA    DIR A2  DIR A1
-  { 19,     42,     11,     49,     48},
+  //NET2    NET1    PWM     DIR1    DIR2
+  { 18,     31,     12,     34,     35},
   //ENB A   ENB B   PWMB    DIR B1  DIR B2
-  { 18,     43,     10,     47,     46},
-  { NC,     NC,     NC,     NC,     NC},
+  { 19,     38,     8,      37,     36},
+  { 3,      49,     9,      43,     42},
+  { 2,      A1,     5,      A4,     A5},
   { NC,     NC,     NC,     NC,     NC},
 };
 
-#define buzzerOn()  pinMode(45,OUTPUT),digitalWrite(45, HIGH)
-#define buzzerOff() pinMode(45,OUTPUT),digitalWrite(45, LOW)
+megapi_dc_type megapi_dc_Port[14] =
+{
+  { NC, NC }, {33,32,11}, {40,41, 7}, {47,48, 3}, {A3,A2, 4},
+  { NC, NC }, { NC, NC }, { NC, NC }, { NC, NC }, {35,34,12},
+  {36,37, 8}, {43,42, 6}, {A5,A4, 5},
+};
 
-#endif // MeAuriga_H
+#endif // MeMegaPi_H

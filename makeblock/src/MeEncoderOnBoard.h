@@ -39,12 +39,6 @@
 #include <stdbool.h>
 #include <avr/interrupt.h>
 
-enum
-{
-  MOTOR_1 = 0x00,
-  MOTOR_2 = 0x01,
-};
-
 typedef struct
 {
   int pulse;
@@ -94,6 +88,8 @@ typedef struct
   uint8_t port_H1;
   uint8_t port_H2;
 } Encoder_port_type;
+
+extern Encoder_port_type encoder_Port[6];  // encoder_Port[0] is nonsense
 
 /**
  * Class: MeEncoderOnBoard

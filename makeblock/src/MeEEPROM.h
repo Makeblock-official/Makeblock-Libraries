@@ -67,10 +67,17 @@
 #define BALANCED_CAR_SPEED_PID_ADDR     BALANCED_CAR_ANGLE_PID_ADDR + 12                      //PID 4*3
 #define BALANCED_CAR_DIR_PID_ADDR       BALANCED_CAR_SPEED_PID_ADDR + 12                      //PID 4*3
 #define BALANCED_CAR_END_ADDR           BALANCED_CAR_DIR_PID_ADDR + 4                         //only P
-#endif
 
 //0x80 - 0x90
 #define AURIGA_MODE_PARTITION_CHECK    0x80
 #define AURIGA_MODE_START_ADDR         AURIGA_MODE_PARTITION_CHECK + 2                        //Partition checksum
 #define AURIGA_MODE_CONFIGURE          AURIGA_MODE_START_ADDR + 1                             //start data
 #define AURIGA_MODE_END_ADDR           AURIGA_MODE_CONFIGURE + 1                              //auriga mode
+
+//0x90 - 0xa0
+#define MEGAPI_MODE_PARTITION_CHECK    0x90
+#define MEGAPI_MODE_START_ADDR         MEGAPI_MODE_PARTITION_CHECK + 2                        //Partition checksum
+#define MEGAPI_MODE_CONFIGURE          MEGAPI_MODE_START_ADDR + 1                             //start data
+#define MEGAPI_MODE_END_ADDR           MEGAPI_MODE_CONFIGURE + 1
+
+#endif
