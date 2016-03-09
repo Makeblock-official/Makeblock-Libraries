@@ -4,8 +4,8 @@
  * \brief   Driver for MeGyro module.
  * @file    MeGyro.h
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2015/09/10
+ * @version V1.0.2
+ * @date    2016/03/09
  * @brief   Header for MeGyro.cpp module.
  *
  * \par Copyright
@@ -29,15 +29,17 @@
  *    1. void MeGyro::setpin(uint8_t AD0, uint8_t INT)
  *    2. void MeGyro::begin(void)
  *    3. void MeGyro::update(void)
- *    4. double MeGyro::getAngleX(void)
- *    5. double MeGyro::getAngleY(void)
- *    6. double MeGyro::getAngleZ(void)
+ *    4. void MeGyro::fast_update(void)
+ *    5. double MeGyro::getAngleX(void)
+ *    6. double MeGyro::getAngleY(void)
+ *    7. double MeGyro::getAngleZ(void)
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  *  Lawrence         2015/09/02          1.0.0         rebuild the old lib.
  *  Lawrence         2015/09/10          1.0.1         Added some comments and macros.
+ *  Mark Yan         2016/03/09          1.0.2         Add function fast_update.
  * </pre>
  *
  */
@@ -170,6 +172,24 @@ public:
  *   so the filter coefficient will be calculated dynamically.
  */
   void update(void);
+
+/**
+ * \par Function
+ *   fast_update
+ * \par Description
+ *   Fast update some calculated angle values to the variable.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   The angle values are calculated by complementary filter.
+ *   The time constant of filter is set to 0.5 second, but period dt is not a constant, 
+ *   so the filter coefficient will be calculated dynamically.
+ */
+  void fast_update(void);
 
 /**
  * \par Function

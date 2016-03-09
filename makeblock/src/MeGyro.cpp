@@ -4,8 +4,8 @@
  * \brief   Driver for MeGyro module.
  * @file    MeGyro.cpp
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2015/09/10
+ * @version V1.0.2
+ * @date    2016/03/09
  * @brief   Driver for MeGyro module.
  *
  * \par Copyright
@@ -29,15 +29,17 @@
  *    1. void MeGyro::setpin(uint8_t AD0, uint8_t INT)
  *    2. void MeGyro::begin(void)
  *    3. void MeGyro::update(void)
- *    4. double MeGyro::getAngleX(void)
- *    5. double MeGyro::getAngleY(void)
- *    6. double MeGyro::getAngleZ(void)
+ *    4. void MeGyro::fast_update(void)
+ *    5. double MeGyro::getAngleX(void)
+ *    6. double MeGyro::getAngleY(void)
+ *    7. double MeGyro::getAngleZ(void)
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  *  Lawrence         2015/09/02          1.0.0         rebuild the old lib.
  *  Lawrence         2015/09/10          1.0.1         Added some comments and macros.
+ *  Mark Yan         2016/03/09          1.0.2         Add function fast_update. 
  * </pre>
  *
  * @example MeGyroTest.ino
@@ -244,6 +246,55 @@ void MeGyro::update(void)
 
 /**
  * \par Function
+ *   fast_update
+ * \par Description
+ *   Fast update some calculated angle values to the variable.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   The angle values are calculated by complementary filter.
+ *   The time constant of filter is set to 0.5 second, but period dt is not a constant, 
+ *   so the filter coefficient will be calculated dynamically.
+ */
+void MeGyro::fast_update(void)
+{
+  static unsigned long	last_time = 0;
+  int8_t return_value;
+  double dt, filter_coefficient;
+
+  dt = (double)(millis() - last_time) / 1000.0;
+  last_time = millis();
+
+  /* read imu data */
+  return_value = readData(0x3b, i2cData, 14);
+  if(return_value != 0)
+  {
+    return;
+  }
+
+  double ax, ay, az;
+  /* assemble 16 bit sensor data */
+  accX = ( (i2cData[0] << 8) | i2cData[1] );
+  accY = ( (i2cData[2] << 8) | i2cData[3] );
+  accZ = ( (i2cData[4] << 8) | i2cData[5] );  
+  gyrX = ( ( (i2cData[8] << 8) | i2cData[9] ) - gyrXoffs) / gSensitivity;
+  gyrY = ( ( (i2cData[10] << 8) | i2cData[11] ) - gyrYoffs) / gSensitivity;
+  gyrZ = ( ( (i2cData[12] << 8) | i2cData[13] ) - gyrZoffs) / gSensitivity;  
+  ax = atan2(accX, sqrt( pow(accY, 2) + pow(accZ, 2) ) ) * 180 / 3.1415926;
+  ay = atan2(accY, sqrt( pow(accX, 2) + pow(accZ, 2) ) ) * 180 / 3.1415926;  
+
+  gz += gyrZ * dt;
+
+  gy = 0.98 * (gy + gyrX * dt) + 0.02 * ay;
+  gx = 0.98 * (gx + gyrY * dt) + 0.02 * ax; 
+}
+
+/**
+ * \par Function
  *   getHeadingX
  * \par Description
  *   Get the angle value of X-axis.
@@ -421,7 +472,7 @@ int8_t MeGyro::readData(uint8_t start, uint8_t *buffer, uint8_t size)
 {
   int16_t i = 0;
   int8_t return_value = 0;
-  Wire.beginTransmission((uint8_t)0x68);
+  Wire.beginTransmission(Device_Address);
   return_value = Wire.write(start);
   if(return_value != 1)
   {
@@ -434,7 +485,7 @@ int8_t MeGyro::readData(uint8_t start, uint8_t *buffer, uint8_t size)
   }
   delayMicroseconds(1);
   /* Third parameter is true: relase I2C-bus after data is read. */
-  Wire.requestFrom((uint8_t)0x68, size, (uint8_t)true);
+  Wire.requestFrom(Device_Address, size, (uint8_t)true);
   while(Wire.available() && i < size)
   {
     buffer[i++] = Wire.read();
@@ -475,7 +526,7 @@ int8_t MeGyro::readData(uint8_t start, uint8_t *buffer, uint8_t size)
 int8_t MeGyro::writeData(uint8_t start, const uint8_t *pData, uint8_t size)
 {
   int8_t return_value = 0;
-  Wire.beginTransmission(0x68);
+  Wire.beginTransmission(Device_Address);
   return_value = Wire.write(start); 
   if(return_value != 1)
   {
