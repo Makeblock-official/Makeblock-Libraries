@@ -4,7 +4,7 @@
  * \brief   Driver for MeGyro module.
  * @file    MeGyro.h
  * @author  MakeBlock
- * @version V1.0.2
+ * @version V1.0.3
  * @date    2016/03/09
  * @brief   Header for MeGyro.cpp module.
  *
@@ -27,12 +27,15 @@
  * \par Method List:
  *
  *    1. void MeGyro::setpin(uint8_t AD0, uint8_t INT)
- *    2. void MeGyro::begin(void)
+ *    2. void MeGyro::begin(uint8_t address)
  *    3. void MeGyro::update(void)
  *    4. void MeGyro::fast_update(void)
- *    5. double MeGyro::getAngleX(void)
- *    6. double MeGyro::getAngleY(void)
- *    7. double MeGyro::getAngleZ(void)
+ *    5. uint8_t MeGyro::getDevAddr(void)
+ *    6. double MeGyro::getAngleX(void)
+ *    7. double MeGyro::getAngleY(void)
+ *    8. double MeGyro::getAngleZ(void)
+ *    9. double MeGyro::getGyroX(void)
+ *    10. double MeGyro::getGyroY(void)
  *
  * \par History:
  * <pre>
@@ -40,6 +43,7 @@
  *  Lawrence         2015/09/02          1.0.0         rebuild the old lib.
  *  Lawrence         2015/09/10          1.0.1         Added some comments and macros.
  *  Mark Yan         2016/03/09          1.0.2         Add function fast_update.
+ *  Mark Yan         2016/03/09          1.0.3         Add function getGyroX and getGyroY.
  * </pre>
  *
  */
@@ -145,7 +149,7 @@ public:
  * \par Description
  *   Initialize the MeGyro.
  * \param[in]
- *   None
+ *   address - the i2c address you want to set
  * \par Output
  *   None
  * \return
@@ -153,7 +157,7 @@ public:
  * \par Others
  *   You can check the MPU6050 datasheet for the registor address.
  */
-  void begin(void);
+  void begin(uint8_t = GYRO_DEFAULT_ADDRESS);
 
 /**
  * \par Function
@@ -190,6 +194,22 @@ public:
  *   so the filter coefficient will be calculated dynamically.
  */
   void fast_update(void);
+
+/**
+ * \par Function
+ *   getDevAddr
+ * \par Description
+ *   Get the device address of Gyro.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The device address of Gyro
+ * \par Others
+ *   None
+ */
+  uint8_t getDevAddr(void);
 
 /**
  * \par Function
@@ -238,6 +258,38 @@ public:
  *   Z-axis angle value is integral of Z-axis angular velocity.
  */
   double getAngleZ(void);
+
+/**
+ * \par Function
+ *   getGyroX
+ * \par Description
+ *   Get the data of gyroXrate.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of gyroXrate
+ * \par Others
+ *   None
+ */
+  double getGyroX(void);
+
+/**
+ * \par Function
+ *   getGyroY
+ * \par Description
+ *   Get the data of gyroYrate.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of gyroYrate
+ * \par Others
+ *   None
+ */
+  double getGyroY(void);
 
 /**
  * \par Function

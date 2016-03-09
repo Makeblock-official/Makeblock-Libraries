@@ -4,7 +4,7 @@
  * \brief   Driver for MeGyro module.
  * @file    MeGyro.cpp
  * @author  MakeBlock
- * @version V1.0.2
+ * @version V1.0.3
  * @date    2016/03/09
  * @brief   Driver for MeGyro module.
  *
@@ -27,19 +27,23 @@
  * \par Method List:
  *
  *    1. void MeGyro::setpin(uint8_t AD0, uint8_t INT)
- *    2. void MeGyro::begin(void)
+ *    2. void MeGyro::begin(uint8_t address)
  *    3. void MeGyro::update(void)
  *    4. void MeGyro::fast_update(void)
- *    5. double MeGyro::getAngleX(void)
- *    6. double MeGyro::getAngleY(void)
- *    7. double MeGyro::getAngleZ(void)
+ *    5. uint8_t MeGyro::getDevAddr(void)
+ *    6. double MeGyro::getAngleX(void)
+ *    7. double MeGyro::getAngleY(void)
+ *    8. double MeGyro::getAngleZ(void)
+ *    9. double MeGyro::getGyroX(void)
+ *    10. double MeGyro::getGyroY(void)
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  *  Lawrence         2015/09/02          1.0.0         rebuild the old lib.
  *  Lawrence         2015/09/10          1.0.1         Added some comments and macros.
- *  Mark Yan         2016/03/09          1.0.2         Add function fast_update. 
+ *  Mark Yan         2016/03/09          1.0.2         Add function fast_update.
+ *  Mark Yan         2016/03/09          1.0.3         Add function getGyroX and getGyroY.
  * </pre>
  *
  * @example MeGyroTest.ino
@@ -149,7 +153,7 @@ void MeGyro::setpin(uint8_t AD0, uint8_t INT)
  * \par Description
  *   Initialize the MeGyro.
  * \param[in]
- *   None
+ *   address - the i2c address you want to set
  * \par Output
  *   None
  * \return
@@ -157,9 +161,10 @@ void MeGyro::setpin(uint8_t AD0, uint8_t INT)
  * \par Others
  *   You can check the MPU6050 datasheet for the registor address.
  */
-void MeGyro::begin(void)
+void MeGyro::begin(uint8_t address)
 {
   gSensitivity = 65.5; //for 500 deg/s, check data sheet
+  Device_Address = address;
   gx = 0;
   gy = 0;
   gz = 0;
@@ -295,6 +300,25 @@ void MeGyro::fast_update(void)
 
 /**
  * \par Function
+ *   getDevAddr
+ * \par Description
+ *   Get the device address of Gyro.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The device address of Gyro
+ * \par Others
+ *   None
+ */
+uint8_t MeGyro::getDevAddr(void)
+{
+  return Device_Address;
+}
+
+/**
+ * \par Function
  *   getHeadingX
  * \par Description
  *   Get the angle value of X-axis.
@@ -348,6 +372,44 @@ double MeGyro::getAngleY(void)
 double MeGyro::getAngleZ(void)
 {
   return gz;
+}
+
+/**
+ * \par Function
+ *   getGyroX
+ * \par Description
+ *   Get the data of gyroXrate.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of gyroXrate
+ * \par Others
+ *   None
+ */
+double MeGyro::getGyroX(void)
+{
+  return gyrX;
+}
+
+/**
+ * \par Function
+ *   getGyroY
+ * \par Description
+ *   Get the data of gyroYrate.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of gyroYrate
+ * \par Others
+ *   None
+ */
+double MeGyro::getGyroY(void)
+{
+  return gyrY;
 }
 
 /**
