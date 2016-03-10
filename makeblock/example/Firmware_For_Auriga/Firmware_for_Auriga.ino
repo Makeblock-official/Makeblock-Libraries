@@ -27,8 +27,8 @@ Me7SegmentDisplay seg;
 MePort generalDevice;
 MeLEDMatrix ledMx;
 MeInfraredReceiver *ir = NULL;
-MeGyro gyro_ext(0,0x68);
-MeGyro gyro(1,0x69);
+MeGyro gyro_ext(0,0x68);  //外接陀螺仪
+MeGyro gyro(1,0x69);      //板载陀螺仪
 MeCompass Compass;
 MeJoystick joystick;
 MeStepper steppers[2];
