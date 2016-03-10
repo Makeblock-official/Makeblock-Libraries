@@ -27,7 +27,7 @@
  * \par Method List:
  *
  *    1. void MeGyro::setpin(uint8_t AD0, uint8_t INT)
- *    2. void MeGyro::begin(uint8_t address)
+ *    2. void MeGyro::begin(void)
  *    3. void MeGyro::update(void)
  *    4. void MeGyro::fast_update(void)
  *    5. uint8_t MeGyro::getDevAddr(void)
@@ -153,7 +153,7 @@ void MeGyro::setpin(uint8_t AD0, uint8_t INT)
  * \par Description
  *   Initialize the MeGyro.
  * \param[in]
- *   address - the i2c address you want to set
+ *   None
  * \par Output
  *   None
  * \return
@@ -161,10 +161,9 @@ void MeGyro::setpin(uint8_t AD0, uint8_t INT)
  * \par Others
  *   You can check the MPU6050 datasheet for the registor address.
  */
-void MeGyro::begin(uint8_t address)
+void MeGyro::begin(void)
 {
   gSensitivity = 65.5; //for 500 deg/s, check data sheet
-  Device_Address = address;
   gx = 0;
   gy = 0;
   gz = 0;

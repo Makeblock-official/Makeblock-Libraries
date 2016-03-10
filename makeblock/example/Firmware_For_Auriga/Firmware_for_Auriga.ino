@@ -27,6 +27,7 @@ Me7SegmentDisplay seg;
 MePort generalDevice;
 MeLEDMatrix ledMx;
 MeInfraredReceiver *ir = NULL;
+MeGyro gyro_ext(0,0x68);
 MeGyro gyro(1,0x69);
 MeCompass Compass;
 MeJoystick joystick;
@@ -39,30 +40,6 @@ MeEncoderOnBoard Encoder_1(SLOT1);
 MeEncoderOnBoard Encoder_2(SLOT2);
 MeLineFollower line(PORT_10);
 MeSerial mySerial(PORT_9);
-
-void isr_process_encoder1(void)
-{
-  if(digitalRead(Encoder_1.GetPortB()) == 0)
-  {
-    Encoder_1.PulsePosMinus();
-  }
-  else
-  {
-    Encoder_1.PulsePosPlus();;
-  }
-}
-
-void isr_process_encoder2(void)
-{
-  if(digitalRead(Encoder_2.GetPortB()) == 0)
-  {
-    Encoder_2.PulsePosMinus();
-  }
-  else
-  {
-    Encoder_2.PulsePosPlus();
-  }
-}
 
 typedef struct MeModule
 {
@@ -231,6 +208,30 @@ typedef struct
 PID  PID_angle, PID_speed, PID_turn;
 PID  PID_speed_left, PID_speed_right;
 
+void isr_process_encoder1(void)
+{
+  if(digitalRead(Encoder_1.GetPortB()) == 0)
+  {
+    Encoder_1.PulsePosMinus();
+  }
+  else
+  {
+    Encoder_1.PulsePosPlus();;
+  }
+}
+
+void isr_process_encoder2(void)
+{
+  if(digitalRead(Encoder_2.GetPortB()) == 0)
+  {
+    Encoder_2.PulsePosMinus();
+  }
+  else
+  {
+    Encoder_2.PulsePosPlus();
+  }
+}
+
 void WriteBalancedDataToEEPROM(void)
 {
   EEPROM.write(BALANCED_CAR_PARTITION_CHECK, EEPROM_IF_HAVEPID_CHECK1);
@@ -337,34 +338,22 @@ int readEEPROM(void)
 
 void Forward(void)
 {
-//  Encoder_1.setMotorPwm(-moveSpeed);
-//  Encoder_2.setMotorPwm(moveSpeed);
+  Encoder_1.setMotorPwm(-moveSpeed);
+  Encoder_2.setMotorPwm(moveSpeed);
   PID_speed_left.Setpoint = -moveSpeed;
-  PID_speed_right.Setpoint = moveSpeed;
-  move_status = MOVE_FORWARD;
-  PWM_Calcu();
+//  PID_speed_right.Setpoint = moveSpeed;
+//  move_status = MOVE_FORWARD;
+//  PWM_Calcu();
 }
 
 void Backward(void)
 {
-//  Encoder_1.setMotorPwm(moveSpeed);
-//  Encoder_2.setMotorPwm(-moveSpeed);
-  PID_speed_left.Setpoint = moveSpeed;
-  PID_speed_right.Setpoint = -moveSpeed;
-  move_status = MOVE_BACKWARD;
-  PWM_Calcu();
-}
-
-void Forward1(void)
-{
-  Encoder_1.setMotorPwm(-moveSpeed);
-  Encoder_2.setMotorPwm(moveSpeed);
-}
-
-void Backward1(void)
-{
   Encoder_1.setMotorPwm(moveSpeed);
   Encoder_2.setMotorPwm(-moveSpeed);
+//  PID_speed_left.Setpoint = moveSpeed;
+//  PID_speed_right.Setpoint = -moveSpeed;
+//  move_status = MOVE_BACKWARD;
+//  PWM_Calcu();
 }
 
 void BackwardAndTurnLeft(void)
@@ -1128,27 +1117,13 @@ void readSensor(int device)
     case  GYRO:
       {
         int axis = readBuffer(7);
-        if((port == 0) && (gyro.getDevAddr() == 0x68))      //extern gyro
+        if((port == 0) && (gyro_ext.getDevAddr() == 0x68))      //extern gyro
         {
-          value = gyro.getAngle(axis);
-          sendFloat(value);
-        }
-        else if((port == 0) && (gyro.getDevAddr() != 0x68))
-        {
-          gyro.begin(0x68);
-          gyro.update();
-          value = gyro.getAngle(axis);
+          value = gyro_ext.getAngle(axis);
           sendFloat(value);
         }
         else if((port == 1) && (gyro.getDevAddr() == 0x69))
         {
-          value = gyro.getAngle(axis);
-          sendFloat(value);
-        }
-        else if((port == 1) && (gyro.getDevAddr() != 0x69))
-        {
-          gyro.begin(0x69);
-          gyro.update();
           value = gyro.getAngle(axis);
           sendFloat(value);
         }
@@ -1490,67 +1465,67 @@ void balanced_model(void)
   } 
 }
 
-void PWM_Calcu()
-{
-  double speed1;
-  double speed2;
-  if((millis() - lasttime_speed) > 20)
-  {
-    speed1 = Encoder_1.GetCurrentSpeed();
-    speed2 = Encoder_2.GetCurrentSpeed();
-
-#ifdef DEBUG_INFO
-    Serial.print("S1: ");
-    Serial.print(speed1);
-    Serial.print(" S2: ");
-    Serial.print(speed2);
-    Serial.print("left: ");
-    Serial.print(PID_speed_left.Setpoint);
-    Serial.print(" right: ");
-    Serial.println(PID_speed_right.Setpoint);
-#endif
-
-    if(abs(abs(PID_speed_left.Setpoint) - abs(PID_speed_right.Setpoint)) >= 0)
-    {
-      Encoder_1.setMotorPwm(PID_speed_left.Setpoint);
-      Encoder_2.setMotorPwm(PID_speed_right.Setpoint);
-      return;
-    }
-
-    if((abs(PID_speed_left.Setpoint) == 0) && (abs(PID_speed_right.Setpoint) == 0))
-    {
-      return;
-    }
-
-    if(abs(speed1) - abs(speed2) >= 0)
-    {
-      if(PID_speed_left.Setpoint > 0)
-      {
-        Encoder_1.setMotorPwm(PID_speed_left.Setpoint - (abs(speed1) - abs(speed2)));
-        Encoder_2.setMotorPwm(PID_speed_right.Setpoint);
-      }
-      else
-      {
-        Encoder_1.setMotorPwm(PID_speed_left.Setpoint + (abs(speed1) - abs(speed2)));
-        Encoder_2.setMotorPwm(PID_speed_right.Setpoint);
-      }
-    }
-    else
-    {
-      if(PID_speed_right.Setpoint > 0)
-      {
-        Encoder_1.setMotorPwm(PID_speed_left.Setpoint);
-        Encoder_2.setMotorPwm(PID_speed_right.Setpoint - (abs(speed2) - abs(speed1)));
-      }
-      else
-      {
-        Encoder_1.setMotorPwm(PID_speed_left.Setpoint);
-        Encoder_2.setMotorPwm(PID_speed_right.Setpoint + (abs(speed2) - abs(speed1)));
-      }
-    }
-    lasttime_speed = millis(); 
-  }
-}
+//void PWM_Calcu()
+//{
+//  double speed1;
+//  double speed2;
+//  if((millis() - lasttime_speed) > 20)
+//  {
+//    speed1 = Encoder_1.GetCurrentSpeed();
+//    speed2 = Encoder_2.GetCurrentSpeed();
+//
+//#ifdef DEBUG_INFO
+//    Serial.print("S1: ");
+//    Serial.print(speed1);
+//    Serial.print(" S2: ");
+//    Serial.print(speed2);
+//    Serial.print("left: ");
+//    Serial.print(PID_speed_left.Setpoint);
+//    Serial.print(" right: ");
+//    Serial.println(PID_speed_right.Setpoint);
+//#endif
+//
+//    if(abs(abs(PID_speed_left.Setpoint) - abs(PID_speed_right.Setpoint)) >= 0)
+//    {
+//      Encoder_1.setMotorPwm(PID_speed_left.Setpoint);
+//      Encoder_2.setMotorPwm(PID_speed_right.Setpoint);
+//      return;
+//    }
+//
+//    if((abs(PID_speed_left.Setpoint) == 0) && (abs(PID_speed_right.Setpoint) == 0))
+//    {
+//      return;
+//    }
+//
+//    if(abs(speed1) - abs(speed2) >= 0)
+//    {
+//      if(PID_speed_left.Setpoint > 0)
+//      {
+//        Encoder_1.setMotorPwm(PID_speed_left.Setpoint - (abs(speed1) - abs(speed2)));
+//        Encoder_2.setMotorPwm(PID_speed_right.Setpoint);
+//      }
+//      else
+//      {
+//        Encoder_1.setMotorPwm(PID_speed_left.Setpoint + (abs(speed1) - abs(speed2)));
+//        Encoder_2.setMotorPwm(PID_speed_right.Setpoint);
+//      }
+//    }
+//    else
+//    {
+//      if(PID_speed_right.Setpoint > 0)
+//      {
+//        Encoder_1.setMotorPwm(PID_speed_left.Setpoint);
+//        Encoder_2.setMotorPwm(PID_speed_right.Setpoint - (abs(speed2) - abs(speed1)));
+//      }
+//      else
+//      {
+//        Encoder_1.setMotorPwm(PID_speed_left.Setpoint);
+//        Encoder_2.setMotorPwm(PID_speed_right.Setpoint + (abs(speed2) - abs(speed1)));
+//      }
+//    }
+//    lasttime_speed = millis(); 
+//  }
+//}
 
 void IrProcess()
 {
@@ -1559,14 +1534,6 @@ void IrProcess()
   if((irRead != IR_BUTTON_TEST) && (auriga_mode != IR_REMOTE_MODE))
   {
     return;
-  }
-  if(move_status == MOVE_FORWARD)
-  {
-    Forward();
-  }
-  else if(move_status == MOVE_FORWARD)
-  {
-    Backward();
   }
   switch(irRead)
   {
@@ -1625,6 +1592,7 @@ void IrProcess()
       }
       break;
     default:
+      Stop();
       break;
   }
 }
@@ -1639,22 +1607,22 @@ void line_model()
   switch (val)
   {
     case S1_IN_S2_IN:
-      Forward1();
+      Forward();
       LineFollowFlag=10;
       break;
 
     case S1_IN_S2_OUT:
-       Forward1();
+       Forward();
       if (LineFollowFlag>1) LineFollowFlag--;
       break;
 
     case S1_OUT_S2_IN:
-      Forward1();
+      Forward();
       if (LineFollowFlag<20) LineFollowFlag++;
       break;
 
     case S1_OUT_S2_OUT:
-      if(LineFollowFlag==10) Backward1();
+      if(LineFollowFlag==10) Backward();
       if(LineFollowFlag<10) TurnRight1();
       if(LineFollowFlag>10) TurnLeft1();
       break;
@@ -1664,19 +1632,16 @@ void line_model()
 void setup()
 {
   delay(5);
-  Encoder_1.setMotorPwm(0);
-  Encoder_2.setMotorPwm(0);
   attachInterrupt(Encoder_1.GetIntNum(), isr_process_encoder1, RISING);
   attachInterrupt(Encoder_2.GetIntNum(), isr_process_encoder2, RISING);
-  Encoder_1.SetPulsePos(0);
-  Encoder_2.SetPulsePos(0);
   PID_speed_left.Setpoint = 0;
   PID_speed_right.Setpoint = 0;
   led.setpin(RGBLED_PORT);
   delay(1);
   led.setColor(0,0,0);
   led.show();
-  gyro.begin(0x69);
+  gyro_ext.begin();
+  gyro.begin();
   delay(100);
   Serial.begin(115200);
   delay(500);
@@ -1706,6 +1671,8 @@ void setup()
   }
   Serial.print("Version: ");
   Serial.println(mVersion);
+//  Encoder_1.setMotorPwm(255);
+//  Encoder_2.setMotorPwm(255);
   measurement_speed_time = lasttime_speed = lasttime_angle = millis();
 }
 
@@ -1718,8 +1685,9 @@ void loop()
   }
   steppers[0].runSpeedToPosition();
   steppers[1].runSpeedToPosition();
-  readSerial();
   get_power();
+
+  readSerial();
   if(isAvailable)
   {
     unsigned char c = serialRead & 0xff;
@@ -1773,36 +1741,22 @@ void loop()
 //    }
 //  }
   gyro.fast_update();
+  gyro_ext.update();
   angle_speed = gyro.getGyroY();
-//  Serial.print("angle_speed:");
-//  Serial.print(angle_speed);
-//  Serial.print(" ,angleX:");
-//  Serial.println(gyro.getAngleX());
-  if((millis() - measurement_speed_time) > 20)
-  {
-    uint16_t dt = millis() - measurement_speed_time;
-    long cur_pos_encoder1 = Encoder_1.GetPulsePos();
-    long cur_pos_encoder2 = Encoder_2.GetPulsePos();
-    Encoder_1.SetCurrentSpeed(((cur_pos_encoder1 - last_Pulse_pos_encoder1)/357.3)*(1000/dt)*60);
-    Encoder_2.SetCurrentSpeed(((cur_pos_encoder2 - last_Pulse_pos_encoder2)/357.3)*(1000/dt)*60);
-    last_Pulse_pos_encoder1 = cur_pos_encoder1;
-    last_Pulse_pos_encoder2 = cur_pos_encoder2; 
-    measurement_speed_time = millis();
-  }
+
   if(auriga_mode == BLUETOOTH_MODE)
   {
-    PWM_Calcu(); 
-  }
 
-  if(auriga_mode == AUTOMATIC_OBSTACLE_AVOIDANCE_MODE)
+  }
+  else if(auriga_mode == AUTOMATIC_OBSTACLE_AVOIDANCE_MODE)
   { 
     ultrCarProcess();    
   }
-  if(auriga_mode == BALANCED_MODE)
+  else if(auriga_mode == BALANCED_MODE)
   {
     balanced_model();
   }
-  if(auriga_mode == LINE_FOLLOW_MODE)
+  else if(auriga_mode == LINE_FOLLOW_MODE)
   {
     line_model();
   }

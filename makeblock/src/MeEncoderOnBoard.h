@@ -100,6 +100,7 @@ class MeEncoderOnBoard
 {
 public:
   MeEncoderOnBoard(uint8_t slot);
+  uint8_t GetSlotNum(void);
   uint8_t GetIntNum(void);
   uint8_t GetPortA(void);
   uint8_t GetPortB(void);
@@ -111,6 +112,7 @@ public:
   void PulsePosMinus(void);
   void SetCurrentSpeed(double speed);
   double GetCurrentSpeed(void);
+  void Update_speed(void);
 
 private:
    volatile Me_Encoder_type encode_structure;
@@ -120,6 +122,9 @@ private:
    uint8_t  _Port_H1;
    uint8_t  _Port_H2;
    uint8_t  _IntNum;
+   uint8_t  _Slot;
+   long _Measurement_speed_time;
+   long _Last_pulse_pos;
 };
 #endif
 

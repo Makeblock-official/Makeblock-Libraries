@@ -38,6 +38,7 @@
 
 MeEncoderOnBoard::MeEncoderOnBoard(uint8_t slot)
 {
+  _Slot = slot;
   _Port_A = encoder_Port[slot].port_A;
   _Port_B = encoder_Port[slot].port_B;
   _Port_PWM = encoder_Port[slot].port_PWM;
@@ -75,6 +76,14 @@ MeEncoderOnBoard::MeEncoderOnBoard(uint8_t slot)
   {
     _IntNum = 0;
   }
+  MeEncoderOnBoard::setMotorPwm(0);
+  MeEncoderOnBoard::SetPulsePos(0);
+  _Measurement_speed_time = millis();
+}
+
+uint8_t MeEncoderOnBoard::GetSlotNum(void)
+{
+  return _Slot;
 }
 
 uint8_t MeEncoderOnBoard::GetIntNum(void)
@@ -143,5 +152,17 @@ void MeEncoderOnBoard::setMotorPwm(int pwm)
     digitalWrite(MeEncoderOnBoard::_Port_H1, HIGH);
     digitalWrite(MeEncoderOnBoard::_Port_H2, LOW);
     analogWrite(MeEncoderOnBoard::_Port_PWM, abs(pwm));
+  }
+}
+
+void MeEncoderOnBoard::Update_speed(void)
+{
+  if((millis() - _Measurement_speed_time) > 20)
+  {
+    uint16_t dt = millis() - _Measurement_speed_time;
+    long cur_pos = MeEncoderOnBoard::GetPulsePos();
+    MeEncoderOnBoard::SetCurrentSpeed(((cur_pos - _Last_pulse_pos)/357.3)*(1000/dt)*60);
+    _Last_pulse_pos = cur_pos;
+    _Measurement_speed_time = millis();
   }
 }
