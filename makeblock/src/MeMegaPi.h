@@ -3,8 +3,8 @@
  * \brief   Driver for MegaPi board.
  * @file    MeMegaPi.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2016/02/20
+ * @version V1.0.1
+ * @date    2016/03/10
  * @brief   Driver for MegaPi board.
  *
  * \par Copyright
@@ -26,6 +26,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2016/02/20     1.0.0            Build the New.
+ * Mark Yan         2016/03/10     1.0.1            Port mapping changes.
  * </pre>
  */
 #ifndef MeMegaPi_H
@@ -100,9 +101,9 @@ Encoder_port_type encoder_Port[6] =
 
 megapi_dc_type megapi_dc_Port[14] =
 {
-  { NC, NC }, {33,32,11}, {40,41, 7}, {47,48, 3}, {A3,A2, 4},
+  { NC, NC }, {33,32,11}, {40,41, 7}, {47,48, 6}, {A3,A2, 4},
   { NC, NC }, { NC, NC }, { NC, NC }, { NC, NC }, {35,34,12},
-  {36,37, 8}, {43,42, 6}, {A5,A4, 5},
+  {36,37, 8}, {42,43, 9}, {A5,A4, 5},
 };
 
 #endif // MeMegaPi_H
