@@ -2,7 +2,7 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.106
+* Version            : V09.01.107
 * Date               : 03/09/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
@@ -141,7 +141,7 @@ boolean rightflag;
 boolean start_flag = false;
 boolean move_flag = false;
 
-String mVersion = "09.01.106";
+String mVersion = "09.01.107";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
@@ -340,7 +340,7 @@ void Forward(void)
 {
   Encoder_1.setMotorPwm(-moveSpeed);
   Encoder_2.setMotorPwm(moveSpeed);
-  PID_speed_left.Setpoint = -moveSpeed;
+//  PID_speed_left.Setpoint = -moveSpeed;
 //  PID_speed_right.Setpoint = moveSpeed;
 //  move_status = MOVE_FORWARD;
 //  PWM_Calcu();
@@ -666,22 +666,22 @@ void runModule(int device)
         int16_t speed_value = readShort(8);
         if(slot == SLOT_1)
         {
-          PID_speed_left.Setpoint = speed_value;
+//          PID_speed_left.Setpoint = speed_value;
+          Encoder_1.setMotorPwm(speed_value);
         }
         else if(slot == SLOT_2)
         {
-          PID_speed_right.Setpoint = speed_value;
+//          PID_speed_right.Setpoint = speed_value;
+          Encoder_2.setMotorPwm(speed_value);
         }
       }
       break;
     case JOYSTICK:
       {
         int leftSpeed = readShort(6);
-        dc.reset(M1);
-        dc.run(leftSpeed);
+        Encoder_1.setMotorPwm(leftSpeed);
         int rightSpeed = readShort(8);
-        dc.reset(M2);
-        dc.run(rightSpeed);
+        Encoder_2.setMotorPwm(rightSpeed);
       }
       break;
     case STEPPER:
@@ -935,6 +935,30 @@ int searchServoPin(int pin)
   }
   return 0;
 }
+
+const int16_t TEMPERATURENOMINAL     = 25;    //Nominl temperature depicted on the datasheet
+const int16_t SERIESRESISTOR         = 10000; // Value of the series resistor
+const int16_t BCOEFFICIENT           = 3380;  // Beta value for our thermistor(3350-3399)
+const int16_t TERMISTORNOMINAL       = 10000; // Nominal temperature value for the thermistor
+float calculate_temp(int16_t In_temp)
+{
+  float media;
+  float temperatura;
+  media = (float)In_temp;
+  // Convert the thermal stress value to resistance
+  media = 1023.0 / media - 1;
+  media = SERIESRESISTOR / media;
+  //Calculate temperature using the Beta Factor equation
+
+  temperatura = media / TERMISTORNOMINAL;              // (R/Ro)
+  temperatura = log(temperatura); // ln(R/Ro)
+  temperatura /= BCOEFFICIENT;                         // 1/B * ln(R/Ro)
+  temperatura += 1.0 / (TEMPERATURENOMINAL + 273.15);  // + (1/To)
+  temperatura = 1.0 / temperatura;                     // Invert the value
+  temperatura -= 273.15;                               // Convert it to Celsius
+  return temperatura;
+}
+
 void readSensor(int device)
 {
   /**************************************************
@@ -975,7 +999,6 @@ void readSensor(int device)
       break;
     case  LIGHT_SENSOR:
     case  SOUND_SENSOR:
-    case  TEMPERATURE_SENSOR_1:
     case  POTENTIONMETER:
       {
         if(generalDevice.getPort() != port)
@@ -984,6 +1007,17 @@ void readSensor(int device)
           pinMode(generalDevice.pin2(),INPUT);
         }
         value = generalDevice.aRead2();
+        sendFloat(value);
+      }
+      break;
+    case  TEMPERATURE_SENSOR_1:
+      {
+        if(generalDevice.getPort() != port)
+        {
+          generalDevice.reset(port);
+          pinMode(generalDevice.pin2(),INPUT);
+        }
+        value = calculate_temp(generalDevice.aRead2());
         sendFloat(value);
       }
       break;
@@ -1744,6 +1778,13 @@ void loop()
   gyro_ext.update();
   angle_speed = gyro.getGyroY();
 
+//  generalDevice.reset(13);
+//  pinMode(generalDevice.pin2(),INPUT);
+//
+//  float value_temp = calculate_temp(generalDevice.aRead2());
+//  Serial.print("value_temp: ");
+//  Serial.println(value_temp);
+     
   if(auriga_mode == BLUETOOTH_MODE)
   {
 
