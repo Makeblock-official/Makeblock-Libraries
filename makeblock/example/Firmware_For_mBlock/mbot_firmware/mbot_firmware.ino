@@ -2,8 +2,8 @@
 * File Name          : mbot_firmware.ino
 * Author             : Ander, Mark Yan
 * Updated            : Ander, Mark Yan
-* Version            : V06.01.103
-* Date               : 01/09/2016
+* Version            : V06.01.104
+* Date               : 03/14/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -62,7 +62,7 @@ const int analogs[12] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11};
 #else
 const int analogs[8] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7};
 #endif
-String mVersion = "06.01.103";
+String mVersion = "06.01.104";
 boolean isAvailable = false;
 
 int len = 52;
@@ -448,6 +448,8 @@ void runModule(int device){
             int hours = readBuffer(9);
             int minutes = readBuffer(10);
             ledMx.showClock(hours,minutes,point);
+     }else if(action == 4){
+            ledMx.showNum(readFloat(8),3);
      }
    }
    break;

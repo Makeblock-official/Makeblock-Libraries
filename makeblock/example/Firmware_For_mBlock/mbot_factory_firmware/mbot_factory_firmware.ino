@@ -2,8 +2,8 @@
 * File Name          : mbot_factory_firmware.ino
 * Author             : Ander, Mark Yan
 * Updated            : Ander, Mark Yan
-* Version            : V06.01.003
-* Date               : 01/09/2016
+* Version            : V06.01.005
+* Date               : 03/05/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -25,10 +25,6 @@ MeDCMotor MotorL(M1);
 MeDCMotor MotorR(M2);
 MePort generalDevice;
 Servo servo;
-
-int moveSpeed = 200;
-int minSpeed = 48;
-int factor = 23;
 
 #define NTD1 294
 #define NTD2 330
@@ -58,7 +54,7 @@ int factor = 23;
 #define RUN_L 0x01<<2
 #define RUN_R 0x01<<3
 #define STOP 0
-uint8_t motor_sta = STOP;
+
 enum
 {
   MODE_A,
@@ -93,26 +89,37 @@ union{
 }valShort;
 
 MeModule modules[12];
-int analogs[8]={A0,A1,A2,A3,A4,A5,A6,A7};
-uint8_t mode = MODE_A;
 
-boolean isAvailable = false;
-int len = 52;
 char buffer[52];
 char bufferBt[52];
+char serialRead;
 byte index = 0;
 byte dataLen;
 byte modulesLen=0;
-boolean isStart = false;
-char serialRead;
-String mVersion = "06.01.003";
-float angleServo = 90.0;
 unsigned char prevc=0;
+String mVersion = "06.01.005";
+
+boolean isAvailable = false;
+boolean isStart = false;
 boolean buttonPressed = false;
+boolean currentPressed = false;
+boolean pre_buttonPressed = false;
+
+float angleServo = 90.0;
 double lastTime = 0.0;
 double currentTime = 0.0;
+
+int len = 52;
 int LineFollowFlag=0;
+int moveSpeed = 200;
+int minSpeed = 48;
+int factor = 23;
+int analogs[8]={A0,A1,A2,A3,A4,A5,A6,A7};
+int px = 0;
+
 uint8_t command_index = 0;
+uint8_t motor_sta = STOP;
+uint8_t mode = MODE_A;
 
 #define VERSION 0
 #define ULTRASONIC_SENSOR 1
@@ -150,40 +157,6 @@ uint8_t command_index = 0;
 #define RESET 4
 #define START 5
 
-
-void setup()
-{
-  delay(5);
-  Stop();
-  pinMode(13,OUTPUT);
-  digitalWrite(13,HIGH);
-  delay(300);
-  digitalWrite(13,LOW);
-  rgb.setpin(13);
-  rgb.setColor(0,0,0);
-  rgb.show();
-  rgb.setColor(10, 0, 0);
-  rgb.show();
-  buzzer.tone(NTD1, 300); 
-  delay(300);
-  rgb.setColor(0, 10, 0);
-  rgb.show();
-  buzzer.tone(NTD2, 300);
-  delay(300);
-  rgb.setColor(0, 0, 10);
-  rgb.show();
-  buzzer.tone(NTD3, 300);
-  delay(300);
-  rgb.setColor(0,0,0);
-  rgb.show();
-  Serial.begin(115200);
-  buzzer.noTone();
-  ir.begin(); 
-  Serial.print("Version: ");
-  Serial.println(mVersion);
-  ledMx.setBrightness(6);
-  ledMx.setColorIndex(1);
-}
 unsigned char readBuffer(int index){
  return buffer[index]; 
 }
@@ -245,28 +218,6 @@ void buzzerOn(){
 }
 void buzzerOff(){
   buzzer.noTone(); 
-}
-
-int px = 0;
-void loop()
-{
-  while(1)
-  {
-    get_ir_command();
-    serialHandle();
-    switch (mode)
-    {
-      case MODE_A:
-        modeA();
-        break;
-      case MODE_B:
-        modeB();
-        break;
-      case MODE_C:
-        modeC();
-        break;
-    }
-  }
 }
 
 void get_ir_command()
@@ -418,13 +369,24 @@ void Backward()
 }
 void TurnLeft()
 {
-  MotorL.run(-moveSpeed/10);
+  MotorL.run(-moveSpeed/5);
   MotorR.run(moveSpeed);
 }
 void TurnRight()
 {
   MotorL.run(-moveSpeed);
-  MotorR.run(moveSpeed/10);
+  MotorR.run(moveSpeed/5);
+}
+void BackwardAndTurnLeft()
+{
+  MotorL.run(moveSpeed/8 ); 
+  MotorR.run(-moveSpeed);
+}
+
+void BackwardAndTurnRight()
+{
+  MotorL.run(moveSpeed); 
+  MotorR.run(-moveSpeed/8);
 }
 void Stop()
 {
@@ -472,28 +434,41 @@ void modeA()
 
 void modeB()
 {
-  uint8_t d = ultr.distanceCm(50);
+  uint8_t d = ultr.distanceCm(70);
   static long time = millis();
   randomSeed(analogRead(6));
   uint8_t randNumber = random(2);
-  if (d > 15 || d == 0)Forward();
-  else if (d > 10) {
+  if (d > 40 || d == 0)
+  {
+    Forward();
+  }
+  else if ((d > 15) && (d < 40)) 
+  {
     switch (randNumber)
     {
       case 0:
         TurnLeft();
-        delay(200);
+        delay(300);
         break;
       case 1:
         TurnRight();
-        delay(200);
+        delay(300);
         break;
     }
   }
   else
   {
-    Backward();
-    delay(400);
+    switch (randNumber)
+    {
+      case 0:
+        BackwardAndTurnLeft();
+        delay(800);
+        break;
+      case 1:
+        BackwardAndTurnRight();
+        delay(800);
+        break;
+    }
   }
   delay(100);
 }
@@ -708,6 +683,8 @@ void runModule(int device){
             int hours = readBuffer(9);
             int minutes = readBuffer(10);
             ledMx.showClock(hours,minutes,point);
+     }else if(action == 4){
+            ledMx.showNum(readFloat(8),3);
      }
    }
    break;
@@ -940,5 +917,108 @@ void readSensor(int device){
      sendFloat(currentTime);
    }
    break;
+  }
+}
+
+void setup()
+{
+  delay(5);
+  Stop();
+  pinMode(13,OUTPUT);
+  pinMode(7,INPUT);
+  digitalWrite(13,HIGH);
+  delay(300);
+  digitalWrite(13,LOW);
+  rgb.setpin(13);
+  rgb.setColor(0,0,0);
+  rgb.show();
+  rgb.setColor(10, 0, 0);
+  rgb.show();
+  buzzer.tone(NTD1, 300); 
+  delay(300);
+  rgb.setColor(0, 10, 0);
+  rgb.show();
+  buzzer.tone(NTD2, 300);
+  delay(300);
+  rgb.setColor(0, 0, 10);
+  rgb.show();
+  buzzer.tone(NTD3, 300);
+  delay(300);
+  rgb.setColor(10,10,10);
+  rgb.show();
+  Serial.begin(115200);
+  buzzer.noTone();
+  ir.begin(); 
+  Serial.print("Version: ");
+  Serial.println(mVersion);
+  ledMx.setBrightness(6);
+  ledMx.setColorIndex(1);
+}
+
+void loop()
+{
+  while(1)
+  {
+    get_ir_command();
+    serialHandle();
+    currentPressed = !(analogRead(7) > 100);
+    if(currentPressed != pre_buttonPressed)
+    {
+      pre_buttonPressed = currentPressed;
+      if(currentPressed == true)
+      {
+        if(mode == MODE_A)
+        {
+          mode = MODE_B;
+          moveSpeed = 200;
+          Stop();
+          cli();
+          buzzer.tone(NTD2, 300);
+          sei();
+          buzzer.noTone();  
+          rgb.setColor(0,0,0);
+          rgb.setColor(0, 10, 0);
+          rgb.show();
+        }
+        else if(mode == MODE_B)
+        {
+          mode = MODE_C;
+          moveSpeed = 120;
+          Stop();
+          cli();
+          buzzer.tone(NTD2, 300);
+          sei();
+          buzzer.noTone();  
+          rgb.setColor(0,0,0);
+          rgb.setColor(0, 0, 10);
+          rgb.show();
+        }
+        else if(mode == MODE_C)
+        {
+          mode = MODE_A;
+          moveSpeed = 220;
+          Stop();
+          cli();
+          buzzer.tone(NTD1, 300);
+          sei();
+          buzzer.noTone();
+          rgb.setColor(0,0,0);
+          rgb.setColor(10, 10, 10);
+          rgb.show();
+        }
+      }
+    }
+    switch (mode)
+    {
+      case MODE_A:
+        modeA();
+        break;
+      case MODE_B:
+        modeB();
+        break;
+      case MODE_C:
+        modeC();
+        break;
+    }
   }
 }
