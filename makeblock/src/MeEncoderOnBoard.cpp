@@ -288,7 +288,7 @@ void MeEncoderOnBoard::update()
 			setMotorPwm(dist);	
 			if(abs(dist)<10&&_moving){
 				_moving = false;
-				_callback(_Slot);
+				_callback(_Slot,_extId);
 			}
 		}
 	}
@@ -308,21 +308,23 @@ void MeEncoderOnBoard::setSpeed(double speed)
 {
   _targetSpeed = speed;
 }
-void MeEncoderOnBoard::move(long distance,cb callback)
+void MeEncoderOnBoard::move(long distance,cb callback,int extId)
 {
-	if(_targetSpeed==0){
-		_targetSpeed = 100;
-	}
+  if(_targetSpeed==0){
+	_targetSpeed = 100;
+  }
+  _extId = extId;
   _moving = true;
   _mode = 1;
   _targetPosition += distance;
   _callback = callback;
 }
-void MeEncoderOnBoard::moveTo(long position,cb callback)
+void MeEncoderOnBoard::moveTo(long position,cb callback,int extId)
 {
-	if(_targetSpeed==0){
-		_targetSpeed = 100;
-	}
+  if(_targetSpeed==0){
+	_targetSpeed = 100;
+  }
+  _extId = extId;
   _moving = true;
   _mode = 1;
   _targetPosition = position;

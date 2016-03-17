@@ -96,7 +96,7 @@ extern Encoder_port_type encoder_Port[6];  // encoder_Port[0] is nonsense
  * \par Description
  * Declaration of Class MeEncoderOnBoard
  */
-typedef void (*cb)(int); 
+typedef void (*cb)(int,int); 
 
 class MeEncoderOnBoard 
 {
@@ -121,8 +121,8 @@ public:
   void update();
   void runSpeed(double speed);
   void setSpeed(double speed);
-  void move(long distance,cb callback);
-  void moveTo(long position,cb callback);
+  void move(long distance,cb callback,int extId);
+  void moveTo(long position,cb callback,int extId);
   long distanceToGo();
 
 private:
@@ -140,6 +140,7 @@ private:
    long _targetPosition;
    uint8_t _mode;
    bool _moving;
+   uint8_t _extId;
    cb _callback;
 };
 #endif
