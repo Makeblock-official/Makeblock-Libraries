@@ -59,6 +59,7 @@
 #include "MeUSBHost.h"
 #include "MeTouchSensor.h"
 #include "MeStepper.h"
+#include "MeStepperOnBoard.h"
 #include "MeEncoderMotor.h"
 #include "MeEncoderNew.h"
 #include "MeBuzzer.h"
