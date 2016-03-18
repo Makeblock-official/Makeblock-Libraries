@@ -54,44 +54,36 @@
 
 #include "MeStepperOnBoard.h"
 
-#define Stepper_Motor_Slot_3_EN_Pin      42    //43
-#define Stepper_Motor_Slot_3_M0_Pin      43    //42
-#define Stepper_Motor_Slot_3_M1_Pin      47
-#define Stepper_Motor_Slot_3_M2_Pin      48
-#define Stepper_Motor_Slot_3_RST_Pin     49
-#define Stepper_Motor_Slot_3_Sleep_Pin   3    //9
-#define Stepper_Motor_Slot_3_Step_Pin    9    //6
-#define Stepper_Motor_Slot_3_DIR_Pin     6    //3
 const megaPi_slot_type megaPi_slots[NUM_SLOTS] =
 {
-  {Stepper_Motor_Slot_3_EN_Pin,
-   Stepper_Motor_Slot_3_M0_Pin,
-   Stepper_Motor_Slot_3_M1_Pin,
-   Stepper_Motor_Slot_3_M2_Pin,
-   Stepper_Motor_Slot_3_RST_Pin,
-   Stepper_Motor_Slot_3_Step_Pin,
-   Stepper_Motor_Slot_3_DIR_Pin},
-  {Stepper_Motor_Slot_3_EN_Pin,
-   Stepper_Motor_Slot_3_M0_Pin,
-   Stepper_Motor_Slot_3_M1_Pin,
-   Stepper_Motor_Slot_3_M2_Pin,
-   Stepper_Motor_Slot_3_RST_Pin,
-   Stepper_Motor_Slot_3_Step_Pin,
-   Stepper_Motor_Slot_3_DIR_Pin},
-  {Stepper_Motor_Slot_3_EN_Pin,
-   Stepper_Motor_Slot_3_M0_Pin,
-   Stepper_Motor_Slot_3_M1_Pin,
-   Stepper_Motor_Slot_3_M2_Pin,
-   Stepper_Motor_Slot_3_RST_Pin,
-   Stepper_Motor_Slot_3_Step_Pin,
-   Stepper_Motor_Slot_3_DIR_Pin},
-  {Stepper_Motor_Slot_3_EN_Pin,
-   Stepper_Motor_Slot_3_M0_Pin,
-   Stepper_Motor_Slot_3_M1_Pin,
-   Stepper_Motor_Slot_3_M2_Pin,
-   Stepper_Motor_Slot_3_RST_Pin,
-   Stepper_Motor_Slot_3_Step_Pin,
-   Stepper_Motor_Slot_3_DIR_Pin}
+  {35,
+   34,
+   33,
+   32,
+   31,
+   12,
+   11},
+  {36,
+   37,
+   40,
+   41,
+   38,
+   8,
+   7},
+  {42,
+   43,
+   47,
+   48,
+   49,
+   9,
+   6},
+  {A5,
+   A4,
+   A3,
+   A2,
+   A1,
+   5,
+   4}
 };
 
 typedef enum
