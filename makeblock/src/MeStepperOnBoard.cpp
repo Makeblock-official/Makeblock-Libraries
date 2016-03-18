@@ -128,8 +128,8 @@ MeStepperOnBoard::MeStepperOnBoard(int slot)
   pinMode(_step_data, OUTPUT);
   pinMode(_enable_pin, OUTPUT);
   pinMode(_micro_step_pin1, OUTPUT);
-  pinMode(_micro_step_pin1, OUTPUT);
-  pinMode(_micro_step_pin1, OUTPUT);
+  pinMode(_micro_step_pin2, OUTPUT);
+  pinMode(_micro_step_pin3, OUTPUT);
   
 }
 
@@ -215,16 +215,16 @@ void MeStepperOnBoard::setpin(int slot)
   setCurrentPosition(0);
   _enable_pin = megaPi_slots[slot-1].pin[0];
   _micro_step_pin1 = megaPi_slots[slot-1].pin[1];
-  _micro_step_pin1 = megaPi_slots[slot-1].pin[2];
-  _micro_step_pin1 = megaPi_slots[slot-1].pin[3];
+  _micro_step_pin2 = megaPi_slots[slot-1].pin[2];
+  _micro_step_pin3 = megaPi_slots[slot-1].pin[3];
   _step_data = megaPi_slots[slot-1].pin[4];
   _dir_data = megaPi_slots[slot-1].pin[5];
   pinMode(_dir_data, OUTPUT);
   pinMode(_step_data, OUTPUT);
   pinMode(_enable_pin, OUTPUT);
   pinMode(_micro_step_pin1, OUTPUT);
-  pinMode(_micro_step_pin1, OUTPUT);
-  pinMode(_micro_step_pin1, OUTPUT);
+  pinMode(_micro_step_pin2, OUTPUT);
+  pinMode(_micro_step_pin3, OUTPUT);
 }
 
 /**
@@ -608,6 +608,7 @@ void MeStepperOnBoard::setSpeed(float speed)
     _stepInterval = fabs(1000000.0 /speed);
     _dir = (speed > 0.0) ? DIRECTION_CW : DIRECTION_CCW;
   }
+  
   _speed = speed;
 }
 
@@ -769,6 +770,7 @@ void MeStepperOnBoard::enableOutputs()
 {
   digitalWrite(_enable_pin,0);
 }
+
 void MeStepperOnBoard::update()
 {
   if(_mode==0)
