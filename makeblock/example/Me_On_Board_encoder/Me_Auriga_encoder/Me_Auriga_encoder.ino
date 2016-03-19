@@ -32,6 +32,13 @@ void setup()
   attachInterrupt(Encoder_1.GetIntNum(), isr_process_encoder1, RISING);
   attachInterrupt(Encoder_2.GetIntNum(), isr_process_encoder2, RISING);
   Serial.begin(115200);
+  
+  //Set PWM 8KHz
+  TCCR1A = _BV(WGM10);
+  TCCR1B = _BV(CS11) | _BV(WGM12);
+
+  TCCR2A = _BV(WGM21) | _BV(WGM20);
+  TCCR2B = _BV(CS21);
 }
 
 void loop()
