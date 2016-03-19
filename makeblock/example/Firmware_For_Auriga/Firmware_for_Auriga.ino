@@ -22,11 +22,11 @@ Servo servos[8];
 MeDCMotor dc;
 MeTemperature ts;
 MeRGBLed led;
-MeUltrasonicSensor *us = NULL;
+MeUltrasonicSensor *us = NULL;  //PORT_8
 Me7SegmentDisplay seg;
 MePort generalDevice;
 MeLEDMatrix ledMx;
-MeInfraredReceiver *ir = NULL;
+MeInfraredReceiver *ir = NULL;  //PORT_9
 MeGyro gyro_ext(0,0x68);  //外接陀螺仪
 MeGyro gyro(1,0x69);      //板载陀螺仪
 MeCompass Compass;
@@ -39,7 +39,6 @@ MeGasSensor GasSensor;
 MeEncoderOnBoard Encoder_1(SLOT1);
 MeEncoderOnBoard Encoder_2(SLOT2);
 MeLineFollower line(PORT_10);
-MeSerial mySerial(PORT_9);
 
 typedef struct MeModule
 {
@@ -80,11 +79,15 @@ MeModule modules[12];
   int analogs[16]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15};
 #endif
 
+#if defined(__AVR_ATmega328P__) or defined(__AVR_ATmega2560__)
+  MeEncoderMotor encoders[4];
+#endif
+
 int16_t len = 52;
 int16_t servo_pins[8]={0,0,0,0,0,0,0,0};
-//Just for mbot ranger
-int16_t moveSpeed = 250;
-int16_t turnSpeed = 200;
+//Just for Auriga
+int16_t moveSpeed = 180;
+int16_t turnSpeed = 180;
 int16_t minSpeed = 45;
 int16_t factor = 23;
 int16_t distance=0;
@@ -95,13 +98,13 @@ int16_t LineFollowFlag=0;
 #define MOVE_STOP       0x00
 #define MOVE_FORWARD    0x01
 #define MOVE_BACKWARD   0x02
-int16_t move_status = MOVE_STOP;
 
 #define BLUETOOTH_MODE                       0x00
 #define AUTOMATIC_OBSTACLE_AVOIDANCE_MODE    0x01
 #define BALANCED_MODE                        0x02
 #define IR_REMOTE_MODE                       0x03
 #define LINE_FOLLOW_MODE                     0x04
+#define MAX_MODE                             0x05
 
 #define POWER_PORT                           A4
 #define BUZZER_PORT                          45
@@ -117,8 +120,8 @@ uint8_t prevc=0;
 char serialRead;
 char buffer[52];
 
-double lastTime = 0.0;
-double currentTime = 0.0;
+double  lastTime = 0.0;
+double  currentTime = 0.0;
 double  CompAngleY, CompAngleX, GyroXangle;
 double  LastCompAngleY, LastCompAngleX, LastGyroXangle;
 double  last_turn_setpoint_filter = 0.0;
@@ -142,11 +145,11 @@ boolean rightflag;
 boolean start_flag = false;
 boolean move_flag = false;
 
-String mVersion = "09.01.107";
+String mVersion = "09.01.108";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
-#define PWM_MIN_OFFSET   4
+#define PWM_MIN_OFFSET   5
 
 #define VERSION 0
 #define ULTRASONIC_SENSOR 1
@@ -190,6 +193,8 @@ float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自�
   #define SET_AURIGA_MODE      0x11
   #define SET_MEGAPI_MODE      0x12
   #define GET_BATTERY_POWER    0x70
+  #define GET_AURIGA_MODE      0x71
+  #define GET_MEGAPI_MODE      0x72
 #define ENCODER_BOARD 61
   //Read type
   #define ENCODER_BOARD_POS    0x01
@@ -281,7 +286,7 @@ int readEEPROM(void)
       EEPROM.get(BALANCED_CAR_SPEED_PID_ADDR+8, PID_speed.D);
 
       EEPROM.get(BALANCED_CAR_DIR_PID_ADDR, PID_turn.P);
-//#ifdef DEBUG_INFO
+#ifdef DEBUG_INFO
       Serial.println( "Read data from EEPROM:");
       Serial.print(RELAX_ANGLE);
       Serial.print( "  ");
@@ -298,7 +303,7 @@ int readEEPROM(void)
       Serial.print(PID_speed.D);
       Serial.print( "  ");
       Serial.println(PID_turn.P);
-//#endif
+#endif
     }
     else
     {
@@ -341,32 +346,24 @@ void Forward(void)
 {
   Encoder_1.setMotorPwm(-moveSpeed);
   Encoder_2.setMotorPwm(moveSpeed);
-//  PID_speed_left.Setpoint = -moveSpeed;
-//  PID_speed_right.Setpoint = moveSpeed;
-//  move_status = MOVE_FORWARD;
-//  PWM_Calcu();
 }
 
 void Backward(void)
 {
   Encoder_1.setMotorPwm(moveSpeed);
   Encoder_2.setMotorPwm(-moveSpeed);
-//  PID_speed_left.Setpoint = moveSpeed;
-//  PID_speed_right.Setpoint = -moveSpeed;
-//  move_status = MOVE_BACKWARD;
-//  PWM_Calcu();
 }
 
 void BackwardAndTurnLeft(void)
 {
-  Encoder_1.setMotorPwm(moveSpeed/2);
+  Encoder_1.setMotorPwm(moveSpeed/4);
   Encoder_2.setMotorPwm(-moveSpeed);
 }
 
 void BackwardAndTurnRight(void)
 {
   Encoder_1.setMotorPwm(moveSpeed);
-  Encoder_2.setMotorPwm(-moveSpeed/2);
+  Encoder_2.setMotorPwm(-moveSpeed/4);
 }
 
 void TurnLeft(void)
@@ -397,50 +394,11 @@ void Stop(void)
 {
   Encoder_1.setMotorPwm(0);
   Encoder_2.setMotorPwm(0);
-  move_status = MOVE_STOP;
 }
 
 void ChangeSpeed(int spd)
 {
   moveSpeed = spd;
-}
-
-void ultrCarProcess(void)
-{
-  distance = us->distanceCm();
-  randomSeed(analogRead(A4));
-  if((distance > 10) && (distance < 40))
-  {
-    randnum=random(300);
-    if((randnum > 190) && (!rightflag))
-    {
-      leftflag=true;
-      TurnLeft();   
-    }
-    else
-    {
-      rightflag=true;
-      TurnRight();  
-    }
-  }
-  else if(distance < 10)
-  {
-    randnum=random(300);
-    if(randnum > 190)
-    {
-      BackwardAndTurnLeft();
-    }
-    else
-    {
-      BackwardAndTurnRight();
-    }
-  }
-  else
-  {
-    leftflag=false;
-    rightflag=false;
-    Forward();
-  }
 }
 
 unsigned char readBuffer(int index)
@@ -517,13 +475,13 @@ void parseData(void)
         Encoder_2.SetPulsePos(0);
         PID_speed_left.Setpoint = 0;
         PID_speed_right.Setpoint = 0;
-        dc.reset(M1);
-        dc.run(0);
-        dc.reset(M2);
-        dc.run(0);
         dc.reset(PORT_1);
         dc.run(0);
         dc.reset(PORT_2);
+        dc.run(0);
+        dc.reset(PORT_3);
+        dc.run(0);
+        dc.reset(PORT_4);
         dc.run(0);
         callOK();
       }
@@ -748,17 +706,19 @@ void runModule(int device)
              (cmd_data == IR_REMOTE_MODE) ||
              (cmd_data == LINE_FOLLOW_MODE))
           {
-            buzzer.tone(BUZZER_PORT, 500, 100);
-            delay(100);
-            buzzer.noTone(BUZZER_PORT);
-            delay(100);
             auriga_mode = cmd_data;
-            EEPROM.write(AURIGA_MODE_CONFIGURE, auriga_mode);
+            if(EEPROM.read(AURIGA_MODE_CONFIGURE) != auriga_mode)
+            {
+              EEPROM.write(AURIGA_MODE_CONFIGURE, auriga_mode);
+            }
           }
           else
           {
             auriga_mode = BLUETOOTH_MODE;
-            EEPROM.write(AURIGA_MODE_CONFIGURE, auriga_mode);
+            if(EEPROM.read(AURIGA_MODE_CONFIGURE) != auriga_mode)
+            {
+              EEPROM.write(AURIGA_MODE_CONFIGURE, auriga_mode);
+            }
           }
         }
       }
@@ -906,17 +866,13 @@ void runModule(int device)
         {
            int joy_x = readShort(7);
            int joy_y = readShort(9);
-           double joy_x_temp = -(double)joy_x * 0.3;
-           double joy_y_temp = (double)joy_y * 0.2;
+           double joy_x_temp = -(double)joy_x * 0.18;//0.3
+           double joy_y_temp = (double)joy_y * 0.25;//0.2
            PID_speed.Setpoint = joy_y_temp;
            PID_turn.Setpoint = joy_x_temp;
            if(abs(PID_speed.Setpoint) > 1)
            { 
              move_flag = true;
-           }
-           else if((move_flag = true) && (joy_y == 0))
-           {
-             PID_speed.Integral = 0;
            }
            Serial.print("Set Num:");
            Serial.print(PID_turn.Setpoint);
@@ -1257,6 +1213,10 @@ void readSensor(int device)
         {
           sendFloat(get_power());
         }
+        else if(GET_AURIGA_MODE == subcmd)
+        {
+          sendByte(auriga_mode);
+        }
       }
       break;    
   }//switch
@@ -1280,9 +1240,7 @@ void PID_angle_compute(void)   //PID
     PID_angle.Integral = 0;
   }
 
-  //PID_angle.differential = CompAngleX - LastCompAngleX;
   PID_angle.differential = angle_speed;
-  LastCompAngleX = CompAngleX;
   PID_angle.Output = PID_angle.P * error + PID_angle.I * PID_angle.Integral + PID_angle.D * PID_angle.differential;
   if(PID_angle.Output > 0)
   {
@@ -1331,23 +1289,21 @@ void PID_speed_compute(void)
   double error = speed_now - last_speed_setpoint_filter;
   PID_speed.Integral += error;
 
-  if(move_flag == true)
-  {
-    PID_speed.Integral = constrain(PID_speed.Integral , -600, 600);
-    if(abs(PID_speed.Integral) == 600)
-    {
-      PID_speed.Integral = 0;
-    }
-    PID_speed.Output = PID_speed.P * error + PID_speed.I * PID_speed.Integral;
-    PID_speed.Output = constrain(PID_speed.Output , -10.0, 10.0);
+  if(move_flag == true) 
+  { 
+    PID_speed.Integral = constrain(PID_speed.Integral , -1500, 1500);
+    PID_speed.Output = PID_speed.P * speed_now + PID_speed.I * PID_speed.Integral;
+    PID_speed.Output = constrain(PID_speed.Output , -15.0, 15.0);
   }
   else
-  {
-    PID_speed.Integral = constrain(PID_speed.Integral , -1200, 1200);
+  {  
+    PID_speed.Integral = constrain(PID_speed.Integral , -1500, 1500);
     PID_speed.Output = PID_speed.P * speed_now + PID_speed.I * PID_speed.Integral;
-    PID_speed.Output = constrain(PID_speed.Output , -20.0, 20.0);
+    PID_speed.Output = constrain(PID_speed.Output , -15.0, 15.0);
   }
-
+  
+  PID_angle.Setpoint =  RELAX_ANGLE -  PID_speed.Output;
+  
 #ifdef DEBUG_INFO
   Serial.print(speed_now);
   Serial.print(","); 
@@ -1468,7 +1424,10 @@ void parseGcode(char * cmd)
   }
   else if(g_code_cmd == '4')
   {
-    EEPROM.write(AURIGA_MODE_CONFIGURE, auriga_mode);
+    if(EEPROM.read(AURIGA_MODE_CONFIGURE) != auriga_mode)
+    {
+      EEPROM.write(AURIGA_MODE_CONFIGURE, auriga_mode);
+    }
     Serial.print("auriga_mode: ");
     Serial.println(auriga_mode);
   }
@@ -1483,8 +1442,6 @@ void parseCmd(char * cmd)
   }
 }
 
-char buf[64];
-char bufindex;
 void balanced_model(void)
 {
   reset();
@@ -1498,7 +1455,7 @@ void balanced_model(void)
     if((millis() - lasttime_speed) > 100)
     {
       PID_speed_compute();
-      last_turn_setpoint_filter  = last_turn_setpoint_filter  * 0.8;
+      last_turn_setpoint_filter  = last_turn_setpoint_filter * 0.8;
       last_turn_setpoint_filter  += PID_turn.Setpoint * 0.2;
       PID_turn.Output = last_turn_setpoint_filter;
       lasttime_speed = millis();
@@ -1572,9 +1529,86 @@ void balanced_model(void)
 //    lasttime_speed = millis(); 
 //  }
 //}
+void ultrCarProcess(void)
+{
+  if(us == NULL)
+  {
+    us = new MeUltrasonicSensor(PORT_9);
+  }
+  moveSpeed = 150;
+  if(us != NULL)
+  {
+    distance = us->distanceCm();
+    Serial.println(distance);
+  }
+  else
+  {
+    return;
+  }
+  randomSeed(analogRead(A4));
+  if((distance > 20) && (distance < 40))
+  {
+    randnum=random(300);
+    if((randnum > 190) && (!rightflag))
+    {
+      leftflag=true;
+      TurnLeft();   
+    }
+    else
+    {
+      rightflag=true;
+      TurnRight();  
+    }
+  }
+  else if(distance < 20)
+  {
+    randnum=random(300);
+    if(randnum > 190)
+    {
+      BackwardAndTurnLeft();
+      for(int i=0;i<300;i++)
+      {
+        if(read_serial() == true)
+        {
+          break;
+        }
+        else
+        {
+          delay(2);
+        }
+      }
+    }
+    else
+    {
+      BackwardAndTurnRight();
+      for(int i=0;i<300;i++)
+      {
+        if(read_serial() == true)
+        {
+          break;
+        }
+        else
+        {
+          delay(2);
+        }
+      }
+    }
+  }
+  else
+  {
+    leftflag=false;
+    rightflag=false;
+    Forward();
+  }
+}
 
 void IrProcess()
 {
+  if(ir == NULL)
+  {
+      ir = new MeInfraredReceiver(PORT_8);
+      ir->begin();
+  }
   ir->loop();
   irRead =  ir->getCode();
   if((irRead != IR_BUTTON_TEST) && (auriga_mode != IR_REMOTE_MODE))
@@ -1629,12 +1663,12 @@ void IrProcess()
       Stop();
       while( ir->buttonState() != 0)
       {
-         ir->loop();
+        ir->loop();
       }
       auriga_mode = auriga_mode + 1;
-      if(auriga_mode == 0x05)
+      if(auriga_mode == MAX_MODE)
       { 
-        auriga_mode = 0;
+        auriga_mode = BLUETOOTH_MODE;
       }
       break;
     default:
@@ -1647,9 +1681,7 @@ void line_model()
 {
   uint8_t val;
   val = line.readSensors();
-  moveSpeed=150;
-  Serial.print("val:");
-  Serial.println(val);
+  moveSpeed=120;
   switch (val)
   {
     case S1_IN_S2_IN:
@@ -1675,6 +1707,56 @@ void line_model()
   }
 }
 
+char buf[64];
+char bufindex;
+
+boolean read_serial()
+{
+  boolean result = false;
+  readSerial();
+  if(isAvailable)
+  {
+    unsigned char c = serialRead & 0xff;
+    result = true;
+    if((c == 0x55) && (isStart == false))
+    {
+      if(prevc == 0xff)
+      {
+        index=1;
+        isStart = true;
+      }
+    }
+    else
+    {
+      prevc = c;
+      if(isStart)
+      {
+        if(index == 2)
+        {
+          dataLen = c; 
+        }
+        else if(index > 2)
+        {
+          dataLen--;
+        }
+        writeBuffer(index,c);
+      }
+    }
+    index++;
+    if(index > 51)
+    {
+      index=0; 
+      isStart=false;
+    }
+    if(isStart && (dataLen == 0) && (index > 3))
+    { 
+      isStart = false;
+      parseData(); 
+      index=0;
+    }
+    return result;
+  }
+}
 void setup()
 {
   delay(5);
@@ -1699,26 +1781,15 @@ void setup()
   rightflag=false;
   randomSeed(analogRead(0));
   PID_angle.Setpoint = RELAX_ANGLE;
-  PID_angle.P = 10;    //10;
-  PID_angle.I = 0;     //0;
-  PID_angle.D = -0.4;  //-0.4  PID_speed.Setpoint = 0;
+  PID_angle.P = 10;          //10;
+  PID_angle.I = 0;           //0;
+  PID_angle.D = -0.4;        //-0.4  PID_speed.Setpoint = 0;
   PID_speed.P = -0.3;        // -0.5
   PID_speed.I = -0.032;      // -0.032
   readEEPROM();
-
-  if(auriga_mode == AUTOMATIC_OBSTACLE_AVOIDANCE_MODE)
-  {
-    us = new MeUltrasonicSensor(PORT_8);
-  }
-  else if(auriga_mode == IR_REMOTE_MODE)
-  {
-    ir = new MeInfraredReceiver(PORT_6);
-    ir->begin();
-  }
+//  auriga_mode = AUTOMATIC_OBSTACLE_AVOIDANCE_MODE;
   Serial.print("Version: ");
   Serial.println(mVersion);
-//  Encoder_1.setMotorPwm(255);
-//  Encoder_2.setMotorPwm(255);
   measurement_speed_time = lasttime_speed = lasttime_angle = millis();
 }
 
@@ -1732,7 +1803,20 @@ void loop()
   steppers[0].runSpeedToPosition();
   steppers[1].runSpeedToPosition();
   get_power();
-
+  Encoder_1.Update_speed();
+  Encoder_2.Update_speed();
+//  while(Serial.available() > 0)
+//  {
+//    char c = Serial.read();
+//    Serial.write(c);
+//    buf[bufindex++]=c;
+//    if((c=='\n') || (c=='#'))
+//    {
+//      parseCmd(buf);
+//      memset(buf,0,64);
+//      bufindex = 0;
+//    }
+//  }
   readSerial();
   if(isAvailable)
   {
@@ -1774,36 +1858,17 @@ void loop()
       index=0;
     }
   }
-//  while(Serial.available() > 0)
-//  {
-//    char c = Serial.read();
-//    Serial.write(c);
-//    buf[bufindex++]=c;
-//    if((c=='\n') || (c=='#'))
-//    {
-//      parseCmd(buf);
-//      memset(buf,0,64);
-//      bufindex = 0;
-//    }
-//  }
   gyro.fast_update();
   gyro_ext.update();
   angle_speed = gyro.getGyroY();
 
-//  generalDevice.reset(13);
-//  pinMode(generalDevice.pin2(),INPUT);
-//
-//  float value_temp = calculate_temp(generalDevice.aRead2());
-//  Serial.print("value_temp: ");
-//  Serial.println(value_temp);
-     
   if(auriga_mode == BLUETOOTH_MODE)
   {
 
   }
   else if(auriga_mode == AUTOMATIC_OBSTACLE_AVOIDANCE_MODE)
   { 
-    ultrCarProcess();    
+    ultrCarProcess();
   }
   else if(auriga_mode == BALANCED_MODE)
   {
