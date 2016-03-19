@@ -237,6 +237,7 @@ int MeEncoderOnBoard::GetPwm(void)
 
 void MeEncoderOnBoard::setMotorPwm(int pwm)
 {
+
   pwm = constrain(pwm,-255,255);
   encode_structure.pwm = pwm;
   if(pwm < 0)
@@ -264,11 +265,13 @@ void MeEncoderOnBoard::Update_speed(void)
     _Measurement_speed_time = millis();
   }
 }
+
 void MeEncoderOnBoard::update()
 {
-	if(!_moving){
-		return;
-	}
+  if(!_moving)
+  {
+    return;
+  }
   if((millis() - _Measurement_speed_time) > 20)
   {
     uint16_t dt = millis() - _Measurement_speed_time;
@@ -276,27 +279,33 @@ void MeEncoderOnBoard::update()
     MeEncoderOnBoard::SetCurrentSpeed(((cur_pos - _Last_pulse_pos)/357.3)*(1000/dt)*60);
     _Last_pulse_pos = cur_pos;
     _Measurement_speed_time = millis();
-	if(_mode==0){
-		setMotorPwm(GetPwm()+(_targetSpeed-GetCurrentSpeed())/8.0);
-	}else if(_mode==1){
-		long dist = distanceToGo();
-		int dir = dist>0?1:-1;
-		if(abs(dist)>100)
-		{
-			setMotorPwm(GetPwm()+dir*(abs(_targetSpeed)-abs(GetCurrentSpeed()))/8.0);
-		}else{
-			setMotorPwm(dist);	
-			if(abs(dist)<10&&_moving){
-				_moving = false;
-				_callback(_Slot,_extId);
-			}
-		}
+	if(_mode == 0)
+	{
+      setMotorPwm(GetPwm()+(_targetSpeed-GetCurrentSpeed())/8.0);
+	}
+    else if(_mode == 1)
+    {
+      long dist = distanceToGo();
+      int dir = dist>0?1:-1;
+      if(abs(dist)>100)
+      {
+        setMotorPwm(GetPwm()+dir*(abs(_targetSpeed)-abs(GetCurrentSpeed()))/8.0);
+      }
+	  else
+	  {
+        setMotorPwm(dist);	
+        if((abs(dist) < 10) && _moving)
+        {
+          _moving = false;
+          _callback(_Slot,_extId);
+        }
+      }
 	}
   }
 }
 long MeEncoderOnBoard::distanceToGo()
 {
-	return _targetPosition - _Last_pulse_pos;
+  return _targetPosition - _Last_pulse_pos;
 }
 void MeEncoderOnBoard::runSpeed(double speed)
 {
@@ -310,7 +319,8 @@ void MeEncoderOnBoard::setSpeed(double speed)
 }
 void MeEncoderOnBoard::move(long distance,cb callback,int extId)
 {
-  if(_targetSpeed==0){
+  if(_targetSpeed == 0)
+  {
 	_targetSpeed = 100;
   }
   _extId = extId;
@@ -321,7 +331,8 @@ void MeEncoderOnBoard::move(long distance,cb callback,int extId)
 }
 void MeEncoderOnBoard::moveTo(long position,cb callback,int extId)
 {
-  if(_targetSpeed==0){
+  if(_targetSpeed == 0)
+  {
 	_targetSpeed = 100;
   }
   _extId = extId;
