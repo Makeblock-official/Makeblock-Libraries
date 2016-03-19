@@ -32,6 +32,6 @@ void setup()
 
 void loop()
 {
-  motor2.runTurns(3,100);
+  motor2.runTurns(5,100);
   delay(9000);
 }

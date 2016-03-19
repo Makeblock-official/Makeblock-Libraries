@@ -127,6 +127,8 @@ public:
 
 private:
    volatile Me_Encoder_type encode_structure;
+   uint8_t _mode;
+   uint8_t _extId;
    uint8_t  _Port_A;
    uint8_t  _Port_B;
    uint8_t  _Port_PWM;
@@ -138,9 +140,7 @@ private:
    long _Last_pulse_pos;
    double _targetSpeed;
    long _targetPosition;
-   uint8_t _mode;
    bool _moving;
-   uint8_t _extId;
    cb _callback;
 };
 #endif
