@@ -96,9 +96,13 @@ extern Encoder_port_type encoder_Port[6];  // encoder_Port[0] is nonsense
  * \par Description
  * Declaration of Class MeEncoderOnBoard
  */
+typedef void (*cb)(int,int); 
+
 class MeEncoderOnBoard 
 {
 public:
+
+  MeEncoderOnBoard();
   MeEncoderOnBoard(uint8_t slot);
   uint8_t GetSlotNum(void);
   uint8_t GetIntNum(void);
@@ -113,6 +117,13 @@ public:
   void SetCurrentSpeed(double speed);
   double GetCurrentSpeed(void);
   void Update_speed(void);
+  void reset(uint8_t slot);
+  void update();
+  void runSpeed(double speed);
+  void setSpeed(double speed);
+  void move(long distance,cb callback,int extId);
+  void moveTo(long position,cb callback,int extId);
+  long distanceToGo();
 
 private:
    volatile Me_Encoder_type encode_structure;
@@ -125,6 +136,12 @@ private:
    uint8_t  _Slot;
    long _Measurement_speed_time;
    long _Last_pulse_pos;
+   double _targetSpeed;
+   long _targetPosition;
+   uint8_t _mode;
+   bool _moving;
+   uint8_t _extId;
+   cb _callback;
 };
 #endif
 
