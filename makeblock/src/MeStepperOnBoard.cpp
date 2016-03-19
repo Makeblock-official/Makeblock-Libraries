@@ -250,7 +250,7 @@ void MeStepperOnBoard::moveTo(long absolute, cb callback, int extId)
   if (_targetPos != absolute)
   {
     _targetPos = absolute;
-    computeNewSpeed();
+    //computeNewSpeed();
   }
 }
 
@@ -787,6 +787,6 @@ void MeStepperOnBoard::update()
 		_callback(_slot, _extId);
 	  }
 	}
-	run();  
+	runSpeedToPosition();  
   }
 }
