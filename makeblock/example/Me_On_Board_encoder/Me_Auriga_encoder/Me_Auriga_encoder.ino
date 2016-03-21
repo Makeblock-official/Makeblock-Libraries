@@ -43,8 +43,8 @@ void setup()
 
 void loop()
 {
-  Encoder_1.setMotorPwm(255);
-  Encoder_2.setMotorPwm(255);
+  Encoder_1.setMotorPwm(100);
+  Encoder_2.setMotorPwm(100);
   Encoder_1.Update_speed();
   Encoder_2.Update_speed();
   Serial.print("Spped 1:");

@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.108
-* Date               : 03/14/2016
+* Version            : V09.01.109
+* Date               : 03/21/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -22,11 +22,11 @@ Servo servos[8];
 MeDCMotor dc;
 MeTemperature ts;
 MeRGBLed led;
-MeUltrasonicSensor *us = NULL;  //PORT_8
+MeUltrasonicSensor *us = NULL;  //PORT_10
 Me7SegmentDisplay seg;
 MePort generalDevice;
 MeLEDMatrix ledMx;
-MeInfraredReceiver *ir = NULL;  //PORT_9
+MeInfraredReceiver *ir = NULL;  //PORT_8
 MeGyro gyro_ext(0,0x68);  //外接陀螺仪
 MeGyro gyro(1,0x69);      //板载陀螺仪
 MeCompass Compass;
@@ -38,7 +38,7 @@ MeFlameSensor FlameSensor;
 MeGasSensor GasSensor;
 MeEncoderOnBoard Encoder_1(SLOT1);
 MeEncoderOnBoard Encoder_2(SLOT2);
-MeLineFollower line(PORT_10);
+MeLineFollower line(PORT_9);
 
 typedef struct MeModule
 {
@@ -145,7 +145,7 @@ boolean rightflag;
 boolean start_flag = false;
 boolean move_flag = false;
 
-String mVersion = "09.01.108";
+String mVersion = "09.01.109";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
@@ -368,26 +368,26 @@ void BackwardAndTurnRight(void)
 
 void TurnLeft(void)
 {
-  Encoder_1.setMotorPwm(moveSpeed);
+  Encoder_1.setMotorPwm(-moveSpeed);
   Encoder_2.setMotorPwm(moveSpeed/2);
 }
 
 void TurnRight(void)
 {
-  Encoder_1.setMotorPwm(-moveSpeed);
-  Encoder_2.setMotorPwm(-moveSpeed/2);
+  Encoder_1.setMotorPwm(-moveSpeed/2);
+  Encoder_2.setMotorPwm(moveSpeed);
 }
 
 void TurnLeft1(void)
 {
-  Encoder_1.setMotorPwm(moveSpeed);
-  Encoder_2.setMotorPwm(moveSpeed);
+  Encoder_1.setMotorPwm(-moveSpeed);
+  Encoder_2.setMotorPwm(-moveSpeed);
 }
 
 void TurnRight1(void)
 {
-  Encoder_1.setMotorPwm(-moveSpeed);
-  Encoder_2.setMotorPwm(-moveSpeed);
+  Encoder_1.setMotorPwm(moveSpeed);
+  Encoder_2.setMotorPwm(moveSpeed);
 }
 
 void Stop(void)
@@ -1533,7 +1533,7 @@ void ultrCarProcess(void)
 {
   if(us == NULL)
   {
-    us = new MeUltrasonicSensor(PORT_9);
+    us = new MeUltrasonicSensor(PORT_10);
   }
   moveSpeed = 150;
   if(us != NULL)
@@ -1544,7 +1544,7 @@ void ultrCarProcess(void)
   {
     return;
   }
-  randomSeed(analogRead(A4));
+
   if((distance > 20) && (distance < 40))
   {
     randnum=random(300);
@@ -1700,8 +1700,8 @@ void line_model()
 
     case S1_OUT_S2_OUT:
       if(LineFollowFlag==10) Backward();
-      if(LineFollowFlag<10) TurnRight1();
-      if(LineFollowFlag>10) TurnLeft1();
+      if(LineFollowFlag<10) TurnLeft1();  //TurnLeft1
+      if(LineFollowFlag>10) TurnRight1();
       break;
   }
 }
@@ -1786,13 +1786,12 @@ void setup()
 
   leftflag=false;
   rightflag=false;
-  randomSeed(analogRead(0));
   PID_angle.Setpoint = RELAX_ANGLE;
-  PID_angle.P = 10;          //10;
+  PID_angle.P = 17;          //17;
   PID_angle.I = 0;           //0;
-  PID_angle.D = -0.4;        //-0.4  PID_speed.Setpoint = 0;
-  PID_speed.P = -0.3;        // -0.5
-  PID_speed.I = -0.032;      // -0.032
+  PID_angle.D = -0.2;        //-0.2  PID_speed.Setpoint = 0;
+  PID_speed.P = -0.1;        // -0.1
+  PID_speed.I = -0.008;      // -0.008
   readEEPROM();
 //  auriga_mode = AUTOMATIC_OBSTACLE_AVOIDANCE_MODE;
   Serial.print("Version: ");

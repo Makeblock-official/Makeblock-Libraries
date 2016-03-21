@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_MegaPi.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V0e.01.101
-* Date               : 02/20/2016
+* Version            : V0e.01.103
+* Date               : 03/21/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -150,7 +150,7 @@ boolean rightflag;
 boolean start_flag = false;
 boolean move_flag = false;
 
-String mVersion = "0e.01.101";
+String mVersion = "0e.01.103";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
 #define PWM_MIN_OFFSET   5
@@ -370,40 +370,40 @@ int readEEPROM(void)
   }
 }
 
-void Forward(void)
+void Forward(void)  //Backward
+{
+  Encoder_1.setMotorPwm(moveSpeed);
+  Encoder_2.setMotorPwm(-moveSpeed);
+}
+
+void Backward(void)
 {
   Encoder_1.setMotorPwm(-moveSpeed);
   Encoder_2.setMotorPwm(moveSpeed);
 }
 
-void Backward(void)
-{
-  Encoder_1.setMotorPwm(moveSpeed);
-  Encoder_2.setMotorPwm(-moveSpeed);
-}
-
 void BackwardAndTurnLeft(void)
 {
-  Encoder_1.setMotorPwm(moveSpeed/4);
-  Encoder_2.setMotorPwm(-moveSpeed);
+  Encoder_1.setMotorPwm(-moveSpeed/4);
+  Encoder_2.setMotorPwm(moveSpeed);
 }
 
 void BackwardAndTurnRight(void)
 {
-  Encoder_1.setMotorPwm(moveSpeed);
-  Encoder_2.setMotorPwm(-moveSpeed/4);
+  Encoder_1.setMotorPwm(-moveSpeed);
+  Encoder_2.setMotorPwm(moveSpeed/4);
 }
 
 void TurnLeft(void)
 {
   Encoder_1.setMotorPwm(moveSpeed);
-  Encoder_2.setMotorPwm(moveSpeed/2);
+  Encoder_2.setMotorPwm(-moveSpeed/2);
 }
 
 void TurnRight(void)
 {
-  Encoder_1.setMotorPwm(-moveSpeed);
-  Encoder_2.setMotorPwm(-moveSpeed/2);
+  Encoder_1.setMotorPwm(moveSpeed/2);
+  Encoder_2.setMotorPwm(-moveSpeed);
 }
 
 void TurnLeft1(void)
@@ -1768,8 +1768,8 @@ void line_model()
 
     case S1_OUT_S2_OUT:
       if(LineFollowFlag==10) Backward();
-      if(LineFollowFlag<10) TurnRight1();
-      if(LineFollowFlag>10) TurnLeft1();
+      if(LineFollowFlag<10) TurnLeft1();
+      if(LineFollowFlag>10) TurnRight1();
       break;
   }
 }
