@@ -713,6 +713,7 @@ void runModule(int device)
       {
         uint8_t slot = readBuffer(7);
         int16_t speed_value = readShort(8);
+		speed_value = -speed_value;
         if(slot == SLOT_1)
         {
           Encoder_1.setMotorPwm(speed_value);
