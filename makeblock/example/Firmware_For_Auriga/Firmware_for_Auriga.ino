@@ -2,7 +2,7 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.109
+* Version            : V09.01.110
 * Date               : 03/21/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
@@ -94,7 +94,10 @@ int16_t distance=0;
 int16_t randnum = 0;                                                                               
 int16_t auriga_power = 0;
 int16_t LineFollowFlag=0;
-
+float pwm_filter1=0;
+float pwm_filter2=0;
+float pwm_input1=0;
+float pwm_input2=0;
 #define MOVE_STOP       0x00
 #define MOVE_FORWARD    0x01
 #define MOVE_BACKWARD   0x02
@@ -145,7 +148,7 @@ boolean rightflag;
 boolean start_flag = false;
 boolean move_flag = false;
 
-String mVersion = "09.01.109";
+String mVersion = "09.01.110";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
@@ -392,6 +395,10 @@ void TurnRight1(void)
 
 void Stop(void)
 {
+  pwm_filter1=0;
+  pwm_filter2=0;
+  pwm_input1=0;
+  pwm_input2=0;
   Encoder_1.setMotorPwm(0);
   Encoder_2.setMotorPwm(0);
 }
@@ -630,21 +637,29 @@ void runModule(int device)
         if(slot == SLOT_1)
         {
 //          PID_speed_left.Setpoint = speed_value;
-          Encoder_1.setMotorPwm(speed_value);
+          pwm_input1 = speed_value;
+          pwm_filter1 = 0.8 * pwm_filter1 + 0.2 * speed_value;
+          Encoder_1.setMotorPwm((int16_t)pwm_filter1);
         }
         else if(slot == SLOT_2)
         {
 //          PID_speed_right.Setpoint = speed_value;
-          Encoder_2.setMotorPwm(speed_value);
+          pwm_input2 = speed_value;
+          pwm_filter2 = 0.8 * pwm_filter2 + 0.2 * speed_value;
+          Encoder_2.setMotorPwm((int16_t)pwm_filter2);
         }
       }
       break;
     case JOYSTICK:
       {
         int leftSpeed = readShort(6);
-        Encoder_1.setMotorPwm(leftSpeed);
+        pwm_input1 = leftSpeed;
+        pwm_filter1 = 0.8 * pwm_filter1 + 0.2 * leftSpeed;
+        Encoder_1.setMotorPwm((int16_t)pwm_filter1);
         int rightSpeed = readShort(8);
-        Encoder_2.setMotorPwm(rightSpeed);
+        pwm_input2 = rightSpeed;
+        pwm_filter2 = 0.8 * pwm_filter2 + 0.2 * rightSpeed;
+        Encoder_2.setMotorPwm((int16_t)pwm_filter2);
       }
       break;
     case STEPPER:
@@ -1468,67 +1483,14 @@ void balanced_model(void)
   } 
 }
 
-//void PWM_Calcu()
-//{
-//  double speed1;
-//  double speed2;
-//  if((millis() - lasttime_speed) > 20)
-//  {
-//    speed1 = Encoder_1.GetCurrentSpeed();
-//    speed2 = Encoder_2.GetCurrentSpeed();
-//
-//#ifdef DEBUG_INFO
-//    Serial.print("S1: ");
-//    Serial.print(speed1);
-//    Serial.print(" S2: ");
-//    Serial.print(speed2);
-//    Serial.print("left: ");
-//    Serial.print(PID_speed_left.Setpoint);
-//    Serial.print(" right: ");
-//    Serial.println(PID_speed_right.Setpoint);
-//#endif
-//
-//    if(abs(abs(PID_speed_left.Setpoint) - abs(PID_speed_right.Setpoint)) >= 0)
-//    {
-//      Encoder_1.setMotorPwm(PID_speed_left.Setpoint);
-//      Encoder_2.setMotorPwm(PID_speed_right.Setpoint);
-//      return;
-//    }
-//
-//    if((abs(PID_speed_left.Setpoint) == 0) && (abs(PID_speed_right.Setpoint) == 0))
-//    {
-//      return;
-//    }
-//
-//    if(abs(speed1) - abs(speed2) >= 0)
-//    {
-//      if(PID_speed_left.Setpoint > 0)
-//      {
-//        Encoder_1.setMotorPwm(PID_speed_left.Setpoint - (abs(speed1) - abs(speed2)));
-//        Encoder_2.setMotorPwm(PID_speed_right.Setpoint);
-//      }
-//      else
-//      {
-//        Encoder_1.setMotorPwm(PID_speed_left.Setpoint + (abs(speed1) - abs(speed2)));
-//        Encoder_2.setMotorPwm(PID_speed_right.Setpoint);
-//      }
-//    }
-//    else
-//    {
-//      if(PID_speed_right.Setpoint > 0)
-//      {
-//        Encoder_1.setMotorPwm(PID_speed_left.Setpoint);
-//        Encoder_2.setMotorPwm(PID_speed_right.Setpoint - (abs(speed2) - abs(speed1)));
-//      }
-//      else
-//      {
-//        Encoder_1.setMotorPwm(PID_speed_left.Setpoint);
-//        Encoder_2.setMotorPwm(PID_speed_right.Setpoint + (abs(speed2) - abs(speed1)));
-//      }
-//    }
-//    lasttime_speed = millis(); 
-//  }
-//}
+void PWM_Calcu()
+{
+  pwm_filter1 = 0.8 * pwm_filter1 + 0.2 * pwm_input1;
+  Encoder_1.setMotorPwm((int16_t)pwm_filter1);
+  pwm_filter2 = 0.8 * pwm_filter2 + 0.2 * pwm_input2;
+  Encoder_2.setMotorPwm((int16_t)pwm_filter2);
+}
+
 void ultrCarProcess(void)
 {
   if(us == NULL)
@@ -1680,7 +1642,7 @@ void line_model()
 {
   uint8_t val;
   val = line.readSensors();
-  moveSpeed=120;
+  moveSpeed=100;
   switch (val)
   {
     case S1_IN_S2_IN:
@@ -1700,7 +1662,7 @@ void line_model()
 
     case S1_OUT_S2_OUT:
       if(LineFollowFlag==10) Backward();
-      if(LineFollowFlag<10) TurnLeft1();  //TurnLeft1
+      if(LineFollowFlag<10) TurnLeft1();
       if(LineFollowFlag>10) TurnRight1();
       break;
   }
@@ -1783,6 +1745,11 @@ void setup()
 
   TCCR2A = _BV(WGM21) | _BV(WGM20);
   TCCR2B = _BV(CS21);
+
+  pwm_filter1=0;
+  pwm_filter2=0;
+  pwm_input1=0;
+  pwm_input2=0;
 
   leftflag=false;
   rightflag=false;
@@ -1870,7 +1837,11 @@ void loop()
 
   if(auriga_mode == BLUETOOTH_MODE)
   {
-
+    if(millis() - measurement_speed_time > 20)
+    {
+      measurement_speed_time = millis();
+      PWM_Calcu();
+    }
   }
   else if(auriga_mode == AUTOMATIC_OBSTACLE_AVOIDANCE_MODE)
   { 

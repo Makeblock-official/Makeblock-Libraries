@@ -2,7 +2,7 @@
 * File Name          : Firmware_for_MegaPi.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V0e.01.103
+* Version            : V0e.01.104
 * Date               : 03/21/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
@@ -22,11 +22,11 @@ Servo servos[8];
 MeMegaPiDCMotor dc;
 MeTemperature ts;
 MeRGBLed led;
-MeUltrasonicSensor *us = NULL;     //PORT_8
+MeUltrasonicSensor *us = NULL;     //PORT_6
 Me7SegmentDisplay seg;
 MePort generalDevice;
 MeLEDMatrix ledMx;
-MeInfraredReceiver *ir = NULL;     //PORT_6
+MeInfraredReceiver *ir = NULL;     //PORT_7
 MeGyro gyro_ext(0,0x68);  //外接陀螺仪
 MeGyro gyro(1,0x69);      //板载陀螺仪
 MeCompass Compass;
@@ -40,7 +40,7 @@ MeEncoderOnBoard Encoder_1(SLOT1);
 MeEncoderOnBoard Encoder_2(SLOT2);
 MeEncoderOnBoard Encoder_3(SLOT3);
 MeEncoderOnBoard Encoder_4(SLOT4);
-MeLineFollower line(PORT_7);
+MeLineFollower line(PORT_8);
 
 typedef struct MeModule
 {
@@ -92,6 +92,14 @@ int16_t distance=0;
 int16_t randnum = 0;                                                                               
 int16_t auriga_power = 0;
 int16_t LineFollowFlag=0;
+float pwm_filter1=0;
+float pwm_filter2=0;
+float pwm_filter3=0;
+float pwm_filter4=0;
+float pwm_input1=0;
+float pwm_input2=0;
+float pwm_input3=0;
+float pwm_input4=0;
 
 #define MOVE_STOP       0x00
 #define MOVE_FORWARD    0x01
@@ -150,7 +158,7 @@ boolean rightflag;
 boolean start_flag = false;
 boolean move_flag = false;
 
-String mVersion = "0e.01.103";
+String mVersion = "0e.01.104";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
 #define PWM_MIN_OFFSET   5
@@ -370,7 +378,7 @@ int readEEPROM(void)
   }
 }
 
-void Forward(void)  //Backward
+void Forward(void)
 {
   Encoder_1.setMotorPwm(moveSpeed);
   Encoder_2.setMotorPwm(-moveSpeed);
@@ -420,6 +428,10 @@ void TurnRight1(void)
 
 void Stop(void)
 {
+  pwm_input1=0;
+  pwm_input2=0;
+  pwm_input3=0;
+  pwm_input4=0;
   Encoder_1.setMotorPwm(0);
   Encoder_2.setMotorPwm(0);
 }
@@ -713,31 +725,44 @@ void runModule(int device)
       {
         uint8_t slot = readBuffer(7);
         int16_t speed_value = readShort(8);
-		speed_value = -speed_value;
+        speed_value = -speed_value;
+
         if(slot == SLOT_1)
         {
-          Encoder_1.setMotorPwm(speed_value);
+          pwm_input1 = speed_value;
+          pwm_filter1 = 0.8 * pwm_filter1 + 0.2 * speed_value;
+          Encoder_1.setMotorPwm((int16_t)pwm_filter1);
         }
         else if(slot == SLOT_2)
         {
-          Encoder_2.setMotorPwm(speed_value);
+          pwm_input2 = speed_value;
+          pwm_filter2 = 0.8 * pwm_filter2 + 0.2 * speed_value;
+          Encoder_2.setMotorPwm((int16_t)pwm_filter2);
         }
         else if(slot == SLOT_3)
         {
-          Encoder_3.setMotorPwm(speed_value);
+          pwm_input3 = speed_value;
+          pwm_filter3 = 0.8 * pwm_filter3 + 0.2 * speed_value;
+          Encoder_3.setMotorPwm((int16_t)pwm_filter3);
         }
         else if(slot == SLOT_4)
         {
-          Encoder_4.setMotorPwm(speed_value);
+          pwm_input4 = speed_value;
+          pwm_filter4 = 0.8 * pwm_filter4 + 0.2 * speed_value;
+          Encoder_4.setMotorPwm((int16_t)pwm_filter4);
         }
       }
       break;
     case JOYSTICK:
       {
         int leftSpeed = readShort(6);
-        Encoder_1.setMotorPwm(leftSpeed);
+        pwm_input1 = leftSpeed;
+        pwm_filter1 = 0.8 * pwm_filter1 + 0.2 * leftSpeed;
+        Encoder_1.setMotorPwm((int16_t)pwm_filter1);
         int rightSpeed = readShort(8);
-        Encoder_2.setMotorPwm(rightSpeed);
+        pwm_input2 = rightSpeed;
+        pwm_filter2 = 0.8 * pwm_filter2 + 0.2 * rightSpeed;
+        Encoder_2.setMotorPwm((int16_t)pwm_filter2);
       }
       break;
     case STEPPER:
@@ -1537,72 +1562,23 @@ void balanced_model(void)
   } 
 }
 
-//void PWM_Calcu()
-//{
-//  double speed1;
-//  double speed2;
-//  if((millis() - lasttime_speed) > 20)
-//  {
-//    speed1 = Encoder_1.GetCurrentSpeed();
-//    speed2 = Encoder_2.GetCurrentSpeed();
-//
-//#ifdef DEBUG_INFO
-//    Serial.print("S1: ");
-//    Serial.print(speed1);
-//    Serial.print(" S2: ");
-//    Serial.print(speed2);
-//    Serial.print("left: ");
-//    Serial.print(PID_speed_left.Setpoint);
-//    Serial.print(" right: ");
-//    Serial.println(PID_speed_right.Setpoint);
-//#endif
-//
-//    if(abs(abs(PID_speed_left.Setpoint) - abs(PID_speed_right.Setpoint)) >= 0)
-//    {
-//      Encoder_1.setMotorPwm(PID_speed_left.Setpoint);
-//      Encoder_2.setMotorPwm(PID_speed_right.Setpoint);
-//      return;
-//    }
-//
-//    if((abs(PID_speed_left.Setpoint) == 0) && (abs(PID_speed_right.Setpoint) == 0))
-//    {
-//      return;
-//    }
-//
-//    if(abs(speed1) - abs(speed2) >= 0)
-//    {
-//      if(PID_speed_left.Setpoint > 0)
-//      {
-//        Encoder_1.setMotorPwm(PID_speed_left.Setpoint - (abs(speed1) - abs(speed2)));
-//        Encoder_2.setMotorPwm(PID_speed_right.Setpoint);
-//      }
-//      else
-//      {
-//        Encoder_1.setMotorPwm(PID_speed_left.Setpoint + (abs(speed1) - abs(speed2)));
-//        Encoder_2.setMotorPwm(PID_speed_right.Setpoint);
-//      }
-//    }
-//    else
-//    {
-//      if(PID_speed_right.Setpoint > 0)
-//      {
-//        Encoder_1.setMotorPwm(PID_speed_left.Setpoint);
-//        Encoder_2.setMotorPwm(PID_speed_right.Setpoint - (abs(speed2) - abs(speed1)));
-//      }
-//      else
-//      {
-//        Encoder_1.setMotorPwm(PID_speed_left.Setpoint);
-//        Encoder_2.setMotorPwm(PID_speed_right.Setpoint + (abs(speed2) - abs(speed1)));
-//      }
-//    }
-//    lasttime_speed = millis(); 
-//  }
-//}
+void PWM_Calcu()
+{
+  pwm_filter1 = 0.8 * pwm_filter1 + 0.2 * pwm_input1;
+  Encoder_1.setMotorPwm((int16_t)pwm_filter1);
+  pwm_filter2 = 0.8 * pwm_filter2 + 0.2 * pwm_input2;
+  Encoder_2.setMotorPwm((int16_t)pwm_filter2);
+  pwm_filter3 = 0.8 * pwm_filter3 + 0.2 * pwm_input3;
+  Encoder_3.setMotorPwm((int16_t)pwm_filter3);
+  pwm_filter4 = 0.2 * pwm_filter4 + 0.2 * pwm_input4;
+  Encoder_4.setMotorPwm((int16_t)pwm_filter4);
+}
+
 void ultrCarProcess(void)
 {
   if(us == NULL)
   {
-    us = new MeUltrasonicSensor(PORT_9);
+    us = new MeUltrasonicSensor(PORT_6);
   }
   moveSpeed = 150;
   if(us != NULL)
@@ -1613,14 +1589,14 @@ void ultrCarProcess(void)
   {
     return;
   }
-  randomSeed(analogRead(A4));
+
   if((distance > 20) && (distance < 40))
   {
     randnum=random(300);
     if((randnum > 190) && (!rightflag))
     {
       leftflag=true;
-      TurnLeft();   
+      TurnLeft();
     }
     else
     {
@@ -1848,9 +1824,13 @@ void setup()
   TCCR2A = _BV(WGM21) | _BV(WGM20);
   TCCR2B = _BV(CS21);
 
+  pwm_filter1=0;
+  pwm_filter2=0;
+  pwm_filter3=0;
+  pwm_filter4=0;
+
   leftflag=false;
   rightflag=false;
-  randomSeed(analogRead(0));
   PID_angle.Setpoint = RELAX_ANGLE;
   PID_angle.P = 10;          //10;
   PID_angle.I = 0;           //0;
@@ -1877,6 +1857,7 @@ void loop()
   Encoder_2.Update_speed();
   Encoder_3.Update_speed();
   Encoder_4.Update_speed();
+
 //  while(Serial.available() > 0)
 //  {
 //    char c = Serial.read();
@@ -1936,11 +1917,15 @@ void loop()
 
   if(megapi_mode == BLUETOOTH_MODE)
   {
-
+    if(millis() - measurement_speed_time > 20)
+    {
+      measurement_speed_time = millis();
+      PWM_Calcu();
+    }
   }
   else if(megapi_mode == AUTOMATIC_OBSTACLE_AVOIDANCE_MODE)
   { 
-    ultrCarProcess();    
+    ultrCarProcess();
   }
   else if(megapi_mode == BALANCED_MODE)
   {
