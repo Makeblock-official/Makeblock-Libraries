@@ -23,11 +23,11 @@ Servo servos[8];
 MeMegaPiDCMotor dc;
 MeTemperature ts;
 MeRGBLed led;
-MeUltrasonicSensor *us = NULL;     //PORT_6
+MeUltrasonicSensor *us = NULL;     //PORT_7
 Me7SegmentDisplay seg;
 MePort generalDevice;
 MeLEDMatrix ledMx;
-MeInfraredReceiver *ir = NULL;     //PORT_7
+MeInfraredReceiver *ir = NULL;     //PORT_6
 MeGyro gyro_ext(0,0x68);  //外接陀螺仪
 MeGyro gyro(1,0x69);      //板载陀螺仪
 MeCompass Compass;
@@ -37,6 +37,8 @@ MeBuzzer buzzer;
 MeHumiture humiture;
 MeFlameSensor FlameSensor;
 MeGasSensor GasSensor;
+MeTouchSensor touchSensor;
+Me4Button buttonSensor;
 MeEncoderOnBoard Encoder_1(SLOT1);
 MeEncoderOnBoard Encoder_2(SLOT2);
 MeEncoderOnBoard Encoder_3(SLOT3);
@@ -130,6 +132,7 @@ uint8_t modulesLen=0;
 uint8_t irRead = 0;
 uint8_t prevc=0;
 uint8_t BluetoothSource = DATA_SERIAL;
+uint8_t keyPressed = KEY_NULL;
 char serialRead;
 char buffer[52];
 char bufferBt1[52];
@@ -164,43 +167,45 @@ String mVersion = "0e.01.104";
 float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
 #define PWM_MIN_OFFSET   5
 
-#define VERSION 0
-#define ULTRASONIC_SENSOR 1
-#define TEMPERATURE_SENSOR 2
-#define LIGHT_SENSOR 3
-#define POTENTIONMETER 4
-#define JOYSTICK 5
-#define GYRO 6
-#define SOUND_SENSOR 7
-#define RGBLED 8
-#define SEVSEG 9
-#define MOTOR 10
-#define SERVO 11
-#define ENCODER 12
-#define IR 13
-#define PIRMOTION 15
-#define INFRARED 16
-#define LINEFOLLOWER 17
-#define SHUTTER 20
-#define LIMITSWITCH 21
-#define BUTTON 22
-#define HUMITURE 23
-#define FLAMESENSOR 24
-#define GASSENSOR 25
-#define COMPASS 26
-#define TEMPERATURE_SENSOR_1 27
-#define DIGITAL 30
-#define ANALOG 31
-#define PWM 32
-#define SERVO_PIN 33
-#define TONE 34
-#define PULSEIN 35
-#define ULTRASONIC_ARDUINO 36
-#define STEPPER 40
-#define LEDMATRIX 41
-#define TIMER 50
-#define JOYSTICK_MOVE 52
-#define COMMON_COMMONCMD 60
+#define VERSION                0
+#define ULTRASONIC_SENSOR      1
+#define TEMPERATURE_SENSOR     2
+#define LIGHT_SENSOR           3
+#define POTENTIONMETER         4
+#define JOYSTICK               5
+#define GYRO                   6
+#define SOUND_SENSOR           7
+#define RGBLED                 8
+#define SEVSEG                 9
+#define MOTOR                  10
+#define SERVO                  11
+#define ENCODER                12
+#define IR                     13
+#define PIRMOTION              15
+#define INFRARED               16
+#define LINEFOLLOWER           17
+#define SHUTTER                20
+#define LIMITSWITCH            21
+#define BUTTON                 22
+#define HUMITURE               23
+#define FLAMESENSOR            24
+#define GASSENSOR              25
+#define COMPASS                26
+#define TEMPERATURE_SENSOR_1   27
+#define DIGITAL                30
+#define ANALOG                 31
+#define PWM                    32
+#define SERVO_PIN              33
+#define TONE                   34
+#define BUTTON_INNER           35
+#define ULTRASONIC_ARDUINO     36
+#define PULSEIN                37
+#define STEPPER                40
+#define LEDMATRIX              41
+#define TIMER                  50
+#define TOUCH_SENSOR           51
+#define JOYSTICK_MOVE          52
+#define COMMON_COMMONCMD       60
   //Secondary command
   #define SET_STARTER_MODE     0x10
   #define SET_AURIGA_MODE      0x11
@@ -1256,6 +1261,24 @@ void readSensor(int device)
         sendFloat((float)currentTime);
       }
       break;
+    case TOUCH_SENSOR:
+      {
+        if(touchSensor.getPort() != port)
+        {
+          touchSensor.reset(port);
+        }
+        sendByte(touchSensor.touched());
+      }
+      break;
+    case BUTTON:
+      {
+        if(buttonSensor.getPort() != port)
+        {
+          buttonSensor.reset(port);
+        }
+        sendByte(keyPressed == readBuffer(7));
+      }
+      break;
     case ENCODER_BOARD:
       {
         if(port == 0)
@@ -1595,7 +1618,7 @@ void ultrCarProcess(void)
 {
   if(us == NULL)
   {
-    us = new MeUltrasonicSensor(PORT_6);
+    us = new MeUltrasonicSensor(PORT_7);
   }
   moveSpeed = 150;
   if(us != NULL)
@@ -1669,7 +1692,7 @@ void IrProcess()
 {
   if(ir == NULL)
   {
-      ir = new MeInfraredReceiver(PORT_8);
+      ir = new MeInfraredReceiver(PORT_6);
       ir->begin();
   }
   ir->loop();
@@ -1873,6 +1896,7 @@ void setup()
 void loop()
 {
   currentTime = millis()/1000.0-lastTime;
+  keyPressed = buttonSensor.pressed();
   wdt_reset();
   if(ir != NULL)
   {
