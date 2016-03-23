@@ -39,19 +39,13 @@ void loop()
   motor2.moveTo(2000, 200);
   while(motor2.isTarPosReaches() == false)
   {
-    motor2.moveTo(2000, 200);
     Serial.print("pos: ");
     Serial.println(motor2.getCurrentPosition());
   }
-  Serial.print("pos: ");
-  Serial.println(motor2.getCurrentPosition());
   motor2.moveTo(0, 200);
   while(motor2.isTarPosReaches() == false)
   {
-    motor2.moveTo(0, 200);
     Serial.print("pos: ");
     Serial.println(motor2.getCurrentPosition());
   }
-  Serial.println("pos: ");
-  Serial.print(motor2.getCurrentPosition());
 }
