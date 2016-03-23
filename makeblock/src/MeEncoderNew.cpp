@@ -26,30 +26,29 @@
  *
  * \par Method List:
  *
- *    1. void MeEncoderNew::begin();
- *    2. void MeEncoderNew::reset();
- *    3. void MeEncoderNew::move(long angle, float speed, float lock_state);
- *    4. void MeEncoderNew::moveTo(long angle, float speed,float lock_state);
- *    5. void MeEncoderNew::runSpeed(int speed);
- *    6. void MeEncoderNew::runTurns(long turns, float speed,float lock_state);
+ *    1. void MeEncoderNew::begin(void);
+ *    2. void MeEncoderNew::move(long angle, float speed, float lock_state);
+ *    3. void MeEncoderNew::moveTo(long angle, float speed,float lock_state);
+ *    4. void MeEncoderNew::runSpeed(int speed);
+ *    5. void MeEncoderNew::runTurns(long turns, float speed,float lock_state);
+ *    6. void MeEncoderNew::reset(void);
  *    7. void MeEncoderNew::setSpeedPID(float p,float i,float d);
  *    8. void MeEncoderNew::setPosPID(float p,float i,float d);
- *    8. void MeEncoderNew::reset();
  *    9. void MeEncoderNew::setMode(uint8_t mode);
  *    10. void MeEncoderNew::setPWM(int pwm);
- *    11. long MeEncoderNew::getCurrentPosition();
- *    12. void MeEncoderNew::getSpeedPID(float * p,float * i,float * d);
- *    13. void MeEncoderNew::getPosPID(float * p,float * i,float * d);
- *    14. float MeEncoderNew::getCurrentSpeed();
- *    15. void MeEncoderNew::sendCmd();
- *    16. float MeEncoderNew::getRatio();
- *    17. void MeEncoderNew::setRatio(float r);
- *    18. int MeEncoderNew::getPulse();
- *    19. void MeEncoderNew::setPulse(int p);
- *    20. void MeEncoderNew::setDevid(int devid);
- *    21. void MeEncoderNew::setMode(uint8_t mode);
- *    22. void MeEncoderNew::setPWM(int pwm);
- *    23.void MeEncoderNew::runSpeedAndTime(float speed, float time, float lock_state);
+ *    11. void MeEncoderNew::setCurrentPosition(long pulse_counter)
+ *    12. long MeEncoderNew::getCurrentPosition();
+ *    13. void MeEncoderNew::getSpeedPID(float * p,float * i,float * d);
+ *    14. void MeEncoderNew::getPosPID(float * p,float * i,float * d);
+ *    15. float MeEncoderNew::getCurrentSpeed(void);
+ *    16. void MeEncoderNew::sendCmd(void);
+ *    17. float MeEncoderNew::getRatio(void);
+ *    18. void MeEncoderNew::setRatio(float r);
+ *    19. int MeEncoderNew::getPulse(void);
+ *    20. void MeEncoderNew::setPulse(int p);
+ *    21. void MeEncoderNew::setDevid(int devid);
+ *    22. void MeEncoderNew::runSpeedAndTime(float speed, float time, float lock_state);
+ *    23. boolean MeEncoderNew::isTarPosReaches(void);
  *
  * \par History:
  * <pre>
@@ -57,6 +56,8 @@
  * Mark Yan        2016/03/18     1.0.0            build the new
  * </pre>
  *
+ * @example EncoderMotorChangeI2CDevID.ino
+ * @example EncoderMotorTestIsTarPosReaches.ino
  * @example EncoderMotorTestMoveTo.ino
  * @example EncoderMotorTestRunSpeed.ino
  * @example EncoderMotorTestRunSpeedAndTime.ino
@@ -76,6 +77,7 @@
 // config function
 #define CMD_SET_SPEED_PID 0x10
 #define CMD_SET_POS_PID   0x11
+#define CMD_SET_CUR_POS   0x12
 #define CMD_SET_MODE      0x13
 #define CMD_SET_PWM       0x14
 #define CMD_SET_RATIO     0x15
@@ -88,12 +90,13 @@
 #define CMD_GET_SPEED           0x24
 #define CMD_GET_RATIO           0x25
 #define CMD_GET_PULSE           0x26
+#define CMD_GET_LOCK_STATE      0x27
 
 /**
  * Alternate Constructor which can call your own function to map the Encoder Motor New to arduino port,
  * you can set any slot for the Encoder Motor New device. 
  * \param[in]
- *   port - RJ25 port from PORT_1 to M2
+ *   port - RJ25 port from PORT_1 to PORT_10
  * \param[in]
  *   slot - SLOT1 or SLOT2
  */
@@ -121,7 +124,7 @@ MeEncoderNew::MeEncoderNew(uint8_t slot)
  * \param[in]
  *   None
  */
-MeEncoderNew::MeEncoderNew()
+MeEncoderNew::MeEncoderNew(void)
 {
   address = 0x09;
 }
@@ -140,7 +143,7 @@ MeEncoderNew::MeEncoderNew()
  * \par Others
  *    None
  */
-void MeEncoderNew::begin()
+void MeEncoderNew::begin(void)
 {
   Wire.begin();
 }
@@ -171,6 +174,7 @@ void MeEncoderNew::move(long angle, float speed, float lock_state)
   memcpy(cmdBuf + 6, &angle, 4);
   memcpy(cmdBuf + 10,&speed,4);
   sendCmd();
+  delay(2);
 }
 
 /**
@@ -199,6 +203,7 @@ void MeEncoderNew::moveTo(long angle, float speed,float lock_state)
   memcpy(cmdBuf + 6, &angle, 4);
   memcpy(cmdBuf + 10,&speed,4);
   sendCmd();
+  delay(2);
 }
 
 /**
@@ -224,6 +229,7 @@ void MeEncoderNew::runSpeed(float speed,float lock_state)
   memcpy(cmdBuf + 2, &lock_state, 4);
   memcpy(cmdBuf + 6, &speed, 4);
   sendCmd();
+  delay(2);
 }
 
 /**
@@ -246,7 +252,7 @@ void MeEncoderNew::runSpeed(float speed,float lock_state)
  */
 void MeEncoderNew::runTurns(long turns, float speed,float lock_state)
 {
-    return move(turns * 360, speed,lock_state);
+  return move(turns * 360, speed,lock_state);
 }
 
 /**
@@ -261,11 +267,12 @@ void MeEncoderNew::runTurns(long turns, float speed,float lock_state)
  * \par Others
  *    None
  */
-void MeEncoderNew::reset()
+void MeEncoderNew::reset(void)
 {
   cmdBuf[0] = _slot;
   cmdBuf[1] = CMD_RESET;
   sendCmd();
+  delay(2);
 }
 
 /**
@@ -344,6 +351,7 @@ void MeEncoderNew::setMode(uint8_t mode)
   cmdBuf[1] = CMD_SET_MODE;
   cmdBuf[2] = mode;
   sendCmd();
+  delay(2);
 }
 
 /**
@@ -366,6 +374,30 @@ void MeEncoderNew::setPWM(int pwm)
   cmdBuf[1] = CMD_SET_PWM;
   memcpy(cmdBuf+2,&pwm,2);
   sendCmd();
+  delay(2);
+}
+
+/**
+ * \par Function
+ *    setCurrentPosition
+ * \par Description
+ *    Set current position of Motor.
+ * \param[in]
+ *    pulse_counter - The count value of current encoder
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+void MeEncoderNew::setCurrentPosition(long pulse_counter)
+{
+  cmdBuf[0] = _slot;
+  cmdBuf[1] = CMD_SET_CUR_POS;
+  memcpy(cmdBuf+2,&pulse_counter,4);
+  sendCmd();
+  delay(2);
 }
 
 /**
@@ -378,11 +410,11 @@ void MeEncoderNew::setPWM(int pwm)
  * \par Output
  *    None
  * \par Return
- *    None
+ *    Motor encoder pulse count value.
  * \par Others
  *    None
  */
-long MeEncoderNew::getCurrentPosition()
+long MeEncoderNew::getCurrentPosition(void)
 {
   long pos;
   char buf[8];
@@ -503,11 +535,11 @@ void MeEncoderNew::getPosPID(float * p,float * i,float * d)
  * \par Output
  *    None
  * \par Return
- *    None
+ *    The speed of encoder motor(The unit is rpm)
  * \par Others
  *    None
  */
-float MeEncoderNew::getCurrentSpeed()
+float MeEncoderNew::getCurrentSpeed(void)
 {
   char buf[8];
   float speed;
@@ -538,7 +570,7 @@ float MeEncoderNew::getCurrentSpeed()
  * \par Others
  *    None
  */
-void MeEncoderNew::sendCmd()
+void MeEncoderNew::sendCmd(void)
 {
   Wire.beginTransmission(address); 
   for(int i=0;i<18;i++)
@@ -560,7 +592,7 @@ void MeEncoderNew::sendCmd()
  * \par Others
  *    None
  */
-float MeEncoderNew::getRatio()
+float MeEncoderNew::getRatio(void)
 { 
   char buf[8];
   float ratio;
@@ -583,7 +615,7 @@ float MeEncoderNew::getRatio()
  * \par Description
  *    Set the ratio to Motor.
  * \param[in]
- *    None
+ *    ratio - the ratio of Motor
  * \par Output
  *    None
  * \par Return
@@ -613,7 +645,7 @@ void MeEncoderNew::setRatio(float ratio)
  * \par Others
  *    None
  */
-int MeEncoderNew::getPulse()
+int MeEncoderNew::getPulse(void)
 { 
   char buf[8];
   int pulse;
@@ -636,7 +668,7 @@ int MeEncoderNew::getPulse()
  * \par Description
  *    Set the pulse to Motor.
  * \param[in]
- *    None
+ *    pulse - the line number of Motor
  * \par Output
  *    None
  * \par Return
@@ -658,7 +690,7 @@ void MeEncoderNew::setPulse(int pulse)
  * \par Description
  *    Set the devid to Motor.
  * \param[in]
- *    None
+ *    devid - the I2C adress
  * \par Output
  *    None
  * \par Return
@@ -705,4 +737,36 @@ void MeEncoderNew::runSpeedAndTime(float speed, float time, float lock_state)
     _lastTime = 0;
     runSpeed(0,lock_state);
   }
+}
+
+/**
+ * \par Function
+ *    isTarPosReaches
+ * \par Description
+ *    Check whether the target position has been reached
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    true - The target position reaches
+ *    false - Does not reach the target position
+ * \par Others
+ *    None
+ */
+boolean MeEncoderNew::isTarPosReaches(void)
+{
+  uint8_t buf[8];
+  boolean lock_state;
+  Wire.beginTransmission(address); 
+  Wire.write(_slot);      
+  Wire.write(CMD_GET_LOCK_STATE);             
+  Wire.endTransmission(0);
+  Wire.requestFrom(address,(uint8_t)2);
+  for(int i=0;i<2;i++)   
+  { 
+    buf[i] = Wire.read(); 
+  }
+  lock_state = *(boolean*)buf;
+  return lock_state;
 }

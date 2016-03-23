@@ -10,6 +10,7 @@
 * http://www.makeblock.cc/
 **************************************************************************/
 #include <Arduino.h>
+#include <avr/wdt.h>
 #include <MeAuriga.h>
 #include "MeEEPROM.h"
 #include <Wire.h>
@@ -1486,8 +1487,16 @@ void balanced_model(void)
 void PWM_Calcu()
 {
   pwm_filter1 = 0.8 * pwm_filter1 + 0.2 * pwm_input1;
+  if((pwm_input1 == 0) && (abs(pwm_filter1) <= 20))
+  {
+    pwm_filter1 = 0;
+  }
   Encoder_1.setMotorPwm((int16_t)pwm_filter1);
   pwm_filter2 = 0.8 * pwm_filter2 + 0.2 * pwm_input2;
+  if((pwm_input2 == 0) && (abs(pwm_filter2) <= 20))
+  {
+    pwm_filter2 = 0;
+  }
   Encoder_2.setMotorPwm((int16_t)pwm_filter2);
 }
 
@@ -1529,6 +1538,7 @@ void ultrCarProcess(void)
       BackwardAndTurnLeft();
       for(int i=0;i<300;i++)
       {
+        wdt_reset();
         if(read_serial() == true)
         {
           break;
@@ -1544,6 +1554,7 @@ void ultrCarProcess(void)
       BackwardAndTurnRight();
       for(int i=0;i<300;i++)
       {
+        wdt_reset();
         if(read_serial() == true)
         {
           break;
@@ -1642,7 +1653,7 @@ void line_model()
 {
   uint8_t val;
   val = line.readSensors();
-  moveSpeed=100;
+  moveSpeed=120;
   switch (val)
   {
     case S1_IN_S2_IN:
@@ -1729,15 +1740,23 @@ void setup()
   delay(1);
   led.setColor(0,0,0);
   led.show();
+  delay(5);
+// enable the watchdog
+  wdt_enable(WDTO_2S);
+  delay(5);
   gyro_ext.begin();
+  delay(5);
+  wdt_reset();
   gyro.begin();
   delay(100);
+  wdt_reset();
   Serial.begin(115200);
   delay(500);
   buzzer.tone(BUZZER_PORT, 500, 100);
   delay(100);
   buzzer.noTone(BUZZER_PORT);
   delay(500);
+  wdt_reset();
 
   //Set Pwm 8KHz
   TCCR1A = _BV(WGM10);
@@ -1769,6 +1788,7 @@ void setup()
 void loop()
 {
   currentTime = millis()/1000.0-lastTime;
+  wdt_reset();
   if(ir != NULL)
   {
     IrProcess();
