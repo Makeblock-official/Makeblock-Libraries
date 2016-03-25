@@ -144,6 +144,7 @@ double  LastCompAngleY, LastCompAngleX, LastGyroXangle;
 double  last_turn_setpoint_filter = 0.0;
 double  last_speed_setpoint_filter = 0.0;
 double  last_speed_error_filter = 0.0;
+double  speed_Integral_average = 0.0;
 double  angle_speed = 0.0;
 
 float angleServo = 90.0;
@@ -1401,7 +1402,7 @@ void PID_speed_compute(void)
   {
     move_flag = false;
     last_speed_setpoint_filter = 0;
-    PID_speed.Integral = 0;
+    PID_speed.Integral = speed_Integral_average;
   }
 
   double error = speed_now - last_speed_setpoint_filter;
@@ -1410,7 +1411,7 @@ void PID_speed_compute(void)
   if(move_flag == true) 
   { 
     PID_speed.Integral = constrain(PID_speed.Integral , -1500, 1500);
-    PID_speed.Output = PID_speed.P * speed_now + PID_speed.I * PID_speed.Integral;
+    PID_speed.Output = PID_speed.P * error + PID_speed.I * PID_speed.Integral;
     PID_speed.Output = constrain(PID_speed.Output , -15.0, 15.0);
   }
   else
@@ -1418,6 +1419,7 @@ void PID_speed_compute(void)
     PID_speed.Integral = constrain(PID_speed.Integral , -1500, 1500);
     PID_speed.Output = PID_speed.P * speed_now + PID_speed.I * PID_speed.Integral;
     PID_speed.Output = constrain(PID_speed.Output , -15.0, 15.0);
+    speed_Integral_average = 0.8 * speed_Integral_average + 0.2 * PID_speed.Integral;
   }
   
   PID_angle.Setpoint =  RELAX_ANGLE -  PID_speed.Output;
