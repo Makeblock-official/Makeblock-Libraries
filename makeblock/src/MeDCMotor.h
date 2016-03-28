@@ -136,6 +136,7 @@ public:
 private:
   volatile uint8_t dc_dir_pin;
   volatile uint8_t dc_pwm_pin;
+  int16_t  last_speed;
 };
 #endif
 

@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_MegaPi.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V0e.01.104
-* Date               : 03/21/2016
+* Version            : V0e.01.001
+* Date               : 03/28/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -28,8 +28,7 @@ Me7SegmentDisplay seg;
 MePort generalDevice;
 MeLEDMatrix ledMx;
 MeInfraredReceiver *ir = NULL;     //PORT_6
-MeGyro gyro_ext(0,0x68);  //外接陀螺仪
-MeGyro gyro(1,0x69);      //板载陀螺仪
+MeGyro gyro_ext(0,0x68);           //外接陀螺仪
 MeCompass Compass;
 MeJoystick joystick;
 MeStepper steppers[2];
@@ -153,6 +152,7 @@ float dt;
 long measurement_speed_time = 0;
 long lasttime_angle = 0;
 long lasttime_speed = 0;
+long blink_time = 0;
 long last_Pulse_pos_encoder1 = 0;
 long last_Pulse_pos_encoder2 = 0;
 
@@ -162,11 +162,12 @@ boolean leftflag;
 boolean rightflag;
 boolean start_flag = false;
 boolean move_flag = false;
+boolean blink_flag = false;
 
-String mVersion = "0e.01.104";
+String mVersion = "0e.01.001";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
-#define PWM_MIN_OFFSET   5
+#define PWM_MIN_OFFSET   0
 
 #define VERSION                0
 #define ULTRASONIC_SENSOR      1
@@ -541,6 +542,7 @@ void readSerial(void)
     serialRead = Serial3.read();
   }
 }
+
 /*
 ff 55 len idx action device port  slot  data a
 0  1  2   3   4      5      6     7     8
@@ -987,18 +989,14 @@ void runModule(int device)
         {
            int joy_x = readShort(7);
            int joy_y = readShort(9);
-           double joy_x_temp = -(double)joy_x * 0.18;//0.3
-           double joy_y_temp = (double)joy_y * 0.25;//0.2
+           double joy_x_temp = (double)joy_x * 0.2;    //0.3
+           double joy_y_temp = -(double)joy_y * 0.15;  //0.2
            PID_speed.Setpoint = joy_y_temp;
            PID_turn.Setpoint = joy_x_temp;
            if(abs(PID_speed.Setpoint) > 1)
            { 
              move_flag = true;
            }
-           Serial.print("Set Num:");
-           Serial.print(PID_turn.Setpoint);
-           Serial.print(" ,");
-           Serial.println(PID_speed.Setpoint);
         }
       }
       break;
@@ -1211,11 +1209,6 @@ void readSensor(int device)
           value = gyro_ext.getAngle(axis);
           sendFloat(value);
         }
-        else if((port == 1) && (gyro.getDevAddr() == 0x69))
-        {
-          value = gyro.getAngle(axis);
-          sendFloat(value);
-        }
       }
       break;
     case  VERSION:
@@ -1351,14 +1344,10 @@ void readSensor(int device)
 
 void PID_angle_compute(void)   //PID
 {
-  CompAngleX = -gyro.getAngleX();
+  CompAngleX = -gyro_ext.getAngleX();
   double error = CompAngleX - PID_angle.Setpoint;
-  PID_angle.Integral += error;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-  if(abs(CompAngleX - PID_angle.Setpoint) < 1)
-  {
-    PID_angle.Integral = 0;
-  }
-
+  PID_angle.Integral += error;
+  PID_angle.Integral = constrain(PID_angle.Integral,-100,100); 
   PID_angle.differential = angle_speed;
   PID_angle.Output = PID_angle.P * error + PID_angle.I * PID_angle.Integral + PID_angle.D * PID_angle.differential;
   if(PID_angle.Output > 0)
@@ -1380,6 +1369,8 @@ void PID_angle_compute(void)   //PID
   Serial.print(CompAngleX);
   Serial.print(" Output: ");
   Serial.print(PID_angle.Output);
+  Serial.print("PID_angle.Integral: ");
+  Serial.print(PID_angle.Integral);
   Serial.print(" dif: ");
   Serial.println(PID_angle.differential);
 #endif
@@ -1410,19 +1401,17 @@ void PID_speed_compute(void)
 
   if(move_flag == true) 
   { 
-    PID_speed.Integral = constrain(PID_speed.Integral , -1500, 1500);
+    PID_speed.Integral = constrain(PID_speed.Integral , -2000, 2000);
     PID_speed.Output = PID_speed.P * error + PID_speed.I * PID_speed.Integral;
-    PID_speed.Output = constrain(PID_speed.Output , -15.0, 15.0);
+    PID_speed.Output = constrain(PID_speed.Output , -8.0, 8.0);
   }
   else
   {  
-    PID_speed.Integral = constrain(PID_speed.Integral , -1500, 1500);
+    PID_speed.Integral = constrain(PID_speed.Integral , -2000, 2000);
     PID_speed.Output = PID_speed.P * speed_now + PID_speed.I * PID_speed.Integral;
-    PID_speed.Output = constrain(PID_speed.Output , -15.0, 15.0);
+    PID_speed.Output = constrain(PID_speed.Output , -10.0, 10.0);
     speed_Integral_average = 0.8 * speed_Integral_average + 0.2 * PID_speed.Integral;
   }
-  
-  PID_angle.Setpoint =  RELAX_ANGLE -  PID_speed.Output;
   
 #ifdef DEBUG_INFO
   Serial.print(speed_now);
@@ -1437,17 +1426,17 @@ void PID_speed_compute(void)
   Serial.print(",");
   Serial.println(PID_speed.Output);
 #endif
-  PID_angle.Setpoint =  RELAX_ANGLE - PID_speed.Output;
+  PID_angle.Setpoint =  RELAX_ANGLE + PID_speed.Output;
 }
 
 int agx_start_count;
 void reset(void)
 {
-  if((start_flag == false) && (abs(gyro.getAngleX()) < 5))
+  if((start_flag == false) && (abs(gyro_ext.getAngleX()) < 5))
   {
     agx_start_count++;
   }
-  if((start_flag == true) && (abs(gyro.getAngleX()) > 32))
+  if((start_flag == true) && (abs(gyro_ext.getAngleX()) > 40))
   {
     agx_start_count = 0;
     Encoder_1.setMotorPwm(0);
@@ -1864,10 +1853,7 @@ void setup()
   gyro_ext.begin();
   delay(5);
   wdt_reset();
-  gyro.begin();
-  delay(100);
-  wdt_reset();
-
+  pinMode(13,OUTPUT);
   //Set Pwm 8KHz
   TCCR1A = _BV(WGM10);
   TCCR1B = _BV(CS11) | _BV(WGM12);
@@ -1883,16 +1869,17 @@ void setup()
   leftflag=false;
   rightflag=false;
   PID_angle.Setpoint = RELAX_ANGLE;
-  PID_angle.P = 10;          //10;
-  PID_angle.I = 0;           //0;
-  PID_angle.D = -0.4;        //-0.4  PID_speed.Setpoint = 0;
-  PID_speed.P = -0.3;        // -0.5
-  PID_speed.I = -0.032;      // -0.032
+  PID_angle.P = 20;          // 20;
+  PID_angle.I = 1;           // 1;
+  PID_angle.D = 0.2;         // 0.2;
+  PID_speed.P = 0.06;        // 0.06
+  PID_speed.I = 0.005;       // 0.005
   readEEPROM();
-//  megapi_mode = AUTOMATIC_OBSTACLE_AVOIDANCE_MODE;
+  //megapi_mode = BALANCED_MODE;
   Serial.print("Version: ");
   Serial.println(mVersion);
   measurement_speed_time = lasttime_speed = lasttime_angle = millis();
+  blink_time = millis();
 }
 
 void loop()
@@ -1900,6 +1887,14 @@ void loop()
   currentTime = millis()/1000.0-lastTime;
   keyPressed = buttonSensor.pressed();
   wdt_reset();
+
+  if(millis() - blink_time > 1000)
+  {
+    blink_time = millis();
+    blink_flag = !blink_flag;
+    digitalWrite(13,blink_flag);
+  }
+
   if(ir != NULL)
   {
     IrProcess();
@@ -1911,8 +1906,8 @@ void loop()
   Encoder_3.Update_speed();
   Encoder_4.Update_speed();
 
-//  while(Serial.available() > 0)
-//  {
+// while(Serial.available() > 0)
+// {
 //    char c = Serial.read();
 //    Serial.write(c);
 //    buf[bufindex++]=c;
@@ -1922,7 +1917,8 @@ void loop()
 //      memset(buf,0,64);
 //      bufindex = 0;
 //    }
-//  }
+// }
+
   readSerial();
   if(isAvailable)
   {
@@ -1964,10 +1960,9 @@ void loop()
       index=0;
     }
   }
-  gyro.fast_update();
-  gyro_ext.update();
-  angle_speed = gyro.getGyroY();
 
+  gyro_ext.fast_update();
+  angle_speed = gyro_ext.getGyroY();
   if(megapi_mode == BLUETOOTH_MODE)
   {
     if(millis() - measurement_speed_time > 20)

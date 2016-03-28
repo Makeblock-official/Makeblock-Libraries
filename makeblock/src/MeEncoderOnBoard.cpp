@@ -185,7 +185,16 @@ int MeEncoderOnBoard::GetPwm(void)
 void MeEncoderOnBoard::setMotorPwm(int pwm)
 {
   pwm = constrain(pwm,-255,255);
+  if(_last_speed != pwm)
+  {
+    _last_speed = pwm;
+  }
+  else
+  {
+    return;
+  }
   encode_structure.pwm = pwm;
+
   if(pwm < 0)
   {
     digitalWrite(MeEncoderOnBoard::_Port_H1, LOW);

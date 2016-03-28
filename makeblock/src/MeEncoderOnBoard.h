@@ -136,6 +136,7 @@ private:
    uint8_t  _Port_H2;
    uint8_t  _IntNum;
    uint8_t  _Slot;
+   int16_t  _last_speed;
    long _Measurement_speed_time;
    long _Last_pulse_pos;
    double _targetSpeed;
