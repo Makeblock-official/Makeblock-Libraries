@@ -121,8 +121,8 @@ public:
   void update();
   void runSpeed(double speed);
   void setSpeed(double speed);
-  void move(long distance,cb callback,int extId);
-  void moveTo(long position,cb callback,int extId);
+  void move(long distance,cb callback,int extId=0);
+  void moveTo(long position,cb callback,int extId=0);
   long distanceToGo();
 
 private:
