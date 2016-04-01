@@ -67,6 +67,7 @@
 #include "MeFlameSensor.h"
 #include "MeGasSensor.h"
 #include "MeEncoderOnBoard.h"
+#include "MeOnBoardTemp.h"
 
 /*********************  Auriga Board GPIO Map *********************************/
 // struct defined in MeAuriga.h
