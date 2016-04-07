@@ -4,8 +4,8 @@
  * \brief   Driver for Encoder module on MeAuriga and MeMegaPi.
  * @file    MeEncoderOnBoard.cpp
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/11/10
+ * @version V1.0.1
+ * @date    2016/04/07
  * @brief   Driver for Encoder module on MeAuriga and MeMegaPi.
  *
  * \par Copyright
@@ -29,6 +29,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * forfish         2015/11/10     1.0.0            Add description
+ * Mark Yan        2016/04/07     1.0.1            fix motor reset issue.
  * </pre>
  *
  * @example MeEncoderOnBoardMoveTo.ino
@@ -86,6 +87,7 @@ MeEncoderOnBoard::MeEncoderOnBoard(uint8_t slot)
 void MeEncoderOnBoard::reset(uint8_t slot)
 {
   _Slot = slot;
+  _last_speed = 500;
   _Port_A = encoder_Port[slot].port_A;
   _Port_B = encoder_Port[slot].port_B;
   _Port_PWM = encoder_Port[slot].port_PWM;
@@ -127,6 +129,7 @@ void MeEncoderOnBoard::reset(uint8_t slot)
   MeEncoderOnBoard::SetPulsePos(0);
   _Measurement_speed_time = millis();
 }
+
 uint8_t MeEncoderOnBoard::GetSlotNum(void)
 {
   return _Slot;

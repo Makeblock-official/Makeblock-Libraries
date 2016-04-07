@@ -4,8 +4,8 @@
  * \brief   Driver for Me DC motor device.
  * @file    MeDCMotor.cpp
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/09
+ * @version V1.0.1
+ * @date    2016/04/07
  * @brief   Driver for Me DC motor device.
  *
  * \par Copyright
@@ -28,11 +28,14 @@
  *    1. void MeDCMotor::setpin(uint8_t dir_pin,uint8_t pwm_pin)
  *    2. void MeDCMotor::run(int16_t speed)
  *    3. void MeDCMotor::stop(void)
+ *    4. void MeDCMotor::reset(uint8_t port)
+ *    5. void MeDCMotor::reset(uint8_t port, uint8_t slot)
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/09     1.0.0            Rebuild the old lib.
+ * Mark Yan         2016/04/07     1.0.1            fix motor reset issue.
  * </pre>
  *
  * @example DCMotorDriverTest.ino
@@ -153,6 +156,48 @@ void MeDCMotor::setpin(uint8_t dir_pin,uint8_t pwm_pin)
   s1 = pwm_pin;
   s2 = dir_pin;
 #endif // ME_PORT_DEFINED
+}
+
+/**
+ * \par Function
+ *   reset
+ * \par Description
+ *   Reset the DC motor available PIN by its RJ25 port.
+ * \param[in]
+ *   port - RJ25 port from PORT_1 to M2
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+void MeDCMotor::reset(uint8_t port)
+{
+  MePort::reset(port);
+  last_speed = 500;
+}
+
+/**
+ * \par Function
+ *   reset
+ * \par Description
+ *   Reset the DC motor available PIN by its RJ25 port and slot.
+ * \param[in]
+ *   port - RJ25 port from PORT_1 to M2
+ * \param[in]
+ *   slot - SLOT1 or SLOT2
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+void MeDCMotor::reset(uint8_t port, uint8_t slot)
+{
+  MePort::reset(port, slot);
+  last_speed = 500;
 }
 
 /**

@@ -4,8 +4,8 @@
  * \brief   Driver for Me Megapi DC motor device.
  * @file    MeMegaPiDCMotor.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2016/02/20
+ * @version V1.0.1
+ * @date    2016/04/07
  * @brief   Header for MeMegaPiDCMotor.cpp module
  *
  * \par Copyright
@@ -28,11 +28,13 @@
  *    1. void MeMegaPiDCMotor::setpin(uint8_t dir_pin,uint8_t pwm_pin)
  *    2. void MeMegaPiDCMotor::run(int16_t speed)
  *    3. void MeMegaPiDCMotor::stop(void)
+ *    4. void MeMegaPiDCMotor::reset(uint8_t port)
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2016/02/20     1.0.0            Rebuild the new.
+ * Mark Yan         2016/04/07     1.0.1            fix motor reset issue.
  * </pre>
  *
  */
