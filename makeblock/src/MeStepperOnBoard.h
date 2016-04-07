@@ -449,6 +449,7 @@ private:
   uint8_t _micro_step_pin1;
   uint8_t _micro_step_pin2;
   uint8_t _micro_step_pin3;
+  uint8_t _reset_pin;
   uint8_t _micro_step;
   uint8_t _dir;          // 2 or 4
   long _currentPos;      // Steps
