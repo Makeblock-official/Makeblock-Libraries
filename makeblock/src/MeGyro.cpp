@@ -291,10 +291,20 @@ void MeGyro::fast_update(void)
   ax = atan2(accX, sqrt( pow(accY, 2) + pow(accZ, 2) ) ) * 180 / 3.1415926;
   ay = atan2(accY, sqrt( pow(accX, 2) + pow(accZ, 2) ) ) * 180 / 3.1415926;  
 
+  if(accZ > 0)
+  {
+    gx = gx - gyrY * dt;
+    gy = gy + gyrX * dt;
+  }
+  else
+  {
+    gx = gx + gyrY * dt;
+    gy = gy - gyrX * dt;
+  }
   gz += gyrZ * dt;
 
-  gy = 0.98 * (gy + gyrX * dt) + 0.02 * ay;
-  gx = 0.98 * (gx + gyrY * dt) + 0.02 * ax; 
+  gy = 0.98 * gy + 0.02 * ay;
+  gx = 0.98 * gx + 0.02 * ax; 
 }
 
 /**

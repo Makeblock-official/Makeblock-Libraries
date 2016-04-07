@@ -157,6 +157,7 @@ private:
   volatile uint8_t _dc_dir_h1;
   volatile uint8_t _dc_dir_h2;
   volatile uint8_t _dc_pwm_pin;
+  volatile int16_t last_speed;
 };
 #endif //MeMegaPiDCMotor_H
 

@@ -26,30 +26,29 @@
  *
  * \par Method List:
  *
- *    1. void MeEncoderNew::begin();
- *    2. void MeEncoderNew::reset();
- *    3. void MeEncoderNew::move(long angle, float speed, float lock_state);
- *    4. void MeEncoderNew::moveTo(long angle, float speed,float lock_state);
- *    5. void MeEncoderNew::runSpeed(int speed);
- *    6. void MeEncoderNew::runTurns(long turns, float speed,float lock_state);
+ *    1. void MeEncoderNew::begin(void);
+ *    2. void MeEncoderNew::move(long angle, float speed, float lock_state);
+ *    3. void MeEncoderNew::moveTo(long angle, float speed,float lock_state);
+ *    4. void MeEncoderNew::runSpeed(int speed);
+ *    5. void MeEncoderNew::runTurns(long turns, float speed,float lock_state);
+ *    6. void MeEncoderNew::reset(void);
  *    7. void MeEncoderNew::setSpeedPID(float p,float i,float d);
  *    8. void MeEncoderNew::setPosPID(float p,float i,float d);
- *    8. void MeEncoderNew::reset();
  *    9. void MeEncoderNew::setMode(uint8_t mode);
  *    10. void MeEncoderNew::setPWM(int pwm);
- *    11. long MeEncoderNew::getCurrentPosition();
- *    12. void MeEncoderNew::getSpeedPID(float * p,float * i,float * d);
- *    13. void MeEncoderNew::getPosPID(float * p,float * i,float * d);
- *    14. float MeEncoderNew::getCurrentSpeed();
- *    15. void MeEncoderNew::sendCmd();
- *    16. float MeEncoderNew::getRatio();
- *    17. void MeEncoderNew::setRatio(float r);
- *    18. int MeEncoderNew::getPulse();
- *    19. void MeEncoderNew::setPulse(int p);
- *    20. void MeEncoderNew::setDevid(int devid);
- *    21. void MeEncoderNew::setMode(uint8_t mode);
- *    22. void MeEncoderNew::setPWM(int pwm);
- *    23.void MeEncoderNew::runSpeedAndTime(float speed, float time, float lock_state);
+ *    11. void MeEncoderNew::setCurrentPosition(long pulse_counter)
+ *    12. long MeEncoderNew::getCurrentPosition();
+ *    13. void MeEncoderNew::getSpeedPID(float * p,float * i,float * d);
+ *    14. void MeEncoderNew::getPosPID(float * p,float * i,float * d);
+ *    15. float MeEncoderNew::getCurrentSpeed(void);
+ *    16. void MeEncoderNew::sendCmd(void);
+ *    17. float MeEncoderNew::getRatio(void);
+ *    18. void MeEncoderNew::setRatio(float r);
+ *    19. int MeEncoderNew::getPulse(void);
+ *    20. void MeEncoderNew::setPulse(int p);
+ *    21. void MeEncoderNew::setDevid(int devid);
+ *    22. void MeEncoderNew::runSpeedAndTime(float speed, float time, float lock_state);
+ *    23. boolean MeEncoderNew::isTarPosReaches(void);
  *
  * \par History:
  * <pre>
@@ -57,7 +56,6 @@
  * Mark Yan        2016/03/18     1.0.0            build the new
  * </pre>
  *
- * @example EncoderMotorTestRunSpeedAndTime.ino
  */
 
 #ifndef ME_LEGOENCODER_H
@@ -110,7 +108,7 @@ public:
  * Alternate Constructor which can call your own function to map the Encoder Motor New to arduino port,
  * you can set any slot for the Encoder Motor New device. 
  * \param[in]
- *   port - RJ25 port from PORT_1 to M2
+ *   port - RJ25 port from PORT_1 to PORT_10
  * \param[in]
  *   slot - SLOT1 or SLOT2
  */
@@ -130,7 +128,7 @@ public:
  * \param[in]
  *   None
  */
-  MeEncoderNew();
+  MeEncoderNew(void);
 
 /**
  * \par Function
@@ -146,7 +144,7 @@ public:
  * \par Others
  *    None
  */
-  void begin();
+  void begin(void);
 
 /**
  * \par Function
@@ -160,7 +158,7 @@ public:
  * \par Others
  *    None
  */
-  void reset();
+  void reset(void);
 
 /**
  * \par Function
@@ -248,11 +246,27 @@ public:
  * \par Output
  *    None
  * \par Return
+ *    The speed of encoder motor(The unit is rpm)
+ * \par Others
+ *    None
+ */
+  float getCurrentSpeed(void);
+
+/**
+ * \par Function
+ *    setCurrentPosition
+ * \par Description
+ *    Set current position of Motor.
+ * \param[in]
+ *    pulse_counter - The count value of current encoder
+ * \par Output
+ *    None
+ * \par Return
  *    None
  * \par Others
  *    None
  */
-  float getCurrentSpeed();
+  void setCurrentPosition(long pulse_counter);
 
 /**
  * \par Function
@@ -264,11 +278,11 @@ public:
  * \par Output
  *    None
  * \par Return
- *    None
+ *    Motor encoder pulse count value.
  * \par Others
  *    None
  */
-  long getCurrentPosition();
+  long getCurrentPosition(void);
 
 /**
  * \par Function
@@ -364,7 +378,7 @@ public:
  * \par Others
  *    None
  */
-  float getRatio();
+  float getRatio(void);
 
 /**
  * \par Function
@@ -372,7 +386,7 @@ public:
  * \par Description
  *    Set the ratio to Motor.
  * \param[in]
- *    None
+ *    ratio - the ratio of Motor
  * \par Output
  *    None
  * \par Return
@@ -396,7 +410,7 @@ public:
  * \par Others
  *    None
  */
-  int getPulse();
+  int getPulse(void);
 
 /**
  * \par Function
@@ -404,7 +418,7 @@ public:
  * \par Description
  *    Set the pulse to Motor.
  * \param[in]
- *    None
+ *    pulse - the line number of Motor
  * \par Output
  *    None
  * \par Return
@@ -420,7 +434,7 @@ public:
  * \par Description
  *    Set the devid to Motor.
  * \param[in]
- *    None
+ *    devid - the I2C adress
  * \par Output
  *    None
  * \par Return
@@ -481,6 +495,23 @@ public:
  *    None
  */
   void runSpeedAndTime(float speed, float time, float lock_state = 1);
+  
+/**
+ * \par Function
+ *    isTarPosReaches
+ * \par Description
+ *    Check whether the target position has been reached
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    true - The target position reaches
+ *    false - Does not reach the target position
+ * \par Others
+ *    None
+ */
+  boolean isTarPosReaches(void);
 
 private:
 /**
@@ -497,7 +528,7 @@ private:
  * \par Others
  *    None
  */
-  void sendCmd();
+  void sendCmd(void);
 
   uint8_t _slot; 
   uint8_t address;

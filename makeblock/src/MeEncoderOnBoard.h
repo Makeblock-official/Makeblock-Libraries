@@ -121,8 +121,8 @@ public:
   void update();
   void runSpeed(double speed);
   void setSpeed(double speed);
-  void move(long distance,cb callback,int extId);
-  void moveTo(long position,cb callback,int extId);
+  void move(long distance,cb callback,int extId=0);
+  void moveTo(long position,cb callback,int extId=0);
   long distanceToGo();
 
 private:
@@ -136,6 +136,7 @@ private:
    uint8_t  _Port_H2;
    uint8_t  _IntNum;
    uint8_t  _Slot;
+   int16_t  _last_speed;
    long _Measurement_speed_time;
    long _Last_pulse_pos;
    double _targetSpeed;
