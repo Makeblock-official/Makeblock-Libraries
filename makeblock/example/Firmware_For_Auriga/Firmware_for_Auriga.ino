@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.001
-* Date               : 03/24/2016
+* Version            : V09.01.002
+* Date               : 04/07/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -153,7 +153,7 @@ boolean rightflag;
 boolean start_flag = false;
 boolean move_flag = false;
 
-String mVersion = "09.01.001";
+String mVersion = "09.01.002";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
@@ -490,12 +490,16 @@ void parseData(void)
         PID_speed_left.Setpoint = 0;
         PID_speed_right.Setpoint = 0;
         dc.reset(PORT_1);
+        dc.reset_speed();
         dc.run(0);
         dc.reset(PORT_2);
+        dc.reset_speed();
         dc.run(0);
         dc.reset(PORT_3);
+        dc.reset_speed();
         dc.run(0);
         dc.reset(PORT_4);
+        dc.reset_speed();
         dc.run(0);
         callOK();
       }
@@ -633,6 +637,7 @@ void runModule(int device)
       {
         int speed = readShort(7);
         dc.reset(port);
+        dc.reset_speed();
         dc.run(speed);
       }
       break;

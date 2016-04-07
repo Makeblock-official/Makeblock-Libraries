@@ -4,8 +4,8 @@
  * \brief   Driver for Encoder module on mZero.
  * @file    MeEncoderOnBoard.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/12/15
+ * @version V1.0.1
+ * @date    2016/04/07
  * @brief   Header for MeEncoderOnBoard.cpp module
  *
  * \par Copyright
@@ -29,6 +29,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/12/15     1.0.0            Build New
+ * Mark Yan         2016/04/07     1.0.1            fix motor reset issue.
  * </pre>
  */
 
@@ -118,6 +119,7 @@ public:
   double GetCurrentSpeed(void);
   void Update_speed(void);
   void reset(uint8_t slot);
+  void reset_speed(void);
   void update();
   void runSpeed(double speed);
   void setSpeed(double speed);

@@ -281,8 +281,10 @@ void parseData(){
       case RESET:{
         //reset
         dc.reset(M1);
+        dc.reset_speed();
         dc.run(0);
         dc.reset(M2);
+        dc.reset_speed();
         dc.run(0);
         buzzerOff();
         callOK();
@@ -380,6 +382,7 @@ void runModule(int device){
      int speed = readShort(7);
      if(dc.getPort()!=port){
        dc.reset(port);
+       dc.reset_speed();
      }
      dc.run(speed);
    } 
@@ -387,9 +390,11 @@ void runModule(int device){
     case JOYSTICK:{
      int leftSpeed = readShort(6);
      dc.reset(M1);
+     dc.reset_speed();
      dc.run(leftSpeed);
      int rightSpeed = readShort(8);
      dc.reset(M2);
+     dc.reset_speed();
      dc.run(rightSpeed);
     }
     break;

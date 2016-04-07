@@ -4,8 +4,8 @@
  * \brief   Driver for Me DC motor device.
  * @file    MeDCMotor.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/09
+ * @version V1.0.1
+ * @date    2016/04/07
  * @brief   Header for MeDCMotor.cpp module
  *
  * \par Copyright
@@ -28,11 +28,13 @@
  *    1. void MeDCMotor::setpin(uint8_t dir_pin,uint8_t pwm_pin)
  *    2. void MeDCMotor::run(int16_t speed)
  *    3. void MeDCMotor::stop(void)
+ *    4. void MeDCMotor::reset_speed(void)
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/09     1.0.0            Rebuild the old lib.
+ * Mark Yan         2016/04/07     1.0.1            fix motor reset issue.
  * </pre>
  *
  */
@@ -103,6 +105,20 @@ public:
  *   None
  */
   void setpin(uint8_t dir_pin,uint8_t pwm_pin);
+  
+/**
+ * \par Function
+ *   setpin
+ * \par Description
+ *   Reset the DC motor's last speed.
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+  void reset_speed(void);
 
 /**
  * \par Function
