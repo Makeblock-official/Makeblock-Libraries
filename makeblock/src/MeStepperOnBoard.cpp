@@ -94,10 +94,10 @@ MeStepperOnBoard::MeStepperOnBoard(int slot)
   _dir = DIRECTION_CW;
   setCurrentPosition(0);
   _slot = slot;
-  _enable_pin = megaPi_slots[slot-1].pin[0];
   _micro_step_pin1 = megaPi_slots[slot-1].pin[1];
   _micro_step_pin2 = megaPi_slots[slot-1].pin[2];
   _micro_step_pin3 = megaPi_slots[slot-1].pin[3];
+  _enable_pin = megaPi_slots[slot-1].pin[4];
   _step_data = megaPi_slots[slot-1].pin[5];
   _dir_data = megaPi_slots[slot-1].pin[6];
   pinMode(_dir_data, OUTPUT);
