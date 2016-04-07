@@ -2,8 +2,8 @@
 * File Name          : IR_Ultrasonic.ino
 * Author             : Ander, Mark Yan
 * Updated            : Ander, Mark Yan
-* Version            : V01.01.003
-* Date               : 01/19/2016
+* Version            : V01.01.004
+* Date               : 04/07/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -20,7 +20,7 @@ MeInfraredReceiver infraredReceiverDecode(PORT_6);
 MeBuzzer buzzer;
 
 int analogs[8]={A0,A1,A2,A3,A4,A5,A6,A7};
-String mVersion = "01.01.003";
+String mVersion = "01.01.004";
 unsigned char irRead = 0;
 
 //Just for Start
@@ -37,56 +37,70 @@ int starter_mode = 0;
 void Forward()
 {
   dc.reset(M1);
+  dc.reset_speed();
   dc.run(moveSpeed);
   dc.reset(M2);
+  dc.reset_speed();
   dc.run(moveSpeed);
 }
 
 void Backward()
 {
   dc.reset(M1);
+  dc.reset_speed();
   dc.run(-moveSpeed);
   dc.reset(M2);
+  dc.reset_speed();
   dc.run(-moveSpeed);
 }
 
 void BackwardAndTurnLeft()
 {
   dc.reset(M1);
+  dc.reset_speed();
   dc.run(-moveSpeed/2);
   dc.reset(M2);
+  dc.reset_speed();
   dc.run(-moveSpeed);
 }
 
 void BackwardAndTurnRight()
 {
   dc.reset(M1);
+  dc.reset_speed();
   dc.run(-moveSpeed);
   dc.reset(M2);
+  dc.reset_speed();
   dc.run(-moveSpeed/2);
 }
 
 void TurnLeft()
 {
   dc.reset(M1);
+  dc.reset_speed();
   dc.run(-moveSpeed);
   dc.reset(M2);
+  dc.reset_speed();
   dc.run(moveSpeed);
 }
 
 void TurnRight()
 {
   dc.reset(M1);
+  dc.reset_speed();
   dc.run(moveSpeed);
   dc.reset(M2);
+  dc.reset_speed();
   dc.run(-moveSpeed);
 }
 
 void Stop()
 {
   dc.reset(M1);
+  dc.reset_speed();
   dc.run(0);
   dc.reset(M2);
+  dc.reset_speed();
   dc.run(0);
 }
 void ChangeSpeed(int spd)

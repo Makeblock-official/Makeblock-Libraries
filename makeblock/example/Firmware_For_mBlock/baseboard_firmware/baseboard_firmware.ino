@@ -2,8 +2,8 @@
 * File Name          : baseboard_firmware.ino
 * Author             : Ander, Mark Yan
 * Updated            : Ander, Mark Yan
-* Version            : V0b.01.103
-* Date               : 01/09/2016
+* Version            : V0b.01.104
+* Date               : 04/07/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -66,7 +66,7 @@ MeModule modules[12];
 #if defined(__AVR_ATmega1280__)|| defined(__AVR_ATmega2560__)
   int analogs[16]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15};
 #endif
-String mVersion = "0b.01.103";
+String mVersion = "0b.01.104";
 boolean isAvailable = false;
 boolean isBluetooth = false;
 
@@ -262,12 +262,16 @@ void parseData(){
       case RESET:{
         //reset
         dc.reset(M1);
+        dc.reset_speed();
         dc.run(0);
         dc.reset(M2);
+        dc.reset_speed();
         dc.run(0);
         dc.reset(PORT_1);
+        dc.reset_speed();
         dc.run(0);
         dc.reset(PORT_2);
+        dc.reset_speed();
         dc.run(0);
         
         #if defined(__AVR_ATmega328P__)
@@ -350,15 +354,18 @@ void runModule(int device){
    case MOTOR:{
      int speed = readShort(7);
      dc.reset(port);
+     dc.reset_speed();
      dc.run(speed);
     }
     break;
     case JOYSTICK:{
      int leftSpeed = readShort(6);
      dc.reset(M1);
+     dc.reset_speed();
      dc.run(leftSpeed);
      int rightSpeed = readShort(8);
      dc.reset(M2);
+     dc.reset_speed();
      dc.run(rightSpeed);
     }
     break;

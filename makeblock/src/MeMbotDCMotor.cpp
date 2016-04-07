@@ -90,8 +90,10 @@ void MBotDCMotor::move(int direction, int speed)
     rightSpeed = -speed;
   }
   MeDCMotor::reset(M1);
+  MeDCMotor::reset_speed();
   MeDCMotor::run(leftSpeed);
   MeDCMotor::reset(M2);
+  MeDCMotor::reset_speed();
   MeDCMotor::run(rightSpeed);
 }
 #endif //ME_PORT_DEFINED
