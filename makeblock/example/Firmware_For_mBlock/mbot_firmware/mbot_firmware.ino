@@ -400,31 +400,15 @@ void runModule(int device){
      int g = readBuffer(10);
      int b = readBuffer(11);
      led.reset(port,slot);
-     if(port == PORT_7)
+     if(idx>0)
      {
-       if((idx == 1) || (idx == 2))
-       {
-         idx = (idx == 2)?1:0;
-         led.setColorAt(idx,r,g,b); 
-       }
-       else if(idx == 0)
-       {
-         led.setColor(r,g,b);
-       }
-       led.show();
+       led.setColorAt(idx-1,r,g,b); 
      }
      else
      {
-       if(idx>0)
-       {
-         led.setColorAt(idx-1,r,g,b); 
-       }
-       else
-       {
-         led.setColor(r,g,b); 
-       }
-       led.show();
+       led.setColor(r,g,b); 
      }
+     led.show();
    }
    break;
    case SERVO:{
