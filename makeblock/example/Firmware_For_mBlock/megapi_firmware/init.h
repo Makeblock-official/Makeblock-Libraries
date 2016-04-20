@@ -14,6 +14,7 @@ MeBuzzer buzzer;
 MeHumiture humiture;
 MeFlameSensor FlameSensor;
 MeGasSensor GasSensor;
+MePressureSensor pressureSensor;
 MeSerial mySerial(PORT_9);
 MeStepperOnBoard steppers[4];
 MeEncoderOnBoard encoders[4];
@@ -95,6 +96,7 @@ boolean isAvailable = false;
 #define COMPASS 26
 #define TEMPERATURE_SENSOR_1 27
 #define ANGULAR_SENSOR 28
+#define PRESSURE_SENSOR 29
 #define DIGITAL 30
 #define ANALOG 31
 #define PWM 32

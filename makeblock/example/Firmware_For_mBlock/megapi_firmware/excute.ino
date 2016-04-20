@@ -310,6 +310,11 @@ void runModule(int device)
         }
       }
       break;
+      case PRESSURE_SENSOR:
+      {
+        pressureSensor.begin();
+      }
+      break;
     case TIMER:
       {
         lastTime = millis()/1000.0; 
@@ -576,6 +581,38 @@ void readSensor(int device)
         digitalWrite(trig,LOW);
         pinMode(echo, INPUT);
         sendFloat(pulseIn(echo,HIGH,30000)/58.0);
+      }
+      break;
+      case PRESSURE_SENSOR:
+      {
+        int action = readBuffer(6);
+        switch(action){
+          case 1:
+          {
+             sendLong(pressureSensor.readPressure());
+          }
+          break;
+          case 2:
+          {
+             sendLong(pressureSensor.readTemperature());
+          }
+          break;
+          case 3:
+          {
+             sendFloat(pressureSensor.readAltitude());
+          }
+          break;
+          case 4:
+          {
+             sendFloat(pressureSensor.readAltitude(101500));
+          }
+          break;
+          case 5:
+          {
+             sendLong(pressureSensor.readSealevelPressure());
+          }
+          break;
+        }
       }
       break;
     case TIMER:
