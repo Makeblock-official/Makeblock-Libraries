@@ -69,6 +69,7 @@
 #include "MeGasSensor.h"
 #include "MeEncoderOnBoard.h"
 #include "MeMegaPiDCMotor.h"
+#include "MePressureSensor.h"
 
 /*********************  MegaPi Board GPIO Map *********************************/
 // struct defined in MeMegaPi.h
