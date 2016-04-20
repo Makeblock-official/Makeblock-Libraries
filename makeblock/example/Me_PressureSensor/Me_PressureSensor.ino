@@ -6,7 +6,7 @@ MePressureSensor bmp;
 void setup() {
   Serial.begin(115200);
   if (!bmp.begin()) {
-  Serial.println("Could not find a valid BMP085 sensor, check wiring!");
+  Serial.println("Could not find a valid BMP180 or BMP085 sensor, check I2C wiring!");
   while (1) {}
   }
 }
