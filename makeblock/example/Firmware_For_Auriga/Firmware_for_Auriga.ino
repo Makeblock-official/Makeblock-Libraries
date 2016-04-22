@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.001
-* Date               : 03/24/2016
+* Version            : V09.01.002
+* Date               : 04/22/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -153,7 +153,7 @@ boolean rightflag;
 boolean start_flag = false;
 boolean move_flag = false;
 
-String mVersion = "09.01.001";
+String mVersion = "09.01.002";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
@@ -267,7 +267,7 @@ void WriteBalancedDataToEEPROM(void)
   EEPROM.write(BALANCED_CAR_END_ADDR, EEPROM_CHECK_END);
 
   EEPROM.write(AURIGA_MODE_START_ADDR, EEPROM_CHECK_START);
-  EEPROM.write(BALANCED_CAR_SPEED_PID_ADDR, auriga_mode);
+  EEPROM.write(AURIGA_MODE_CONFIGURE, auriga_mode);
   EEPROM.write(AURIGA_MODE_END_ADDR, EEPROM_CHECK_END);
 }
 

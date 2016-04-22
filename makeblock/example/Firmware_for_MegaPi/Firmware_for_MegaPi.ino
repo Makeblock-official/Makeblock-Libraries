@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_MegaPi.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V0e.01.001
-* Date               : 03/28/2016
+* Version            : V0e.01.002
+* Date               : 04/22/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -164,7 +164,7 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0e.01.001";
+String mVersion = "0e.01.002";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
 #define PWM_MIN_OFFSET   0
@@ -300,12 +300,12 @@ void WriteBalancedDataToEEPROM(void)
   EEPROM.put(BALANCED_CAR_DIR_PID_ADDR, PID_turn.P);
   EEPROM.write(BALANCED_CAR_END_ADDR, EEPROM_CHECK_END);
 
-  EEPROM.write(AURIGA_MODE_START_ADDR, EEPROM_CHECK_START);
-  EEPROM.write(BALANCED_CAR_SPEED_PID_ADDR, megapi_mode);
-  EEPROM.write(AURIGA_MODE_END_ADDR, EEPROM_CHECK_END);
+  EEPROM.write(MEGAPI_MODE_START_ADDR, EEPROM_CHECK_START);
+  EEPROM.write(MEGAPI_MODE_CONFIGURE, megapi_mode);
+  EEPROM.write(MEGAPI_MODE_END_ADDR, EEPROM_CHECK_END);
 }
 
-void WriteAurigaModeToEEPROM(void)
+void WriteMegapiModeToEEPROM(void)
 {
   EEPROM.write(MEGAPI_MODE_PARTITION_CHECK, EEPROM_IF_HAVEPID_CHECK1);
   EEPROM.write(MEGAPI_MODE_PARTITION_CHECK + 1, EEPROM_IF_HAVEPID_CHECK2);
@@ -362,19 +362,19 @@ int readEEPROM(void)
     WriteBalancedDataToEEPROM();
   }
 
-  if((EEPROM.read(AURIGA_MODE_PARTITION_CHECK) == EEPROM_IF_HAVEPID_CHECK1) && (EEPROM.read(AURIGA_MODE_PARTITION_CHECK + 1) == EEPROM_IF_HAVEPID_CHECK2))
+  if((EEPROM.read(MEGAPI_MODE_PARTITION_CHECK) == EEPROM_IF_HAVEPID_CHECK1) && (EEPROM.read(MEGAPI_MODE_PARTITION_CHECK + 1) == EEPROM_IF_HAVEPID_CHECK2))
   {
-    if((EEPROM.read(AURIGA_MODE_START_ADDR)  == EEPROM_CHECK_START) && (EEPROM.read(AURIGA_MODE_END_ADDR)  == EEPROM_CHECK_END))
+    if((EEPROM.read(MEGAPI_MODE_START_ADDR)  == EEPROM_CHECK_START) && (EEPROM.read(MEGAPI_MODE_END_ADDR)  == EEPROM_CHECK_END))
     {
-      EEPROM.get(AURIGA_MODE_CONFIGURE, megapi_mode);
+      EEPROM.get(MEGAPI_MODE_CONFIGURE, megapi_mode);
 #ifdef DEBUG_INFO
-      Serial.print( "Read auriga_mode from EEPROM:");
-      Serial.println(auriga_mode);
+      Serial.print( "Read megapi_mode from EEPROM:");
+      Serial.println(megapi_mode);
 #endif
     }
     else
     {
-      Serial.println( "Data area damage on auriga mode!" );
+      Serial.println( "Data area damage on megapi mode!" );
     }
   }
   else
@@ -382,7 +382,7 @@ int readEEPROM(void)
 #ifdef DEBUG_INFO
     Serial.println( "First written auriga mode!" );
 #endif
-    WriteAurigaModeToEEPROM();
+    WriteMegapiModeToEEPROM();
   }
 }
 
