@@ -558,7 +558,9 @@ void parseData(void)
   {
     case GET:
       {
-        if(device != ULTRASONIC_SENSOR)
+        if((device != ULTRASONIC_SENSOR) &&
+           (device != HUMITURE) &&
+           (device != ULTRASONIC_ARDUINO))
         {
           writeHead();
           writeSerial(idx);
@@ -777,7 +779,7 @@ void runModule(int device)
     case STEPPER:
       {
         int maxSpeed = readShort(7);
-        int distance = readShort(9);
+        long distance = readLong(9);
         if(port == PORT_1)
         {
           steppers[0] = MeStepper(PORT_1);
@@ -1043,7 +1045,6 @@ void readSensor(int device)
           us = new MeUltrasonicSensor(port);
         }
         value = (float)us->distanceCm(50000);
-        delayMicroseconds(100);
         writeHead();
         writeSerial(command_index);
         sendFloat(value);
@@ -1161,7 +1162,7 @@ void readSensor(int device)
         }
         double CompassAngle;
         CompassAngle = Compass.getAngle();
-        sendDouble(CompassAngle);
+        sendFloat((float)CompassAngle);
       }
       break;
     case HUMITURE:
@@ -1174,6 +1175,8 @@ void readSensor(int device)
         uint8_t HumitureData;
         humiture.update();
         HumitureData = humiture.getValue(index);
+        writeHead();
+        writeSerial(command_index);
         sendByte(HumitureData);
       }
       break;
@@ -1233,13 +1236,15 @@ void readSensor(int device)
       {
         int pw = readShort(7);
         pinMode(pin, INPUT);
-        sendShort(pulseIn(pin,HIGH,pw));
+        sendLong(pulseIn(pin,HIGH,pw));
       }
       break;
     case ULTRASONIC_ARDUINO:
       {
         int trig = readBuffer(6);
         int echo = readBuffer(7);
+        long pw_data;
+        float dis_data;
         pinMode(trig,OUTPUT);
         digitalWrite(trig,LOW);
         delayMicroseconds(2);
@@ -1247,7 +1252,12 @@ void readSensor(int device)
         delayMicroseconds(10);
         digitalWrite(trig,LOW);
         pinMode(echo, INPUT);
-        sendFloat(pulseIn(echo,HIGH,30000)/58.0);
+        pw_data = pulseIn(echo,HIGH,30000);
+        dis_data = pw_data/58.0;
+        delay(5);
+        writeHead();
+        writeSerial(command_index);
+        sendFloat(pw_data);
       }
       break;
     case TIMER:
@@ -1962,6 +1972,10 @@ void loop()
   }
 
   gyro_ext.fast_update();
+  if(Compass.getPort() != 0)
+  {
+    Compass.getAngle();
+  }
   angle_speed = gyro_ext.getGyroY();
   if(megapi_mode == BLUETOOTH_MODE)
   {

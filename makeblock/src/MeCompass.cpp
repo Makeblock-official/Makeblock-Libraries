@@ -47,6 +47,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "MeCompass.h"
+#include <avr/wdt.h>
 
 /* Private variables ---------------------------------------------------------*/
 volatile uint8_t MeCompass::_keyPin = 0;
@@ -587,6 +588,7 @@ void MeCompass::deviceCalibration(void)
       {
         if( millis() - time_num > 200 )   //control the LED
         {
+          wdt_reset();
           time_num = millis();
           LED_state = !LED_state;
 #ifdef ME_PORT_DEFINED
@@ -612,6 +614,7 @@ void MeCompass::deviceCalibration(void)
       {
         if(millis() - time_num > 200)   //control the LED
         {
+          wdt_reset();
           time_num = millis();
           LED_state = !LED_state;
 #ifdef ME_PORT_DEFINED
@@ -623,6 +626,7 @@ void MeCompass::deviceCalibration(void)
         }
         if(millis() - cal_time > 10)
         {
+          wdt_reset();
           getHeading(&X_num,&Y_num,&Z_num);  
           if(X_num < X_min)
           {
@@ -693,13 +697,17 @@ void MeCompass::deviceCalibration(void)
       write_EEPROM_Buffer(&Cal_parameter);  
 #ifdef ME_PORT_DEFINED
       dWrite2(HIGH);   //turn on the LED
-      while(dRead1(INPUT_PULLUP) == 0);
+      while(dRead1(INPUT_PULLUP) == 0)
+	  {
+        wdt_reset();
+	  };
 #else  // ME_PORT_DEFINED
       pinMode(_ledPin, OUTPUT);
       digitalWrite(_ledPin, HIGH);
       pinMode(_keyPin, INPUT_PULLUP);
       while(digitalRead(_keyPin) == 0);
 #endif
+      wdt_reset();
       delay(100);
     }
   }

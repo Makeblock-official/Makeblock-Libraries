@@ -311,7 +311,6 @@ boolean MeEncoderMotor::move(float angle, float speed)
   request(w, r, 18, 10);
   encoderParser.pushStr(r, 10);
   encoderParser.run();
-
   uint8_t ack[2] = {0};
   encoderParser.getData(ack, 2);
   return ack[1];
