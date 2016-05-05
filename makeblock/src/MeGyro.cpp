@@ -238,6 +238,12 @@ void MeGyro::update(void)
     gy = gy - gyrX * dt;
   }
   gz += gyrZ * dt;
+  gz = gz - 360 * floor(gz / 360);
+  if(gz > 180)
+  {
+    gz = gz - 360;
+  }
+
   /*
      complementary filter
      set 0.5sec = tau = dt * A / (1 - A)
@@ -302,6 +308,11 @@ void MeGyro::fast_update(void)
     gy = gy - gyrX * dt;
   }
   gz += gyrZ * dt;
+  gz = gz - 360 * floor(gz / 360);
+  if(gz > 180)
+  {
+    gz = gz - 360;
+  }
 
   gy = 0.98 * gy + 0.02 * ay;
   gx = 0.98 * gx + 0.02 * ax; 

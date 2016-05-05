@@ -3,11 +3,15 @@
 * Author             : myan
 * Updated            : myan
 * Version            : V09.01.002
-* Date               : 04/22/2016
+* Date               : 05/03/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
 * http://www.makeblock.cc/
+* History:
+* <Author>         <Time>         <Version>        <Descr>
+* Mark Yan         2016/03/12     09.01.001        build the new.
+* Mark Yan         2016/05/03     09.01.002        Added encoder and compass driver and fix some bugs.
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -19,7 +23,7 @@
 //#define DEBUG_INFO
 //#define DEBUG_INFO1
 
-Servo servos[8];  
+Servo servos[12];  
 MeDCMotor dc;
 MeTemperature ts;
 MeRGBLed led;
@@ -56,35 +60,35 @@ typedef struct MeModule
 
 union
 {
-  byte byteVal[4];
+  uint8_t byteVal[4];
   float floatVal;
   long longVal;
 }val;
 
 union
 {
-  byte byteVal[8];
+  uint8_t byteVal[8];
   double doubleVal;
 }valDouble;
 
 union
 {
-  byte byteVal[2];
-  short shortVal;
+  uint8_t byteVal[2];
+  int16_t shortVal;
 }valShort;
 MeModule modules[12];
 #if defined(__AVR_ATmega32U4__) 
-  int analogs[12]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11};
+  int16_t analogs[12]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11};
 #endif
 #if defined(__AVR_ATmega328P__) or defined(__AVR_ATmega168__)
-  int analogs[8]={A0,A1,A2,A3,A4,A5,A6,A7};
+  int16_t analogs[8]={A0,A1,A2,A3,A4,A5,A6,A7};
 #endif
 #if defined(__AVR_ATmega1280__)|| defined(__AVR_ATmega2560__)
-  int analogs[16]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15};
+  int16_t analogs[16]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15};
 #endif
 
 int16_t len = 52;
-int16_t servo_pins[8]={0,0,0,0,0,0,0,0};
+int16_t servo_pins[12]={0,0,0,0,0,0,0,0,0,0,0,0};
 //Just for Auriga
 int16_t moveSpeed = 180;
 int16_t turnSpeed = 180;
@@ -121,8 +125,8 @@ uint8_t modulesLen=0;
 uint8_t irRead = 0;
 uint8_t prevc=0;
 uint8_t keyPressed = KEY_NULL;
-char serialRead;
-char buffer[52];
+uint8_t serialRead;
+uint8_t buffer[52];
 
 double  lastTime = 0.0;
 double  currentTime = 0.0;
@@ -221,6 +225,21 @@ typedef struct
 PID  PID_angle, PID_speed, PID_turn;
 PID  PID_speed_left, PID_speed_right;
 
+/**
+ * \par Function
+ *    isr_process_encoder1
+ * \par Description
+ *    This function use to process the interrupt of encoder1 drvicer on board,
+ *    used to calculate the number of pulses.
+ * \param[in]
+ *    None
+ * \par Output
+ *    The number of pulses on encoder1 driver
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void isr_process_encoder1(void)
 {
   if(digitalRead(Encoder_1.GetPortB()) == 0)
@@ -233,6 +252,21 @@ void isr_process_encoder1(void)
   }
 }
 
+/**
+ * \par Function
+ *    isr_process_encoder2
+ * \par Description
+ *    This function use to process the interrupt of encoder2 drvicer on board,
+ *    used to calculate the number of pulses.
+ * \param[in]
+ *    None
+ * \par Output
+ *    The number of pulses on encoder2 driver
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void isr_process_encoder2(void)
 {
   if(digitalRead(Encoder_2.GetPortB()) == 0)
@@ -245,6 +279,20 @@ void isr_process_encoder2(void)
   }
 }
 
+/**
+ * \par Function
+ *    WriteBalancedDataToEEPROM
+ * \par Description
+ *    This function use to write the balanced car configuration parameters to EEPROM.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void WriteBalancedDataToEEPROM(void)
 {
   EEPROM.write(BALANCED_CAR_PARTITION_CHECK, EEPROM_IF_HAVEPID_CHECK1);
@@ -268,6 +316,20 @@ void WriteBalancedDataToEEPROM(void)
   EEPROM.write(AURIGA_MODE_END_ADDR, EEPROM_CHECK_END);
 }
 
+/**
+ * \par Function
+ *    WriteAurigaModeToEEPROM
+ * \par Description
+ *    This function use to write the Auriga Mode configuration parameter to EEPROM.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void WriteAurigaModeToEEPROM(void)
 {
   EEPROM.write(AURIGA_MODE_PARTITION_CHECK, EEPROM_IF_HAVEPID_CHECK1);
@@ -277,7 +339,21 @@ void WriteAurigaModeToEEPROM(void)
   EEPROM.write(AURIGA_MODE_END_ADDR, EEPROM_CHECK_END);
 }
 
-int readEEPROM(void)
+/**
+ * \par Function
+ *    readEEPROM
+ * \par Description
+ *    This function use to read the configuration parameters from EEPROM.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+void readEEPROM(void)
 {
   if((EEPROM.read(BALANCED_CAR_PARTITION_CHECK) == EEPROM_IF_HAVEPID_CHECK1) && (EEPROM.read(BALANCED_CAR_PARTITION_CHECK + 1) == EEPROM_IF_HAVEPID_CHECK2))
   {
@@ -349,95 +425,322 @@ int readEEPROM(void)
   }
 }
 
+/**
+ * \par Function
+ *    Forward
+ * \par Description
+ *    This function use to control the car kit go forward.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void Forward(void)
 {
   Encoder_1.setMotorPwm(-moveSpeed);
   Encoder_2.setMotorPwm(moveSpeed);
 }
 
+/**
+ * \par Function
+ *    Backward
+ * \par Description
+ *    This function use to control the car kit go backward.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void Backward(void)
 {
   Encoder_1.setMotorPwm(moveSpeed);
   Encoder_2.setMotorPwm(-moveSpeed);
 }
 
+/**
+ * \par Function
+ *    BackwardAndTurnLeft
+ * \par Description
+ *    This function use to control the car kit go backward and turn left.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void BackwardAndTurnLeft(void)
 {
   Encoder_1.setMotorPwm(moveSpeed/4);
   Encoder_2.setMotorPwm(-moveSpeed);
 }
 
+/**
+ * \par Function
+ *    BackwardAndTurnRight
+ * \par Description
+ *    This function use to control the car kit go backward and turn right.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void BackwardAndTurnRight(void)
 {
   Encoder_1.setMotorPwm(moveSpeed);
   Encoder_2.setMotorPwm(-moveSpeed/4);
 }
 
+/**
+ * \par Function
+ *    TurnLeft
+ * \par Description
+ *    This function use to control the car kit go backward and turn left.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void TurnLeft(void)
 {
   Encoder_1.setMotorPwm(-moveSpeed);
   Encoder_2.setMotorPwm(moveSpeed/2);
 }
 
+/**
+ * \par Function
+ *    TurnRight
+ * \par Description
+ *    This function use to control the car kit go backward and turn right.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void TurnRight(void)
 {
   Encoder_1.setMotorPwm(-moveSpeed/2);
   Encoder_2.setMotorPwm(moveSpeed);
 }
 
+/**
+ * \par Function
+ *    TurnLeft1
+ * \par Description
+ *    This function use to control the car kit go backward and turn left(fast).
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void TurnLeft1(void)
 {
   Encoder_1.setMotorPwm(-moveSpeed);
   Encoder_2.setMotorPwm(-moveSpeed);
 }
 
+/**
+ * \par Function
+ *    TurnRight1
+ * \par Description
+ *    This function use to control the car kit go backward and turn right(fast).
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void TurnRight1(void)
 {
   Encoder_1.setMotorPwm(moveSpeed);
   Encoder_2.setMotorPwm(moveSpeed);
 }
 
+/**
+ * \par Function
+ *    Stop
+ * \par Description
+ *    This function use to stop the car kit.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void Stop(void)
 {
-  pwm_filter1=0;
-  pwm_filter2=0;
-  pwm_input1=0;
-  pwm_input2=0;
+  pwm_filter1 = 0;
+  pwm_filter2 = 0;
+  pwm_input1 = 0;
+  pwm_input2 = 0;
   Encoder_1.setMotorPwm(0);
   Encoder_2.setMotorPwm(0);
 }
 
-void ChangeSpeed(int spd)
+/**
+ * \par Function
+ *    ChangeSpeed
+ * \par Description
+ *    This function use to change the speed of car kit.
+ * \param[in]
+ *    spd - the speed of car kit(-255 ~ 255)
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+void ChangeSpeed(int16_t spd)
 {
   moveSpeed = spd;
 }
 
-unsigned char readBuffer(int index)
+/**
+ * \par Function
+ *    readBuffer
+ * \par Description
+ *    This function use to read the serial data from its buffer..
+ * \param[in]
+ *    index - The first address in the array
+ * \par Output
+ *    None
+ * \return
+ *    The data need to be read.
+ * \par Others
+ *    None
+ */
+uint8_t readBuffer(int16_t index)
 {
   return buffer[index]; 
 }
 
-void writeBuffer(int index,unsigned char c)
+/**
+ * \par Function
+ *    writeBuffer
+ * \par Description
+ *    This function use to write the serial data to its buffer..
+ * \param[in]
+ *    index - The data's first address in the array
+  * \param[in]
+ *    c - The data need to be write.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+void writeBuffer(int16_t index,uint8_t c)
 {
   buffer[index]=c;
 }
 
+/**
+ * \par Function
+ *    writeHead
+ * \par Description
+ *    This function use to write the head of transmission frame.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void writeHead(void)
 {
   writeSerial(0xff);
   writeSerial(0x55);
 }
 
+/**
+ * \par Function
+ *    writeEnd
+ * \par Description
+ *    This function use to write the terminator of transmission frame.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void writeEnd(void)
 {
   Serial.println(); 
 }
 
-void writeSerial(unsigned char c)
+/**
+ * \par Function
+ *    writeSerial
+ * \par Description
+ *    This function use to write the data to serial.
+ * \param[in]
+ *    c - The data need to be write.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+void writeSerial(uint8_t c)
 {
   Serial.write(c);
 }
 
+/**
+ * \par Function
+ *    readSerial
+ * \par Description
+ *    This function use to read the data from serial, and fill the data
+ *    to its buffer.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void readSerial(void)
 {
   isAvailable = false;
@@ -447,16 +750,30 @@ void readSerial(void)
     serialRead = Serial.read();
   }
 }
-/*
-ff 55 len idx action device port  slot  data a
-0  1  2   3   4      5      6     7     8
-*/
+
+/**
+ * \par Function
+ *    parseData
+ * \par Description
+ *    This function use to process the data from the serial port,
+ *    call the different treatment according to its action.
+ *    ff 55 len idx action device port  slot  data a
+ *    0  1  2   3   4      5      6     7     8
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void parseData(void)
 {
   isStart = false;
-  int idx = readBuffer(3);
-  int action = readBuffer(4);
-  int device = readBuffer(5);
+  uint8_t idx = readBuffer(3);
+  uint8_t action = readBuffer(4);
+  uint8_t device = readBuffer(5);
   command_index = (uint8_t)idx;
   switch(action)
   {
@@ -512,6 +829,20 @@ void parseData(void)
   }
 }
 
+/**
+ * \par Function
+ *    callOK
+ * \par Description
+ *    Response for executable commands.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void callOK(void)
 {
   writeSerial(0xff);
@@ -519,23 +850,65 @@ void callOK(void)
   writeEnd();
 }
 
-void sendByte(char c)
+/**
+ * \par Function
+ *    sendByte
+ * \par Description
+ *    Send byte data
+ * \param[in]
+ *    c - the byte data need be sent.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+void sendByte(uint8_t c)
 {
   writeSerial(1);
   writeSerial(c);
 }
 
+/**
+ * \par Function
+ *    sendString
+ * \par Description
+ *    Send string data
+ * \param[in]
+ *    s - the string data need be sent.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void sendString(String s)
 {
-  int l = s.length();
+  int16_t l = s.length();
   writeSerial(4);
   writeSerial(l);
-  for(int i=0;i<l;i++)
+  for(int16_t i=0;i<l;i++)
   {
     writeSerial(s.charAt(i));
   }
 }
 
+/**
+ * \par Function
+ *    sendFloat
+ * \par Description
+ *    Sned float data
+ * \param[in]
+ *    value - the float data need be sent.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void sendFloat(float value)
 { 
   writeSerial(2);
@@ -546,6 +919,20 @@ void sendFloat(float value)
   writeSerial(val.byteVal[3]);
 }
 
+/**
+ * \par Function
+ *    sendLong
+ * \par Description
+ *    Sned long data
+ * \param[in]
+ *    value - the long data need be sent.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void sendLong(long value)
 { 
   writeSerial(6);
@@ -556,7 +943,21 @@ void sendLong(long value)
   writeSerial(val.byteVal[3]);
 }
 
-void sendShort(short value)
+/**
+ * \par Function
+ *    sendShort
+ * \par Description
+ *    Sned short data
+ * \param[in]
+ *    value - the short data need be sent.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+void sendShort(int16_t value)
 {
   writeSerial(3);
   valShort.shortVal = value;
@@ -564,6 +965,20 @@ void sendShort(short value)
   writeSerial(valShort.byteVal[1]);
 }
 
+/**
+ * \par Function
+ *    sendDouble
+ * \par Description
+ *    Sned double data, same as float data on arduino.
+ * \param[in]
+ *    value - the double data need be sent.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void sendDouble(double value)
 {
   writeSerial(5);
@@ -574,14 +989,42 @@ void sendDouble(double value)
   writeSerial(valDouble.byteVal[3]);
 }
 
-short readShort(int idx)
+/**
+ * \par Function
+ *    readShort
+ * \par Description
+ *    read the short data.
+ * \param[in]
+ *    idx - The data's first address in the array.
+ * \par Output
+ *    None
+ * \return
+ *    the short data.
+ * \par Others
+ *    None
+ */
+int16_t readShort(int16_t idx)
 {
   valShort.byteVal[0] = readBuffer(idx);
   valShort.byteVal[1] = readBuffer(idx+1);
   return valShort.shortVal; 
 }
 
-float readFloat(int idx)
+/**
+ * \par Function
+ *    readFloat
+ * \par Description
+ *    read the float data.
+ * \param[in]
+ *    idx - The data's first address in the array.
+ * \par Output
+ *    None
+ * \return
+ *    the float data.
+ * \par Others
+ *    None
+ */
+float readFloat(int16_t idx)
 {
   val.byteVal[0] = readBuffer(idx);
   val.byteVal[1] = readBuffer(idx+1);
@@ -590,7 +1033,21 @@ float readFloat(int idx)
   return val.floatVal;
 }
 
-long readLong(int idx)
+/**
+ * \par Function
+ *    readLong
+ * \par Description
+ *    read the long data.
+ * \param[in]
+ *    idx - The data's first address in the array.
+ * \par Output
+ *    None
+ * \return
+ *    the long data.
+ * \par Others
+ *    None
+ */
+long readLong(int16_t idx)
 {
   val.byteVal[0] = readBuffer(idx);
   val.byteVal[1] = readBuffer(idx+1);
@@ -602,9 +1059,25 @@ long readLong(int idx)
 char _receiveStr[20] = {};
 uint8_t _receiveUint8[16] = {};
 
-char* readString(int idx,int len)
+/**
+ * \par Function
+ *    readString
+ * \par Description
+ *    read the string data.
+ * \param[in]
+ *    idx - The string's first address in the array.
+ * \param[in]
+ *    len - The length of the string data.
+ * \par Output
+ *    None
+ * \return
+ *    the address of string data.
+ * \par Others
+ *    None
+ */
+char* readString(int16_t idx,int16_t len)
 {
-  for(int i=0;i<len;i++)
+  for(int16_t i=0;i<len;i++)
   {
     _receiveStr[i]=readBuffer(idx+i);
   }
@@ -612,9 +1085,25 @@ char* readString(int idx,int len)
   return _receiveStr;
 }
 
-uint8_t* readUint8(int idx,int len)
+/**
+ * \par Function
+ *    readUint8
+ * \par Description
+ *    read the uint8 data.
+ * \param[in]
+ *    idx - The Uint8 data's first address in the array.
+ * \param[in]
+ *    len - The length of the uint8 data.
+ * \par Output
+ *    None
+ * \return
+ *    the address of uint8 data.
+ * \par Others
+ *    None
+ */
+uint8_t* readUint8(int16_t idx,int16_t len)
 {
-  for(int i=0;i<len;i++)
+  for(int16_t i=0;i<len;i++)
   {
     if(i > 15)
     {
@@ -625,16 +1114,30 @@ uint8_t* readUint8(int idx,int len)
   return _receiveUint8;
 }
 
-void runModule(int device)
+/**
+ * \par Function
+ *    runModule
+ * \par Description
+ *    Processing execute commands.
+ * \param[in]
+ *    device - The definition of all execute commands.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+void runModule(uint8_t device)
 {
   //0xff 0x55 0x6 0x0 0x1 0xa 0x9 0x0 0x0 0xa
-  int port = readBuffer(6);
-  int pin = port;
+  uint8_t port = readBuffer(6);
+  uint8_t pin = port;
   switch(device)
   {
     case MOTOR:
       {
-        int speed = readShort(7);
+        int16_t speed = readShort(7);
         dc.reset(port);
         dc.run(speed);
       }
@@ -662,11 +1165,11 @@ void runModule(int device)
       break;
     case JOYSTICK:
       {
-        int leftSpeed = readShort(6);
+        int16_t leftSpeed = readShort(6);
         pwm_input1 = leftSpeed;
         pwm_filter1 = 0.8 * pwm_filter1 + 0.2 * leftSpeed;
         Encoder_1.setMotorPwm((int16_t)pwm_filter1);
-        int rightSpeed = readShort(8);
+        int16_t rightSpeed = readShort(8);
         pwm_input2 = rightSpeed;
         pwm_filter2 = 0.8 * pwm_filter2 + 0.2 * rightSpeed;
         Encoder_2.setMotorPwm((int16_t)pwm_filter2);
@@ -674,7 +1177,7 @@ void runModule(int device)
       break;
     case STEPPER:
       {
-        int maxSpeed = readShort(7);
+        int16_t maxSpeed = readShort(7);
         long distance = readLong(9);
         if(port == PORT_1)
         {
@@ -708,8 +1211,8 @@ void runModule(int device)
       break;
     case ENCODER:
       {
-        int slot = readBuffer(7);
-        int maxSpeed = readShort(8);
+        uint8_t slot = readBuffer(7);
+        int16_t maxSpeed = readShort(8);
         float distance = readFloat(10);
         if(slot == SLOT_1)
         {
@@ -731,11 +1234,11 @@ void runModule(int device)
       break;
     case RGBLED:
       {
-        int slot = readBuffer(7);
-        int idx = readBuffer(8);
-        int r = readBuffer(9);
-        int g = readBuffer(10);
-        int b = readBuffer(11);
+        uint8_t slot = readBuffer(7);
+        uint8_t idx = readBuffer(8);
+        uint8_t r = readBuffer(9);
+        uint8_t g = readBuffer(10);
+        uint8_t b = readBuffer(11);
         if(port != 0)
         {
           led.reset(port,slot);
@@ -757,8 +1260,8 @@ void runModule(int device)
       break;
     case COMMON_COMMONCMD:
       {
-        int8_t subcmd = port;
-        int8_t cmd_data = readBuffer(7);
+        uint8_t subcmd = port;
+        uint8_t cmd_data = readBuffer(7);
         if(SET_AURIGA_MODE == subcmd)
         {
           Stop();
@@ -787,17 +1290,13 @@ void runModule(int device)
       break;
     case SERVO:
       {
-        int slot = readBuffer(7);
+        uint8_t slot = readBuffer(7);
         pin = slot==1?mePort[port].s1:mePort[port].s2;
-        int v = readBuffer(8);
+        uint8_t v = readBuffer(8);
         Servo sv = servos[searchServoPin(pin)];
         if(v >= 0 && v <= 180)
         {
-          if(port > 0)
-          {
-            sv.attach(pin);
-          }
-          else
+          if(!sv.attached())
           {
             sv.attach(pin);
           }
@@ -821,27 +1320,27 @@ void runModule(int device)
         {
           ledMx.reset(port);
         }
-        int action = readBuffer(7);
+        uint8_t action = readBuffer(7);
         if(action==1)
         {
-          int px = buffer[8];
-          int py = buffer[9];
-          int len = readBuffer(10);
+          int8_t px = buffer[8];
+          int8_t py = buffer[9];
+          int8_t len = readBuffer(10);
           char *s = readString(11,len);
           ledMx.drawStr(px,py,s);
         }
         else if(action==2)
         {
-          int px = readBuffer(8);
-          int py = readBuffer(9);
+          int8_t px = readBuffer(8);
+          int8_t py = readBuffer(9);
           uint8_t *ss = readUint8(10,16);
           ledMx.drawBitmap(px,py,16,ss);
         }
         else if(action==3)
         {
-          int point = readBuffer(8);
-          int hours = readBuffer(9);
-          int minutes = readBuffer(10);
+          int8_t point = readBuffer(8);
+          int8_t hours = readBuffer(9);
+          int8_t minutes = readBuffer(10);
           ledMx.showClock(hours,minutes,point);
         }
         else if(action == 4)
@@ -856,7 +1355,7 @@ void runModule(int device)
         {
           generalDevice.reset(port);
         }
-        int v = readBuffer(7);
+        uint8_t v = readBuffer(7);
         generalDevice.dWrite1(v);
       }
       break;
@@ -866,7 +1365,7 @@ void runModule(int device)
         {
           generalDevice.reset(port);
         }
-        int v = readBuffer(7);
+        uint8_t v = readBuffer(7);
         if(v < 2)
         {
           generalDevice.dWrite1(v);
@@ -880,22 +1379,22 @@ void runModule(int device)
     case DIGITAL:
       {
         pinMode(pin,OUTPUT);
-        int v = readBuffer(7);
+        uint8_t v = readBuffer(7);
         digitalWrite(pin,v);
      }
      break;
     case PWM:
       {
         pinMode(pin,OUTPUT);
-        int v = readBuffer(7);
+        uint8_t v = readBuffer(7);
         analogWrite(pin,v);
       }
       break;
     case TONE:
       {
         pinMode(pin,OUTPUT);
-        int hz = readShort(7);
-        int ms = readShort(9);
+        int16_t hz = readShort(7);
+        int16_t ms = readShort(9);
         if(ms > 0)
         {
           buzzer.tone(pin, hz, ms); 
@@ -908,11 +1407,14 @@ void runModule(int device)
       break;
     case SERVO_PIN:
       {
-        int v = readBuffer(7);
+        uint8_t v = readBuffer(7);
         if(v >= 0 && v <= 180)
         {
           Servo sv = servos[searchServoPin(pin)];
-          sv.attach(pin);
+          if(!sv.attached())
+          {
+            sv.attach(pin);
+          }
           sv.write(v);
         }
       }
@@ -926,8 +1428,8 @@ void runModule(int device)
       {
         if(port == 0)
         {
-           int joy_x = readShort(7);
-           int joy_y = readShort(9);
+           int16_t joy_x = readShort(7);
+           int16_t joy_y = readShort(9);
            double joy_x_temp = -(double)joy_x * 0.18;//0.3
            double joy_y_temp = (double)joy_y * 0.25; //0.2
            PID_speed.Setpoint = joy_y_temp;
@@ -942,9 +1444,24 @@ void runModule(int device)
   }
 }
 
-int searchServoPin(int pin)
+/**
+ * \par Function
+ *    searchServoPin
+ * \par Description
+ *    Check if the pin has been allocated, if it is not allocated,
+ *    then allocate it.
+ * \param[in]
+ *    pin - arduino gpio number
+ * \par Output
+ *    None
+ * \return
+ *    the servo number be assigned
+ * \par Others
+ *    None
+ */
+int16_t searchServoPin(int16_t pin)
 {
-  for(int i=0;i<8;i++)
+  for(uint8_t i=0;i<12;i++)
   {
     if(servo_pins[i] == pin)
     {
@@ -963,6 +1480,21 @@ const int16_t TEMPERATURENOMINAL     = 25;    //Nominl temperature depicted on t
 const int16_t SERIESRESISTOR         = 10000; // Value of the series resistor
 const int16_t BCOEFFICIENT           = 3380;  // Beta value for our thermistor(3350-3399)
 const int16_t TERMISTORNOMINAL       = 10000; // Nominal temperature value for the thermistor
+
+/**
+ * \par Function
+ *    calculate_temp
+ * \par Description
+ *    This function is used to convert the temperature.
+ * \param[in]
+ *    In_temp - Analog values from sensor.
+ * \par Output
+ *    None
+ * \return
+ *    the temperature in degrees Celsius
+ * \par Others
+ *    None
+ */
 float calculate_temp(int16_t In_temp)
 {
   float media;
@@ -982,14 +1514,28 @@ float calculate_temp(int16_t In_temp)
   return temperatura;
 }
 
-void readSensor(int device)
+/**
+ * \par Function
+ *    readSensor
+ * \par Description
+ *    This function is used to process query command.
+ * \param[in]
+ *    device - The definition of all query commands.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+void readSensor(uint8_t device)
 {
   /**************************************************
       ff 55 len idx action device port slot data a
       0  1  2   3   4      5      6    7    8
   ***************************************************/
   float value=0.0;
-  int8_t port,slot,pin;
+  uint8_t port,slot,pin;
   port = readBuffer(6);
   pin = port;
   switch(device)
@@ -1177,7 +1723,7 @@ void readSensor(int device)
       break;
     case  GYRO:
       {
-        int axis = readBuffer(7);
+        uint8_t axis = readBuffer(7);
         if((port == 0) && (gyro_ext.getDevAddr() == 0x68))      //extern gyro
         {
           value = gyro_ext.getAngle(axis);
@@ -1210,15 +1756,15 @@ void readSensor(int device)
       break;
     case  PULSEIN:
       {
-        int pw = readShort(7);
+        int16_t pw = readShort(7);
         pinMode(pin, INPUT);
         sendLong(pulseIn(pin,HIGH,pw));
       }
       break;
     case ULTRASONIC_ARDUINO:
       {
-        int trig = readBuffer(6);
-        int echo = readBuffer(7);
+        uint8_t trig = readBuffer(6);
+        uint8_t echo = readBuffer(7);
         long pw_data;
         float dis_data;
         pinMode(trig,OUTPUT);
@@ -1292,7 +1838,7 @@ void readSensor(int device)
       break;
     case COMMON_COMMONCMD:
       {
-        int8_t subcmd = port;
+        uint8_t subcmd = port;
         if(GET_BATTERY_POWER == subcmd)
         {
           sendFloat(get_power());
@@ -1306,6 +1852,20 @@ void readSensor(int device)
   }//switch
 }
 
+/**
+ * \par Function
+ *    get_power
+ * \par Description
+ *    This function used to get the value of power supply
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    The power vlaue(unit is V)
+ * \par Others
+ *    None
+ */
 float get_power(void)
 {
   float power;
@@ -1314,6 +1874,20 @@ float get_power(void)
   return power;
 }
 
+/**
+ * \par Function
+ *    PID_angle_compute
+ * \par Description
+ *    The angle process for balance car
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void PID_angle_compute(void)   //PID
 {
   CompAngleX = -gyro.getAngleX();
@@ -1356,6 +1930,20 @@ void PID_angle_compute(void)   //PID
   Encoder_2.setMotorPwm(pwm_right);
 }
 
+/**
+ * \par Function
+ *    PID_speed_compute
+ * \par Description
+ *    The speed process for balance car
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void PID_speed_compute(void)
 {
   double speed_now = (Encoder_2.GetCurrentSpeed() - Encoder_1.GetCurrentSpeed())/2;
@@ -1387,8 +1975,6 @@ void PID_speed_compute(void)
     speed_Integral_average = 0.8 * speed_Integral_average + 0.2 * PID_speed.Integral;
   }
   
-  PID_angle.Setpoint =  RELAX_ANGLE -  PID_speed.Output;
-  
 #ifdef DEBUG_INFO
   Serial.print(speed_now);
   Serial.print(","); 
@@ -1405,7 +1991,22 @@ void PID_speed_compute(void)
   PID_angle.Setpoint =  RELAX_ANGLE - PID_speed.Output;
 }
 
-int agx_start_count;
+int16_t agx_start_count;
+
+/**
+ * \par Function
+ *    PID_speed_compute
+ * \par Description
+ *    The exception process for balance car
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void reset(void)
 {
   if((start_flag == false) && (abs(gyro.getAngleX()) < 5))
@@ -1448,6 +2049,20 @@ void reset(void)
   }
 }
 
+/**
+ * \par Function
+ *    parseGcode
+ * \par Description
+ *    The function used to configure parameters for balance car.
+ * \param[in]
+ *    cmd - Gcode command
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void parseGcode(char * cmd)
 {
   char * tmp;
@@ -1518,6 +2133,20 @@ void parseGcode(char * cmd)
   }
 }
 
+/**
+ * \par Function
+ *    parseCmd
+ * \par Description
+ *    The function used to parse Gcode command.
+ * \param[in]
+ *    cmd - Gcode command
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void parseCmd(char * cmd)
 {
   if((cmd[0]=='g') || (cmd[0]=='G'))
@@ -1527,6 +2156,20 @@ void parseCmd(char * cmd)
   }
 }
 
+/**
+ * \par Function
+ *    balanced_model
+ * \par Description
+ *    The main function for balanced car model
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void balanced_model(void)
 {
   reset();
@@ -1553,7 +2196,21 @@ void balanced_model(void)
   } 
 }
 
-void PWM_Calcu()
+/**
+ * \par Function
+ *    PWM_Calcu
+ * \par Description
+ *    Speed calculation function
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+void PWM_Calcu(void)
 {
   pwm_filter1 = 0.8 * pwm_filter1 + 0.2 * pwm_input1;
   if((pwm_input1 == 0) && (abs(pwm_filter1) <= 20))
@@ -1569,6 +2226,20 @@ void PWM_Calcu()
   Encoder_2.setMotorPwm((int16_t)pwm_filter2);
 }
 
+/**
+ * \par Function
+ *    ultrCarProcess
+ * \par Description
+ *    The main function for ultrasonic automatic obstacle avoidance
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void ultrCarProcess(void)
 {
   if(us == NULL)
@@ -1605,7 +2276,7 @@ void ultrCarProcess(void)
     if(randnum > 190)
     {
       BackwardAndTurnLeft();
-      for(int i=0;i<300;i++)
+      for(int16_t i=0;i<300;i++)
       {
         wdt_reset();
         if(read_serial() == true)
@@ -1621,7 +2292,7 @@ void ultrCarProcess(void)
     else
     {
       BackwardAndTurnRight();
-      for(int i=0;i<300;i++)
+      for(int16_t i=0;i<300;i++)
       {
         wdt_reset();
         if(read_serial() == true)
@@ -1643,6 +2314,20 @@ void ultrCarProcess(void)
   }
 }
 
+/**
+ * \par Function
+ *    IrProcess
+ * \par Description
+ *    The main function for IR control mode
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void IrProcess()
 {
   if(ir == NULL)
@@ -1718,7 +2403,21 @@ void IrProcess()
   }
 }
 
-void line_model()
+/**
+ * \par Function
+ *    line_model
+ * \par Description
+ *    The main function for Patrol Line navigation mode
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+void line_model(void)
 {
   uint8_t val;
   val = line.readSensors();
@@ -1748,16 +2447,30 @@ void line_model()
   }
 }
 
-char buf[64];
-char bufindex;
+uint8_t buf[64];
+uint8_t bufindex;
 
-boolean read_serial()
+/**
+ * \par Function
+ *    read_serial
+ * \par Description
+ *    The function used to process serial data.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    Is there a valid command 
+ * \par Others
+ *    None
+ */
+boolean read_serial(void)
 {
   boolean result = false;
   readSerial();
   if(isAvailable)
   {
-    unsigned char c = serialRead & 0xff;
+    uint8_t c = serialRead & 0xff;
     result = true;
     if((c == 0x55) && (isStart == false))
     {
@@ -1799,10 +2512,24 @@ boolean read_serial()
   }
 }
 
+/**
+ * \par Function
+ *    init_form_power
+ * \par Description
+ *    Boot animation for auriga car kit
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void init_form_power(void)
 {
   uint8_t R_Bright = 0;
-  for(int i = 0;i < 40;i++)
+  for(uint8_t i = 0;i < 40;i++)
   {
     led.setColor(0,R_Bright,R_Bright,R_Bright);
     led.show();
@@ -1812,7 +2539,7 @@ void init_form_power(void)
   }
 
   R_Bright = 40;
-  for(int i = 0;i < 40;i++)
+  for(uint8_t i = 0;i < 40;i++)
   {
     led.setColor(0,R_Bright,R_Bright,R_Bright);
     led.show();
@@ -1884,7 +2611,7 @@ void init_form_power(void)
   wdt_reset();
 
   led.setColor(0,0,0,0);
-  for(int i=0;i<4;i++)
+  for(uint8_t i=0;i<4;i++)
   {
     led.setColor(12,20,10,20);
     led.setColor(1,20,10,20);
@@ -1917,6 +2644,20 @@ void init_form_power(void)
   led.show();
 }
 
+/**
+ * \par Function
+ *    setup
+ * \par Description
+ *    Initialization function for arduino
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void setup()
 {
   delay(5);
@@ -1960,10 +2701,10 @@ void setup()
   TCCR2A = _BV(WGM21) | _BV(WGM20);
   TCCR2B = _BV(CS21);
 
-  pwm_filter1=0;
-  pwm_filter2=0;
-  pwm_input1=0;
-  pwm_input2=0;
+  pwm_filter1 = 0;
+  pwm_filter2 = 0;
+  pwm_input1 = 0;
+  pwm_input2 = 0;
 
   leftflag=false;
   rightflag=false;
@@ -1980,6 +2721,20 @@ void setup()
   measurement_speed_time = lasttime_speed = lasttime_angle = millis();
 }
 
+/**
+ * \par Function
+ *    loop
+ * \par Description
+ *    main function for arduino
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
 void loop()
 {
   currentTime = millis()/1000.0-lastTime;
@@ -2008,6 +2763,7 @@ void loop()
 //      bufindex = 0;
 //    }
 //  }
+
   readSerial();
   if(isAvailable)
   {
