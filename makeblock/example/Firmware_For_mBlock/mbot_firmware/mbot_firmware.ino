@@ -415,10 +415,14 @@ void runModule(int device){
      int slot = readBuffer(7);
      pin = slot==1?mePort[port].s1:mePort[port].s2;
      int v = readBuffer(8);
-     if(v>=0&&v<=180){
-       int sp = searchServoPin(pin);
-       servos[sp].attach(pin);
-       servos[sp].write(v);
+     Servo sv = servos[searchServoPin(pin)];
+     if(v >= 0 && v <= 180)
+     {
+       if(!sv.attached())
+       {
+         sv.attach(pin);
+       }
+       sv.write(v);
      }
    }
    break;
@@ -510,10 +514,14 @@ void runModule(int device){
    break;
    case SERVO_PIN:{
      int v = readBuffer(7);
-     if(v >= 0 && v <= 180){
-       int sp = searchServoPin(pin);
-       servos[sp].attach(pin);
-       servos[sp].write(v);
+     Servo sv = servos[searchServoPin(pin)]; 
+     if(v >= 0 && v <= 180)
+     {
+       if(!sv.attached())
+       {
+         sv.attach(pin);
+       }
+       sv.write(v);
      }
    }
    break;
@@ -523,6 +531,7 @@ void runModule(int device){
    break;
   }
 }
+
 int searchServoPin(int pin){
     for(int i=0;i<8;i++){
       if(servo_pins[i] == pin){
