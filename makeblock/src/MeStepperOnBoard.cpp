@@ -115,7 +115,9 @@ MeStepperOnBoard::MeStepperOnBoard(int slot)
   pinMode(_micro_step_pin1, OUTPUT);
   pinMode(_micro_step_pin2, OUTPUT);
   pinMode(_micro_step_pin3, OUTPUT);
-  
+  digitalWrite(_micro_step_pin1,0);
+  digitalWrite(_micro_step_pin2,0);
+  digitalWrite(_micro_step_pin3,1);
 }
 
 /**
