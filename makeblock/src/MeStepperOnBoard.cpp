@@ -4,8 +4,8 @@
  * \brief   Driver for Me Stepper on MegaPi.
  * @file    MeStepperOnBoard.cpp
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2016/03/05
+ * @version V1.0.1
+ * @date    2016/05/06
  * @brief   Driver for Stepper device.
  *
  * \par Copyright
@@ -27,29 +27,35 @@
  *
  *    1. void MeStepperOnBoard::setMicroStep(int8_t value);
  *    2. void MeStepperOnBoard::setpin(int slot);
- *    3. void MeStepperOnBoard::moveTo(long absolute); 
- *    4. void MeStepperOnBoard::move(long relative);
- *    5. boolean MeStepperOnBoard::run();
- *    6. boolean MeStepperOnBoard::runSpeed();
- *    7. void MeStepperOnBoard::setMaxSpeed(float speed);
- *    8. void MeStepperOnBoard::setAcceleration(float acceleration);
- *    9. void MeStepperOnBoard::setSpeed(float speed);
- *    10. float MeStepperOnBoard::speed();
- *    11. long MeStepperOnBoard::distanceToGo();
- *    12. long MeStepperOnBoard::targetPosition();
- *    13. long MeStepperOnBoard::currentPosition();  
- *    14. void MeStepperOnBoard::setCurrentPosition(long position);  
- *    15. void MeStepperOnBoard::runToPosition();
- *    16. boolean MeStepperOnBoard::runSpeedToPosition();
- *    17. void MeStepperOnBoard::runToNewPosition(long position);
- *    18. void MeStepperOnBoard::disableOutputs();
- *    19. void MeStepperOnBoard::enableOutputs();
+ *    3. void MeStepperOnBoard::moveTo(long absolute);
+ *    4. void MeStepperOnBoard::moveTo(long absolute, cb callback, int extId);
+ *    5. void MeStepperOnBoard::move(long relative);
+ *    6. void MeStepperOnBoard::move(long relative, cb callback, int extId);
+ *    7. boolean MeStepperOnBoard::run(void);
+ *    8. boolean MeStepperOnBoard::runSpeed(void);
+ *    9. void MeStepperOnBoard::setMaxSpeed(float speed);
+ *    10. void MeStepperOnBoard::setAcceleration(float acceleration);
+ *    11. void MeStepperOnBoard::setSpeed(float speed);
+ *    12. float MeStepperOnBoard::speed(void);
+ *    13. long MeStepperOnBoard::distanceToGo(void);
+ *    14. long MeStepperOnBoard::targetPosition(void);
+ *    15. long MeStepperOnBoard::currentPosition(void);  
+ *    16. void MeStepperOnBoard::setCurrentPosition(long position);  
+ *    17. void MeStepperOnBoard::runToPosition(void);
+ *    18. boolean MeStepperOnBoard::runSpeedToPosition(void);
+ *    19. void MeStepperOnBoard::runToNewPosition(long position);
+ *    20. void MeStepperOnBoard::disableOutputs(void);
+ *    21. void MeStepperOnBoard::enableOutputs(void);
+ *    22. void MeStepperOnBoard::update(void);
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan        2016/03/05     1.0.0            Bulid the new
+ * Mark Yan        2016/05/06     1.0.1            Add function move and moveTo
  * </pre>
+ *
+ * @example MegaPiOnBoardStepperTest.ino
  */
 
 #include "MeStepperOnBoard.h"
@@ -105,7 +111,7 @@ MeStepperOnBoard::MeStepperOnBoard(int slot)
   pinMode(_step_data, OUTPUT);
   pinMode(_enable_pin, OUTPUT);
   pinMode(_reset_pin, OUTPUT);
-  digitalWrite(_reset_pin,LOW);
+  digitalWrite(_reset_pin,HIGH);
   pinMode(_micro_step_pin1, OUTPUT);
   pinMode(_micro_step_pin2, OUTPUT);
   pinMode(_micro_step_pin3, OUTPUT);
@@ -213,9 +219,36 @@ void MeStepperOnBoard::setpin(int slot)
  * \par Function
  *    moveTo
  * \par Description
- *    Stepper moves to the aim.
+ *    Stepper moves to the absolute position.
  * \param[in]
  *    absolute - The absolute length to Stepper's movement.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+void MeStepperOnBoard::moveTo(long absolute)
+{
+  if (_targetPos != absolute)
+  {
+    _targetPos = absolute;
+    computeNewSpeed();
+  }
+}
+
+/**
+ * \par Function
+ *    moveTo
+ * \par Description
+ *    Stepper moves to the absolute position.
+ * \param[in]
+ *    absolute - The absolute length to Stepper's movement.
+ * \param[in]
+ *    absolute - callback function when the target position has been reached.
+ * \param[in]
+ *    extId - It is used to indicate the ID of motor.
  * \par Output
  *    None
  * \par Return
@@ -240,9 +273,32 @@ void MeStepperOnBoard::moveTo(long absolute, cb callback, int extId)
  * \par Function
  *    move
  * \par Description
- *    Stepper moves to the aim.
+ *    Stepper moves to the relative positions.
  * \param[in]
  *    relative - The relative length to Stepper's movement.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+void MeStepperOnBoard::move(long relative)
+{
+  moveTo(_currentPos + relative);
+}
+
+/**
+ * \par Function
+ *    move
+ * \par Description
+ *    Stepper moves to the relative positions.
+ * \param[in]
+ *    relative - The relative length to Stepper's movement.
+ * \param[in]
+ *    absolute - callback function when the target position has been reached.
+ * \param[in]
+ *    extId - It is used to indicate the ID of motor.
  * \par Output
  *    None
  * \par Return
@@ -269,7 +325,7 @@ void MeStepperOnBoard::move(long relative, cb callback, int extId)
  * \par Others
  *    None
  */
-boolean MeStepperOnBoard::runSpeed()
+boolean MeStepperOnBoard::runSpeed(void)
 {
   // Dont do anything unless we actually have a step interval
   if (!_stepInterval)
@@ -313,7 +369,7 @@ boolean MeStepperOnBoard::runSpeed()
  * \par Others
  *    None
  */
-long MeStepperOnBoard::distanceToGo()
+long MeStepperOnBoard::distanceToGo(void)
 {
   return _targetPos - _currentPos;
 }
@@ -332,7 +388,7 @@ long MeStepperOnBoard::distanceToGo()
  * \par Others
  *    None
  */
-long MeStepperOnBoard::targetPosition()
+long MeStepperOnBoard::targetPosition(void)
 {
   return _targetPos;
 }
@@ -351,7 +407,7 @@ long MeStepperOnBoard::targetPosition()
  * \par Others
  *    None
  */
-long MeStepperOnBoard::currentPosition()
+long MeStepperOnBoard::currentPosition(void)
 {
   return _currentPos;
 }
@@ -391,7 +447,7 @@ void MeStepperOnBoard::setCurrentPosition(long position)
  * \par Others
  *    None
  */
-void MeStepperOnBoard::computeNewSpeed()
+void MeStepperOnBoard::computeNewSpeed(void)
 {
   long distanceTo = distanceToGo();
   long stepsToStop = (long)((_speed * _speed) / (2.0 * _acceleration));
@@ -483,7 +539,7 @@ void MeStepperOnBoard::computeNewSpeed()
  * \par Others
  *    None
  */
-boolean MeStepperOnBoard::run()
+boolean MeStepperOnBoard::run(void)
 {
   if((_speed == 0.0) || (distanceToGo() == 0))
   {
@@ -608,7 +664,7 @@ void MeStepperOnBoard::setSpeed(float speed)
  * \par Others
  *    None
  */
-float MeStepperOnBoard::speed()
+float MeStepperOnBoard::speed(void)
 {
   return _speed;
 }
@@ -627,7 +683,7 @@ float MeStepperOnBoard::speed()
  * \par Others
  *    None
  */
-void MeStepperOnBoard::step()
+void MeStepperOnBoard::step(void)
 {
   if(_dir == DIRECTION_CW)
   {
@@ -656,7 +712,7 @@ void MeStepperOnBoard::step()
  * \par Others
  *    None
  */
-void MeStepperOnBoard::runToPosition()
+void MeStepperOnBoard::runToPosition(void)
 {
   while (run())
   {
@@ -678,7 +734,7 @@ void MeStepperOnBoard::runToPosition()
  * \par Others
  *    None
  */
-boolean MeStepperOnBoard::runSpeedToPosition()
+boolean MeStepperOnBoard::runSpeedToPosition(void)
 {
   if (_targetPos == _currentPos)
   {
@@ -686,11 +742,11 @@ boolean MeStepperOnBoard::runSpeedToPosition()
   }
   if (_targetPos >_currentPos)
   {
-	_dir = DIRECTION_CW;
+    _dir = DIRECTION_CW;
   }
   else
   {
-	_dir = DIRECTION_CCW;
+    _dir = DIRECTION_CCW;
   }
   return runSpeed();
 }
@@ -729,7 +785,7 @@ void MeStepperOnBoard::runToNewPosition(long position)
  * \par Others
  *    None
  */
-void MeStepperOnBoard::disableOutputs()
+void MeStepperOnBoard::disableOutputs(void)
 {
   digitalWrite(_enable_pin,1);
 }
@@ -748,27 +804,41 @@ void MeStepperOnBoard::disableOutputs()
  * \par Others
  *    None
  */
-void MeStepperOnBoard::enableOutputs()
+void MeStepperOnBoard::enableOutputs(void)
 {
   digitalWrite(_enable_pin,0);
 }
 
-void MeStepperOnBoard::update()
+/**
+ * \par Function
+ *    update
+ * \par Description
+ *    The Stepper loop function, used to move the stepper.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+void MeStepperOnBoard::update(void)
 {
   if(_mode==0)
   {
-	runSpeed();
+    runSpeed();
   }else
   {
-	long dist = distanceToGo();
-	if(dist==0)
-	{
-	  if(_moving)
-	  {
-		_moving = false;
-		_callback(_slot, _extId);
-	  }
-	}
-	runSpeedToPosition();  
+    long dist = distanceToGo();
+    if(dist==0)
+    {
+      if(_moving)
+      {
+        _moving = false;
+        _callback(_slot, _extId);
+      }
+    }
+    runSpeedToPosition();  
   }
 }

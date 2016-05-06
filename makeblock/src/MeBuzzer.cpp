@@ -43,6 +43,7 @@
  * @example MbotBuzzerTest2.ino
  */
 #include "MeBuzzer.h"
+#include <avr/wdt.h>
 
 uint8_t buzzer_pin;
 
@@ -150,6 +151,7 @@ void MeBuzzer::tone(int pin, uint16_t frequency, uint32_t duration)
     delayMicroseconds(pulse);
     digitalWrite(buzzer_pin, LOW);
     delayMicroseconds(pulse);
+    wdt_reset();
   }
 }
 
@@ -180,6 +182,7 @@ void MeBuzzer::tone(uint16_t frequency, uint32_t duration)
     delayMicroseconds(pulse);
     digitalWrite(buzzer_pin, LOW);
     delayMicroseconds(pulse);
+    wdt_reset();
   }
 }
 
