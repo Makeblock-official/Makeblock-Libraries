@@ -47,6 +47,7 @@
  *    20. void MeStepperOnBoard::disableOutputs(void);
  *    21. void MeStepperOnBoard::enableOutputs(void);
  *    22. void MeStepperOnBoard::update(void);
+ *    23. int16_t MeStepperOnBoard::getPort(void);
  *
  * \par History:
  * <pre>
@@ -215,6 +216,9 @@ void MeStepperOnBoard::setpin(int slot)
   pinMode(_micro_step_pin1, OUTPUT);
   pinMode(_micro_step_pin2, OUTPUT);
   pinMode(_micro_step_pin3, OUTPUT);
+  digitalWrite(_micro_step_pin1,0);
+  digitalWrite(_micro_step_pin2,0);
+  digitalWrite(_micro_step_pin3,1);
 }
 
 /**
@@ -843,4 +847,23 @@ void MeStepperOnBoard::update(void)
     }
     runSpeedToPosition();  
   }
+}
+
+/**
+ * \par Function
+ *    getPort
+ * \par Description
+ *    get the slot number of the stepper.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    The Slot number Stepper used.
+ * \par Others
+ *    None
+ */
+int16_t MeStepperOnBoard::getPort(void)
+{
+  return _slot;
 }

@@ -14,6 +14,7 @@
  *    4. void MeStepper::setMaxSpeed(float speed);
  *    5. void MeStepper::setAcceleration(float acceleration);
  *    6. void MeStepper::setMicroStep(int8_t value);
+ *    7. void MeStepper::enableOutputs(void);
  *
  * \par History:
  * <pre>
@@ -34,6 +35,7 @@ void setup()
   stepper.setMaxSpeed(1000);
   stepper.setAcceleration(20000);
   stepper.setMicroStep(16);
+  stepper.enableOutputs();
 }
 
 void loop()

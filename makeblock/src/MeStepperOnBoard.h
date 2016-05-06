@@ -47,6 +47,7 @@
  *    20. void MeStepperOnBoard::disableOutputs(void);
  *    21. void MeStepperOnBoard::enableOutputs(void);
  *    22. void MeStepperOnBoard::update(void);
+ *    23. int16_t MeStepperOnBoard::getPort(void);
  *
  * \par History:
  * <pre>
@@ -484,6 +485,22 @@ void setMicroStep(int8_t value);
  *    None
  */
   virtual void step(void);
+  
+/**
+ * \par Function
+ *    getPort
+ * \par Description
+ *    get the slot number of the stepper.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    The Slot number Stepper used.
+ * \par Others
+ *    None
+ */
+  int16_t getPort(void);
 
 protected:
 /**
@@ -530,10 +547,10 @@ private:
   /// Min step size in microseconds based on maxSpeed
   float _cmin; // at max speed
   cb _callback;
-  int _slot;
-  int _extId;
+  int16_t _slot;
+  int16_t _extId;
   boolean _moving;
-  int _mode;
+  int16_t _mode;
 };
 
 #endif 
