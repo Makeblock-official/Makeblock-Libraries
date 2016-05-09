@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_MegaPi.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V0e.01.002
-* Date               : 05/04/2016
+* Version            : V0e.01.003
+* Date               : 05/07/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -12,9 +12,9 @@
 * <Author>         <Time>         <Version>        <Descr>
 * Mark Yan         2016/03/12     0e.01.001        build the new.
 * Mark Yan         2016/05/04     0e.01.002        Added encoder and compass driver and fix some bugs.
+* Mark Yan         2016/05/07     0e.01.003        Delete watchdog and add On board stepper driver.
 **************************************************************************/
 #include <Arduino.h>
-#include <avr/wdt.h>
 #include <MeMegaPi.h>
 #include "MeEEPROM.h"
 #include <Wire.h>
@@ -35,7 +35,7 @@ MeInfraredReceiver *ir = NULL;     //PORT_6
 MeGyro gyro_ext(0,0x68);           //外接陀螺仪
 MeCompass Compass;
 MeJoystick joystick;
-MeStepper steppers[2];
+MeStepperOnBoard steppers[4];
 MeBuzzer buzzer;
 MeHumiture humiture;
 MeFlameSensor FlameSensor;
@@ -96,7 +96,6 @@ int16_t minSpeed = 45;
 int16_t factor = 23;
 int16_t distance=0;
 int16_t randnum = 0;                                                                               
-int16_t auriga_power = 0;
 int16_t LineFollowFlag=0;
 float pwm_filter1=0;
 float pwm_filter2=0;
@@ -168,7 +167,7 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0e.01.002";
+String mVersion = "0e.01.003";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
 #define PWM_MIN_OFFSET   0
@@ -825,15 +824,15 @@ void writeSerial(uint8_t c)
 {
   if(BluetoothSource == DATA_SERIAL)
   {
-    Serial.write(c);;
+    Serial.write(c);
   }
   else if(BluetoothSource == DATA_SERIAL2)
   {
-    Serial2.write(c);;
+    Serial2.write(c);
   }
   else if(BluetoothSource == DATA_SERIAL3)
   {
-    Serial3.write(c);;
+    Serial3.write(c);
   }
 }
 
@@ -1303,11 +1302,11 @@ void runModule(uint8_t device)
     case JOYSTICK:
       {
         int16_t leftSpeed = readShort(6);
-        pwm_input1 = leftSpeed;
+        pwm_input1 = -leftSpeed;
         pwm_filter1 = 0.8 * pwm_filter1 + 0.2 * leftSpeed;
         Encoder_1.setMotorPwm((int16_t)pwm_filter1);
         int16_t rightSpeed = readShort(8);
-        pwm_input2 = rightSpeed;
+        pwm_input2 = -rightSpeed;
         pwm_filter2 = 0.8 * pwm_filter2 + 0.2 * rightSpeed;
         Encoder_2.setMotorPwm((int16_t)pwm_filter2);
       }
@@ -1316,19 +1315,45 @@ void runModule(uint8_t device)
       {
         int16_t maxSpeed = readShort(7);
         long distance = readLong(9);
-        if(port == PORT_1)
+        if(port == SLOT1)
         {
-          steppers[0] = MeStepper(PORT_1);
+          steppers[0] = MeStepperOnBoard(SLOT1);
           steppers[0].moveTo(distance);
           steppers[0].setMaxSpeed(maxSpeed);
+          steppers[0].setAcceleration(20000);
+          steppers[0].setMicroStep(16);
           steppers[0].setSpeed(maxSpeed);
+          steppers[0].enableOutputs();
         }
-        else if(port == PORT_2)
+        else if(port == SLOT2)
         {
-          steppers[1] = MeStepper(PORT_2);
+          steppers[1] = MeStepperOnBoard(SLOT2);
           steppers[1].moveTo(distance);
           steppers[1].setMaxSpeed(maxSpeed);
+          steppers[1].setAcceleration(20000);
+          steppers[1].setMicroStep(16);
           steppers[1].setSpeed(maxSpeed);
+          steppers[1].enableOutputs();
+        }
+        else if(port == SLOT3)
+        {
+          steppers[2] = MeStepperOnBoard(SLOT3);
+          steppers[2].moveTo(distance);
+          steppers[2].setMaxSpeed(maxSpeed);
+          steppers[2].setAcceleration(20000);
+          steppers[2].setMicroStep(16);
+          steppers[2].setSpeed(maxSpeed);
+          steppers[2].enableOutputs();
+        }
+        else if(port == SLOT4)
+        {
+          steppers[3] = MeStepperOnBoard(SLOT4);
+          steppers[3].moveTo(distance);
+          steppers[3].setMaxSpeed(maxSpeed);
+          steppers[3].setAcceleration(20000);
+          steppers[3].setMicroStep(16);
+          steppers[3].setSpeed(maxSpeed);
+          steppers[3].enableOutputs();
         }
       } 
       break;
@@ -1485,21 +1510,6 @@ void runModule(uint8_t device)
         pinMode(pin,OUTPUT);
         uint8_t v = readBuffer(7);
         analogWrite(pin,v);
-      }
-      break;
-    case TONE:
-      {
-        pinMode(pin,OUTPUT);
-        int16_t hz = readShort(7);
-        int16_t ms = readShort(9);
-        if(ms > 0)
-        {
-          buzzer.tone(pin, hz, ms); 
-        }
-        else
-        {
-          buzzer.noTone(pin); 
-        }
       }
       break;
     case SERVO_PIN:
@@ -1776,6 +1786,10 @@ void readSensor(uint8_t device)
           value = gyro_ext.getAngle(axis);
           sendFloat(value);
         }
+        else
+        {
+          sendFloat(0);
+        }
       }
       break;
     case  VERSION:
@@ -1903,16 +1917,17 @@ void readSensor(uint8_t device)
     case COMMON_COMMONCMD:
       {
         uint8_t subcmd = port;
-        if(GET_BATTERY_POWER == subcmd)
-        {
-
-        }
-        else if(GET_MEGAPI_MODE == subcmd)
+        if(GET_MEGAPI_MODE == subcmd)
         {
           sendByte(megapi_mode);
         }
       }
-      break;    
+      break;
+    default:
+      {
+        sendFloat(0);
+      }
+      break;
   }//switch
 }
 
@@ -2628,7 +2643,6 @@ void loop()
 {
   currentTime = millis()/1000.0-lastTime;
   keyPressed = buttonSensor.pressed();
-  wdt_reset();
 
   if(millis() - blink_time > 1000)
   {
@@ -2641,8 +2655,24 @@ void loop()
   {
     IrProcess();
   }
-  steppers[0].runSpeedToPosition();
-  steppers[1].runSpeedToPosition();
+
+  if(steppers[0].getPort() == SLOT1)
+  {
+    steppers[0].runSpeedToPosition();
+  }
+  else if(steppers[1].getPort() == SLOT2)
+  {
+    steppers[1].runSpeedToPosition();
+  }
+  else if(steppers[2].getPort() == SLOT3)
+  {
+    steppers[2].runSpeedToPosition();
+  }
+  else if(steppers[3].getPort() == SLOT4)
+  {
+    steppers[3].runSpeedToPosition();
+  }
+
   Encoder_1.Update_speed();
   Encoder_2.Update_speed();
   Encoder_3.Update_speed();
