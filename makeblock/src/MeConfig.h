@@ -45,6 +45,7 @@
  * Lawrence         2015/09/09     3.2.0            Include some Arduino's official headfiles which path specified.
  * Mark Yan         2015/11/02     3.2.1            fix bug on MACOS.
  * Mark Yan         2016/01/21     3.2.2            fix some library bugs.
+ * Mark Yan         2016/05/17     3.2.3            add support for MegaPi and Auriga Board.
  * </pre>
  *
  * \author  Mark Yan (myan@makeblock.com) DO NOT CONTACT THE AUTHOR DIRECTLY: USE THE LISTS

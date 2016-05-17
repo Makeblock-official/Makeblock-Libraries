@@ -1,8 +1,17 @@
-# Makeblock Library v3.22
+# Makeblock Library v3.23
+
+Revision of history:
+Author           Time           Version          Descr
+Mark Yan         2015/07/24     3.0.0            Rebuild the old lib.
+Rafael Lee       2015/09/02     3.1.0            Added some comments and macros.
+Lawrence         2015/09/09     3.2.0            Include some Arduino's official headfiles which path specified.
+Mark Yan         2015/11/02     3.2.1            fix bug on MACOS.
+Mark Yan         2016/01/21     3.2.2            fix some library bugs.
+Mark Yan         2016/05/17     3.2.3            add support for MegaPi and Auriga Board.
 
 Arduino Library for Makeblock Electronic Modules
 
-This library is v3.22, we've made a lot of modifications in the code structure. Their is now a very big difference
+This library is v3.23, we've made a lot of modifications in the code structure. Their is now a very big difference
 from v2.0. We strongly recommend that all Makeblock customers use the new version.
 
 How to use:
@@ -28,3 +37,7 @@ How to use:
    mCore <-------->  MeMCore.h
 
    Shield <------->  MeShield.h
+
+   Auriga <------->  MeAuriga.h
+
+   MegaPi <------->  MeMegaPi.h
