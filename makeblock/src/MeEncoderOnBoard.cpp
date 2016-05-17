@@ -4,8 +4,8 @@
  * \brief   Driver for Encoder module on MeAuriga and MeMegaPi.
  * @file    MeEncoderOnBoard.cpp
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2016/04/07
+ * @version V1.0.2
+ * @date    2016/05/17
  * @brief   Driver for Encoder module on MeAuriga and MeMegaPi.
  *
  * \par Copyright
@@ -25,21 +25,56 @@
  *
  * \par Method List:
  *
+ *    1. void MeEncoderOnBoard::reset(uint8_t slot);
+ *    2. uint8_t MeEncoderOnBoard::GetSlotNum(void);
+ *    3. uint8_t MeEncoderOnBoard::GetIntNum(void);
+ *    4. uint8_t MeEncoderOnBoard::GetPortA(void);
+ *    5. uint8_t MeEncoderOnBoard::GetPortB(void);
+ *    6. long MeEncoderOnBoard::GetPulsePos(void);
+ *    7. void MeEncoderOnBoard::SetPulsePos(long pulse_pos);
+ *    8. void MeEncoderOnBoard::PulsePosPlus(void);
+ *    9. void MeEncoderOnBoard::PulsePosMinus(void);
+ *    10. void MeEncoderOnBoard::SetCurrentSpeed(double speed);
+ *    11. double MeEncoderOnBoard::GetCurrentSpeed(void);
+ *    12. int MeEncoderOnBoard::GetPwm(void);
+ *    13. void MeEncoderOnBoard::setMotorPwm(int pwm);
+ *    14. void MeEncoderOnBoard::Update_speed(void);
+ *    15. void MeEncoderOnBoard::update(void);
+ *    16. long MeEncoderOnBoard::distanceToGo(void);
+ *    17. void MeEncoderOnBoard::runSpeed(double speed);
+ *    18. void MeEncoderOnBoard::setSpeed(double speed);
+ *    19. void MeEncoderOnBoard::move(long distance,cb callback,int extId);
+ *    20. void MeEncoderOnBoard::moveTo(long position,cb callback,int extId);
+ *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * forfish         2015/11/10     1.0.0            Add description
  * Mark Yan        2016/04/07     1.0.1            fix motor reset issue.
+ * Mark Yan        2016/05/17     1.0.2            add some comments.
  * </pre>
  *
  * @example MeEncoderOnBoardMoveTo.ino
  */
 
 #include "MeEncoderOnBoard.h"
+
+/**
+ * Alternate Constructor which can call your own function to map the Encoder motor to arduino port,
+ * no pins are used or initialized here.
+ * \param[in]
+ *   None
+ */
 MeEncoderOnBoard::MeEncoderOnBoard()
 {
 
 }
+
+/**
+ * Alternate Constructor which can call your own function to map the Encoder motor to arduino port
+ * \param[in]
+ *   port - megapi dc port from PORT_1 to PORT_12
+ */
 MeEncoderOnBoard::MeEncoderOnBoard(uint8_t slot)
 {
   _Slot = slot;
@@ -84,6 +119,21 @@ MeEncoderOnBoard::MeEncoderOnBoard(uint8_t slot)
   MeEncoderOnBoard::SetPulsePos(0);
   _Measurement_speed_time = millis();
 }
+
+/**
+ * \par Function
+ *   reset
+ * \par Description
+ *   Reset the encoder motor available PIN by Auriga/MegaPi slot.
+ * \param[in]
+ *   slot - MegaPi encoder port from SLOT1 to SLOT4(Auriga SLOT1 and SLOT2).
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
 void MeEncoderOnBoard::reset(uint8_t slot)
 {
   _Slot = slot;
@@ -130,61 +180,230 @@ void MeEncoderOnBoard::reset(uint8_t slot)
   _Measurement_speed_time = millis();
 }
 
+/**
+ * \par Function
+ *   GetSlotNum
+ * \par Description
+ *   This function used to get the Auriga/MegaPi slot number of current objects.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   uint8_t - The slot number of current objects \n
+ * \par Others
+ *   None
+ */
 uint8_t MeEncoderOnBoard::GetSlotNum(void)
 {
   return _Slot;
 }
 
+/**
+ * \par Function
+ *   GetIntNum
+ * \par Description
+ *   This function used to get the Auriga/MegaPi Interrupt number of current objects.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   uint8_t - The Interrupt number of current objects \n
+ * \par Others
+ *   None
+ */
 uint8_t MeEncoderOnBoard::GetIntNum(void)
 {
   return _IntNum;
 }
 
+/**
+ * \par Function
+ *   GetPortA
+ * \par Description
+ *   This function used to get the GPIO number of current objects's dir port A.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   uint8_t - The GPIO number of current objects's dir port A \n
+ * \par Others
+ *   None
+ */
 uint8_t MeEncoderOnBoard::GetPortA(void)
 {
   return _Port_A;
 }
 
+/**
+ * \par Function
+ *   GetPortB
+ * \par Description
+ *   This function used to get the GPIO number of current objects's dir port B.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   uint8_t - The GPIO number of current objects's dir port B \n
+ * \par Others
+ *   None
+ */
 uint8_t MeEncoderOnBoard::GetPortB(void)
 {
   return _Port_B;
 }
 
+/**
+ * \par Function
+ *   GetPulsePos
+ * \par Description
+ *   This function used to get the current pos value(pulse counter).
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   long - current pos value \n
+ * \par Others
+ *   None
+ */
 long MeEncoderOnBoard::GetPulsePos(void)
 {
   return encode_structure.pulse_pos;
 }
 
+/**
+ * \par Function
+ *   SetPulsePos
+ * \par Description
+ *   This function used to Set the current pos value(pulse counter). Generally used for\n
+ *   reset the distance calculation.
+ * \param[in]
+ *   pulse_pos - the value of pos value(pulse counter)
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
 void MeEncoderOnBoard::SetPulsePos(long pulse_pos)
 {
   encode_structure.pulse_pos = pulse_pos;
 }
 
+/**
+ * \par Function
+ *   PulsePosPlus
+ * \par Description
+ *   This function used to increase the current pos value(pulse counter).
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
 void MeEncoderOnBoard::PulsePosPlus(void)
 {
   encode_structure.pulse_pos++;
 }
 
+/**
+ * \par Function
+ *   PulsePosPlus
+ * \par Description
+ *   This function used to reduction the current pos value(pulse counter).
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
 void MeEncoderOnBoard::PulsePosMinus(void)
 {
   encode_structure.pulse_pos--;
 }
 
+/**
+ * \par Function
+ *   SetCurrentSpeed
+ * \par Description
+ *   This function used to set the current speed(The unit is rpm).
+ * \param[in]
+ *   speed - the speed value(The unit is rpm).
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
 void MeEncoderOnBoard::SetCurrentSpeed(double speed)
 {
   encode_structure.currentSpeed = speed;
 }
 
+/**
+ * \par Function
+ *   GetCurrentSpeed
+ * \par Description
+ *   This function used to get the current speed(The unit is rpm).
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   double - the speed value(The unit is rpm).
+ * \par Others
+ *   None
+ */
 double MeEncoderOnBoard::GetCurrentSpeed(void)
 {
   return encode_structure.currentSpeed;
 }
 
+/**
+ * \par Function
+ *   GetPwm
+ * \par Description
+ *   This function used to get the current pwm setting.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   int - the pwm setting
+ * \par Others
+ *   None
+ */
 int MeEncoderOnBoard::GetPwm(void)
 {
   return encode_structure.pwm;
 }
 
+/**
+ * \par Function
+ *   setMotorPwm
+ * \par Description
+ *   This function used to set current pwm setting.
+ * \param[in]
+ *   pwm - the pwm setting
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
 void MeEncoderOnBoard::setMotorPwm(int pwm)
 {
   pwm = constrain(pwm,-255,255);
@@ -212,6 +431,20 @@ void MeEncoderOnBoard::setMotorPwm(int pwm)
   }
 }
 
+/**
+ * \par Function
+ *   Update_speed
+ * \par Description
+ *   This function used to update current speed.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
 void MeEncoderOnBoard::Update_speed(void)
 {
   if((millis() - _Measurement_speed_time) > 20)
@@ -224,7 +457,22 @@ void MeEncoderOnBoard::Update_speed(void)
   }
 }
 
-void MeEncoderOnBoard::update()
+/**
+ * \par Function
+ *   update
+ * \par Description
+ *   This function called in main loop if you need run to the set position.\n
+ *   It should be used with move and moveTo function;
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+void MeEncoderOnBoard::update(void)
 {
   if(!_moving)
   {
@@ -261,20 +509,85 @@ void MeEncoderOnBoard::update()
     }
   }
 }
-long MeEncoderOnBoard::distanceToGo()
+
+/**
+ * \par Function
+ *    distanceToGo
+ * \par Description
+ *    The distance that encoder should go.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    long - Return the length that encoder need run.
+ * \par Others
+ *    None
+ */
+long MeEncoderOnBoard::distanceToGo(void)
 {
   return _targetPosition - _Last_pulse_pos;
 }
+
+/**
+ * \par Function
+ *    runSpeed
+ * \par Description
+ *    The speed of encode, and encoder motor will running with the setting speed.
+ * \param[in]
+ *    speed - the speed value(The unit is rpm).
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeEncoderOnBoard::runSpeed(double speed)
 {
   _mode = 0;
   _moving = true;
   _targetSpeed = speed;
 }
+
+/**
+ * \par Function
+ *   setSpeed
+ * \par Description
+ *   This function used to set the current speed(The unit is rpm).\n
+ *   Note: used with update function.
+ * \param[in]
+ *   speed - the speed value(The unit is rpm).
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
 void MeEncoderOnBoard::setSpeed(double speed)
 {
   _targetSpeed = speed;
 }
+
+/**
+ * \par Function
+ *    move
+ * \par Description
+ *    encoder motor moves to the relative positions.
+ * \param[in]
+ *    relative - The relative length to Stepper's movement.
+ * \param[in]
+ *    absolute - callback function when the target position has been reached.
+ * \param[in]
+ *    extId - It is used to indicate the ID of motor.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeEncoderOnBoard::move(long distance,cb callback,int extId)
 {
   if(_targetSpeed == 0)
@@ -287,6 +600,25 @@ void MeEncoderOnBoard::move(long distance,cb callback,int extId)
   _targetPosition += distance;
   _callback = callback;
 }
+
+/**
+ * \par Function
+ *    moveTo
+ * \par Description
+ *    encoder motor moves to the absolute position.
+ * \param[in]
+ *    absolute - The absolute length to Stepper's movement.
+ * \param[in]
+ *    absolute - callback function when the target position has been reached.
+ * \param[in]
+ *    extId - It is used to indicate the ID of motor.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
 void MeEncoderOnBoard::moveTo(long position,cb callback,int extId)
 {
   if(_targetSpeed == 0)
