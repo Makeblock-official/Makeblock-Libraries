@@ -77,6 +77,7 @@ MeTouchSensor::MeTouchSensor(uint8_t TogPin, uint8_t OutputPin)
   _OutputPin = OutputPin;
   pinMode(_TogPin,OUTPUT);
   pinMode(_OutputPin,INPUT);
+  digitalWrite(_TogPin,LOW);
 }
 #endif // ME_PORT_DEFINED
 

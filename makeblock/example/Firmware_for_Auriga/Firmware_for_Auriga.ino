@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.002
-* Date               : 05/03/2016
+* Version            : V09.01.003
+* Date               : 05/24/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -12,6 +12,7 @@
 * <Author>         <Time>         <Version>        <Descr>
 * Mark Yan         2016/03/12     09.01.001        build the new.
 * Mark Yan         2016/05/03     09.01.002        Added encoder and compass driver and fix some bugs.
+* Mark Yan         2016/05/24     09.01.003        Fix issue MBLOCK-1 and MBLOCK-12(JIRA issue).
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -154,7 +155,7 @@ boolean rightflag;
 boolean start_flag = false;
 boolean move_flag = false;
 
-String mVersion = "09.01.002";
+String mVersion = "09.01.003";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
@@ -2765,7 +2766,7 @@ void loop()
 //  }
 
   readSerial();
-  if(isAvailable)
+  while(isAvailable)
   {
     unsigned char c = serialRead & 0xff;
     if((c == 0x55) && (isStart == false))
@@ -2793,6 +2794,7 @@ void loop()
       }
     }
     index++;
+    readSerial();
     if(index > 51)
     {
       index=0; 

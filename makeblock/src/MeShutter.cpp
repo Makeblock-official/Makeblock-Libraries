@@ -4,8 +4,8 @@
  * \brief   Driver for Me Shutter device.
  * @file    MeShutter.cpp
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/04
+ * @version V1.0.1
+ * @date    2016/05/24
  * @brief   Driver for Me Shutter device.
  *
  * \par Copyright
@@ -31,11 +31,13 @@
  *    3. uint8_t MeShutter::shotOff()
  *    4. uint8_t MeShutter::focusOn()
  *    5. uint8_t MeShutter::focusOff()
+ *    6. void MeShutter::setState(uint8_t state)
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/04     1.0.0            Rebuild the old lib.
+ * Mark Yan         2016/05/24     1.0.1            Add function setState for mblock.
  * </pre>
  *
  * @example MeShutterTest.ino
@@ -201,5 +203,42 @@ void MeShutter::focusOff(void)
 #else //ME_PORT_DEFINED
   digitalWrite(_FocusPin, LOW);
 #endif //ME_PORT_DEFINED
+}
+
+/**
+ * \par Function
+ *   focusOff
+ * \par Description
+ *   Set shutter device's work state.
+ * \param[in]
+ *   state - 0:shotOff\n
+ *           1:shotOn\n
+ *           2:focusOff\n
+ *           3:focusOn\n
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+void MeShutter::setState(uint8_t state)
+{
+  if(state < 2)
+  {
+#ifdef ME_PORT_DEFINED
+    MePort::dWrite1(state);
+#else //ME_PORT_DEFINED
+    digitalWrite(_ShotPin, state);
+#endif //ME_PORT_DEFINED
+  }
+  else
+  {
+#ifdef ME_PORT_DEFINED
+    MePort::dWrite2(state - 2);
+#else //ME_PORT_DEFINED
+    digitalWrite(_FocusPin, (state - 2));
+#endif //ME_PORT_DEFINED
+  }
 }
 

@@ -4,8 +4,8 @@
  * \brief   Driver for Me Shutter device.
  * @file    MeShutter.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/04
+ * @version V1.0.1
+ * @date    2016/05/24
  * @brief   Header for MeShutter.cpp module
  *
  * \par Copyright
@@ -31,11 +31,13 @@
  *    3. uint8_t MeShutter::shotOff()
  *    4. uint8_t MeShutter::focusOn()
  *    5. uint8_t MeShutter::focusOff()
+ *    6. void MeShutter::setState(uint8_t state)
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/04     1.0.0            Rebuild the old lib.
+ * Mark Yan         2016/05/24     1.0.1            Add function setState for mblock.
  * </pre>
  *
  */
@@ -162,6 +164,25 @@ public:
  *   None
  */
   void focusOff(void);
+
+/**
+ * \par Function
+ *   focusOff
+ * \par Description
+ *   Set shutter device's work state.
+ * \param[in]
+ *   state - 0:shotOff\n
+ *           1:shotOn\n
+ *           2:focusOff\n
+ *           3:focusOn\n
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+  void setState(uint8_t state);
 private:
   volatile uint8_t  _ShotPin;
   volatile uint8_t  _FocusPin;
