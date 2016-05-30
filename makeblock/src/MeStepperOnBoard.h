@@ -4,8 +4,8 @@
  * \brief   Driver for Me Stepper on MegaPi.
  * @file    MeStepperOnBoard.h
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2016/05/06
+ * @version V1.0.0
+ * @date    2016/03/05
  * @brief   Header for MeStepperOnBoard.cpp module
  *
  * \par Copyright
@@ -27,33 +27,28 @@
  *
  *    1. void MeStepperOnBoard::setMicroStep(int8_t value);
  *    2. void MeStepperOnBoard::setpin(int slot);
- *    3. void MeStepperOnBoard::moveTo(long absolute);
- *    4. void MeStepperOnBoard::moveTo(long absolute, cb callback, int extId);
- *    5. void MeStepperOnBoard::move(long relative);
- *    6. void MeStepperOnBoard::move(long relative, cb callback, int extId);
- *    7. boolean MeStepperOnBoard::run(void);
- *    8. boolean MeStepperOnBoard::runSpeed(void);
- *    9. void MeStepperOnBoard::setMaxSpeed(float speed);
- *    10. void MeStepperOnBoard::setAcceleration(float acceleration);
- *    11. void MeStepperOnBoard::setSpeed(float speed);
- *    12. float MeStepperOnBoard::speed(void);
- *    13. long MeStepperOnBoard::distanceToGo(void);
- *    14. long MeStepperOnBoard::targetPosition(void);
- *    15. long MeStepperOnBoard::currentPosition(void);  
- *    16. void MeStepperOnBoard::setCurrentPosition(long position);  
- *    17. void MeStepperOnBoard::runToPosition(void);
- *    18. boolean MeStepperOnBoard::runSpeedToPosition(void);
- *    19. void MeStepperOnBoard::runToNewPosition(long position);
- *    20. void MeStepperOnBoard::disableOutputs(void);
- *    21. void MeStepperOnBoard::enableOutputs(void);
- *    22. void MeStepperOnBoard::update(void);
- *    23. int16_t MeStepperOnBoard::getPort(void);
+ *    3. void MeStepperOnBoard::moveTo(long absolute); 
+ *    4. void MeStepperOnBoard::move(long relative);
+ *    5. boolean MeStepperOnBoard::run();
+ *    6. boolean MeStepperOnBoard::runSpeed();
+ *    7. void MeStepperOnBoard::setMaxSpeed(float speed);
+ *    8. void MeStepperOnBoard::setAcceleration(float acceleration);
+ *    9. void MeStepperOnBoard::setSpeed(float speed);
+ *    10. float MeStepperOnBoard::speed();
+ *    11. long MeStepperOnBoard::distanceToGo();
+ *    12. long MeStepperOnBoard::targetPosition();
+ *    13. long MeStepperOnBoard::currentPosition();  
+ *    14. void MeStepperOnBoard::setCurrentPosition(long position);  
+ *    15. void MeStepperOnBoard::runToPosition();
+ *    16. boolean MeStepperOnBoard::runSpeedToPosition();
+ *    17. void MeStepperOnBoard::runToNewPosition(long position);
+ *    18. void MeStepperOnBoard::disableOutputs();
+ *    19. void MeStepperOnBoard::enableOutputs();
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan        2016/03/05     1.0.0            Bulid the new
- * Mark Yan        2016/05/06     1.0.1            Add function move and moveTo
  * </pre>
  */
  
@@ -69,7 +64,7 @@
 #endif
 
 #define NUM_SLOTS          4
-#define SLOT_NUM_PINS      7
+#define SLOT_NUM_PINS      8
 #define SLOT_1             1
 #define SLOT_2             2
 #define SLOT_3             3
@@ -147,7 +142,7 @@ void setMicroStep(int8_t value);
  * \par Function
  *    moveTo
  * \par Description
- *    Stepper moves to the absolute position.
+ *    Stepper moves to the aim.
  * \param[in]
  *    absolute - The absolute length to Stepper's movement.
  * \par Output
@@ -156,56 +151,16 @@ void setMicroStep(int8_t value);
  *    None
  * \par Others
  *    None
- */
-  void moveTo(long absolute);
-
-/**
- * \par Function
- *    moveTo
- * \par Description
- *    Stepper moves to the absolute position.
- * \param[in]
- *    absolute - The absolute length to Stepper's movement.
- * \param[in]
- *    absolute - callback function when the target position has been reached.
- * \param[in]
- *    extId - It is used to indicate the ID of motor.
- * \par Output
- *    None
- * \par Return
- *    None
- * \par Others
- *    None
- */ 
+ */  
   void  moveTo(long absolute,cb callback,int extId); 
 
 /**
  * \par Function
  *    move
  * \par Description
- *    Stepper moves to the relative positions.
+ *    Stepper moves to the aim.
  * \param[in]
  *    relative - The relative length to Stepper's movement.
- * \par Output
- *    None
- * \par Return
- *    None
- * \par Others
- *    None
- */
-  void move(long relative);
-
-/**
- * \par Function
- *    move
- * \par Description
- *    Stepper moves to the relative positions.
- * \param[in]
- *    relative - The relative length to Stepper's movement.
- * \param[in]
- *    absolute - callback function when the target position has been reached.
- * \param[in]
- *    extId - It is used to indicate the ID of motor.
  * \par Output
  *    None
  * \par Return
@@ -229,7 +184,7 @@ void setMicroStep(int8_t value);
  * \par Others
  *    None
  */
-  boolean run(void);
+  boolean run();
   
 /**
  * \par Function
@@ -245,7 +200,7 @@ void setMicroStep(int8_t value);
  * \par Others
  *    None
  */
-  boolean runSpeed(void);
+  boolean runSpeed();
   
 /**
  * \par Function
@@ -309,7 +264,7 @@ void setMicroStep(int8_t value);
  * \par Others
  *    None
  */
-  float speed(void);
+  float speed();
   
 /**
  * \par Function
@@ -325,7 +280,7 @@ void setMicroStep(int8_t value);
  * \par Others
  *    None
  */
-  long distanceToGo(void);
+  long distanceToGo();
   
 /**
  * \par Function
@@ -341,7 +296,7 @@ void setMicroStep(int8_t value);
  * \par Others
  *    None
  */
-  long targetPosition(void);
+  long targetPosition();
   
 /**
  * \par Function
@@ -357,7 +312,7 @@ void setMicroStep(int8_t value);
  * \par Others
  *    None
  */
-  long currentPosition(void);
+  long currentPosition();
   
 /**
  * \par Function
@@ -389,7 +344,7 @@ void setMicroStep(int8_t value);
  * \par Others
  *    None
  */  
-  void runToPosition(void);
+  void runToPosition();
   
 /**
  * \par Function
@@ -405,7 +360,7 @@ void setMicroStep(int8_t value);
  * \par Others
  *    None
  */
-  boolean runSpeedToPosition(void);
+  boolean runSpeedToPosition();
   
 /**
  * \par Function
@@ -437,7 +392,7 @@ void setMicroStep(int8_t value);
  * \par Others
  *    None
  */
-  void disableOutputs(void);
+  void disableOutputs();
 
 /**
  * \par Function
@@ -453,23 +408,8 @@ void setMicroStep(int8_t value);
  * \par Others
  *    None
  */
-  void enableOutputs(void);
-
-/**
- * \par Function
- *    update
- * \par Description
- *    The Stepper loop function, used to move the stepper.
- * \param[in]
- *    None
- * \par Output
- *    None
- * \par Return
- *    None
- * \par Others
- *    None
- */
-  void update(void);
+  void enableOutputs();
+  void update();
 /**
  * \par Function
  *    step
@@ -484,23 +424,7 @@ void setMicroStep(int8_t value);
  * \par Others
  *    None
  */
-  virtual void step(void);
-  
-/**
- * \par Function
- *    getPort
- * \par Description
- *    get the slot number of the stepper.
- * \param[in]
- *    None
- * \par Output
- *    None
- * \par Return
- *    The Slot number Stepper used.
- * \par Others
- *    None
- */
-  int16_t getPort(void);
+  virtual void step();
 
 protected:
 /**
@@ -526,6 +450,7 @@ private:
   uint8_t _micro_step_pin2;
   uint8_t _micro_step_pin3;
   uint8_t _reset_pin;
+  uint8_t _sleep_pin;
   uint8_t _micro_step;
   uint8_t _dir;          // 2 or 4
   long _currentPos;      // Steps
@@ -547,10 +472,10 @@ private:
   /// Min step size in microseconds based on maxSpeed
   float _cmin; // at max speed
   cb _callback;
-  int16_t _slot;
-  int16_t _extId;
+  int _slot;
+  int _extId;
   boolean _moving;
-  int16_t _mode;
+  int _mode;
 };
 
 #endif 
