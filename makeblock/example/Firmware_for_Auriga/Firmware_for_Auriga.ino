@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.003
-* Date               : 05/24/2016
+* Version            : V09.01.005
+* Date               : 06/07/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -13,6 +13,8 @@
 * Mark Yan         2016/03/12     09.01.001        build the new.
 * Mark Yan         2016/05/03     09.01.002        Added encoder and compass driver and fix some bugs.
 * Mark Yan         2016/05/24     09.01.003        Fix issue MBLOCK-1 and MBLOCK-12(JIRA issue).
+* Mark Yan         2016/05/30     09.01.004        Add speed calibration for balanced car mode.
+* Mark Yan         2016/06/07     09.01.005        Remove the boot animation..
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -33,8 +35,8 @@ Me7SegmentDisplay seg;
 MePort generalDevice;
 MeLEDMatrix ledMx;
 MeInfraredReceiver *ir = NULL;  //PORT_8
-MeGyro gyro_ext(0,0x68);  //外接陀螺仪
-MeGyro gyro(1,0x69);      //板载陀螺仪
+MeGyro gyro_ext(0,0x68);  //external gryo sensor
+MeGyro gyro(1,0x69);      //On Board external gryo sensor
 MeCompass Compass;
 MeJoystick joystick;
 MeStepper steppers[4];
@@ -138,6 +140,7 @@ double  last_speed_setpoint_filter = 0.0;
 double  last_speed_error_filter = 0.0;
 double  speed_Integral_average = 0.0;
 double  angle_speed = 0.0;
+double  balance_car_speed_offsets = 0.0;
 
 float angleServo = 90.0;
 float dt;
@@ -145,6 +148,7 @@ float dt;
 long measurement_speed_time = 0;
 long lasttime_angle = 0;
 long lasttime_speed = 0;
+long lasttime_receive_cmd = 0;
 long last_Pulse_pos_encoder1 = 0;
 long last_Pulse_pos_encoder2 = 0;
 
@@ -154,11 +158,12 @@ boolean leftflag;
 boolean rightflag;
 boolean start_flag = false;
 boolean move_flag = false;
+boolean boot_show_flag = true;
 
-String mVersion = "09.01.003";
+String mVersion = "09.01.005";
 
 //////////////////////////////////////////////////////////////////////////////////////
-float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
+float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
 #define PWM_MIN_OFFSET   5
 
 #define VERSION                0
@@ -1912,6 +1917,38 @@ void PID_angle_compute(void)   //PID
 
   double pwm_left = PID_angle.Output - PID_turn.Output;
   double pwm_right = -PID_angle.Output - PID_turn.Output;
+  if(move_flag == true)
+  { 
+    balance_car_speed_offsets = 0;
+  }
+  else
+  {
+      balance_car_speed_offsets = 1.1 * (abs(Encoder_1.GetCurrentSpeed()) - abs(Encoder_2.GetCurrentSpeed()));
+    balance_car_speed_offsets = 0;
+  }
+
+  if(balance_car_speed_offsets > 0)
+  {
+    if(pwm_left > 0)
+    {
+      pwm_right = pwm_right - abs(balance_car_speed_offsets);
+    }
+    else
+    {
+      pwm_right = pwm_right + abs(balance_car_speed_offsets);
+    }
+  }
+  else if(balance_car_speed_offsets < 0)
+  {
+    if(pwm_right > 0)
+    {
+      pwm_left = pwm_left - abs(balance_car_speed_offsets);
+    }
+    else
+    {
+      pwm_left = pwm_left + abs(balance_car_speed_offsets);
+    }
+  }
 
 #ifdef DEBUG_INFO
   Serial.print("Relay: ");
@@ -1963,13 +2000,13 @@ void PID_speed_compute(void)
   PID_speed.Integral += error;
 
   if(move_flag == true) 
-  { 
+  {
     PID_speed.Integral = constrain(PID_speed.Integral , -1500, 1500);
     PID_speed.Output = PID_speed.P * error + PID_speed.I * PID_speed.Integral;
     PID_speed.Output = constrain(PID_speed.Output , -15.0, 15.0);
   }
   else
-  {  
+  { 
     PID_speed.Integral = constrain(PID_speed.Integral , -1500, 1500);
     PID_speed.Output = PID_speed.P * speed_now + PID_speed.I * PID_speed.Integral;
     PID_speed.Output = constrain(PID_speed.Output , -15.0, 15.0);
@@ -1996,7 +2033,7 @@ int16_t agx_start_count;
 
 /**
  * \par Function
- *    PID_speed_compute
+ *    reset
  * \par Description
  *    The exception process for balance car
  * \param[in]
@@ -2662,12 +2699,29 @@ void init_form_power(void)
 void setup()
 {
   delay(5);
+  Serial.begin(115200);
+  delay(5);
   attachInterrupt(Encoder_1.GetIntNum(), isr_process_encoder1, RISING);
   attachInterrupt(Encoder_2.GetIntNum(), isr_process_encoder2, RISING);
   PID_speed_left.Setpoint = 0;
   PID_speed_right.Setpoint = 0;
   led.setpin(RGBLED_PORT);
   buzzer.setpin(BUZZER_PORT);
+  Serial.print("Version: ");
+  Serial.println(mVersion);
+//  lasttime_receive_cmd =  millis();
+//  while(millis() - lasttime_receive_cmd < 300)
+//  {
+//    if(Serial.available() > 0)
+//    {
+//      char c = Serial.read();
+//      if((c=='\n') || (c=='#'))
+//      {
+//        boot_show_flag = false;
+//        break;
+//      }
+//    }
+//  }
 
   // enable the watchdog
   wdt_enable(WDTO_2S);
@@ -2686,9 +2740,10 @@ void setup()
   encoders[2].begin();
   encoders[3].begin();
   wdt_reset();
-  init_form_power();
-  Serial.begin(115200);
-  delay(10);
+//  if(boot_show_flag == true)
+//  {
+//    init_form_power();
+//  }
   wdt_reset();
   encoders[0].runSpeed(0);
   encoders[1].runSpeed(0);
@@ -2717,8 +2772,6 @@ void setup()
   PID_speed.I = -0.008;      // -0.008
   readEEPROM();
 //  auriga_mode = AUTOMATIC_OBSTACLE_AVOIDANCE_MODE;
-  Serial.print("Version: ");
-  Serial.println(mVersion);
   measurement_speed_time = lasttime_speed = lasttime_angle = millis();
 }
 

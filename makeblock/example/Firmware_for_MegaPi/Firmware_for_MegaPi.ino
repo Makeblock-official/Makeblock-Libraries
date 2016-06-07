@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_MegaPi.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V0e.01.004
-* Date               : 05/24/2016
+* Version            : V0e.01.005
+* Date               : 06/07/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -14,6 +14,7 @@
 * Mark Yan         2016/05/04     0e.01.002        Added encoder and compass driver and fix some bugs.
 * Mark Yan         2016/05/07     0e.01.003        Delete watchdog and add On board stepper driver.
 * Mark Yan         2016/05/24     09.01.004        Fix issue MBLOCK-1 and MBLOCK-12(JIRA issue).
+* Mark Yan         2016/06/07     09.01.005        Fix encoder speed issue.
 **************************************************************************/
 #include <Arduino.h>
 #include <MeMegaPi.h>
@@ -33,7 +34,7 @@ Me7SegmentDisplay seg;
 MePort generalDevice;
 MeLEDMatrix ledMx;
 MeInfraredReceiver *ir = NULL;     //PORT_6
-MeGyro gyro_ext(0,0x68);           //外接陀螺仪
+MeGyro gyro_ext(0,0x68);           //external gryo sensor
 MeCompass Compass;
 MeJoystick joystick;
 MeStepperOnBoard steppers[4];
@@ -168,9 +169,9 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0e.01.004";
+String mVersion = "0e.01.005";
 //////////////////////////////////////////////////////////////////////////////////////
-float RELAX_ANGLE = -1;                    //自然平衡角度,根据车子自己的重心与传感器安装位置调整
+float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
 #define PWM_MIN_OFFSET   0
 
 #define VERSION                0
@@ -1872,44 +1873,44 @@ void readSensor(uint8_t device)
           {
             if(read_type == ENCODER_BOARD_POS)
             {
-              sendLong(Encoder_1.GetPulsePos());
+              sendLong(-Encoder_1.GetPulsePos());
             }
             else if(read_type == ENCODER_BOARD_SPEED)
             {
-              sendFloat(Encoder_1.GetCurrentSpeed());
+              sendFloat(-Encoder_1.GetCurrentSpeed());
             }
           }
           else if(slot == SLOT_2)
           {
             if(read_type == ENCODER_BOARD_POS)
             {
-              sendLong(Encoder_2.GetPulsePos());
+              sendLong(-Encoder_2.GetPulsePos());
             }
             else if(read_type == ENCODER_BOARD_SPEED)
             {
-              sendFloat(Encoder_2.GetCurrentSpeed());
+              sendFloat(-Encoder_2.GetCurrentSpeed());
             }
           }
           else if(slot == SLOT_3)
           {
             if(read_type == ENCODER_BOARD_POS)
             {
-              sendLong(Encoder_3.GetPulsePos());
+              sendLong(-Encoder_3.GetPulsePos());
             }
             else if(read_type == ENCODER_BOARD_SPEED)
             {
-              sendFloat(Encoder_3.GetCurrentSpeed());
+              sendFloat(-Encoder_3.GetCurrentSpeed());
             }
           }
           else if(slot == SLOT_4)
           {
             if(read_type == ENCODER_BOARD_POS)
             {
-              sendLong(Encoder_4.GetPulsePos());
+              sendLong(-Encoder_4.GetPulsePos());
             }
             else if(read_type == ENCODER_BOARD_SPEED)
             {
-              sendFloat(Encoder_4.GetCurrentSpeed());
+              sendFloat(-Encoder_4.GetCurrentSpeed());
             }
           }
         }

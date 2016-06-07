@@ -245,17 +245,23 @@ void MeMegaPiDCMotor::run(int16_t speed)
     return;
   }
  
-  if(speed >= 0)
+  if(speed > 0)
   {
     digitalWrite(_dc_dir_h2, LOW);
     digitalWrite(_dc_dir_h1, HIGH);
     analogWrite(_dc_pwm_pin,speed);
   }
-  else
+  else if(speed < 0)
   {
     digitalWrite(_dc_dir_h1, LOW);
     digitalWrite(_dc_dir_h2, HIGH);
     analogWrite(_dc_pwm_pin,-speed);
+  }
+  else
+  {
+    digitalWrite(_dc_dir_h2, LOW);
+    digitalWrite(_dc_dir_h1, LOW);
+    analogWrite(_dc_pwm_pin,0);
   }
 }
 
@@ -273,8 +279,8 @@ void MeMegaPiDCMotor::run(int16_t speed)
  */
 void MeMegaPiDCMotor::stop(void)
 {
-  MeMegaPiDCMotor::run(0);
   digitalWrite(_dc_dir_h2, LOW);
   digitalWrite(_dc_dir_h1, LOW);
+  analogWrite(_dc_pwm_pin,0);
 }
 
