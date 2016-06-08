@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.005
-* Date               : 06/07/2016
+* Version            : V09.01.006
+* Date               : 06/08/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -14,7 +14,8 @@
 * Mark Yan         2016/05/03     09.01.002        Added encoder and compass driver and fix some bugs.
 * Mark Yan         2016/05/24     09.01.003        Fix issue MBLOCK-1 and MBLOCK-12(JIRA issue).
 * Mark Yan         2016/05/30     09.01.004        Add speed calibration for balanced car mode.
-* Mark Yan         2016/06/07     09.01.005        Remove the boot animation..
+* Mark Yan         2016/06/07     09.01.005        Remove the boot animation.
+* Mark Yan         2016/06/08     09.01.006        Add 1s blink function.
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -148,6 +149,7 @@ float dt;
 long measurement_speed_time = 0;
 long lasttime_angle = 0;
 long lasttime_speed = 0;
+long blink_time = 0;
 long lasttime_receive_cmd = 0;
 long last_Pulse_pos_encoder1 = 0;
 long last_Pulse_pos_encoder2 = 0;
@@ -159,8 +161,9 @@ boolean rightflag;
 boolean start_flag = false;
 boolean move_flag = false;
 boolean boot_show_flag = true;
+boolean blink_flag = false;
 
-String mVersion = "09.01.005";
+String mVersion = "09.01.006";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
@@ -2730,7 +2733,8 @@ void setup()
   delay(5);
   wdt_reset();
   gyro.begin();
-  delay(10);
+  delay(5);
+  pinMode(13,OUTPUT);
   encoders[0] = MeEncoderMotor(SLOT_1);
   encoders[1] = MeEncoderMotor(SLOT_2);
   encoders[2] = MeEncoderMotor(SLOT_3);
@@ -2773,6 +2777,7 @@ void setup()
   readEEPROM();
 //  auriga_mode = AUTOMATIC_OBSTACLE_AVOIDANCE_MODE;
   measurement_speed_time = lasttime_speed = lasttime_angle = millis();
+  blink_time = millis();
 }
 
 /**
@@ -2793,6 +2798,14 @@ void loop()
 {
   currentTime = millis()/1000.0-lastTime;
   keyPressed = buttonSensor.pressed();
+
+  if(millis() - blink_time > 1000)
+  {
+    blink_time = millis();
+    blink_flag = !blink_flag;
+    digitalWrite(13,blink_flag);
+  }
+
   wdt_reset();
   if(ir != NULL)
   {
