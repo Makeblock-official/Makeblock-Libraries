@@ -2710,6 +2710,8 @@ void setup()
   PID_speed_right.Setpoint = 0;
   led.setpin(RGBLED_PORT);
   buzzer.setpin(BUZZER_PORT);
+  buzzer.tone(1000,100); 
+  buzzer.noTone();
   Serial.print("Version: ");
   Serial.println(mVersion);
 //  lasttime_receive_cmd =  millis();

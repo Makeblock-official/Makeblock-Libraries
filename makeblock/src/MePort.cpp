@@ -269,6 +269,7 @@ void MePort::dWrite2(bool value)
 int16_t MePort::aRead1(void)
 {
   int16_t val;
+  pinMode(s1, INPUT);
   val = analogRead(s1);
   return(val);
 }
@@ -288,6 +289,7 @@ int16_t MePort::aRead1(void)
 int16_t MePort::aRead2(void)
 {
   int16_t val;
+  pinMode(s2, INPUT);
   val = analogRead(s2);
   return(val);
 }

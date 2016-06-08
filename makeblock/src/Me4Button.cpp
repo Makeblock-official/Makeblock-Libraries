@@ -132,7 +132,7 @@ uint8_t Me4Button::pressed(void)
     // smaller number in Me4Button.h.
     previous_time = current_time;
 #ifdef ME_PORT_DEFINED
-    key_temp_value = MePort::aRead2();
+    key_temp_value = Me4Button::aRead2();
 #else  // ME_PORT_DEFINED
     key_temp_value = analogRead(_KeyPin);
 #endif // ME_PORT_DEFINED
