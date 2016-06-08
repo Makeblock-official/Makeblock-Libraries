@@ -217,7 +217,7 @@ void MeStepperOnBoard::setpin(int slot)
   pinMode(_enable_pin, OUTPUT);
   pinMode(_sleep_pin, OUTPUT);
   pinMode(_reset_pin, OUTPUT);
-  digitalWrite(_sleep_pin,HIGH)
+  digitalWrite(_sleep_pin,HIGH);
   digitalWrite(_reset_pin,LOW);
   pinMode(_micro_step_pin1, OUTPUT);
   pinMode(_micro_step_pin2, OUTPUT);
