@@ -6,7 +6,7 @@
 #else
  #include "WProgram.h"
 #endif
-#include "Wire.h"
+#include "MeConfig.h"
 
 #define BMP180_DEBUG 0
 
