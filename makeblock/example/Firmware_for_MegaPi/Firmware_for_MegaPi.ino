@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_MegaPi.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V0e.01.005
-* Date               : 06/07/2016
+* Version            : V0e.01.006
+* Date               : 06/22/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -13,8 +13,9 @@
 * Mark Yan         2016/03/12     0e.01.001        build the new.
 * Mark Yan         2016/05/04     0e.01.002        Added encoder and compass driver and fix some bugs.
 * Mark Yan         2016/05/07     0e.01.003        Delete watchdog and add On board stepper driver.
-* Mark Yan         2016/05/24     09.01.004        Fix issue MBLOCK-1 and MBLOCK-12(JIRA issue).
-* Mark Yan         2016/06/07     09.01.005        Fix encoder speed issue.
+* Mark Yan         2016/05/24     0e.01.004        Fix issue MBLOCK-1 and MBLOCK-12(JIRA issue).
+* Mark Yan         2016/06/07     0e.01.005        Fix encoder speed issue.
+* Mark Yan         2016/06/22     0e.01.006        Fix issue MAK-187 (bluetooth fatal error from MBLOCK-12)
 **************************************************************************/
 #include <Arduino.h>
 #include <MeMegaPi.h>
@@ -169,7 +170,7 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0e.01.005";
+String mVersion = "0e.01.006";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
 #define PWM_MIN_OFFSET   0
@@ -2722,7 +2723,6 @@ void loop()
       }
     }
     index++;
-    readSerial();
     if(index > 51)
     {
       index=0; 
@@ -2734,6 +2734,7 @@ void loop()
       parseData(); 
       index=0;
     }
+    readSerial();
   }
 
   gyro_ext.fast_update();
