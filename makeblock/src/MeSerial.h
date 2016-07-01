@@ -158,7 +158,7 @@ public:
  * \par Others
  *   None
  */
-  int16_t read(void);
+  int read();
 
 /**
  * \par Function
@@ -174,7 +174,7 @@ public:
  * \par Others
  *   None
  */
-  int16_t available(void);
+  int available();
 
 /**
  * \par Function
