@@ -213,7 +213,7 @@ public:
 
 /**
  * \par Function
- *   getHeadingX
+ *   getAngleX
  * \par Description
  *   Get the angle value of X-axis.
  * \param[in]
@@ -229,7 +229,7 @@ public:
 
 /**
  * \par Function
- *   getHeadingY
+ *   getAngleY
  * \par Description
  *   Get the angle value of Y-axis.
  * \param[in]
@@ -245,7 +245,7 @@ public:
 
 /**
  * \par Function
- *   getHeadingZ
+ *   getAngleZ
  * \par Description
  *   Get the angle value of Z-axis.
  * \param[in]
@@ -293,7 +293,7 @@ public:
 
 /**
  * \par Function
- *   getHeadingZ
+ *   getAngle
  * \par Description
  *   Get the angle value of setting axis.
  * \param[in]

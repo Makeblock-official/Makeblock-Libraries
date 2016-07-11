@@ -65,6 +65,7 @@ Me4Button::Me4Button(void) : MePort()
 Me4Button::Me4Button(uint8_t port) : MePort(port)
 {
   _KeyPin = s2;
+  Pre_Button_Value = 950;
 }
 #else  // ME_PORT_DEFINED
 
@@ -76,6 +77,7 @@ Me4Button::Me4Button(uint8_t port) : MePort(port)
 Me4Button::Me4Button(uint8_t port)
 {
   _KeyPin = port;
+  Pre_Button_Value = 950;
 }
 #endif // ME_PORT_DEFINED
 
@@ -99,6 +101,7 @@ void Me4Button::setpin(uint8_t port)
 #ifdef ME_PORT_DEFINED
   s2 = port;
 #endif // ME_PORT_DEFINED
+  Pre_Button_Value = 950;
 }
 
 /**

@@ -339,7 +339,7 @@ uint8_t MeGyro::getDevAddr(void)
 
 /**
  * \par Function
- *   getHeadingX
+ *   getAngleY
  * \par Description
  *   Get the angle value of X-axis.
  * \param[in]
@@ -358,7 +358,7 @@ double MeGyro::getAngleX(void)
 
 /**
  * \par Function
- *   getHeadingY
+ *   getAngleY
  * \par Description
  *   Get the angle value of Y-axis.
  * \param[in]
@@ -377,7 +377,7 @@ double MeGyro::getAngleY(void)
 
 /**
  * \par Function
- *   getHeadingZ
+ *   getAngleZ
  * \par Description
  *   Get the angle value of Z-axis.
  * \param[in]
@@ -434,7 +434,7 @@ double MeGyro::getGyroY(void)
 
 /**
  * \par Function
- *   getHeadingZ
+ *   getAngle
  * \par Description
  *   Get the angle value of setting axis.
  * \param[in]
@@ -448,6 +448,7 @@ double MeGyro::getGyroY(void)
  */
 double MeGyro::getAngle(uint8_t index)
 {
+  update();
   if(index == 1)
   {
     return gx;
@@ -485,10 +486,10 @@ void MeGyro::deviceCalibration(void)
   long xSum	= 0, ySum = 0, zSum = 0;
   for(x = 0; x < num; x++)
   {
-	  return_value = readData(0x43, i2cData, 6);
-	  xSum += ( (i2cData[0] << 8) | i2cData[1] );
-	  ySum += ( (i2cData[2] << 8) | i2cData[3] );
-	  zSum += ( (i2cData[4] << 8) | i2cData[5] );
+    return_value = readData(0x43, i2cData, 6);
+    xSum += ( (i2cData[0] << 8) | i2cData[1] );
+    ySum += ( (i2cData[2] << 8) | i2cData[3] );
+    zSum += ( (i2cData[4] << 8) | i2cData[5] );
   }
   gyrXoffs = xSum / num;
   gyrYoffs = ySum / num;

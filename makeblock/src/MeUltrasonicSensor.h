@@ -4,8 +4,8 @@
  * \brief   Driver for Me ultrasonic sensor device.
  * @file    MeUltrasonicSensor.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/04
+ * @version V1.0.1
+ * @date    2016/06/25
  * @brief   Header for for MeUltrasonicSensor.cpp module
  *
  * \par Copyright
@@ -47,6 +47,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/04     1.0.0            Rebuild the old lib.
+ * Mark Yan         2016/06/25     1.0.2            Modify Read mechanism of ultrasonic waves.
  * </pre>
  */
 #ifndef MeUltrasonicSensor_H
@@ -164,6 +165,9 @@ public:
   long measure(unsigned long = 30000);
 private:
   volatile uint8_t  _SignalPin;
+  volatile bool _measureFlag;
+  volatile long _lastEnterTime;
+  volatile float _measureValue;
 };
 
 #endif 

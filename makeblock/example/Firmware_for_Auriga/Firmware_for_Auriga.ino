@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.006
-* Date               : 06/08/2016
+* Version            : V09.01.008
+* Date               : 07/06/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -16,6 +16,8 @@
 * Mark Yan         2016/05/30     09.01.004        Add speed calibration for balanced car mode.
 * Mark Yan         2016/06/07     09.01.005        Remove the boot animation.
 * Mark Yan         2016/06/08     09.01.006        Add 1s blink function.
+* Mark Yan         2016/06/25     09.01.007        Fix issue MBLOCK-38(limit switch return value).
+* Mark Yan         2016/07/06     09.01.008        Fix issue MBLOCK-61(ultrasonic distance limitations bug).
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -163,7 +165,7 @@ boolean move_flag = false;
 boolean boot_show_flag = true;
 boolean blink_flag = false;
 
-String mVersion = "09.01.006";
+String mVersion = "09.01.008";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
@@ -1560,7 +1562,7 @@ void readSensor(uint8_t device)
           delete us;
           us = new MeUltrasonicSensor(port);
         }
-        value = (float)us->distanceCm(50000);
+        value = (float)us->distanceCm();
         writeHead();
         writeSerial(command_index);
         sendFloat(value);
@@ -1669,12 +1671,12 @@ void readSensor(uint8_t device)
         if(slot == 1)
         {
           pinMode(generalDevice.pin1(),INPUT_PULLUP);
-          value = generalDevice.dRead1();
+          value = !generalDevice.dRead1();
         }
         else
         {
           pinMode(generalDevice.pin2(),INPUT_PULLUP);
-          value = generalDevice.dRead2();
+          value = !generalDevice.dRead2();
         }
         sendFloat(value);  
       }
@@ -1927,7 +1929,6 @@ void PID_angle_compute(void)   //PID
   else
   {
       balance_car_speed_offsets = 1.1 * (abs(Encoder_1.GetCurrentSpeed()) - abs(Encoder_2.GetCurrentSpeed()));
-    balance_car_speed_offsets = 0;
   }
 
   if(balance_car_speed_offsets > 0)
@@ -2373,8 +2374,8 @@ void IrProcess()
 {
   if(ir == NULL)
   {
-      ir = new MeInfraredReceiver(PORT_8);
-      ir->begin();
+    ir = new MeInfraredReceiver(PORT_8);
+    ir->begin();
   }
   ir->loop();
   irRead =  ir->getCode();

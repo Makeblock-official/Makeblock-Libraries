@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_MegaPi.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V0e.01.006
-* Date               : 06/22/2016
+* Version            : V0e.01.008
+* Date               : 07/06/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -16,6 +16,8 @@
 * Mark Yan         2016/05/24     0e.01.004        Fix issue MBLOCK-1 and MBLOCK-12(JIRA issue).
 * Mark Yan         2016/06/07     0e.01.005        Fix encoder speed issue.
 * Mark Yan         2016/06/22     0e.01.006        Fix issue MAK-187 (bluetooth fatal error from MBLOCK-12)
+* Mark Yan         2016/06/25     0e.01.007        Fix issue MBLOCK-38(limit switch return value).
+* Mark Yan         2016/07/06     0e.01.008        Fix issue MBLOCK-61(ultrasonic distance limitations bug).
 **************************************************************************/
 #include <Arduino.h>
 #include <MeMegaPi.h>
@@ -170,7 +172,7 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0e.01.006";
+String mVersion = "0e.01.008";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
 #define PWM_MIN_OFFSET   0
@@ -1622,7 +1624,7 @@ void readSensor(uint8_t device)
           delete us;
           us = new MeUltrasonicSensor(port);
         }
-        value = (float)us->distanceCm(50000);
+        value = (float)us->distanceCm();
         writeHead();
         writeSerial(command_index);
         sendFloat(value);
@@ -1720,12 +1722,12 @@ void readSensor(uint8_t device)
         if(slot == 1)
         {
           pinMode(generalDevice.pin1(),INPUT_PULLUP);
-          value = generalDevice.dRead1();
+          value = !generalDevice.dRead1();
         }
         else
         {
           pinMode(generalDevice.pin2(),INPUT_PULLUP);
-          value = generalDevice.dRead2();
+          value = !generalDevice.dRead2();
         }
         sendFloat(value);  
       }
