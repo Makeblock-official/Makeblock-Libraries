@@ -157,7 +157,7 @@ public:
  * \par Others
  *   None
  */
-  int16_t read(void);
+  int read();
 
 /**
  * \par Function
