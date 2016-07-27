@@ -25,7 +25,7 @@
  *
  * \par Method List:
  *
- *    1. void MeMegaPiDCMotor::setpin(uint8_t dir_pin,uint8_t pwm_pin)
+ *    1. void MeMegaPiDCMotor::setpin(uint8_t dc_dir_h1,uint8_t dc_dir_h2,uint8_t pwm_pin)
  *    2. void MeMegaPiDCMotor::run(int16_t speed)
  *    3. void MeMegaPiDCMotor::stop(void)
  *    4. void MeMegaPiDCMotor::reset(uint8_t port)
@@ -215,6 +215,7 @@ void MeMegaPiDCMotor::setpin(uint8_t dc_dir_h1,uint8_t dc_dir_h2,uint8_t pwm_pin
   
   pinMode(_dc_dir_h1, OUTPUT);
   pinMode(_dc_dir_h2, OUTPUT);
+  last_speed = 500;
 }
 
 /**
@@ -233,8 +234,8 @@ void MeMegaPiDCMotor::setpin(uint8_t dc_dir_h1,uint8_t dc_dir_h2,uint8_t pwm_pin
  */
 void MeMegaPiDCMotor::run(int16_t speed)
 {
-  speed	= speed > 255 ? 255 : speed;
-  speed	= speed < -255 ? -255 : speed;
+  speed = speed > 255 ? 255 : speed;
+  speed = speed < -255 ? -255 : speed;
 
   if(last_speed != speed)
   {
@@ -279,8 +280,6 @@ void MeMegaPiDCMotor::run(int16_t speed)
  */
 void MeMegaPiDCMotor::stop(void)
 {
-  digitalWrite(_dc_dir_h2, LOW);
-  digitalWrite(_dc_dir_h1, LOW);
-  analogWrite(_dc_pwm_pin,0);
+  run(0);
 }
 

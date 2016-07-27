@@ -12,7 +12,7 @@
  *    2. boolean MeEncoderMotor::moveTo(float angle, float speed);
  *    3. void MeEncoderNew::setCurrentPosition(long pulse_counter);
  *    4. long MeEncoderNew::getCurrentPosition();
- *    5. boolean MeEncoderNew::isTarPosReaches(void);
+ *    5. boolean MeEncoderNew::isTarPosReached(void);
  *
  * \par History:
  * <pre>
@@ -37,13 +37,13 @@ void setup()
 void loop()
 {
   motor2.moveTo(2000, 200);
-  while(motor2.isTarPosReaches() == false)
+  while(motor2.isTarPosReached() == false)
   {
     Serial.print("pos: ");
     Serial.println(motor2.getCurrentPosition());
   }
   motor2.moveTo(0, 200);
-  while(motor2.isTarPosReaches() == false)
+  while(motor2.isTarPosReached() == false)
   {
     Serial.print("pos: ");
     Serial.println(motor2.getCurrentPosition());

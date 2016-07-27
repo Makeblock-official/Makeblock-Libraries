@@ -114,7 +114,7 @@ ISR(TIMER_INTR_NAME)
           // Switch to STOP
           // Don't reset timer; keep counting space width
           irparams.rcvstate = STATE_STOP;
-		  irparams.lastTime = millis();
+          irparams.lastTime = millis();
         } 
       }
       break;
@@ -280,8 +280,8 @@ ErrorStatus MeIR::decodeNEC()
   {
     bits = 0;
     // results->value = REPEAT;
-	// Serial.println("REPEAT");
-	decode_type = NEC;
+    // Serial.println("REPEAT");
+    decode_type = NEC;
     return SUCCESS;
   }
   if (rawlen < (2 * NEC_BITS + 3)) 
@@ -297,22 +297,22 @@ ErrorStatus MeIR::decodeNEC()
   for (int i = 0; i < NEC_BITS; i++)
   {
     if (!MATCH(rawbuf[offset], NEC_BIT_MARK/50)) 
-	{
+    {
       return ERROR;
     }
     offset++;
     if (MATCH(rawbuf[offset], NEC_ONE_SPACE/50))
-	{
+    {
       //data = (data << 1) | 1;
       data = (data >> 1) | 0x80000000;
     } 
     else if (MATCH(rawbuf[offset], NEC_ZERO_SPACE/50))
-	{
+    {
       //data <<= 1;
       data >>= 1;
     } 
     else 
-	{
+    {
       return ERROR;
     }
     offset++;
@@ -502,7 +502,7 @@ String MeIR::getString()
         irPressed = false;
         irRead = 0;
         irDelayTime = millis();
-		Pre_Str = "";
+        Pre_Str = "";
       }
     }
   }
@@ -510,7 +510,7 @@ String MeIR::getString()
   {
     irReady = false;
     String s = String(irBuffer);
-	Pre_Str = s;
+    Pre_Str = s;
     irBuffer = "";
     return s;
   }
@@ -531,7 +531,8 @@ String MeIR::getString()
  * \par Others
  *    None
  */
-unsigned char MeIR::getCode(){
+unsigned char MeIR::getCode()
+{
   irIndex = 0;
   loop();
   return irRead;
@@ -560,10 +561,10 @@ void MeIR::sendString(String s)
   {
     data = s.charAt(i);
     l = 0x0000ffff & (uint8_t)(~data);
-	l = l << 8;
+    l = l << 8;
     l = l + ((uint8_t)data);
     l = l << 16;
-	l = l | 0x000000ff;
+    l = l | 0x000000ff;
     sendNEC(l,32);
     delay(20);
   }

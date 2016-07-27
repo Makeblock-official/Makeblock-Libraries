@@ -560,7 +560,7 @@ boolean MeStepperOnBoard::run(void)
 
   if (runSpeed())
   {
-	computeNewSpeed();
+    computeNewSpeed();
     return true;
   }
 }

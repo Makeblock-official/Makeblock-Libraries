@@ -4,8 +4,8 @@
  * \brief   Driver for Me 7-Segment Serial Display module.
  * @file    Me7SegmentDisplay.h
  * @author  MakeBlock
- * @version V1.0.4
- * @date    2015/11/12
+ * @version V1.0.5
+ * @date    2016/07/27
  * @brief   Header file for Me7SegmentDisplay.cpp.
  *
  * \par Copyright
@@ -33,15 +33,16 @@
  *    7.    void    Me7SegmentDisplay::display(uint16_t value);
  *    8.    void    Me7SegmentDisplay::display(int16_t value);
  *    9.    void    Me7SegmentDisplay::display(float value);
- *    10.   int16_t Me7SegmentDisplay::checkNum(float v,int16_t b);
- *    11.   void    Me7SegmentDisplay::display(double value, uint8_t digits);
- *    12.   void    Me7SegmentDisplay::display(uint8_t DispData[]);
- *    13.   void    Me7SegmentDisplay::display(uint8_t BitAddr, uint8_t DispData,);
- *    14.   void    Me7SegmentDisplay::display(uint8_t BitAddr, uint8_t DispData, uint8_t point_on);
- *    15.   void    Me7SegmentDisplay::clearDisplay(void);
- *    16.   void    Me7SegmentDisplay::setBrightness(uint8_t brightness);
- *    17.   void    Me7SegmentDisplay::coding(uint8_t DispData[]);
- *    18.   uint8_t Me7SegmentDisplay::coding(uint8_t DispData);
+ *    10.   void    Me7SegmentDisplay::display(long value);
+ *    11.   int16_t Me7SegmentDisplay::checkNum(float v,int16_t b);
+ *    12.   void    Me7SegmentDisplay::display(double value, uint8_t digits);
+ *    13.   void    Me7SegmentDisplay::display(uint8_t DispData[]);
+ *    14.   void    Me7SegmentDisplay::display(uint8_t BitAddr, uint8_t DispData);
+ *    15.   void    Me7SegmentDisplay::display(uint8_t BitAddr, uint8_t DispData, uint8_t point_on);
+ *    16.   void    Me7SegmentDisplay::clearDisplay(void);
+ *    17.   void    Me7SegmentDisplay::setBrightness(uint8_t brightness);
+ *    18.   void    Me7SegmentDisplay::coding(uint8_t DispData[]);
+ *    19.   uint8_t Me7SegmentDisplay::coding(uint8_t DispData);
  *
  * \par History:
  * <pre>
@@ -51,6 +52,7 @@
  * Mark Yan         2015/10/29     1.0.2            fix issue when display negative data.
  * Mark Yan         2015/11/09     1.0.3            fix some comments error.
  * Mark Yan         2015/11/12     1.0.4            fix driver API.
+ * Mark Yan         2016/07/27     1.0.5            add display to support long type.
  * </pre>
  */
 
@@ -279,6 +281,22 @@ public:
  *    None
  */
   void display(float value);
+
+/**
+ * \par Function
+ *    display
+ * \par Description
+ *    Display certain value, and this value type is long
+ * \param[in]
+ *    value - Value to display.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+  void display(long value);
 
 /**
  * \par Function

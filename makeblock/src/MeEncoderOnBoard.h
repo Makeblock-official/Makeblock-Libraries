@@ -4,8 +4,8 @@
  * \brief   Driver for Encoder module on MeAuriga and MeMegaPi.
  * @file    MeEncoderOnBoard.h
  * @author  MakeBlock
- * @version V1.0.2
- * @date    2016/05/17
+ * @version V1.0.3
+ * @date    2016/06/25
  * @brief   Header for MeEncoderOnBoard.cpp module
  *
  * \par Copyright
@@ -26,25 +26,38 @@
  * \par Method List:
  *
  *    1. void MeEncoderOnBoard::reset(uint8_t slot);
- *    2. uint8_t MeEncoderOnBoard::GetSlotNum(void);
- *    3. uint8_t MeEncoderOnBoard::GetIntNum(void);
- *    4. uint8_t MeEncoderOnBoard::GetPortA(void);
- *    5. uint8_t MeEncoderOnBoard::GetPortB(void);
- *    6. long MeEncoderOnBoard::GetPulsePos(void);
- *    7. void MeEncoderOnBoard::SetPulsePos(long pulse_pos);
- *    8. void MeEncoderOnBoard::PulsePosPlus(void);
- *    9. void MeEncoderOnBoard::PulsePosMinus(void);
- *    10. void MeEncoderOnBoard::SetCurrentSpeed(double speed);
- *    11. double MeEncoderOnBoard::GetCurrentSpeed(void);
- *    12. int MeEncoderOnBoard::GetPwm(void);
- *    13. void MeEncoderOnBoard::setMotorPwm(int pwm);
- *    14. void MeEncoderOnBoard::Update_speed(void);
- *    15. void MeEncoderOnBoard::update(void);
- *    16. long MeEncoderOnBoard::distanceToGo(void);
- *    17. void MeEncoderOnBoard::runSpeed(double speed);
- *    18. void MeEncoderOnBoard::setSpeed(double speed);
- *    19. void MeEncoderOnBoard::move(long distance,cb callback,int extId);
- *    20. void MeEncoderOnBoard::moveTo(long position,cb callback,int extId);
+ *    2. uint8_t MeEncoderOnBoard::getSlotNum(void);
+ *    3. uint8_t MeEncoderOnBoard::getIntNum(void);
+ *    4. uint8_t MeEncoderOnBoard::getPortA(void);
+ *    5. uint8_t MeEncoderOnBoard::getPortB(void);
+ *    6. long MeEncoderOnBoard::getPulsePos(void);
+ *    7. void MeEncoderOnBoard::setPulsePos(long pulse_pos);
+ *    8. void MeEncoderOnBoard::pulsePosPlus(void);
+ *    9. void MeEncoderOnBoard::pulsePosMinus(void);
+ *    10. void MeEncoderOnBoard::setCurrentSpeed(float speed);
+ *    11. float MeEncoderOnBoard::getCurrentSpeed(void);
+ *    12. int16_t MeEncoderOnBoard::getCurPwm(void);
+ *    13. void MeEncoderOnBoard::setTarPWM(int16_t pwm_value);
+ *    14. void MeEncoderOnBoard::setMotorPwm(int16_t pwm);
+ *    15. void MeEncoderOnBoard::updateSpeed(void);
+ *    16. void MeEncoderOnBoard::updateCurPos(void);
+ *    17. long MeEncoderOnBoard::getCurPos(void)
+ *    18. void MeEncoderOnBoard::runSpeed(float speed);
+ *    19. void MeEncoderOnBoard::setSpeed(float speed);
+ *    20. void MeEncoderOnBoard::move(long position,float speed,int16_t extId,cb callback);
+ *    21. void MeEncoderOnBoard::moveTo(long position,float speed,int16_t extId,cb callback);
+ *    22. long MeEncoderOnBoard::distanceToGo(void);
+ *    23. void MeEncoderOnBoard::setSpeedPid(float p,float i,float d);
+ *    24. void MeEncoderOnBoard::setPosPid(float p,float i,float d);
+ *    25. void MeEncoderOnBoard::setPulse(int16_t pulseValue);
+ *    26. void MeEncoderOnBoard::setRatio(int16_t RatioValue);
+ *    27. void MeEncoderOnBoard::setMotionMode(int16_t motionMode);
+ *    28. int16_t MeEncoderOnBoard::pidPositionToPwm(void);
+ *    29. int16_t MeEncoderOnBoard::speedWithoutPos(void);
+ *    30. void MeEncoderOnBoard::encoderMove(void);
+ *    31. void MeEncoderOnBoard::pwmMove(void);
+ *    32. boolean MeEncoderOnBoard::isTarPosReached(void);
+ *    33. void MeEncoderOnBoard::loop(void);
  *
  * \par History:
  * <pre>
@@ -52,6 +65,7 @@
  * Mark Yan         2015/12/15     1.0.0            Build New
  * Mark Yan         2016/04/07     1.0.1            fix motor reset issue.
  * Mark Yan         2016/05/17     1.0.2            add some comments.
+ * Mark Yan         2016/06/25     1.0.3            add PID calibration for encoder driver.
  * </pre>
  */
 
@@ -62,46 +76,46 @@
 #include <stdbool.h>
 #include <avr/interrupt.h>
 
+#define DIRECT_MODE       0x00
+#define PID_MODE          0x01
+#define PWM_MODE          0x02
+
+#define MOTION_WITH_POS        0x00
+#define MOTION_WITHOUT_POS     0x01
+
+#define PWM_MIN_OFFSET                 25
+#define ENCODER_POS_DEADBAND           10
+#define DECELERATION_DISTANCE_PITCH    6 
+
 typedef struct
 {
-  int pulse;
-  
-  // current output pwm
-  int pwm;
+  float P, I, D;
+  float Setpoint, Output, Integral, differential, last_error;
+} PID_internal;
 
-  // target speed
-  double targetSpeed;
-  // current speed
-  double currentSpeed;
+typedef struct
+{
+  uint8_t mode;
+  uint8_t motionState;
 
-  // target position
-  long targetPos;
-  // current position
+  int16_t pulseEncoder;
+  int16_t currentPwm;
+  int16_t targetPwm;
+  int16_t previousPwm;
+
+  float currentSpeed;
+  float targetSpeed;
+  float previousSpeed;
+  float ratio;
+
   long currentPos;
-  // position counter the pulse
-  long pulse_pos;
+  long targetPos;
+  long previousPos;
+  long pulsePos;
  
-  // pid
-  float p;
-  float i;
-  float d;
-  float s;
-
-  //ratio
-  float ratio;
+  PID_internal  PID_speed;
+  PID_internal  PID_pos;
 }Me_Encoder_type;
-
-typedef struct
-{
-  uint8_t start;
-  float p;
-  float i;
-  float d;
-  float s;
-  float ratio;
-  uint16_t pulse;
-  uint8_t end;
-}eeprom_store_type;
 
 typedef struct
 {
@@ -113,7 +127,7 @@ typedef struct
 } Encoder_port_type;
 
 extern Encoder_port_type encoder_Port[6];  // encoder_Port[0] is nonsense
-typedef void (*cb)(int,int); 
+typedef void (*cb)(int16_t,int16_t); 
 
 /**
  * Class: MeEncoderOnBoard
@@ -132,220 +146,11 @@ public:
   MeEncoderOnBoard();
 
 /**
- * Alternate Constructor which can call your own function to map the DC motor to arduino port
+ * Alternate Constructor which can call your own function to map the Encoder motor to arduino port
  * \param[in]
- *   port - megapi dc port from PORT_1 to PORT_12
+ *   slot - megapi slot from SLOT1 to SLOT4(Auriga SLOT1 and SLOT2).
  */
   MeEncoderOnBoard(uint8_t slot);
-
-/**
- * \par Function
- *   GetSlotNum
- * \par Description
- *   This function used to get the Auriga/MegaPi slot number of current objects.
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   uint8_t - The slot number of current objects \n
- * \par Others
- *   None
- */
-  uint8_t GetSlotNum(void);
-
-/**
- * \par Function
- *   GetIntNum
- * \par Description
- *   This function used to get the Auriga/MegaPi Interrupt number of current objects.
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   uint8_t - The Interrupt number of current objects \n
- * \par Others
- *   None
- */
-  uint8_t GetIntNum(void);
-  
-/**
- * \par Function
- *   GetPortA
- * \par Description
- *   This function used to get the GPIO number of current objects's dir port A.
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   uint8_t - The GPIO number of current objects's dir port A \n
- * \par Others
- *   None
- */
-  uint8_t GetPortA(void);
-
-/**
- * \par Function
- *   GetPortB
- * \par Description
- *   This function used to get the GPIO number of current objects's dir port B.
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   uint8_t - The GPIO number of current objects's dir port B \n
- * \par Others
- *   None
- */
-  uint8_t GetPortB(void);
-
-/**
- * \par Function
- *   GetPulsePos
- * \par Description
- *   This function used to get the current pos value(pulse counter).
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   long - current pos value \n
- * \par Others
- *   None
- */
-  long GetPulsePos(void);
-
-/**
- * \par Function
- *   SetPulsePos
- * \par Description
- *   This function used to Set the current pos value(pulse counter). Generally used for\n
- *   reset the distance calculation.
- * \param[in]
- *   pulse_pos - the value of pos value(pulse counter)
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   None
- */
-  void SetPulsePos(long pulse_pos);
-
-/**
- * \par Function
- *   setMotorPwm
- * \par Description
- *   This function used to set current pwm setting.
- * \param[in]
- *   pwm - the pwm setting
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   None
- */
-  void setMotorPwm(int pwm);
-  
-/**
- * \par Function
- *   GetPwm
- * \par Description
- *   This function used to get the current pwm setting.
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   None
- */
-  int GetPwm(void);
-
-/**
- * \par Function
- *   PulsePosPlus
- * \par Description
- *   This function used to increase the current pos value(pulse counter).
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   None
- */
-  void PulsePosPlus(void);
-  
-/**
- * \par Function
- *   PulsePosPlus
- * \par Description
- *   This function used to reduction the current pos value(pulse counter).
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   None
- */
-  void PulsePosMinus(void);
-
-/**
- * \par Function
- *   SetCurrentSpeed
- * \par Description
- *   This function used to set the current speed(The unit is rpm).
- * \param[in]
- *   speed - the speed value(The unit is rpm).
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   None
- */
-  void SetCurrentSpeed(double speed);
-
-/**
- * \par Function
- *   GetCurrentSpeed
- * \par Description
- *   This function used to get the current speed(The unit is rpm).
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
-*   double - the speed value(The unit is rpm).
- * \par Others
- *   None
- */
-  double GetCurrentSpeed(void);
-  
-/**
- * \par Function
- *   Update_speed
- * \par Description
- *   This function used to update current speed.
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   None
- */
-  void Update_speed(void);
 
 /**
  * \par Function
@@ -365,10 +170,106 @@ public:
 
 /**
  * \par Function
- *   update
+ *   getSlotNum
  * \par Description
- *   This function called in main loop if you need run to the set position.\n
- *   It should be used with move and moveTo function;
+ *   This function used to get the Auriga/MegaPi slot number of current objects.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   uint8_t - The slot number of current objects \n
+ * \par Others
+ *   None
+ */
+  uint8_t getSlotNum(void);
+
+/**
+ * \par Function
+ *   getIntNum
+ * \par Description
+ *   This function used to get the Auriga/MegaPi Interrupt number of current objects.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   uint8_t - The Interrupt number of current objects \n
+ * \par Others
+ *   None
+ */
+  uint8_t getIntNum(void);
+  
+/**
+ * \par Function
+ *   getPortA
+ * \par Description
+ *   This function used to get the GPIO number of current objects's dir port A.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   uint8_t - The GPIO number of current objects's dir port A \n
+ * \par Others
+ *   None
+ */
+  uint8_t getPortA(void);
+
+/**
+ * \par Function
+ *   getPortB
+ * \par Description
+ *   This function used to get the GPIO number of current objects's dir port B.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   uint8_t - The GPIO number of current objects's dir port B \n
+ * \par Others
+ *   None
+ */
+  uint8_t getPortB(void);
+
+/**
+ * \par Function
+ *   getPulsePos
+ * \par Description
+ *   This function used to get the current pos value(pulse counter).
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   long - current pos value \n
+ * \par Others
+ *   None
+ */
+  long getPulsePos(void);
+
+/**
+ * \par Function
+ *   setPulsePos
+ * \par Description
+ *   This function used to Set the current pos value(pulse counter). Generally used for\n
+ *   reset the distance calculation.
+ * \param[in]
+ *   pulsePos - the value of pos value(pulse counter)
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+  void setPulsePos(long pulse_pos);
+
+/**
+ * \par Function
+ *   pulsePosPlus
+ * \par Description
+ *   This function used to increase the current pos value(pulse counter).
  * \param[in]
  *   None
  * \par Output
@@ -378,7 +279,151 @@ public:
  * \par Others
  *   None
  */
-  void update();
+  void pulsePosPlus(void);
+  
+/**
+ * \par Function
+ *   pulsePosMinus
+ * \par Description
+ *   This function used to reduction the current pos value(pulse counter).
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+  void pulsePosMinus(void);
+
+/**
+ * \par Function
+ *   setCurrentSpeed
+ * \par Description
+ *   This function used to set the current speed(The unit is rpm).
+ * \param[in]
+ *   speed - the speed value(The unit is rpm).
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+  void setCurrentSpeed(float speed);
+
+/**
+ * \par Function
+ *   getCurrentSpeed
+ * \par Description
+ *   This function used to get the current speed(The unit is rpm).
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+*   float - the speed value(The unit is rpm).
+ * \par Others
+ *   None
+ */
+  float getCurrentSpeed(void);
+
+/**
+ * \par Function
+ *   getCurPwm
+ * \par Description
+ *   This function used to get the current pwm setting.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+  int16_t getCurPwm(void);
+
+/**
+ * \par Function
+ *    setTarPWM
+ * \par Description
+ *    This function used for set the target pwm value.
+ * \param[in]
+ *    pwm_value - the target pwm value.
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+  void setTarPWM(int16_t pwm_value);
+
+/**
+ * \par Function
+ *   setMotorPwm
+ * \par Description
+ *   This function used to set current pwm setting.
+ * \param[in]
+ *   pwm - the pwm setting
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+  void setMotorPwm(int16_t pwm);
+  
+/**
+ * \par Function
+ *   updateSpeed
+ * \par Description
+ *   This function used to update current speed.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+  void updateSpeed(void);
+
+/**
+ * \par Function
+ *    updateCurPos
+ * \par Description
+ *    This function used to calculate the current position(The units are degrees).
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+  void updateCurPos(void);
+
+/**
+ * \par Function
+ *    getCurPos
+ * \par Description
+ *    This function used to get the current position(The units are degrees).
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+  long getCurPos(void);
 
 /**
  * \par Function
@@ -394,7 +439,7 @@ public:
  * \par Others
  *    None
  */
-  void runSpeed(double speed);
+  void runSpeed(float speed);
 
 /**
  * \par Function
@@ -411,7 +456,7 @@ public:
  * \par Others
  *   None
  */
-  void setSpeed(double speed);
+  void setSpeed(float speed);
 
 /**
  * \par Function
@@ -419,11 +464,13 @@ public:
  * \par Description
  *    encoder motor moves to the relative positions.
  * \param[in]
- *    relative - The relative length to Stepper's movement.
+ *    position - The relative angle encoder motor moves.
  * \param[in]
- *    absolute - callback function when the target position has been reached.
+ *    speed - the speed value(The unit is rpm).
  * \param[in]
- *    extId - It is used to indicate the ID of motor.
+ *    extId - It is used to indicate the ID of motor(Optional parameters).
+ * \param[in]
+ *    callback - callback function when the target position has been reached(Optional parameters).
  * \par Output
  *    None
  * \par Return
@@ -431,7 +478,7 @@ public:
  * \par Others
  *    None
  */
-  void move(long distance,cb callback,int extId=0);
+  void move(long position,float speed = 100,int16_t extId=0,cb callback=NULL);
 
 /**
  * \par Function
@@ -439,11 +486,13 @@ public:
  * \par Description
  *    encoder motor moves to the absolute position.
  * \param[in]
- *    absolute - The absolute length to Stepper's movement.
+ *    position - The absolute angle encoder motor moves.
  * \param[in]
- *    absolute - callback function when the target position has been reached.
+ *    speed - the speed value(The unit is rpm).
  * \param[in]
- *    extId - It is used to indicate the ID of motor.
+ *    extId - It is used to indicate the ID of motor(Optional parameters).
+ * \param[in]
+ *    callback - callback function when the target position has been reached(Optional parameters).
  * \par Output
  *    None
  * \par Return
@@ -451,13 +500,14 @@ public:
  * \par Others
  *    None
  */
-  void moveTo(long position,cb callback,int extId=0);
+  void moveTo(long position,float speed = 100,int16_t extId=0,cb callback=NULL);
   
 /**
  * \par Function
  *    distanceToGo
  * \par Description
- *    The distance that encoder should go.
+ *    The distance that encoder should go, units are in degrees.\r\n
+ *    So 360-degree means a circle.
  * \param[in]
  *    None
  * \par Output
@@ -469,23 +519,206 @@ public:
  */
   long distanceToGo();
 
+/**
+ * \par Function
+ *    setSpeedPid
+ * \par Description
+ *    This function used to set the PID parameters for encoder motor's speed.
+ * \param[in]
+ *    p - Proportion parameter
+ * \param[in]
+ *    i - Integration Parameters
+ * \param[in]
+ *    d - Differential parameter
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+  void setSpeedPid(float p,float i,float d);
+
+/**
+ * \par Function
+ *    setPosPid
+ * \par Description
+ *    This function used to set the PID parameters for encoder motor's pos.
+ * \param[in]
+ *    p - Proportion parameter
+ * \param[in]
+ *    i - Integration Parameters
+ * \param[in]
+ *    d - Differential parameter
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+  void setPosPid(float p,float i,float d);
+
+/**
+ * \par Function
+ *    setPulse
+ * \par Description
+ *    This function used to set the pulse number of encoder code disc.
+ * \param[in]
+ *    pulseValue - pulse number
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+  void setPulse(int16_t pulseValue);
+
+/**
+ * \par Function
+ *    setRatio
+ * \par Description
+ *    This function used to set the ratio of encoder motor.
+ * \param[in]
+ *    RatioValue - ratio number
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+  void setRatio(int16_t RatioValue);
+
+/**
+ * \par Function
+ *    setMotionMode
+ * \par Description
+ *    This function used to set the motion mode of encoder motor.
+ * \param[in]
+ *    motionMode - motion mode
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+  void setMotionMode(int16_t motionMode);
+
+/**
+ * \par Function
+ *    pidPositionToPwm
+ * \par Description
+ *    This function used to calculate the PWM motor value of encoder motor(position & speed).
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+  int16_t pidPositionToPwm(void);
+
+/**
+ * \par Function
+ *    speedWithoutPos
+ * \par Description
+ *    This function used to calculate the PWM motor value of encoder motor(single speed).
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+  int16_t speedWithoutPos(void);
+
+/**
+ * \par Function
+ *    encoderMove
+ * \par Description
+ *    This function used for move with PID mode.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+  void encoderMove(void);
+
+/**
+ * \par Function
+ *    pwmMove
+ * \par Description
+ *    This function used for move with PWM mode.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+  void pwmMove(void);
+
+/**
+ * \par Function
+ *    isTarPosReached
+ * \par Description
+ *    This function used to determine whether the motor come to the target position.\n
+ *    It is mainly applied to function moveTo or function move
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    true - target position is reached, otherwise
+ * \par Others
+ *    None
+ */
+  boolean isTarPosReached(void);
+
+/**
+ * \par Function
+ *    loop
+ * \par Description
+ *    This function should be called without Blocked.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+  void loop(void);
+
 private:
    volatile Me_Encoder_type encode_structure;
-   uint8_t _mode;
+   boolean _Lock_flag;
+   boolean _Dir_lock_flag;
    uint8_t _extId;
-   uint8_t  _Port_A;
-   uint8_t  _Port_B;
-   uint8_t  _Port_PWM;
-   uint8_t  _Port_H1;
-   uint8_t  _Port_H2;
-   uint8_t  _IntNum;
-   uint8_t  _Slot;
-   int16_t  _last_speed;
+   uint8_t _Port_A;
+   uint8_t _Port_B;
+   uint8_t _Port_PWM;
+   uint8_t _Port_H1;
+   uint8_t _Port_H2;
+   uint8_t _IntNum;
+   uint8_t _Slot;
+   int16_t _Encoder_output;
    long _Measurement_speed_time;
-   long _Last_pulse_pos;
-   double _targetSpeed;
-   long _targetPosition;
-   bool _moving;
+   long _Encoder_move_time;
    cb _callback;
 };
 #endif

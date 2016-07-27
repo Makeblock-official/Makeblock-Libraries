@@ -1,4 +1,4 @@
-# Makeblock Library v3.23
+# Makeblock Library v3.24
 
 Revision of history:
 Author           Time           Version          Descr
@@ -8,11 +8,9 @@ Lawrence         2015/09/09     3.2.0            Include some Arduino's official
 Mark Yan         2015/11/02     3.2.1            fix bug on MACOS.
 Mark Yan         2016/01/21     3.2.2            fix some library bugs.
 Mark Yan         2016/05/17     3.2.3            add support for MegaPi and Auriga Board.
+Mark Yan         2016/07/27     3.2.4            fix some JIRA issue, add PID motion for Megapi/Auriga on board encoder motor.
 
 Arduino Library for Makeblock Electronic Modules
-
-This library is v3.23, we've made a lot of modifications in the code structure. Their is now a very big difference
-from v2.0. We strongly recommend that all Makeblock customers use the new version.
 
 How to use:
 

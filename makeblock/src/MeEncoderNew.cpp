@@ -48,7 +48,7 @@
  *    20. void MeEncoderNew::setPulse(int p);
  *    21. void MeEncoderNew::setDevid(int devid);
  *    22. void MeEncoderNew::runSpeedAndTime(float speed, float time, float lock_state);
- *    23. boolean MeEncoderNew::isTarPosReaches(void);
+ *    23. boolean MeEncoderNew::isTarPosReached(void);
  *
  * \par History:
  * <pre>
@@ -57,7 +57,7 @@
  * </pre>
  *
  * @example EncoderMotorChangeI2CDevID.ino
- * @example EncoderMotorTestIsTarPosReaches.ino
+ * @example EncoderMotorTestIsTarPosReached.ino
  * @example EncoderMotorTestMoveTo.ino
  * @example EncoderMotorTestRunSpeed.ino
  * @example EncoderMotorTestRunSpeedAndTime.ino
@@ -741,7 +741,7 @@ void MeEncoderNew::runSpeedAndTime(float speed, float time, float lock_state)
 
 /**
  * \par Function
- *    isTarPosReaches
+ *    isTarPosReached
  * \par Description
  *    Check whether the target position has been reached
  * \param[in]
@@ -754,7 +754,7 @@ void MeEncoderNew::runSpeedAndTime(float speed, float time, float lock_state)
  * \par Others
  *    None
  */
-boolean MeEncoderNew::isTarPosReaches(void)
+boolean MeEncoderNew::isTarPosReached(void)
 {
   uint8_t buf[8];
   boolean lock_state;

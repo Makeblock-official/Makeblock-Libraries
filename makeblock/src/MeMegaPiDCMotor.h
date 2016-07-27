@@ -25,7 +25,7 @@
  *
  * \par Method List:
  *
- *    1. void MeMegaPiDCMotor::setpin(uint8_t dir_pin,uint8_t pwm_pin)
+ *    1. void MeMegaPiDCMotor::setpin(uint8_t dc_dir_h1,uint8_t dc_dir_h2,uint8_t pwm_pin)
  *    2. void MeMegaPiDCMotor::run(int16_t speed)
  *    3. void MeMegaPiDCMotor::stop(void)
  *    4. void MeMegaPiDCMotor::reset(uint8_t port)

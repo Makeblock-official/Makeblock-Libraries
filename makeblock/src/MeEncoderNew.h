@@ -48,7 +48,7 @@
  *    20. void MeEncoderNew::setPulse(int p);
  *    21. void MeEncoderNew::setDevid(int devid);
  *    22. void MeEncoderNew::runSpeedAndTime(float speed, float time, float lock_state);
- *    23. boolean MeEncoderNew::isTarPosReaches(void);
+ *    23. boolean MeEncoderNew::isTarPosReached(void);
  *
  * \par History:
  * <pre>
@@ -498,7 +498,7 @@ public:
   
 /**
  * \par Function
- *    isTarPosReaches
+ *    isTarPosReached
  * \par Description
  *    Check whether the target position has been reached
  * \param[in]
@@ -511,7 +511,7 @@ public:
  * \par Others
  *    None
  */
-  boolean isTarPosReaches(void);
+  boolean isTarPosReached(void);
 
 private:
 /**

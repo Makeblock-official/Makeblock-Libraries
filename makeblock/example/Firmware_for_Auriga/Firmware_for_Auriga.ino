@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.008
-* Date               : 07/06/2016
+* Version            : V09.01.009
+* Date               : 07/27/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -18,6 +18,7 @@
 * Mark Yan         2016/06/08     09.01.006        Add 1s blink function.
 * Mark Yan         2016/06/25     09.01.007        Fix issue MBLOCK-38(limit switch return value).
 * Mark Yan         2016/07/06     09.01.008        Fix issue MBLOCK-61(ultrasonic distance limitations bug).
+* Mark Yan         2016/07/27     09.01.009        Add position parameters for encoder motor,fix issue MBLOCK-77.
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -104,10 +105,6 @@ int16_t distance=0;
 int16_t randnum = 0;                                                                               
 int16_t auriga_power = 0;
 int16_t LineFollowFlag=0;
-float pwm_filter1=0;
-float pwm_filter2=0;
-float pwm_input1=0;
-float pwm_input2=0;
 #define MOVE_STOP       0x00
 #define MOVE_FORWARD    0x01
 #define MOVE_BACKWARD   0x02
@@ -148,7 +145,6 @@ double  balance_car_speed_offsets = 0.0;
 float angleServo = 90.0;
 float dt;
 
-long measurement_speed_time = 0;
 long lasttime_angle = 0;
 long lasttime_speed = 0;
 long blink_time = 0;
@@ -165,7 +161,7 @@ boolean move_flag = false;
 boolean boot_show_flag = true;
 boolean blink_flag = false;
 
-String mVersion = "09.01.008";
+String mVersion = "09.01.009";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
@@ -217,10 +213,18 @@ float RELAX_ANGLE = -1;                    //Natural balance angle,should be adj
   #define GET_BATTERY_POWER    0x70
   #define GET_AURIGA_MODE      0x71
   #define GET_MEGAPI_MODE      0x72
-#define ENCODER_BOARD 61
+#define ENCODER_BOARD          61
   //Read type
   #define ENCODER_BOARD_POS    0x01
   #define ENCODER_BOARD_SPEED  0x02
+
+#define ENCODER_PID_MOTION     62
+  //Secondary command
+  #define ENCODER_BOARD_POS_MOTION         0x01
+  #define ENCODER_BOARD_SPEED_MOTION       0x02
+  #define ENCODER_BOARD_PWM_MOTION         0x03
+  #define ENCODER_BOARD_SET_CUR_POS_ZERO   0x04
+  #define ENCODER_BOARD_CAR_POS_MOTION     0x05
 
 #define GET 1
 #define RUN 2
@@ -253,13 +257,13 @@ PID  PID_speed_left, PID_speed_right;
  */
 void isr_process_encoder1(void)
 {
-  if(digitalRead(Encoder_1.GetPortB()) == 0)
+  if(digitalRead(Encoder_1.getPortB()) == 0)
   {
-    Encoder_1.PulsePosMinus();
+    Encoder_1.pulsePosMinus();
   }
   else
   {
-    Encoder_1.PulsePosPlus();;
+    Encoder_1.pulsePosPlus();;
   }
 }
 
@@ -280,13 +284,13 @@ void isr_process_encoder1(void)
  */
 void isr_process_encoder2(void)
 {
-  if(digitalRead(Encoder_2.GetPortB()) == 0)
+  if(digitalRead(Encoder_2.getPortB()) == 0)
   {
-    Encoder_2.PulsePosMinus();
+    Encoder_2.pulsePosMinus();
   }
   else
   {
-    Encoder_2.PulsePosPlus();
+    Encoder_2.pulsePosPlus();
   }
 }
 
@@ -612,10 +616,6 @@ void TurnRight1(void)
  */
 void Stop(void)
 {
-  pwm_filter1 = 0;
-  pwm_filter2 = 0;
-  pwm_input1 = 0;
-  pwm_input2 = 0;
   Encoder_1.setMotorPwm(0);
   Encoder_2.setMotorPwm(0);
 }
@@ -812,8 +812,8 @@ void parseData(void)
         //reset
         Encoder_1.setMotorPwm(0);
         Encoder_2.setMotorPwm(0);
-        Encoder_1.SetPulsePos(0);
-        Encoder_2.SetPulsePos(0);
+        Encoder_1.setPulsePos(0);
+        Encoder_2.setPulsePos(0);
         PID_speed_left.Setpoint = 0;
         PID_speed_right.Setpoint = 0;
         dc.reset(PORT_1);
@@ -1160,30 +1160,20 @@ void runModule(uint8_t device)
         int16_t speed_value = readShort(8);
         if(slot == SLOT_1)
         {
-//          PID_speed_left.Setpoint = speed_value;
-          pwm_input1 = speed_value;
-          pwm_filter1 = 0.8 * pwm_filter1 + 0.2 * speed_value;
-          Encoder_1.setMotorPwm((int16_t)pwm_filter1);
+          Encoder_1.setTarPWM(speed_value);
         }
         else if(slot == SLOT_2)
         {
-//          PID_speed_right.Setpoint = speed_value;
-          pwm_input2 = speed_value;
-          pwm_filter2 = 0.8 * pwm_filter2 + 0.2 * speed_value;
-          Encoder_2.setMotorPwm((int16_t)pwm_filter2);
+          Encoder_2.setTarPWM(speed_value);
         }
       }
       break;
     case JOYSTICK:
       {
         int16_t leftSpeed = readShort(6);
-        pwm_input1 = leftSpeed;
-        pwm_filter1 = 0.8 * pwm_filter1 + 0.2 * leftSpeed;
-        Encoder_1.setMotorPwm((int16_t)pwm_filter1);
+        Encoder_1.setTarPWM(leftSpeed);
         int16_t rightSpeed = readShort(8);
-        pwm_input2 = rightSpeed;
-        pwm_filter2 = 0.8 * pwm_filter2 + 0.2 * rightSpeed;
-        Encoder_2.setMotorPwm((int16_t)pwm_filter2);
+        Encoder_2.setTarPWM(rightSpeed);
       }
       break;
     case STEPPER:
@@ -1449,6 +1439,85 @@ void runModule(uint8_t device)
            { 
              move_flag = true;
            }
+        }
+      }
+      break;
+    case ENCODER_PID_MOTION:
+      {
+        uint8_t subcmd = port;
+        uint8_t slot_num = readBuffer(7);
+        if(ENCODER_BOARD_POS_MOTION == subcmd)
+        {
+          long pos_temp = readLong(8);
+          uint16_t speed_temp = readShort(12);
+          if(slot_num == SLOT_1)
+          {
+            Encoder_1.move(pos_temp,(float)speed_temp);
+          }
+          else if(slot_num == SLOT_2)
+          {
+            Encoder_2.move(pos_temp,(float)speed_temp);
+          }
+        }
+        else if(ENCODER_BOARD_SPEED_MOTION == subcmd)
+        {
+          uint16_t speed_temp = readShort(8);  
+          if(slot_num == SLOT_1)
+          {
+            Encoder_1.runSpeed((float)speed_temp);
+          }
+          else if(slot_num == SLOT_2)
+          {
+            Encoder_2.runSpeed((float)speed_temp);
+          }          
+        }
+        else if(ENCODER_BOARD_PWM_MOTION == subcmd)
+        {
+          uint16_t speed_temp = readShort(8);  
+          if(slot_num == SLOT_1)
+          {
+            Encoder_1.setTarPWM(speed_temp);
+          }
+          else if(slot_num == SLOT_2)
+          {
+            Encoder_2.setTarPWM(speed_temp);
+          }          
+        }
+        else if(ENCODER_BOARD_SET_CUR_POS_ZERO == subcmd)
+        {
+          if(slot_num == SLOT_1)
+          {
+            Encoder_1.setPulsePos(0);
+          }
+          else if(slot_num == SLOT_2)
+          {
+            Encoder_2.setPulsePos(0);
+          }          
+        }
+        else if(ENCODER_BOARD_CAR_POS_MOTION == subcmd)
+        {
+          long pos_temp = readLong(8);
+          uint16_t speed_temp = readShort(12);
+          if(slot_num == 1)
+          {
+            Encoder_1.move(-pos_temp,(float)speed_temp);
+            Encoder_2.move(pos_temp,(float)speed_temp);
+          }
+          else if(slot_num == 2)
+          {
+            Encoder_1.move(pos_temp,(float)speed_temp);
+            Encoder_2.move(-pos_temp,(float)speed_temp);
+          }
+          else if(slot_num == 3)
+          {
+            Encoder_1.move(-pos_temp,(float)speed_temp);
+            Encoder_2.move(-pos_temp,(float)speed_temp);
+          }
+          else if(slot_num == 4)
+          {
+            Encoder_1.move(pos_temp,(float)speed_temp);
+            Encoder_2.move(pos_temp,(float)speed_temp);
+          }
         }
       }
       break;
@@ -1826,22 +1895,22 @@ void readSensor(uint8_t device)
           {
             if(read_type == ENCODER_BOARD_POS)
             {
-              sendLong(Encoder_1.GetPulsePos());
+              sendLong(Encoder_1.getCurPos());
             }
             else if(read_type == ENCODER_BOARD_SPEED)
             {
-              sendFloat(Encoder_1.GetCurrentSpeed());
+              sendFloat(Encoder_1.getCurrentSpeed());
             }
           }
           else if(slot == SLOT_2)
           {
             if(read_type == ENCODER_BOARD_POS)
             {
-              sendLong(Encoder_2.GetPulsePos());
+              sendLong(Encoder_2.getCurPos());
             }
             else if(read_type == ENCODER_BOARD_SPEED)
             {
-              sendFloat(Encoder_2.GetCurrentSpeed());
+              sendFloat(Encoder_2.getCurrentSpeed());
             }
           }
         }
@@ -1928,7 +1997,7 @@ void PID_angle_compute(void)   //PID
   }
   else
   {
-      balance_car_speed_offsets = 1.1 * (abs(Encoder_1.GetCurrentSpeed()) - abs(Encoder_2.GetCurrentSpeed()));
+    balance_car_speed_offsets = 1.1 * (abs(Encoder_1.getCurrentSpeed()) - abs(Encoder_2.getCurrentSpeed()));
   }
 
   if(balance_car_speed_offsets > 0)
@@ -1988,7 +2057,7 @@ void PID_angle_compute(void)   //PID
  */
 void PID_speed_compute(void)
 {
-  double speed_now = (Encoder_2.GetCurrentSpeed() - Encoder_1.GetCurrentSpeed())/2;
+  double speed_now = (Encoder_2.getCurrentSpeed() - Encoder_1.getCurrentSpeed())/2;
 
   last_speed_setpoint_filter  = last_speed_setpoint_filter  * 0.8;
   last_speed_setpoint_filter  += PID_speed.Setpoint * 0.2;
@@ -2064,8 +2133,8 @@ void reset(void)
     PID_angle.Setpoint = RELAX_ANGLE;
     PID_speed.Setpoint = 0;
     PID_turn.Setpoint = 0;
-    Encoder_1.SetPulsePos(0);
-    Encoder_2.SetPulsePos(0);
+    Encoder_1.setPulsePos(0);
+    Encoder_2.setPulsePos(0);
     PID_speed.Integral = 0;
     start_flag = false;
     last_speed_setpoint_filter = 0.0;
@@ -2081,8 +2150,8 @@ void reset(void)
     Encoder_1.setMotorPwm(0);
     Encoder_2.setMotorPwm(0);
     PID_angle.Setpoint = RELAX_ANGLE;
-    Encoder_1.SetPulsePos(0);
-    Encoder_2.SetPulsePos(0);
+    Encoder_1.setPulsePos(0);
+    Encoder_2.setPulsePos(0);
     lasttime_speed = lasttime_angle = millis();
     start_flag = true;
 #ifdef DEBUG_INFO
@@ -2240,36 +2309,6 @@ void balanced_model(void)
 
 /**
  * \par Function
- *    PWM_Calcu
- * \par Description
- *    Speed calculation function
- * \param[in]
- *    None
- * \par Output
- *    None
- * \return
- *    None
- * \par Others
- *    None
- */
-void PWM_Calcu(void)
-{
-  pwm_filter1 = 0.8 * pwm_filter1 + 0.2 * pwm_input1;
-  if((pwm_input1 == 0) && (abs(pwm_filter1) <= 20))
-  {
-    pwm_filter1 = 0;
-  }
-  Encoder_1.setMotorPwm((int16_t)pwm_filter1);
-  pwm_filter2 = 0.8 * pwm_filter2 + 0.2 * pwm_input2;
-  if((pwm_input2 == 0) && (abs(pwm_filter2) <= 20))
-  {
-    pwm_filter2 = 0;
-  }
-  Encoder_2.setMotorPwm((int16_t)pwm_filter2);
-}
-
-/**
- * \par Function
  *    ultrCarProcess
  * \par Description
  *    The main function for ultrasonic automatic obstacle avoidance
@@ -2312,7 +2351,7 @@ void ultrCarProcess(void)
       TurnRight();  
     }
   }
-  else if(distance < 20)
+  else if((distance < 20) && (distance > 0))
   {
     randnum=random(300);
     if(randnum > 190)
@@ -2705,8 +2744,8 @@ void setup()
   delay(5);
   Serial.begin(115200);
   delay(5);
-  attachInterrupt(Encoder_1.GetIntNum(), isr_process_encoder1, RISING);
-  attachInterrupt(Encoder_2.GetIntNum(), isr_process_encoder2, RISING);
+  attachInterrupt(Encoder_1.getIntNum(), isr_process_encoder1, RISING);
+  attachInterrupt(Encoder_2.getIntNum(), isr_process_encoder2, RISING);
   PID_speed_left.Setpoint = 0;
   PID_speed_right.Setpoint = 0;
   led.setpin(RGBLED_PORT);
@@ -2764,10 +2803,16 @@ void setup()
   TCCR2A = _BV(WGM21) | _BV(WGM20);
   TCCR2B = _BV(CS21);
 
-  pwm_filter1 = 0;
-  pwm_filter2 = 0;
-  pwm_input1 = 0;
-  pwm_input2 = 0;
+  Encoder_1.setPulse(9);
+  Encoder_2.setPulse(9);
+  Encoder_1.setRatio(39.267);
+  Encoder_2.setRatio(39.267);
+  Encoder_1.setPosPid(1.8,0,1.2);
+  Encoder_2.setPosPid(1.8,0,1.2);
+  Encoder_1.setSpeedPid(0.18,0,0);
+  Encoder_2.setSpeedPid(0.18,0,0);
+  Encoder_1.setMotionMode(DIRECT_MODE);
+  Encoder_2.setMotionMode(DIRECT_MODE);
 
   leftflag=false;
   rightflag=false;
@@ -2779,7 +2824,7 @@ void setup()
   PID_speed.I = -0.008;      // -0.008
   readEEPROM();
 //  auriga_mode = AUTOMATIC_OBSTACLE_AVOIDANCE_MODE;
-  measurement_speed_time = lasttime_speed = lasttime_angle = millis();
+  lasttime_speed = lasttime_angle = millis();
   blink_time = millis();
 }
 
@@ -2819,8 +2864,8 @@ void loop()
   steppers[2].runSpeedToPosition();
   steppers[3].runSpeedToPosition();
   get_power();
-  Encoder_1.Update_speed();
-  Encoder_2.Update_speed();
+  Encoder_1.loop();
+  Encoder_2.loop();
 //  while(Serial.available() > 0)
 //  {
 //    char c = Serial.read();
@@ -2886,22 +2931,25 @@ void loop()
 
   if(auriga_mode == BLUETOOTH_MODE)
   {
-    if(millis() - measurement_speed_time > 20)
-    {
-      measurement_speed_time = millis();
-      PWM_Calcu();
-    }
+
   }
   else if(auriga_mode == AUTOMATIC_OBSTACLE_AVOIDANCE_MODE)
   { 
+    Encoder_1.setMotionMode(DIRECT_MODE);
+    Encoder_2.setMotionMode(DIRECT_MODE);
     ultrCarProcess();
   }
   else if(auriga_mode == BALANCED_MODE)
-  {
+  { 
+    Encoder_1.setMotionMode(DIRECT_MODE);
+    Encoder_2.setMotionMode(DIRECT_MODE);
     balanced_model();
   }
   else if(auriga_mode == LINE_FOLLOW_MODE)
-  {
+  { 
+    Encoder_1.setMotionMode(DIRECT_MODE);
+    Encoder_2.setMotionMode(DIRECT_MODE);
     line_model();
   }
 }
+
