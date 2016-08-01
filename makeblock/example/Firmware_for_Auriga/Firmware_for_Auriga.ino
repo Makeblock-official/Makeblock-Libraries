@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.009
-* Date               : 07/27/2016
+* Version            : V09.01.010
+* Date               : 08/01/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -19,6 +19,7 @@
 * Mark Yan         2016/06/25     09.01.007        Fix issue MBLOCK-38(limit switch return value).
 * Mark Yan         2016/07/06     09.01.008        Fix issue MBLOCK-61(ultrasonic distance limitations bug).
 * Mark Yan         2016/07/27     09.01.009        Add position parameters for encoder motor,fix issue MBLOCK-77.
+* Mark Yan         2016/08/01     0e.01.010        Fix issue MBLOCK-109 MBLOCK-110(encoder motor exception handling negative).
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -161,7 +162,7 @@ boolean move_flag = false;
 boolean boot_show_flag = true;
 boolean blink_flag = false;
 
-String mVersion = "09.01.009";
+String mVersion = "09.01.010";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
@@ -1449,7 +1450,8 @@ void runModule(uint8_t device)
         if(ENCODER_BOARD_POS_MOTION == subcmd)
         {
           long pos_temp = readLong(8);
-          uint16_t speed_temp = readShort(12);
+          int16_t speed_temp = readShort(12);
+          speed_temp = abs(speed_temp);
           if(slot_num == SLOT_1)
           {
             Encoder_1.move(pos_temp,(float)speed_temp);
@@ -1461,7 +1463,7 @@ void runModule(uint8_t device)
         }
         else if(ENCODER_BOARD_SPEED_MOTION == subcmd)
         {
-          uint16_t speed_temp = readShort(8);  
+          int16_t speed_temp = readShort(8);  
           if(slot_num == SLOT_1)
           {
             Encoder_1.runSpeed((float)speed_temp);
@@ -1473,7 +1475,7 @@ void runModule(uint8_t device)
         }
         else if(ENCODER_BOARD_PWM_MOTION == subcmd)
         {
-          uint16_t speed_temp = readShort(8);  
+          int16_t speed_temp = readShort(8);  
           if(slot_num == SLOT_1)
           {
             Encoder_1.setTarPWM(speed_temp);
@@ -1497,7 +1499,7 @@ void runModule(uint8_t device)
         else if(ENCODER_BOARD_CAR_POS_MOTION == subcmd)
         {
           long pos_temp = readLong(8);
-          uint16_t speed_temp = readShort(12);
+          int16_t speed_temp = readShort(12);
           if(slot_num == 1)
           {
             Encoder_1.move(-pos_temp,(float)speed_temp);
