@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_MegaPi.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V0e.01.010
-* Date               : 08/01/2016
+* Version            : V0e.01.011
+* Date               : 08/10/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -20,6 +20,7 @@
 * Mark Yan         2016/07/06     0e.01.008        Fix issue MBLOCK-61(ultrasonic distance limitations bug).
 * Mark Yan         2016/07/27     0e.01.009        Add position parameters for encoder motor,fix issue MBLOCK-77.
 * Mark Yan         2016/08/01     0e.01.010        Fix issue MBLOCK-109 MBLOCK-110(encoder motor exception handling negative).
+* Mark Yan         2016/08/10     0e.01.011        Fix issue MBLOCK-126(on board encoder motor speed symbol).
 **************************************************************************/
 #include <Arduino.h>
 #include <MeMegaPi.h>
@@ -165,7 +166,7 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0e.01.010";
+String mVersion = "0e.01.011";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
 #define PWM_MIN_OFFSET   0
@@ -1594,7 +1595,7 @@ void runModule(uint8_t device)
           else if(slot_num == SLOT_2)
           {
             Encoder_2.setTarPWM(speed_temp);
-          } 
+          }
           else if(slot_num == SLOT_3)
           {
             Encoder_3.setTarPWM(speed_temp);
@@ -1988,29 +1989,29 @@ void readSensor(uint8_t device)
             }
             else if(read_type == ENCODER_BOARD_SPEED)
             {
-              sendFloat(-Encoder_2.getCurrentSpeed());
+              sendFloat(Encoder_2.getCurrentSpeed());
             }
           }
           else if(slot == SLOT_3)
           {
             if(read_type == ENCODER_BOARD_POS)
             {
-              sendLong(-Encoder_3.getCurPos());
+              sendLong(Encoder_3.getCurPos());
             }
             else if(read_type == ENCODER_BOARD_SPEED)
             {
-              sendFloat(-Encoder_3.getCurrentSpeed());
+              sendFloat(Encoder_3.getCurrentSpeed());
             }
           }
           else if(slot == SLOT_4)
           {
             if(read_type == ENCODER_BOARD_POS)
             {
-              sendLong(-Encoder_4.getCurPos());
+              sendLong(Encoder_4.getCurPos());
             }
             else if(read_type == ENCODER_BOARD_SPEED)
             {
-              sendFloat(-Encoder_4.getCurrentSpeed());
+              sendFloat(Encoder_4.getCurrentSpeed());
             }
           }
         }
@@ -2828,3 +2829,4 @@ void loop()
     line_model();
   }
 }
+

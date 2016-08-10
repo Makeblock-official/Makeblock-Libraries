@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.010
-* Date               : 08/01/2016
+* Version            : V09.01.011
+* Date               : 08/10/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -20,6 +20,7 @@
 * Mark Yan         2016/07/06     09.01.008        Fix issue MBLOCK-61(ultrasonic distance limitations bug).
 * Mark Yan         2016/07/27     09.01.009        Add position parameters for encoder motor,fix issue MBLOCK-77.
 * Mark Yan         2016/08/01     0e.01.010        Fix issue MBLOCK-109 MBLOCK-110(encoder motor exception handling negative).
+* Mark Yan         2016/08/10     0e.01.011        Fix issue MBLOCK-128(ext encoder motor led to reset), MBLOCK-128.
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -54,7 +55,7 @@ Me4Button buttonSensor;
 MeEncoderOnBoard Encoder_1(SLOT1);
 MeEncoderOnBoard Encoder_2(SLOT2);
 MeLineFollower line(PORT_9);
-MeEncoderMotor encoders[4];
+MeEncoderMotor encoders[2];
 
 typedef struct MeModule
 {
@@ -162,7 +163,7 @@ boolean move_flag = false;
 boolean boot_show_flag = true;
 boolean blink_flag = false;
 
-String mVersion = "09.01.010";
+String mVersion = "09.01.011";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
@@ -827,8 +828,6 @@ void parseData(void)
         dc.run(0);
         encoders[0].runSpeed(0);
         encoders[1].runSpeed(0);
-        encoders[2].runSpeed(0);
-        encoders[3].runSpeed(0);
         callOK();
       }
       break;
@@ -1219,18 +1218,12 @@ void runModule(uint8_t device)
         if(slot == SLOT_1)
         {
            encoders[0].move(distance,maxSpeed);
+           delay(40);
         }
         else if(slot == SLOT_2)
         {
            encoders[1].move(distance,maxSpeed);
-        }
-        else if(slot == SLOT_3)
-        {
-           encoders[2].move(distance,maxSpeed);
-        }
-        else if(slot == SLOT_4)
-        {
-           encoders[3].move(distance,maxSpeed);
+           delay(40);
         }
       }
       break;
@@ -1471,7 +1464,7 @@ void runModule(uint8_t device)
           else if(slot_num == SLOT_2)
           {
             Encoder_2.runSpeed((float)speed_temp);
-          }          
+          }
         }
         else if(ENCODER_BOARD_PWM_MOTION == subcmd)
         {
@@ -1483,7 +1476,7 @@ void runModule(uint8_t device)
           else if(slot_num == SLOT_2)
           {
             Encoder_2.setTarPWM(speed_temp);
-          }          
+          }
         }
         else if(ENCODER_BOARD_SET_CUR_POS_ZERO == subcmd)
         {
@@ -1494,7 +1487,7 @@ void runModule(uint8_t device)
           else if(slot_num == SLOT_2)
           {
             Encoder_2.setPulsePos(0);
-          }          
+          }
         }
         else if(ENCODER_BOARD_CAR_POS_MOTION == subcmd)
         {
@@ -2752,6 +2745,8 @@ void setup()
   PID_speed_right.Setpoint = 0;
   led.setpin(RGBLED_PORT);
   buzzer.setpin(BUZZER_PORT);
+  led.setColor(0,0,0,0);
+  led.show();
   buzzer.tone(1000,100); 
   buzzer.noTone();
   Serial.print("Version: ");
@@ -2781,12 +2776,8 @@ void setup()
   pinMode(13,OUTPUT);
   encoders[0] = MeEncoderMotor(SLOT_1);
   encoders[1] = MeEncoderMotor(SLOT_2);
-  encoders[2] = MeEncoderMotor(SLOT_3);
-  encoders[3] = MeEncoderMotor(SLOT_4);
   encoders[0].begin();
   encoders[1].begin();
-  encoders[2].begin();
-  encoders[3].begin();
   wdt_reset();
 //  if(boot_show_flag == true)
 //  {
@@ -2795,8 +2786,6 @@ void setup()
   wdt_reset();
   encoders[0].runSpeed(0);
   encoders[1].runSpeed(0);
-  encoders[2].runSpeed(0);
-  encoders[3].runSpeed(0);
 
   //Set Pwm 8KHz
   TCCR1A = _BV(WGM10);
@@ -2910,7 +2899,6 @@ void loop()
       }
     }
     index++;
-    readSerial();
     if(index > 51)
     {
       index=0; 
@@ -2922,6 +2910,7 @@ void loop()
       parseData(); 
       index=0;
     }
+    readSerial();
   }
   gyro.fast_update();
   gyro_ext.update();
