@@ -194,10 +194,18 @@ void IrProcess()
       break;
     case IR_BUTTON_E:
       maintainMode = !maintainMode;
+      
+      //eat long press input
+      while(infraredReceiverDecode.buttonState() != 0)
+      {
+        infraredReceiverDecode.loop();
+      }
       starter_mode = 0;
       break;  
     case IR_BUTTON_TEST:
       Stop();
+      
+      //eat long press input
       while(infraredReceiverDecode.buttonState() != 0)
       {
         infraredReceiverDecode.loop();
