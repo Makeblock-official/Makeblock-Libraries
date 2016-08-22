@@ -13,6 +13,7 @@
 #include <SoftwareSerial.h>
 #include <Arduino.h>
 #include <MeOrion.h>
+#include<math.h>
 
 MeDCMotor dc;
 MeUltrasonicSensor us(PORT_3);
@@ -32,6 +33,7 @@ int distance=0;
 int randnum = 0;
 boolean leftflag;
 boolean rightflag;
+boolean maintainMode;
 int starter_mode = 0;
 
 void Forward()
@@ -50,12 +52,18 @@ void Backward()
   dc.run(-moveSpeed);
 }
 
+int backTurnTime(int speed)
+{
+  return (int)(5.9074e-3*speed*speed - 4.6078*speed + 1286);
+}
+
 void BackwardAndTurnLeft()
 {
   dc.reset(M1);
   dc.run(-moveSpeed/2);
   dc.reset(M2);
   dc.run(-moveSpeed);
+  delay( backTurnTime(moveSpeed) );
 }
 
 void BackwardAndTurnRight()
@@ -64,6 +72,7 @@ void BackwardAndTurnRight()
   dc.run(-moveSpeed);
   dc.reset(M2);
   dc.run(-moveSpeed/2);
+  delay( backTurnTime(moveSpeed) );
 }
 
 void TurnLeft()
@@ -102,7 +111,7 @@ void ultrCarProcess()
   if((distance > 10) && (distance < 40))
   {
     randnum=random(300);
-    if((randnum > 190) && (!rightflag))
+    if(leftflag || (randnum > 150) && (!rightflag))
     {
       leftflag=true;
       TurnLeft();   
@@ -141,13 +150,14 @@ void IrProcess()
   {
     return;
   }
-  switch(irRead)
+      switch(irRead)
   {
     case IR_BUTTON_PLUS: 
       Forward();
       break;
     case IR_BUTTON_MINUS:
       Backward();
+      maintainMode = false;
       break;
     case IR_BUTTON_NEXT:
       TurnRight();
@@ -182,8 +192,20 @@ void IrProcess()
     case IR_BUTTON_1:
       ChangeSpeed(factor*1+minSpeed);
       break;
+    case IR_BUTTON_E:
+      maintainMode = !maintainMode;
+      
+      //eat long press input
+      while(infraredReceiverDecode.buttonState() != 0)
+      {
+        infraredReceiverDecode.loop();
+      }
+      starter_mode = 0;
+      break;  
     case IR_BUTTON_TEST:
       Stop();
+      
+      //eat long press input
       while(infraredReceiverDecode.buttonState() != 0)
       {
         infraredReceiverDecode.loop();
@@ -195,7 +217,14 @@ void IrProcess()
       }
       break;
     default:
-      Stop();
+      if(!maintainMode)
+        {
+          Stop();
+        }
+        else
+        {
+          Forward();
+        }
       break;
   }
 }
@@ -213,6 +242,7 @@ void setup(){
   infraredReceiverDecode.begin();
   leftflag=false;
   rightflag=false;
+  maintainMode=false;
   randomSeed(analogRead(0));
   Stop();
   Serial.print("Version: ");
@@ -222,6 +252,7 @@ void loop(){
   IrProcess();
   if(starter_mode == 1)
   {
+    maintainMode = false;
     ultrCarProcess();    
   }
 }
