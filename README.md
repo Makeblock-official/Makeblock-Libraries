@@ -6,7 +6,7 @@ Arduino Library for Makeblock Electronic Modules
 
 1. Download the source from the git https://github.com/Makeblock-official/Makeblock-Libraries
 
-2. copy the makeblock folder to your arduino default library. Your Arduino library folder should now look like thisasd  
+2. copy the makeblock folder to your arduino default library. Your Arduino library folder should now look like this  
    (on Windows): [arduino installation directory]\libraries\makeblock\src  
    (on MACOS): [arduino Package Contents]\contents\Jave\libraries\makeblock\src
 
