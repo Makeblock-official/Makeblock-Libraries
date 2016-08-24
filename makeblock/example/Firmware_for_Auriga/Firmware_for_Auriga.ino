@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.011
-* Date               : 08/10/2016
+* Version            : V09.01.012
+* Date               : 08/22/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -20,7 +20,8 @@
 * Mark Yan         2016/07/06     09.01.008        Fix issue MBLOCK-61(ultrasonic distance limitations bug).
 * Mark Yan         2016/07/27     09.01.009        Add position parameters for encoder motor,fix issue MBLOCK-77.
 * Mark Yan         2016/08/01     0e.01.010        Fix issue MBLOCK-109 MBLOCK-110(encoder motor exception handling negative).
-* Mark Yan         2016/08/10     0e.01.011        Fix issue MBLOCK-128(ext encoder motor led to reset), MBLOCK-128.
+* Mark Yan         2016/08/10     0e.01.011        Fix issue MBLOCK-128(ext encoder motor led to reset).
+* Mark Yan         2016/08/24     0e.01.012        Fix issue MBLOCK-171(Stepper online execution slow), MBLOCK-189(on board encoder motor reset issue).
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -149,6 +150,7 @@ float dt;
 
 long lasttime_angle = 0;
 long lasttime_speed = 0;
+long update_sensor = 0;
 long blink_time = 0;
 long lasttime_receive_cmd = 0;
 long last_Pulse_pos_encoder1 = 0;
@@ -163,7 +165,7 @@ boolean move_flag = false;
 boolean boot_show_flag = true;
 boolean blink_flag = false;
 
-String mVersion = "09.01.011";
+String mVersion = "09.01.012";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
@@ -240,7 +242,6 @@ typedef struct
 } PID;
 
 PID  PID_angle, PID_speed, PID_turn;
-PID  PID_speed_left, PID_speed_right;
 
 /**
  * \par Function
@@ -812,12 +813,22 @@ void parseData(void)
     case RESET:
       {
         //reset
-        Encoder_1.setMotorPwm(0);
-        Encoder_2.setMotorPwm(0);
+        /* Off on-Board LED lights */
+        buzzer.setpin(BUZZER_PORT);
+        led.setColor(0,0,0,0);
+        led.show();
+
+        /* reset On-Board encoder driver */
         Encoder_1.setPulsePos(0);
         Encoder_2.setPulsePos(0);
-        PID_speed_left.Setpoint = 0;
-        PID_speed_right.Setpoint = 0;
+        Encoder_1.moveTo(0,10);
+        Encoder_2.moveTo(0,10);
+        Encoder_1.setMotorPwm(0);
+        Encoder_2.setMotorPwm(0);
+        Encoder_1.setMotionMode(DIRECT_MODE);
+        Encoder_2.setMotionMode(DIRECT_MODE);
+
+        /* reset dc motor on driver port */
         dc.reset(PORT_1);
         dc.run(0);
         dc.reset(PORT_2);
@@ -826,8 +837,21 @@ void parseData(void)
         dc.run(0);
         dc.reset(PORT_4);
         dc.run(0);
+
+        /* reset ext encoder driver */
         encoders[0].runSpeed(0);
         encoders[1].runSpeed(0);
+
+        /* reset stepper motor driver */
+        steppers[0].setCurrentPosition(0);
+        steppers[1].setCurrentPosition(0);
+        steppers[2].setCurrentPosition(0);
+        steppers[3].setCurrentPosition(0);
+        steppers[0].moveTo(0);
+        steppers[1].moveTo(0);
+        steppers[2].moveTo(0);
+        steppers[3].moveTo(0);
+
         callOK();
       }
       break;
@@ -2741,8 +2765,6 @@ void setup()
   delay(5);
   attachInterrupt(Encoder_1.getIntNum(), isr_process_encoder1, RISING);
   attachInterrupt(Encoder_2.getIntNum(), isr_process_encoder2, RISING);
-  PID_speed_left.Setpoint = 0;
-  PID_speed_right.Setpoint = 0;
   led.setpin(RGBLED_PORT);
   buzzer.setpin(BUZZER_PORT);
   led.setColor(0,0,0,0);
@@ -2814,8 +2836,8 @@ void setup()
   PID_speed.P = -0.1;        // -0.1
   PID_speed.I = -0.008;      // -0.008
   readEEPROM();
-//  auriga_mode = AUTOMATIC_OBSTACLE_AVOIDANCE_MODE;
-  lasttime_speed = lasttime_angle = millis();
+//  auriga_mode = BALANCED_MODE;
+  update_sensor = lasttime_speed = lasttime_angle = millis();
   blink_time = millis();
 }
 
@@ -2912,8 +2934,6 @@ void loop()
     }
     readSerial();
   }
-  gyro.fast_update();
-  gyro_ext.update();
   if(Compass.getPort() != 0)
   {
     Compass.getAngle();
@@ -2922,7 +2942,12 @@ void loop()
 
   if(auriga_mode == BLUETOOTH_MODE)
   {
-
+    if(millis() - update_sensor > 10)
+    {
+      update_sensor = millis();
+      gyro.fast_update();
+      gyro_ext.update();
+    }
   }
   else if(auriga_mode == AUTOMATIC_OBSTACLE_AVOIDANCE_MODE)
   { 
@@ -2932,6 +2957,7 @@ void loop()
   }
   else if(auriga_mode == BALANCED_MODE)
   { 
+    gyro.fast_update();
     Encoder_1.setMotionMode(DIRECT_MODE);
     Encoder_2.setMotionMode(DIRECT_MODE);
     balanced_model();

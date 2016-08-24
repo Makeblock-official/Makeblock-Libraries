@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_MegaPi.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V0e.01.011
-* Date               : 08/10/2016
+* Version            : V0e.01.012
+* Date               : 08/22/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -21,6 +21,7 @@
 * Mark Yan         2016/07/27     0e.01.009        Add position parameters for encoder motor,fix issue MBLOCK-77.
 * Mark Yan         2016/08/01     0e.01.010        Fix issue MBLOCK-109 MBLOCK-110(encoder motor exception handling negative).
 * Mark Yan         2016/08/10     0e.01.011        Fix issue MBLOCK-126(on board encoder motor speed symbol).
+* Mark Yan         2016/08/24     0e.01.012        Fix issue MBLOCK-171(Stepper online execution slow), MBLOCK-189(on board encoder motor reset issue).
 **************************************************************************/
 #include <Arduino.h>
 #include <MeMegaPi.h>
@@ -154,6 +155,7 @@ float dt;
 
 long lasttime_angle = 0;
 long lasttime_speed = 0;
+long update_sensor = 0;
 long blink_time = 0;
 long last_Pulse_pos_encoder1 = 0;
 long last_Pulse_pos_encoder2 = 0;
@@ -166,7 +168,7 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0e.01.011";
+String mVersion = "0e.01.012";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
 #define PWM_MIN_OFFSET   0
@@ -242,7 +244,6 @@ typedef struct
 } PID;
 
 PID  PID_angle, PID_speed, PID_turn;
-PID  PID_speed_left, PID_speed_right;
 
 /**
  * \par Function
@@ -926,24 +927,56 @@ void parseData(void)
     case RESET:
       {
         //reset
-        Encoder_1.setMotorPwm(0);
-        Encoder_2.setMotorPwm(0);
-        Encoder_3.setMotorPwm(0);
-        Encoder_4.setMotorPwm(0);
+        /* reset On-Board encoder driver */
         Encoder_1.setPulsePos(0);
         Encoder_2.setPulsePos(0);
         Encoder_3.setPulsePos(0);
         Encoder_4.setPulsePos(0);
-        PID_speed_left.Setpoint = 0;
-        PID_speed_right.Setpoint = 0;
-        dc.reset(PORT_1);
+        Encoder_1.moveTo(0,10);
+        Encoder_2.moveTo(0,10);
+        Encoder_3.moveTo(0,10);
+        Encoder_4.moveTo(0,10);
+        Encoder_1.setMotorPwm(0);
+        Encoder_2.setMotorPwm(0);
+        Encoder_3.setMotorPwm(0);
+        Encoder_4.setMotorPwm(0);
+        Encoder_1.setMotionMode(DIRECT_MODE);
+        Encoder_2.setMotionMode(DIRECT_MODE);
+        Encoder_3.setMotionMode(DIRECT_MODE);
+        Encoder_4.setMotionMode(DIRECT_MODE);
+
+        /* reset dc motor on driver port */
+        dc.reset(PORT1A);
         dc.run(0);
-        dc.reset(PORT_2);
+        dc.reset(PORT1B);
         dc.run(0);
-        dc.reset(PORT_3);
+        dc.reset(PORT2A);
         dc.run(0);
-        dc.reset(PORT_4);
+        dc.reset(PORT2B);
         dc.run(0);
+        dc.reset(PORT3A);
+        dc.run(0);
+        dc.reset(PORT3B);
+        dc.run(0);
+        dc.reset(PORT4A);
+        dc.run(0);
+        dc.reset(PORT4B);
+        dc.run(0);
+
+        /* reset stepper motor driver */
+        steppers[0].setCurrentPosition(0);
+        steppers[1].setCurrentPosition(0);
+        steppers[2].setCurrentPosition(0);
+        steppers[3].setCurrentPosition(0);
+        steppers[0].moveTo(0);
+        steppers[1].moveTo(0);
+        steppers[2].moveTo(0);
+        steppers[3].moveTo(0);
+        steppers[0].disableOutputs();
+        steppers[1].disableOutputs();
+        steppers[2].disableOutputs();
+        steppers[3].disableOutputs();
+
         callOK();
       }
       break;
@@ -2644,8 +2677,6 @@ void setup()
   attachInterrupt(Encoder_2.getIntNum(), isr_process_encoder2, RISING);
   attachInterrupt(Encoder_3.getIntNum(), isr_process_encoder3, RISING);
   attachInterrupt(Encoder_4.getIntNum(), isr_process_encoder4, RISING);
-  PID_speed_left.Setpoint = 0;
-  PID_speed_right.Setpoint = 0;
   Serial.begin(115200);
   Serial2.begin(115200);
   Serial3.begin(115200);
@@ -2693,7 +2724,7 @@ void setup()
   //megapi_mode = BALANCED_MODE;
   Serial.print("Version: ");
   Serial.println(mVersion);
-  lasttime_speed = lasttime_angle = millis();
+  update_sensor = lasttime_speed = lasttime_angle = millis();
   blink_time = millis();
 }
 
@@ -2806,7 +2837,6 @@ void loop()
     readSerial();
   }
 
-  gyro_ext.fast_update();
   if(Compass.getPort() != 0)
   {
     Compass.getAngle();
@@ -2814,7 +2844,11 @@ void loop()
   angle_speed = gyro_ext.getGyroY();
   if(megapi_mode == BLUETOOTH_MODE)
   {
-
+    if(millis() - update_sensor > 10)
+    {
+      update_sensor = millis();
+      gyro_ext.fast_update();
+    }
   }
   else if(megapi_mode == AUTOMATIC_OBSTACLE_AVOIDANCE_MODE)
   { 
@@ -2822,6 +2856,7 @@ void loop()
   }
   else if(megapi_mode == BALANCED_MODE)
   {
+    gyro_ext.fast_update();
     balanced_model();
   }
   else if(megapi_mode == LINE_FOLLOW_MODE)
