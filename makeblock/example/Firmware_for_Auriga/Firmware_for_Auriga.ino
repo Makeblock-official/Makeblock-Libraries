@@ -19,9 +19,9 @@
 * Mark Yan         2016/06/25     09.01.007        Fix issue MBLOCK-38(limit switch return value).
 * Mark Yan         2016/07/06     09.01.008        Fix issue MBLOCK-61(ultrasonic distance limitations bug).
 * Mark Yan         2016/07/27     09.01.009        Add position parameters for encoder motor,fix issue MBLOCK-77.
-* Mark Yan         2016/08/01     0e.01.010        Fix issue MBLOCK-109 MBLOCK-110(encoder motor exception handling negative).
-* Mark Yan         2016/08/10     0e.01.011        Fix issue MBLOCK-128(ext encoder motor led to reset).
-* Mark Yan         2016/08/24     0e.01.012        Fix issue MBLOCK-171(Stepper online execution slow), MBLOCK-189(on board encoder motor reset issue).
+* Mark Yan         2016/08/01     09.01.010        Fix issue MBLOCK-109 MBLOCK-110(encoder motor exception handling negative).
+* Mark Yan         2016/08/10     09.01.011        Fix issue MBLOCK-128(ext encoder motor led to reset).
+* Mark Yan         2016/08/24     09.01.012        Fix issue MBLOCK-171(Stepper online execution slow), MBLOCK-189(on board encoder motor reset issue).
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
