@@ -37,16 +37,21 @@
  *    10. boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed);
  *    11. boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed);
  *    12. boolean MeSmartServo::setZero(uint8_t dev_id);
- *    13. long MeSmartServo::getAngleRequest(uint8_t devId);
- *    14. float MeSmartServo::getSpeedRequest(uint8_t devId);
- *    16. float MeSmartServo::getVoltageRequest(uint8_t devId);
- *    17. float MeSmartServo::getTempRequest(uint8_t devId);
- *    18. float MeSmartServo::getCurrentRequest(uint8_t devId);
- *    19. void MeSmartServo::assignDevIdResponse(void *arg);
- *    20. void MeSmartServo::processSysexMessage(void);
- *    21. void MeSmartServo::smartServoEventHandle(void);
- *    22. void MeSmartServo::errorCodeCheckResponse(void *arg);
- *    23. void MeSmartServo::smartServoCmdResponse(void *arg);
+ *    13. boolean MeSmartServo::setBreak(uint8_t dev_id, uint8_t breakStatus);
+ *    14. boolean MeSmartServo::setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value, uint8_t b_value);
+ *    15. boolean MeSmartServo::handSharke(uint8_t dev_id);
+ *    16. boolean MeSmartServo::setPwmMove(uint8_t dev_id, int16_t pwm_value);
+ *    17. boolean MeSmartServo::setInitAngle(uint8_t dev_id);
+ *    18. long MeSmartServo::getAngleRequest(uint8_t devId);
+ *    19. float MeSmartServo::getSpeedRequest(uint8_t devId);
+ *    20. float MeSmartServo::getVoltageRequest(uint8_t devId);
+ *    21. float MeSmartServo::getTempRequest(uint8_t devId);
+ *    22. float MeSmartServo::getCurrentRequest(uint8_t devId);
+ *    23. void MeSmartServo::assignDevIdResponse(void *arg);
+ *    24. void MeSmartServo::processSysexMessage(void);
+ *    25. void MeSmartServo::smartServoEventHandle(void);
+ *    26. void MeSmartServo::errorCodeCheckResponse(void *arg);
+ *    27. void MeSmartServo::smartServoCmdResponse(void *arg);
  *
  * \par History:
  * <pre>
@@ -120,11 +125,6 @@
 #define WRONG_TYPE_OF_SERVICE   0x12
 
 #define DEFAULT_UART_BUF_SIZE      64
-
-extern "C" {
-  // callback function types
-  typedef void (*callbackFunction)(void *arg);
-}
 
 typedef struct{
   uint8_t dev_id;
@@ -426,6 +426,96 @@ public:
  *   None
  */
   boolean setZero(uint8_t dev_id);
+
+/**
+ * \par Function
+ *   setBreak
+ * \par Description
+ *   set smart servo break status.
+ * \param[in]
+ *    dev_id - the device id of servo that we want to set.
+ * \param[in]
+ *    breakStatus - the break status of servo.
+ * \par Output
+ *   None
+ * \return
+ *   If the assignment is successful, return true. 
+ * \par Others
+ *   None
+ */
+  boolean setBreak(uint8_t dev_id, uint8_t breakStatus);
+
+/**
+ * \par Function
+ *   setRGBLed
+ * \par Description
+ *   set the color of smart servo's RGB LED.
+ * \param[in]
+ *    dev_id - the device id of servo that we want to set.
+ * \param[in]
+ *    r_value - Red component.
+ * \param[in]
+ *    g_value - green component.
+ * \param[in]
+ *    B_value - Blue component.
+ * \par Output
+ *   None
+ * \return
+ *   If the assignment is successful, return true. 
+ * \par Others
+ *   None
+ */
+  boolean setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value, uint8_t b_value);
+
+/**
+ * \par Function
+ *   handSharke
+ * \par Description
+ *   This function is used MCU and servo handshake.
+ * \param[in]
+ *    dev_id - the device id of servo that we want to handsharke.
+ * \par Output
+ *   None
+ * \return
+ *   If the assignment is successful, return true. 
+ * \par Others
+ *   None
+ */
+  boolean handSharke(uint8_t dev_id);
+
+/**
+ * \par Function
+ *   setPwmMove
+ * \par Description
+ *   This function is used to set the pwm motion of smart servo.
+ * \param[in]
+ *    dev_id - the device id of servo that we want to set.
+ * \param[in]
+ *    pwm_value - the pwm value we wan't set the servo motor.
+ * \par Output
+ *   None
+ * \return
+ *   If the assignment is successful, return true. 
+ * \par Others
+ *   None
+ */
+  boolean setPwmMove(uint8_t dev_id, int16_t pwm_value);
+
+/**
+ * \par Function
+ *   setInitAngle
+ * \par Description
+ *   This function is used to move smart servo to its 0 degrees.
+ * \param[in]
+ *    dev_id - the device id of servo that we want to set.
+ * \par Output
+ *   None
+ * \return
+ *   If the assignment is successful, return true. 
+ * \par Others
+ *   None
+ */
+  boolean setInitAngle(uint8_t dev_id);
 
 /**
  * \par Function

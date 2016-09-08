@@ -38,16 +38,21 @@
  *    10. boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed);
  *    11. boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed);
  *    12. boolean MeSmartServo::setZero(uint8_t dev_id);
- *    13. long MeSmartServo::getAngleRequest(uint8_t devId);
- *    14. float MeSmartServo::getSpeedRequest(uint8_t devId);
- *    16. float MeSmartServo::getVoltageRequest(uint8_t devId);
- *    17. float MeSmartServo::getTempRequest(uint8_t devId);
- *    18. float MeSmartServo::getCurrentRequest(uint8_t devId);
- *    19. void MeSmartServo::assignDevIdResponse(void *arg);
- *    20. void MeSmartServo::processSysexMessage(void);
- *    21. void MeSmartServo::smartServoEventHandle(void);
- *    22. void MeSmartServo::errorCodeCheckResponse(void *arg);
- *    23. void MeSmartServo::smartServoCmdResponse(void *arg);
+ *    13. boolean MeSmartServo::setBreak(uint8_t dev_id, uint8_t breakStatus);
+ *    14. boolean MeSmartServo::setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value, uint8_t b_value);
+ *    15. boolean MeSmartServo::handSharke(uint8_t dev_id);
+ *    16. boolean MeSmartServo::setPwmMove(uint8_t dev_id, int16_t pwm_value);
+ *    17. boolean MeSmartServo::setInitAngle(uint8_t dev_id);
+ *    18. long MeSmartServo::getAngleRequest(uint8_t devId);
+ *    19. float MeSmartServo::getSpeedRequest(uint8_t devId);
+ *    20. float MeSmartServo::getVoltageRequest(uint8_t devId);
+ *    21. float MeSmartServo::getTempRequest(uint8_t devId);
+ *    22. float MeSmartServo::getCurrentRequest(uint8_t devId);
+ *    23. void MeSmartServo::assignDevIdResponse(void *arg);
+ *    24. void MeSmartServo::processSysexMessage(void);
+ *    25. void MeSmartServo::smartServoEventHandle(void);
+ *    26. void MeSmartServo::errorCodeCheckResponse(void *arg);
+ *    27. void MeSmartServo::smartServoCmdResponse(void *arg);
  *
  * \par History:
  * <pre>
@@ -544,6 +549,216 @@ boolean MeSmartServo::setZero(uint8_t dev_id)
 
 /**
  * \par Function
+ *   setBreak
+ * \par Description
+ *   set smart servo break status.
+ * \param[in]
+ *    dev_id - the device id of servo that we want to set.
+ * \param[in]
+ *    breakStatus - the break status of servo.
+ * \par Output
+ *   None
+ * \return
+ *   If the assignment is successful, return true. 
+ * \par Others
+ *   None
+ */
+boolean MeSmartServo::setBreak(uint8_t dev_id, uint8_t breakStatus)
+{
+  uint8_t checksum;
+  write(START_SYSEX);
+  write(dev_id);
+  write(SMART_SERVO);
+  write(SET_SERVO_BREAK);
+  write(breakStatus);
+  checksum = (dev_id + SMART_SERVO + SET_SERVO_BREAK + breakStatus);
+  write(checksum); 
+  write(END_SYSEX);
+  resFlag &= 0xbf;
+  cmdTimeOutValue = millis();
+  while((resFlag & 0x40) != 0x40)
+  {
+    smartServoEventHandle();
+    if(millis() - cmdTimeOutValue > 2000)
+    {
+      resFlag &= 0xbf;
+      return false;
+    }
+  }
+  resFlag &= 0xbf;
+  return true;
+}
+
+/**
+ * \par Function
+ *   setRGBLed
+ * \par Description
+ *   set the color of smart servo's RGB LED.
+ * \param[in]
+ *    dev_id - the device id of servo that we want to set.
+ * \param[in]
+ *    r_value - Red component.
+ * \param[in]
+ *    g_value - green component.
+ * \param[in]
+ *    B_value - Blue component.
+ * \par Output
+ *   None
+ * \return
+ *   If the assignment is successful, return true. 
+ * \par Others
+ *   None
+ */
+boolean MeSmartServo::setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value, uint8_t b_value)
+{
+  uint8_t checksum;
+  write(START_SYSEX);
+  write(dev_id);
+  write(SMART_SERVO);
+  write(SET_SERVO_RGB_LED);
+  checksum = (dev_id + SMART_SERVO + SET_SERVO_RGB_LED);
+  checksum += sendByte(r_value);
+  checksum += sendByte(g_value);
+  checksum += sendByte(b_value);
+  write(checksum); 
+  write(END_SYSEX);
+  resFlag &= 0xbf;
+  cmdTimeOutValue = millis();
+  while((resFlag & 0x40) != 0x40)
+  {
+    smartServoEventHandle();
+    if(millis() - cmdTimeOutValue > 2000)
+    {
+      resFlag &= 0xbf;
+      return false;
+    }
+  }
+  resFlag &= 0xbf;
+  return true;
+}
+
+/**
+ * \par Function
+ *   handSharke
+ * \par Description
+ *   This function is used MCU and servo handshake.
+ * \param[in]
+ *    dev_id - the device id of servo that we want to handsharke.
+ * \par Output
+ *   None
+ * \return
+ *   If the assignment is successful, return true. 
+ * \par Others
+ *   None
+ */
+boolean MeSmartServo::handSharke(uint8_t dev_id)
+{
+  uint8_t checksum;
+  write(START_SYSEX);
+  write(dev_id);
+  write(SMART_SERVO);
+  write(SERVO_SHARKE_HAND);
+  checksum = (dev_id + SMART_SERVO + SERVO_SHARKE_HAND);
+  write(checksum); 
+  write(END_SYSEX);
+  resFlag &= 0xbf;
+  cmdTimeOutValue = millis();
+  while((resFlag & 0x40) != 0x40)
+  {
+    smartServoEventHandle();
+    if(millis() - cmdTimeOutValue > 2000)
+    {
+      resFlag &= 0xbf;
+      return false;
+    }
+  }
+  resFlag &= 0xbf;
+  return true;
+}
+
+/**
+ * \par Function
+ *   setPwmMove
+ * \par Description
+ *   This function is used to set the pwm motion of smart servo.
+ * \param[in]
+ *    dev_id - the device id of servo that we want to set.
+ * \param[in]
+ *    pwm_value - the pwm value we wan't set the servo motor.
+ * \par Output
+ *   None
+ * \return
+ *   If the assignment is successful, return true. 
+ * \par Others
+ *   None
+ */
+boolean MeSmartServo::setPwmMove(uint8_t dev_id, int16_t pwm_value)
+{
+  uint8_t checksum;
+  write(START_SYSEX);
+  write(dev_id);
+  write(SMART_SERVO);
+  write(SET_SERVO_PWM_MOVE);
+  checksum = (dev_id + SMART_SERVO + SET_SERVO_PWM_MOVE);
+  checksum += sendShort(pwm_value,false);
+  write(checksum); 
+  write(END_SYSEX);
+  resFlag &= 0xbf;
+  cmdTimeOutValue = millis();
+  while((resFlag & 0x40) != 0x40)
+  {
+    smartServoEventHandle();
+    if(millis() - cmdTimeOutValue > 2000)
+    {
+      resFlag &= 0xbf;
+      return false;
+    }
+  }
+  resFlag &= 0xbf;
+  return true;
+}
+
+/**
+ * \par Function
+ *   setInitAngle
+ * \par Description
+ *   This function is used to move smart servo to its 0 degrees.
+ * \param[in]
+ *    dev_id - the device id of servo that we want to set.
+ * \par Output
+ *   None
+ * \return
+ *   If the assignment is successful, return true. 
+ * \par Others
+ *   None
+ */
+boolean MeSmartServo::setInitAngle(uint8_t dev_id)
+{
+  uint8_t checksum;
+  write(START_SYSEX);
+  write(dev_id);
+  write(SMART_SERVO);
+  write(SET_SERVO_INIT_ANGLE);
+  checksum = (dev_id + SMART_SERVO + SET_SERVO_INIT_ANGLE);
+  write(checksum); 
+  write(END_SYSEX);
+  resFlag &= 0xbf;
+  cmdTimeOutValue = millis();
+  while((resFlag & 0x40) != 0x40)
+  {
+    smartServoEventHandle();
+    if(millis() - cmdTimeOutValue > 2000)
+    {
+      resFlag &= 0xbf;
+      return false;
+    }
+  }
+  resFlag &= 0xbf;
+  return true;
+}
+
+/**
+ * \par Function
  *   getAngleRequest
  * \par Description
  *   This function used to get the smart servo's angle.
@@ -869,7 +1084,7 @@ void MeSmartServo::errorCodeCheckResponse(void *arg)
   if(ServiceId == CTL_ERROR_CODE)
   {
     errorcode = sysex.val.value[0];
-	resFlag |= 0x40;
+    resFlag |= 0x40;
   }
 }
 
@@ -900,7 +1115,7 @@ void MeSmartServo::smartServoCmdResponse(void *arg)
   {
     case GET_SERVO_CUR_ANGLE:
       angle_v = readLong(sysex.val.value,1);
-	  servo_dev_list[sysex.val.dev_id - 1].angleValue = angle_v;
+      servo_dev_list[sysex.val.dev_id - 1].angleValue = angle_v;
       resFlag |= 0x02;
       break;
     case GET_SERVO_SPEED:
