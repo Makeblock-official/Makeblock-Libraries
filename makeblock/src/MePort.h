@@ -4,8 +4,8 @@
  * \brief   Port Mapping for RJ25
  * @file    MePort.h
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2015/09/09
+ * @version V1.0.2
+ * @date    2016/09/18
  * @brief   Header for MePort.cpp module
  *
  * \par Copyright
@@ -49,6 +49,7 @@
  * `<Author>`         `<Time>`        `<Version>`         `<Descr>`
  * Mark Yan         2015/09/01          1.0.0            Rebuild the old lib.
  * Lawrence         2015/09/09          1.0.1            Add a input parameter of function dRead1 and dRead2.
+ * Scott wang       2016/09/18          1.0.2            Add the PORT[15].
  * </pre>
  */
 #ifndef MEPORT_H_
@@ -71,7 +72,7 @@ typedef struct
   uint8_t s2;
 } MePort_Sig;
 
-extern MePort_Sig mePort[15];  // mePort[0] is nonsense
+extern MePort_Sig mePort[16];  // mePort[0] is nonsense
 
 #define NC (0)  //use UART RX for NULL port
 
@@ -91,6 +92,7 @@ extern MePort_Sig mePort[15];  // mePort[0] is nonsense
 #define PORT_12 (0x0c)
 #define PORT_13 (0x0d)
 #define PORT_14 (0x0e)
+#define PORT_15 (0x0f)
 
 #ifdef MeMbot_H
 #define PORT_RGB           (0x05)

@@ -3,8 +3,8 @@
  * \brief   Driver for BaseBoard.
  * \file    MeBaseBoard.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/01
+ * @version V1.0.1
+ * @date    2016/09/18
  * @brief   Driver for BaseBoard.
  *
  * \par Copyright
@@ -26,7 +26,8 @@
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * Mark Yan         2015/09/01     1.0.0            Rebuild the old lib.
+ * Mark Yan         2015/09/01         1.0.0            Rebuild the old lib.
+ * Scott wang       2016/09/18         1.0.1            Add the PORT[15].
  * </pre>
  */
 #ifndef MeBaseBoard_H
@@ -68,11 +69,12 @@
 #include "MeGasSensor.h"
 
 /*********************  base Board GPIO Map *********************************/
-MePort_Sig mePort[15] =
+MePort_Sig mePort[16] =
 {
   {   NC,  NC }, { 11, A8 }, { 13, A11 }, { A10, A9 }, {  1,  0 },
   { MISO, SCK }, { A0, A1 }, { A2,  A3 }, {  A4, A5 }, {  6,  7 },
   {    5,   4 }, { NC, NC }, { NC,  NC }, {  NC, NC }, { NC, NC },
+  { NC, NC },
 };
 
 #define buzzerOn()  DDRE |= 0x04,PORTE |= B00000100

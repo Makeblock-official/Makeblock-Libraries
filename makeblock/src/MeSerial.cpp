@@ -4,7 +4,7 @@
  * \brief   Driver for serial.
  * @file    MeSerial.cpp
  * @author  MakeBlock
- * @version V1.0.1
+ * @version V1.0.2
  * @date    2016/01/20
  * @brief   this file is a drive for serial
  *
@@ -40,6 +40,7 @@
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/08     1.0.0            Rebuild the old lib.
  * Mark Yan         2016/01/20     1.0.1            support arduino pin-setting.
+ * Scott wang       2016/09/18     1.0.2            support the ATmega2560  Serial3 setting.
  * </pre>
  * @example MeSerialReceiveTest.ino
  * @example MeSerialTransmitTest.ino
@@ -78,6 +79,8 @@ MeSerial::MeSerial(uint8_t port) : MePort(port), SoftwareSerial(mePort[port].s2,
   //_polling = getPort() > PORT_5;
    _polling = false;
   _hard = getPort() == PORT_4;
+#elif defined(__AVR_ATmega2560__)
+  _hard = (getPort() == PORT_5) | (getPort() == PORT_15);
 #else
   _hard = getPort() == PORT_5;
 #endif
@@ -166,7 +169,14 @@ void MeSerial::begin(long baudrate)
 #if defined(__AVR_ATmega32U4__)
     _scratch ? Serial.begin(baudrate) : Serial1.begin(baudrate);
 #elif defined(__AVR_ATmega2560__)
-    Serial2.begin(baudrate);
+    if (getPort() == PORT_15)
+    {
+      Serial3.begin(baudrate);
+    }
+    else
+    {
+      Serial2.begin(baudrate);
+    }
 #else
     Serial.begin(baudrate);
 #endif
@@ -196,7 +206,14 @@ void MeSerial::end(void)
 #if defined(__AVR_ATmega32U4__)
     Serial1.end();
 #elif defined(__AVR_ATmega2560__)
-    Serial2.end();
+    if (getPort() == PORT_15)
+    {
+      Serial3.end();
+    }
+    else
+    {
+      Serial2.end();
+    }
 #else
     Serial.end();
 #endif
@@ -228,7 +245,14 @@ size_t MeSerial::write(uint8_t byte)
 #if defined(__AVR_ATmega32U4__)
     return (_scratch ? Serial.write(byte) : Serial1.write(byte) );
 #elif defined(__AVR_ATmega2560__)
-    return (Serial2.write(byte) );
+    if (getPort() == PORT_15)
+    {
+      return (Serial3.write(byte) );
+    }
+    else
+    {
+      return (Serial2.write(byte) );
+    }
 #else
     return (Serial.write(byte) );
 #endif
@@ -266,7 +290,14 @@ int16_t MeSerial::read(void)
 #if defined(__AVR_ATmega32U4__)
     return (_scratch ? Serial.read() : Serial1.read() );
 #elif defined(__AVR_ATmega2560__)
-    return (Serial2.read() );
+    if (getPort() == PORT_15)
+    {
+      return (Serial3.read() );
+    }
+    else
+    {
+      return (Serial2.read() );
+    }
 #else
     return (Serial.read() );
 #endif
@@ -303,7 +334,14 @@ int16_t MeSerial::available(void)
 #if defined(__AVR_ATmega32U4__)
     return (_scratch ? Serial.available() : Serial1.available() );
 #elif defined(__AVR_ATmega2560__)
-    return (Serial2.available() );
+    if (getPort() == PORT_15)
+    {
+      return (Serial3.available() );
+    }
+    else
+    {
+      return (Serial2.available() );
+    }
 #else
     return (Serial.available() );
 #endif

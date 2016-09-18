@@ -3,8 +3,8 @@
  * \brief   Driver for mCore Board.
  * \file    MeMCore.h
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2015/11/09
+ * @version V1.0.2
+ * @date    2016/09/18
  * @brief   Driver for mCore Board.
  *
  * \par Copyright
@@ -26,8 +26,9 @@
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * Mark Yan         2015/09/01     1.0.0            Rebuild the old lib.
- * Mark Yan         2015/11/09     1.0.1            fix some comments error.
+ * Mark Yan         2015/09/01         1.0.0            Rebuild the old lib.
+ * Mark Yan         2015/11/09         1.0.1            fix some comments error.
+ * Scott wang       2016/09/18         1.0.2            Add the PORT[15].
  * </pre>
  */
 #ifndef MeMCore_H
@@ -70,11 +71,12 @@
 #include "MeGasSensor.h"
 
 /*********************  Mbot Board GPIO Map *********************************/
-MePort_Sig mePort[15] =
+MePort_Sig mePort[16] =
 {
   { NC, NC }, { 11, 12 }, {  9, 10 }, { A2, A3 }, { A0, A1 },
   { NC, NC }, {  8, A6 }, { A7, 13 }, {  8, A6 }, {  6,  7 },
   {  5,  4 }, { NC, NC }, { NC, NC }, { NC, NC }, { NC, NC },
+  { NC, NC },
 };
 #endif // MeMCore_H
 
