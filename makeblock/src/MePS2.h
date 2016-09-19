@@ -53,7 +53,7 @@
 #include "MePort.h"
 #endif 
 
-#define MePS2_RX 6		
+#define MePS2_RX 6
 #define MePS2_RY 8
 #define MePS2_LX 2
 #define MePS2_LY 4
@@ -83,9 +83,9 @@
  */
 #ifndef ME_PORT_DEFINED
   class MePS2
-#else	/* !ME_PORT_DEFINED */
+#else /* !ME_PORT_DEFINED */
   class MePS2 : public MeSerial
-#endif	/* !ME_PORT_DEFINED */
+#endif  /* !ME_PORT_DEFINED */
 
 {
 public:
@@ -106,7 +106,7 @@ public:
  *   port - RJ25 port from PORT_1 to M2
  */
   MePS2(uint8_t port);
-#else 	 // ME_PORT_DEFINED
+#else  // ME_PORT_DEFINED
 
 /**
  * Alternate Constructor which can call your own function to map the MePS2 to arduino port,
@@ -183,7 +183,7 @@ public:
  * \par Others
  *    None
  */
-  boolean MePS2::readjoystick(void);
+  boolean readjoystick(void);
 
 /**
  * \par Function
@@ -199,7 +199,7 @@ public:
  * \par Others
  *    None
  */
- int MePS2::MeAnalog(uint8_t button);
+  int16_t MeAnalog(uint8_t button);
 
 /**
  * \par Function
@@ -215,7 +215,7 @@ public:
  * \par Others
  *    None
  */
-  boolean MePS2::ButtonPressed(uint8_t button);
+  boolean ButtonPressed(uint8_t button);
 
 /**
  * \par Function
@@ -232,7 +232,7 @@ public:
  *    None
  */
   void MePS2::loop(void);
-	
+
 private:
   uint8_t _serialRead;
   uint8_t _dataLen;

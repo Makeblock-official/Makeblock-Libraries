@@ -54,7 +54,7 @@
  *   None
  */
 MePS2::MePS2() : MeSerial(0)
-{ 
+{
   _isReady = false;
   _isAvailable = false;
   _isStart = false;
@@ -69,7 +69,7 @@ MePS2::MePS2() : MeSerial(0)
  */
  MePS2::MePS2(uint8_t port) : MeSerial(port)
 {
-	_isReady = false;
+  _isReady = false;
   _isAvailable = false;
   _isStart = false;
   _lasttime = millis();
@@ -175,7 +175,7 @@ void MePS2::readSerial(void)
  *    None
  */
 boolean MePS2::readjoystick(void)
-{	
+{
   if(millis() - _lasttime > 100)
   {
     _isReady = false;
@@ -219,7 +219,7 @@ boolean MePS2::readjoystick(void)
        	return true;
       }
       else
-      {	
+      {
         _isStart = false;
         _index = 0;
         return false;
@@ -244,7 +244,7 @@ boolean MePS2::readjoystick(void)
  *    None
  */
 int MePS2::MeAnalog(uint8_t button)
-{	
+{
   if (!_isReady)
   {
     return (-999);
@@ -277,7 +277,7 @@ int MePS2::MeAnalog(uint8_t button)
  *    None
  */
 boolean MePS2::ButtonPressed(uint8_t button) 
-{	
+{
   return  ps2_data_list[button];
 }
 
@@ -298,7 +298,7 @@ boolean MePS2::ButtonPressed(uint8_t button)
 void MePS2::loop(void)
 {
   if (readjoystick() )
-  {	
+  {
     ps2_data_list[MePS2_LX] = buffer[2];
     ps2_data_list[MePS2_LY] = buffer[4];
     ps2_data_list[MePS2_RX] = buffer[6];
