@@ -231,7 +231,7 @@ public:
  * \par Others
  *    None
  */
-  void MePS2::loop(void);
+  void loop(void);
 
 private:
   uint8_t _serialRead;

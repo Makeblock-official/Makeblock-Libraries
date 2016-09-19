@@ -243,7 +243,7 @@ boolean MePS2::readjoystick(void)
  * \par Others
  *    None
  */
-int MePS2::MeAnalog(uint8_t button)
+int16_t MePS2::MeAnalog(uint8_t button)
 {
   if (!_isReady)
   {
