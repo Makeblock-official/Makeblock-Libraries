@@ -2,8 +2,8 @@
  * \par Copyright (C), 2012-2016, MakeBlock
  * @file    BuzzerTest.ino
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2016/09/18
+ * @version V1.0.1
+ * @date    2016/09/19
  * @brief   Description: this file is sample code for MePS2.
  *
  * Function List:
@@ -15,6 +15,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  *  Scott wang       2016/09/18          1.0.0         Build the lib.
+ *  Scott wang       2016/09/19          1.0.1       Revise the  remote sense.
  * </pre>
  */
 #include "MePS2.h"
@@ -91,23 +92,23 @@ void loop() {
   {
     Serial.println("MODE is pressed!");
   }
-
-  if( MePS2.MeAnalog(MePS2_RX) != ANALOG_ERROR)
+  
+  if( MePS2.MeAnalog(MePS2_RX) != ANALOG_ERROR &&  MePS2.MeAnalog(MePS2_RX))     
   {
     Serial.print("MePS2_RX value is: ");
     Serial.println(MePS2.MeAnalog(MePS2_RX),DEC);
   }   
-  if( MePS2.MeAnalog(MePS2_RY) != ANALOG_ERROR)
+  if( MePS2.MeAnalog(MePS2_RY) != ANALOG_ERROR &&  MePS2.MeAnalog(MePS2_RY))   
   {
     Serial.print("MePS2_RY value is: ");
     Serial.println(MePS2.MeAnalog(MePS2_RY),DEC);
   }
-  if( MePS2.MeAnalog(MePS2_LX) != ANALOG_ERROR)
+  if( MePS2.MeAnalog(MePS2_LX) != ANALOG_ERROR && MePS2.MeAnalog(MePS2_LX))     
   {
     Serial.print("MePS2_LX value is: ");
     Serial.println(MePS2.MeAnalog(MePS2_LX),DEC);
   }
-  if( MePS2.MeAnalog(MePS2_LY) != ANALOG_ERROR)
+  if( MePS2.MeAnalog(MePS2_LY) != ANALOG_ERROR && MePS2.MeAnalog(MePS2_LY))     
   {
     Serial.print("MePS2_LY value is: ");
     Serial.println(MePS2.MeAnalog(MePS2_LY),DEC);
