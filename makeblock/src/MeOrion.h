@@ -3,8 +3,8 @@
  * \brief   Driver for MeOrion board.
  * @file    MeOrion.h
  * @author  MakeBlock
- * @version V1.0.2
- * @date    2016/09/18
+ * @version V1.0.3
+ * @date    2016/09/20
  * @brief   Driver for MeOrion board.
  *
  * \par Copyright
@@ -28,6 +28,7 @@
  * Mark Yan         2015/09/01     1.0.0            Rebuild the old lib.
  * Rafael Lee       2015/09/02     1.0.1            Added some comments and macros.
  * Scott wang       2016/09/18     1.0.2            Add the PORT[15].
+ * Scott            2016/09/20     1.0.3            Add the PORT[16].
  * </pre>
  */
 #ifndef MeOrion_H
@@ -70,12 +71,12 @@
 
 /*********************  Orion Board GPIO Map *********************************/
 // struct defined in MePort.h
-MePort_Sig mePort[16] =
+MePort_Sig mePort[17] =
 {
   { NC, NC }, { 11, 10 }, {  3,  9 }, { 12, 13 }, {  8,  2 },
   { NC, NC }, { A2, A3 }, { A6, A1 }, { A7, A0 }, {  6,  7 },
   {  5,  4 }, { NC, NC }, { NC, NC }, { NC, NC }, { NC, NC },
-  { NC, NC },
+  { NC, NC },{ NC, NC },
 };
 
 #define buzzerOn()  pinMode(SCL,OUTPUT),digitalWrite(SCL, HIGH)

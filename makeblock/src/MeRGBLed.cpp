@@ -4,8 +4,8 @@
  * \brief   Driver for W2812 full-color LED.
  * @file    MeRGBLed.cpp
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/01
+ * @version V1.0.1
+ * @date    2016/09/20
  * @brief   Driver for W2812 full-color LED lights
  *
  * \par Copyright
@@ -41,6 +41,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/01     1.0.0            Rebuild the old lib.
+ * Scott            2016/9/20      1.0.1            Add a delay.
  * </pre>
  *
  * @example ColorLoopTest.ino
@@ -636,6 +637,7 @@ void MeRGBLed::rgbled_sendarray_mask(uint8_t *data, uint16_t datlen, uint8_t mas
 void MeRGBLed::show(void)
 {
   rgbled_sendarray_mask(pixels, 3 * count_led, pinMask, (uint8_t*)ws2812_port);
+  delay(1);
 }
 
 /**

@@ -4,8 +4,8 @@
  * \brief   Driver for serial.
  * @file    MeSerial.cpp
  * @author  MakeBlock
- * @version V1.0.2
- * @date    2016/01/20
+ * @version V1.0.3
+ * @date    2016/09/20
  * @brief   this file is a drive for serial
  *
  * \par Copyright
@@ -41,6 +41,7 @@
  * Mark Yan         2015/09/08     1.0.0            Rebuild the old lib.
  * Mark Yan         2016/01/20     1.0.1            support arduino pin-setting.
  * Scott wang       2016/09/18     1.0.2            support the ATmega2560  Serial3 setting.
+ * Scott            2016/09/20     1.0.3            support the Auriga Serial.
  * </pre>
  * @example MeSerialReceiveTest.ino
  * @example MeSerialTransmitTest.ino
@@ -80,7 +81,7 @@ MeSerial::MeSerial(uint8_t port) : MePort(port), SoftwareSerial(mePort[port].s2,
    _polling = false;
   _hard = getPort() == PORT_4;
 #elif defined(__AVR_ATmega2560__)
-  _hard = (getPort() == PORT_5) | (getPort() == PORT_15);
+  _hard = (getPort() == PORT_5) | (getPort() == PORT_15) | (getPort() == PORT_16);
 #else
   _hard = getPort() == PORT_5;
 #endif
@@ -173,6 +174,10 @@ void MeSerial::begin(long baudrate)
     {
       Serial3.begin(baudrate);
     }
+    else if (getPort() == PORT_16)
+    {
+      Serial.begin(baudrate);
+    }
     else
     {
       Serial2.begin(baudrate);
@@ -209,6 +214,10 @@ void MeSerial::end(void)
     if (getPort() == PORT_15)
     {
       Serial3.end();
+    }
+    else if (getPort() == PORT_16)
+    {
+      Serial.end();
     }
     else
     {
@@ -248,6 +257,10 @@ size_t MeSerial::write(uint8_t byte)
     if (getPort() == PORT_15)
     {
       return (Serial3.write(byte) );
+    }
+    else if (getPort() == PORT_16)
+    {
+      return (Serial.write(byte) );
     }
     else
     {
@@ -294,6 +307,10 @@ int16_t MeSerial::read(void)
     {
       return (Serial3.read() );
     }
+    else if(getPort() == PORT_16)
+    {
+      return (Serial.read() );
+    }
     else
     {
       return (Serial2.read() );
@@ -337,6 +354,10 @@ int16_t MeSerial::available(void)
     if (getPort() == PORT_15)
     {
       return (Serial3.available() );
+    }
+    else if(getPort() == PORT_16)
+    {
+      return (Serial.available() );
     }
     else
     {

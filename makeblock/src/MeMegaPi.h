@@ -3,8 +3,8 @@
  * \brief   Driver for MegaPi board.
  * @file    MeMegaPi.h
  * @author  MakeBlock
- * @version V1.0.2
- * @date    2016/09/18
+ * @version V1.0.3
+ * @date    2016/09/20
  * @brief   Driver for MegaPi board.
  *
  * \par Copyright
@@ -28,6 +28,7 @@
  * Mark Yan         2016/02/20     1.0.0            Build the New.
  * Mark Yan         2016/03/10     1.0.1            Port mapping changes.
  * Scott wang       2016/09/18     1.0.2            Add the PORT[15].
+ * Scott            2016/09/20     1.0.3            Add the PORT[16].
  * </pre>
  */
 #ifndef MeMegaPi_H
@@ -83,12 +84,12 @@
 #define PORT4A  PORT_4
 #define PORT4B  PORT_12
 
- MePort_Sig mePort[16] =
+ MePort_Sig mePort[17] =
  {
    { NC, NC }, {  NC,  NC }, {  NC,  NC }, {  NC,  NC }, {  NC,  NC }, 
    { 16, 17 }, {  A8,  A9 }, { A10, A11 }, { A13, A12 }, {  NC,  NC }, 
    { NC, NC }, {  NC,  NC }, {  NC,  NC }, {  NC,  NC }, {  NC,  NC },
-   { NC, NC },
+   { NC, NC },{ NC, NC },
  };
 
 Encoder_port_type encoder_Port[6] =

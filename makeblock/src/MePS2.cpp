@@ -4,8 +4,8 @@
  * \brief   Driver for MePS2 handle device.
  * @file    MePS2.cpp
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2016/09/18
+ * @version V1.0.1
+ * @date    2016/09/20
  * @brief   Driver for MePS2 device.
  *
  * \par Copyright
@@ -37,6 +37,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  *  Scott wang      2016/09/18         1.0.0            Build the new lib.
+ *  Scott           2016/09/20         1.0.1            Correct the receive error.
  * </pre>
  *
  * @example MePS2Test.ino
@@ -176,9 +177,14 @@ void MePS2::readSerial(void)
  */
 boolean MePS2::readjoystick(void)
 {
-  if(millis() - _lasttime > 100)
+  boolean result = false;
+  if(millis() - _lasttime > 200)
   {
     _isReady = false;
+    _isStart=false;
+    _prevc = 0x00;
+    buffer[2] = buffer[4] = buffer[6] =buffer[8] =0x80;
+    buffer[1] = buffer[3] = buffer[5] =buffer[7] =0x00;
   }
   readSerial();
   while(_isAvailable)
@@ -201,12 +207,14 @@ boolean MePS2::readjoystick(void)
       }
     }
     _index++;
-    if(_index > 12)
+    if((_isStart == false) && (_index > 12))
     {
       _index=0; 
       _isStart=false;
+      buffer[2] = buffer[4] = buffer[6] =buffer[8] =0x80;
+      buffer[1] = buffer[3] = buffer[5] =buffer[7] =0x00;
     }
-    if(_isStart && (_index > 9))
+    else if(_isStart && (_index > 9))
     {
       uint8_t checksum;
       checksum = buffer[2]+buffer[3]+buffer[4]+buffer[5]+buffer[6]+buffer[7]+buffer[8];
@@ -216,17 +224,20 @@ boolean MePS2::readjoystick(void)
         _isReady = true;
        	_isStart = false;
        	_index = 0;
-       	return true;
+       	result = true;
       }
       else
       {
         _isStart = false;
         _index = 0;
-        return false;
+        _prevc = 0x00;
+        _isStart=false;
+        result = false;
       }
     }
     readSerial();
    }
+   return result;
 }
 
 /**

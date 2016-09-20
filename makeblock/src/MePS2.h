@@ -240,7 +240,7 @@ private:
   uint8_t _prevc = 0;
   uint8_t buffer[16];
   uint8_t ps2_data_list[20];
-  double _lasttime;
+  long _lasttime;
 
   boolean _isStart;
   boolean _isAvailable;
