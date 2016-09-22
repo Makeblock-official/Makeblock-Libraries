@@ -38,6 +38,7 @@
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  *  Scott wang      2016/09/18         1.0.0            Build the new lib.
  *  Scott           2016/09/20         1.0.1            Correct the receive error.
+ *  Scott           2016/09/22         1.0.2            Correct the connect error.
  * </pre>
  *
  * @example MePS2Test.ino
@@ -189,6 +190,7 @@ boolean MePS2::readjoystick(void)
   readSerial();
   while(_isAvailable)
   {
+    _lasttime = millis();
     unsigned char c = _serialRead & 0xff;
     if((c == 0x55) && (_isStart == false))
     {
@@ -220,7 +222,6 @@ boolean MePS2::readjoystick(void)
       checksum = buffer[2]+buffer[3]+buffer[4]+buffer[5]+buffer[6]+buffer[7]+buffer[8];
       if(checksum == buffer[9])
       {
-        _lasttime = millis();
         _isReady = true;
        	_isStart = false;
        	_index = 0;
