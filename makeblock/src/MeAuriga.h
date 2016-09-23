@@ -3,8 +3,8 @@
  * \brief   Driver for MeAuriga board.
  * @file    MeAuriga.h
  * @author  MakeBlock
- * @version V1.0.3
- * @date    2016/09/20
+ * @version V1.0.4
+ * @date    2016/09/23
  * @brief   Driver for MeAuriga board.
  *
  * \par Copyright
@@ -29,6 +29,7 @@
  * Mark Yan         2016/02/20          1.0.1            Change the port enumeration
  * Scott wang       2016/09/18          1.0.2            Add the PORT[15].
  * Scott            2016/09/20          1.0.3            Add the PORT[16].
+ * Scott            2016/09/23          1.0.4            Add the MePS2.h .
  * </pre>
  */
 #ifndef MeAuriga_H
@@ -71,6 +72,7 @@
 #include "MeEncoderOnBoard.h"
 #include "MeOnBoardTemp.h"
 #include "MeSmartServo.h"
+#include "MePS2.h"
 
 /*********************  Auriga Board GPIO Map *********************************/
 // struct defined in MeAuriga.h

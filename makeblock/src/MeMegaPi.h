@@ -3,8 +3,8 @@
  * \brief   Driver for MegaPi board.
  * @file    MeMegaPi.h
  * @author  MakeBlock
- * @version V1.0.3
- * @date    2016/09/20
+ * @version V1.0.4
+ * @date    2016/09/23
  * @brief   Driver for MegaPi board.
  *
  * \par Copyright
@@ -29,6 +29,7 @@
  * Mark Yan         2016/03/10     1.0.1            Port mapping changes.
  * Scott wang       2016/09/18     1.0.2            Add the PORT[15].
  * Scott            2016/09/20     1.0.3            Add the PORT[16].
+ * Scott            2016/09/23     1.0.4            Add the MePS2.h .
  * </pre>
  */
 #ifndef MeMegaPi_H
@@ -72,6 +73,7 @@
 #include "MeEncoderOnBoard.h"
 #include "MeMegaPiDCMotor.h"
 #include "MePressureSensor.h"
+#include "MePS2.h"
 
 /*********************  MegaPi Board GPIO Map *********************************/
 // struct defined in MeMegaPi.h

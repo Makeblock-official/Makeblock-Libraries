@@ -3,8 +3,8 @@
  * \brief   Driver for mCore Board.
  * \file    MeMCore.h
  * @author  MakeBlock
- * @version V1.0.3
- * @date    2016/09/20
+ * @version V1.0.4
+ * @date    2016/09/23
  * @brief   Driver for mCore Board.
  *
  * \par Copyright
@@ -30,6 +30,7 @@
  * Mark Yan         2015/11/09         1.0.1            fix some comments error.
  * Scott wang       2016/09/18         1.0.2            Add the PORT[15].
  * Scott            2016/09/20         1.0.3            Add the PORT[16].
+ * Scott            2016/09/23         1.0.4            Add the MePS2.h .
  * </pre>
  */
 #ifndef MeMCore_H
@@ -70,6 +71,7 @@
 #include "MeHumitureSensor.h"
 #include "MeFlameSensor.h"
 #include "MeGasSensor.h"
+#include "MePS2.h"
 
 /*********************  Mbot Board GPIO Map *********************************/
 MePort_Sig mePort[17] =
