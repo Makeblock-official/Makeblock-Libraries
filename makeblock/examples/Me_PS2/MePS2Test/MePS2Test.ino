@@ -2,8 +2,8 @@
  * \par Copyright (C), 2012-2016, MakeBlock
  * @file    BuzzerTest.ino
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2016/09/19
+ * @version V1.0.2
+ * @date    2016/09/23
  * @brief   Description: this file is sample code for MePS2.
  *
  * Function List:
@@ -15,14 +15,13 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  *  Scott wang       2016/09/18          1.0.0         Build the lib.
- *  Scott wang       2016/09/19          1.0.1       Revise the  remote sense.
+ *  Scott wang       2016/09/19          1.0.1       Revise the  rocker.
+ *  Scott            2016/09/23          1.0.2        Add BUTTON_L and BUTTON_R.
  * </pre>
  */
-#include "MePS2.h"
-#include "MeSerial.h"
+
 #include "MeMegaPi.h"
 #include "Arduino.h"
-#include "MePort.h"
 #include "SoftwareSerial.h"
 MePS2 MePS2(PORT_15);
 void setup() {
@@ -91,6 +90,14 @@ void loop() {
   if (MePS2.ButtonPressed(MODE))
   {
     Serial.println("MODE is pressed!");
+  }
+  if (MePS2.ButtonPressed(BUTTON_L))
+  {
+    Serial.println("BUTTON_L is pressed!");
+  }
+  if (MePS2.ButtonPressed(BUTTON_R))
+  {
+    Serial.println("BUTTON_R is pressed!");
   }
   
   if( MePS2.MeAnalog(MePS2_RX) != ANALOG_ERROR &&  MePS2.MeAnalog(MePS2_RX))     

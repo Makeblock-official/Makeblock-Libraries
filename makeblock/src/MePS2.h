@@ -4,8 +4,8 @@
  * \brief   Driver for MePS2 handle device.
  * @file    MePS2.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2016/09/18
+ * @version V1.0.1
+ * @date    2016/09/23
  * @brief   Header for MePS2.cpp module
  *
  * \par Copyright
@@ -37,6 +37,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Scott wang        2016/09/18          1.0.0        build the new lib.
+ * Scott             2016/09/23          1.0.1        Add BUTTON_L and BUTTON_R.
  * </pre>
  *
  */
@@ -73,6 +74,8 @@
 #define RIGHT 17
 #define SELECT 18
 #define MODE 19
+#define BUTTON_L 20
+#define BUTTON_R 21
 #define SET_ANALOG_VALUE 0
 #define ANALOG_ERROR -999
 
@@ -239,7 +242,7 @@ private:
   uint8_t _index = 0;
   uint8_t _prevc = 0;
   uint8_t buffer[16];
-  uint8_t ps2_data_list[20];
+  uint8_t ps2_data_list[23];
   long _lasttime;
 
   boolean _isStart;

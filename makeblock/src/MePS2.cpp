@@ -4,8 +4,8 @@
  * \brief   Driver for MePS2 handle device.
  * @file    MePS2.cpp
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2016/09/20
+ * @version V1.0.3
+ * @date    2016/09/23
  * @brief   Driver for MePS2 device.
  *
  * \par Copyright
@@ -39,6 +39,7 @@
  *  Scott wang      2016/09/18         1.0.0            Build the new lib.
  *  Scott           2016/09/20         1.0.1            Correct the receive error.
  *  Scott           2016/09/22         1.0.2            Correct the connect error.
+* Scott             2016/09/23         1.0.3            Add BUTTON_L and BUTTON_R.
  * </pre>
  *
  * @example MePS2Test.ino
@@ -330,5 +331,7 @@ void MePS2::loop(void)
     ps2_data_list[LEFT] = (buffer[7] & 0x04) == 0x04 ? true : false ;
     ps2_data_list[RIGHT] = (buffer[7] & 0x08) == 0x08 ? true : false ;
     ps2_data_list[SELECT] = (buffer[7] & 0x10) == 0x10 ? true : false ;
+    ps2_data_list[BUTTON_L] = (buffer[3] & 0x20) == 0x20 ? true : false ;
+    ps2_data_list[BUTTON_R] = (buffer[7] & 0x20) == 0x20 ? true : false ;
   }
 }
