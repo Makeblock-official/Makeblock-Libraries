@@ -7,7 +7,7 @@
  * @brief   Description: this file is sample code for MePS2.
  *
  * Function List:
- *    1. int MePS2::MeAnalog(uint8_t button);
+ *    1. int16_t MePS2::MeAnalog(uint8_t button);
  *    2. boolean MePS2::ButtonPressed(uint8_t button);
  *    3. void MePS2::loop(void);
  *
@@ -15,8 +15,8 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  *  Scott wang       2016/09/18          1.0.0         Build the lib.
- *  Scott wang       2016/09/19          1.0.1       Revise the  rocker.
- *  Scott            2016/09/23          1.0.2        Add BUTTON_L and BUTTON_R.
+ *  Scott wang       2016/09/19          1.0.1         Revise the  rocker.
+ *  Scott            2016/09/23          1.0.2         Add BUTTON_L and BUTTON_R.
  * </pre>
  */
 
@@ -31,7 +31,7 @@ void setup() {
 
 void loop() {
   MePS2.loop();
-  if (MePS2.ButtonPressed(UP))           
+  if (MePS2.ButtonPressed(UP))
   {
     Serial.println("UP is pressed!");
   }

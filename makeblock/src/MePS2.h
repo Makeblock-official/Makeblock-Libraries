@@ -4,8 +4,8 @@
  * \brief   Driver for MePS2 handle device.
  * @file    MePS2.h
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2016/09/23
+ * @version V1.0.4
+ * @date    2016/10/08
  * @brief   Header for MePS2.cpp module
  *
  * \par Copyright
@@ -25,19 +25,22 @@
  * MeSerial class from SoftwareSerial.
  *
  * \par Method List:
- *    1. int8_t MePS2::readBuffer(int16_t index);
+ *    1. uint8_t MePS2::readBuffer(int16_t index);
  *    2. void MePS2::writeBuffer(int16_t index,uint8_t c);
  *    3. void MePS2::readSerial(void);
  *    4. boolean MePS2::readjoystick(void);
- *    5. int MePS2::MeAnalog(uint8_t button);
+ *    5. int16_t MePS2::MeAnalog(uint8_t button);
  *    6. boolean MePS2::ButtonPressed(uint8_t button);
  *    7. void MePS2::loop(void);
-
+ *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * Scott wang        2016/09/18          1.0.0        build the new lib.
- * Scott             2016/09/23          1.0.1        Add BUTTON_L and BUTTON_R.
+ *  Scott wang      2016/09/18         1.0.0            Build the new lib.
+ *  Scott           2016/09/20         1.0.1            Correct the receive error.
+ *  Scott           2016/09/22         1.0.2            Correct the connect error.
+ *  Scott           2016/09/23         1.0.3            Add BUTTON_L and BUTTON_R.
+ *  Mark Yan        2016/10/08         1.0.4            Modify data format.
  * </pre>
  *
  */
@@ -77,7 +80,7 @@
 #define BUTTON_L 20
 #define BUTTON_R 21
 #define SET_ANALOG_VALUE 0
-#define ANALOG_ERROR -999
+#define ANALOG_ERROR 0
 
 /**
  * Class: MePS2

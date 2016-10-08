@@ -4,8 +4,8 @@
  * \brief   Driver for MePS2 handle device.
  * @file    MePS2.cpp
  * @author  MakeBlock
- * @version V1.0.3
- * @date    2016/09/23
+ * @version V1.0.4
+ * @date    2016/10/08
  * @brief   Driver for MePS2 device.
  *
  * \par Copyright
@@ -24,12 +24,12 @@
  * This file is a drive for Me PS2 handle device, The MePS2 inherited the 
  * MeSerial class from SoftwareSerial.
  *
- *\par Method List:
- *    1. int8_t MePS2::readBuffer(int16_t index);
+ * \par Method List:
+ *    1. uint8_t MePS2::readBuffer(int16_t index);
  *    2. void MePS2::writeBuffer(int16_t index,uint8_t c);
  *    3. void MePS2::readSerial(void);
  *    4. boolean MePS2::readjoystick(void);
- *    5. int MePS2::MeAnalog(uint8_t button);
+ *    5. int16_t MePS2::MeAnalog(uint8_t button);
  *    6. boolean MePS2::ButtonPressed(uint8_t button);
  *    7. void MePS2::loop(void);
  *
@@ -39,7 +39,8 @@
  *  Scott wang      2016/09/18         1.0.0            Build the new lib.
  *  Scott           2016/09/20         1.0.1            Correct the receive error.
  *  Scott           2016/09/22         1.0.2            Correct the connect error.
-* Scott             2016/09/23         1.0.3            Add BUTTON_L and BUTTON_R.
+ *  Scott           2016/09/23         1.0.3            Add BUTTON_L and BUTTON_R.
+ *  Mark Yan        2016/10/08         1.0.4            Modify data format.
  * </pre>
  *
  * @example MePS2Test.ino
@@ -250,6 +251,7 @@ boolean MePS2::readjoystick(void)
  * \param[in]
  *    Button
  * \par Output
+ 
  *    None
  * \par Return
  *    Analog value(-128~127). if none return 0.
@@ -258,17 +260,27 @@ boolean MePS2::readjoystick(void)
  */
 int16_t MePS2::MeAnalog(uint8_t button)
 {
+  int16_t result;
   if (!_isReady)
   {
-    return (-999);
+    return (ANALOG_ERROR);
   }
   else
   {
     if(button == MePS2_RX || button == MePS2_RY || button == MePS2_LX || button == MePS2_LY)
     {
-      return (ps2_data_list[button]-128);
+      int16_t = 2*(ps2_data_list[button]-128);
+      if(result == -256)
+      {
+        result = -255;
+      }
+      else if(result == 254)
+      {
+        result == 255;
+      }
+      return result;
     }
-    else 	
+    else
     {
       return SET_ANALOG_VALUE;
     }
