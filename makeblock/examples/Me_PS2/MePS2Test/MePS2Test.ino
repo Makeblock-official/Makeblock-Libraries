@@ -26,6 +26,7 @@
 MePS2 MePS2(PORT_15);
 void setup() {
   Serial.begin(115200);
+  Serial.println("begin!");
   MePS2.begin(115200);
 }
 
