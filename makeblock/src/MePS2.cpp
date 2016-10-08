@@ -270,6 +270,10 @@ int16_t MePS2::MeAnalog(uint8_t button)
     if(button == MePS2_RX || button == MePS2_RY || button == MePS2_LX || button == MePS2_LY)
     {
       result = 2*(ps2_data_list[button]-128);
+      if((button == MePS2_RY) || (button == MePS2_LY))
+      {
+        result = -result;
+      }
       if(result == -256)
       {
         result = -255;
