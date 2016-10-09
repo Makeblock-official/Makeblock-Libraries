@@ -274,11 +274,11 @@ int16_t MePS2::MeAnalog(uint8_t button)
       {
         result = -result;
       }
-      if(result == -256)
+      if((result == -256) || (result == -254))
       {
         result = -255;
       }
-      else if(result == 254)
+      else if((result == 254) || (result == 256))
       {
         result = 255;
       }
