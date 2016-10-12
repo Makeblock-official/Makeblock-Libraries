@@ -57,30 +57,30 @@
 #include "MePort.h"
 #endif 
 
-#define MePS2_RX 6
-#define MePS2_RY 8
-#define MePS2_LX 2
-#define MePS2_LY 4
+#define MeJOYSTICK_RX           6
+#define MeJOYSTICK_RY           8
+#define MeJOYSTICK_LX           2
+#define MeJOYSTICK_LY           4
 
-#define R1 1
-#define R2 3
-#define L1 5
-#define L2 7
-#define TRIANGLE 9
-#define XSHAPED 10
-#define SQUARE 11
-#define ROUND 12
-#define START 13
-#define UP 14
-#define DOWN 15
-#define LEFT 16
-#define RIGHT 17
-#define SELECT 18
-#define MODE 19
-#define BUTTON_L 20
-#define BUTTON_R 21
-#define SET_ANALOG_VALUE 0
-#define ANALOG_ERROR 0
+#define MeJOYSTICK_R1           1
+#define MeJOYSTICK_R2           3
+#define MeJOYSTICK_L1           5
+#define MeJOYSTICK_L2           7
+#define MeJOYSTICK_TRIANGLE     9
+#define MeJOYSTICK_XSHAPED      10
+#define MeJOYSTICK_SQUARE       11
+#define MeJOYSTICK_ROUND        12
+#define MeJOYSTICK_START        13
+#define MeJOYSTICK_UP           14
+#define MeJOYSTICK_DOWN         15
+#define MeJOYSTICK_LEFT         16
+#define MeJOYSTICK_RIGHT        17
+#define MeJOYSTICK_SELECT       18
+#define MeJOYSTICK_MODE         19
+#define MeJOYSTICK_BUTTON_L     20
+#define MeJOYSTICK_BUTTON_R     21
+#define MeJOYSTICK_INIT_VALUE   0
+#define MeJOYSTICK_ANALOG_ERROR 0
 
 /**
  * Class: MePS2

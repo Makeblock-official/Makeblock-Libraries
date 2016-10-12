@@ -26,99 +26,98 @@
 MePS2 MePS2(PORT_15);
 void setup() {
   Serial.begin(115200);
-  Serial.println("begin!");
   MePS2.begin(115200);
 }
 
 void loop() {
   MePS2.loop();
-  if (MePS2.ButtonPressed(UP))
+  if (MePS2.ButtonPressed(MeJOYSTICK_UP))
   {
     Serial.println("UP is pressed!");
   }
-  if (MePS2.ButtonPressed(DOWN))
+  if (MePS2.ButtonPressed(MeJOYSTICK_DOWN))
   {
     Serial.println("DOWN is pressed!");
   }
-  if (MePS2.ButtonPressed(LEFT))
+  if (MePS2.ButtonPressed(MeJOYSTICK_LEFT))
   {
     Serial.println("LEFT is pressed!");
   }
-  if (MePS2.ButtonPressed(RIGHT))
+  if (MePS2.ButtonPressed(MeJOYSTICK_RIGHT))
   {
     Serial.println("RIGHT is pressed!");
   }
-  if (MePS2.ButtonPressed(L1))
+  if (MePS2.ButtonPressed(MeJOYSTICK_L1))
   {
     Serial.println("L1 is pressed!");
   }
-  if (MePS2.ButtonPressed(L2))
+  if (MePS2.ButtonPressed(MeJOYSTICK_L2))
   {
     Serial.println("L2 is pressed!");
   }
-  if (MePS2.ButtonPressed(R1))
+  if (MePS2.ButtonPressed(MeJOYSTICK_R1))
   {
     Serial.println("R1 is pressed!");
   }
-  if (MePS2.ButtonPressed(R2))
+  if (MePS2.ButtonPressed(MeJOYSTICK_R2))
   {
     Serial.println("R2 is pressed!");
   }
-  if (MePS2.ButtonPressed(TRIANGLE))
+  if (MePS2.ButtonPressed(MeJOYSTICK_TRIANGLE))
   {
     Serial.println("TRIANGLE is pressed!");
   }
-  if (MePS2.ButtonPressed(XSHAPED))
+  if (MePS2.ButtonPressed(MeJOYSTICK_XSHAPED))
   {
     Serial.println("XSHAPED is pressed!");
   }
-  if (MePS2.ButtonPressed(SQUARE))
+  if (MePS2.ButtonPressed(MeJOYSTICK_SQUARE))
   {
     Serial.println("SQUARE is pressed!");
   }
-  if (MePS2.ButtonPressed(ROUND))
+  if (MePS2.ButtonPressed(MeJOYSTICK_ROUND))
   {
     Serial.println("ROUND is pressed!");
   }
-  if (MePS2.ButtonPressed(START))
+  if (MePS2.ButtonPressed(MeJOYSTICK_START))
   {
     Serial.println("START is pressed!");
   }
-  if (MePS2.ButtonPressed(SELECT))
+  if (MePS2.ButtonPressed(MeJOYSTICK_SELECT))
   {
     Serial.println("SELECT is pressed!");
   }
-  if (MePS2.ButtonPressed(MODE))
+  if (MePS2.ButtonPressed(MeJOYSTICK_MODE))
   {
     Serial.println("MODE is pressed!");
   }
-  if (MePS2.ButtonPressed(BUTTON_L))
+  if (MePS2.ButtonPressed(MeJOYSTICK_BUTTON_L))
   {
     Serial.println("BUTTON_L is pressed!");
   }
-  if (MePS2.ButtonPressed(BUTTON_R))
+  if (MePS2.ButtonPressed(MeJOYSTICK_BUTTON_R))
   {
     Serial.println("BUTTON_R is pressed!");
   }
   
-  if( MePS2.MeAnalog(MePS2_RX) != ANALOG_ERROR &&  MePS2.MeAnalog(MePS2_RX))     
+  if(MePS2.MeAnalog(MeJOYSTICK_RX))     
   {
     Serial.print("MePS2_RX value is: ");
-    Serial.println(MePS2.MeAnalog(MePS2_RX),DEC);
+    Serial.println(MePS2.MeAnalog(MeJOYSTICK_RX),DEC);
   }   
-  if( MePS2.MeAnalog(MePS2_RY) != ANALOG_ERROR &&  MePS2.MeAnalog(MePS2_RY))   
+  if( MePS2.MeAnalog(MeJOYSTICK_RY))
   {
     Serial.print("MePS2_RY value is: ");
-    Serial.println(MePS2.MeAnalog(MePS2_RY),DEC);
+    Serial.println(MePS2.MeAnalog(MeJOYSTICK_RY),DEC);
   }
-  if( MePS2.MeAnalog(MePS2_LX) != ANALOG_ERROR && MePS2.MeAnalog(MePS2_LX))     
+  if(MePS2.MeAnalog(MeJOYSTICK_LX))    
   {
     Serial.print("MePS2_LX value is: ");
-    Serial.println(MePS2.MeAnalog(MePS2_LX),DEC);
+    Serial.println(MePS2.MeAnalog(MeJOYSTICK_LX),DEC);
   }
-  if( MePS2.MeAnalog(MePS2_LY) != ANALOG_ERROR && MePS2.MeAnalog(MePS2_LY))     
+  if(MePS2.MeAnalog(MeJOYSTICK_LY))  
   {
     Serial.print("MePS2_LY value is: ");
-    Serial.println(MePS2.MeAnalog(MePS2_LY),DEC);
+    Serial.println(MePS2.MeAnalog(MeJOYSTICK_LY),DEC);
   }
 }

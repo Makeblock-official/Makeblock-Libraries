@@ -263,14 +263,14 @@ int16_t MePS2::MeAnalog(uint8_t button)
   int16_t result;
   if (!_isReady)
   {
-    return (ANALOG_ERROR);
+    return (MeJOYSTICK_ANALOG_ERROR);
   }
   else
   {
-    if(button == MePS2_RX || button == MePS2_RY || button == MePS2_LX || button == MePS2_LY)
+    if(button == MeJOYSTICK_RX || button == MeJOYSTICK_RY || button == MeJOYSTICK_LX || button == MeJOYSTICK_LY)
     {
       result = 2*(ps2_data_list[button]-128);
-      if((button == MePS2_RY) || (button == MePS2_LY))
+      if((button == MeJOYSTICK_RY) || (button == MeJOYSTICK_LY))
       {
         result = -result;
       }
@@ -286,7 +286,7 @@ int16_t MePS2::MeAnalog(uint8_t button)
     }
     else
     {
-      return SET_ANALOG_VALUE;
+      return MeJOYSTICK_INIT_VALUE;
     }
   }
 }
@@ -326,28 +326,28 @@ boolean MePS2::ButtonPressed(uint8_t button)
  */
 void MePS2::loop(void)
 {
-  if (readjoystick() )
+  if(readjoystick())
   {
-    ps2_data_list[MePS2_LX] = buffer[2];
-    ps2_data_list[MePS2_LY] = buffer[4];
-    ps2_data_list[MePS2_RX] = buffer[6];
-    ps2_data_list[MePS2_RY] = buffer[8];
-    ps2_data_list[R1] = (buffer[3] & 0x01) == 0x01 ? true : false;
-    ps2_data_list[R2] = (buffer[3] & 0x02) == 0x02 ? true : false;
-    ps2_data_list[L1] = (buffer[3] & 0x04) == 0x04 ? true : false; 
-    ps2_data_list[L2] = (buffer[3] & 0x08) == 0x08 ? true : false;
-    ps2_data_list[MODE] = (buffer[3] & 0x10) ==0x10 ? true : false;
-    ps2_data_list[TRIANGLE] = (buffer[5] & 0x01) == 0x01 ? true : false;
-    ps2_data_list[XSHAPED] = (buffer[5] & 0x02) == 0x02 ? true : false;
-    ps2_data_list[SQUARE] = (buffer[5] & 0x04) == 0x04 ? true : false;
-    ps2_data_list[ROUND] = (buffer[5] & 0x08) == 0x08 ? true : false;
-    ps2_data_list[START] = (buffer[5] & 0x10) == 0x10 ? true : false;
-    ps2_data_list[UP] = (buffer[7] & 0x01) == 0x01 ? true : false;
-    ps2_data_list[DOWN ] = (buffer[7] & 0x02) == 0x02 ? true : false ;
-    ps2_data_list[LEFT] = (buffer[7] & 0x04) == 0x04 ? true : false ;
-    ps2_data_list[RIGHT] = (buffer[7] & 0x08) == 0x08 ? true : false ;
-    ps2_data_list[SELECT] = (buffer[7] & 0x10) == 0x10 ? true : false ;
-    ps2_data_list[BUTTON_L] = (buffer[3] & 0x20) == 0x20 ? true : false ;
-    ps2_data_list[BUTTON_R] = (buffer[7] & 0x20) == 0x20 ? true : false ;
+    ps2_data_list[MeJOYSTICK_LX] = buffer[2];
+    ps2_data_list[MeJOYSTICK_LY] = buffer[4];
+    ps2_data_list[MeJOYSTICK_RX] = buffer[6];
+    ps2_data_list[MeJOYSTICK_RY] = buffer[8];
+    ps2_data_list[MeJOYSTICK_R1] = (buffer[3] & 0x01) == 0x01 ? true : false;
+    ps2_data_list[MeJOYSTICK_R2] = (buffer[3] & 0x02) == 0x02 ? true : false;
+    ps2_data_list[MeJOYSTICK_L1] = (buffer[3] & 0x04) == 0x04 ? true : false; 
+    ps2_data_list[MeJOYSTICK_L2] = (buffer[3] & 0x08) == 0x08 ? true : false;
+    ps2_data_list[MeJOYSTICK_MODE] = (buffer[3] & 0x10) ==0x10 ? true : false;
+    ps2_data_list[MeJOYSTICK_TRIANGLE] = (buffer[5] & 0x01) == 0x01 ? true : false;
+    ps2_data_list[MeJOYSTICK_XSHAPED] = (buffer[5] & 0x02) == 0x02 ? true : false;
+    ps2_data_list[MeJOYSTICK_SQUARE] = (buffer[5] & 0x04) == 0x04 ? true : false;
+    ps2_data_list[MeJOYSTICK_ROUND] = (buffer[5] & 0x08) == 0x08 ? true : false;
+    ps2_data_list[MeJOYSTICK_START] = (buffer[5] & 0x10) == 0x10 ? true : false;
+    ps2_data_list[MeJOYSTICK_UP] = (buffer[7] & 0x01) == 0x01 ? true : false;
+    ps2_data_list[MeJOYSTICK_DOWN] = (buffer[7] & 0x02) == 0x02 ? true : false ;
+    ps2_data_list[MeJOYSTICK_LEFT] = (buffer[7] & 0x04) == 0x04 ? true : false ;
+    ps2_data_list[MeJOYSTICK_RIGHT] = (buffer[7] & 0x08) == 0x08 ? true : false ;
+    ps2_data_list[MeJOYSTICK_SELECT] = (buffer[7] & 0x10) == 0x10 ? true : false ;
+    ps2_data_list[MeJOYSTICK_BUTTON_L] = (buffer[3] & 0x20) == 0x20 ? true : false ;
+    ps2_data_list[MeJOYSTICK_BUTTON_R] = (buffer[7] & 0x20) == 0x20 ? true : false ;
   }
 }
