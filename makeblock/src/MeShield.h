@@ -69,11 +69,12 @@
 
 
 /*********************  Shield Board GPIO Map *********************************/
-MePort_Sig mePort[15] =
+MePort_Sig mePort[17] =
 {
   { NC, NC }, { 11, 10 }, {  9, 12 }, { 13,  8 }, { NC,  3 },
   { NC, NC }, { NC,  2 }, { A2, A3 }, { A0, A1 }, {  5,  4 },
   {  6,  7 }, { NC, NC }, { NC, NC }, { NC, NC }, { NC, NC },
+  { NC, NC }, { NC, NC },
 };
 
 #define buzzerOn()  pinMode(SCL,OUTPUT),digitalWrite(SCL, HIGH)
