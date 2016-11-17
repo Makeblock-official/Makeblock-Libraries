@@ -345,6 +345,7 @@ bool setColorAt(uint8_t index, uint8_t red, uint8_t green, uint8_t blue);
 private:
   uint16_t count_led;
   uint8_t *pixels;
+  uint8_t *pixels_bak;
 
 /**
  * \par Function
