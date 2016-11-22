@@ -1,9 +1,9 @@
 /*************************************************************************
-* File Name          : BlueTooth_Ultrasonic.ino
+* File Name          :starter_factory_firmware.ino
 * Author             : Ander, Mark Yan
 * Updated            : Ander, Mark Yan
-* Version            : V01.01.106
-* Date               : 07/06/2016
+* Version            : V0a.01.004
+* Date               : 11/22/2016
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -14,11 +14,12 @@
 #include <Arduino.h>
 #include <MeOrion.h>
 
-Servo servos[8];  
+Servo servos[8];
+MeInfraredReceiver infraredReceiverDecode(PORT_6);
 MeDCMotor dc;
 MeTemperature ts;
 MeRGBLed led;
-MeUltrasonicSensor us(PORT_3);
+MeUltrasonicSensor us;
 Me7SegmentDisplay seg;
 MePort generalDevice;
 MeJoystick joystick;
@@ -27,6 +28,8 @@ MeBuzzer buzzer;
 MeHumiture humiture;
 MeFlameSensor FlameSensor;
 MeGasSensor GasSensor;
+MeTouchSensor touchSensor;
+Me4Button buttonSensor;
 
 typedef struct MeModule
 {
@@ -63,83 +66,112 @@ MeModule modules[12];
 #if defined(__AVR_ATmega1280__)|| defined(__AVR_ATmega2560__)
   int analogs[16]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15};
 #endif
-String mVersion = "01.01.106";
+
+#define BLUE_TOOTH      0
+#define IR_CONTROLER    1
+
+boolean isStart = false;
 boolean isAvailable = false;
 boolean isBluetooth = false;
+boolean leftflag = false;
+boolean rightflag = false;
 
-int len = 52;
 char buffer[52];
 char bufferBt[52];
+char serialRead;
 byte index = 0;
 byte dataLen;
 byte modulesLen=0;
-boolean isStart = false;
-unsigned char irRead = 0;
-char serialRead;
-#define VERSION 0
-#define ULTRASONIC_SENSOR 1
-#define TEMPERATURE_SENSOR 2
-#define LIGHT_SENSOR 3
-#define POTENTIONMETER 4
-#define JOYSTICK 5
-#define GYRO 6
-#define SOUND_SENSOR 7
-#define RGBLED 8
-#define SEVSEG 9
-#define MOTOR 10
-#define SERVO 11
-#define ENCODER 12
-#define IR 13
-#define PIRMOTION 15
-#define INFRARED 16
-#define LINEFOLLOWER 17
-#define SHUTTER 20
-#define LIMITSWITCH 21
-#define BUTTON 22
-#define HUMITURE 23
-#define FLAMESENSOR 24
-#define GASSENSOR 25
-#define COMPASS 26
-#define DIGITAL 30
-#define ANALOG 31
-#define PWM 32
-#define SERVO_PIN 33
-#define TONE 34
-#define PULSEIN 35
-#define ULTRASONIC_ARDUINO 36
-#define STEPPER 40
-#define LEDMATRIX 41
-#define TIMER 50
-#define COMMONCMD 60
-  //Secondary command
-  #define SET_STARTER_MODE 0x10
+uint8_t keyPressed = 0;
+uint8_t command_index = 0;
+uint8_t irRead = 0;
+uint8_t prevc=0;
+uint8_t controlflag = IR_CONTROLER;
 
-#define GET 1
-#define RUN 2
-#define RESET 4
-#define START 5
-float angleServo = 90.0;
-int servo_pins[8]={0,0,0,0,0,0,0,0};
-unsigned char prevc=0;
-double lastTime = 0.0;
-double currentTime = 0.0;
-
-//Just for Start
+int len = 52;
 int moveSpeed = 190;
 int turnSpeed = 200;
 int minSpeed = 45;
 int factor = 23;
 int distance=0;
 int randnum = 0;
-boolean leftflag;
-boolean rightflag;
 int starter_mode = 0;
-uint8_t command_index = 0;
+int servo_pins[8]={0,0,0,0,0,0,0,0};
+
+double lastTime = 0.0;
+double currentTime = 0.0;
+float angleServo = 90.0;
+
+String mVersion = "0a.01.004";
+
+#define VERSION                0
+#define ULTRASONIC_SENSOR      1
+#define TEMPERATURE_SENSOR     2
+#define LIGHT_SENSOR           3
+#define POTENTIONMETER         4
+#define JOYSTICK               5
+#define GYRO                   6
+#define SOUND_SENSOR           7
+#define RGBLED                 8
+#define SEVSEG                 9
+#define MOTOR                  10
+#define SERVO                  11
+#define ENCODER                12
+#define IR                     13
+#define PIRMOTION              15
+#define INFRARED               16
+#define LINEFOLLOWER           17
+#define SHUTTER                20
+#define LIMITSWITCH            21
+#define BUTTON                 22
+#define HUMITURE               23
+#define FLAMESENSOR            24
+#define GASSENSOR              25
+#define COMPASS                26
+#define TEMPERATURE_SENSOR_1   27
+#define DIGITAL                30
+#define ANALOG                 31
+#define PWM                    32
+#define SERVO_PIN              33
+#define TONE                   34
+#define BUTTON_INNER           35
+#define ULTRASONIC_ARDUINO     36
+#define PULSEIN                37
+#define STEPPER                40
+#define LEDMATRIX              41
+#define TIMER                  50
+#define TOUCH_SENSOR           51
+#define JOYSTICK_MOVE          52
+#define COMMON_COMMONCMD       60
+  //Secondary command
+  #define SET_STARTER_MODE     0x10
+  #define SET_AURIGA_MODE      0x11
+  #define SET_MEGAPI_MODE      0x12
+  #define GET_BATTERY_POWER    0x70
+  #define GET_AURIGA_MODE      0x71
+  #define GET_MEGAPI_MODE      0x72
+#define ENCODER_BOARD          61
+  //Read type
+  #define ENCODER_BOARD_POS    0x01
+  #define ENCODER_BOARD_SPEED  0x02
+
+#define ENCODER_PID_MOTION     62
+  //Secondary command
+  #define ENCODER_BOARD_POS_MOTION         0x01
+  #define ENCODER_BOARD_SPEED_MOTION       0x02
+  #define ENCODER_BOARD_PWM_MOTION         0x03
+  #define ENCODER_BOARD_SET_CUR_POS_ZERO   0x04
+  #define ENCODER_BOARD_CAR_POS_MOTION     0x05
+
+#define GET 1
+#define RUN 2
+#define RESET 4
+#define START 5
 
 void Forward()
 {
   dc.reset(M1);
-  dc.run(moveSpeed);
+  dc.run(-moveSpeed);
   dc.reset(M2);
   dc.run(moveSpeed);
 }
@@ -147,7 +179,7 @@ void Forward()
 void Backward()
 {
   dc.reset(M1);
-  dc.run(-moveSpeed);
+  dc.run(moveSpeed);
   dc.reset(M2);
   dc.run(-moveSpeed);
 }
@@ -155,7 +187,7 @@ void Backward()
 void BackwardAndTurnLeft()
 {
   dc.reset(M1);
-  dc.run(-moveSpeed/2);
+  dc.run(moveSpeed/2);
   dc.reset(M2);
   dc.run(-moveSpeed);
 }
@@ -163,7 +195,7 @@ void BackwardAndTurnLeft()
 void BackwardAndTurnRight()
 {
   dc.reset(M1);
-  dc.run(-moveSpeed);
+  dc.run(moveSpeed);
   dc.reset(M2);
   dc.run(-moveSpeed/2);
 }
@@ -171,7 +203,7 @@ void BackwardAndTurnRight()
 void TurnLeft()
 {
   dc.reset(M1);
-  dc.run(-moveSpeed);
+  dc.run(moveSpeed);
   dc.reset(M2);
   dc.run(moveSpeed);
 }
@@ -179,7 +211,7 @@ void TurnLeft()
 void TurnRight()
 {
   dc.reset(M1);
-  dc.run(moveSpeed);
+  dc.run(-moveSpeed);
   dc.reset(M2);
   dc.run(-moveSpeed);
 }
@@ -196,115 +228,10 @@ void ChangeSpeed(int spd)
   moveSpeed = spd;
 }
 
-void ultrCarProcess()
-{
-  distance = us.distanceCm();
-  randomSeed(analogRead(A4));
-  if((distance > 10) && (distance < 40))
-  {
-    randnum=random(300);
-    if((randnum > 190) && (!rightflag))
-    {
-      leftflag=true;
-      TurnLeft();   
-    }
-    else
-    {
-      rightflag=true;
-      TurnRight();  
-    }
-  }
-  else if(distance < 10)
-  {
-    randnum=random(300);
-    if(randnum > 190)
-    {
-      BackwardAndTurnLeft();
-    }
-    else
-    {
-      BackwardAndTurnRight();
-    }
-  }
-  else
-  {
-    leftflag=false;
-    rightflag=false;
-    Forward();
-  }
-}
-
-void setup(){
-  pinMode(13,OUTPUT);
-  digitalWrite(13,HIGH);
-  delay(300);
-  digitalWrite(13,LOW);
-  Serial.begin(115200);
-  delay(500);
-  buzzerOn();
-  delay(100);
-  buzzerOff();
-  delay(500);
-  leftflag=false;
-  rightflag=false;
-  randomSeed(analogRead(0));
-  Stop();
-  Serial.print("Version: ");
-  Serial.println(mVersion);
-}
-void loop(){
-  currentTime = millis()/1000.0-lastTime;
-  readSerial();
-  steppers[0].runSpeedToPosition();
-  steppers[1].runSpeedToPosition();
-  if(isAvailable)
-  {
-    unsigned char c = serialRead & 0xff;
-    if((c == 0x55) && (isStart == false))
-    {
-      if(prevc == 0xff)
-      {
-        index=1;
-        isStart = true;
-      }
-    }
-    else
-    {
-      prevc = c;
-      if(isStart)
-      {
-        if(index == 2)
-        {
-          dataLen = c; 
-        }
-        else if(index > 2)
-        {
-          dataLen--;
-        }
-        writeBuffer(index,c);
-      }
-    }
-    index++;
-    if(index > 51)
-    {
-      index=0; 
-      isStart=false;
-    }
-    if(isStart && (dataLen == 0) && (index > 3))
-    { 
-      isStart = false;
-      parseData(); 
-      index=0;
-    }
-  }
-  if(starter_mode == 1)
-  {
-    ultrCarProcess();    
-  }
-}
 unsigned char readBuffer(int index){
  return isBluetooth?bufferBt[index]:buffer[index]; 
 }
+
 void writeBuffer(int index,unsigned char c){
  if(isBluetooth){
   bufferBt[index]=c;
@@ -312,22 +239,26 @@ void writeBuffer(int index,unsigned char c){
   buffer[index]=c;
  } 
 }
+
 void writeHead(){
   writeSerial(0xff);
   writeSerial(0x55);
 }
+
 void writeEnd(){
   Serial.println(); 
  #if defined(__AVR_ATmega32U4__) 
   Serial1.println();
  #endif
 }
+
 void writeSerial(unsigned char c){
  Serial.write(c);
  #if defined(__AVR_ATmega32U4__) 
    Serial1.write(c);
  #endif
 }
+
 void readSerial(){
   isAvailable = false;
   if(Serial.available()>0){
@@ -335,13 +266,6 @@ void readSerial(){
     isBluetooth = false;
     serialRead = Serial.read();
   }
-//#if defined(__AVR_ATmega32U4__) 
-//  if(Serial1.available()>0){
-//    isAvailable = true;
-//    isBluetooth = false;
-//    serialRead = Serial1.read();
-//  }
-// #endif
 }
 /*
 ff 55 len idx action device port  slot  data a
@@ -388,15 +312,18 @@ void parseData(){
      break;
   }
 }
+
 void callOK(){
     writeSerial(0xff);
     writeSerial(0x55);
     writeEnd();
 }
+
 void sendByte(char c){
   writeSerial(1);
   writeSerial(c);
 }
+
 void sendString(String s){
   int l = s.length();
   writeSerial(4);
@@ -405,6 +332,7 @@ void sendString(String s){
     writeSerial(s.charAt(i));
   }
 }
+
 void sendFloat(float value){ 
      writeSerial(0x2);
      val.floatVal = value;
@@ -413,12 +341,14 @@ void sendFloat(float value){
      writeSerial(val.byteVal[2]);
      writeSerial(val.byteVal[3]);
 }
+
 void sendShort(double value){
      writeSerial(3);
      valShort.shortVal = value;
      writeSerial(valShort.byteVal[0]);
      writeSerial(valShort.byteVal[1]);
 }
+
 void sendDouble(double value){
      writeSerial(2);
      valDouble.doubleVal = value;
@@ -427,11 +357,13 @@ void sendDouble(double value){
      writeSerial(valDouble.byteVal[2]);
      writeSerial(valDouble.byteVal[3]);
 }
+
 short readShort(int idx){
   valShort.byteVal[0] = readBuffer(idx);
   valShort.byteVal[1] = readBuffer(idx+1);
   return valShort.shortVal; 
 }
+
 float readFloat(int idx){
   val.byteVal[0] = readBuffer(idx);
   val.byteVal[1] = readBuffer(idx+1);
@@ -439,6 +371,7 @@ float readFloat(int idx){
   val.byteVal[3] = readBuffer(idx+3);
   return val.floatVal;
 }
+
 long readLong(int idx){
   val.byteVal[0] = readBuffer(idx);
   val.byteVal[1] = readBuffer(idx+1);
@@ -446,18 +379,21 @@ long readLong(int idx){
   val.byteVal[3] = readBuffer(idx+3);
   return val.longVal;
 }
+
 void runModule(int device){
   //0xff 0x55 0x6 0x0 0x1 0xa 0x9 0x0 0x0 0xa
   int port = readBuffer(6);
   int pin = port;
   switch(device){
    case MOTOR:{
+     controlflag = BLUE_TOOTH;
      int speed = readShort(7);
      dc.reset(port);
      dc.run(speed);
     }
     break;
     case JOYSTICK:{
+     controlflag = BLUE_TOOTH;
      int leftSpeed = readShort(6);
      dc.reset(M1);
      dc.run(leftSpeed);
@@ -497,7 +433,7 @@ void runModule(int device){
      led.show();
    }
    break;
-   case COMMONCMD:{
+   case COMMON_COMMONCMD:{
      int slot = readBuffer(7);
      int subcmd = readBuffer(8);
      int cmd = readBuffer(9);
@@ -765,5 +701,212 @@ void readSensor(int device){
      sendFloat((float)currentTime);
    }
    break;
+   case TOUCH_SENSOR:
+   {
+     if(touchSensor.getPort() != port){
+       touchSensor.reset(port);
+     }
+     sendByte(touchSensor.touched());
+   }
+   break;
+   case BUTTON:
+   {
+     if(buttonSensor.getPort() != port){
+       buttonSensor.reset(port);
+     }
+     sendByte(keyPressed == readBuffer(7));
+   }
+   break;
+  }
+}
+
+void ultrCarProcess()
+{
+  distance = us.distanceCm();
+  randomSeed(analogRead(A4));
+  if((distance > 10) && (distance < 40))
+  {
+    randnum=random(300);
+    if((randnum > 190) && (!rightflag))
+    {
+      leftflag=true;
+      TurnLeft();   
+    }
+    else
+    {
+      rightflag=true;
+      TurnRight();  
+    }
+  }
+  else if(distance < 10)
+  {
+    randnum=random(300);
+    if(randnum > 190)
+    {
+      BackwardAndTurnLeft();
+    }
+    else
+    {
+      BackwardAndTurnRight();
+    }
+  }
+  else
+  {
+    leftflag=false;
+    rightflag=false;
+    Forward();
+  }
+}
+
+void IrProcess()
+{
+  infraredReceiverDecode.loop();
+  irRead = infraredReceiverDecode.getCode();
+  if((irRead != IR_BUTTON_TEST) && (starter_mode != 0))
+  {
+    return;
+  }
+  switch(irRead)
+  {
+    case IR_BUTTON_PLUS:
+      controlflag = IR_CONTROLER;
+      Forward();
+      break;
+    case IR_BUTTON_MINUS:
+      controlflag = IR_CONTROLER;
+      Backward();
+      break;
+    case IR_BUTTON_NEXT:
+      controlflag = IR_CONTROLER;
+      TurnRight();
+      break;
+    case IR_BUTTON_PREVIOUS:
+      controlflag = IR_CONTROLER;
+      TurnLeft();
+      break;
+    case IR_BUTTON_9:
+      controlflag = IR_CONTROLER;
+      ChangeSpeed(factor*9+minSpeed);
+      break;
+    case IR_BUTTON_8:
+      controlflag = IR_CONTROLER;
+      ChangeSpeed(factor*8+minSpeed);
+      break;
+    case IR_BUTTON_7:
+      controlflag = IR_CONTROLER;
+      ChangeSpeed(factor*7+minSpeed);
+      break;
+    case IR_BUTTON_6:
+      controlflag = IR_CONTROLER;
+      ChangeSpeed(factor*6+minSpeed);
+      break;
+    case IR_BUTTON_5:
+      controlflag = IR_CONTROLER;
+      ChangeSpeed(factor*5+minSpeed);
+      break;
+    case IR_BUTTON_4:
+      controlflag = IR_CONTROLER;
+      ChangeSpeed(factor*4+minSpeed);
+      break;
+    case IR_BUTTON_3:
+      controlflag = IR_CONTROLER;
+      ChangeSpeed(factor*3+minSpeed);
+      break;
+    case IR_BUTTON_2:
+      controlflag = IR_CONTROLER;
+      ChangeSpeed(factor*2+minSpeed);
+      break;
+    case IR_BUTTON_1:
+      controlflag = IR_CONTROLER;
+      ChangeSpeed(factor*1+minSpeed);
+      break;
+    case IR_BUTTON_TEST:
+      Stop();
+      while(infraredReceiverDecode.buttonState() != 0)
+      {
+        infraredReceiverDecode.loop();
+      }
+      starter_mode = starter_mode + 1;
+      if(starter_mode == 2)
+      { 
+        starter_mode = 0;
+      }
+      break;
+    default:
+      if(controlflag == IR_CONTROLER)
+      {
+        Stop();
+      }
+      break;
+  }
+}
+
+void setup(){
+  pinMode(13,OUTPUT);
+  digitalWrite(13,HIGH);
+  delay(300);
+  digitalWrite(13,LOW);
+  Serial.begin(115200);
+  delay(500);
+  buzzerOn();
+  delay(100);
+  buzzerOff();
+  delay(500);
+  randomSeed(analogRead(0));
+  Stop();
+  infraredReceiverDecode.begin();
+  Serial.print("Version: ");
+  Serial.println(mVersion);
+}
+void loop(){
+  keyPressed = buttonSensor.pressed();
+  currentTime = millis()/1000.0-lastTime;
+  readSerial();
+  steppers[0].runSpeedToPosition();
+  steppers[1].runSpeedToPosition();
+  if(isAvailable)
+  {
+    unsigned char c = serialRead & 0xff;
+    if((c == 0x55) && (isStart == false))
+    {
+      if(prevc == 0xff)
+      {
+        index=1;
+        isStart = true;
+      }
+    }
+    else
+    {
+      prevc = c;
+      if(isStart)
+      {
+        if(index == 2)
+        {
+          dataLen = c; 
+        }
+        else if(index > 2)
+        {
+          dataLen--;
+        }
+        writeBuffer(index,c);
+      }
+    }
+    index++;
+    if(index > 51)
+    {
+      index=0; 
+      isStart=false;
+    }
+    if(isStart && (dataLen == 0) && (index > 3))
+    { 
+      isStart = false;
+      parseData(); 
+      index=0;
+    }
+  }
+  IrProcess();
+  if(starter_mode == 1)
+  {
+    ultrCarProcess();    
   }
 }
