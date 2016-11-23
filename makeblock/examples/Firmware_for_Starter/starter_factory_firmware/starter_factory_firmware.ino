@@ -19,7 +19,7 @@ MeInfraredReceiver infraredReceiverDecode(PORT_6);
 MeDCMotor dc;
 MeTemperature ts;
 MeRGBLed led;
-MeUltrasonicSensor us;
+MeUltrasonicSensor us(PORT_3);
 Me7SegmentDisplay seg;
 MePort generalDevice;
 MeJoystick joystick;
