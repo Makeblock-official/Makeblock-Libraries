@@ -23,7 +23,6 @@
 * Mark Yan         2016/08/10     09.01.011        Fix issue MBLOCK-128(ext encoder motor led to reset).
 * Mark Yan         2016/08/24     09.01.012        Fix issue MBLOCK-171(Stepper online execution slow), MBLOCK-189(on board encoder motor reset issue).
 * Zzipeng          2016/12/15     09.01.013        Add Pm25Sensor
-* Zzipeng          2016/12/20     09.01.014        fix some bugs
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -234,12 +233,13 @@ float RELAX_ANGLE = -1;                    //Natural balance angle,should be adj
   #define ENCODER_BOARD_PWM_MOTION         0x03
   #define ENCODER_BOARD_SET_CUR_POS_ZERO   0x04
   #define ENCODER_BOARD_CAR_POS_MOTION     0x05
-
+  
 #define PM25SENSOR           63
   //Secondary command
   #define GET_PM1_0         0x01
   #define GET_PM2_5         0x02
   #define GET_PM10          0x03
+  
 #define GET 1
 #define RUN 2
 #define RESET 4
@@ -305,6 +305,7 @@ PID  PID_angle, PID_speed, PID_turn;
  void line_model(void);
  boolean read_serial(void);
  void init_form_power(void);
+ 
 /**
  * \par Function
  *    isr_process_encoder1
@@ -2009,7 +2010,8 @@ void readSensor(uint8_t device)
           sendByte(auriga_mode);
         }
       }
-      break;    
+      break;   
+      
       case PM25SENSOR:
       {
         uint8_t secondorder = readBuffer(7);
@@ -2039,6 +2041,7 @@ void readSensor(uint8_t device)
         {
           dataflag = 1;
         }
+
         if(dataflag)
         {
          if(secondorder==GET_PM1_0)
@@ -2994,6 +2997,7 @@ void loop()
   get_power();
   Encoder_1.loop();
   Encoder_2.loop();
+
   if(millis() - rxruntime>500)
   {
     rxruntime = millis();
