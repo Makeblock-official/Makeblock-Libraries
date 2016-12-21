@@ -23,7 +23,6 @@
 * Mark Yan         2016/08/10     09.01.011        Fix issue MBLOCK-128(ext encoder motor led to reset).
 * Mark Yan         2016/08/24     09.01.012        Fix issue MBLOCK-171(Stepper online execution slow), MBLOCK-189(on board encoder motor reset issue).
 * Zzipeng          2016/12/15     09.01.013        Add Pm25Sensor
-* Zzipeng          2016/12/20     09.01.014        fix some bugs
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
