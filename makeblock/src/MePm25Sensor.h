@@ -39,7 +39,7 @@
  *    12. uint16_t MePm25Sensor::turnOffFanLaser(void);
  *    13. uint16_t MePm25Sensor::OutputIntimeOn(void);
  *    14. uint16_t MePm25Sensor::OutputIntimeOff(void);
- *    15. uint16_t MePm25Sensor::setOutputIntimePeriod(void);
+ *    15. uint16_t MePm25Sensor::setOutputIntimePeriod(uint16_t period);
  *    16. uint16_t MePm25Sensor::askForData(void);
  *    17. uint16_t MePm25Sensor::coreSelfTest(void);
  *    18. uint16_t MePm25Sensor::setCoreSelfTestTime(uint8_t settime);
