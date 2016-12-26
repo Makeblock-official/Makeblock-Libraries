@@ -18,7 +18,7 @@
 #include "MeAuriga.h"
 //#include "MePm25Sensor.h"
 #include <SoftwareSerial.h>
-MePm25Sensor myMePm25Sensor(PORT3);
+MePm25Sensor myMePm25Sensor(PORT7);
 uint16_t pm1_0=0,pm2_5=0,pm10=0,len=0,checksum=0;
 int cmdTimeOutValue = 0;
 void setup() {
