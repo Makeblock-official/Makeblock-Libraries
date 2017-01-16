@@ -246,6 +246,7 @@ private:
   uint8_t _prevc = 0;
   uint8_t buffer[16];
   uint8_t ps2_data_list[23];
+  uint8_t ps2_data_list_bak[23];
   long _lasttime;
 
   boolean _isStart;

@@ -242,7 +242,6 @@ void Me7SegmentDisplay::writeByte(uint8_t wr_data)
     }
     wr_data >>= 1;
     digitalWrite(_clkPin, HIGH);
-
   }
   digitalWrite(_clkPin, LOW); //wait for ACK
   digitalWrite(_dataPin, HIGH);

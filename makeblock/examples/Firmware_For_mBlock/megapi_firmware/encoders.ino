@@ -4,16 +4,16 @@ void encodersInit()
   encoders[1].reset(SLOT2);
   encoders[2].reset(SLOT3);
   encoders[3].reset(SLOT4);
-  attachInterrupt(encoders[0].GetIntNum(), isr_process_encoder1, RISING);
-  attachInterrupt(encoders[1].GetIntNum(), isr_process_encoder2, RISING);
-  attachInterrupt(encoders[2].GetIntNum(), isr_process_encoder3, RISING);
-  attachInterrupt(encoders[3].GetIntNum(), isr_process_encoder4, RISING);
+  attachInterrupt(encoders[0].getIntNum(), isr_process_encoder1, RISING);
+  attachInterrupt(encoders[1].getIntNum(), isr_process_encoder2, RISING);
+  attachInterrupt(encoders[2].getIntNum(), isr_process_encoder3, RISING);
+  attachInterrupt(encoders[3].getIntNum(), isr_process_encoder4, RISING);
   
   measurement_speed_time = lasttime_speed = lasttime_angle = millis();
-  encoders[0].SetPulsePos(0);
-  encoders[1].SetPulsePos(0);
-  encoders[2].SetPulsePos(0);
-  encoders[3].SetPulsePos(0);
+  encoders[0].setPulsePos(0);
+  encoders[1].setPulsePos(0);
+  encoders[2].setPulsePos(0);
+  encoders[3].setPulsePos(0);
   PID_speed_left.Setpoint = 0;
   PID_speed_right.Setpoint = 0;
 }
@@ -21,7 +21,7 @@ void encodersUpdate()
 {
   for(int i=0;i<4;i++)
   {
-    encoders[i].update();
+    encoders[i].loop();
   }
 }
 void onEncoderMovingFinish(int slot,int extId)
@@ -37,8 +37,8 @@ void PWM_Calcu()
   double speed2;
   if((millis() - lasttime_speed) > 20)
   {
-    speed1 = encoders[0].GetCurrentSpeed();
-    speed2 = encoders[1].GetCurrentSpeed();
+    speed1 = encoders[0].getCurrentSpeed();
+    speed2 = encoders[1].getCurrentSpeed();
 
 #ifdef DEBUG_INFO
     Serial.print("S1: ");
@@ -121,48 +121,48 @@ void Stop(void)
 }
 void isr_process_encoder1(void)
 {
-  if(digitalRead(encoders[0].GetPortB()) == 0)
+  if(digitalRead(encoders[0].getPortB()) == 0)
   {
-    encoders[0].PulsePosMinus();
+    encoders[0].pulsePosMinus();
   }
   else
   {
-    encoders[0].PulsePosPlus();
+    encoders[0].pulsePosPlus();
   }
 }
 
 void isr_process_encoder2(void)
 {
-  if(digitalRead(encoders[1].GetPortB()) == 0)
+  if(digitalRead(encoders[1].getPortB()) == 0)
   {
-    encoders[1].PulsePosMinus();
+    encoders[1].pulsePosMinus();
   }
   else
   {
-    encoders[1].PulsePosPlus();
+    encoders[1].pulsePosPlus();
   }
 }
 
 void isr_process_encoder3(void)
 {
-  if(digitalRead(encoders[2].GetPortB()) == 0)
+  if(digitalRead(encoders[2].getPortB()) == 0)
   {
-    encoders[2].PulsePosMinus();
+    encoders[2].pulsePosMinus();
   }
   else
   {
-    encoders[2].PulsePosPlus();
+    encoders[2].pulsePosPlus();
   }
 }
 
 void isr_process_encoder4(void)
 {
-  if(digitalRead(encoders[3].GetPortB()) == 0)
+  if(digitalRead(encoders[3].getPortB()) == 0)
   {
-    encoders[3].PulsePosMinus();
+    encoders[3].pulsePosMinus();
   }
   else
   {
-    encoders[3].PulsePosPlus();
+    encoders[3].pulsePosPlus();
   }
 }

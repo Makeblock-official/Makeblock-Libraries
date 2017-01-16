@@ -110,8 +110,13 @@ extern MePort_Sig mePort[17];  // mePort[0] is nonsense
 #define SLOT_3  SLOT3
 #define SLOT_4  SLOT4
 
+#ifndef FALSE
 #define FALSE   (0)
+#endif
+
+#ifndef TRUE
 #define TRUE    (1)
+#endif
 
 /**
  * Class: MePort
