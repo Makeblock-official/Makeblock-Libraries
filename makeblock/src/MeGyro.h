@@ -307,6 +307,10 @@ public:
  */
   double getAngle(uint8_t index);
 
+  int16_t getAccX(void);
+  int16_t getAccY(void);
+  int16_t getAccZ(void);
+
 private:
   volatile uint8_t  _AD0;
   volatile uint8_t  _INT;

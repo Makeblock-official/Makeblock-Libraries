@@ -464,6 +464,27 @@ double MeGyro::getAngle(uint8_t index)
 } 
 
 /**
+* accX
+* accY
+* accZ
+*/
+
+int16_t MeGyro::getAccX(void)
+{
+  return accX;
+}
+
+int16_t MeGyro::getAccY(void)
+{
+  return accY;
+}
+
+int16_t MeGyro::getAccZ(void)
+{
+  return accZ;
+}
+
+/**
  * \par Function
  *   deviceCalibration
  * \par Description
