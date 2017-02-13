@@ -2,8 +2,8 @@
 * File Name          : mbot_firmware.ino
 * Author             : Ander, Mark Yan
 * Updated            : Ander, Mark Yan
-* Version            : V06.01.108
-* Date               : 21/12/2016
+* Version            : V06.01.109
+* Date               : 02/10/2017
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -15,7 +15,7 @@
 
 Servo servos[8];  
 MeDCMotor dc;
-//MeTemperature ts;
+MeTemperature ts;
 MeRGBLed led(0,30);
 MeUltrasonicSensor us;
 Me7SegmentDisplay seg;
@@ -63,7 +63,7 @@ const int analogs[12] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11};
 #else
 const int analogs[8] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7};
 #endif
-String mVersion = "06.01.108";
+String mVersion = "06.01.109";
 boolean isAvailable = false;
 
 int len = 52;
@@ -544,7 +544,7 @@ void readSensor(int device){
      sendFloat(value);
    }
    break;
-/*   case  TEMPERATURE_SENSOR:{
+   case  TEMPERATURE_SENSOR:{
      slot = readBuffer(7);
      if(ts.getPort()!=port||ts.getSlot()!=slot){
        ts.reset(port,slot);
@@ -552,7 +552,7 @@ void readSensor(int device){
      value = ts.temperature();
      sendFloat(value);
    }
-   break;*/
+   break;
    case  LIGHT_SENSOR:
    case  SOUND_SENSOR:
    case  POTENTIONMETER:{
