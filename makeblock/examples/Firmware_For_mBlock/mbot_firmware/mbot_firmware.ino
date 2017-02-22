@@ -2,7 +2,7 @@
 * File Name          : mbot_firmware.ino
 * Author             : Ander, Mark Yan
 * Updated            : Ander, Mark Yan
-* Version            : V06.01.109
+* Version            : V06.01.110
 * Date               : 02/10/2017
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
@@ -31,7 +31,6 @@ MeFlameSensor FlameSensor;
 MeGasSensor GasSensor;
 MeTouchSensor touchSensor;
 Me4Button buttonSensor;
-MePm25Sensor *pm25sensor = NULL;
 typedef struct MeModule
 {
     int device;
@@ -63,7 +62,7 @@ const int analogs[12] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11};
 #else
 const int analogs[8] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7};
 #endif
-String mVersion = "06.01.109";
+String mVersion = "06.01.110";
 boolean isAvailable = false;
 
 int len = 52;
@@ -378,7 +377,10 @@ void runModule(int device){
      int r = readBuffer(9);
      int g = readBuffer(10);
      int b = readBuffer(11);
-     led.reset(port,slot);
+     if((led.getPort() != port) || led.getSlot() != slot)
+     {
+       led.reset(port,slot);
+     }
      if(idx>0)
      {
        led.setColorAt(idx-1,r,g,b); 
@@ -414,6 +416,8 @@ void runModule(int device){
    }
    break;
    case LEDMATRIX:{
+  //pinMode(11, OUTPUT);
+  //pinMode(12, OUTPUT);
      if(ledMx.getPort()!=port){
        ledMx.reset(port);
      }
@@ -726,59 +730,60 @@ void readSensor(int device){
      sendByte(keyPressed == readBuffer(7));
    }
    break;
-   case PM25SENSOR:
-   {
-      uint8_t secondorder = readBuffer(7);
-      uint16_t temp = 0;
-      static uint16_t tempreserve = 0;
-      static uint8_t  dataflag = 1;
-      if(pm25sensor == NULL)
-      {
-        pm25sensor = new MePm25Sensor(port);
-        pm25sensor->begin(9600);
-        pm25sensor->setOutputIntimePeriod(3);//3S
-        delay(10);
-        pm25sensor->setOutputIntimePeriod(3);//3S
-        dataflag = 1;
-       }
-       else if(pm25sensor->getPort() != port)//initial
-       {
-         delete pm25sensor;
-          pm25sensor = new MePm25Sensor(port);
-          pm25sensor->begin(9600);
-          pm25sensor->setOutputIntimePeriod(3);//3S
-          delay(10);
-          pm25sensor->setOutputIntimePeriod(3);//3S
-          dataflag = 0;
-        }
-        else
-        {
-          dataflag = 1;
-        }
-
-        if(dataflag)
-        {
-         if(secondorder==GET_PM1_0)
-         {
-            temp = pm25sensor->readPm1_0Concentration();
-         }
-         else if(secondorder==GET_PM2_5)
-         {
-            temp = pm25sensor->readPm2_5Concentration();        
-         }
-         else if(secondorder==GET_PM10)
-         {
-            temp = pm25sensor->readPm10Concentration();
-          }
-          tempreserve = temp;
-          sendShort(temp);
-        }
-        else
-        {
-            sendShort(tempreserve);
-        }
-      }
-      break;   
+//   case PM25SENSOR:
+//   {
+//      uint8_t secondorder = readBuffer(7);
+//      uint16_t temp = 0;
+//      static uint16_t tempreserve = 0;
+//      static uint8_t  dataflag = 1;
+//      if(pm25sensor == NULL)
+//      {
+//        pm25sensor = new MePm25Sensor(port);
+//        pm25sensor->begin(9600);
+//        pm25sensor->setOutputIntimePeriod(3);//3S
+//        delay(10);
+//        pm25sensor->setOutputIntimePeriod(3);//3S
+//        dataflag = 1;
+//       }
+//       else if(pm25sensor->getPort() != port)//initial
+//       {
+//         delete pm25sensor;
+//          pm25sensor = new MePm25Sensor(port);
+//          pm25sensor->begin(9600);
+//          pm25sensor->setOutputIntimePeriod(3);//3S
+//          delay(10);
+//          pm25sensor->setOutputIntimePeriod(3);//3S
+//          dataflag = 0;
+//        }
+//        else
+//        {
+//          dataflag = 1;
+//        }
+//
+//        if(dataflag)
+//        {
+//         if(secondorder==GET_PM1_0)
+//         {
+//            temp = pm25sensor->readPm1_0Concentration();
+//         }
+//         //else if(secondorder==GET_PM2_5)
+//         if(secondorder==GET_PM2_5)
+//         {
+//            temp = pm25sensor->readPm2_5Concentration();        
+//         }
+//         else if(secondorder==GET_PM10)
+//         {
+//            temp = pm25sensor->readPm10Concentration();
+//          }
+//          tempreserve = temp;
+//          sendShort(temp);
+//        }
+//        else
+//        {
+//            sendShort(tempreserve);
+//        }
+//      }
+//      break;   
   }
 }
 
@@ -833,14 +838,14 @@ void loop(){
    }
   }
   
-  if(millis() - rxruntime>500)
-  {
-    rxruntime = millis();
-    if(pm25sensor != NULL)
-    {
-      pm25sensor->rxloop();
-    }
-  }
+//  if(millis() - rxruntime>500)
+//  {
+//    rxruntime = millis();
+//    if(pm25sensor != NULL)
+//    {
+//      pm25sensor->rxloop();
+//    }
+//  }
   
   readSerial();
   if(isAvailable){
