@@ -2,8 +2,8 @@
 * File Name          : orion_firmware.ino
 * Author             : Ander, Mark Yan
 * Updated            : Ander, Mark Yan
-* Version            : V0a.01.105
-* Date               : 07/06/2016
+* Version            : V0a.01.106
+* Date               : 01/03/2017
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -68,7 +68,7 @@ MeModule modules[12];
 #if defined(__AVR_ATmega1280__)|| defined(__AVR_ATmega2560__)
   int analogs[16]={A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15};
 #endif
-String mVersion = "0a.01.105";
+String mVersion = "0a.01.106";
 boolean isAvailable = false;
 boolean isBluetooth = false;
 
@@ -400,7 +400,10 @@ void runModule(int device){
      int r = readBuffer(9);
      int g = readBuffer(10);
      int b = readBuffer(11);
-     led.reset(port,slot);
+     if((led.getPort() != port) || led.getSlot() != slot)
+     {
+       led.reset(port,slot);
+     }
      if(idx>0)
      {
        led.setColorAt(idx-1,r,g,b); 

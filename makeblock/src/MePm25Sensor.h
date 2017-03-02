@@ -1,8 +1,8 @@
 /**
  * \par Copyright (C), 2012-2016, MakeBlock
- * \class MeSmartServo
- * \brief   Driver for Me Smart Servo device.
- * @file    MeSmartServo.h
+ * \class MePm25Sensor
+ * \brief   Driver for Me PM2.5 sensor device.
+ * @file    MePm25Sensor.h
  * @author  MakeBlock
  * @version V1.0.0
  * @date    2016/12/12

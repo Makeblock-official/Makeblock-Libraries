@@ -1,12 +1,12 @@
 /**
  * \par Copyright (C), 2012-2016, MakeBlock
- * \class MeSmartServo
- * \brief   Driver for Me Smart Servo device.
- * @file    MeSmartServo.cpp
+ * \class MePm25Sensor
+ * \brief   Driver for Me PM2.5 sensor device.
+ * @file    MePm25Sensor.cpp
  * @author  MakeBlock
  * @version V1.0.0
  * @date    2016/12/13
- * @brief   Driver for Me Smart Servo device.
+ * @brief   Driver for Me PM2.5 sensor device.
  *
  * \par Copyright
  * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n

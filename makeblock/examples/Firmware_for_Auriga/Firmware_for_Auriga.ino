@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.013
-* Date               : 15/12/2016
+* Version            : V09.01.014
+* Date               : 01/03/2017
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -23,6 +23,7 @@
 * Mark Yan         2016/08/10     09.01.011        Fix issue MBLOCK-128(ext encoder motor led to reset).
 * Mark Yan         2016/08/24     09.01.012        Fix issue MBLOCK-171(Stepper online execution slow), MBLOCK-189(on board encoder motor reset issue).
 * Zzipeng          2016/12/15     09.01.013        Add Pm25Sensor
+* Mark Yan         2016/03/01     09.01.014        fix RGB lights issue.
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -167,7 +168,7 @@ boolean move_flag = false;
 boolean boot_show_flag = true;
 boolean blink_flag = false;
 
-String mVersion = "09.01.013";
+String mVersion = "09.01.014";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
@@ -1321,11 +1322,11 @@ void runModule(uint8_t device)
         uint8_t r = readBuffer(9);
         uint8_t g = readBuffer(10);
         uint8_t b = readBuffer(11);
-        if(port != 0)
+        if((port != 0) && ((led.getPort() != port) || (led.getSlot() != slot)))
         {
           led.reset(port,slot);
         }
-        else
+        else if((port == 0) && ((led.getPort() != port) || (led.getSlot() != slot)))
         {
           led.setpin(RGBLED_PORT);
         }
@@ -2010,8 +2011,7 @@ void readSensor(uint8_t device)
           sendByte(auriga_mode);
         }
       }
-      break;   
-      
+      break;
       case PM25SENSOR:
       {
         uint8_t secondorder = readBuffer(7);
@@ -2044,16 +2044,16 @@ void readSensor(uint8_t device)
 
         if(dataflag)
         {
-         if(secondorder==GET_PM1_0)
-         {
+          if(secondorder==GET_PM1_0)
+          {
             temp = pm25sensor->readPm1_0Concentration();
-         }
-         else if(secondorder==GET_PM2_5)
-         {
+          }
+          else if(secondorder==GET_PM2_5)
+          {
             temp = pm25sensor->readPm2_5Concentration();        
-         }
-         else if(secondorder==GET_PM10)
-         {
+          }
+          else if(secondorder==GET_PM10)
+          {
             temp = pm25sensor->readPm10Concentration();
           }
           tempreserve = temp;
@@ -2061,7 +2061,7 @@ void readSensor(uint8_t device)
         }
         else
         {
-            sendShort(tempreserve);
+          sendShort(tempreserve);
         }
       }
       break;   
