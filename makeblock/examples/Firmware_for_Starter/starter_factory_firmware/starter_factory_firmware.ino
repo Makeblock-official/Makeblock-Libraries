@@ -2,8 +2,8 @@
 * File Name          :starter_factory_firmware.ino
 * Author             : Ander, Mark Yan
 * Updated            : Ander, Mark Yan
-* Version            : V0a.01.004
-* Date               : 11/22/2016
+* Version            : V0a.01.005
+* Date               : 01/03/2017
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -102,7 +102,7 @@ double lastTime = 0.0;
 double currentTime = 0.0;
 float angleServo = 90.0;
 
-String mVersion = "0a.01.004";
+String mVersion = "0a.01.005";
 
 #define VERSION                0
 #define ULTRASONIC_SENSOR      1
@@ -424,7 +424,10 @@ void runModule(int device){
      int r = readBuffer(9);
      int g = readBuffer(10);
      int b = readBuffer(11);
-     led.reset(port,slot);
+     if((led.getPort() != port) || led.getSlot() != slot)
+     {
+       led.reset(port,slot);
+     }
      if(idx>0){
        led.setColorAt(idx-1,r,g,b); 
      }else{

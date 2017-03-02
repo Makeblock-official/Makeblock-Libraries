@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.012
-* Date               : 08/22/2016
+* Version            : V09.01.014
+* Date               : 01/03/2017
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -22,6 +22,8 @@
 * Mark Yan         2016/08/01     09.01.010        Fix issue MBLOCK-109 MBLOCK-110(encoder motor exception handling negative).
 * Mark Yan         2016/08/10     09.01.011        Fix issue MBLOCK-128(ext encoder motor led to reset).
 * Mark Yan         2016/08/24     09.01.012        Fix issue MBLOCK-171(Stepper online execution slow), MBLOCK-189(on board encoder motor reset issue).
+* Zzipeng          2016/12/15     09.01.013        Add Pm25Sensor
+* Mark Yan         2016/03/01     09.01.014        fix RGB lights issue.
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -57,7 +59,7 @@ MeEncoderOnBoard Encoder_1(SLOT1);
 MeEncoderOnBoard Encoder_2(SLOT2);
 MeLineFollower line(PORT_9);
 MeEncoderMotor encoders[2];
-
+MePm25Sensor *pm25sensor = NULL;
 typedef struct MeModule
 {
   int16_t device;
@@ -152,6 +154,7 @@ long lasttime_angle = 0;
 long lasttime_speed = 0;
 long update_sensor = 0;
 long blink_time = 0;
+long rxruntime = 0;
 long lasttime_receive_cmd = 0;
 long last_Pulse_pos_encoder1 = 0;
 long last_Pulse_pos_encoder2 = 0;
@@ -165,11 +168,11 @@ boolean move_flag = false;
 boolean boot_show_flag = true;
 boolean blink_flag = false;
 
-String mVersion = "09.01.012";
+String mVersion = "09.01.014";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
-#define PWM_MIN_OFFSET   5
+#define PWM_MIN_OFFSET_BIAS   5
 
 #define VERSION                0
 #define ULTRASONIC_SENSOR      1
@@ -185,9 +188,11 @@ float RELAX_ANGLE = -1;                    //Natural balance angle,should be adj
 #define SERVO                  11
 #define ENCODER                12
 #define IR                     13
+#define IRREMOTE               14
 #define PIRMOTION              15
 #define INFRARED               16
 #define LINEFOLLOWER           17
+#define IRREMOTECODE           18
 #define SHUTTER                20
 #define LIMITSWITCH            21
 #define BUTTON                 22
@@ -229,7 +234,13 @@ float RELAX_ANGLE = -1;                    //Natural balance angle,should be adj
   #define ENCODER_BOARD_PWM_MOTION         0x03
   #define ENCODER_BOARD_SET_CUR_POS_ZERO   0x04
   #define ENCODER_BOARD_CAR_POS_MOTION     0x05
-
+  
+#define PM25SENSOR           63
+  //Secondary command
+  #define GET_PM1_0         0x01
+  #define GET_PM2_5         0x02
+  #define GET_PM10          0x03
+  
 #define GET 1
 #define RUN 2
 #define RESET 4
@@ -242,7 +253,60 @@ typedef struct
 } PID;
 
 PID  PID_angle, PID_speed, PID_turn;
-
+/**
+ * function list
+ */
+ void isr_process_encoder1(void);
+ void isr_process_encoder2(void);
+ void WriteBalancedDataToEEPROM(void);
+ void WriteAurigaModeToEEPROM(void);
+ void readEEPROM(void);
+ void Forward(void);
+ void Backward(void);
+ void BackwardAndTurnLeft(void);
+ void BackwardAndTurnRight(void);
+ void TurnLeft(void);
+ void TurnRight(void);
+ void TurnLeft1(void);
+ void TurnRight1(void);
+ void Stop(void);
+ void ChangeSpeed(int16_t spd);
+ uint8_t readBuffer(int16_t index);
+ void writeBuffer(int16_t index,uint8_t c);
+ void writeHead(void);
+ void writeEnd(void);
+ void writeSerial(uint8_t c);
+ void readSerial(void);
+ void parseData(void);
+ void callOK(void);
+ void sendByte(uint8_t c);
+ void sendString(String s);
+ void sendFloat(float value);
+ void sendLong(long value);
+ void sendShort(int16_t value);
+ void sendDouble(double value);
+ int16_t readShort(int16_t idx);
+ float readFloat(int16_t idx);
+ long readLong(int16_t idx);
+ char* readString(int16_t idx,int16_t len);
+ uint8_t* readUint8(int16_t idx,int16_t len);
+ void runModule(uint8_t device);
+ int16_t searchServoPin(int16_t pin);
+ float calculate_temp(int16_t In_temp);
+ void readSensor(uint8_t device);
+ float get_power(void);
+ void PID_angle_compute(void) ;
+ void PID_speed_compute(void);
+ void reset(void);
+ void parseGcode(char * cmd);
+ void parseCmd(char * cmd);
+ void balanced_model(void);
+ void ultrCarProcess(void);
+ void IrProcess();
+ void line_model(void);
+ boolean read_serial(void);
+ void init_form_power(void);
+ 
 /**
  * \par Function
  *    isr_process_encoder1
@@ -1258,11 +1322,11 @@ void runModule(uint8_t device)
         uint8_t r = readBuffer(9);
         uint8_t g = readBuffer(10);
         uint8_t b = readBuffer(11);
-        if(port != 0)
+        if((port != 0) && ((led.getPort() != port) || (led.getSlot() != slot)))
         {
           led.reset(port,slot);
         }
-        else
+        else if((port == 0) && ((led.getPort() != port) || (led.getSlot() != slot)))
         {
           led.setpin(RGBLED_PORT);
         }
@@ -1947,7 +2011,60 @@ void readSensor(uint8_t device)
           sendByte(auriga_mode);
         }
       }
-      break;    
+      break;
+      case PM25SENSOR:
+      {
+        uint8_t secondorder = readBuffer(7);
+        uint16_t temp = 0;
+        static uint16_t tempreserve = 0;
+        static uint8_t  dataflag = 1;
+        if(pm25sensor == NULL)
+        {
+          pm25sensor = new MePm25Sensor(port);
+          pm25sensor->begin(9600);
+          pm25sensor->setOutputIntimePeriod(3);//3S
+          delay(10);
+          pm25sensor->setOutputIntimePeriod(3);//3S
+          dataflag = 1;
+        }
+        else if(pm25sensor->getPort() != port)//initial
+        {
+          delete pm25sensor;
+          pm25sensor = new MePm25Sensor(port);
+          pm25sensor->begin(9600);
+          pm25sensor->setOutputIntimePeriod(3);//3S
+          delay(10);
+          pm25sensor->setOutputIntimePeriod(3);//3S
+          dataflag = 0;
+        }
+        else
+        {
+          dataflag = 1;
+        }
+
+        if(dataflag)
+        {
+          if(secondorder==GET_PM1_0)
+          {
+            temp = pm25sensor->readPm1_0Concentration();
+          }
+          else if(secondorder==GET_PM2_5)
+          {
+            temp = pm25sensor->readPm2_5Concentration();        
+          }
+          else if(secondorder==GET_PM10)
+          {
+            temp = pm25sensor->readPm10Concentration();
+          }
+          tempreserve = temp;
+          sendShort(temp);
+        }
+        else
+        {
+          sendShort(tempreserve);
+        }
+      }
+      break;   
   }//switch
 }
 
@@ -2001,11 +2118,11 @@ void PID_angle_compute(void)   //PID
   PID_angle.Output = PID_angle.P * error + PID_angle.I * PID_angle.Integral + PID_angle.D * PID_angle.differential;
   if(PID_angle.Output > 0)
   {
-    PID_angle.Output = PID_angle.Output + PWM_MIN_OFFSET;
+    PID_angle.Output = PID_angle.Output + PWM_MIN_OFFSET_BIAS;
   }
   else
   {
-    PID_angle.Output = PID_angle.Output - PWM_MIN_OFFSET;
+    PID_angle.Output = PID_angle.Output - PWM_MIN_OFFSET_BIAS;
   }
 
   double pwm_left = PID_angle.Output - PID_turn.Output;
@@ -2839,6 +2956,7 @@ void setup()
 //  auriga_mode = BALANCED_MODE;
   update_sensor = lasttime_speed = lasttime_angle = millis();
   blink_time = millis();
+  rxruntime = millis();
 }
 
 /**
@@ -2879,6 +2997,15 @@ void loop()
   get_power();
   Encoder_1.loop();
   Encoder_2.loop();
+
+  if(millis() - rxruntime>500)
+  {
+    rxruntime = millis();
+    if(pm25sensor != NULL)
+    {
+      pm25sensor->rxloop();
+    }
+  }
 //  while(Serial.available() > 0)
 //  {
 //    char c = Serial.read();

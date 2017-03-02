@@ -1008,7 +1008,7 @@ void MeSmartServo::processSysexMessage(void)
       default:
         break;
     }
-  } 
+  }
 }
 
 /**

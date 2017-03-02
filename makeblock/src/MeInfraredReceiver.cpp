@@ -192,7 +192,7 @@ uint8_t MeInfraredReceiver::getCode(void)
 void MeInfraredReceiver::loop(void)
 {
   if(buttonState() == 1)
-  { 
+  {
     if(MeSerial::available() > 0)
     {
       int r = read();

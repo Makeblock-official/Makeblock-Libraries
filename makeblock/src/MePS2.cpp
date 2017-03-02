@@ -307,7 +307,15 @@ int16_t MePS2::MeAnalog(uint8_t button)
  */
 boolean MePS2::ButtonPressed(uint8_t button) 
 {
-  return  ps2_data_list[button];
+  if (!_isReady)
+  {
+    return ps2_data_list_bak[button];
+  }
+  else
+  {
+    ps2_data_list_bak[button] = ps2_data_list[button];
+    return  ps2_data_list[button];
+  }
 }
 
 /**

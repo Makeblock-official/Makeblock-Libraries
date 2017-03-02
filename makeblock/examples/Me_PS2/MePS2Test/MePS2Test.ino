@@ -1,6 +1,6 @@
 /**
  * \par Copyright (C), 2012-2016, MakeBlock
- * @file    BuzzerTest.ino
+ * @file    MePS2Test.ino
  * @author  MakeBlock
  * @version V1.0.2
  * @date    2016/09/23

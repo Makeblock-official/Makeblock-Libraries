@@ -92,7 +92,7 @@ public:
  * \param[in]
  *   Sensor2 - arduino port(should digital pin)
  */
-  MeSoundSensor(uint8_t Sensor1,uint8_t Sensor2);
+  MeLineFollower(uint8_t Sensor1,uint8_t Sensor2);
 #endif  // ME_PORT_DEFINED
 /**
  * \par Function

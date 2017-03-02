@@ -2,8 +2,8 @@
 * File Name          : mbot_firmware.ino
 * Author             : Ander, Mark Yan
 * Updated            : Ander, Mark Yan
-* Version            : V06.01.106
-* Date               : 07/06/2016
+* Version            : V06.01.107
+* Date               : 01/03/2017
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -62,7 +62,7 @@ const int analogs[12] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11};
 #else
 const int analogs[8] PROGMEM = {A0,A1,A2,A3,A4,A5,A6,A7};
 #endif
-String mVersion = "06.01.106";
+String mVersion = "06.01.107";
 boolean isAvailable = false;
 
 int len = 52;
@@ -73,41 +73,81 @@ byte modulesLen=0;
 boolean isStart = false;
 char serialRead;
 uint8_t command_index = 0;
-#define VERSION 0
-#define ULTRASONIC_SENSOR 1
-#define TEMPERATURE_SENSOR 2
-#define LIGHT_SENSOR 3
-#define POTENTIONMETER 4
-#define JOYSTICK 5
-#define GYRO 6
-#define SOUND_SENSOR 7
-#define RGBLED 8
-#define SEVSEG 9
-#define MOTOR 10
-#define SERVO 11
-#define ENCODER 12
-#define IR 13
-#define IRREMOTE 14
-#define PIRMOTION 15
-#define INFRARED 16
-#define LINEFOLLOWER 17
-#define IRREMOTECODE 18
-#define SHUTTER 20
-#define LIMITSWITCH 21
-#define BUTTON 22
-#define HUMITURE 23
-#define FLAMESENSOR 24
-#define GASSENSOR 25
-#define COMPASS 26
-#define DIGITAL 30
-#define ANALOG 31
-#define PWM 32
-#define SERVO_PIN 33
-#define TONE 34
-#define BUTTON_INNER 35
-#define LEDMATRIX 41
-#define TIMER 50
-#define TOUCH_SENSOR 51
+int irDelay = 0;
+int irIndex = 0;
+char irRead = 0;
+boolean irReady = false;
+String irBuffer = "";
+double lastTime = 0.0;
+double currentTime = 0.0;
+double lastIRTime = 0.0;
+
+#define VERSION                0
+#define ULTRASONIC_SENSOR      1
+#define TEMPERATURE_SENSOR     2
+#define LIGHT_SENSOR           3
+#define POTENTIONMETER         4
+#define JOYSTICK               5
+#define GYRO                   6
+#define SOUND_SENSOR           7
+#define RGBLED                 8
+#define SEVSEG                 9
+#define MOTOR                  10
+#define SERVO                  11
+#define ENCODER                12
+#define IR                     13
+#define IRREMOTE               14
+#define PIRMOTION              15
+#define INFRARED               16
+#define LINEFOLLOWER           17
+#define IRREMOTECODE           18
+#define SHUTTER                20
+#define LIMITSWITCH            21
+#define BUTTON                 22
+#define HUMITURE               23
+#define FLAMESENSOR            24
+#define GASSENSOR              25
+#define COMPASS                26
+#define TEMPERATURE_SENSOR_1   27
+#define DIGITAL                30
+#define ANALOG                 31
+#define PWM                    32
+#define SERVO_PIN              33
+#define TONE                   34
+#define BUTTON_INNER           35
+#define ULTRASONIC_ARDUINO     36
+#define PULSEIN                37
+#define STEPPER                40
+#define LEDMATRIX              41
+#define TIMER                  50
+#define TOUCH_SENSOR           51
+#define JOYSTICK_MOVE          52
+#define COMMON_COMMONCMD       60
+  //Secondary command
+  #define SET_STARTER_MODE     0x10
+  #define SET_AURIGA_MODE      0x11
+  #define SET_MEGAPI_MODE      0x12
+  #define GET_BATTERY_POWER    0x70
+  #define GET_AURIGA_MODE      0x71
+  #define GET_MEGAPI_MODE      0x72
+#define ENCODER_BOARD          61
+  //Read type
+  #define ENCODER_BOARD_POS    0x01
+  #define ENCODER_BOARD_SPEED  0x02
+
+#define ENCODER_PID_MOTION     62
+  //Secondary command
+  #define ENCODER_BOARD_POS_MOTION         0x01
+  #define ENCODER_BOARD_SPEED_MOTION       0x02
+  #define ENCODER_BOARD_PWM_MOTION         0x03
+  #define ENCODER_BOARD_SET_CUR_POS_ZERO   0x04
+  #define ENCODER_BOARD_CAR_POS_MOTION     0x05
+  
+#define PM25SENSOR     63
+  //Secondary command
+  #define GET_PM1_0         0x01
+  #define GET_PM2_5         0x02
+  #define GET_PM10          0x03
 
 #define GET 1
 #define RUN 2
@@ -119,6 +159,34 @@ unsigned char prevc=0;
 boolean buttonPressed = false;
 uint8_t keyPressed = KEY_NULL;
 
+/*
+ * function list
+ */
+ void readButtonInner(uint8_t pin, int8_t s);
+ void buzzerOn();
+ void buzzerOff();
+ unsigned char readBuffer(int index);
+ void writeBuffer(int index,unsigned char c);
+ void writeHead();
+ void writeEnd();
+ void writeSerial(unsigned char c);
+ void readSerial();
+ void parseData();
+ void callOK();
+ void sendByte(char c);
+ void sendString(String s);
+ void sendFloat(float value);
+ void sendShort(double value);
+ void sendDouble(double value);
+ short readShort(int idx);
+ float readFloat(int idx);
+ char* readString(int idx,int len);
+ uint8_t* readUint8(int idx,int len);
+ void runModule(int device);
+ int searchServoPin(int pin);
+ void readSensor(int device);
+ 
+ 
 void readButtonInner(uint8_t pin, int8_t s)
 {
   pin = pgm_read_byte(&analogs[pin]);
@@ -135,95 +203,6 @@ void readButtonInner(uint8_t pin, int8_t s)
   writeEnd();
 }
 
-void setup(){
-  pinMode(13,OUTPUT);
-  digitalWrite(13,HIGH);
-  delay(300);
-  digitalWrite(13,LOW);
-  Serial.begin(115200);
-  delay(500);
-  buzzer.tone(500,50); 
-  delay(50);
-  buzzerOff();
-  ir.begin();
-  led.setpin(13);
-  led.setColor(0,0,0);
-  led.show();
-  gyro.begin();
-  Serial.print("Version: ");
-  Serial.println(mVersion);
-  ledMx.setBrightness(6);
-  ledMx.setColorIndex(1);
-}
-int irDelay = 0;
-int irIndex = 0;
-char irRead = 0;
-boolean irReady = false;
-String irBuffer = "";
-double lastTime = 0.0;
-double currentTime = 0.0;
-double lastIRTime = 0.0;
-
-void loop(){
-  readButtonInner(7,0);
-  keyPressed = buttonSensor.pressed();
-  currentTime = millis()/1000.0-lastTime;
-  if(ir.decode())
-  {
-    irRead = ((ir.value>>8)>>8)&0xff;
-    lastIRTime = millis()/1000.0;
-    if(irRead==0xa||irRead==0xd){
-      irIndex = 0;
-      irReady = true;
-    }else{
-      irBuffer+=irRead; 
-      irIndex++;
-      if(irIndex>64){
-        irIndex = 0;
-        irBuffer = "";
-      }
-    }
-    irDelay = 0;
-  }else{
-    irDelay++;
-    if(irRead>0){
-     if(irDelay>5000){
-      irRead = 0;
-      irDelay = 0;
-     }
-   }
-  }
-  readSerial();
-  if(isAvailable){
-    unsigned char c = serialRead&0xff;
-    if(c==0x55&&isStart==false){
-     if(prevc==0xff){
-      index=1;
-      isStart = true;
-     }
-    }else{
-      prevc = c;
-      if(isStart){
-        if(index==2){
-         dataLen = c; 
-        }else if(index>2){
-          dataLen--;
-        }
-        writeBuffer(index,c);
-      }
-    }
-     index++;
-     if(index>51){
-      index=0; 
-      isStart=false;
-     }
-     if(isStart&&dataLen==0&&index>3){ 
-        isStart = false;
-        parseData(); 
-        index=0;
-     }
-  }
-}
 void buzzerOn(){
   buzzer.tone(500,1000); 
 }
@@ -399,7 +378,10 @@ void runModule(int device){
      int r = readBuffer(9);
      int g = readBuffer(10);
      int b = readBuffer(11);
-     led.reset(port,slot);
+     if((led.getPort() != port) || led.getSlot() != slot)
+     {
+       led.reset(port,slot);
+     }
      if(idx>0)
      {
        led.setColorAt(idx-1,r,g,b); 
@@ -747,5 +729,87 @@ void readSensor(int device){
      sendByte(keyPressed == readBuffer(7));
    }
    break;
+  }
+}
+
+void setup(){
+  pinMode(13,OUTPUT);
+  digitalWrite(13,HIGH);
+  delay(300);
+  digitalWrite(13,LOW);
+  Serial.begin(115200);
+  delay(500);
+  buzzer.tone(500,50); 
+  delay(50);
+  buzzerOff();
+  ir.begin();
+  led.setpin(13);
+  led.setColor(0,0,0);
+  led.show();
+  gyro.begin();
+  Serial.print("Version: ");
+  Serial.println(mVersion);
+  ledMx.setBrightness(6);
+  ledMx.setColorIndex(1);
+}
+
+void loop(){
+  readButtonInner(7,0);
+  keyPressed = buttonSensor.pressed();
+  currentTime = millis()/1000.0-lastTime;
+  if(ir.decode())
+  {
+    irRead = ((ir.value>>8)>>8)&0xff;
+    lastIRTime = millis()/1000.0;
+    if(irRead==0xa||irRead==0xd){
+      irIndex = 0;
+      irReady = true;
+    }else{
+      irBuffer+=irRead; 
+      irIndex++;
+      if(irIndex>64){
+        irIndex = 0;
+        irBuffer = "";
+      }
+    }
+    irDelay = 0;
+  }else{
+    irDelay++;
+    if(irRead>0){
+     if(irDelay>5000){
+      irRead = 0;
+      irDelay = 0;
+     }
+   }
+  }
+  readSerial();
+  if(isAvailable){
+    unsigned char c = serialRead&0xff;
+    if(c==0x55&&isStart==false){
+     if(prevc==0xff){
+      index=1;
+      isStart = true;
+     }
+    }else{
+      prevc = c;
+      if(isStart){
+        if(index==2){
+         dataLen = c; 
+        }else if(index>2){
+          dataLen--;
+        }
+        writeBuffer(index,c);
+      }
+    }
+     index++;
+     if(index>51){
+      index=0; 
+      isStart=false;
+     }
+     if(isStart&&dataLen==0&&index>3){ 
+        isStart = false;
+        parseData(); 
+        index=0;
+     }
   }
 }
