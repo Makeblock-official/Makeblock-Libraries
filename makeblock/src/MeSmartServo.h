@@ -41,7 +41,7 @@
  *    14. boolean MeSmartServo::setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value, uint8_t b_value);
  *    15. boolean MeSmartServo::handSharke(uint8_t dev_id);
  *    16. boolean MeSmartServo::setPwmMove(uint8_t dev_id, int16_t pwm_value);
- *    17. boolean MeSmartServo::setInitAngle(uint8_t dev_id);
+ *    17. boolean MeSmartServo::setInitAngle(uint8_t dev_id,uint8_t mode,int16_t speed);
  *    18. long MeSmartServo::getAngleRequest(uint8_t devId);
  *    19. float MeSmartServo::getSpeedRequest(uint8_t devId);
  *    20. float MeSmartServo::getVoltageRequest(uint8_t devId);
@@ -508,6 +508,10 @@ public:
  *   This function is used to move smart servo to its 0 degrees.
  * \param[in]
  *    dev_id - the device id of servo that we want to set.
+ * \param[in]
+ *    mode - the return mode,  0 is the quick return mode. 
+ * \param[in]
+ *    speed - the speed value return to init angle.
  * \par Output
  *   None
  * \return
@@ -515,7 +519,7 @@ public:
  * \par Others
  *   None
  */
-  boolean setInitAngle(uint8_t dev_id);
+  boolean setInitAngle(uint8_t dev_id,uint8_t = 0,int16_t = 40);
 
 /**
  * \par Function

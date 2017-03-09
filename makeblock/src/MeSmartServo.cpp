@@ -42,7 +42,7 @@
  *    14. boolean MeSmartServo::setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value, uint8_t b_value);
  *    15. boolean MeSmartServo::handSharke(uint8_t dev_id);
  *    16. boolean MeSmartServo::setPwmMove(uint8_t dev_id, int16_t pwm_value);
- *    17. boolean MeSmartServo::setInitAngle(uint8_t dev_id);
+ *    17. boolean MeSmartServo::setInitAngle(uint8_t dev_id,uint8_t mode,int16_t speed);
  *    18. long MeSmartServo::getAngleRequest(uint8_t devId);
  *    19. float MeSmartServo::getSpeedRequest(uint8_t devId);
  *    20. float MeSmartServo::getVoltageRequest(uint8_t devId);
@@ -725,6 +725,10 @@ boolean MeSmartServo::setPwmMove(uint8_t dev_id, int16_t pwm_value)
  *   This function is used to move smart servo to its 0 degrees.
  * \param[in]
  *    dev_id - the device id of servo that we want to set.
+ * \param[in]
+ *    mode - the return mode,  0 is the quick return mode. 
+ * \param[in]
+ *    speed - the speed value return to init angle.
  * \par Output
  *   None
  * \return
@@ -732,14 +736,16 @@ boolean MeSmartServo::setPwmMove(uint8_t dev_id, int16_t pwm_value)
  * \par Others
  *   None
  */
-boolean MeSmartServo::setInitAngle(uint8_t dev_id)
+boolean MeSmartServo::setInitAngle(uint8_t dev_id,uint8_t mode,int16_t speed)
 {
   uint8_t checksum;
   write(START_SYSEX);
   write(dev_id);
   write(SMART_SERVO);
   write(SET_SERVO_INIT_ANGLE);
-  checksum = (dev_id + SMART_SERVO + SET_SERVO_INIT_ANGLE);
+  write(mode);
+  checksum = (dev_id + SMART_SERVO + SET_SERVO_INIT_ANGLE + mode);
+  checksum += sendShort(abs(speed),true);
   write(checksum); 
   write(END_SYSEX);
   resFlag &= 0xbf;
