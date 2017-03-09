@@ -3,7 +3,7 @@
 * Author             : myan
 * Updated            : myan
 * Version            : V09.01.014
-* Date               : 01/03/2017
+* Date               : 07/03/2017
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -23,7 +23,7 @@
 * Mark Yan         2016/08/10     09.01.011        Fix issue MBLOCK-128(ext encoder motor led to reset).
 * Mark Yan         2016/08/24     09.01.012        Fix issue MBLOCK-171(Stepper online execution slow), MBLOCK-189(on board encoder motor reset issue).
 * Zzipeng          2016/12/15     09.01.013        Add Pm25Sensor
-* Mark Yan         2016/03/01     09.01.014        fix RGB lights issue.
+* Mark Yan         2016/03/07     09.01.014        fix RGB lights issue, and add Smart servo support.
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -60,6 +60,8 @@ MeEncoderOnBoard Encoder_2(SLOT2);
 MeLineFollower line(PORT_9);
 MeEncoderMotor encoders[2];
 MePm25Sensor *pm25sensor = NULL;
+MeSmartServo *mysmartservo = NULL;
+
 typedef struct MeModule
 {
   int16_t device;
@@ -240,6 +242,24 @@ float RELAX_ANGLE = -1;                    //Natural balance angle,should be adj
   #define GET_PM1_0         0x01
   #define GET_PM2_5         0x02
   #define GET_PM10          0x03
+
+
+#define SMARTSERVO           64
+  //Secondary command
+  #define SET_SMART_SERVO_BREAK           0x01
+  #define SET_SMART_SERVO_RGB             0x02
+  #define SET_SMART_SERVO_SHAKE_HANDS     0x03
+  #define SET_SMART_SERVO_MOVE_TO         0x04
+  #define SET_SMART_SERVO_MOVE            0x05
+  #define SET_SMART_SERVO_PWM             0x06
+  #define SET_SMART_SERVO_ZERO_DEGREES    0x07
+  #define SET_SMART_SERVO_INIT_ANGLE      0x08
+
+  #define GET_SMART_SERVO_SPEED           0x09
+  #define GET_SMART_SERVO_TEMPERATURE     0x0a
+  #define GET_SMART_SERVO_CURRENT         0x0b
+  #define GET_SMART_SERVO_VOLTAGE         0x0c
+  #define GET_SMART_SERVO_ANGLE           0x0d
   
 #define GET 1
 #define RUN 2
@@ -1604,6 +1624,71 @@ void runModule(uint8_t device)
         }
       }
       break;
+    case SMARTSERVO:
+      {
+        uint8_t subcmd = port;
+        uint8_t port = readBuffer(7);
+        uint8_t servoNum = readBuffer(8);
+        if(mysmartservo == NULL)
+        {
+           mysmartservo = new MeSmartServo(port);
+           mysmartservo->begin(115200);
+           delay(5);
+           mysmartservo->assignDevIdRequest();
+           delay(50);
+        }
+        else if(mysmartservo->getPort() != port)
+        {
+           delete mysmartservo;
+           mysmartservo = new MeSmartServo(port);
+           mysmartservo->begin(115200);
+           delay(5);
+           mysmartservo->assignDevIdRequest();
+           delay(50);
+        }
+        if(SET_SMART_SERVO_BREAK == subcmd)
+        {
+          uint8_t breakState = readBuffer(9);
+          mysmartservo->setBreak(servoNum,breakState);
+        }
+        else if(SET_SMART_SERVO_RGB == subcmd)
+        {
+          uint8_t rValue = readBuffer(9);
+          uint8_t gValue = readBuffer(10);
+          uint8_t bValue = readBuffer(11);
+          mysmartservo->setRGBLed(servoNum,rValue,gValue,bValue);
+        }
+        else if( SET_SMART_SERVO_SHAKE_HANDS == subcmd)
+        {
+          mysmartservo->handSharke(servoNum);
+        }
+        else if( SET_SMART_SERVO_MOVE_TO == subcmd)
+        {
+          long posValue = readLong(9);
+          float speedValue = readFloat(13);
+          mysmartservo->moveTo(servoNum,posValue,speedValue);
+        }
+        else if( SET_SMART_SERVO_MOVE == subcmd)
+        {
+          long posValue = readLong(9);
+          float speedValue = readFloat(13);
+          mysmartservo->move(servoNum,posValue,speedValue);
+        }
+        else if( SET_SMART_SERVO_PWM == subcmd)
+        {
+          int pwmValue = readShort(9);
+          mysmartservo->setPwmMove(servoNum,pwmValue);
+        }
+        else if( SET_SMART_SERVO_ZERO_DEGREES == subcmd)
+        {
+          mysmartservo->setZero(servoNum);
+        }
+        else if( SET_SMART_SERVO_INIT_ANGLE == subcmd)
+        {
+          mysmartservo->setInitAngle(servoNum);
+        }
+      }
+      break;
   }
 }
 
@@ -2064,7 +2149,52 @@ void readSensor(uint8_t device)
           sendShort(tempreserve);
         }
       }
-      break;   
+      break;
+      case SMARTSERVO:
+      {
+        uint8_t subcmd = port;
+        port = readBuffer(7);
+        uint8_t servoNum = readBuffer(8);
+
+        if(mysmartservo == NULL)
+        {
+           mysmartservo = new MeSmartServo(port);
+           mysmartservo->begin(115200);
+           delay(5);
+           mysmartservo->assignDevIdRequest();
+           delay(50);
+        }
+        else if(mysmartservo->getPort() != port)
+        {
+           delete mysmartservo;
+           mysmartservo = new MeSmartServo(port);
+           mysmartservo->begin(115200);
+           delay(5);
+           mysmartservo->assignDevIdRequest();
+           delay(50);
+        }
+        if(GET_SMART_SERVO_SPEED == subcmd)
+        {
+          sendFloat(mysmartservo->getSpeedRequest(servoNum));
+        }
+        else if(GET_SMART_SERVO_TEMPERATURE == subcmd)
+        {
+          sendFloat(mysmartservo->getTempRequest(servoNum));
+        }
+        else if( GET_SMART_SERVO_CURRENT == subcmd)
+        {
+          sendFloat(mysmartservo->getCurrentRequest(servoNum));
+        }
+        else if(GET_SMART_SERVO_VOLTAGE == subcmd)
+        {
+          sendFloat(mysmartservo->getVoltageRequest(servoNum));
+        }
+        else if(GET_SMART_SERVO_ANGLE == subcmd)
+        {
+          sendLong(mysmartservo->getAngleRequest(servoNum));
+        }
+      }
+      break;
   }//switch
 }
 
