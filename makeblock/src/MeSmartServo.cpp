@@ -35,8 +35,8 @@
  *    7. uint8_t MeSmartServo::sendFloat(float val);
  *    8. uint8_t MeSmartServo::sendLong(long val);
  *    9. boolean MeSmartServo::assignDevIdRequest(void);
- *    10. boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed);
- *    11. boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed);
+ *    10. boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed,smartServoCb callback);
+ *    11. boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed,smartServoCb callback);
  *    12. boolean MeSmartServo::setZero(uint8_t dev_id);
  *    13. boolean MeSmartServo::setBreak(uint8_t dev_id, uint8_t breakStatus);
  *    14. boolean MeSmartServo::setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value, uint8_t b_value);
@@ -425,6 +425,8 @@ boolean MeSmartServo::assignDevIdRequest(void)
  *    angle_value - the absolute angle value we want move to.
  * \param[in]
  *    speed - move speed value(The unit is rpm).
+ * \param[in]
+ *    callback - callback function when the target position has been reached(Optional parameters).
  * \par Output
  *   None
  * \return
@@ -432,7 +434,7 @@ boolean MeSmartServo::assignDevIdRequest(void)
  * \par Others
  *   None
  */
-boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed)
+boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed,smartServoCb callback)
 {
   uint8_t checksum;
   write(START_SYSEX);
@@ -447,6 +449,7 @@ boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed)
   write(checksum);
   write(END_SYSEX);
   resFlag &= 0xbf;
+  _callback = callback;
   cmdTimeOutValue = millis();
   while((resFlag & 0x40) != 0x40)
   {
@@ -472,6 +475,8 @@ boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed)
  *    angle_value - the relative angle value we want move to.
  * \param[in]
  *    speed - move speed value(The unit is rpm).
+ * \param[in]
+ *    callback - callback function when the target position has been reached(Optional parameters).
  * \par Output
  *   None
  * \return
@@ -479,7 +484,7 @@ boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed)
  * \par Others
  *   None
  */
-boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed)
+boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed,smartServoCb callback)
 {
   uint8_t checksum;
   write(START_SYSEX);
@@ -494,6 +499,7 @@ boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed)
   write(checksum);
   write(END_SYSEX);
   resFlag &= 0xbf;
+  _callback = callback;
   cmdTimeOutValue = millis();
   while((resFlag & 0x40) != 0x40)
   {
@@ -1115,8 +1121,8 @@ void MeSmartServo::smartServoCmdResponse(void *arg)
   float temp_v;
   float vol_v;
   float current_v;
-  int16_t cmd;
-  cmd = (int16_t)sysex.val.value[0];
+  uint8_t servoNum = sysex.val.dev_id;
+  int16_t cmd = (int16_t)sysex.val.value[0];
   switch(cmd)
   {
     case GET_SERVO_CUR_ANGLE:
@@ -1143,6 +1149,13 @@ void MeSmartServo::smartServoCmdResponse(void *arg)
       current_v = readFloat(sysex.val.value,1);
       servo_dev_list[sysex.val.dev_id - 1].current = current_v;
       resFlag |= 0x20;
+      break;
+    case REPORT_WHEN_REACH_THE_SET_POSITION:
+      if(_callback != NULL)
+      {
+        Serial.println("_callback");
+        _callback(servoNum);
+	  }
       break;
     default:
       break;
