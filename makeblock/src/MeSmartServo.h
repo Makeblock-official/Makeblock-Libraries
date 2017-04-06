@@ -691,6 +691,7 @@ public:
 private:
   union sysex_message sysex;
   volatile int16_t sysexBytesRead;
+  volatile uint8_t servo_num_max;
   volatile uint16_t resFlag;
   volatile servo_device_type servo_dev_list[8];
   volatile long cmdTimeOutValue;
