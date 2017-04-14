@@ -4,7 +4,7 @@
  * \brief   Driver for Me Stepper on MegaPi.
  * @file    MeStepperOnBoard.cpp
  * @author  MakeBlock
- * @version V1.0.1
+ * @version V1.0.2
  * @date    2016/05/06
  * @brief   Driver for Stepper device.
  *
@@ -54,20 +54,13 @@
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan        2016/03/05     1.0.0            Bulid the new
  * Mark Yan        2016/05/06     1.0.1            Add function move and moveTo
+ * Zzipeng         2017/02/20     1.0.2            put the array megaPi_slots[4] to MegaPi.h/MegaPiPro.h
  * </pre>
  *
  * @example MegaPiOnBoardStepperTest.ino
  */
 
 #include "MeStepperOnBoard.h"
-
-const megaPi_slot_type megaPi_slots[NUM_SLOTS] =
-{
-  {35,   34,   33,   32,   31,  18,  12,   11},
-  {36,   37,   40,   41,   38,  19,   8,   7},
-  {42,   43,   47,   48,   49,   3,   9,   6},
-  {A5,   A4,   A3,   A2,   A1,   2,   5,   4}
-};
 
 typedef enum
 {

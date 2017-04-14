@@ -31,6 +31,8 @@
  * Scott wang       2016/09/18         1.0.2            Add the PORT[15].
  * Scott            2016/09/20         1.0.3            Add the PORT[16].
  * Scott            2016/09/23         1.0.4            Add the MePS2.h .
+ * Zzipeng          2016/12/15         1.0.5            Add the MePm25Sensor.h .
+ * Zzipeng          2017/01/22         1.0.6            Add the MeColorsensor.h.
  * </pre>
  */
 #ifndef MeMCore_H
@@ -72,6 +74,8 @@
 #include "MeFlameSensor.h"
 #include "MeGasSensor.h"
 #include "MePS2.h"
+#include "MePm25Sensor.h"
+#include "MeColorsensor.h"
 
 /*********************  Mbot Board GPIO Map *********************************/
 MePort_Sig mePort[17] =

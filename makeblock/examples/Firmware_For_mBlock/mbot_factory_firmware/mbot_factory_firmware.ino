@@ -100,7 +100,7 @@ byte index = 0;
 byte dataLen;
 byte modulesLen=0;
 unsigned char prevc=0;
-String mVersion = "06.01.007";
+String mVersion = "06.01.008";
 
 boolean isAvailable = false;
 boolean isStart = false;

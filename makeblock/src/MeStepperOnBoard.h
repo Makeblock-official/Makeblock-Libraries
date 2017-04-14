@@ -4,7 +4,7 @@
  * \brief   Driver for Me Stepper on MegaPi.
  * @file    MeStepperOnBoard.h
  * @author  MakeBlock
- * @version V1.0.1
+ * @version V1.0.2
  * @date    2016/05/06
  * @brief   Header for MeStepperOnBoard.cpp module
  *
@@ -54,6 +54,7 @@
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan        2016/03/05     1.0.0            Bulid the new
  * Mark Yan        2016/05/06     1.0.1            Add function move and moveTo
+* Zzipeng          2017/02/20     1.0.2            put the array megaPi_slots[4] to MegaPi.h/MegaPiPro.h
  * </pre>
  */
  
@@ -70,20 +71,21 @@
 
 #define NUM_SLOTS          4
 #define SLOT_NUM_PINS      8
-#define SLOT_1             1
-#define SLOT_2             2
-#define SLOT_3             3
-#define SLOT_4             4
-#define SLOT1             SLOT_1
-#define SLOT2             SLOT_2
-#define SLOT3             SLOT_3
-#define SLOT4             SLOT_4
+// #define SLOT_1             1
+// #define SLOT_2             2
+// #define SLOT_3             3
+// #define SLOT_4             4
+// #define SLOT1             SLOT_1
+// #define SLOT2             SLOT_2
+// #define SLOT3             SLOT_3
+// #define SLOT4             SLOT_4
 
-typedef struct megaPi_slot
-{
-  uint8_t pin[SLOT_NUM_PINS];
-} megaPi_slot_type;
+ typedef struct megaPi_slot
+ {
+   uint8_t pin[SLOT_NUM_PINS];
+ } megaPi_slot_type;
 
+ extern megaPi_slot_type megaPi_slots[4];
 
 // These defs cause trouble on some versions of Arduino
 #undef round
