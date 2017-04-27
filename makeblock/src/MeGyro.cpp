@@ -44,6 +44,7 @@
  *  Lawrence         2015/09/10          1.0.1         Added some comments and macros.
  *  Mark Yan         2016/03/09          1.0.2         Add function fast_update.
  *  Mark Yan         2016/03/09          1.0.3         Add function getGyroX and getGyroY.
+ *  Leo lu           2017/04/27          1.0.4         fix issue of z-axis output double. getAngle function just return, do not call update anymore.
  * </pre>
  *
  * @example MeGyroTest.ino
