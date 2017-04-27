@@ -34,8 +34,8 @@
  *    7. uint8_t MeSmartServo::sendFloat(float val);
  *    8. uint8_t MeSmartServo::sendLong(long val);
  *    9. boolean MeSmartServo::assignDevIdRequest(void);
- *    10. boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed);
- *    11. boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed);
+ *    10. boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed,smartServoCb callback);
+ *    11. boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed,smartServoCb callback);
  *    12. boolean MeSmartServo::setZero(uint8_t dev_id);
  *    13. boolean MeSmartServo::setBreak(uint8_t dev_id, uint8_t breakStatus);
  *    14. boolean MeSmartServo::setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value, uint8_t b_value);
@@ -114,6 +114,7 @@
   #define SET_SERVO_PWM_MOVE                     0x35
   #define GET_SERVO_CUR_ANGLE                    0x36
   #define SET_SERVO_INIT_ANGLE                   0x37
+  #define REPORT_WHEN_REACH_THE_SET_POSITION     0x40
 
 #define START_SYSEX             0xF0 // start a MIDI Sysex message
 #define END_SYSEX               0xF7 // end a MIDI Sysex message
@@ -172,6 +173,8 @@ typedef struct
   float temperature;
   float current;
 }servo_device_type;
+
+typedef void (*smartServoCb)(uint8_t); 
 
 /**
  * Class: MeSmartServo
@@ -382,6 +385,8 @@ public:
  *    angle_value - the absolute angle value we want move to.
  * \param[in]
  *    speed - move speed value(The unit is rpm).
+ * \param[in]
+ *    callback - callback function when the target position has been reached(Optional parameters).
  * \par Output
  *   None
  * \return
@@ -389,7 +394,7 @@ public:
  * \par Others
  *   None
  */
-  boolean moveTo(uint8_t dev_id,long angle_value,float speed);
+  boolean moveTo(uint8_t dev_id,long angle_value,float speed,smartServoCb callback = NULL);
 
 /**
  * \par Function
@@ -402,6 +407,8 @@ public:
  *    angle_value - the relative angle value we want move to.
  * \param[in]
  *    speed - move speed value(The unit is rpm).
+ * \param[in]
+ *    callback - callback function when the target position has been reached(Optional parameters).
  * \par Output
  *   None
  * \return
@@ -409,7 +416,7 @@ public:
  * \par Others
  *   None
  */
-  boolean move(uint8_t dev_id,long angle_value,float speed);
+  boolean move(uint8_t dev_id,long angle_value,float speed,smartServoCb callback = NULL);
 
 /**
  * \par Function
@@ -684,9 +691,11 @@ public:
 private:
   union sysex_message sysex;
   volatile int16_t sysexBytesRead;
+  volatile uint8_t servo_num_max;
   volatile uint16_t resFlag;
   volatile servo_device_type servo_dev_list[8];
   volatile long cmdTimeOutValue;
   volatile boolean parsingSysex;
+  smartServoCb _callback;
 };
 #endif

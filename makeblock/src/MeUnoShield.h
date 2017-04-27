@@ -1,11 +1,11 @@
 /**
  * \par Copyright (C), 2012-2016, MakeBlock
- * \brief   Driver for MeOrion board.
- * @file    MeOrion.h
+ * \brief   Driver for MeUNOShield Board.
+ * \file    MeUNOShield.h
  * @author  MakeBlock
- * @version V1.0.3
- * @date    2016/09/20
- * @brief   Driver for MeOrion board.
+ * @version V1.0.0
+ * @date    2017/02/14
+ * @brief   Driver for MeUNOShield Board.
  *
  * \par Copyright
  * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
@@ -20,28 +20,25 @@
  * distributed. See http://www.gnu.org/copyleft/gpl.html
  *
  * \par Description
- * This file is the driver for MeOrion hoard by MakeBlock.
+ * This file is Hardware adaptation layer between Mbot board and all
+ * MakeBlock drives
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * Mark Yan         2015/09/01     1.0.0            Rebuild the old lib.
- * Rafael Lee       2015/09/02     1.0.1            Added some comments and macros.
- * Scott wang       2016/09/18     1.0.2            Add the PORT[15].
- * Scott            2016/09/20     1.0.3            Add the PORT[16].
- * Zzipeng          2017/01/22     1.0.4            Add the MeColorsensor.h
+ * Zzipeng          2017/02/14         1.0.0            complete this code 
  * </pre>
  */
-#ifndef MeOrion_H
-#define MeOrion_H
+#ifndef MeUNOShield_H
+#define MeUNOShield_H
 
 #include <Arduino.h>
 #include "MeConfig.h"
 
-// Supported Modules drive needs to be added here
+/* Supported Modules drive needs to be added here */
 #include "Me7SegmentDisplay.h"
 #include "MeUltrasonicSensor.h"
-#include "MeDCMotor.h"
+#include "MeMbotDCMotor.h"
 #include "MeRGBLed.h"
 #include "Me4Button.h"
 #include "MePotentiometer.h"
@@ -64,24 +61,23 @@
 #include "MeStepper.h"
 #include "MeEncoderMotor.h"
 #include "MeEncoderNew.h"
-#include "MeBuzzer.h"
+#include "MeIR.h"
 #include "MeLEDMatrix.h"
+#include "MeBuzzer.h"
 #include "MeHumitureSensor.h"
 #include "MeFlameSensor.h"
 #include "MeGasSensor.h"
+#include "MePS2.h"
+#include "MePm25Sensor.h"
 #include "MeColorsensor.h"
 
-/*********************  Orion Board GPIO Map *********************************/
-// struct defined in MePort.h
+/*********************  Mbot Board GPIO Map *********************************/
 MePort_Sig mePort[17] =
 {
-  { NC, NC }, { 11, 10 }, {  3,  9 }, { 12, 13 }, {  8,  2 },
-  { NC, NC }, { A2, A3 }, { A6, A1 }, { A7, A0 }, {  6,  7 },
+  { NC, NC }, { 11, 12 }, {  9, 10 }, { A2, A3 }, { A0, A1 },
+  { NC, 2 }, {  NC, 3 }, { 1, 0 }, {  NC, 8 }, { 6, 7 },
   {  5,  4 }, { NC, NC }, { NC, NC }, { NC, NC }, { NC, NC },
-  { NC, NC },{ NC, NC }
+  { NC, NC },{ NC, NC },
 };
+#endif // MeUNOShield_H
 
-#define buzzerOn()  pinMode(SCL,OUTPUT),digitalWrite(SCL, HIGH)
-#define buzzerOff() pinMode(SCL,OUTPUT),digitalWrite(SCL, LOW)
-
-#endif // MeOrion_H

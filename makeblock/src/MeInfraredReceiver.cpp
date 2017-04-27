@@ -4,8 +4,8 @@
  * \brief   Driver for Me Infrared Receiver device.
  * @file    MeInfraredReceiver.cpp
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/09
+ * @version V1.0.1
+ * @date    2017/04/06
  * @brief   Driver for Me Infrared Receiver device.
  *
  * \par Copyright
@@ -36,6 +36,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/09     1.0.0            Rebuild the old lib.
+ * Mark Yan         2017/04/06     1.0.1            Filter out the 0 value of infrared remote.
  * </pre>
  *
  * @example InfraredReceiverTest.ino
@@ -197,8 +198,16 @@ void MeInfraredReceiver::loop(void)
     {
       int r = read();
       if(r<0xff)
-	  {
-        _irCode = r;
+      {
+        if(r == 0)
+        {
+          _irCode = _preIrCode;
+        }
+        else
+        {
+          _irCode = r;
+          _preIrCode = _irCode;
+        }
       }
     }
   }

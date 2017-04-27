@@ -308,6 +308,7 @@ void MeGyro::fast_update(void)
     gy = gy - gyrX * dt;
   }
   gz += gyrZ * dt;
+  
   gz = gz - 360 * floor(gz / 360);
   if(gz > 180)
   {
@@ -448,18 +449,17 @@ double MeGyro::getGyroY(void)
  */
 double MeGyro::getAngle(uint8_t index)
 {
-  update();
   if(index == 1)
   {
-    return gx;
+    return getAngleX();
   }
   else if(index == 2)
   {
-    return gy;
+    return getAngleY();
   }
   else if(index == 3)
   {
-    return gz;
+    return getAngleZ();
   }
 } 
 

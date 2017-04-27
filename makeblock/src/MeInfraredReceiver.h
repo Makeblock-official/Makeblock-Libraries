@@ -4,8 +4,8 @@
  * \brief   Driver for Me Infrared Receiver device.
  * @file    MeInfraredReceiver.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/09
+ * @version V1.0.1
+ * @date    2017/04/06
  * @brief   Header for for MeInfraredReceiver.cpp module
  * \par Description
  *
@@ -36,6 +36,7 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/09     1.0.0            Rebuild the old lib.
+ * Mark Yan         2017/04/06     1.0.1            Filter out the 0 value of infrared remote.
  * </pre>
  *
  */
@@ -204,6 +205,7 @@ private:
   volatile uint8_t _RxPin;
   volatile uint8_t _KeyCheckPin;
   uint8_t _irCode;
+  uint8_t _preIrCode;
 };
 
 #endif

@@ -1,14 +1,14 @@
-/*************************************************************************
+ /*************************************************************************
 * File Name          : mbot_factory_firmware.ino
 * Author             : Ander, Mark Yan
 * Updated            : Ander, Mark Yan
-* Version            : V06.01.007
-* Date               : 07/06/2016
+* Version            : V06.01.008
+* Date               : 13/04/2017
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
-* Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
+* Copyright (C) 2013 - 2017 Maker Works Technology Co., Ltd. All right reserved.
 * http://www.makeblock.cc/
-**************************************************************************/
+**************************************************************************/ 
 #include <Wire.h>
 #include <SoftwareSerial.h>
 #include <MeMCore.h>
@@ -55,6 +55,9 @@ Servo servo;
 #define RUN_R 0x01<<3
 #define STOP 0
 
+uint8_t high = 15;
+uint8_t low = 15;
+
 enum
 {
   MODE_A,
@@ -97,7 +100,7 @@ byte index = 0;
 byte dataLen;
 byte modulesLen=0;
 unsigned char prevc=0;
-String mVersion = "06.01.007";
+String mVersion = "06.01.008";
 
 boolean isAvailable = false;
 boolean isStart = false;
@@ -254,7 +257,7 @@ void get_ir_command()
         break;
       case IR_BUTTON_C:
         mode = MODE_C;
-        moveSpeed = 120;
+        moveSpeed = 200;
         Stop();
         cli();
         buzzer.tone(NTD3, 300);
@@ -264,35 +267,47 @@ void get_ir_command()
         rgb.show();
         break;
       case IR_BUTTON_PLUS:
-        motor_sta = RUN_F;
-        //buzzer.tone(NTD4, 300); 
-        rgb.setColor(0,0,0);
-        rgb.setColor(10, 10, 0);
-        rgb.show();
+        if(mode == MODE_A)
+        {
+          motor_sta = RUN_F;
+          //buzzer.tone(NTD4, 300); 
+          rgb.setColor(0,0,0);
+          rgb.setColor(10, 10, 0);
+          rgb.show();
         //               Forward();
+        }
         break;
       case IR_BUTTON_MINUS:
-        motor_sta = RUN_B;
-        rgb.setColor(0,0,0);
-        rgb.setColor(10, 0, 0);
-        rgb.show();
+        if(mode == MODE_A)
+        {
+          motor_sta = RUN_B;
+          rgb.setColor(0,0,0);
+          rgb.setColor(10, 0, 0);
+          rgb.show();
         //buzzer.tone(NTD4, 300); 
         //               Backward();
+        }
         break;
       case IR_BUTTON_NEXT:
-        motor_sta = RUN_R;
-        //buzzer.tone(NTD4, 300); 
-        rgb.setColor(0,0,0);
-        rgb.setColor(1,10, 10, 0);
-        rgb.show();
+        if(mode == MODE_A)
+        {
+          motor_sta = RUN_R;
+          //buzzer.tone(NTD4, 300); 
+          rgb.setColor(0,0,0);
+          rgb.setColor(1,10, 10, 0);
+          rgb.show();
         //               TurnRight();
+        }
         break;
       case IR_BUTTON_PREVIOUS:
-        motor_sta = RUN_L;
-        //buzzer.tone(NTD4, 300); 
-        rgb.setColor(0,0,0);
-        rgb.setColor(2,10, 10, 0);
-        rgb.show();
+        if(mode == MODE_A)
+        {
+          motor_sta = RUN_L;
+          //buzzer.tone(NTD4, 300); 
+          rgb.setColor(0,0,0);
+          rgb.setColor(2,10, 10, 0);
+          rgb.show();
+        }
         //               TurnLeft();
         break;
       case IR_BUTTON_9:
@@ -305,13 +320,13 @@ void get_ir_command()
         cli();
         buzzer.tone(NTDH1, 300);
         sei();
-        ChangeSpeed(factor * 8 + minSpeed);
+        ChangeSpeed(factor * 9 + minSpeed);
         break;
       case IR_BUTTON_7:
         cli();
         buzzer.tone(NTD7, 300);
         sei();
-        ChangeSpeed(factor * 7 + minSpeed);
+        ChangeSpeed(factor * 9 + minSpeed);
         break;
       case IR_BUTTON_6:
         cli();
@@ -323,13 +338,13 @@ void get_ir_command()
         cli();
         buzzer.tone(NTD5, 300);
         sei();
-        ChangeSpeed(factor * 5 + minSpeed);
+        ChangeSpeed(factor * 6 + minSpeed);
         break;
       case IR_BUTTON_4:
         cli();
         buzzer.tone(NTD4, 300);
         sei();
-        ChangeSpeed(factor * 4 + minSpeed);
+        ChangeSpeed(factor * 6 + minSpeed);
         break;
       case IR_BUTTON_3:
         cli();
@@ -341,13 +356,13 @@ void get_ir_command()
         cli();
         buzzer.tone(NTD2, 300);
         sei();
-        ChangeSpeed(factor * 2 + minSpeed);
+        ChangeSpeed(factor * 3 + minSpeed);
         break;
       case IR_BUTTON_1:
         cli();
         buzzer.tone(NTD1, 300);
         sei();
-        ChangeSpeed(factor * 1 + minSpeed);
+        ChangeSpeed(factor * 3 + minSpeed);
         break;
     }
   }
@@ -355,6 +370,21 @@ void get_ir_command()
   {
     motor_sta = STOP;
     time = millis();
+    if(mode == MODE_A )
+    {
+      rgb.setColor(10, 10, 10);
+      rgb.show();
+    }
+    else if(mode == MODE_B )
+    {
+      rgb.setColor(0, 10, 0);
+      rgb.show();
+    }
+    else if(mode == MODE_C)
+    {
+      rgb.setColor(0, 0, 10);
+      rgb.show();
+    }
   }
 }
 void Forward()
@@ -369,24 +399,36 @@ void Backward()
 }
 void TurnLeft()
 {
+  MotorL.run(moveSpeed*0.8);
+  MotorR.run(moveSpeed*0.8);
+}
+void TurnRight()
+{
+  MotorL.run(-moveSpeed*0.8);
+  MotorR.run(-moveSpeed*0.8);
+}
+
+void TurnLeft2()
+{
   MotorL.run(-moveSpeed/5);
   MotorR.run(moveSpeed);
 }
-void TurnRight()
+void TurnRight2()
 {
   MotorL.run(-moveSpeed);
   MotorR.run(moveSpeed/5);
 }
+
 void BackwardAndTurnLeft()
 {
-  MotorL.run(moveSpeed/8 ); 
+  MotorL.run(moveSpeed/3 ); 
   MotorR.run(-moveSpeed);
 }
 
 void BackwardAndTurnRight()
 {
   MotorL.run(moveSpeed); 
-  MotorR.run(-moveSpeed/8);
+  MotorR.run(-moveSpeed/3);
 }
 void Stop()
 {
@@ -438,11 +480,11 @@ void modeB()
   static long time = millis();
   randomSeed(analogRead(6));
   uint8_t randNumber = random(2);
-  if (d > 40 || d == 0)
+  if (d > high || d == 0)
   {
     Forward();
   }
-  else if ((d > 15) && (d < 40)) 
+  else if ((d > low) && (d < high)) 
   {
     switch (randNumber)
     {
@@ -461,11 +503,11 @@ void modeB()
     switch (randNumber)
     {
       case 0:
-        BackwardAndTurnLeft();
+        TurnLeft();
         delay(800);
         break;
       case 1:
-        BackwardAndTurnRight();
+        TurnRight();
         delay(800);
         break;
     }
@@ -497,8 +539,8 @@ void modeC()
 
     case S1_OUT_S2_OUT:
       if(LineFollowFlag==10) Backward();
-      if(LineFollowFlag<10) TurnLeft();
-      if(LineFollowFlag>10) TurnRight();
+      if(LineFollowFlag<10) TurnLeft2();
+      if(LineFollowFlag>10) TurnRight2();
       break;
   }
 //  delay(50);
@@ -982,7 +1024,7 @@ void loop()
         else if(mode == MODE_B)
         {
           mode = MODE_C;
-          moveSpeed = 120;
+          moveSpeed = 200;
           Stop();
           cli();
           buzzer.tone(NTD2, 300);

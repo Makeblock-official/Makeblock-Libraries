@@ -35,8 +35,8 @@
  *    7. uint8_t MeSmartServo::sendFloat(float val);
  *    8. uint8_t MeSmartServo::sendLong(long val);
  *    9. boolean MeSmartServo::assignDevIdRequest(void);
- *    10. boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed);
- *    11. boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed);
+ *    10. boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed,smartServoCb callback);
+ *    11. boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed,smartServoCb callback);
  *    12. boolean MeSmartServo::setZero(uint8_t dev_id);
  *    13. boolean MeSmartServo::setBreak(uint8_t dev_id, uint8_t breakStatus);
  *    14. boolean MeSmartServo::setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value, uint8_t b_value);
@@ -64,6 +64,7 @@
  */
 #include "MeSmartServo.h"
 #include "MeSerial.h"
+#include <avr/wdt.h>
 
 #ifdef ME_PORT_DEFINED
 /**
@@ -77,6 +78,7 @@ MeSmartServo::MeSmartServo() : MeSerial(0)
   parsingSysex = false;
   sysex = {0};
   sysexBytesRead = 0;
+  servo_num_max = 0;
 }
 
 /**
@@ -90,6 +92,7 @@ MeSmartServo::MeSmartServo(uint8_t port) : MeSerial(port)
   parsingSysex = false;
   sysex = {0};
   sysexBytesRead = 0;
+  servo_num_max = 0;
 }
 #else // ME_PORT_DEFINED
 /**
@@ -108,6 +111,7 @@ MeSmartServo::MeSmartServo(uint8_t receivePin, uint8_t transmitPin, bool inverse
   parsingSysex = false;
   sysex = {0};
   sysexBytesRead = 0;
+  servo_num_max = 0;
 }
 #endif // ME_PORT_DEFINED
 
@@ -404,9 +408,10 @@ boolean MeSmartServo::assignDevIdRequest(void)
   while((resFlag & 0x01) != 0x01)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
       resFlag &= 0xfe;
+      wdt_reset();
       return false;
     }
   }
@@ -425,6 +430,8 @@ boolean MeSmartServo::assignDevIdRequest(void)
  *    angle_value - the absolute angle value we want move to.
  * \param[in]
  *    speed - move speed value(The unit is rpm).
+ * \param[in]
+ *    callback - callback function when the target position has been reached(Optional parameters).
  * \par Output
  *   None
  * \return
@@ -432,9 +439,13 @@ boolean MeSmartServo::assignDevIdRequest(void)
  * \par Others
  *   None
  */
-boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed)
+boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed,smartServoCb callback)
 {
   uint8_t checksum;
+  if((dev_id > servo_num_max) && (dev_id != ALL_DEVICE))
+  {
+    return false;
+  }
   write(START_SYSEX);
   write(dev_id);
   write(SMART_SERVO);
@@ -447,13 +458,15 @@ boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed)
   write(checksum);
   write(END_SYSEX);
   resFlag &= 0xbf;
+  _callback = callback;
   cmdTimeOutValue = millis();
   while((resFlag & 0x40) != 0x40)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
       resFlag &= 0xbf;
+      wdt_reset();
       return false;
     }
   }
@@ -472,6 +485,8 @@ boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed)
  *    angle_value - the relative angle value we want move to.
  * \param[in]
  *    speed - move speed value(The unit is rpm).
+ * \param[in]
+ *    callback - callback function when the target position has been reached(Optional parameters).
  * \par Output
  *   None
  * \return
@@ -479,9 +494,13 @@ boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed)
  * \par Others
  *   None
  */
-boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed)
+boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed,smartServoCb callback)
 {
   uint8_t checksum;
+  if((dev_id > servo_num_max) && (dev_id != ALL_DEVICE))
+  {
+    return false;
+  }
   write(START_SYSEX);
   write(dev_id);
   write(SMART_SERVO);
@@ -494,13 +513,15 @@ boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed)
   write(checksum);
   write(END_SYSEX);
   resFlag &= 0xbf;
+  _callback = callback;
   cmdTimeOutValue = millis();
   while((resFlag & 0x40) != 0x40)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
       resFlag &= 0xbf;
+      wdt_reset();
       return false;
     }
   }
@@ -525,6 +546,10 @@ boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed)
 boolean MeSmartServo::setZero(uint8_t dev_id)
 {
   uint8_t checksum;
+  if((dev_id > servo_num_max) && (dev_id != ALL_DEVICE))
+  {
+    return false;
+  }
   write(START_SYSEX);
   write(dev_id);
   write(SMART_SERVO);
@@ -537,9 +562,10 @@ boolean MeSmartServo::setZero(uint8_t dev_id)
   while((resFlag & 0x40) != 0x40)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
       resFlag &= 0xbf;
+      wdt_reset();
       return false;
     }
   }
@@ -566,6 +592,10 @@ boolean MeSmartServo::setZero(uint8_t dev_id)
 boolean MeSmartServo::setBreak(uint8_t dev_id, uint8_t breakStatus)
 {
   uint8_t checksum;
+  if((dev_id > servo_num_max) && (dev_id != ALL_DEVICE))
+  {
+    return false;
+  }
   write(START_SYSEX);
   write(dev_id);
   write(SMART_SERVO);
@@ -579,9 +609,10 @@ boolean MeSmartServo::setBreak(uint8_t dev_id, uint8_t breakStatus)
   while((resFlag & 0x40) != 0x40)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
       resFlag &= 0xbf;
+      wdt_reset();
       return false;
     }
   }
@@ -612,6 +643,10 @@ boolean MeSmartServo::setBreak(uint8_t dev_id, uint8_t breakStatus)
 boolean MeSmartServo::setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value, uint8_t b_value)
 {
   uint8_t checksum;
+  if((dev_id > servo_num_max) && (dev_id != ALL_DEVICE))
+  {
+    return false;
+  }
   write(START_SYSEX);
   write(dev_id);
   write(SMART_SERVO);
@@ -627,9 +662,10 @@ boolean MeSmartServo::setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value
   while((resFlag & 0x40) != 0x40)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
       resFlag &= 0xbf;
+      wdt_reset();
       return false;
     }
   }
@@ -654,6 +690,10 @@ boolean MeSmartServo::setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value
 boolean MeSmartServo::handSharke(uint8_t dev_id)
 {
   uint8_t checksum;
+  if((dev_id > servo_num_max) && (dev_id != ALL_DEVICE))
+  {
+    return false;
+  }
   write(START_SYSEX);
   write(dev_id);
   write(SMART_SERVO);
@@ -666,9 +706,10 @@ boolean MeSmartServo::handSharke(uint8_t dev_id)
   while((resFlag & 0x40) != 0x40)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
       resFlag &= 0xbf;
+      wdt_reset();
       return false;
     }
   }
@@ -695,6 +736,10 @@ boolean MeSmartServo::handSharke(uint8_t dev_id)
 boolean MeSmartServo::setPwmMove(uint8_t dev_id, int16_t pwm_value)
 {
   uint8_t checksum;
+  if((dev_id > servo_num_max) && (dev_id != ALL_DEVICE))
+  {
+    return false;
+  }
   write(START_SYSEX);
   write(dev_id);
   write(SMART_SERVO);
@@ -708,9 +753,10 @@ boolean MeSmartServo::setPwmMove(uint8_t dev_id, int16_t pwm_value)
   while((resFlag & 0x40) != 0x40)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
       resFlag &= 0xbf;
+      wdt_reset();
       return false;
     }
   }
@@ -739,6 +785,10 @@ boolean MeSmartServo::setPwmMove(uint8_t dev_id, int16_t pwm_value)
 boolean MeSmartServo::setInitAngle(uint8_t dev_id,uint8_t mode,int16_t speed)
 {
   uint8_t checksum;
+  if((dev_id > servo_num_max) && (dev_id != ALL_DEVICE))
+  {
+    return false;
+  }
   write(START_SYSEX);
   write(dev_id);
   write(SMART_SERVO);
@@ -753,9 +803,10 @@ boolean MeSmartServo::setInitAngle(uint8_t dev_id,uint8_t mode,int16_t speed)
   while((resFlag & 0x40) != 0x40)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
       resFlag &= 0xbf;
+      wdt_reset();
       return false;
     }
   }
@@ -780,6 +831,10 @@ boolean MeSmartServo::setInitAngle(uint8_t dev_id,uint8_t mode,int16_t speed)
 long MeSmartServo::getAngleRequest(uint8_t devId)
 {
   uint8_t checksum;
+  if((devId > servo_num_max) && (devId != ALL_DEVICE))
+  {
+    return false;
+  }
   write(START_SYSEX);
   write(devId);
   write(SMART_SERVO);
@@ -793,8 +848,9 @@ long MeSmartServo::getAngleRequest(uint8_t devId)
   while((resFlag & 0x02) != 0x02)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
+      wdt_reset();
       break;
     }
   }
@@ -819,6 +875,10 @@ long MeSmartServo::getAngleRequest(uint8_t devId)
 float MeSmartServo::getSpeedRequest(uint8_t devId)
 {
   uint8_t checksum;
+  if((devId > servo_num_max) && (devId != ALL_DEVICE))
+  {
+    return false;
+  }
   write(START_SYSEX);
   write(devId);
   write(SMART_SERVO);
@@ -832,8 +892,9 @@ float MeSmartServo::getSpeedRequest(uint8_t devId)
   while((resFlag & 0x04) != 0x04)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
+      wdt_reset();
       break;
     }
   }
@@ -858,6 +919,10 @@ float MeSmartServo::getSpeedRequest(uint8_t devId)
 float MeSmartServo::getVoltageRequest(uint8_t devId)
 {
   uint8_t checksum;
+  if((devId > servo_num_max) && (devId != ALL_DEVICE))
+  {
+    return false;
+  }
   write(START_SYSEX);
   write(devId);
   write(SMART_SERVO);
@@ -871,8 +936,9 @@ float MeSmartServo::getVoltageRequest(uint8_t devId)
   while((resFlag & 0x08) != 0x08)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
+      wdt_reset();
       break;
     }
   }
@@ -896,6 +962,10 @@ float MeSmartServo::getVoltageRequest(uint8_t devId)
 float MeSmartServo::getTempRequest(uint8_t devId)
 {
   uint8_t checksum;
+  if((devId > servo_num_max) && (devId != ALL_DEVICE))
+  {
+    return false;
+  }
   write(START_SYSEX);
   write(devId);
   write(SMART_SERVO);
@@ -909,8 +979,9 @@ float MeSmartServo::getTempRequest(uint8_t devId)
   while((resFlag & 0x10) != 0x10)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
+      wdt_reset();
       break;
     }
   }
@@ -935,6 +1006,10 @@ float MeSmartServo::getTempRequest(uint8_t devId)
 float MeSmartServo::getCurrentRequest(uint8_t devId)
 {
   uint8_t checksum;
+  if((devId > servo_num_max) && (devId != ALL_DEVICE))
+  {
+    return false;
+  }
   write(START_SYSEX);
   write(devId);
   write(SMART_SERVO);
@@ -948,8 +1023,9 @@ float MeSmartServo::getCurrentRequest(uint8_t devId)
   while((resFlag & 0x20) != 0x20)
   {
     smartServoEventHandle();
-    if(millis() - cmdTimeOutValue > 2000)
+    if(millis() - cmdTimeOutValue > 1200)
     {
+      wdt_reset();
       break;
     }
   }
@@ -978,6 +1054,10 @@ void MeSmartServo::assignDevIdResponse(void *arg)
   uint8_t ServiceId = 0;
   DeviceId = sysex.val.dev_id;
   ServiceId = sysex.val.srv_id;
+  if(servo_num_max < DeviceId)
+  {
+    servo_num_max = DeviceId;
+  }
   resFlag |= 0x01;
 }
 
@@ -1115,8 +1195,8 @@ void MeSmartServo::smartServoCmdResponse(void *arg)
   float temp_v;
   float vol_v;
   float current_v;
-  int16_t cmd;
-  cmd = (int16_t)sysex.val.value[0];
+  uint8_t servoNum = sysex.val.dev_id;
+  int16_t cmd = (int16_t)sysex.val.value[0];
   switch(cmd)
   {
     case GET_SERVO_CUR_ANGLE:
@@ -1143,6 +1223,12 @@ void MeSmartServo::smartServoCmdResponse(void *arg)
       current_v = readFloat(sysex.val.value,1);
       servo_dev_list[sysex.val.dev_id - 1].current = current_v;
       resFlag |= 0x20;
+      break;
+    case REPORT_WHEN_REACH_THE_SET_POSITION:
+      if(_callback != NULL)
+      {
+        _callback(servoNum);
+	  }
       break;
     default:
       break;
