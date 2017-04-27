@@ -24,6 +24,7 @@
 * Mark Yan         2016/08/24     09.01.012        Fix issue MBLOCK-171(Stepper online execution slow), MBLOCK-189(on board encoder motor reset issue).
 * Zzipeng          2016/12/15     09.01.013        Add Pm25Sensor
 * Mark Yan         2016/03/07     09.01.014        fix RGB lights issue, and add Smart servo support.
+* Leo lu           2017/04/27     09.01.015        Fix issue of 3-axis gyroscope z output double.
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -170,7 +171,7 @@ boolean move_flag = false;
 boolean boot_show_flag = true;
 boolean blink_flag = false;
 
-String mVersion = "09.01.014";
+String mVersion = "09.01.015";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
