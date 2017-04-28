@@ -30,7 +30,7 @@ Arduino Library for Makeblock Electronic Modules
 
    MegaPi <------->  MeMegaPi.h
    
-###Revision of history:
+###Revision of history
 |Author      |       Time      |   Version    |    Descr     |
 |:--------   |      :-----:    |   :----:     |    :-----    |
 |Mark Yan    |     2015/07/24  |   3.0.0      |    Rebuild the old lib.|
