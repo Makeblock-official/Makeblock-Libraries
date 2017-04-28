@@ -214,6 +214,7 @@ void MeInfraredReceiver::loop(void)
   else
   {
     _irCode = 0;
+    _preIrCode = 0;
   }
 }
 
