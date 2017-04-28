@@ -2,7 +2,7 @@
 
 Arduino Library for Makeblock Electronic Modules
 
-###How to use:
+### How to use:
 
 1. Download the source from the git https://github.com/Makeblock-official/Makeblock-Libraries
 
@@ -30,9 +30,10 @@ Arduino Library for Makeblock Electronic Modules
 
    MegaPi <------->  MeMegaPi.h
    
-###Revision of history:
+### Revision of history:
+
 |Author      |       Time      |   Version    |    Descr     |
-| --------   |      :-----:    |   :----:     |    :-----    |
+|:--------   |      :-----:    |   :----:     |    :-----    |
 |Mark Yan    |     2015/07/24  |   3.0.0      |    Rebuild the old lib.|
 |Rafael Lee  |     2015/09/02  |   3.1.0      |    Added some comments and macros.|
 |Lawrence    |     2015/09/09  |   3.2.0      |    Include some Arduino's official headfiles which path specified.|
@@ -41,4 +42,4 @@ Arduino Library for Makeblock Electronic Modules
 |Mark Yan    |     2016/05/17  |   3.2.3      |    add support for MegaPi and Auriga Board.|
 |Mark Yan    |     2016/07/27  |   3.2.4      |    fix some JIRA issue, add PID motion for Megapi/Auriga on board encoder motor.|
 
-###Learn more from Makeblock official website: www.makeblock.com
+### Learn more from Makeblock official website: www.makeblock.com
