@@ -32,7 +32,7 @@ Arduino Library for Makeblock Electronic Modules
    
 ###Revision of history:
 |Author      |       Time      |   Version    |    Descr     |
-| --------   |      :-----:    |   :----:     |    :-----    |
+|:--------   |      :-----:    |   :----:     |    :-----    |
 |Mark Yan    |     2015/07/24  |   3.0.0      |    Rebuild the old lib.|
 |Rafael Lee  |     2015/09/02  |   3.1.0      |    Added some comments and macros.|
 |Lawrence    |     2015/09/09  |   3.2.0      |    Include some Arduino's official headfiles which path specified.|
