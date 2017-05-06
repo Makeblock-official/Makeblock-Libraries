@@ -66,7 +66,7 @@
 #include <stdbool.h>
 #include <Arduino.h>
 #include "MeConfig.h"
-#include "Wire.h"
+#include "utility/Wire.h"
  #ifdef ME_PORT_DEFINED
 #include "MePort.h"
  #endif // ME_PORT_DEFINED
