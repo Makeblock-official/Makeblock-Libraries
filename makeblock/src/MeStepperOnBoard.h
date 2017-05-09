@@ -71,21 +71,13 @@
 
 #define NUM_SLOTS          4
 #define SLOT_NUM_PINS      8
-// #define SLOT_1             1
-// #define SLOT_2             2
-// #define SLOT_3             3
-// #define SLOT_4             4
-// #define SLOT1             SLOT_1
-// #define SLOT2             SLOT_2
-// #define SLOT3             SLOT_3
-// #define SLOT4             SLOT_4
 
  typedef struct megaPi_slot
  {
    uint8_t pin[SLOT_NUM_PINS];
  } megaPi_slot_type;
 
- extern megaPi_slot_type megaPi_slots[4];
+ extern megaPi_slot_type megaPi_slots[NUM_SLOTS];
 
 // These defs cause trouble on some versions of Arduino
 #undef round
