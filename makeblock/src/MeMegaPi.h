@@ -30,7 +30,6 @@
  * Scott wang       2016/09/18     1.0.2            Add the PORT[15].
  * Scott            2016/09/20     1.0.3            Add the PORT[16].
  * Scott            2016/09/23     1.0.4            Add the MePS2.h .
- * Zzipeng          2017/01/22     1.0.5            Add the MeColorSensor.h.
  * Zzipeng          2017/02/20     1.0.5            put the array megaPi_slots[4] to MegaPi.h
  * </pre>
  */
@@ -76,7 +75,6 @@
 #include "MeMegaPiDCMotor.h"
 #include "MePressureSensor.h"
 #include "MePS2.h"
-#include "MeColorSensor.h"
 
 /*********************  MegaPi Board GPIO Map *********************************/
 // struct defined in MeMegaPi.h
@@ -121,8 +119,7 @@ megaPi_slot_type megaPi_slots[4] =
   {35,   34,   33,   32,   31,  18,  12,   11},
   {36,   37,   40,   41,   38,  19,   8,   7},
   {42,   43,   47,   48,   49,   3,   9,   6},
-  {A5,   A4,   A3,   A2,   A1,   2,   5,   4}// for megapi
-  /*{39,   29,   28,   27,   26,   2,   5,   4}*/ //for megapipro
+  {A5,   A4,   A3,   A2,   A1,   2,   5,   4},    // for megapi
 };
 //for step motor on board
 #endif // MeMegaPi_H

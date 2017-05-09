@@ -83,7 +83,7 @@ MeSerial::MeSerial(uint8_t port) : MePort(port), SoftwareSerial(mePort[port].s2,
 #elif defined(__AVR_ATmega2560__)
   _hard = (getPort() == PORT_5) | (getPort() == PORT_15) | (getPort() == PORT_16);
 #else
-  _hard = (((getPort() == PORT_5) && (mePort[PORT_5].s1==1)) || ((getPort() == PORT_7) && (mePort[PORT_7].s1==1)));
+  _hard = getPort() == PORT_5;
 #endif
 }
 
