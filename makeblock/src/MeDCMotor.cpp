@@ -4,8 +4,8 @@
  * \brief   Driver for Me DC motor device.
  * @file    MeDCMotor.cpp
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2016/04/07
+ * @version V1.0.2
+ * @date    2017/05/18
  * @brief   Driver for Me DC motor device.
  *
  * \par Copyright
@@ -36,6 +36,7 @@
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/09     1.0.0            Rebuild the old lib.
  * Mark Yan         2016/04/07     1.0.1            fix motor reset issue.
+ * Zzipeng          2017/05/18     1.0.2            set all timer frequency at 970HZ.
  * </pre>
  *
  * @example DCMotorDriverTest.ino
@@ -106,11 +107,36 @@ MeDCMotor::MeDCMotor(uint8_t port) : MePort(port)
   TCCR2B = _BV(CS22);
 
 #elif defined(__AVR_ATmega2560__) //else ATmega2560
-  TCCR1A = _BV(WGM10);
-  TCCR1B = _BV(CS11) | _BV(CS10) | _BV(WGM12);
-
-  TCCR2A = _BV(WGM21) | _BV(WGM20);
-  TCCR2B = _BV(CS22);
+  /*if((mePort[port].s1 == 13) || (mePort[port].s1 == 4))//timer0 default 970hz
+  {
+    TCCR0A = _BV(WGM01) | _BV(WGM00);//8KHZ
+    TCCR0B = _BV(CS01) | _BV(CS01);//
+  }
+  else */if((mePort[port].s1 == 12) || (mePort[port].s1 == 11))
+  {
+    TCCR1A = _BV(WGM10);
+    TCCR1B = _BV(CS11) | _BV(CS10) | _BV(WGM12);//970hz
+  }
+  else if((mePort[port].s1 == 10) || (mePort[port].s1 == 9))
+  {
+    TCCR2A = _BV(WGM21) | _BV(WGM20);//970hz
+    TCCR2B = _BV(CS22);
+  }
+  else if((mePort[port].s1 == 5) || (mePort[port].s1 == 3) || (mePort[port].s1 == 2))
+  {
+    TCCR3A = _BV(WGM30);
+    TCCR3B = _BV(CS31) | _BV(CS30) | _BV(WGM32);//970hz
+  }
+  else if((mePort[port].s1 == 8) || (mePort[port].s1 == 7) || (mePort[port].s1 == 6))
+  {
+    TCCR4A = _BV(WGM40);
+    TCCR4B = _BV(CS41) | _BV(CS40) | _BV(WGM42);//970hz
+  }
+  else if((mePort[port].s1 == 45) || (mePort[port].s1 == 46) ||  (mePort[port].s1 == 44))
+  {
+    TCCR5A = _BV(WGM50);
+    TCCR5B = _BV(CS51) | _BV(CS50) | _BV(WGM52);//970hz
+  }
 #endif
 }
 #else // ME_PORT_DEFINED
@@ -232,6 +258,7 @@ void MeDCMotor::run(int16_t speed)
   {
 #ifdef ME_PORT_DEFINED
     MePort::dWrite2(HIGH);
+    delayMicroseconds(5);
     MePort::aWrite1(speed);
 #else /* ME_PORT_DEFINED */
     digitalWrite(dc_dir_pin,HIGH);
@@ -242,6 +269,7 @@ void MeDCMotor::run(int16_t speed)
   {
 #ifdef ME_PORT_DEFINED
     MePort::dWrite2(LOW);
+    delayMicroseconds(5);
     MePort::aWrite1(-speed);
 #else /* ME_PORT_DEFINED */
     digitalWrite(dc_dir_pin,LOW);

@@ -6,7 +6,7 @@
  * @file    MeColorSensor.h
  * @author  MakeBlock
  * @version V1.0.1
- * @date    2017/04/14
+ * @date    2017/05/23
  * @brief   Header for MeColorSensor.cpp module.
  * \par Description
  * This file is a drive for MeColorSensor module, It supports MeColorSensor V1.0 device provided
@@ -14,86 +14,131 @@
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- *  zzipeng         2017/04/12          1.0.1         complete the driver code.
+ *  zzipeng         2017/05/23          1.0.1         complete the driver code.
  * </pre>
- *                 Attention please!
- *                 8mm~24mm detection distance.
- *              megapipro board only support PORT 6 7 8 9 10 11 12,as for this module!!
+ *  megapipro board only support PORT 6 7 8 9 10 11 12,as for this module!!
  */
-//本例程示例单个颜色传感器模块工作，获取颜色识别值。单个模块工作数据返回率每秒6次。
 
-MeColorSensor colorsensor(PORT_6);
+MeColorSensor colorsensor1(PORT_6);
+MeColorSensor colorsensor2(PORT_7);
 
-uint16_t redvalue=0,greenvalue=0,bluevalue=0,clearvalue=0;
-uint8_t colorresult = 0,grayscale = 0;
-long systime = 0,colorcode=0;
+uint16_t r1=0,g1=0,b1=0,c1=0;
+uint8_t colorresult1 = 0;
+uint16_t r2=0,g2=0,b2=0,c2=0;
+uint8_t colorresult2 = 0;
+long colorcode1=0,colorcode2=0;
 
-void setup() {
+void setup() 
+{
   // put your setup code here, to run once:
   Serial.begin(115200);
-  colorsensor.SensorInit();
+  colorsensor1.SensorInit();
+  colorsensor2.SensorInit();
 }
 
 void loop() 
 {
   // put your main code here, to run repeatedly:
-    colorresult = colorsensor.Returnresult();
-    redvalue   = colorsensor.ReturnRedData();
-    greenvalue = colorsensor.ReturnGreenData();
-    bluevalue  = colorsensor.ReturnBlueData();
-    colorcode = colorsensor.ReturnColorCode();//RGB24code
-    grayscale  = colorsensor.ReturnGrayscale();
-
+    colorresult1 = colorsensor1.ColorIdentify();
+    colorcode1 = colorsensor1.ReturnColorCode();
+    
+    r1 = (uint8_t)(colorcode1>>16);
+    g1 = (uint8_t)(colorcode1>>8);
+    b1 = (uint8_t)(colorcode1);
+    
     Serial.print("R:");
-    Serial.print(redvalue);
+    Serial.print(r1);
     Serial.print("\t");
     Serial.print("G:");
-    Serial.print(greenvalue);
+    Serial.print(g1);
     Serial.print("\t");
     Serial.print("B:");
-    Serial.print(bluevalue);
+    Serial.print(b1);
     Serial.print("\t");
     Serial.print("color:");
     
-      switch(colorresult)
-      {
-        case BLACK:
-        Serial.print("BLACK");
-        break;
-        case BLUE:
-        Serial.print("BLUE");
-        break;
-        case PURPLE:
-        Serial.print("PURPLE");
-        break;
-        case CYAN:
-        Serial.print("CYAN");
-        break;
-        case YELLOW:
-        Serial.print("YELLOW");
-        break;
-        case ORANGE:
-        Serial.print("ORANGE");
-        break;
-        case GREEN:
-        Serial.print("GREEN");
-        break;
-        case RED:
-        Serial.print("RED");
-        break;
-        case PINKE:
-        Serial.print("PINKE");
-        break;
-        case WHITE:
-        Serial.print("WHITE");
-        break;
-        default:
-        break;    
-       }
+    switch(colorresult1)
+    {
+      case BLACK:
+      Serial.print("BLACK");
+      break;
+      case BLUE:
+      Serial.print("BLUE");
+      break;
+      case YELLOW:
+      Serial.print("YELLOW");
+      break;
+      case ORANGE:
+      Serial.print("ORANGE");
+      break;
+      case GREEN:
+      Serial.print("GREEN");
+      break;
+      case RED:
+      Serial.print("RED");
+      break;
+      case PINKE:
+      Serial.print("PINKE");
+      break;
+      case WHITE:
+      Serial.print("WHITE");
+      break;
+      default:
+      break;    
+    }
     Serial.print("\t");
     Serial.print("code:");
-    Serial.print(colorcode,HEX);
+    Serial.print(colorcode1,HEX);
     Serial.print("\t");
-    Serial.print("grayscale:");
-    Serial.println(grayscale);
+   
+    colorresult2 = colorsensor2.ColorIdentify();
+    colorcode2 = colorsensor2.ReturnColorCode();
+    r2 = (uint8_t)(colorcode2>>16);
+    g2 = (uint8_t)(colorcode2>>8);
+    b2 = (uint8_t)(colorcode2);
+    
+    Serial.print("R:");
+    Serial.print(r2);
+    Serial.print("\t");
+    Serial.print("G:");
+    Serial.print(g2);
+    Serial.print("\t");
+    Serial.print("B:");
+    Serial.print(b2);
+    Serial.print("\t");
+    Serial.print("color:");
+    
+    switch(colorresult2)
+    {
+      case BLACK:
+      Serial.print("BLACK");
+      break;
+      case BLUE:
+      Serial.print("BLUE");
+      break;
+      case YELLOW:
+      Serial.print("YELLOW");
+      break;
+      case ORANGE:
+      Serial.print("ORANGE");
+      break;
+      case GREEN:
+      Serial.print("GREEN");
+      break;
+      case RED:
+      Serial.print("RED");
+      break;
+      case PINKE:
+      Serial.print("PINKE");
+      break;
+      case WHITE:
+      Serial.print("WHITE");
+      break;
+      default:
+      break;    
+    }
+
+    Serial.print("\t");
+    Serial.print("code:");
+    Serial.println(colorcode2,HEX);
 }

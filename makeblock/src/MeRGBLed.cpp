@@ -189,7 +189,8 @@ void MeRGBLed::reset(uint8_t port)
   _slot = SLOT2;
   s2    = mePort[port].s2;
   s1    = mePort[port].s1;
-  setColor(0,0,0,0);
+  setColor(0,1,2,1);
+  memcpy(pixels_bak,pixels,3 * count_led);
   pinMask = digitalPinToBitMask(s2);
   ws2812_port = portOutputRegister(digitalPinToPort(s2) );
   pinMode(s2, OUTPUT);
@@ -217,7 +218,8 @@ void MeRGBLed::reset(uint8_t port,uint8_t slot)
   _slot = slot;
   s2    = mePort[port].s2;
   s1    = mePort[port].s1;
-  setColor(0,0,0,0);
+  setColor(0,1,2,1);
+  memcpy(pixels_bak,pixels,3 * count_led);
   if(SLOT2 == slot)
   {
     pinMask     = digitalPinToBitMask(s2);
@@ -248,7 +250,8 @@ void MeRGBLed::reset(uint8_t port,uint8_t slot)
  */
 void MeRGBLed::setpin(uint8_t port)
 {
-  setColor(0,0,0,0);
+  setColor(0,1,2,1);
+  memcpy(pixels_bak,pixels,3 * count_led);
   pinMask   = digitalPinToBitMask(port);
   ws2812_port = portOutputRegister(digitalPinToPort(port) );
   pinMode(port, OUTPUT);

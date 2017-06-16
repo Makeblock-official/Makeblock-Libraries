@@ -4,8 +4,8 @@
  * \brief   Driver for Me Megapi DC motor device.
  * @file    MeMegaPiDCMotor.cpp
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2016/04/07
+ * @version V1.0.2
+ * @date    2017/05/22
  * @brief   Driver for Me Megapi DC motor device.
  *
  * \par Copyright
@@ -35,6 +35,7 @@
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2016/02/20     1.0.0            Rebuild the new.
  * Mark Yan         2016/04/07     1.0.1            fix motor reset issue.
+ * Zzipeng          2017/05/18     1.0.2            set all timer frequency at 970HZ
  * </pre>o
  *
  * @example MeMegaPiDCMotorTest.ino
@@ -104,11 +105,36 @@ MeMegaPiDCMotor::MeMegaPiDCMotor(uint8_t port)
   TCCR2B = _BV(CS22);
 
 #elif defined(__AVR_ATmega2560__) //else ATmega2560
-  TCCR1A = _BV(WGM10);
-  TCCR1B = _BV(CS11) | _BV(CS10) | _BV(WGM12);
-
-  TCCR2A = _BV(WGM21) | _BV(WGM20);
-  TCCR2B = _BV(CS22);
+  /*if((megapi_dc_Port[port].pwm_pin == 13) || (megapi_dc_Port[port].pwm_pin == 4))//timer0 default 970hz
+  {
+    TCCR0A = _BV(WGM01) | _BV(WGM00);//8kHZ
+    TCCR0B = _BV(CS01) | _BV(CS01);
+  }
+  else */if((megapi_dc_Port[port].pwm_pin == 12) || (megapi_dc_Port[port].pwm_pin == 11))
+  {
+    TCCR1A = _BV(WGM10);
+    TCCR1B = _BV(CS11) | _BV(CS10) | _BV(WGM12);//970hz
+  }
+  else if((megapi_dc_Port[port].pwm_pin == 10) || (megapi_dc_Port[port].pwm_pin == 9))
+  {
+    TCCR2A = _BV(WGM21) | _BV(WGM20);//970hz
+    TCCR2B = _BV(CS22);
+  }
+  else if((megapi_dc_Port[port].pwm_pin == 5) || (megapi_dc_Port[port].pwm_pin == 3) || (megapi_dc_Port[port].pwm_pin == 2))
+  {
+    TCCR3A = _BV(WGM30);
+    TCCR3B = _BV(CS31) | _BV(CS30) | _BV(WGM32);//970hz
+  }
+  else if((megapi_dc_Port[port].pwm_pin == 8) || (megapi_dc_Port[port].pwm_pin == 7) || (megapi_dc_Port[port].pwm_pin == 6))
+  {
+    TCCR4A = _BV(WGM40);
+    TCCR4B = _BV(CS41) | _BV(CS40) | _BV(WGM42);//970hz
+  }
+  else if((megapi_dc_Port[port].pwm_pin == 45) || (megapi_dc_Port[port].pwm_pin == 46) ||  (megapi_dc_Port[port].pwm_pin == 44))
+  {
+    TCCR5A = _BV(WGM50);
+    TCCR5B = _BV(CS51) | _BV(CS50) | _BV(WGM52);//970hz
+  }
 #endif
   _dc_dir_h1 = megapi_dc_Port[port].dc_dir_h1;
   _dc_dir_h2 = megapi_dc_Port[port].dc_dir_h2;
@@ -249,12 +275,14 @@ void MeMegaPiDCMotor::run(int16_t speed)
   if(speed > 0)
   {
     digitalWrite(_dc_dir_h2, LOW);
+    delayMicroseconds(5);
     digitalWrite(_dc_dir_h1, HIGH);
     analogWrite(_dc_pwm_pin,speed);
   }
   else if(speed < 0)
   {
     digitalWrite(_dc_dir_h1, LOW);
+    delayMicroseconds(5);
     digitalWrite(_dc_dir_h2, HIGH);
     analogWrite(_dc_pwm_pin,-speed);
   }

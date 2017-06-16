@@ -27,33 +27,35 @@
  * \par Method List:
  *
  *    1. void MeEncoderNew::begin(void);
- *    2. void MeEncoderNew::move(long angle, float speed, float lock_state);
- *    3. void MeEncoderNew::moveTo(long angle, float speed,float lock_state);
- *    4. void MeEncoderNew::runSpeed(int speed);
- *    5. void MeEncoderNew::runTurns(long turns, float speed,float lock_state);
- *    6. void MeEncoderNew::reset(void);
- *    7. void MeEncoderNew::setSpeedPID(float p,float i,float d);
- *    8. void MeEncoderNew::setPosPID(float p,float i,float d);
- *    9. void MeEncoderNew::setMode(uint8_t mode);
- *    10. void MeEncoderNew::setPWM(int pwm);
- *    11. void MeEncoderNew::setCurrentPosition(long pulse_counter)
- *    12. long MeEncoderNew::getCurrentPosition();
- *    13. void MeEncoderNew::getSpeedPID(float * p,float * i,float * d);
- *    14. void MeEncoderNew::getPosPID(float * p,float * i,float * d);
- *    15. float MeEncoderNew::getCurrentSpeed(void);
- *    16. void MeEncoderNew::sendCmd(void);
- *    17. float MeEncoderNew::getRatio(void);
- *    18. void MeEncoderNew::setRatio(float r);
- *    19. int MeEncoderNew::getPulse(void);
- *    20. void MeEncoderNew::setPulse(int p);
- *    21. void MeEncoderNew::setDevid(int devid);
- *    22. void MeEncoderNew::runSpeedAndTime(float speed, float time, float lock_state);
- *    23. boolean MeEncoderNew::isTarPosReached(void);
+ *    2. void MeEncoderNew::setAddr(uint8_t i2cAddr,uint8_t slot);
+ *    3. void MeEncoderNew::move(long angle, float speed, float lock_state);
+ *    4. void MeEncoderNew::moveTo(long angle, float speed,float lock_state);
+ *    5. void MeEncoderNew::runSpeed(int speed);
+ *    6. void MeEncoderNew::runTurns(long turns, float speed,float lock_state);
+ *    7. void MeEncoderNew::reset(void);
+ *    8. void MeEncoderNew::setSpeedPID(float p,float i,float d);
+ *    9. void MeEncoderNew::setPosPID(float p,float i,float d);
+ *    10. void MeEncoderNew::setMode(uint8_t mode);
+ *    11. void MeEncoderNew::setPWM(int pwm);
+ *    12. void MeEncoderNew::setCurrentPosition(long pulse_counter)
+ *    13. long MeEncoderNew::getCurrentPosition();
+ *    14. void MeEncoderNew::getSpeedPID(float * p,float * i,float * d);
+ *    15. void MeEncoderNew::getPosPID(float * p,float * i,float * d);
+ *    16. float MeEncoderNew::getCurrentSpeed(void);
+ *    17. void MeEncoderNew::sendCmd(void);
+ *    18. float MeEncoderNew::getRatio(void);
+ *    19. void MeEncoderNew::setRatio(float r);
+ *    20. int MeEncoderNew::getPulse(void);
+ *    21. void MeEncoderNew::setPulse(int p);
+ *    22. void MeEncoderNew::setDevid(int devid);
+ *    23. void MeEncoderNew::runSpeedAndTime(float speed, float time, float lock_state);
+ *    24. boolean MeEncoderNew::isTarPosReached(void);
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan        2016/03/18     1.0.0            build the new
+ * Mark Yan        2017/06/09     1.0.1            add function setAddr
  * </pre>
  *
  * @example EncoderMotorChangeI2CDevID.ino
@@ -146,6 +148,28 @@ MeEncoderNew::MeEncoderNew(void)
 void MeEncoderNew::begin(void)
 {
   Wire.begin();
+}
+
+/**
+ * \par Function
+ *    setAddr
+ * \par Description
+ *     Reset the i2c address of encoder motor .
+ * \param[in]
+ *    i2cAddr - i2c address of encoder motor
+ * \param[in]
+ *    slot - slot number of encoder motor
+ * \par Output
+ *    None
+ * \par Return
+ *    None
+ * \par Others
+ *    None
+ */
+void MeEncoderNew::setAddr(uint8_t i2cAddr,uint8_t slot)
+{
+  address = i2cAddr;
+  _slot = slot - 1;
 }
 
 /**
