@@ -1,6 +1,6 @@
 /**
  * \par Copyright (C), 2012-2016, MakeBlock
- * \class   MeColorSensor
+ * \class   Mecolor
  * \brief   Driver for MeColorSensor module.
  * @file    MeColorSensor.h
  * @author  MakeBlock
@@ -35,21 +35,22 @@
  *    7. uint16_t MeColorSensor::ReturnGreenData(void)
  *    8. uint16_t MeColorSensor::ReturnBlueData(void)
  *    9. uint16_t MeColorSensor::ReturnColorData(void)
- *    10.uint8_t  MeColorSensor::ColorIdentify(void)
- *    11.long MeColorSensor::ReturnColorCode(void)
- *    12.uint16_t MeColorSensor::calculateColorTemperature(void)
- *    13.uint16_t MeColorSensor::calculateLux(void)
- *    14.int8_t MeColorSensor::writeReg(int16_t reg, uint8_t data)
- *    15.int8_t MeColorSensor::readData(uint8_t start, uint8_t *buffer, uint8_t size)
- *    16.int8_t MeColorSensor::writeData(uint8_t start, const uint8_t *pData, uint8_t size)
- *    17.uint8_t MeColorSensor::Returnresult(void);
- *    18.uint8_t MeColorSensor::ReturnGrayscale(void);
- *    19.uint16_t MeColorSensor::ReturnColorhue(void);
- *    20.uint8_t MeColorSensor::MAX(uint8_t r,uint8_t g,uint8_t b);
- *    21.uint8_t MeColorSensor::MIN(uint8_t r,uint8_t g,uint8_t b);
- *    22.void MeColorSensor::TurnOffmodule(void);
- *    23.void MeColorSensor::TurnOnmodule(void);
- *    24.uint8_t MeColorSensor::ColorDataReadOnebyOne();
+ *    10. uint8_t  MeColorSensor::ColorIdentify(void)
+ *    11. long MeColorSensor::ReturnColorCode(void)
+ *    12. uint16_t MeColorSensor::calculateColorTemperature(void)
+ *    13. uint16_t MeColorSensor::calculateLux(void)
+ *    14. int8_t MeColorSensor::writeReg(int16_t reg, uint8_t data)
+ *    15. int8_t MeColorSensor::readData(uint8_t start, uint8_t *buffer, uint8_t size)
+ *    16. int8_t MeColorSensor::writeData(uint8_t start, const uint8_t *pData, uint8_t size)
+ *    17. uint8_t MeColorSensor::Returnresult(void);
+ *    18. uint8_t MeColorSensor::ReturnGrayscale(void);
+ *    19. uint16_t MeColorSensor::ReturnColorhue(void);
+ *    20. uint8_t MeColorSensor::MAX(uint8_t r,uint8_t g,uint8_t b);
+ *    21. uint8_t MeColorSensor::MIN(uint8_t r,uint8_t g,uint8_t b);
+ *    22. void MeColorSensor::TurnOffmodule(void);
+ *    23. void MeColorSensor::TurnOnmodule(void);
+ *    24. uint8_t MeColorSensor::ColorDataReadOnebyOne();
+ * 
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
@@ -57,9 +58,12 @@
  *  zzipeng         2017/04/03          1.0.1         only detect six colors.
  *  zzipeng         2017/04/10          1.0.2         only detect seven colors and add methods named MeColorSensor::TurnOffmodule(void),MeColorSensor::TurnOnmodule.
  *  zzipeng         2017/04/20          1.0.3         add methods MeColorSensor::ColorDataReadOnebyOne();
+ *  Lanweiting      2017/06/23          1.0.4         Canonical the code format.
  * </pre>
  *
  */
+
+/* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef _MeColorSensor_H_
 #define _MeColorSensor_H_
 
@@ -75,31 +79,32 @@
 
 /* Exported macro ------------------------------------------------------------*/
 #define I2C_ERROR                       (-1)
-#define COLORSENSOR_DEFAULT_ADDRESS     (0x38)//011 1000
-/* register List  ------------------------------------------------------------*/
-#define SYSTEM_CONTROL    (0X40)
-#define MODE_CONTROL1     (0X41)
-#define MODE_CONTROL2     (0X42)
-#define MODE_CONTROL3     (0X44)
-#define RED_DATA_LSBs     (0X50)
-#define RED_DATA_MSBs     (0X51)
-#define GREEN_DATA_LSBs   (0X52)
-#define GREEN_DATA_MSBs   (0X53)
-#define BLUE_DATA_LSBs    (0X54)
-#define BLUE_DATA_MSBs    (0X55)
-#define CLEAR_DATA_LSBs   (0X56)
-#define CLEAR_DATA_MSBs   (0X57)
-#define DINT_DATA_LSBs    (0X58)
-#define DINT_DATA_MSBs    (0X59)
-#define INTERRUPT         (0X60)
-#define PERSISTENCE       (0X61)
-#define TH_LSBs           (0X62)
-#define TH_MSBs           (0X63)
-#define TL_LSBs           (0X64)
-#define TL_MSBs           (0X65)
-#define MANUFACTURER_ID   (0X92)
-#define CHIP_ID           (0XE0)
-/************ define parameter for register ************/
+#define COLORSENSOR_DEFAULT_ADDRESS     (0x38)//0011 1000
+
+/* Register List define------------------------------------------------------------*/
+#define SYSTEM_CONTROL         (0X40)
+#define MODE_CONTROL1          (0X41)
+#define MODE_CONTROL2          (0X42)
+#define MODE_CONTROL3          (0X44)
+#define RED_DATA_LSBs          (0X50)
+#define RED_DATA_MSBs          (0X51)
+#define GREEN_DATA_LSBs        (0X52)
+#define GREEN_DATA_MSBs        (0X53)
+#define BLUE_DATA_LSBs         (0X54)
+#define BLUE_DATA_MSBs         (0X55)
+#define CLEAR_DATA_LSBs        (0X56)
+#define CLEAR_DATA_MSBs        (0X57)
+#define DINT_DATA_LSBs         (0X58)
+#define DINT_DATA_MSBs         (0X59)
+#define INTERRUPT              (0X60)
+#define PERSISTENCE            (0X61)
+#define TH_LSBs                (0X62)
+#define TH_MSBs                (0X63)
+#define TL_LSBs                (0X64)
+#define TL_MSBs                (0X65)
+#define MANUFACTURER_ID        (0X92)
+#define CHIP_ID                (0XE0)
+
 #define SW_RESET               (1 << 7)
 #define INT_RESET              (1 << 6)
 
@@ -110,21 +115,23 @@
 #define MEASURE_1280MS         (0x03)
 #define MEASURE_2560MS         (0x04)
 #define MEASUREMENT_MAX        (0x05)
-/*RGB list*/
+
+/* Color result list*/
 typedef enum
 {
-  WHITE=0,
-  PINKE,
-  RED,
-  ORANGE,
-  YELLOW,
-  GREEN,
-  CYAN,
-  BLUE,
-  PURPLE,
-  BLACK,
-  GOLD,
+  WHITE = 0,
+  PINKE = 1,
+  RED   = 2,
+  ORANGE= 3,
+  YELLOW= 4,
+  GREEN = 5,
+  CYAN  = 6,
+  BLUE  = 7,
+  PURPLE= 8,
+  BLACK = 9,
+  GOLD  = 10,
 }COLORTYPES;
+
 /*
  * Class: MeColorSensor
  * \par Description
@@ -140,43 +147,40 @@ class MeColorSensor : public MePort
 public:
 #ifdef ME_PORT_DEFINED
 /**
- * Alternate Constructor which can call your own function to map the MeCompass to arduino port,
+ * Alternate Constructor which can call your own function to map the MeColorSensor to arduino port,
  * no pins are used or initialized here
  */
   MeColorSensor(void);
 
 /**
- * Alternate Constructor which can call your own function to map the MeCompass to arduino port,
- * no pins are used or initialized here, but PWM frequency set to 976 Hz
+ * Alternate Constructor which can call your own function to map the MeColorSensor to arduino port.
  * \param[in]
- *   port - RJ25 port from PORT_1 to M2
+ *   port - RJ25 port number
  */
   MeColorSensor(uint8_t port);
 
 /**
- * Alternate Constructor which can call your own function to map the MeCompass to arduino port
+ * Alternate Constructor which can call your own function to map the MeColorSensor to arduino port
  * and change the i2c device address
- * no pins are used or initialized here, but PWM frequency set to 976 Hz
  * \param[in]
- *   port - RJ25 port from PORT_1 to M2
+ *   port - RJ25 port number
  * \param[in]
  *   address - the i2c address you want to set
  */
   MeColorSensor(uint8_t port, uint8_t address);
-#else
+#else // ME_PORT_DEFINED
 /**
  * Alternate Constructor which can call your own function to map the _AD0 and _INT to arduino port,
- * no pins are used or initialized here
  * \param[in]
  *   _AD0 - arduino gpio number
  * \param[in]
  *   _INT - arduino gpio number
  */
-  MeColorSensor(uint8_t AD0, uint8_t INT);
+  MeColorSensor(uint8_t _AD0, uint8_t _INT);
 
 /**
  * Alternate Constructor which can call your own function to map the _AD0 and _INT to arduino port
- * and change the i2c device address, no pins are used or initialized here
+ * and change the i2c device address.
  * \param[in]
  *   _AD0 - arduino gpio number
  * \param[in]
@@ -184,11 +188,12 @@ public:
  * \param[in]
  *   address - the i2c address you want to set
  */
-  MeColorSensor(uint8_t AD0, uint8_t INT, uint8_t address);
-#endif  //  ME_PORT_DEFINED
+  MeColorSensor(uint8_t _AD0, uint8_t _INT, uint8_t address);
+#endif  /* ME_PORT_DEFINED */
+
 /**
  * \par Function
- *   begin
+ *   SensorInit
  * \par Description
  *   Initialize the MeColorSensor.
  * \param[in]
@@ -201,41 +206,44 @@ public:
  *   You can check the bh1745 datasheet for the registor address.
  */
   void SensorInit(void);
- /**
+ 
+/**
  * \par Function
- *   begin
+ *   ReportId
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Report the MeColorSensor Module ID.
  * \param[in]
  *   None
  * \par Output
  *   None
  * \return
- *   None
+ *   default ID 0xE0
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
   uint8_t ReportId(void);
-   /**
+
+/**
  * \par Function
- *   begin
+ *   ColorDataRead
  * \par Description
- *   Initialize the MeColorSensor.
+ *   read the MeColorSensor module color data.
  * \param[in]
  *   None
  * \par Output
- *   None
+ *   color RGB value
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
   void ColorDataRead(void);
-  /**
+
+/**
  * \par Function
- *   begin
+ *   ColorDataReadOnebyOne
  * \par Description
- *   Initialize the MeColorSensor.
+ *   one by on to read the MeColorSensor module color data.
  * \param[in]
  *   None
  * \par Output
@@ -243,14 +251,15 @@ public:
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
   uint8_t ColorDataReadOnebyOne(void);
-  /**
+
+/**
  * \par Function
- *   begin
+ *   ReturnColorCode
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Return the MeColorSensor Color Code.
  * \param[in]
  *   None
  * \par Output
@@ -258,14 +267,15 @@ public:
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
  long ReturnColorCode(void);
- /**
+ 
+/**
  * \par Function
- *   begin
+ *   ColorIdentify
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Identify Color for the Module.when you want to use two modules, you can use this methods to get data.
  * \param[in]
  *   None
  * \par Output
@@ -273,14 +283,15 @@ public:
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
  uint8_t ColorIdentify(void);
-  /**
+
+/**
  * \par Function
- *   begin
+ *   Returnresult
  * \par Description
- *   Initialize the MeColorSensor.
+ *  Identify Color for the Module.when you use just one module, you can use this methods to get data.
  * \param[in]
  *   None
  * \par Output
@@ -288,14 +299,15 @@ public:
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
  uint8_t Returnresult(void);
-  /**
+
+/**
  * \par Function
- *   begin
+ *   ReturnGrayscale
  * \par Description
- *   Initialize the MeColorSensor.
+ *  Return Color Grayscale.
  * \param[in]
  *   None
  * \par Output
@@ -303,14 +315,16 @@ public:
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ * Gray = R*0.299 + G*0.587 + B*0.114
+ * Gray = (r*38 + g*75 + b*15)>>7;  
  */
  uint8_t ReturnGrayscale(void);
-  /**
+
+/**
  * \par Function
- *   begin
+ *   ReturnColorhue
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Return Color hue.
  * \param[in]
  *   None
  * \par Output
@@ -318,16 +332,15 @@ public:
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
  uint16_t ReturnColorhue(void);
-/**************************************************************************/
-// uint16_t calculateLux(void);
-     /**
+
+/**
  * \par Function
- *   begin
+ *   ReturnRedData
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Return Color Red value.
  * \param[in]
  *   None
  * \par Output
@@ -335,15 +348,15 @@ public:
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
- /**************************************************************************/
-  uint16_t ReturnRedData(void);
-     /**
+uint16_t ReturnRedData(void);
+
+/**
  * \par Function
- *   begin
+ *   ReturnGreenData
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Return Color Green value.
  * \param[in]
  *   None
  * \par Output
@@ -351,14 +364,15 @@ public:
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
   uint16_t ReturnGreenData(void);
-     /**
+
+/**
  * \par Function
- *   begin
+ *   ReturnBlueData
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Return Color Blue value.
  * \param[in]
  *   None
  * \par Output
@@ -366,14 +380,15 @@ public:
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
   uint16_t ReturnBlueData(void);
-     /**
+
+/**
  * \par Function
- *   begin
+ *   ReturnColorData
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Return Color data value.
  * \param[in]
  *   None
  * \par Output
@@ -381,10 +396,84 @@ public:
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
   uint16_t ReturnColorData(void);
-/*
+
+/**
+ * \par Function
+ *  TurnOnLight
+ * \par Description
+ *  Turn On the MeColorSensor module Light.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+  void TurnOnLight(void);
+ 
+/**
+ * \par Function
+ *  TurnOffLight
+ * \par Description
+ *  Turn Off the MeColorSensor module Light.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+  void TurnOffLight(void);
+
+/**
+ * \par Function
+ *  TurnOffmodule
+ * \par Description
+ *  Turn Off the MeColorSensor module.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+  void TurnOffmodule(void);
+ 
+/**
+ * \par Function
+ *  TurnOnmodule
+ * \par Description
+ *  Turn On the MeColorSensor module.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+  void TurnOnmodule(void);
+
+/**
+ * \par Function
+ *  writeReg
+ * \par Description
+ *  write the MeColorSensor module register.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
  *   Return the error code.
  *   the definition of the value of variable return_value:
  *   0:success
@@ -394,69 +483,10 @@ public:
  *   4:other twi error
  *   refer to the arduino official library twi.c
  * \par Others
- *   To set the registor for initializing.
- */
-  void TurnOnLight(void);
- /**
- * \par Function
- *   begin
- * \par Description
- *   Initialize the MeColorSensor.
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   You can check the bh1745 datasheet for the registor address.
- */
-  void TurnOffLight(void);
-/**
- * \par Function
- *   begin
- * \par Description
- *   Initialize the MeColorSensor.
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   You can check the bh1745 datasheet for the registor address.
- */
-  void TurnOffmodule(void);
-  /**
- * \par Function
- *   begin
- * \par Description
- *   Initialize the MeColorSensor.
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   You can check the bh1745 datasheet for the registor address.
- */
-  void TurnOnmodule(void);
-/**
- * \par Function
- *   begin
- * \par Description
- *   Initialize the MeColorSensor.
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   To set the register for initializing.
  */
   int8_t writeReg(int16_t reg, uint8_t data);
+
 /**
  * \par Function
  *   readData
@@ -510,6 +540,7 @@ public:
  *   Calling the official i2c library to write data.
  */
   int8_t writeData(uint8_t start, const uint8_t *pData, uint8_t size);
+
 /**
  * \par Function
  *   MAX
@@ -524,6 +555,7 @@ public:
  * \par Others
  */
   uint8_t MAX(uint8_t r,uint8_t g,uint8_t b);
+
 /**
  * \par Function
  *   MIN
@@ -538,8 +570,10 @@ public:
  * \par Others
  */
   uint8_t MIN(uint8_t r,uint8_t g,uint8_t b);
+
 /***********************************/
   uint8_t Device_Address;
+
 private:
   volatile uint8_t  _S1;
   volatile uint8_t  _S2;

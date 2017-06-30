@@ -1,15 +1,15 @@
 /**
- * \par Copyright (C), 2012-2016, MakeBlock
+ * \par Copyright (C), 2012-2017, MakeBlock
  * \class   MeColorSensor
  * \brief   Driver for MeColorSensor module.
  * @file    MeColorSensor.cpp
  * @author  MakeBlock
- * @version V1.0.3
+ * @version V1.0.4
  * @date    2017/01/17
  * @brief   Driver for MeColorSensor module.
  *
  * \par Copyright
- * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2012-2017, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing +GPL V2
@@ -35,21 +35,22 @@
  *    7. uint16_t MeColorSensor::ReturnGreenData(void)
  *    8. uint16_t MeColorSensor::ReturnBlueData(void)
  *    9. uint16_t MeColorSensor::ReturnColorData(void)
- *    10.long MeColorSensor::ColorIdentify(void)
- *    11.long MeColorSensor::ReturnColorCode(void)
- *    12.uint16_t MeColorSensor::calculateColorTemperature(void)
- *    13.uint16_t MeColorSensor::calculateLux(void)
- *    14.int8_t MeColorSensor::writeReg(int16_t reg, uint8_t data)
- *    15.int8_t MeColorSensor::readData(uint8_t start, uint8_t *buffer, uint8_t size)
- *    16.int8_t MeColorSensor::writeData(uint8_t start, const uint8_t *pData, uint8_t size);
- *    17.uint8_t MeColorSensor::Returnresult(void);
- *    18.uint8_t MeColorSensor::ReturnGrayscale(void);
- *    19.uint16_t MeColorSensor::ReturnColorhue(void);
- *    20.uint8_t MeColorSensor::MAX(uint8_t r,uint8_t g,uint8_t b);
- *    21.uint8_t MeColorSensor::MIN(uint8_t r,uint8_t g,uint8_t b);
- *    22.void MeColorSensor::TurnOffmodule(void);
- *    23.void MeColorSensor::TurnOnmodule(void);
- *    24.uint8_t MeColorSensor::ColorDataReadOnebyOne();
+ *    10. long MeColorSensor::ColorIdentify(void)
+ *    11. long MeColorSensor::ReturnColorCode(void)
+ *    12. uint16_t MeColorSensor::calculateColorTemperature(void)
+ *    13. uint16_t MeColorSensor::calculateLux(void)
+ *    14. int8_t MeColorSensor::writeReg(int16_t reg, uint8_t data)
+ *    15. int8_t MeColorSensor::readData(uint8_t start, uint8_t *buffer, uint8_t size)
+ *    16. int8_t MeColorSensor::writeData(uint8_t start, const uint8_t *pData, uint8_t size);
+ *    17. uint8_t MeColorSensor::Returnresult(void);
+ *    18. uint8_t MeColorSensor::ReturnGrayscale(void);
+ *    19. uint16_t MeColorSensor::ReturnColorhue(void);
+ *    20. uint8_t MeColorSensor::MAX(uint8_t r,uint8_t g,uint8_t b);
+ *    21. uint8_t MeColorSensor::MIN(uint8_t r,uint8_t g,uint8_t b);
+ *    22. void MeColorSensor::TurnOffmodule(void);
+ *    23. void MeColorSensor::TurnOnmodule(void);
+ *    24. uint8_t MeColorSensor::ColorDataReadOnebyOne();
+ *    
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
@@ -57,7 +58,7 @@
  *  zzipeng         2017/04/03          1.0.1         only detect six colors.
  *  zzipeng         2017/04/10          1.0.2         only detect seven colors and add methods named MeColorSensor::TurnOffmodule(void),MeColorSensor::TurnOnmodule.
  *  zzipeng         2017/04/20          1.0.3         add methods MeColorSensor::ColorDataReadOnebyOne();
- *  Lan weiting     2017/06/16          1.0.4         Modify the function name ReturnColorData(void) and Modify the color recognition category.
+ *  Lanweiting      2017/06/23          1.0.4         Canonical the code format.
  * </pre>
  *
  * @example MeColorSensorTest.ino
@@ -79,9 +80,8 @@ MeColorSensor::MeColorSensor(void) : MePort(0)
 
 /**
  * Alternate Constructor which can call your own function to map the MeColorSensor to arduino port,
- * no pins are used or initialized here, but PWM frequency set to 976 Hz
  * \param[in]
- *   port - RJ25 port from PORT_1 to M2
+ *   port - RJ25 port number
  */
 MeColorSensor::MeColorSensor(uint8_t port) : MePort(port)
 {
@@ -91,9 +91,8 @@ MeColorSensor::MeColorSensor(uint8_t port) : MePort(port)
 /**
  * Alternate Constructor which can call your own function to map the MeColorSensor to arduino port
  * and change the i2c device address
- * no pins are used or initialized here, but PWM frequency set to 976 Hz
  * \param[in]
- *   port - RJ25 port from PORT_1 to M2
+ *   port - RJ25 port number
  * \param[in]
  *   address - the i2c address you want to set
  */
@@ -104,22 +103,21 @@ MeColorSensor::MeColorSensor(uint8_t port, uint8_t address) : MePort(port)
 #else  // ME_PORT_DEFINED
 /**
  * Alternate Constructor which can call your own function to map the _AD0 and _INT to arduino port,
- * no pins are used or initialized here
  * \param[in]
  *   _AD0 - arduino gpio number
  * \param[in]
  *   _INT - arduino gpio number
  */
-MeColorSensor::MeColorSensor(uint8_t AD0, uint8_t INT)
+MeColorSensor::MeColorSensor(uint8_t _AD0, uint8_t _INT)
 {
   Device_Address = COLORSENSOR_DEFAULT_ADDRESS;
-  _AD0 = AD0;
-  _INT = INT;
+  _AD0 = _AD0;
+  _INT = _INT;
 }
 
 /**
  * Alternate Constructor which can call your own function to map the _AD0 and _INT to arduino port
- * and change the i2c device address, no pins are used or initialized here
+ * and change the i2c device address.
  * \param[in]
  *   _AD0 - arduino gpio number
  * \param[in]
@@ -133,11 +131,10 @@ MeColorSensor::MeColorSensor(uint8_t AD0, uint8_t INT, uint8_t address)
   _AD0 = AD0;
   _INT = INT;
 }
-#endif // ME_PORT_DEFINED
-
+#endif /* ME_PORT_DEFINED */
 /**
  * \par Function
- *   begin
+ *   SensorInit
  * \par Description
  *   Initialize the MeColorSensor.
  * \param[in]
@@ -151,14 +148,12 @@ MeColorSensor::MeColorSensor(uint8_t AD0, uint8_t INT, uint8_t address)
  */
 void MeColorSensor::SensorInit(void)
 {
-  MeColorSensor::TurnOnmodule();//power on
-  //MeColorSensor::TurnOnLight();//light on
-  MeColorSensor::TurnOffLight();
-  //  MePort::aWrite1(0x32);
+  MeColorSensor::TurnOnmodule();   //power on
+  MeColorSensor::TurnOnLight();    //light on
   Wire.begin();
-  writeReg(SYSTEM_CONTROL, SW_RESET|INT_RESET);//SW reset and int reset
-  writeReg(MODE_CONTROL1, MEASURE_160MS);//selet 160ms measure fre
-  writeReg(MODE_CONTROL2, 0x10);//0x92active and set rgb measure gain
+  writeReg(SYSTEM_CONTROL, SW_RESET | INT_RESET);  //SW reset and INT reset
+  writeReg(MODE_CONTROL1, MEASURE_160MS);          //selet 160ms measure frequency
+  writeReg(MODE_CONTROL2, 0x10);                   //active and set rgb measure gain
   writeReg(MODE_CONTROL3, 0x02);
   writeReg(INTERRUPT, 0x00);
   writeReg(PERSISTENCE, 0x01);
@@ -166,19 +161,19 @@ void MeColorSensor::SensorInit(void)
 
 /**
  * \par Function
- *   begin
+ *   ReportId
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Report the MeColorSensor Module ID.
  * \param[in]
  *   None
  * \par Output
  *   None
  * \return
- *   None
+ *   return default ID 0xE0
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
-uint8_t MeColorSensor::ReportId(void)//return default 0xE0
+uint8_t MeColorSensor::ReportId(void)
 {
   uint8_t temp = 0;
   readData(MANUFACTURER_ID,&temp,1);
@@ -187,52 +182,52 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
 
 /**
  * \par Function
- *   begin
+ *   ColorDataRead
  * \par Description
- *   Initialize the MeColorSensor.
+ *   read the MeColorSensor module color data.
  * \param[in]
  *   None
  * \par Output
- *   None
+ *   color RGB value
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
 void MeColorSensor::ColorDataRead(void)
 {
   uint8_t ColorData[8] = {0};
   readData(RED_DATA_LSBs, ColorData, sizeof(ColorData));
-  Redvalue   = (uint16_t)ColorData[1]<<8|ColorData[0];
-  Greenvalue = (uint16_t)ColorData[3]<<8|ColorData[2];
-  Bluevalue  = (uint16_t)ColorData[5]<<8|ColorData[4];
-  Colorvalue = (uint16_t)ColorData[7]<<8|ColorData[6];
+  Redvalue   = (uint16_t)ColorData[1] << 8 | ColorData[0];
+  Greenvalue = (uint16_t)ColorData[3] << 8 | ColorData[2];
+  Bluevalue  = (uint16_t)ColorData[5] << 8 | ColorData[4];
+  Colorvalue = (uint16_t)ColorData[7] << 8 | ColorData[6];
 }
 
 /**
  * \par Function
- *   begin
+ *   ColorDataReadOnebyOne
  * \par Description
- *   Initialize the MeColorSensor.
+ *   one by on to read the MeColorSensor module color data.
  * \param[in]
  *   None
  * \par Output
  *   None
  * \return
- *   None
+ *   return 0 is detected ID,else return Black
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
 uint8_t MeColorSensor::ColorDataReadOnebyOne(void)
 {
   uint8_t id = 0;
   MeColorSensor::SensorInit();
   id = MeColorSensor::ReportId();
-  if(id!=CHIP_ID)
+  if(id != CHIP_ID)
   {
-    return BLACK;
+      return BLACK;
   }
-  delay(160);//160ms tramsfer time
+  delay(160);//delay 160ms tramsfer time
   MeColorSensor::ColorDataRead();
   MeColorSensor::TurnOffmodule();//power off
   return 0;
@@ -240,38 +235,38 @@ uint8_t MeColorSensor::ColorDataReadOnebyOne(void)
 
 /**
  * \par Function
- *   begin
+ *   ReturnColorCode
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Return the MeColorSensor Color Code.
  * \param[in]
  *   None
  * \par Output
  *   None
  * \return
- *   None
+ *   return color RGB code
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
 long MeColorSensor::ReturnColorCode(void)
 {
   long colorcode = 0;
   uint16_t r,g,b;
-  r = Redvalue/20;
-  g = Greenvalue/30;//the sensor bh1745nuc is sensitive in green.
-  b = Bluevalue/20;
-  if(r > 255)
+  r = Redvalue / 20;
+  g = Greenvalue / 30;
+  b = Bluevalue / 20;
+  if(r>255) 
   {
-    r = 255;
+    r=255;
   }
-  if(g > 255)
+  if(g>255) 
   {
-    g = 255;
+    g=255;
   }
-  if(b > 255)
+  if(b>255) 
   {
-    b = 255;
+    b=255;
   }
-  colorcode = (long)((long)r<<16)|((long)g<<8)|(long)b;
+  colorcode = (long)((long)r<<16) | ((long)g<<8) | (long)b;
   return colorcode;
 }
 
@@ -279,240 +274,77 @@ long MeColorSensor::ReturnColorCode(void)
  * \par Function
  *   ColorIdentify
  * \par Description
- *  when you want to use two modules, you can use this methods to get data.
+ *   Identify Color for the Module.when you want to use two modules, you can use this methods to get data.
  * \param[in]
  *   None
  * \par Output
  *   None
  * \return
- *   None
+ *   return Color result
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
- uint8_t MeColorSensor::ColorIdentify(void)
- {
+uint8_t MeColorSensor::ColorIdentify(void)
+{
   uint8_t result,r,g,b;
   if(MeColorSensor::ColorDataReadOnebyOne())
   {
-    return BLACK;//id error return!
+    return BLACK;//id return error!
   }
-  /*****************小数据远距离判断策略****************/
-  if(Redvalue<1200 && Greenvalue<1700 && Bluevalue<1200)
+  /*********************************/
+  if(Redvalue < 1200 && Greenvalue < 1700 && Bluevalue < 1200)
   {
-    if(Bluevalue<Redvalue && Redvalue<=Greenvalue)// b<r<g   g最大,b最小，green 和 yellow black,white区分
+    if(Bluevalue < Redvalue && Redvalue <= Greenvalue)  
     {
       if((Greenvalue + Redvalue + Bluevalue >300) && (Greenvalue > 1.5*Redvalue) && (Greenvalue > Bluevalue + Bluevalue))
       {
-        result = GREEN;//判定绿色
+        result = GREEN;
       }
-      else if((Greenvalue > Bluevalue + Bluevalue) && (Redvalue > Bluevalue + Bluevalue) && (Redvalue +  Greenvalue + Bluevalue>120))//芯片对蓝色不太灵敏，所以导致对黄色特别好识别 r>2b g>2b
+      else if((Greenvalue > Bluevalue + Bluevalue) && (Redvalue > Bluevalue + Bluevalue) && (Redvalue +  Greenvalue + Bluevalue > 120))
       {
-        result = YELLOW;//判定黄色
+        result = YELLOW;
       }
-      else if(Redvalue>400 && Greenvalue>580 && Bluevalue>320)//调小数据提高白色识别高度
+      else if(Redvalue > 400 && Greenvalue > 580 && Bluevalue > 320)
       {
-        result = WHITE;//
+        result = WHITE;
       }
       else
       {
-        result = BLACK;//30mm以外认为是黑色
+        result = BLACK;
       }
     }
-    else if(Greenvalue<Redvalue && Bluevalue<Greenvalue)//r>g>b  r最大,b最小,red 和 orange black区分
+    else if(Greenvalue < Redvalue && Bluevalue < Greenvalue)  
     {
       if(Redvalue + Greenvalue + Bluevalue > 220)
       {
-        // if(Redvalue > 2.4*Greenvalue && Greenvalue > 1.4*Bluevalue)//为了满足远距离要求，判定条件由 r>3g g>2b改为r>2.6*g g>1.4*b.
-        if(Greenvalue < 2.4*Bluevalue)//用b数据判断效果更加好  将参数2.4改小可以提高橙色识别高度，降低红色识别高度
+        if(Greenvalue < 2.4 * Bluevalue)
         {
-          result = RED;//red 
+          result = RED;
         }
-        //else if(Redvalue > 1.3*Greenvalue && Greenvalue > 2.3*Bluevalue)//为了满足远距离要求，判定条件由 r>2g g>3b改为r>1.3*g g>2.3*b.
-        else if(Greenvalue >= 2.4*Bluevalue)//用b数据判断效果更加好
+        
+        else if(Greenvalue >= 2.4 * Bluevalue)
         {
-          result = RED/*ORANGE*/;//orange r>1.8*g g>3*b  delete orange,replace with red
-        }
-        else
-        {
-          result = BLACK/*PINKE*/;
-        }
-      }
-      else
-      {
-        result = BLACK;//否则距离太远判定黑色
-      }
-    }
-    else if(Greenvalue <= Bluevalue && Redvalue<Bluevalue)//b>g b>r//包括b>g>r b>r>g//蓝色，紫色区分
-    {
-      result = BLUE;//判定蓝色 删除紫色，都判断为蓝色
-    }
-    else if(Redvalue<=Greenvalue && Bluevalue>=Redvalue)// r<b<g//g max b middle r min 蓝色，绿色，紫色，黑色
-    {
-      if(Redvalue + Greenvalue + Bluevalue>400)
-      {
-        if(Greenvalue>2.2*Redvalue && Greenvalue>2.2*Bluevalue)
-        {
-          result = GREEN;
+          result = RED;
         }
         else
         {
-         result = BLUE;
+          result = BLACK;
         }
       }
       else
       {
-        result = BLACK;//30mm以外认为是黑色
+        result = BLACK;
       }
     }
-    else if((Greenvalue < Redvalue + Bluevalue) && (Greenvalue + Redvalue + Bluevalue >700))//
-    {
-      result = WHITE;//判定白色
-    }
-    else if(Greenvalue + Redvalue + Bluevalue <1000)
-    {
-      result = BLACK;//判定黑色
-    }
-    else
-    {
-      result = BLACK;
-    }
-  }
-
-  /************** 稍大数据中距离判断策略***************/
-  else if(Bluevalue > Greenvalue && Bluevalue > Redvalue)// b>g  b>r//包括b>g>r b>r>g//蓝色，紫色区分
-  {
-    result = BLUE;//在这一范围内都认为是蓝色
-  }
-  else if(Redvalue > Greenvalue && Greenvalue > Bluevalue &&  Redvalue > Greenvalue)// r>g>b r<2000
-  {
-    result = RED;//red 
-  }
-  /************** 超大数据近距离判断策略***************/
-  else
-  {
-    r = Redvalue/Colorvalue;
-    g = Greenvalue/Colorvalue;
-    b = Bluevalue/Colorvalue;
-    if(r>10&&g<=4&&b<=1||r>10&&g<=3&&b<=1)
-    {
-      result = RED;
-    }
-    else if(r>10&&g<=4&&b<=4)
-    {
-      result = RED;
-    }
-    else if(r<3&&g<=4&&b<3)
-    {
-      result = BLACK;
-    }
-    else if(r<=5&&g>10&&b<5)
-    {
-      result = GREEN;
-    }
-    else if((r<5&&g<5&&b>10)||r<=3&&g>=8&&b>=8)
+    else if(Greenvalue <= Bluevalue && Redvalue < Bluevalue)
     {
       result = BLUE;
     }
-    else if((r>=5&&g>6&&b>=7))
+    else if(Redvalue <= Greenvalue && Bluevalue >= Redvalue)
     {
-      result = BLUE;
-    }
-    else if((r<=4&&g>=10&&b>=6))
-    {
-      result = BLUE;
-    }
-    else if(r<=8&&r>=6&&g>=6&&b<2)
-    {
-      result = YELLOW;
-    }
-    else if(r<=8&&r<=8&&b<2)
-    {
-      //result = RED;
-    }
-    else if(r>=10&&g<=7&&b<2)
-    {
-      result = /*ORANGE*/RED;//delete orange,replace with red
-    }
-    else if(r>=4&&g>=9&&b>=4)
-    {
-      result = WHITE;
-    }
-    else
-    {
-      result = WHITE;
-    }
-  }
-  return result;
- }
-
-/**
- * \par Function
- *   Returnresult
- * \par Description
- *  when you use just one module, you can use this methods to get data.
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   You can check the bh1745 datasheet for the registor address.
- */
-uint8_t MeColorSensor::Returnresult(void)
-{
-  static uint8_t cnt_;
-  static uint16_t temp[3];
-  uint8_t result,r,g,b;
-
-  MeColorSensor::ColorDataRead();
-
-  /*****************小数据远距离判断策略****************/
-  if(Redvalue<1200 && Greenvalue<1700 && Bluevalue<1200)
-  {
-    if(Greenvalue + Redvalue + Bluevalue <700)
-    {
-      result = BLACK;//判定黑色
-    }
-    else if(Bluevalue<Redvalue && Redvalue<=Greenvalue)// b<r<g   g最大,b最小，green 和 yellow black,white区分
-    {
-      if((Greenvalue + Redvalue + Bluevalue > 300) && (Greenvalue > 1.5*Redvalue) && (Greenvalue > Bluevalue + Bluevalue))
+      if((Redvalue + Greenvalue + Bluevalue) > 400)
       {
-        result = GREEN;//判定绿色
-      }
-      else if((Greenvalue > Bluevalue + Bluevalue) && (Redvalue > Bluevalue + Bluevalue) && (Redvalue +  Greenvalue + Bluevalue>120))//芯片对蓝色不太灵敏，所以导致对黄色特别好识别 r>2b g>2b
-      {
-        result = YELLOW;//判定黄色
-      }
-      else if(Redvalue>450 && Greenvalue>580 && Bluevalue>320)//调小数据提高白色识别高度
-      {
-        result = WHITE;//判定白色
-      }
-      else
-      {
-        result = BLACK;//30mm以外认为是黑色
-      }
-    }
-    else if(Greenvalue < Redvalue && Bluevalue < Greenvalue)//r>g>b  r最大,b最小,red 和black区分
-    {
-      if((Redvalue + Greenvalue + Bluevalue > 500) && Redvalue > 300)
-      {
-        result = RED;//red  
-      }
-      else
-      {
-        result = BLACK;//否则距离太远判定黑色
-      }
-    }
-    else if(Greenvalue <= Bluevalue && Redvalue < Bluevalue)//b>g b>r//包括b>g>r b>r>g//蓝色，
-    {
-      result = BLUE;//判定蓝色
-    }
-    else if(Redvalue <= Greenvalue && Bluevalue >= Redvalue)// r<b<g//g max b middle r min 蓝色，绿色，黑色
-    {
-      if(Redvalue + Greenvalue + Bluevalue > 400)
-      {
-        if(Greenvalue>2.2*Redvalue && Greenvalue>2.2*Bluevalue)
+        if(Greenvalue > 2.2 * Redvalue && Greenvalue > 2.2 * Bluevalue)
         {
           result = GREEN;
         }
@@ -523,62 +355,223 @@ uint8_t MeColorSensor::Returnresult(void)
       }
       else
       {
-        result = BLACK;//30mm以外认为是黑色
+        result = BLACK;
       }
     }
-    else if((Greenvalue < Redvalue + Bluevalue) && (Greenvalue + Redvalue + Bluevalue >700))//
+    else if((Greenvalue < (Redvalue + Bluevalue)) && ((Greenvalue + Redvalue + Bluevalue) > 700))
     {
-      result = WHITE;//判定白色
+      result = WHITE;
+    }
+    else if((Greenvalue + Redvalue + Bluevalue) < 1000)
+    {
+      result = BLACK;
     }
     else
     {
       result = BLACK;
     }
   }
-  /************** 超大数据近距离判断策略***************/
+  /*****************************/
+  else if(Bluevalue > Greenvalue && Bluevalue > Redvalue) 
+  {
+    result = BLUE;
+  }
+  else if((Redvalue > Greenvalue) && (Greenvalue > Bluevalue) &&  (Redvalue > Greenvalue))
+  {
+    result = RED;
+  }
+  /****************************/
   else
   {
-    r = Redvalue/Colorvalue;
-    g = Greenvalue/Colorvalue;
-    b = Bluevalue/Colorvalue;
-
-    if(r>=9&&g<=4&&b<=1||r>=9&&g<=3&&b<=1)
+    r = Redvalue / Colorvalue;
+    g = Greenvalue / Colorvalue;
+    b = Bluevalue / Colorvalue;
+    if(r >= 9 && g <= 4 && b <= 1)
     {
       result = RED;
     }
-    else if(r>10&&g<=4&&b<=4)
+    else if(r > 10 && g <= 4 && b <= 4)
     {
       result = RED;
     }
-    else if(r<3&&g<=4&&b<3)
+    else if(r < 3 && g <= 4 && b < 3)
     {
       result = BLACK;
     }
-    else if(r<=5&&g>10&&b<5)
+    else if(r <= 5 && g > 10 && b < 5)
     {
       result = GREEN;
     }
-    else if((r<5&&g<5&&b>10)||r<=3&&g>=8&&b>=8)
+    else if((r < 5 && g < 5 && b > 10) || (r <= 3 && g >= 8 && b >= 8))
     {
       result = BLUE;
     }
-    else if((r>=5&&g>6&&b>=7))
+    else if(r >= 5 && g > 6 && b >= 7)
     {
       result = BLUE;
     }
-    else if((r<=4&&g>=10&&b>=6))
+    else if(r <= 4 && g >= 10 && b >= 6)
     {
       result = BLUE;
     }
-    else if(r<=8&&r>=6&&g>=6&&b<2)
+    else if(r <= 8 && r >= 6 && g >= 6 && b < 2)
     {
       result = YELLOW;
     }
-    else if(r>=10&&g<=7&&b<2)
+    else if(r <= 8 && r <= 8 && b < 2)
+    {
+      //result = RED;
+    }
+    else if(r >= 10 && g <= 7 && b < 2)
     {
       result = RED;
     }
-    else if(r>=4&&g>=9&&b>=4)
+    else if(r >= 4 && g >= 9 && b >= 4)
+    {
+      result = WHITE;
+    }
+    else
+    {
+      result = WHITE;
+    }
+  }
+  return result;
+}
+
+/**
+ * \par Function
+ *   Returnresult
+ * \par Description
+ *  Identify Color for the Module.when you use just one module, you can use this methods to get data.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   return color result
+ * \par Others
+ *   None
+ */
+uint8_t MeColorSensor::Returnresult(void)
+{
+  static uint8_t cnt_;
+  static uint16_t temp[3];
+  uint8_t result,r,g,b;
+
+  MeColorSensor::ColorDataRead();
+
+  /*********************************/
+  if(Redvalue < 1200 && Greenvalue < 1700 && Bluevalue < 1200)
+  {
+    if(Greenvalue + Redvalue + Bluevalue <700)
+    {
+        result = BLACK;
+    }
+    else if(Bluevalue < Redvalue && Redvalue <= Greenvalue) 
+    {
+        if((Greenvalue + Redvalue + Bluevalue > 300) && (Greenvalue > 1.5 * Redvalue) && (Greenvalue > Bluevalue + Bluevalue))
+        {
+            result = GREEN;
+        }
+        else if((Greenvalue > Bluevalue + Bluevalue) && (Redvalue > Bluevalue + Bluevalue) && (Redvalue +  Greenvalue + Bluevalue > 120))
+        {
+            result = YELLOW;
+        }
+        else if(Redvalue > 450 && Greenvalue > 580 && Bluevalue > 320)
+        {
+            result = WHITE;
+        }
+        else
+        {
+            result = BLACK;
+        }
+    }
+    else if(Greenvalue < Redvalue && Bluevalue < Greenvalue)
+    {
+        if((Redvalue + Greenvalue + Bluevalue > 500) && Redvalue > 300)
+        {
+            result = RED;
+        }
+        else
+        {
+            result = BLACK;
+        }
+    }
+    else if(Greenvalue <= Bluevalue && Redvalue < Bluevalue)
+    {
+        result = BLUE;
+    }
+    else if(Redvalue <= Greenvalue && Bluevalue >= Redvalue)
+    {
+        if(Redvalue + Greenvalue + Bluevalue > 400)
+        {
+            if(Greenvalue > 2.2 * Redvalue && Greenvalue > 2.2 * Bluevalue)
+            {
+                result = GREEN;
+            }
+            else
+            {
+                result = BLUE;
+            }
+        }
+        else
+        {
+            result = BLACK;
+        }
+    }
+    else if((Greenvalue < Redvalue + Bluevalue) && (Greenvalue + Redvalue + Bluevalue >700))
+    {
+        result = WHITE;
+    }
+    else
+    {
+        result = BLACK;
+    }
+  }
+  /*****************************/
+  else
+  {
+    r = Redvalue / Colorvalue;
+    g = Greenvalue / Colorvalue;
+    b = Bluevalue / Colorvalue;
+
+    if(r >= 9 && g <= 4 && b <= 1)
+    {
+      result = RED;
+    }
+    else if(r > 10 && g <= 4 && b <= 4)
+    {
+      result = RED;
+    }
+    else if(r < 3 && g <= 4 && b < 3)
+    {
+      result = BLACK;
+    }
+    else if(r <= 5 && g > 10 && b < 5)
+    {
+      result = GREEN;
+    }
+    else if((r < 5 && g < 5 && b > 10) || (r <= 3 && g >= 8 && b >= 8))
+    {
+      result = BLUE;
+    }
+    else if(r >= 5 && g > 6 && b >= 7)
+    {
+      result = BLUE;
+    }
+    else if(r <= 4 && g >= 10 && b >= 6)
+    {
+      result = BLUE;
+    }
+    else if(r <= 8 && r >= 6 && g >= 6 && b < 2)
+    {
+      result = YELLOW;
+    }
+    else if(r >= 10 && g <= 7 && b < 2)
+    {
+      result = RED;
+    }
+    else if(r >= 4 && g >= 9 && b >= 4)
     {
       result = WHITE;
     }
@@ -589,7 +582,10 @@ uint8_t MeColorSensor::Returnresult(void)
   }
   /***************move filter***************/
   temp[cnt_++] = result;
-  if(cnt_>=3) cnt_ = 0;
+  if(cnt_>=3) 
+  {
+    cnt_ = 0;
+  }
   return (temp[0] + temp[1] + temp[2])/3;
 }
 
@@ -597,29 +593,31 @@ uint8_t MeColorSensor::Returnresult(void)
  * \par Function
  *   ReturnGrayscale
  * \par Description
- *   Return the gray scale value from sensor
+ *  Return Color Grayscale.
  * \param[in]
  *   None
  * \par Output
  *   None
  * \return
- *   None
+ *   return Color Grayscale value
  * \par Others
- *   None
+ * Gray = R*0.299 + G*0.587 + B*0.114
+ * Gray = (r*38 + g*75 + b*15)>>7;  
  */
 uint8_t MeColorSensor::ReturnGrayscale(void)
 {
-  /*
-    *  Gray = R*0.299 + G*0.587 + B*0.114
-    *  Gray = (r*38 + g*75 + b*15)>>7;
-  */
   uint8_t r,g,b;
   uint16_t gray = 0;
+
   r = Redvalue>>8;
   g = Greenvalue>>8;
   b = Bluevalue>>8;
-  gray = (r*38 + g*75 + b*15)>>4;//470R  >>4  // 100R >>6
-  if(gray>255) gray =255;
+
+  gray = (r * 38 + g * 75 + b * 15) >> 4;
+  if(gray > 255) 
+  {
+    gray = 255;
+  }
   return gray;
 }
 
@@ -627,61 +625,63 @@ uint8_t MeColorSensor::ReturnGrayscale(void)
  * \par Function
  *   ReturnColorhue
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Return Color hue.
  * \param[in]
  *   None
  * \par Output
  *   None
  * \return
- *   None
+ *   return color hue
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
- uint16_t MeColorSensor::ReturnColorhue(void)
- {
-    uint8_t r,g,b,max,min,c;
-    uint16_t h;
-    r = Redvalue>>8;
-    g = Greenvalue>>8;
-    b = Bluevalue>>8;
-    if(r==g&&g==b)
-    {
-      h = 0;
-    }
-    else
-    {
-      max = MAX(r,g,b);
-      min = MIN(r,g,b);
-      c = max - min;
-      if(max == r)
-      {
-        h = ((g-b)/c%6)*60; 
-      }
-      else if(max == g)
-      {
-        h = ((b-r)/c+2)*60; 
-      }
-      else if(min == b)
-      {
-        h = ((r-g)/c+4)*60; 
-      }
-    }
-    return h;
-  }
+uint16_t MeColorSensor::ReturnColorhue(void)
+{
+  uint8_t r,g,b,max,min,c;
+  uint16_t h;
 
+  r = Redvalue>>8;
+  g = Greenvalue>>8;
+  b = Bluevalue>>8;
+
+  if((r == g) && (g == b))
+  {
+    h = 0;
+  }
+  else
+  {
+    max = MAX(r,g,b);
+    min = MIN(r,g,b);
+    c = max - min;
+    if(max == r)
+    {
+      h = ((g-b) / c % 6)*60; 
+    }
+    else if(max == g)
+    {
+      h = ((b-r) / c + 2) * 60; 
+    }
+    else if(min == b)
+    {
+      h = ((r-g) / c + 4)*60; 
+    }
+  }
+  return h;
+}
+  
 /**
  * \par Function
  *   ReturnRedData
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Return Color Red value.
  * \param[in]
  *   None
  * \par Output
  *   None
  * \return
- *   None
+ *   return red value
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
 uint16_t MeColorSensor::ReturnRedData(void)
 {
@@ -692,15 +692,15 @@ uint16_t MeColorSensor::ReturnRedData(void)
  * \par Function
  *   ReturnGreenData
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Return Color Green value.
  * \param[in]
  *   None
  * \par Output
  *   None
  * \return
- *   None
+ *   return green value
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
 uint16_t MeColorSensor::ReturnGreenData(void)
 {
@@ -711,15 +711,15 @@ uint16_t MeColorSensor::ReturnGreenData(void)
  * \par Function
  *   ReturnBlueData
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Return Color Blue value.
  * \param[in]
  *   None
  * \par Output
  *   None
  * \return
- *   None
+ *   return blue value
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
 uint16_t MeColorSensor::ReturnBlueData(void)
 {
@@ -730,15 +730,15 @@ uint16_t MeColorSensor::ReturnBlueData(void)
  * \par Function
  *   ReturnColorData
  * \par Description
- *   Initialize the MeColorSensor.
+ *   Return Color data value.
  * \param[in]
  *   None
  * \par Output
  *   None
  * \return
- *   None
+ *   return color data value
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
 uint16_t MeColorSensor::ReturnColorData(void)
 {
@@ -747,9 +747,9 @@ uint16_t MeColorSensor::ReturnColorData(void)
 
 /**
  * \par Function
- *   TurnOnLight
+ *  TurnOnLight
  * \par Description
- *   Initialize the MeColorSensor.
+ *  Turn On the MeColorSensor module Light.
  * \param[in]
  *   None
  * \par Output
@@ -757,19 +757,18 @@ uint16_t MeColorSensor::ReturnColorData(void)
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
 void MeColorSensor::TurnOnLight(void)
 {
   MePort::dWrite1(1);
-  // MePort::aWrite1(0x32);
 }
 
 /**
  * \par Function
- *   TurnOffLight
+ *  TurnOffLight
  * \par Description
- *   Initialize the MeColorSensor.
+ *  Turn Off the MeColorSensor module Light.
  * \param[in]
  *   None
  * \par Output
@@ -777,18 +776,18 @@ void MeColorSensor::TurnOnLight(void)
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
 void MeColorSensor::TurnOffLight(void)
 {
   MePort::dWrite1(0);
 }
-
+  
 /**
  * \par Function
- *   TurnOffmodule
+ *  TurnOffmodule
  * \par Description
- *   Initialize the MeColorSensor.
+ *  Turn Off the MeColorSensor module.
  * \param[in]
  *   None
  * \par Output
@@ -796,18 +795,18 @@ void MeColorSensor::TurnOffLight(void)
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
 void MeColorSensor::TurnOffmodule(void)
 {
-   MePort::dWrite2(1);//power off
+MePort::dWrite2(1);
 }
 
 /**
  * \par Function
- *   TurnOnmodule
+ *  TurnOnmodule
  * \par Description
- *   Initialize the MeColorSensor.
+ *  Turn On the MeColorSensor module.
  * \param[in]
  *   None
  * \par Output
@@ -815,14 +814,22 @@ void MeColorSensor::TurnOffmodule(void)
  * \return
  *   None
  * \par Others
- *   You can check the bh1745 datasheet for the registor address.
+ *   None
  */
 void MeColorSensor::TurnOnmodule(void)
 {
-   MePort::dWrite2(0);//power on
+  MePort::dWrite2(0);//power on
 }
 
-/*
+/**
+ * \par Function
+ *  writeReg
+ * \par Description
+ *  write the MeColorSensor module register.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
  * \return
  *   Return the error code.
  *   the definition of the value of variable return_value:
@@ -833,12 +840,14 @@ void MeColorSensor::TurnOnmodule(void)
  *   4:other twi error
  *   refer to the arduino official library twi.c
  * \par Others
- *   To set the registor for initializing.
+ *   To set the register for initializing.
  */
 int8_t MeColorSensor::writeReg(int16_t reg, uint8_t data)
 {
   int8_t return_value = 0;
+
   return_value = writeData(reg, &data, 1);
+  
   return(return_value);
 }
 
@@ -887,16 +896,18 @@ int8_t MeColorSensor::readData(uint8_t start, uint8_t *buffer, uint8_t size)
   delayMicroseconds(1);
   /* Third parameter is true: relase I2C-bus after data is read. */
   Wire.requestFrom(Device_Address, size, (uint8_t)true);
+  
   while(Wire.available() && i < size)
   {
     buffer[i++] = Wire.read();
   }
   delayMicroseconds(1);
+  
   if(i != size)
   {
     return(I2C_ERROR);
   }
-  return(0); //return: no error 
+  return 0; 
 }
 
 /**
@@ -931,11 +942,11 @@ int8_t MeColorSensor::writeData(uint8_t start, const uint8_t *pData, uint8_t siz
   return_value = Wire.write(start); 
   if(return_value != 1)
   {
-    return(I2C_ERROR);
+      return(I2C_ERROR);
   }
   Wire.write(pData, size);  
   return_value = Wire.endTransmission(true); 
-  return(return_value); //return: no error                     
+  return return_value;                      
 }
 
 /**
@@ -951,12 +962,12 @@ int8_t MeColorSensor::writeData(uint8_t start, const uint8_t *pData, uint8_t siz
  *   Return the max one.
  * \par Others
  */
-uint8_t MeColorSensor::MAX(uint8_t r,uint8_t g,uint8_t b)
+uint8_t MeColorSensor::MAX(uint8_t r, uint8_t g, uint8_t b)
 {
   uint8_t max;
-  if(r>=g)
+  if(r >= g)
   {
-    if(r>=b)
+    if(r >= b)
     {
       max = r;
     }
@@ -965,7 +976,7 @@ uint8_t MeColorSensor::MAX(uint8_t r,uint8_t g,uint8_t b)
       max = b;
     }
   }
-  else if(g>=b)
+  else if(g >= b)
   {
     max = g;
   }
@@ -989,12 +1000,12 @@ uint8_t MeColorSensor::MAX(uint8_t r,uint8_t g,uint8_t b)
  *   Return the min one.
  * \par Others
  */
-uint8_t MeColorSensor::MIN(uint8_t r,uint8_t g,uint8_t b)
+uint8_t MeColorSensor::MIN(uint8_t r, uint8_t g, uint8_t b)
 {
   uint8_t min;
-  if(r<=g)
+  if(r <= g)
   {
-    if(r<=b)
+    if(r <= b)
     {
       min = r;
     }
@@ -1003,7 +1014,7 @@ uint8_t MeColorSensor::MIN(uint8_t r,uint8_t g,uint8_t b)
       min = b;
     }
   }
-  else if(g<=b)
+  else if(g <= b)
   {
     min = g;
   }
