@@ -4,8 +4,8 @@
  * \brief   Driver for W2812 full-color LED lights.
  * @file    MeRGBLed.h
  * @author  MakeBlock
- * @version V1.0.0
- * @date    2015/09/01
+ * @version V1.0.1
+ * @date    2017/06/23
  * @brief   Header for MeRGBLed.cpp module
  *
  * \par Copyright
@@ -31,16 +31,18 @@
  *    3. void MeRGBLed::setpin(uint8_t port)
  *    4. uint8_t MeRGBLed::getNumber()
  *    5. cRGB MeRGBLed::getColorAt(uint8_t index)
- *    6. bool MeRGBLed::setColorAt(uint8_t index, uint8_t red, uint8_t green, uint8_t blue)
- *    7. bool MeRGBLed::setColor(uint8_t index, uint8_t red, uint8_t green, uint8_t blue)
- *    8. bool MeRGBLed::setColor(uint8_t red, uint8_t green, uint8_t blue)
- *    9. bool MeRGBLed::setColor(uint8_t index, long value)
- *    10. void MeRGBLed::show()
+ *    6. void MeRGBLed::fillPixelsBak(uint8_t red, uint8_t green, uint8_t blue)
+ *    7. bool MeRGBLed::setColorAt(uint8_t index, uint8_t red, uint8_t green, uint8_t blue)
+ *    8. bool MeRGBLed::setColor(uint8_t index, uint8_t red, uint8_t green, uint8_t blue)
+ *    9. bool MeRGBLed::setColor(uint8_t red, uint8_t green, uint8_t blue)
+ *    10. bool MeRGBLed::setColor(uint8_t index, long value)
+ *    11. void MeRGBLed::show()
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/01     1.0.0            Rebuild the old lib.
+ * Mark Yan         2017/06/23     1.0.1            Add function fillPixelsBak.
  * </pre>
  *
  */
@@ -227,6 +229,26 @@ public:
  *   The index value from 1 to the max
  */
   cRGB getColorAt(uint8_t index);
+
+/**
+ * \par Function
+ *   fillPixelsBak
+ * \par Description
+ *   fill the LED color data to pixels_bak.
+ * \param[in]
+ *   red - Red values
+ * \param[in]
+ *   green - green values
+ * \param[in]
+ *   blue - blue values
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+void fillPixelsBak(uint8_t red, uint8_t green, uint8_t blue);
 
 /**
  * \par Function

@@ -2,15 +2,15 @@
 * File Name          : Firmware_for_Auriga.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V09.01.014
-* Date               : 07/03/2017
+* Version            : V09.01.016
+* Date               : 21/06/2017
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
 * http://www.makeblock.cc/
 * History:
 * <Author>         <Time>         <Version>        <Descr>
-* Mark Yan         2016/03/12     09.01.001        build the new.
+* Mark Yan         2016/03/12     09.01.001        Build the new.
 * Mark Yan         2016/05/03     09.01.002        Added encoder and compass driver and fix some bugs.
 * Mark Yan         2016/05/24     09.01.003        Fix issue MBLOCK-1 and MBLOCK-12(JIRA issue).
 * Mark Yan         2016/05/30     09.01.004        Add speed calibration for balanced car mode.
@@ -23,8 +23,9 @@
 * Mark Yan         2016/08/10     09.01.011        Fix issue MBLOCK-128(ext encoder motor led to reset).
 * Mark Yan         2016/08/24     09.01.012        Fix issue MBLOCK-171(Stepper online execution slow), MBLOCK-189(on board encoder motor reset issue).
 * Zzipeng          2016/12/15     09.01.013        Add Pm25Sensor
-* Mark Yan         2016/03/07     09.01.014        fix RGB lights issue, and add Smart servo support.
+* Mark Yan         2016/03/07     09.01.014        Fix RGB lights issue, and add Smart servo support.
 * Leo lu           2017/04/27     09.01.015        Fix issue of 3-axis gyroscope z output double.
+* Mark Yan         2017/06/21     09.01.016        Fix smart servo assign device ID issue.
 **************************************************************************/
 #include <Arduino.h>
 #include <avr/wdt.h>
@@ -171,7 +172,7 @@ boolean move_flag = false;
 boolean boot_show_flag = true;
 boolean blink_flag = false;
 
-String mVersion = "09.01.015";
+String mVersion = "09.01.016";
 
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
@@ -1427,8 +1428,8 @@ void runModule(uint8_t device)
         uint8_t action = readBuffer(7);
         if(action==1)
         {
-          int8_t px = buffer[8];
-          int8_t py = buffer[9];
+          int8_t px = readBuffer(8);
+          int8_t py = readBuffer(9);
           int8_t len = readBuffer(10);
           char *s = readString(11,len);
           ledMx.drawStr(px,py,s);

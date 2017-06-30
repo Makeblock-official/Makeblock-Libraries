@@ -405,7 +405,7 @@ boolean MeSmartServo::assignDevIdRequest(void)
   write(END_SYSEX);
   resFlag &= 0xfe;
   cmdTimeOutValue = millis();
-  while((resFlag & 0x01) != 0x01)
+  while(((resFlag & 0x01) != 0x01) || (millis() - cmdTimeOutValue < 150))
   {
     smartServoEventHandle();
     if(millis() - cmdTimeOutValue > 1200)

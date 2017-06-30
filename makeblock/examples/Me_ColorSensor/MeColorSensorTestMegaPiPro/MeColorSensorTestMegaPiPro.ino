@@ -68,17 +68,11 @@ void loop()
       case YELLOW:
       Serial.print("YELLOW");
       break;
-      case ORANGE:
-      Serial.print("ORANGE");
-      break;
       case GREEN:
       Serial.print("GREEN");
       break;
       case RED:
       Serial.print("RED");
-      break;
-      case PINKE:
-      Serial.print("PINKE");
       break;
       case WHITE:
       Serial.print("WHITE");

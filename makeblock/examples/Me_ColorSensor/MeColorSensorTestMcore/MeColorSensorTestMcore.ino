@@ -25,7 +25,7 @@
 MeColorSensor colorsensor(PORT_1);
 
 uint8_t colorresult;
-uint16_t redvalue=0,greenvalue=0,bluevalue=0,clearvalue=0;
+uint16_t redvalue=0,greenvalue=0,bluevalue=0,colorvalue=0;
 uint8_t grayscale = 0;
 long systime = 0,colorcode=0;
 void setup() {
@@ -43,7 +43,7 @@ while(1)
     redvalue   = colorsensor.ReturnRedData();
     greenvalue = colorsensor.ReturnGreenData();
     bluevalue  = colorsensor.ReturnBlueData();
-    clearvalue = colorsensor.ReturnClearData();
+    colorvalue = colorsensor.ReturnColorData();
     colorcode = colorsensor.ReturnColorCode();//RGB24code
     grayscale  = colorsensor.ReturnGrayscale();
 
@@ -57,7 +57,7 @@ while(1)
     Serial.print(bluevalue);
     Serial.print("\t");
     Serial.print("C:");
-    Serial.print(clearvalue);
+    Serial.print(colorvalue);
     Serial.print("\t");
     Serial.print("color:");
     switch(colorresult)
@@ -68,29 +68,14 @@ while(1)
       case BLUE:
       Serial.print("BLUE");
       break;
-      case PURPLE:
-      Serial.print("PURPLE");
-      break;
-      case CYAN:
-      Serial.print("CYAN");
-      break;
       case YELLOW:
       Serial.print("YELLOW");
-      break;
-      case ORANGE:
-      Serial.print("ORANGE");
-      break;
-      case GOLD:
-      Serial.print("GOLD");
       break;
       case GREEN:
       Serial.print("GREEN");
       break;
       case RED:
       Serial.print("RED");
-      break;
-      case PINKE:
-      Serial.print("PINKE");
       break;
       case WHITE:
       Serial.print("WHITE");

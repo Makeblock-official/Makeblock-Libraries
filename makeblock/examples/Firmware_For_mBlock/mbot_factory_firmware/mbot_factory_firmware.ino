@@ -3,7 +3,7 @@
 * Author             : Ander, Mark Yan
 * Updated            : Ander, Mark Yan
 * Version            : V06.01.009
-* Date               : 09/06/2017
+* Date               : 21/06/2017
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2017 Maker Works Technology Co., Ltd. All right reserved.
@@ -313,7 +313,10 @@ void get_ir_command()
         cli();
         buzzer.tone(NTD1,300);
         sei();
-        rgb.setpin(13);
+        if((rgb.getPort() != PORT_7) || rgb.getSlot() != SLOT2)
+        {
+          rgb.reset(PORT_7,SLOT2);;
+        }
         rgb.setColor(0,0,0);
         rgb.setColor(10,10,10);
         rgb.show();
@@ -325,8 +328,11 @@ void get_ir_command()
         Stop();
         cli();
         buzzer.tone(NTD2,300);
-        sei(); 
-        rgb.setpin(13);
+        sei();
+        if((rgb.getPort() != PORT_7) || rgb.getSlot() != SLOT2)
+        {
+          rgb.reset(PORT_7,SLOT2);;
+        }
         rgb.setColor(0,0,0);
         rgb.setColor(0,10,0);
         rgb.show();
@@ -339,7 +345,10 @@ void get_ir_command()
         cli();
         buzzer.tone(NTD3,300);
         sei();
-        rgb.setpin(13);
+        if((rgb.getPort() != PORT_7) || rgb.getSlot() != SLOT2)
+        {
+          rgb.reset(PORT_7,SLOT2);;
+        }
         rgb.setColor(0,0,0);
         rgb.setColor(0,0,10);
         rgb.show();
@@ -349,7 +358,10 @@ void get_ir_command()
         if(mode == MODE_A)
         {
           motor_sta = RUN_F;
-          rgb.setpin(13);
+          if((rgb.getPort() != PORT_7) || rgb.getSlot() != SLOT2)
+          {
+            rgb.reset(PORT_7,SLOT2);;
+          }
           rgb.setColor(0,0,0);
           rgb.setColor(10,10,0);
           rgb.show();
@@ -360,7 +372,10 @@ void get_ir_command()
         if(mode == MODE_A)
         {
           motor_sta = RUN_B;
-          rgb.setpin(13);
+          if((rgb.getPort() != PORT_7) || rgb.getSlot() != SLOT2)
+          {
+            rgb.reset(PORT_7,SLOT2);;
+          }
           rgb.setColor(0,0,0);
           rgb.setColor(10,0,0);
           rgb.show();
@@ -371,7 +386,10 @@ void get_ir_command()
         if(mode == MODE_A)
         {
           motor_sta = RUN_R;
-          rgb.setpin(13);
+          if((rgb.getPort() != PORT_7) || rgb.getSlot() != SLOT2)
+          {
+            rgb.reset(PORT_7,SLOT2);;
+          }
           rgb.setColor(0,0,0);
           rgb.setColor(1,10,10,0);
           rgb.show();
@@ -382,7 +400,10 @@ void get_ir_command()
         if(mode == MODE_A)
         {
           motor_sta = RUN_L;
-          rgb.setpin(13);
+          if((rgb.getPort() != PORT_7) || rgb.getSlot() != SLOT2)
+          {
+            rgb.reset(PORT_7,SLOT2);;
+          }
           rgb.setColor(0,0,0);
           rgb.setColor(2,10,10,0);
           rgb.show();
@@ -459,19 +480,28 @@ void get_ir_command()
     time = millis();
     if(mode == MODE_A )
     {
-      rgb.setpin(13);
+      if((rgb.getPort() != PORT_7) || rgb.getSlot() != SLOT2)
+      {
+        rgb.reset(PORT_7,SLOT2);;
+      }
       rgb.setColor(10, 10, 10);
       rgb.show();
     }
     else if(mode == MODE_B )
     {
-      rgb.setpin(13);
+      if((rgb.getPort() != PORT_7) || rgb.getSlot() != SLOT2)
+      {
+        rgb.reset(PORT_7,SLOT2);;
+      }
       rgb.setColor(0, 10, 0);
       rgb.show();
     }
     else if(mode == MODE_C)
     {
-      rgb.setpin(13);
+      if((rgb.getPort() != PORT_7) || rgb.getSlot() != SLOT2)
+      {
+        rgb.reset(PORT_7,SLOT2);;
+      }
       rgb.setColor(0, 0, 10);
       rgb.show();
     }
@@ -688,6 +718,9 @@ void parseData()
     case RESET:
     {
       //reset
+      MotorL.run(0);
+      MotorR.run(0);
+      buzzerOff();
       callOK();
     }
     break;
@@ -832,6 +865,7 @@ void runModule(int device)
       int16_t r = readBuffer(9);
       int16_t g = readBuffer(10);
       int16_t b = readBuffer(11);
+
       if((rgb.getPort() != port) || rgb.getSlot() != slot)
       {
         rgb.reset(port,slot);
@@ -878,8 +912,8 @@ void runModule(int device)
       int16_t action = readBuffer(7);
       if(action == 1)
       {
-        int16_t px = buffer[8];
-        int16_t py = buffer[9];
+        int16_t px = readBuffer(8);
+        int16_t py = readBuffer(9);
         int16_t len = readBuffer(10);
         char *s = readString(11,len);
         ledMx.drawStr(px,py,s);
@@ -1193,7 +1227,7 @@ void setup()
   digitalWrite(13,HIGH);
   delay(300);
   digitalWrite(13,LOW);
-  rgb.setpin(13);
+  rgb.reset(PORT_7,SLOT2);
   rgb.setColor(0,0,0);
   rgb.show();
   delay(1);
@@ -1229,7 +1263,10 @@ void loop()
     currentPressed = !(analogRead(7) > 100);
     if(currentPressed != pre_buttonPressed)
     {
-      rgb.setpin(13);
+      if((rgb.getPort() != PORT_7) || rgb.getSlot() != SLOT2)
+      {
+        rgb.reset(PORT_7,SLOT2);;
+      }
       pre_buttonPressed = currentPressed;
       if(currentPressed == true)
       {

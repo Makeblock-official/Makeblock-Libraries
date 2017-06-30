@@ -25,7 +25,7 @@
 MeColorSensor colorsensor(PORT_4);
 
 uint8_t colorresult;
-uint16_t redvalue=0,greenvalue=0,bluevalue=0,clearvalue=0,hue;
+uint16_t redvalue=0,greenvalue=0,bluevalue=0,colorvalue=0,hue;
 uint8_t grayscale = 0;
 long systime = 0,colorcode=0;
 void setup() {
@@ -37,17 +37,16 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if(millis()-systime>200)
+  if(millis()-systime>100)
   {
     systime = millis();
     colorresult = colorsensor.Returnresult();
     redvalue   = colorsensor.ReturnRedData();
     greenvalue = colorsensor.ReturnGreenData();
     bluevalue  = colorsensor.ReturnBlueData();
-    clearvalue = colorsensor.ReturnClearData();
+    colorvalue = colorsensor.ReturnColorData();
     colorcode = colorsensor.ReturnColorCode();//RGB24code
     grayscale  = colorsensor.ReturnGrayscale();
-//    hue        = colorsensor.ReturnColorhue();
 
     Serial.print("R:");
     Serial.print(redvalue);
@@ -59,7 +58,7 @@ void loop() {
     Serial.print(bluevalue);
     Serial.print("\t");
     Serial.print("C:");
-    Serial.print(clearvalue);
+    Serial.print(colorvalue);
     Serial.print("\t");
     Serial.print("color:");
     switch(colorresult)
@@ -70,29 +69,14 @@ void loop() {
       case BLUE:
       Serial.print("BLUE");
       break;
-      case PURPLE:
-      Serial.print("PURPLE");
-      break;
-      case CYAN:
-      Serial.print("CYAN");
-      break;
       case YELLOW:
       Serial.print("YELLOW");
-      break;
-      case ORANGE:
-      Serial.print("ORANGE");
-      break;
-      case GOLD:
-      Serial.print("GOLD");
       break;
       case GREEN:
       Serial.print("GREEN");
       break;
       case RED:
       Serial.print("RED");
-      break;
-      case PINKE:
-      Serial.print("PINKE");
       break;
       case WHITE:
       Serial.print("WHITE");
