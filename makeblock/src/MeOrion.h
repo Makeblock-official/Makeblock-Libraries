@@ -68,6 +68,7 @@
 #include "MeHumitureSensor.h"
 #include "MeFlameSensor.h"
 #include "MeGasSensor.h"
+#include "MeColorSensor.h"
 
 /*********************  Orion Board GPIO Map *********************************/
 // struct defined in MePort.h

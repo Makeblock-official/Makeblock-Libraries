@@ -221,6 +221,8 @@ float RELAX_ANGLE = -1;                    //Natural balance angle,should be adj
   #define GET_BATTERY_POWER                0x70
   #define GET_AURIGA_MODE                  0x71
   #define GET_MEGAPI_MODE                  0x72
+  #define GET_MEGAPI_PRO_AUTO_STATE        0x75
+
 #define ENCODER_BOARD          61
   //Read type
   #define ENCODER_BOARD_POS                0x01
@@ -1542,8 +1544,8 @@ void runModule(uint8_t device)
         uint8_t action = readBuffer(7);
         if(action==1)
         {
-          int8_t px = buffer[8];
-          int8_t py = buffer[9];
+          int8_t px = readBuffer(8);
+          int8_t py = readBuffer(9);
           int8_t len = readBuffer(10);
           char *s = readString(11,len);
           ledMx.drawStr(px,py,s);
@@ -1961,6 +1963,43 @@ int16_t searchServoPin(int16_t pin)
   }
   return 0;
 }
+
+/**
+ * \par Function
+ *    getPlayStatus
+ * \par Description
+ *    This function used to get the play mode from controler.
+ * \param[in]
+ *    None.
+ * \par Output
+ *    None
+ * \return
+ *    return the state of auto play mode
+ * \par Others
+ *    None
+ */
+uint8_t getPlayStatus(void)
+{
+  uint8_t bit = _BV(3);
+  uint8_t port= 10;
+  volatile uint8_t *reg, *out;
+  reg = portModeRegister(port);
+  out = portOutputRegister(port);
+  uint8_t oldSREG = SREG;
+  cli();
+  *reg &= ~bit;
+  *out &= ~bit;
+  SREG = oldSREG;
+  if (*portInputRegister(port) & bit) 
+  {
+    return HIGH; //自动赛阶段
+  }
+  else
+  {
+    return LOW; //手动赛阶段
+  }
+}
+
 /**
  * \par Function
  *    readSensor
@@ -2299,6 +2338,10 @@ void readSensor(uint8_t device)
         if(GET_MEGAPI_MODE == subcmd)
         {
           sendByte(megapi_mode);
+        }
+        else if(GET_MEGAPI_PRO_AUTO_STATE == subcmd)
+        {
+          sendByte(getPlayStatus());
         }
       }
       break;

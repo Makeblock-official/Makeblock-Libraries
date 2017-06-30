@@ -1,6 +1,6 @@
 /**
  * \par Copyright (C), 2012-2016, MakeBlock
- * \class   MeGyro
+ * \class   MeColorSensor
  * \brief   Driver for MeColorSensor module.
  * @file    MeColorSensor.cpp
  * @author  MakeBlock
@@ -34,7 +34,7 @@
  *    6. uint16_t MeColorSensor::ReturnRedData(void)
  *    7. uint16_t MeColorSensor::ReturnGreenData(void)
  *    8. uint16_t MeColorSensor::ReturnBlueData(void)
- *    9. uint16_t MeColorSensor::ReturnClearData(void)
+ *    9. uint16_t MeColorSensor::ReturnColorData(void)
  *    10.long MeColorSensor::ColorIdentify(void)
  *    11.long MeColorSensor::ReturnColorCode(void)
  *    12.uint16_t MeColorSensor::calculateColorTemperature(void)
@@ -57,6 +57,7 @@
  *  zzipeng         2017/04/03          1.0.1         only detect six colors.
  *  zzipeng         2017/04/10          1.0.2         only detect seven colors and add methods named MeColorSensor::TurnOffmodule(void),MeColorSensor::TurnOnmodule.
  *  zzipeng         2017/04/20          1.0.3         add methods MeColorSensor::ColorDataReadOnebyOne();
+ *  Lan weiting     2017/06/16          1.0.4         Modify the function name ReturnColorData(void) and Modify the color recognition category.
  * </pre>
  *
  * @example MeColorSensorTest.ino
@@ -133,6 +134,7 @@ MeColorSensor::MeColorSensor(uint8_t AD0, uint8_t INT, uint8_t address)
   _INT = INT;
 }
 #endif // ME_PORT_DEFINED
+
 /**
  * \par Function
  *   begin
@@ -149,18 +151,20 @@ MeColorSensor::MeColorSensor(uint8_t AD0, uint8_t INT, uint8_t address)
  */
 void MeColorSensor::SensorInit(void)
 {
-   MeColorSensor::TurnOnmodule();//power on
-   MeColorSensor::TurnOnLight();//light on
+  MeColorSensor::TurnOnmodule();//power on
+  //MeColorSensor::TurnOnLight();//light on
+  MeColorSensor::TurnOffLight();
   //  MePort::aWrite1(0x32);
-   Wire.begin();
-   writeReg(SYSTEM_CONTROL, SW_RESET|INT_RESET);//SW reset and int reset
-   writeReg(MODE_CONTROL1, MEASURE_160MS);//selet 160ms measure fre
-   writeReg(MODE_CONTROL2, 0x10);//0x92active and set rgb measure gain
-   writeReg(MODE_CONTROL3, 0x02);
-   writeReg(INTERRUPT, 0x00);
-   writeReg(PERSISTENCE, 0x01);
+  Wire.begin();
+  writeReg(SYSTEM_CONTROL, SW_RESET|INT_RESET);//SW reset and int reset
+  writeReg(MODE_CONTROL1, MEASURE_160MS);//selet 160ms measure fre
+  writeReg(MODE_CONTROL2, 0x10);//0x92active and set rgb measure gain
+  writeReg(MODE_CONTROL3, 0x02);
+  writeReg(INTERRUPT, 0x00);
+  writeReg(PERSISTENCE, 0x01);
 }
-   /**
+
+/**
  * \par Function
  *   begin
  * \par Description
@@ -180,57 +184,7 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
   readData(MANUFACTURER_ID,&temp,1);
   return temp;
 }
-   /**
- * \par Function
- *   begin
- * \par Description
- *   Initialize the MeColorSensor.
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   You can check the bh1745 datasheet for the registor address.
- */
-  void MeColorSensor::ColorDataRead(void)
-  {
-    uint8_t ColorData[8] = {0};
-    readData(RED_DATA_LSBs, ColorData, sizeof(ColorData));
-    Redvalue   = (uint16_t)ColorData[1]<<8|ColorData[0];
-    Greenvalue = (uint16_t)ColorData[3]<<8|ColorData[2];
-    Bluevalue  = (uint16_t)ColorData[5]<<8|ColorData[4];
-    Clearvalue = (uint16_t)ColorData[7]<<8|ColorData[6];
-  }
-   /**
- * \par Function
- *   begin
- * \par Description
- *   Initialize the MeColorSensor.
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   None
- * \par Others
- *   You can check the bh1745 datasheet for the registor address.
- */
-  uint8_t MeColorSensor::ColorDataReadOnebyOne(void)
-  {
-    uint8_t id = 0;
-    MeColorSensor::SensorInit();
-    id = MeColorSensor::ReportId();
-    if(id!=CHIP_ID)
-    {
-      return BLACK;
-    }
-    delay(160);//160ms tramsfer time
-    MeColorSensor::ColorDataRead();
-    MeColorSensor::TurnOffmodule();//power off
-    return 0;
-  }
+
 /**
  * \par Function
  *   begin
@@ -245,20 +199,83 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
  * \par Others
  *   You can check the bh1745 datasheet for the registor address.
  */
-  long MeColorSensor::ReturnColorCode(void)
+void MeColorSensor::ColorDataRead(void)
+{
+  uint8_t ColorData[8] = {0};
+  readData(RED_DATA_LSBs, ColorData, sizeof(ColorData));
+  Redvalue   = (uint16_t)ColorData[1]<<8|ColorData[0];
+  Greenvalue = (uint16_t)ColorData[3]<<8|ColorData[2];
+  Bluevalue  = (uint16_t)ColorData[5]<<8|ColorData[4];
+  Colorvalue = (uint16_t)ColorData[7]<<8|ColorData[6];
+}
+
+/**
+ * \par Function
+ *   begin
+ * \par Description
+ *   Initialize the MeColorSensor.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   You can check the bh1745 datasheet for the registor address.
+ */
+uint8_t MeColorSensor::ColorDataReadOnebyOne(void)
+{
+  uint8_t id = 0;
+  MeColorSensor::SensorInit();
+  id = MeColorSensor::ReportId();
+  if(id!=CHIP_ID)
   {
-    long colorcode = 0;
-    uint16_t r,g,b;
-    r = Redvalue/20;
-    g = Greenvalue/30;//the sensor bh1745nuc is sensitive in green.
-    b = Bluevalue/20;
-    if(r>255) r=255;
-    if(g>255) g=255;
-    if(b>255) b=255;
-    colorcode = (long)((long)r<<16)|((long)g<<8)|(long)b;
-    return colorcode;
+    return BLACK;
   }
-   /**
+  delay(160);//160ms tramsfer time
+  MeColorSensor::ColorDataRead();
+  MeColorSensor::TurnOffmodule();//power off
+  return 0;
+}
+
+/**
+ * \par Function
+ *   begin
+ * \par Description
+ *   Initialize the MeColorSensor.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   You can check the bh1745 datasheet for the registor address.
+ */
+long MeColorSensor::ReturnColorCode(void)
+{
+  long colorcode = 0;
+  uint16_t r,g,b;
+  r = Redvalue/20;
+  g = Greenvalue/30;//the sensor bh1745nuc is sensitive in green.
+  b = Bluevalue/20;
+  if(r > 255)
+  {
+    r = 255;
+  }
+  if(g > 255)
+  {
+    g = 255;
+  }
+  if(b > 255)
+  {
+    b = 255;
+  }
+  colorcode = (long)((long)r<<16)|((long)g<<8)|(long)b;
+  return colorcode;
+}
+
+/**
  * \par Function
  *   ColorIdentify
  * \par Description
@@ -274,168 +291,161 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
  */
  uint8_t MeColorSensor::ColorIdentify(void)
  {
-    uint8_t result,r,g,b;
-    if(MeColorSensor::ColorDataReadOnebyOne())
+  uint8_t result,r,g,b;
+  if(MeColorSensor::ColorDataReadOnebyOne())
+  {
+    return BLACK;//id error return!
+  }
+  /*****************小数据远距离判断策略****************/
+  if(Redvalue<1200 && Greenvalue<1700 && Bluevalue<1200)
+  {
+    if(Bluevalue<Redvalue && Redvalue<=Greenvalue)// b<r<g   g最大,b最小，green 和 yellow black,white区分
     {
-      return BLACK;//id error return!
-    }
- /*****************小数据远距离判断策略****************/
-    if(Redvalue<1200 && Greenvalue<1700 && Bluevalue<1200)
-    {
-      if(Bluevalue<Redvalue && Redvalue<=Greenvalue)// b<r<g   g最大,b最小，green 和 yellow black,white区分
+      if((Greenvalue + Redvalue + Bluevalue >300) && (Greenvalue > 1.5*Redvalue) && (Greenvalue > Bluevalue + Bluevalue))
       {
-        if((Greenvalue + Redvalue + Bluevalue >300) && (Greenvalue > 1.5*Redvalue) && (Greenvalue > Bluevalue + Bluevalue))
-        {
-          result = GREEN;//判定绿色
-        }
-        else if((Greenvalue > Bluevalue + Bluevalue) && (Redvalue > Bluevalue + Bluevalue) && (Redvalue +  Greenvalue + Bluevalue>120))//芯片对蓝色不太灵敏，所以导致对黄色特别好识别 r>2b g>2b
-        {
-          result = YELLOW;//判定黄色
-        }
-        else if(Redvalue>400 && Greenvalue>580 && Bluevalue>320)//调小数据提高白色识别高度
-        {
-          result = WHITE;//
-        }
-        else
-        {
-          result = BLACK;//30mm以外认为是黑色
-        }
+        result = GREEN;//判定绿色
       }
-      else if(Greenvalue<Redvalue && Bluevalue<Greenvalue)//r>g>b  r最大,b最小,red 和 orange black区分
+      else if((Greenvalue > Bluevalue + Bluevalue) && (Redvalue > Bluevalue + Bluevalue) && (Redvalue +  Greenvalue + Bluevalue>120))//芯片对蓝色不太灵敏，所以导致对黄色特别好识别 r>2b g>2b
       {
-        if(Redvalue + Greenvalue + Bluevalue > 220)
-        {
-          // if(Redvalue > 2.4*Greenvalue && Greenvalue > 1.4*Bluevalue)//为了满足远距离要求，判定条件由 r>3g g>2b改为r>2.6*g g>1.4*b.
-          if(Greenvalue < 2.4*Bluevalue)//用b数据判断效果更加好  将参数2.4改小可以提高橙色识别高度，降低红色识别高度
-          {
-            result = RED;//red 
-          }
-          //else if(Redvalue > 1.3*Greenvalue && Greenvalue > 2.3*Bluevalue)//为了满足远距离要求，判定条件由 r>2g g>3b改为r>1.3*g g>2.3*b.
-          else if(Greenvalue >= 2.4*Bluevalue)//用b数据判断效果更加好
-          {
-            result = RED/*ORANGE*/;//orange r>1.8*g g>3*b  delete orange,replace with red
-          }
-          else
-          {
-            result = BLACK/*PINKE*/;
-          }
-        }
-        else
-        {
-          result = BLACK;//否则距离太远判定黑色
-        }
+        result = YELLOW;//判定黄色
       }
-      else if(Greenvalue <= Bluevalue && Redvalue<Bluevalue)//b>g b>r//包括b>g>r b>r>g//蓝色，紫色区分
+      else if(Redvalue>400 && Greenvalue>580 && Bluevalue>320)//调小数据提高白色识别高度
       {
-        result = BLUE;//判定蓝色 删除紫色，都判断为蓝色
-      }
-      else if(Redvalue<=Greenvalue && Bluevalue>=Redvalue)// r<b<g//g max b middle r min 蓝色，绿色，紫色，黑色
-      {
-        if(Redvalue + Greenvalue + Bluevalue>400)
-        {
-          if(Greenvalue>2.2*Redvalue && Greenvalue>2.2*Bluevalue)
-          {
-            result = GREEN;
-          }
-          else
-          {
-           result = BLUE;
-          }
-        }
-        else
-        {
-          result = BLACK;//30mm以外认为是黑色
-        }
-      }
-      else if((Greenvalue < Redvalue + Bluevalue) && (Greenvalue + Redvalue + Bluevalue >700))//
-      {
-        result = WHITE;//判定白色
-      }
-      else if(Greenvalue + Redvalue + Bluevalue <1000)
-      {
-        result = BLACK;//判定黑色
+        result = WHITE;//
       }
       else
       {
-        result = BLACK;
+        result = BLACK;//30mm以外认为是黑色
       }
     }
-    /************** 稍大数据中距离判断策略***************/
-    else if(Bluevalue>Greenvalue && Bluevalue>Redvalue)// b>g  b>r//包括b>g>r b>r>g//蓝色，紫色区分
+    else if(Greenvalue<Redvalue && Bluevalue<Greenvalue)//r>g>b  r最大,b最小,red 和 orange black区分
     {
-      result = BLUE;//在这一范围内都认为是蓝色
+      if(Redvalue + Greenvalue + Bluevalue > 220)
+      {
+        // if(Redvalue > 2.4*Greenvalue && Greenvalue > 1.4*Bluevalue)//为了满足远距离要求，判定条件由 r>3g g>2b改为r>2.6*g g>1.4*b.
+        if(Greenvalue < 2.4*Bluevalue)//用b数据判断效果更加好  将参数2.4改小可以提高橙色识别高度，降低红色识别高度
+        {
+          result = RED;//red 
+        }
+        //else if(Redvalue > 1.3*Greenvalue && Greenvalue > 2.3*Bluevalue)//为了满足远距离要求，判定条件由 r>2g g>3b改为r>1.3*g g>2.3*b.
+        else if(Greenvalue >= 2.4*Bluevalue)//用b数据判断效果更加好
+        {
+          result = RED/*ORANGE*/;//orange r>1.8*g g>3*b  delete orange,replace with red
+        }
+        else
+        {
+          result = BLACK/*PINKE*/;
+        }
+      }
+      else
+      {
+        result = BLACK;//否则距离太远判定黑色
+      }
     }
-    else if(Redvalue > Greenvalue && Greenvalue > Bluevalue)// r>g>b r<2000
+    else if(Greenvalue <= Bluevalue && Redvalue<Bluevalue)//b>g b>r//包括b>g>r b>r>g//蓝色，紫色区分
     {
-      if(Greenvalue < 2.5*Bluevalue)//用b数据判断效果更加好
+      result = BLUE;//判定蓝色 删除紫色，都判断为蓝色
+    }
+    else if(Redvalue<=Greenvalue && Bluevalue>=Redvalue)// r<b<g//g max b middle r min 蓝色，绿色，紫色，黑色
+    {
+      if(Redvalue + Greenvalue + Bluevalue>400)
       {
-        result = RED;//red 
+        if(Greenvalue>2.2*Redvalue && Greenvalue>2.2*Bluevalue)
+        {
+          result = GREEN;
+        }
+        else
+        {
+         result = BLUE;
+        }
       }
-      else if(Greenvalue >= 2.5*Bluevalue)//用b数据判断效果更加好
+      else
       {
-        result = RED/*ORANGE*/;;//orange r>1.8*g g>3*b delete orange,replace with red
+        result = BLACK;//30mm以外认为是黑色
       }
     }
-   /************** 超大数据近距离判断策略***************/
+    else if((Greenvalue < Redvalue + Bluevalue) && (Greenvalue + Redvalue + Bluevalue >700))//
+    {
+      result = WHITE;//判定白色
+    }
+    else if(Greenvalue + Redvalue + Bluevalue <1000)
+    {
+      result = BLACK;//判定黑色
+    }
     else
     {
-      r = Redvalue/Clearvalue;
-      g = Greenvalue/Clearvalue;
-      b = Bluevalue/Clearvalue;
-
-      if(r>10&&g<=4&&b<=1||r>10&&g<=3&&b<=1)
-      {
-        result = RED;
-      }
-      else if(r>10&&g<=4&&b<=4)
-      {
-        result = RED/*PINKE*/;//delete pink replace with red
-      }
-      else if(r<3&&g<=4&&b<3)
-      {
-        result = BLACK;
-      }
-      else if(r<=5&&g>10&&b<5)
-      {
-        result = GREEN;
-      }
-      else if((r<5&&g<5&&b>10)||r<=3&&g>=8&&b>=8)
-      {
-        result = BLUE;
-      }
-      else if((r>=5&&g>6&&b>=7))
-      {
-        result = BLUE/*PURPLE*/;//delete purple,replace with blue
-      }
-      else if((r<=4&&g>=10&&b>=6))
-      {
-        result = BLUE/*CYAN*/;//delete cyan replace with blue
-      }
-      else if(r<=8&&r>=6&&g>=6&&b<2)
-      {
-        result = YELLOW;
-      }
-      else if(r<=8&&r<=8&&b<2)
-      {
-        result = /*GOLD*//*ORANGE*/RED;//delete orange,replace with red
-      }
-      else if(r>=10&&g<=7&&b<2)
-      {
-        result = /*ORANGE*/RED;//delete orange,replace with red
-      }
-      else if(r>=4&&g>=9&&b>=4)
-      {
-        result = WHITE;
-      }
-      else
-      {
-        result = WHITE;
-      }
+      result = BLACK;
     }
-    return result;
+  }
+
+  /************** 稍大数据中距离判断策略***************/
+  else if(Bluevalue > Greenvalue && Bluevalue > Redvalue)// b>g  b>r//包括b>g>r b>r>g//蓝色，紫色区分
+  {
+    result = BLUE;//在这一范围内都认为是蓝色
+  }
+  else if(Redvalue > Greenvalue && Greenvalue > Bluevalue &&  Redvalue > Greenvalue)// r>g>b r<2000
+  {
+    result = RED;//red 
+  }
+  /************** 超大数据近距离判断策略***************/
+  else
+  {
+    r = Redvalue/Colorvalue;
+    g = Greenvalue/Colorvalue;
+    b = Bluevalue/Colorvalue;
+    if(r>10&&g<=4&&b<=1||r>10&&g<=3&&b<=1)
+    {
+      result = RED;
+    }
+    else if(r>10&&g<=4&&b<=4)
+    {
+      result = RED;
+    }
+    else if(r<3&&g<=4&&b<3)
+    {
+      result = BLACK;
+    }
+    else if(r<=5&&g>10&&b<5)
+    {
+      result = GREEN;
+    }
+    else if((r<5&&g<5&&b>10)||r<=3&&g>=8&&b>=8)
+    {
+      result = BLUE;
+    }
+    else if((r>=5&&g>6&&b>=7))
+    {
+      result = BLUE;
+    }
+    else if((r<=4&&g>=10&&b>=6))
+    {
+      result = BLUE;
+    }
+    else if(r<=8&&r>=6&&g>=6&&b<2)
+    {
+      result = YELLOW;
+    }
+    else if(r<=8&&r<=8&&b<2)
+    {
+      //result = RED;
+    }
+    else if(r>=10&&g<=7&&b<2)
+    {
+      result = /*ORANGE*/RED;//delete orange,replace with red
+    }
+    else if(r>=4&&g>=9&&b>=4)
+    {
+      result = WHITE;
+    }
+    else
+    {
+      result = WHITE;
+    }
+  }
+  return result;
  }
 
-  /**
+/**
  * \par Function
  *   Returnresult
  * \par Description
@@ -449,190 +459,173 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
  * \par Others
  *   You can check the bh1745 datasheet for the registor address.
  */
- uint8_t MeColorSensor::Returnresult(void)
- {
-    static uint8_t cnt_;
-    static uint16_t temp[3];
-    uint8_t result,r,g,b;
+uint8_t MeColorSensor::Returnresult(void)
+{
+  static uint8_t cnt_;
+  static uint16_t temp[3];
+  uint8_t result,r,g,b;
 
-    MeColorSensor::ColorDataRead();
+  MeColorSensor::ColorDataRead();
 
-    /*****************小数据远距离判断策略****************/
-    if(Redvalue<1200 && Greenvalue<1700 && Bluevalue<1200)
+  /*****************小数据远距离判断策略****************/
+  if(Redvalue<1200 && Greenvalue<1700 && Bluevalue<1200)
+  {
+    if(Greenvalue + Redvalue + Bluevalue <700)
     {
-      if(Bluevalue<Redvalue && Redvalue<=Greenvalue)// b<r<g   g最大,b最小，green 和 yellow black,white区分
+      result = BLACK;//判定黑色
+    }
+    else if(Bluevalue<Redvalue && Redvalue<=Greenvalue)// b<r<g   g最大,b最小，green 和 yellow black,white区分
+    {
+      if((Greenvalue + Redvalue + Bluevalue > 300) && (Greenvalue > 1.5*Redvalue) && (Greenvalue > Bluevalue + Bluevalue))
       {
-        if((Greenvalue + Redvalue + Bluevalue >300) && (Greenvalue > 1.5*Redvalue) && (Greenvalue > Bluevalue + Bluevalue))
-        {
-          result = GREEN;//判定绿色
-        }
-        else if((Greenvalue > Bluevalue + Bluevalue) && (Redvalue > Bluevalue + Bluevalue) && (Redvalue +  Greenvalue + Bluevalue>120))//芯片对蓝色不太灵敏，所以导致对黄色特别好识别 r>2b g>2b
-        {
-          result = YELLOW;//判定黄色
-        }
-        else if(Redvalue>450 && Greenvalue>580 && Bluevalue>320)//调小数据提高白色识别高度
-        {
-          result = WHITE;//white
-        }
-        else
-        {
-          result = BLACK;//30mm以外认为是黑色
-        }
+        result = GREEN;//判定绿色
       }
-      else if(Greenvalue<Redvalue && Bluevalue<Greenvalue)//r>g>b  r最大,b最小,red 和 orange black区分
+      else if((Greenvalue > Bluevalue + Bluevalue) && (Redvalue > Bluevalue + Bluevalue) && (Redvalue +  Greenvalue + Bluevalue>120))//芯片对蓝色不太灵敏，所以导致对黄色特别好识别 r>2b g>2b
       {
-        if(Redvalue + Greenvalue + Bluevalue > 220)
-        {
-          // if(Redvalue > 2.4*Greenvalue && Greenvalue > 1.4*Bluevalue)//为了满足远距离要求，判定条件由 r>3g g>2b改为r>2.6*g g>1.4*b.
-          if(Greenvalue < 2.4*Bluevalue)//用b数据判断效果更加好  将参数2.4改小可以提高橙色识别高度，降低红色识别高度
-          {
-            result = RED;//red 
-          }
-          //else if(Redvalue > 1.3*Greenvalue && Greenvalue > 2.3*Bluevalue)//为了满足远距离要求，判定条件由 r>2g g>3b改为r>1.3*g g>2.3*b.
-          else if(Greenvalue >= 2.4*Bluevalue)//用b数据判断效果更加好
-          {
-            result = ORANGE;//orange r>1.8*g g>3*b
-          }
-          else
-          {
-            result = BLACK/*PINKE*/;
-          }
-        }
-        else
-        {
-          result = BLACK;//否则距离太远判定黑色
-        }
+        result = YELLOW;//判定黄色
       }
-      else if(Greenvalue <= Bluevalue && Redvalue<Bluevalue)//b>g b>r//包括b>g>r b>r>g//蓝色，紫色区分
-      {
-        result = BLUE;//判定蓝色 删除紫色，都判断为蓝色
-      }
-      else if(Redvalue<=Greenvalue && Bluevalue>=Redvalue)// r<b<g//g max b middle r min 蓝色，绿色，紫色，黑色
-      {
-        if(Redvalue + Greenvalue + Bluevalue>400)
-        {
-          if(Greenvalue>2.2*Redvalue && Greenvalue>2.2*Bluevalue)
-          {
-            result = GREEN;
-          }
-          else
-          {
-            result = BLUE;
-          }
-        }
-        else
-        {
-          result = BLACK;//30mm以外认为是黑色
-        }
-      }
-      else if((Greenvalue < Redvalue + Bluevalue) && (Greenvalue + Redvalue + Bluevalue >700))//
+      else if(Redvalue>450 && Greenvalue>580 && Bluevalue>320)//调小数据提高白色识别高度
       {
         result = WHITE;//判定白色
       }
-      else if(Greenvalue + Redvalue + Bluevalue <1000)
+      else
       {
-       result = BLACK;//判定黑色
+        result = BLACK;//30mm以外认为是黑色
+      }
+    }
+    else if(Greenvalue < Redvalue && Bluevalue < Greenvalue)//r>g>b  r最大,b最小,red 和black区分
+    {
+      if((Redvalue + Greenvalue + Bluevalue > 500) && Redvalue > 300)
+      {
+        result = RED;//red  
       }
       else
       {
-        result = BLACK;
+        result = BLACK;//否则距离太远判定黑色
       }
     }
-    /************** 稍大数据中距离判断策略***************/
-    else if(Bluevalue>Greenvalue && Bluevalue>Redvalue)// b>g  b>r//包括b>g>r b>r>g//蓝色，紫色区分
+    else if(Greenvalue <= Bluevalue && Redvalue < Bluevalue)//b>g b>r//包括b>g>r b>r>g//蓝色，
     {
-      result = BLUE;//在这一范围内都认为是蓝色
+      result = BLUE;//判定蓝色
     }
-    else if(Redvalue > Greenvalue && Greenvalue > Bluevalue)// r>g>b r<2000
+    else if(Redvalue <= Greenvalue && Bluevalue >= Redvalue)// r<b<g//g max b middle r min 蓝色，绿色，黑色
     {
-      if(Greenvalue < 2.5*Bluevalue)//用b数据判断效果更加好
+      if(Redvalue + Greenvalue + Bluevalue > 400)
       {
-        result = RED;//red 
+        if(Greenvalue>2.2*Redvalue && Greenvalue>2.2*Bluevalue)
+        {
+          result = GREEN;
+        }
+        else
+        {
+          result = BLUE;
+        }
       }
-      else if(Greenvalue >= 2.5*Bluevalue)//用b数据判断效果更加好
+      else
       {
-        result = ORANGE;//orange r>1.8*g g>3*b
+        result = BLACK;//30mm以外认为是黑色
       }
     }
-   /************** 超大数据近距离判断策略***************/
+    else if((Greenvalue < Redvalue + Bluevalue) && (Greenvalue + Redvalue + Bluevalue >700))//
+    {
+      result = WHITE;//判定白色
+    }
     else
     {
-      r = Redvalue/Clearvalue;
-      g = Greenvalue/Clearvalue;
-      b = Bluevalue/Clearvalue;
-
-      if(r>10&&g<=4&&b<=1||r>10&&g<=3&&b<=1)
-      {
-        result = RED;
-      }
-      else if(r>10&&g<=4&&b<=4)
-      {
-        result = RED/*PINKE*/;//删除粉红色
-      }
-      else if(r<3&&g<=4&&b<3)
-      {
-        result = BLACK;
-      }
-      else if(r<=5&&g>10&&b<5)
-      {
-        result = GREEN;
-      }
-      else if((r<5&&g<5&&b>10)||r<=3&&g>=8&&b>=8)
-      {
-        result = BLUE;
-      }
-      else if((r>=5&&g>6&&b>=7))
-      {
-        result = BLUE/*PURPLE*/;//删除紫色
-      }
-      else if((r<=4&&g>=10&&b>=6))
-      {
-        result = BLUE/*CYAN*/;//删除青色
-      }
-      else if(r<=8&&r>=6&&g>=6&&b<2)
-      {
-        result = YELLOW;
-      }
-      else if(r<=8&&r<=8&&b<2)
-      {
-        result = /*GOLD*/ORANGE;//删除金色
-      }
-      else if(r>=10&&g<=7&&b<2)
-      {
-        result = ORANGE;
-      }
-      else if(r>=4&&g>=9&&b>=4)
-      {
-        result = WHITE;
-      }
-      else
-      {
-        result = WHITE;
-      }
+      result = BLACK;
     }
-  /***************move filter***************/
-    temp[cnt_++] = result;
-    if(cnt_>=3) cnt_ = 0;
-    return (temp[0] + temp[1] + temp[2])/3;
- }
-/*
-*  Gray = R*0.299 + G*0.587 + B*0.114
-*  Gray = (r*38 + g*75 + b*15)>>7;
-*/
- uint8_t MeColorSensor::ReturnGrayscale(void)
- {
-    uint8_t r,g,b;
-    uint16_t gray = 0;
-    r = Redvalue>>8;
-    g = Greenvalue>>8;
-    b = Bluevalue>>8;
-    gray = (r*38 + g*75 + b*15)>>4;//470R  >>4  // 100R >>6
-    if(gray>255) gray =255;
-    return gray;
   }
-  /**
+  /************** 超大数据近距离判断策略***************/
+  else
+  {
+    r = Redvalue/Colorvalue;
+    g = Greenvalue/Colorvalue;
+    b = Bluevalue/Colorvalue;
+
+    if(r>=9&&g<=4&&b<=1||r>=9&&g<=3&&b<=1)
+    {
+      result = RED;
+    }
+    else if(r>10&&g<=4&&b<=4)
+    {
+      result = RED;
+    }
+    else if(r<3&&g<=4&&b<3)
+    {
+      result = BLACK;
+    }
+    else if(r<=5&&g>10&&b<5)
+    {
+      result = GREEN;
+    }
+    else if((r<5&&g<5&&b>10)||r<=3&&g>=8&&b>=8)
+    {
+      result = BLUE;
+    }
+    else if((r>=5&&g>6&&b>=7))
+    {
+      result = BLUE;
+    }
+    else if((r<=4&&g>=10&&b>=6))
+    {
+      result = BLUE;
+    }
+    else if(r<=8&&r>=6&&g>=6&&b<2)
+    {
+      result = YELLOW;
+    }
+    else if(r>=10&&g<=7&&b<2)
+    {
+      result = RED;
+    }
+    else if(r>=4&&g>=9&&b>=4)
+    {
+      result = WHITE;
+    }
+    else
+    {
+      result = WHITE;
+    }
+  }
+  /***************move filter***************/
+  temp[cnt_++] = result;
+  if(cnt_>=3) cnt_ = 0;
+  return (temp[0] + temp[1] + temp[2])/3;
+}
+
+/**
  * \par Function
- *   begin
+ *   ReturnGrayscale
+ * \par Description
+ *   Return the gray scale value from sensor
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+uint8_t MeColorSensor::ReturnGrayscale(void)
+{
+  /*
+    *  Gray = R*0.299 + G*0.587 + B*0.114
+    *  Gray = (r*38 + g*75 + b*15)>>7;
+  */
+  uint8_t r,g,b;
+  uint16_t gray = 0;
+  r = Redvalue>>8;
+  g = Greenvalue>>8;
+  b = Bluevalue>>8;
+  gray = (r*38 + g*75 + b*15)>>4;//470R  >>4  // 100R >>6
+  if(gray>255) gray =255;
+  return gray;
+}
+
+/**
+ * \par Function
+ *   ReturnColorhue
  * \par Description
  *   Initialize the MeColorSensor.
  * \param[in]
@@ -675,9 +668,10 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
     }
     return h;
   }
-  /**
+
+/**
  * \par Function
- *   begin
+ *   ReturnRedData
  * \par Description
  *   Initialize the MeColorSensor.
  * \param[in]
@@ -689,13 +683,14 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
  * \par Others
  *   You can check the bh1745 datasheet for the registor address.
  */
-  uint16_t MeColorSensor::ReturnRedData(void)
-  {
-    return Redvalue;
-  }
-     /**
+uint16_t MeColorSensor::ReturnRedData(void)
+{
+  return Redvalue;
+}
+
+/**
  * \par Function
- *   begin
+ *   ReturnGreenData
  * \par Description
  *   Initialize the MeColorSensor.
  * \param[in]
@@ -707,13 +702,14 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
  * \par Others
  *   You can check the bh1745 datasheet for the registor address.
  */
-  uint16_t MeColorSensor::ReturnGreenData(void)
-  {
-    return Greenvalue;
-  }
-     /**
+uint16_t MeColorSensor::ReturnGreenData(void)
+{
+  return Greenvalue;
+}
+
+/**
  * \par Function
- *   begin
+ *   ReturnBlueData
  * \par Description
  *   Initialize the MeColorSensor.
  * \param[in]
@@ -725,13 +721,14 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
  * \par Others
  *   You can check the bh1745 datasheet for the registor address.
  */
-  uint16_t MeColorSensor::ReturnBlueData(void)
-  {
-    return Bluevalue;
-  }
-     /**
+uint16_t MeColorSensor::ReturnBlueData(void)
+{
+  return Bluevalue;
+}
+
+/**
  * \par Function
- *   begin
+ *   ReturnColorData
  * \par Description
  *   Initialize the MeColorSensor.
  * \param[in]
@@ -743,13 +740,14 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
  * \par Others
  *   You can check the bh1745 datasheet for the registor address.
  */
-  uint16_t MeColorSensor::ReturnClearData(void)
-  {
-    return Clearvalue;
-  }
-       /**
+uint16_t MeColorSensor::ReturnColorData(void)
+{
+  return Colorvalue;
+}
+
+/**
  * \par Function
- *   begin
+ *   TurnOnLight
  * \par Description
  *   Initialize the MeColorSensor.
  * \param[in]
@@ -761,14 +759,15 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
  * \par Others
  *   You can check the bh1745 datasheet for the registor address.
  */
-  void MeColorSensor::TurnOnLight(void)
-  {
-    MePort::dWrite1(1);
-    // MePort::aWrite1(0x32);
-  }
-  /**
+void MeColorSensor::TurnOnLight(void)
+{
+  MePort::dWrite1(1);
+  // MePort::aWrite1(0x32);
+}
+
+/**
  * \par Function
- *   begin
+ *   TurnOffLight
  * \par Description
  *   Initialize the MeColorSensor.
  * \param[in]
@@ -780,13 +779,14 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
  * \par Others
  *   You can check the bh1745 datasheet for the registor address.
  */
-  void MeColorSensor::TurnOffLight(void)
-  {
-    MePort::dWrite1(0);
-  }
-  /**
+void MeColorSensor::TurnOffLight(void)
+{
+  MePort::dWrite1(0);
+}
+
+/**
  * \par Function
- *   begin
+ *   TurnOffmodule
  * \par Description
  *   Initialize the MeColorSensor.
  * \param[in]
@@ -798,13 +798,14 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
  * \par Others
  *   You can check the bh1745 datasheet for the registor address.
  */
-  void MeColorSensor::TurnOffmodule(void)
-  {
-     MePort::dWrite2(1);//power off
-  }
-  /**
+void MeColorSensor::TurnOffmodule(void)
+{
+   MePort::dWrite2(1);//power off
+}
+
+/**
  * \par Function
- *   begin
+ *   TurnOnmodule
  * \par Description
  *   Initialize the MeColorSensor.
  * \param[in]
@@ -816,10 +817,11 @@ uint8_t MeColorSensor::ReportId(void)//return default 0xE0
  * \par Others
  *   You can check the bh1745 datasheet for the registor address.
  */
-  void MeColorSensor::TurnOnmodule(void)
-  {
-     MePort::dWrite2(0);//power on
-  }
+void MeColorSensor::TurnOnmodule(void)
+{
+   MePort::dWrite2(0);//power on
+}
+
 /*
  * \return
  *   Return the error code.
@@ -935,6 +937,7 @@ int8_t MeColorSensor::writeData(uint8_t start, const uint8_t *pData, uint8_t siz
   return_value = Wire.endTransmission(true); 
   return(return_value); //return: no error                     
 }
+
 /**
  * \par Function
  *   MAX
@@ -972,6 +975,7 @@ uint8_t MeColorSensor::MAX(uint8_t r,uint8_t g,uint8_t b)
   }
   return max;
 }
+
 /**
  * \par Function
  *   MIN

@@ -1,6 +1,6 @@
 /**
  * \par Copyright (C), 2012-2016, MakeBlock
- * \class   Mecolor
+ * \class   MeColorSensor
  * \brief   Driver for MeColorSensor module.
  * @file    MeColorSensor.h
  * @author  MakeBlock
@@ -34,7 +34,7 @@
  *    6. uint16_t MeColorSensor::ReturnRedData(void)
  *    7. uint16_t MeColorSensor::ReturnGreenData(void)
  *    8. uint16_t MeColorSensor::ReturnBlueData(void)
- *    9. uint16_t MeColorSensor::ReturnClearData(void)
+ *    9. uint16_t MeColorSensor::ReturnColorData(void)
  *    10.uint8_t  MeColorSensor::ColorIdentify(void)
  *    11.long MeColorSensor::ReturnColorCode(void)
  *    12.uint16_t MeColorSensor::calculateColorTemperature(void)
@@ -383,7 +383,7 @@ public:
  * \par Others
  *   You can check the bh1745 datasheet for the registor address.
  */
-  uint16_t ReturnClearData(void);
+  uint16_t ReturnColorData(void);
 /*
  *   Return the error code.
  *   the definition of the value of variable return_value:
@@ -548,7 +548,7 @@ private:
   uint16_t Redvalue;
   uint16_t Greenvalue;
   uint16_t Bluevalue;
-  uint16_t Clearvalue;
+  uint16_t Colorvalue;
 };
 #endif
 

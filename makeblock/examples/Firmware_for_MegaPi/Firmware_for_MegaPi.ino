@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_MegaPi.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V0e.01.013
-* Date               : 03/01/2017
+* Version            : V0e.01.014
+* Date               : 21/06/2017
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -22,7 +22,8 @@
 * Mark Yan         2016/08/01     0e.01.010        Fix issue MBLOCK-109 MBLOCK-110(encoder motor exception handling negative).
 * Mark Yan         2016/08/10     0e.01.011        Fix issue MBLOCK-126(on board encoder motor speed symbol).
 * Mark Yan         2016/08/24     0e.01.012        Fix issue MBLOCK-171(Stepper online execution slow), MBLOCK-189(on board encoder motor reset issue).
-* Mark Yan         2016/03/01     0e.01.013        fix RGB lights issue.
+* Mark Yan         2017/03/01     0e.01.013        fix RGB lights issue.
+* Mark Yan         2017/06/21     0e.01.014        fix JIRA issue 668 710.
 **************************************************************************/
 #include <Arduino.h>
 #include <MeMegaPi.h>
@@ -169,7 +170,7 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0e.01.013";
+String mVersion = "0e.01.014";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
 #define PWM_MIN_OFFSET   0
@@ -1470,8 +1471,8 @@ void runModule(uint8_t device)
         uint8_t action = readBuffer(7);
         if(action==1)
         {
-          int8_t px = buffer[8];
-          int8_t py = buffer[9];
+          int8_t px = readBuffer(8);
+          int8_t py = readBuffer(9);
           int8_t len = readBuffer(10);
           char *s = readString(11,len);
           ledMx.drawStr(px,py,s);
