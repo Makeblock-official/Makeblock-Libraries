@@ -56,6 +56,8 @@ typedef struct
 
 extern megapipro_esc_type megapi_esc_Port[5];  // megapipro_esc_Port[0] is nonsense
 
+#define THROTTLE_OFFSET 137
+
 #define THROTTLE_MIN 137//0.55ms~0.95ms throttle scale,970hz,1.024ms.
                         //255 * (0.55/1.024) = 137
 #define THROTTLE_MAX 237//255 * (0.95/1.024) = 237

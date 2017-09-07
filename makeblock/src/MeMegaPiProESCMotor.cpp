@@ -239,6 +239,7 @@ void MeMegaPiProESCMotor::init(void)
   }
   analogWrite(_esc_pwm_pin,THROTTLE_MIN);
   delay(50);
+  last_speed = THROTTLE_MIN - THROTTLE_OFFSET;
 }
 /**
  * \par Function
