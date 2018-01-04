@@ -4,8 +4,8 @@
  * \brief   Driver for Me Stepper on MegaPi.
  * @file    MeStepperOnBoard.cpp
  * @author  MakeBlock
- * @version V1.0.2
- * @date    2016/05/06
+ * @version V1.0.3
+ * @date    2018/01/03
  * @brief   Driver for Stepper device.
  *
  * \par Copyright
@@ -28,9 +28,9 @@
  *    1. void MeStepperOnBoard::setMicroStep(int8_t value);
  *    2. void MeStepperOnBoard::setpin(int slot);
  *    3. void MeStepperOnBoard::moveTo(long absolute);
- *    4. void MeStepperOnBoard::moveTo(long absolute, cb callback, int extId);
+ *    4. void MeStepperOnBoard::moveTo(long absolute, int16_t extId, cb callback);
  *    5. void MeStepperOnBoard::move(long relative);
- *    6. void MeStepperOnBoard::move(long relative, cb callback, int extId);
+ *    6. void MeStepperOnBoard::move(long relative, int16_t extId, cb callback);
  *    7. boolean MeStepperOnBoard::run(void);
  *    8. boolean MeStepperOnBoard::runSpeed(void);
  *    9. void MeStepperOnBoard::setMaxSpeed(float speed);
@@ -55,6 +55,7 @@
  * Mark Yan        2016/03/05     1.0.0            Bulid the new
  * Mark Yan        2016/05/06     1.0.1            Add function move and moveTo
  * Zzipeng         2017/02/20     1.0.2            put the array megaPi_slots[4] to MegaPi.h/MegaPiPro.h
+ * Mark Yan        2018/01/03     1.0.3            Change the parameters order of moveTo/move
  * </pre>
  *
  * @example MegaPiOnBoardStepperTest.ino
@@ -251,9 +252,9 @@ void MeStepperOnBoard::moveTo(long absolute)
  * \param[in]
  *    absolute - The absolute length to Stepper's movement.
  * \param[in]
- *    absolute - callback function when the target position has been reached.
- * \param[in]
  *    extId - It is used to indicate the ID of motor.
+ * \param[in]
+ *    callback - callback function when the target position has been reached.
  * \par Output
  *    None
  * \par Return
@@ -261,7 +262,7 @@ void MeStepperOnBoard::moveTo(long absolute)
  * \par Others
  *    None
  */
-void MeStepperOnBoard::moveTo(long absolute, cb callback, int extId)
+void MeStepperOnBoard::moveTo(long absolute, int16_t extId, cb callback)
 {
   _mode = 1;
   _moving = true;
@@ -301,9 +302,9 @@ void MeStepperOnBoard::move(long relative)
  * \param[in]
  *    relative - The relative length to Stepper's movement.
  * \param[in]
- *    absolute - callback function when the target position has been reached.
- * \param[in]
  *    extId - It is used to indicate the ID of motor.
+ * \param[in]
+ *    callback - callback function when the target position has been reached.
  * \par Output
  *    None
  * \par Return
@@ -311,9 +312,9 @@ void MeStepperOnBoard::move(long relative)
  * \par Others
  *    None
  */
-void MeStepperOnBoard::move(long relative, cb callback, int extId)
+void MeStepperOnBoard::move(long relative, int16_t extId, cb callback)
 {
-  moveTo(_currentPos + relative, callback, extId);
+  moveTo(_currentPos + relative, extId, callback);
 }
 
 /**
@@ -772,7 +773,7 @@ boolean MeStepperOnBoard::runSpeedToPosition(void)
  */
 void MeStepperOnBoard::runToNewPosition(long position)
 {
-  moveTo(position,_callback, _extId);
+  moveTo(position, _extId,_callback);
   runToPosition();
 }
 

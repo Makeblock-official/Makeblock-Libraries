@@ -4,8 +4,8 @@
  * \brief   Driver for Encoder module on MeAuriga and MeMegaPi.
  * @file    MeEncoderOnBoard.h
  * @author  MakeBlock
- * @version V1.0.3
- * @date    2016/06/25
+ * @version V1.0.4
+ * @date    2018/01/03
  * @brief   Header for MeEncoderOnBoard.cpp module
  *
  * \par Copyright
@@ -66,6 +66,7 @@
  * Mark Yan         2016/04/07     1.0.1            fix motor reset issue.
  * Mark Yan         2016/05/17     1.0.2            add some comments.
  * Mark Yan         2016/06/25     1.0.3            add PID calibration for encoder driver.
+ * Mark Yan         2018/01/03     1.0.4            add callback flag.
  * </pre>
  */
 
@@ -708,6 +709,7 @@ private:
    volatile Me_Encoder_type encode_structure;
    boolean _Lock_flag;
    boolean _Dir_lock_flag;
+   boolean _Callback_flag;
    uint8_t _extId;
    uint8_t _Port_A;
    uint8_t _Port_B;
