@@ -468,6 +468,63 @@ double MeGyro::getAngle(uint8_t index)
 
 /**
  * \par Function
+ *   getAccX
+ * \par Description
+ *   Get the data of accX.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of accX
+ * \par Others
+ *   None
+ */
+int16_t MeGyro::getAccX(void)
+{
+  return accX;
+}
+
+/**
+ * \par Function
+ *   getAccY
+ * \par Description
+ *   Get the data of accY.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of accY
+ * \par Others
+ *   None
+ */
+int16_t MeGyro::getAccY(void)
+{
+  return accY;
+}
+
+/**
+ * \par Function
+ *   getAccZ
+ * \par Description
+ *   Get the data of accZ.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of accZ
+ * \par Others
+ *   None
+ */
+int16_t MeGyro::getAccZ(void)
+{
+  return accZ;
+}
+
+/**
+ * \par Function
  *   deviceCalibration
  * \par Description
  *   Calibration function for the MeGyro. 

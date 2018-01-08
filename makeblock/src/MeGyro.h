@@ -307,6 +307,54 @@ public:
  */
   double getAngle(uint8_t index);
 
+/**
+ * \par Function
+ *   getAccX
+ * \par Description
+ *   Get the data of accX.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of accX
+ * \par Others
+ *   None
+ */
+  int16_t getAccX(void);
+
+/**
+ * \par Function
+ *   getAccY
+ * \par Description
+ *   Get the data of accY.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of accY
+ * \par Others
+ *   None
+ */
+  int16_t getAccY(void);
+
+/**
+ * \par Function
+ *   getAccZ
+ * \par Description
+ *   Get the data of accZ.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of accZ
+ * \par Others
+ *   None
+ */
+  int16_t getAccZ(void);
+
 private:
   volatile uint8_t  _AD0;
   volatile uint8_t  _INT;
