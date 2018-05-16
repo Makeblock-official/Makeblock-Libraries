@@ -1,6 +1,30 @@
-# Makeblock Library v3.24
+# Makeblock Library v3.25
 
 Arduino Library for Makeblock Electronic Modules
+
+# Copyright notice
+
+In makeblock's library, some of the modules are derived from other open source projects, and also part of some code is inspired by the algorithms of other individuals or organizations. We will retain the copyright of the original open source code.
+
+Before I released version 3.0.0, I didn't review the source of some old code in the makeblock library. This made me make some obvious mistakes. Fortunately, some of our users pointed out the mistakes we made.
+
+So I reviewed our code in 2018/05/16, and correct some copyright information.
+
+These modules is derived from other open source projects:
+
+- MeRGBLed
+- MeHumitureSensor
+- Me7SegmentDisplay
+- MeOneWire
+- MeStepper
+
+and these modules is inspired by some projects:
+
+- MeUSBHost
+
+As an open source library, we respect all contributors to the open source community and thank you very much for everyone's supervision.
+
+If you have a discussion about licensing issues, please contact me (myan@makeblock.com -- Mark Yan)
 
 ### How to use:
 
@@ -41,5 +65,6 @@ Arduino Library for Makeblock Electronic Modules
 |Mark Yan    |     2016/01/21  |   3.2.2      |    fix some library bugs.|
 |Mark Yan    |     2016/05/17  |   3.2.3      |    add support for MegaPi and Auriga Board.|
 |Mark Yan    |     2016/07/27  |   3.2.4      |    fix some JIRA issue, add PID motion for Megapi/Auriga on board encoder motor.|
+|Mark Yan    |     2018/05/16  |   3.2.5      |    Correct copyright information.|
 
 ### Learn more from Makeblock official website: www.makeblock.com
