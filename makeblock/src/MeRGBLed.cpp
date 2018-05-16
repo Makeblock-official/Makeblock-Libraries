@@ -1,15 +1,15 @@
 /**
- * \par Copyright (C), 2012-2016, MakeBlock
+ * \par Copyright (C), 2014-2018, MakeBlock
  * \class MeRGBLed
  * \brief   Driver for W2812 full-color LED.
  * @file    MeRGBLed.cpp
  * @author  MakeBlock
  * @version V1.0.1
- * @date    2016/09/20
+ * @date    2016/9/20
  * @brief   Driver for W2812 full-color LED lights
  *
  * \par Copyright
- * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2014-2018, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2
@@ -41,12 +41,24 @@
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/01     1.0.0            Rebuild the old lib.
- * Scott            2016/9/20      1.0.1            Add a delay.
+ * Scott            2016/09/20     1.0.1            Add a delay.
  * </pre>
  *
  * @example ColorLoopTest.ino
  * @example IndicatorsTest.ino
  * @example WhiteBreathLightTest.ino
+ *
+ * DERIVED FROM
+ * light weight WS2812 lib V2.1 - Arduino support
+ *
+ * Controls WS2811/WS2812/WS2812B RGB-LEDs
+ * Author: Tim (cpldcpu@gmail.com)
+ *
+ * Jan  18th, 2014  v2.0b Initial Version
+ * March 7th, 2014  v2.1  Added option to retarget the port register during runtime
+ *                        Removes inlining to allow compiling with c++
+ *
+ * License: GNU GPL v2 (see License.txt)
  */
 #include "MeRGBLed.h"
 

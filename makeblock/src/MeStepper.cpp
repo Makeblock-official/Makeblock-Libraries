@@ -52,6 +52,12 @@
  * forfish         2015/11/11     1.0.2            Add description.
  * Mark Yan        2016/01/20     1.0.3            Fix minor errors in comment.
  * </pre>
+ *
+ * DERIVED FROM
+ * // AccelStepper.h
+ * //
+ * // Copyright (C) 2009-2013 Mike McCauley
+ * // $Id: AccelStepper.cpp,v 1.23 2016/08/09 00:39:10 mikem Exp $
  */
 
 #include "MeStepper.h"
