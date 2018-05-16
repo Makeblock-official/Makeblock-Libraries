@@ -40,6 +40,16 @@
  * </pre>
  *
  * @example TestUSBHsot.ino
+ *
+ * Inspired by
+ * /* 2004.03.05, 2004.8.18, 2005.12.29
+ * ****************************************
+ * **  Copyright  (C)  W.ch  1999-2005   **
+ * **  Web:  http://www.winchiphead.com  **
+ * ****************************************
+ * **  USB 1.1 Host Examples for CH375   **
+ * **  KC7.0@MCS-51                      **
+ * ****************************************
  */
 
 #include "MeUSBHost.h"

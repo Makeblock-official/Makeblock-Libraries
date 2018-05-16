@@ -3,13 +3,13 @@
  * \class   Me7SegmentDisplay
  * \brief   Driver for Me 7-Segment Serial Display module.
  * @file    Me7SegmentDisplay.h
- * @author  MakeBlock
+ * @author  Frankie.Chu, MakeBlock
  * @version V1.0.5
  * @date    2016/07/27
  * @brief   Header file for Me7SegmentDisplay.cpp.
  *
  * \par Copyright
- * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2012-2018, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2
@@ -21,7 +21,7 @@
  * distributed. See http://www.gnu.org/copyleft/gpl.html
  *
  * \par Description
- * Driver for Me 7-Segment Serial Display module.
+ * Driver for Me 7 Segment Serial Display module.
  * \par Method List:
  *
  *    1.    void    Me7SegmentDisplay::init(void);
@@ -47,6 +47,7 @@
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
+ * makeblock        2013/08/08     0.0.1            According to hardware differences, initial revision                     
  * Mark Yan         2015/07/24     1.0.0            Rebuild the old lib.
  * Rafael Lee       2015/09/02     1.0.1            Added some comments and macros.
  * Mark Yan         2015/10/29     1.0.2            fix issue when display negative data.
@@ -54,6 +55,28 @@
  * Mark Yan         2015/11/12     1.0.4            fix driver API.
  * Mark Yan         2016/07/27     1.0.5            add display to support long type.
  * </pre>
+ *
+ * @example NumberDisplay.ino
+ * @example NumberFlow.ino
+ * @example TimeDisplay.ino
+ *
+ * DERIVED FROM
+ * //  Author:Frankie.Chu
+ * //  Date:9 April,2012
+ * //
+ * //  This library is free software; you can redistribute it and/or
+ * //  modify it under the terms of the GNU Lesser General Public
+ * //  License as published by the Free Software Foundation; either
+ * //  version 2.1 of the License, or (at your option) any later version.
+ * //
+ * //  This library is distributed in the hope that it will be useful,
+ * //  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * //  Lesser General Public License for more details.
+ * //
+ * //  You should have received a copy of the GNU Lesser General Public
+ * //  License along with this library; if not, write to the Free Software
+ * //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
 /* Define to prevent recursive inclusion -------------------------------------*/

@@ -1,5 +1,5 @@
 /**
- * \par Copyright (C), 2012-2016, MakeBlock
+ * \par Copyright (C), 2014-2018, MakeBlock
  * \class MeRGBLed
  * \brief   Driver for W2812 full-color LED lights.
  * @file    MeRGBLed.h
@@ -9,7 +9,7 @@
  * @brief   Header for MeRGBLed.cpp module
  *
  * \par Copyright
- * This software is Copyright (C), 2012-2016, MakeBlock. Use is subject to license \n
+ * This software is Copyright (C), 2014-2018, MakeBlock. Use is subject to license \n
  * conditions. The main licensing options available are GPL V2 or Commercial: \n
  *
  * \par Open Source Licensing GPL V2
@@ -21,7 +21,7 @@
  * distributed. See http://www.gnu.org/copyleft/gpl.html
  *
  * \par Description
- * this file is a drive for WS2811/2812 full-color LED lights, It supports
+ * This file is a drive for WS2811/2812 full-color LED lights, It supports
  * W2812B full-color LED lights device provided by the MakeBlock.
  *
  * \par Method List:
@@ -45,6 +45,21 @@
  * Mark Yan         2017/06/23     1.0.1            Add function fillPixelsBak.
  * </pre>
  *
+ * @example ColorLoopTest.ino
+ * @example IndicatorsTest.ino
+ * @example WhiteBreathLightTest.ino
+ *
+ * DERIVED FROM
+ * light weight WS2812 lib V2.1 - Arduino support
+ *
+ * Controls WS2811/WS2812/WS2812B RGB-LEDs
+ * Author: Tim (cpldcpu@gmail.com)
+ *
+ * Jan  18th, 2014  v2.0b Initial Version
+ * March 7th, 2014  v2.1  Added option to retarget the port register during runtime
+ *                        Removes inlining to allow compiling with c++
+ *
+ * License: GNU GPL v2 (see License.txt)
  */
 #ifndef MeRGBLed_h
 #define MeRGBLed_h
@@ -136,7 +151,7 @@ public:
 /**
  * Alternate Constructor which can call your own function to map the MeRGBLed to arduino port,
  * it will assigned the LED display buffer and initialization the GPIO of LED lights. You can
- * set any slot for the LED data PIN, and reset the LED numberby this constructor.
+ * set any arduino digital pin for the LED data PIN, and reset the LED number by this constructor.
  * \param[in]
  *   port - arduino port
  * \param[in]
@@ -151,7 +166,7 @@ public:
 
 #ifdef ME_PORT_DEFINED
 /**
- * \par Function 
+ * \par Function
  *   reset
  * \par Description
  *   Reset the LED available data PIN by its RJ25 port, and slot2 will be used as default.
