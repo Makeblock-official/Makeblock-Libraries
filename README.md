@@ -1,4 +1,4 @@
-# Makeblock Library v3.24
+# Makeblock Library v3.25
 
 Arduino Library for Makeblock Electronic Modules
 
@@ -65,5 +65,6 @@ If you have a discussion about licensing issues, please contact me (myan@makeblo
 |Mark Yan    |     2016/01/21  |   3.2.2      |    fix some library bugs.|
 |Mark Yan    |     2016/05/17  |   3.2.3      |    add support for MegaPi and Auriga Board.|
 |Mark Yan    |     2016/07/27  |   3.2.4      |    fix some JIRA issue, add PID motion for Megapi/Auriga on board encoder motor.|
+|Mark Yan  	 |     2018/05/16	 |   3.2.5	    |    Correct copyright information.
 
 ### Learn more from Makeblock official website: www.makeblock.com
