@@ -75,7 +75,7 @@
 #include "MeMegaPiDCMotor.h"
 #include "MePressureSensor.h"
 #include "MePS2.h"
-
+#include "MeColorSensor.h"
 /*********************  MegaPi Board GPIO Map *********************************/
 // struct defined in MeMegaPi.h
 #define PORT1A  PORT_1

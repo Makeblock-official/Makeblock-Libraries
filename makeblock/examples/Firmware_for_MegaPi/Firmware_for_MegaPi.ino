@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_MegaPi.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V0e.01.014
-* Date               : 21/06/2017
+* Version            : V0e.01.015
+* Date               : 03/01/2018
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -24,6 +24,7 @@
 * Mark Yan         2016/08/24     0e.01.012        Fix issue MBLOCK-171(Stepper online execution slow), MBLOCK-189(on board encoder motor reset issue).
 * Mark Yan         2017/03/01     0e.01.013        fix RGB lights issue.
 * Mark Yan         2017/06/21     0e.01.014        fix JIRA issue 668 710.
+* Mark Yan         2018/01/03     0e.01.015        add the absolute motor move for encode motor & add new stepper command.
 **************************************************************************/
 #include <Arduino.h>
 #include <MeMegaPi.h>
@@ -170,7 +171,7 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0e.01.014";
+String mVersion = "0e.01.015";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
 #define PWM_MIN_OFFSET   0
@@ -228,11 +229,19 @@ float RELAX_ANGLE = -1;                    //Natural balance angle,should be adj
 
 #define ENCODER_PID_MOTION     62
   //Secondary command
-  #define ENCODER_BOARD_POS_MOTION         0x01
+  #define ENCODER_BOARD_POS_MOTION_MOVE    0x01
   #define ENCODER_BOARD_SPEED_MOTION       0x02
   #define ENCODER_BOARD_PWM_MOTION         0x03
   #define ENCODER_BOARD_SET_CUR_POS_ZERO   0x04
   #define ENCODER_BOARD_CAR_POS_MOTION     0x05
+  #define ENCODER_BOARD_POS_MOTION_MOVETO  0x06
+
+#define STEPPER_NEW            76
+  //Secondary command
+  #define STEPPER_POS_MOTION_MOVE          0x01
+  #define STEPPER_SPEED_MOTION             0x02
+  #define STEPPER_SET_CUR_POS_ZERO         0x04
+  #define STEPPER_POS_MOTION_MOVETO        0x06
 
 #define GET 1
 #define RUN 2
@@ -247,6 +256,49 @@ typedef struct
 
 PID  PID_angle, PID_speed, PID_turn;
 
+/**
+ * \par Function
+ *    encoder_move_finish_callback
+ * \par Description
+ *    This function called when encoder motor move finish.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+void encoder_move_finish_callback(int slot,int extId)
+{
+  writeHead();
+  writeSerial(extId);
+  sendByte(slot);
+  writeEnd();
+}
+
+/**
+ * \par Function
+ *    stepper_move_finish_callback
+ * \par Description
+ *    This function called when stepper motor move finish.
+ * \param[in]
+ *    None
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+void stepper_move_finish_callback(int slot,int extId)
+{
+  writeHead();
+  writeSerial(extId);
+  sendByte(slot);
+  writeEnd();
+}
 /**
  * \par Function
  *    isr_process_encoder1
@@ -860,7 +912,6 @@ void writeSerial(uint8_t c)
 void readSerial(void)
 {
   isAvailable = false;
-  BluetoothSource = DATA_SERIAL;
   if(Serial.available() > 0)
   {
     isAvailable = true;
@@ -978,7 +1029,6 @@ void parseData(void)
         steppers[1].disableOutputs();
         steppers[2].disableOutputs();
         steppers[3].disableOutputs();
-
         callOK();
       }
       break;
@@ -1278,6 +1328,30 @@ uint8_t* readUint8(int16_t idx,int16_t len)
 
 /**
  * \par Function
+ *    initStepper
+ * \par Description
+ *    Initialize acceleration, subdivision, and speed for stepper motor.
+ * \param[in]
+ *    index - The index of stepper.
+ * \param[in]
+ *    maxSpeed - The max speed of stepper.
+ * \par Output
+ *    None
+ * \return
+ *    None
+ * \par Others
+ *    None
+ */
+void initStepper(uint8_t index,int16_t maxSpeed)
+{
+  steppers[index].setMaxSpeed(maxSpeed);
+  steppers[index].setAcceleration(20000);
+  steppers[index].setMicroStep(16);
+  steppers[index].setSpeed(maxSpeed);
+  steppers[index].enableOutputs();
+}
+/**
+ * \par Function
  *    runModule
  * \par Description
  *    Processing execute commands.
@@ -1337,50 +1411,54 @@ void runModule(uint8_t device)
         Encoder_2.setTarPWM(-rightSpeed);
       }
       break;
+    case STEPPER_NEW:
+      {
+        uint8_t subcmd = port;
+        uint8_t extID = readBuffer(3);
+        uint8_t slot_num = readBuffer(7);
+        int16_t maxSpeed = 0;
+        if(STEPPER_POS_MOTION_MOVE == subcmd)
+        {
+          long pos_temp = readLong(8);
+          int16_t speed_temp = readShort(12);
+          maxSpeed = abs(speed_temp);
+
+          steppers[SLOT1 - 1] = MeStepperOnBoard(slot_num);
+          initStepper(SLOT1 - 1,maxSpeed);
+          steppers[SLOT1 - 1].move(pos_temp,extID,stepper_move_finish_callback);
+        }
+        if(STEPPER_SPEED_MOTION == subcmd)
+        {
+          int16_t speed_temp = readShort(8);
+
+          steppers[SLOT1 - 1] = MeStepperOnBoard(slot_num);
+          initStepper(SLOT1 - 1,speed_temp);
+          steppers[SLOT1 - 1].setSpeed(speed_temp);
+        }
+        if(STEPPER_POS_MOTION_MOVETO == subcmd)
+        {
+          long pos_temp = readLong(8);
+          int16_t speed_temp = readShort(12);
+          maxSpeed = abs(speed_temp);
+
+          steppers[SLOT1 - 1] = MeStepperOnBoard(slot_num);
+          initStepper(SLOT1 - 1,maxSpeed);
+          steppers[SLOT1 - 1].moveTo(pos_temp,extID,stepper_move_finish_callback);
+        }
+        else if(STEPPER_SET_CUR_POS_ZERO == subcmd)
+        {
+          steppers[SLOT1 - 1] = MeStepperOnBoard(slot_num);
+          steppers[SLOT1 - 1].setCurrentPosition(0);
+        }
+      }
+      break;
     case STEPPER:
       {
         int16_t maxSpeed = readShort(7);
         long distance = readLong(9);
-        if(port == SLOT1)
-        {
-          steppers[0] = MeStepperOnBoard(SLOT1);
-          steppers[0].moveTo(distance);
-          steppers[0].setMaxSpeed(maxSpeed);
-          steppers[0].setAcceleration(20000);
-          steppers[0].setMicroStep(16);
-          steppers[0].setSpeed(maxSpeed);
-          steppers[0].enableOutputs();
-        }
-        else if(port == SLOT2)
-        {
-          steppers[1] = MeStepperOnBoard(SLOT2);
-          steppers[1].moveTo(distance);
-          steppers[1].setMaxSpeed(maxSpeed);
-          steppers[1].setAcceleration(20000);
-          steppers[1].setMicroStep(16);
-          steppers[1].setSpeed(maxSpeed);
-          steppers[1].enableOutputs();
-        }
-        else if(port == SLOT3)
-        {
-          steppers[2] = MeStepperOnBoard(SLOT3);
-          steppers[2].moveTo(distance);
-          steppers[2].setMaxSpeed(maxSpeed);
-          steppers[2].setAcceleration(20000);
-          steppers[2].setMicroStep(16);
-          steppers[2].setSpeed(maxSpeed);
-          steppers[2].enableOutputs();
-        }
-        else if(port == SLOT4)
-        {
-          steppers[3] = MeStepperOnBoard(SLOT4);
-          steppers[3].moveTo(distance);
-          steppers[3].setMaxSpeed(maxSpeed);
-          steppers[3].setAcceleration(20000);
-          steppers[3].setMicroStep(16);
-          steppers[3].setSpeed(maxSpeed);
-          steppers[3].enableOutputs();
-        }
+        steppers[SLOT1 - 1] = MeStepperOnBoard(port);
+        initStepper(SLOT1 - 1,maxSpeed);
+        steppers[SLOT1 - 1].moveTo(distance);
       } 
       break;
     case RGBLED:
@@ -1577,27 +1655,50 @@ void runModule(uint8_t device)
     case ENCODER_PID_MOTION:
       {
         uint8_t subcmd = port;
+        uint8_t extID = readBuffer(3);
         uint8_t slot_num = readBuffer(7);
-        if(ENCODER_BOARD_POS_MOTION == subcmd)
+        if(ENCODER_BOARD_POS_MOTION_MOVE == subcmd)
         {
           long pos_temp = readLong(8);
           int16_t speed_temp = readShort(12);
           speed_temp = abs(speed_temp);
           if(slot_num == SLOT_1)
           {
-            Encoder_1.move(pos_temp,(float)speed_temp);
+            Encoder_1.move(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
           }
           else if(slot_num == SLOT_2)
           {
-            Encoder_2.move(pos_temp,(float)speed_temp);
+            Encoder_2.move(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
           }
           else if(slot_num == SLOT_3)
           {
-            Encoder_3.move(pos_temp,(float)speed_temp);
+            Encoder_3.move(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
           }
           else if(slot_num == SLOT_4)
           {
-            Encoder_4.move(pos_temp,(float)speed_temp);
+            Encoder_4.move(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
+          }
+        }
+        if(ENCODER_BOARD_POS_MOTION_MOVETO == subcmd)
+        {
+          long pos_temp = readLong(8);
+          int16_t speed_temp = readShort(12);
+          speed_temp = abs(speed_temp);
+          if(slot_num == SLOT_1)
+          {
+            Encoder_1.moveTo(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
+          }
+          else if(slot_num == SLOT_2)
+          {
+            Encoder_2.moveTo(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
+          }
+          else if(slot_num == SLOT_3)
+          {
+            Encoder_3.moveTo(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
+          }
+          else if(slot_num == SLOT_4)
+          {
+            Encoder_4.moveTo(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
           }
         }
         else if(ENCODER_BOARD_SPEED_MOTION == subcmd)
@@ -2728,6 +2829,7 @@ void setup()
   Serial.println(mVersion);
   update_sensor = lasttime_speed = lasttime_angle = millis();
   blink_time = millis();
+  BluetoothSource = DATA_SERIAL;
 }
 
 /**
@@ -2763,19 +2865,19 @@ void loop()
 
   if(steppers[0].getPort() == SLOT1)
   {
-    steppers[0].runSpeedToPosition();
+    steppers[0].update();
   }
   else if(steppers[1].getPort() == SLOT2)
   {
-    steppers[1].runSpeedToPosition();
+    steppers[1].update();
   }
   else if(steppers[2].getPort() == SLOT3)
   {
-    steppers[2].runSpeedToPosition();
+    steppers[2].update();
   }
   else if(steppers[3].getPort() == SLOT4)
   {
-    steppers[3].runSpeedToPosition();
+    steppers[3].update();
   }
 
   Encoder_1.loop();

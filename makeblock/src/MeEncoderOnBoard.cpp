@@ -4,8 +4,8 @@
  * \brief   Driver for Encoder module on MeAuriga and MeMegaPi.
  * @file    MeEncoderOnBoard.cpp
  * @author  MakeBlock
- * @version V1.0.4
- * @date    2017/05/22
+ * @version V1.0.5
+ * @date    2018/01/03
  * @brief   Driver for Encoder module on MeAuriga and MeMegaPi.
  *
  * \par Copyright
@@ -67,6 +67,7 @@
  * Mark Yan        2016/05/17     1.0.2            add some comments.
  * Mark Yan        2016/06/25     1.0.3            add PID calibration for encoder driver.
  * Zzipeng         2017/05/22     1.0.4            when motor turn its direction.
+ * Mark Yan        2018/01/03     1.0.4            add callback flag.
  * </pre>
  *
  * @example Me_Auriga_encoder_direct.ino
@@ -106,6 +107,7 @@ MeEncoderOnBoard::MeEncoderOnBoard(uint8_t slot)
   _Port_PWM = encoder_Port[slot].port_PWM;
   _Port_H1 = encoder_Port[slot].port_H1;
   _Port_H2 = encoder_Port[slot].port_H2;
+  _Callback_flag = false;
 
   pinMode(_Port_A, INPUT_PULLUP);
   pinMode(_Port_B, INPUT_PULLUP);
@@ -169,6 +171,7 @@ void MeEncoderOnBoard::reset(uint8_t slot)
   _Port_PWM = encoder_Port[slot].port_PWM;
   _Port_H1 = encoder_Port[slot].port_H1;
   _Port_H2 = encoder_Port[slot].port_H2;
+  _Callback_flag = false;
 
   pinMode(_Port_A, INPUT_PULLUP);
   pinMode(_Port_B, INPUT_PULLUP);
@@ -642,6 +645,7 @@ void MeEncoderOnBoard::moveTo(long position,float speed,int16_t extId,cb callbac
   encode_structure.targetSpeed = speed;
   _extId = extId;
   _Lock_flag = false;
+  _Callback_flag = false;
   encode_structure.mode = PID_MODE;
   encode_structure.motionState = MOTION_WITH_POS;
   encode_structure.targetPos = position;
@@ -866,8 +870,9 @@ int16_t MeEncoderOnBoard::pidPositionToPwm(void)
     else
     {
       _Lock_flag = true;
-      if(_callback != NULL)
+      if((_callback != NULL) && (_Callback_flag == false))
       {
+        _Callback_flag = true;
         _callback(_Slot,_extId);
       }
       d_component = encode_structure.currentSpeed;

@@ -15,6 +15,8 @@
 * Zzipeng         2017/05/22     V0f.01.001        add bldc motor.
 * Zzipeng         2017/05/22     V0f.01.001        add colorsensor.
 * Mark Yan        2017/06/09     V0f.01.001        fix some jira bug().
+* lanweiting      2017/07/06     V0f.01.002        fix BLDCMOTOR init() functions.
+* lanweiting      2017/09/07     V0f.01.003        add smartservo online mode function.
 **************************************************************************/
 #include <Arduino.h>
 #include <MeMegaPiPro.h>
@@ -51,6 +53,7 @@ MeEncoderOnBoard Encoder_3(SLOT3);
 MeEncoderOnBoard Encoder_4(SLOT4);
 MeEncoderNew  *encoderNew = NULL;
 MeLineFollower line(PORT_8);
+MeSmartServo *mysmartservo = NULL;
 
 MeMegaPiProESCMotor *bldcmotor1 = NULL;
 MeMegaPiProESCMotor *bldcmotor2 = NULL;
@@ -170,7 +173,7 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0f.01.001";
+String mVersion = "0f.01.003";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
 #define PWM_MIN_OFFSET   0
@@ -771,10 +774,10 @@ uint8_t readBuffer(int16_t index)
   {
     return buffer[index];
   }
-  else if(BluetoothSource == DATA_SERIAL2)
-  {
-    return bufferBt1[index];
-  }
+  // else if(BluetoothSource == DATA_SERIAL2)
+  // {
+  //   return bufferBt1[index];
+  // }
   else if(BluetoothSource == DATA_SERIAL3)
   {
     return bufferBt2[index];
@@ -803,10 +806,10 @@ void writeBuffer(int16_t index,uint8_t c)
   {
     buffer[index]=c;
   }
-  else if(BluetoothSource == DATA_SERIAL2)
-  {
-    bufferBt1[index]=c;
-  }
+  // else if(BluetoothSource == DATA_SERIAL2)
+  // {
+  //   bufferBt1[index]=c;
+  // }
   else if(BluetoothSource == DATA_SERIAL3)
   {
     bufferBt2[index]=c;
@@ -853,10 +856,10 @@ void writeEnd(void)
   {
     Serial.println();
   }
-  else if(BluetoothSource == DATA_SERIAL2)
-  {
-    Serial2.println();
-  }
+  // else if(BluetoothSource == DATA_SERIAL2)
+  // {
+  //   Serial2.println();
+  // }
   else if(BluetoothSource == DATA_SERIAL3)
   {
     Serial3.println();
@@ -883,10 +886,10 @@ void writeSerial(uint8_t c)
   {
     Serial.write(c);
   }
-  else if(BluetoothSource == DATA_SERIAL2)
-  {
-    Serial2.write(c);
-  }
+  // else if(BluetoothSource == DATA_SERIAL2)
+  // {
+  //   Serial2.write(c);
+  // }
   else if(BluetoothSource == DATA_SERIAL3)
   {
     Serial3.write(c);
@@ -918,12 +921,12 @@ void readSerial(void)
     BluetoothSource = DATA_SERIAL;
     serialRead = Serial.read();
   }
-  else if(Serial2.available() > 0)
-  {
-    isAvailable = true;
-    BluetoothSource = DATA_SERIAL2;
-    serialRead = Serial2.read();
-  }
+  // else if(Serial2.available() > 0)
+  // {
+  //   isAvailable = true;
+  //   BluetoothSource = DATA_SERIAL2;
+  //   serialRead = Serial2.read();
+  // }
   else if(Serial3.available() > 0)
   {
     isAvailable = true;
@@ -1926,6 +1929,71 @@ void runModule(uint8_t device)
             encoderNew->setAddr(i2c_addr,slot_num);
           }
           encoderNew->setCurrentPosition(0);       
+        }
+      }
+      break;
+      case SMARTSERVO:
+      {
+        uint8_t subcmd = port;
+        uint8_t port = readBuffer(7);
+        uint8_t servoNum = readBuffer(8);
+        if(mysmartservo == NULL)
+        {
+           mysmartservo = new MeSmartServo(port);
+           mysmartservo->begin(115200);
+           delay(5);
+           mysmartservo->assignDevIdRequest();
+           delay(50);
+        }
+        else if(mysmartservo->getPort() != port)
+        {
+           delete mysmartservo;
+           mysmartservo = new MeSmartServo(port);
+           mysmartservo->begin(115200);
+           delay(5);
+           mysmartservo->assignDevIdRequest();
+           delay(50);
+        }
+        if(SET_SMART_SERVO_BREAK == subcmd)
+        {
+          uint8_t breakState = readBuffer(9);
+          mysmartservo->setBreak(servoNum,breakState);
+        }
+        else if(SET_SMART_SERVO_RGB == subcmd)
+        {
+          uint8_t rValue = readBuffer(9);
+          uint8_t gValue = readBuffer(10);
+          uint8_t bValue = readBuffer(11);
+          mysmartservo->setRGBLed(servoNum,rValue,gValue,bValue);
+        }
+        else if( SET_SMART_SERVO_SHAKE_HANDS == subcmd)
+        {
+          mysmartservo->handSharke(servoNum);
+        }
+        else if( SET_SMART_SERVO_MOVE_TO == subcmd)
+        {
+          long posValue = readLong(9);
+          float speedValue = readFloat(13);
+          mysmartservo->moveTo(servoNum,posValue,speedValue);
+        }
+        else if( SET_SMART_SERVO_MOVE == subcmd)
+        {
+          long posValue = readLong(9);
+          float speedValue = readFloat(13);
+          mysmartservo->move(servoNum,posValue,speedValue);
+        }
+        else if( SET_SMART_SERVO_PWM == subcmd)
+        {
+          int pwmValue = readShort(9);
+          mysmartservo->setPwmMove(servoNum,pwmValue);
+        }
+        else if( SET_SMART_SERVO_ZERO_DEGREES == subcmd)
+        {
+          mysmartservo->setZero(servoNum);
+        }
+        else if( SET_SMART_SERVO_INIT_ANGLE == subcmd)
+        {
+          mysmartservo->setInitAngle(servoNum);
         }
       }
       break;

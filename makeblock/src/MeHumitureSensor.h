@@ -39,13 +39,10 @@
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * Mark Yan         2015/09/08     1.0.0            Rebuild the old lib.
- * forfish          2015/11/18     1.0.1            Add some functions.
+ * Mark Yan         2015/09/08          1.0.0            Rebuild the old lib.
+ * forfish          2015/11/18          1.0.1            Add some functions.
+ * lanweiting       2017/07/11          1.0.2            function update() add delay more time
  * </pre>
- *
- * @example MeHumitureSensorTest1.ino
- * @example MeHumitureSensorTest2.ino
- *
  */
 #ifndef MeHumitureSensor_H
 #define MeHumitureSensor_H

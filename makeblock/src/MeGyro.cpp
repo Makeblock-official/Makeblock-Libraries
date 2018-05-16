@@ -4,8 +4,8 @@
  * \brief   Driver for MeGyro module.
  * @file    MeGyro.cpp
  * @author  MakeBlock
- * @version V1.0.3
- * @date    2016/03/09
+ * @version V1.0.5
+ * @date    2018/01/03
  * @brief   Driver for MeGyro module.
  *
  * \par Copyright
@@ -45,6 +45,7 @@
  *  Mark Yan         2016/03/09          1.0.2         Add function fast_update.
  *  Mark Yan         2016/03/09          1.0.3         Add function getGyroX and getGyroY.
  *  Leo lu           2017/04/27          1.0.4         fix issue of z-axis output double. getAngle function just return, do not call update anymore.
+ *  Mark Yan         2018/01/03          1.0.5         Adjust the initialization sequence to optimize the Z-axis drift.
  * </pre>
  *
  * @example MeGyroTest.ino
@@ -178,11 +179,12 @@ void MeGyro::begin(void)
   gyrYoffs = 0;
   gyrZoffs = 0;
   Wire.begin();
-  delay(800);
+  delay(200);
   writeReg(0x6b, 0x00);//close the sleep mode
+  delay(100);
   writeReg(0x1a, 0x01);//configurate the digital low pass filter
   writeReg(0x1b, 0x08);//set the gyro scale to 500 deg/s
-
+  delay(100);
   deviceCalibration();
 }
 

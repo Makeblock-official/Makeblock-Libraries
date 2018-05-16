@@ -45,10 +45,6 @@
  * Mark Yan         2017/06/23     1.0.1            Add function fillPixelsBak.
  * </pre>
  *
- * @example ColorLoopTest.ino
- * @example IndicatorsTest.ino
- * @example WhiteBreathLightTest.ino
- *
  * DERIVED FROM
  * light weight WS2812 lib V2.1 - Arduino support
  *

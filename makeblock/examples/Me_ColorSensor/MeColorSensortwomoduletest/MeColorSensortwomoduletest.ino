@@ -1,6 +1,7 @@
 //#include "MeOrion.h"
 //#include "MeUnoShield.h"
 #include "MeMCore.h"
+#include "Wire.h"
 /**
  * \par Copyright (C), 2012-2016, MakeBlock
  * \class   MeGyro
@@ -28,8 +29,8 @@ MeColorSensor colorsensor1(PORT_3);
 MeColorSensor colorsensor2(PORT_4);
 
 uint8_t colorresult1,colorresult2;
-uint16_t redvalue1=0,greenvalue1=0,bluevalue1=0,clearvalue1=0;
-uint16_t redvalue2=0,greenvalue2=0,bluevalue2=0,clearvalue2=0;
+uint16_t redvalue1=0,greenvalue1=0,bluevalue1=0,colorvalue1=0;
+uint16_t redvalue2=0,greenvalue2=0,bluevalue2=0,colorvalue2=0;
 long systime = 0,colorcode1=0,colorcode2=0;
 
 void setup() {
@@ -49,14 +50,14 @@ void loop() {
     redvalue1   = colorsensor1.ReturnRedData();
     greenvalue1 = colorsensor1.ReturnGreenData();
     bluevalue1  = colorsensor1.ReturnBlueData();
-    clearvalue1 = colorsensor1.ReturnClearData();
+    colorvalue1 = colorsensor1.ReturnColorData();
     colorcode1 = colorsensor1.ReturnColorCode();//RGB24code
 
     colorresult2 = colorsensor2.ColorIdentify();
     redvalue2   = colorsensor2.ReturnRedData();
     greenvalue2 = colorsensor2.ReturnGreenData();
     bluevalue2  = colorsensor2.ReturnBlueData();
-    clearvalue2 = colorsensor2.ReturnClearData();
+    colorvalue2 = colorsensor2.ReturnColorData();
     colorcode2 = colorsensor2.ReturnColorCode();//RGB24code
     
     Serial.print("R1:");
@@ -69,7 +70,7 @@ void loop() {
     Serial.print(bluevalue1);
     Serial.print("\t");
     Serial.print("C:");
-    Serial.print(clearvalue1);
+    Serial.print(colorvalue1);
     Serial.print("\t");
     Serial.print("color:");
     switch(colorresult1)
@@ -111,7 +112,7 @@ void loop() {
     Serial.print(bluevalue2);
     Serial.print("\t");
     Serial.print("C:");
-    Serial.print(clearvalue2);
+    Serial.print(colorvalue2);
     Serial.print("\t");
     Serial.print("color:");
     switch(colorresult2)
@@ -122,29 +123,14 @@ void loop() {
       case BLUE:
       Serial.print("BLUE");
       break;
-      case PURPLE:
-      Serial.print("PURPLE");
-      break;
-      case CYAN:
-      Serial.print("CYAN");
-      break;
       case YELLOW:
       Serial.print("YELLOW");
-      break;
-      case ORANGE:
-      Serial.print("ORANGE");
-      break;
-      case GOLD:
-      Serial.print("GOLD");
       break;
       case GREEN:
       Serial.print("GREEN");
       break;
       case RED:
       Serial.print("RED");
-      break;
-      case PINKE:
-      Serial.print("PINKE");
       break;
       case WHITE:
       Serial.print("WHITE");

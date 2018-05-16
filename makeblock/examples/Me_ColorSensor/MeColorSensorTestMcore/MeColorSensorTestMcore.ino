@@ -1,4 +1,5 @@
 #include "MeMCore.h"
+#include "Wire.h"
 /**
  * \par Copyright (C), 2012-2016, MakeBlock
  * \class   MeGyro

@@ -39,8 +39,9 @@
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * Mark Yan         2015/09/08     1.0.0            Rebuild the old lib.
- * forfish          2015/11/18     1.0.1            Add some functions.
+ * Mark Yan         2015/09/08          1.0.0            Rebuild the old lib.
+ * forfish          2015/11/18          1.0.1            Add some functions.
+ * lanweiting       2017/07/11          1.0.2            functions update() add delay more time
  * </pre>
  *
  * @example MeHumitureSensorTest1.ino
@@ -164,28 +165,38 @@ void MeHumiture::update(void)
   unsigned long Time, datatime;
   
 #ifdef ME_PORT_DEFINED
+  MePort::dWrite2(HIGH);
+  delay(250);
+
   MePort::dWrite2(LOW);
   delay(20);
+
   MePort::dWrite2(HIGH);
   delayMicroseconds(40);
   MePort::dWrite2(LOW);
+
 #else // ME_PORT_DEFINED
   pinMode(_DataPin,OUTPUT);
+  digitalWrite(_DataPin,HIGH);
+  delay(250);
+
   digitalWrite(_DataPin,LOW);
   delay(20);
+  
   digitalWrite(_DataPin,HIGH);
   delayMicroseconds(40);
   digitalWrite(_DataPin,LOW);
 #endif // ME_PORT_DEFINED
+  delayMicroseconds(10);
   Time = millis();
 #ifdef ME_PORT_DEFINED
   while(MePort::dRead2() != HIGH)
 #else // ME_PORT_DEFINED
-  pinMode(_DataPin,INPUT);
+  pinMode(_DataPin,INPUT_PULLUP);
   while(digitalRead(_DataPin) != HIGH)
 #endif // ME_PORT_DEFINED
   {
-    if( ( millis() - Time ) > 2)
+    if( ( millis() - Time ) > 4)
     {
       Humidity = 0;
       Temperature = 0;
@@ -198,11 +209,11 @@ void MeHumiture::update(void)
 #ifdef ME_PORT_DEFINED
   while(MePort::dRead2() != LOW)
 #else // ME_PORT_DEFINED
-  pinMode(_DataPin,INPUT);
+  pinMode(_DataPin,INPUT_PULLUP);
   while(digitalRead(_DataPin) != LOW)
 #endif // ME_PORT_DEFINED
   {
-    if( ( millis() - Time ) > 2)
+    if( ( millis() - Time ) > 4)
     {
       break;
     }
@@ -214,11 +225,11 @@ void MeHumiture::update(void)
 #ifdef ME_PORT_DEFINED
     while(MePort::dRead2() == LOW)
 #else // ME_PORT_DEFINED
-    pinMode(_DataPin,INPUT);
+    pinMode(_DataPin,INPUT_PULLUP);
     while(digitalRead(_DataPin) == LOW)
 #endif // ME_PORT_DEFINED
     {
-      if( ( millis() - Time ) > 2)
+      if( ( millis() - Time ) > 4)
       {
         break;
       }
@@ -229,11 +240,11 @@ void MeHumiture::update(void)
 #ifdef ME_PORT_DEFINED
     while(MePort::dRead2() == HIGH)
 #else // ME_PORT_DEFINED
-    pinMode(_DataPin,INPUT);
+    pinMode(_DataPin,INPUT_PULLUP);
     while(digitalRead(_DataPin) == HIGH)
 #endif // ME_PORT_DEFINED
     {
-      if( ( millis() - Time ) > 2 )
+      if( ( millis() - Time ) > 4 )
       {
         break;
       }
@@ -250,7 +261,7 @@ void MeHumiture::update(void)
     }
   }
    
-  if( (data[0] + data[2]) == data[4] )
+  if(data[4] == ((data[0] + data[1] + data[2] + data[3]) & 0xFF))
   {
   	Humidity = data[0];
     Temperature = data[2];
