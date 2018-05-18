@@ -30,15 +30,11 @@ If you have a discussion about licensing issues, please contact me (myan@makeblo
 
 1. Download the source from the git https://github.com/Makeblock-official/Makeblock-Libraries
 
-2. copy the makeblock folder to your arduino default library. Your Arduino library folder should now look like this  
-   (on Windows): [arduino installation directory]\libraries\makeblock\src  
-   (on MACOS): [arduino Package Contents]\contents\Java\libraries\makeblock\src
+2. In the Arduino IDE: "Sketch-> Include Library-> Add .ZIP Library-> select the downloaded file-> Open"
 
-3. Open the Arduino Application. (If it's already open, you will need to restart it to see changes.)
+3. Click "File-> Examples". Here are some test programs in "MakeBlockDrive->"
 
-4. Click "File-> Examples". Here are some test programs in "MakeBlockDrive->"
-
-5. Depending on the type of board you're using, you need to modify the header file to match.
+4. Depending on the type of board you're using, you need to modify the header file to match.
    For example, if you're using a mCore. You should change `#include <MeOrion.h>` to `#include <MeMCore.h>`
    Corresponding boards and there header file are:
 
