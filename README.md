@@ -28,7 +28,7 @@ If you have a discussion about licensing issues, please contact me (myan@makeblo
 
 ### How to use:
 
-1. Download the source from the git https://github.com/Makeblock-official/Makeblock-Libraries
+1. Download the source from the git https://codeload.github.com/Makeblock-official/Makeblock-Libraries/zip/master
 
 2. In the Arduino IDE: "Sketch-> Include Library-> Add .ZIP Library-> select the downloaded file-> Open"
 
