@@ -184,7 +184,7 @@ float RELAX_ANGLE = -1;                    //Natural balance angle,should be adj
 #define JOYSTICK               5
 #define GYRO                   6
 #define SOUND_SENSOR           7
-#define RGBLED                 8
+#define RGBLED                 18
 #define SEVSEG                 9
 #define MOTOR                  10
 #define SERVO                  11
