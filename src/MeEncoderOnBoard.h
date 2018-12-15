@@ -183,7 +183,7 @@ public:
  * \par Others
  *   None
  */
-  uint8_t getSlotNum(void);
+  uint8_t getSlotNum(void) const;
 
 /**
  * \par Function
@@ -199,7 +199,7 @@ public:
  * \par Others
  *   None
  */
-  uint8_t getIntNum(void);
+  uint8_t getIntNum(void) const;
   
 /**
  * \par Function
@@ -215,7 +215,7 @@ public:
  * \par Others
  *   None
  */
-  uint8_t getPortA(void);
+  uint8_t getPortA(void) const;
 
 /**
  * \par Function
@@ -231,7 +231,7 @@ public:
  * \par Others
  *   None
  */
-  uint8_t getPortB(void);
+  uint8_t getPortB(void) const;
 
 /**
  * \par Function
@@ -247,7 +247,7 @@ public:
  * \par Others
  *   None
  */
-  long getPulsePos(void);
+  long getPulsePos(void) const;
 
 /**
  * \par Function
@@ -328,7 +328,7 @@ public:
  * \par Others
  *   None
  */
-  float getCurrentSpeed(void);
+  float getCurrentSpeed(void) const;
 
 /**
  * \par Function
@@ -344,7 +344,7 @@ public:
  * \par Others
  *   None
  */
-  int16_t getCurPwm(void);
+  int16_t getCurPwm(void) const;
 
 /**
  * \par Function
@@ -424,7 +424,7 @@ public:
  * \par Others
  *    None
  */
-  long getCurPos(void);
+  long getCurPos(void) const;
 
 /**
  * \par Function
@@ -518,7 +518,7 @@ public:
  * \par Others
  *    None
  */
-  long distanceToGo();
+  long distanceToGo() const;
 
 /**
  * \par Function
@@ -687,7 +687,7 @@ public:
  * \par Others
  *    None
  */
-  boolean isTarPosReached(void);
+  boolean isTarPosReached(void) const;
 
 /**
  * \par Function

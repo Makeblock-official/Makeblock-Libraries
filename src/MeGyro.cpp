@@ -216,7 +216,7 @@ void MeGyro::update(void)
     return;
   }
 
-  double ax, ay, az;
+  double ax, ay;
   /* assemble 16 bit sensor data */
   accX = ( (i2cData[0] << 8) | i2cData[1] );
   accY = ( (i2cData[2] << 8) | i2cData[3] );
@@ -277,7 +277,7 @@ void MeGyro::fast_update(void)
 {
   static unsigned long	last_time = 0;
   int8_t return_value;
-  double dt, filter_coefficient;
+  double dt;
 
   dt = (double)(millis() - last_time) / 1000.0;
   last_time = millis();
@@ -289,7 +289,7 @@ void MeGyro::fast_update(void)
     return;
   }
 
-  double ax, ay, az;
+  double ax, ay;
   /* assemble 16 bit sensor data */
   accX = ( (i2cData[0] << 8) | i2cData[1] );
   accY = ( (i2cData[2] << 8) | i2cData[3] );
@@ -336,7 +336,7 @@ void MeGyro::fast_update(void)
  * \par Others
  *   None
  */
-uint8_t MeGyro::getDevAddr(void)
+uint8_t MeGyro::getDevAddr(void) const
 {
   return Device_Address;
 }
@@ -355,7 +355,7 @@ uint8_t MeGyro::getDevAddr(void)
  * \par Others
  *   X-axis angle value is calculated by complementary filter.
  */
-double MeGyro::getAngleX(void)
+double MeGyro::getAngleX(void) const
 {
   return gx;
 }
@@ -374,7 +374,7 @@ double MeGyro::getAngleX(void)
  * \par Others
  *   Y-axis angle value is calculated by complementary filter.
  */
-double MeGyro::getAngleY(void)
+double MeGyro::getAngleY(void) const
 {
   return gy;
 }
@@ -393,7 +393,7 @@ double MeGyro::getAngleY(void)
  * \par Others
  *   Z-axis angle value is integral of Z-axis angular velocity.
  */
-double MeGyro::getAngleZ(void)
+double MeGyro::getAngleZ(void) const
 {
   return gz;
 }
@@ -412,7 +412,7 @@ double MeGyro::getAngleZ(void)
  * \par Others
  *   None
  */
-double MeGyro::getGyroX(void)
+double MeGyro::getGyroX(void) const
 {
   return gyrX;
 }
@@ -431,7 +431,7 @@ double MeGyro::getGyroX(void)
  * \par Others
  *   None
  */
-double MeGyro::getGyroY(void)
+double MeGyro::getGyroY(void) const
 {
   return gyrY;
 }
@@ -450,7 +450,7 @@ double MeGyro::getGyroY(void)
  * \par Others
  *   Z-axis angle value is integral of Z-axis angular velocity.
  */
-double MeGyro::getAngle(uint8_t index)
+double MeGyro::getAngle(uint8_t index) const
 {
   if(index == 1)
   {
