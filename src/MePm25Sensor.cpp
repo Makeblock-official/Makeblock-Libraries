@@ -531,7 +531,7 @@ MePm25Sensor::MePm25Sensor(uint8_t receivePin, uint8_t transmitPin, bool inverse
      {
         // get the new byte:
          inputData = read();
-        if(rxflag & 0x80 == 0x80) 
+        if((rxflag & 0x80) == 0x80) 
         {
              //normal data byte - add to buffer
             cnt++;
@@ -648,7 +648,7 @@ MePm25Sensor::MePm25Sensor(uint8_t receivePin, uint8_t transmitPin, bool inverse
     {
         // get the new byte:
          inputData = read();
-        if(parsingSysex & 0x81 == 0x81) 
+        if((parsingSysex & 0x81) == 0x81) 
         {
              //normal data byte - add to buffer
             rxbuf.storedInputData[sysexBytesRead] = inputData;

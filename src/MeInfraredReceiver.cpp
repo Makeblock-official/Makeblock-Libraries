@@ -121,10 +121,9 @@ void MeInfraredReceiver::begin(void)
  * \par Others
  *   None
  */
-int16_t MeInfraredReceiver::read(void)
+int MeInfraredReceiver::read(void)
 {
   int16_t val;
-  uint16_t i;
   val = MeSerial::read();     /* Read serial infrared data */
   val &= 0xff;
   return(val);

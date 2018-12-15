@@ -1077,7 +1077,6 @@ void MeSmartServo::assignDevIdResponse(void *arg)
  */
 void MeSmartServo::processSysexMessage(void)
 {
-  uint8_t i;
   if(sysex.val.dev_id != ALL_DEVICE)
   {
     switch(sysex.val.srv_id)
