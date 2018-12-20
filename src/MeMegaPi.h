@@ -109,8 +109,8 @@ Encoder_port_type encoder_Port[6] =
 
 megapi_dc_type megapi_dc_Port[14] =
 {
-  { NC, NC }, {33,32,11}, {40,41, 7}, {47,48, 6}, {A3,A2, 4},
-  { NC, NC }, { NC, NC }, { NC, NC }, { NC, NC }, {35,34,12},
+  {NC,NC,NC}, {33,32,11}, {40,41, 7}, {47,48, 6}, {A3,A2, 4},
+  {NC,NC,NC}, {NC,NC,NC}, {NC,NC,NC}, {NC,NC,NC}, {35,34,12},
   {36,37, 8}, {42,43, 9}, {A5,A4, 5},
 };
 
