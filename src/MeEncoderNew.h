@@ -533,6 +533,21 @@ public:
  */
   boolean isTarPosReached(void);
 
+/**
+ * \par Function
+ *   getFirmwareVersion
+ * \par Description
+ *   Get Firmware Version, Only support EncodeDriver-V2.1.0 module firmware
+ * \param[in]
+ *   None
+ * \par Output
+ *   buffer: for storage version, length greater than 8
+ * \return
+ *   None
+ * \par Others
+ */
+void getFirmwareVersion(char *buffer);
+
 private:
 /**
  * \par Function

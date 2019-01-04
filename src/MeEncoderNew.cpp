@@ -93,6 +93,7 @@
 #define CMD_GET_RATIO           0x25
 #define CMD_GET_PULSE           0x26
 #define CMD_GET_LOCK_STATE      0x27
+#define CMD_GET_FIRWARE_VERSION 0x30
 
 /**
  * Alternate Constructor which can call your own function to map the Encoder Motor New to arduino port,
@@ -793,4 +794,30 @@ boolean MeEncoderNew::isTarPosReached(void)
   }
   lock_state = *(boolean*)buf;
   return lock_state;
+}
+
+/**
+ * \par Function
+ *   getFirmwareVersion
+ * \par Description
+ *   Get Firmware Version, Only support EncodeDriver-V2.1.0 module firmware
+ * \param[in]
+ *   None
+ * \par Output
+ *   buffer: for storage version, length greater than 8
+ * \return
+ *   None
+ * \par Others
+ */
+void MeEncoderNew::getFirmwareVersion(char *buffer)
+{ 
+  Wire.beginTransmission(address); 
+  Wire.write(_slot);      
+  Wire.write(CMD_GET_FIRWARE_VERSION);             
+  Wire.endTransmission(0);
+  Wire.requestFrom(address,(uint8_t)8);   
+  for(int i=0;i<8;i++)   
+  { 
+    buffer[i] = Wire.read(); 
+  }
 }

@@ -4,8 +4,8 @@
  * \brief   Driver for W2812 full-color LED.
  * @file    MeRGBLed.cpp
  * @author  MakeBlock
- * @version V1.0.1
- * @date    2016/9/20
+ * @version V1.0.2
+ * @date    2017/06/23
  * @brief   Driver for W2812 full-color LED lights
  *
  * \par Copyright
@@ -31,17 +31,19 @@
  *    3. void MeRGBLed::setpin(uint8_t port)
  *    4. uint8_t MeRGBLed::getNumber()
  *    5. cRGB MeRGBLed::getColorAt(uint8_t index)
- *    6. bool MeRGBLed::setColorAt(uint8_t index, uint8_t red, uint8_t green, uint8_t blue)
- *    7. bool MeRGBLed::setColor(uint8_t index, uint8_t red, uint8_t green, uint8_t blue)
- *    8. bool MeRGBLed::setColor(uint8_t red, uint8_t green, uint8_t blue)
- *    9. bool MeRGBLed::setColor(uint8_t index, long value)
- *    10. void MeRGBLed::show()
+ *    6. void MeRGBLed::fillPixelsBak(uint8_t red, uint8_t green, uint8_t blue)
+ *    7. bool MeRGBLed::setColorAt(uint8_t index, uint8_t red, uint8_t green, uint8_t blue)
+ *    8. bool MeRGBLed::setColor(uint8_t index, uint8_t red, uint8_t green, uint8_t blue)
+ *    9. bool MeRGBLed::setColor(uint8_t red, uint8_t green, uint8_t blue)
+ *    10. bool MeRGBLed::setColor(uint8_t index, long value)
+ *    11. void MeRGBLed::show()
  *
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan         2015/09/01     1.0.0            Rebuild the old lib.
  * Scott            2016/09/20     1.0.1            Add a delay.
+ * Mark Yan         2017/06/23     1.0.2            Add function fillPixelsBak.
  * </pre>
  *
  * @example ColorLoopTest.ino
@@ -202,6 +204,7 @@ void MeRGBLed::reset(uint8_t port)
   s2    = mePort[port].s2;
   s1    = mePort[port].s1;
   setColor(0,0,0,0);
+  fillPixelsBak(0,2,1);
   pinMask = digitalPinToBitMask(s2);
   ws2812_port = portOutputRegister(digitalPinToPort(s2) );
   pinMode(s2, OUTPUT);
@@ -230,6 +233,7 @@ void MeRGBLed::reset(uint8_t port,uint8_t slot)
   s2    = mePort[port].s2;
   s1    = mePort[port].s1;
   setColor(0,0,0,0);
+  fillPixelsBak(0,2,1);
   if(SLOT2 == slot)
   {
     pinMask     = digitalPinToBitMask(s2);
@@ -261,6 +265,7 @@ void MeRGBLed::reset(uint8_t port,uint8_t slot)
 void MeRGBLed::setpin(uint8_t port)
 {
   setColor(0,0,0,0);
+  fillPixelsBak(0,2,1);
   pinMask   = digitalPinToBitMask(port);
   ws2812_port = portOutputRegister(digitalPinToPort(port) );
   pinMode(port, OUTPUT);
@@ -293,6 +298,16 @@ void MeRGBLed::setNumber(uint8_t num_leds)
   for(int16_t i = 0; i < count_led * 3; i++)
   {
     pixels[i] = 0;
+  }
+
+  pixels_bak    = (uint8_t*)malloc(count_led * 3);
+  if(!pixels_bak)
+  {
+    printf("There is not enough space!\r\n");
+  }
+  for(int16_t i = 0; i < count_led * 3; i++)
+  {
+    pixels_bak[i] = 0;
   }
 }
 
@@ -341,6 +356,35 @@ cRGB MeRGBLed::getColorAt(uint8_t index)
 uint8_t MeRGBLed::getNumber(void)
 {
   return(count_led);
+}
+
+/**
+ * \par Function
+ *   fillPixelsBak
+ * \par Description
+ *   fill the LED color data to pixels_bak.
+ * \param[in]
+ *   red - Red values
+ * \param[in]
+ *   green - green values
+ * \param[in]
+ *   blue - blue values
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ */
+void MeRGBLed::fillPixelsBak(uint8_t red, uint8_t green, uint8_t blue)
+{
+  for(int16_t i = 0; i < count_led; i++)
+  {
+    uint8_t tmp = i * 3;
+    pixels_bak[tmp] = green;
+    pixels_bak[tmp + 1] = red;
+    pixels_bak[tmp + 2] = blue;
+  }
 }
 
 /**
@@ -661,8 +705,12 @@ void MeRGBLed::rgbled_sendarray_mask(uint8_t *data, uint16_t datlen, uint8_t mas
  */
 void MeRGBLed::show(void)
 {
-  rgbled_sendarray_mask(pixels, 3 * count_led, pinMask, (uint8_t*)ws2812_port);
-  delay(1);
+  if(memcmp(pixels_bak,pixels,3 * count_led) != 0)
+  {
+    rgbled_sendarray_mask(pixels, 3 * count_led, pinMask, (uint8_t*)ws2812_port);
+    memcpy(pixels_bak,pixels,3 * count_led);
+    delayMicroseconds(500);
+  }
 }
 
 /**
@@ -672,5 +720,7 @@ MeRGBLed::~MeRGBLed(void)
 {
   free(pixels);
   pixels = NULL;
+  free(pixels_bak);
+  pixels_bak = NULL;
 }
 
