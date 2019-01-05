@@ -21,7 +21,7 @@
  * distributed. See http://www.gnu.org/copyleft/gpl.html
  *
  * \par Description
- * This file is a drive for Smart Servo device, The Smart Servo inherited the 
+ * This file is a drive for Smart Servo device, The Smart Servo inherited the
  * MeSerial class from SoftwareSerial.
  *
  *
@@ -310,9 +310,10 @@ uint8_t MeSmartServo::sendShort(int16_t val,boolean ignore_high)
   {
     val_7bit[2] = (val2byte.byteVal[1] >> 6) & 0x7f;
     checksum += val_7bit[2];
-    checksum = checksum & 0x7f;
     write(val_7bit[2]);
   }
+  checksum = checksum & 0x7f;
+  return checksum;
 }
 
 /**
@@ -344,7 +345,8 @@ uint8_t MeSmartServo::sendFloat(float val)
   write(val_7bit[3]);
   val_7bit[4] = (val4byte.byteVal[3] >> 4) & 0x7f;
   write(val_7bit[4]);
-  checksum = (val_7bit[0] + val_7bit[1] + val_7bit[2] + val_7bit[3] + val_7bit[4]) & 0x7f;
+  checksum = val_7bit[0] + val_7bit[1] + val_7bit[2] + val_7bit[3] + val_7bit[4];
+  checksum = checksum & 0x7f;
   return checksum;
 }
 
@@ -377,7 +379,8 @@ uint8_t MeSmartServo::sendLong(long val)
   write(val_7bit[3]);
   val_7bit[4] = (val4byte.byteVal[3] >> 4) & 0x7f;
   write(val_7bit[4]);
-  checksum = (val_7bit[0] + val_7bit[1] + val_7bit[2] + val_7bit[3] + val_7bit[4]) & 0x7f;
+  checksum = val_7bit[0] + val_7bit[1] + val_7bit[2] + val_7bit[3] + val_7bit[4];
+  checksum = checksum & 0x7f;
   return checksum;
 }
 
@@ -391,7 +394,7 @@ uint8_t MeSmartServo::sendLong(long val)
  * \par Output
  *   None
  * \return
- *   If the assignment is successful, return true. 
+ *   If the assignment is successful, return true.
  * \par Others
  *   None
  */
@@ -401,7 +404,7 @@ boolean MeSmartServo::assignDevIdRequest(void)
   write(ALL_DEVICE);
   write(CTL_ASSIGN_DEV_ID);
   write(0x00);
-  write(0x0f); 
+  write(0x0f);
   write(END_SYSEX);
   resFlag &= 0xfe;
   cmdTimeOutValue = millis();
@@ -435,7 +438,7 @@ boolean MeSmartServo::assignDevIdRequest(void)
  * \par Output
  *   None
  * \return
- *   If the assignment is successful, return true. 
+ *   If the assignment is successful, return true.
  * \par Others
  *   None
  */
@@ -452,7 +455,6 @@ boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed,smartSe
   write(SET_SERVO_ABSOLUTE_ANGLE_LONG);
   checksum = (dev_id + SMART_SERVO + SET_SERVO_ABSOLUTE_ANGLE_LONG);
   checksum += sendLong(angle_value);
-  checksum = checksum & 0x7f;
   checksum += sendShort((int)speed,true);
   checksum = checksum & 0x7f;
   write(checksum);
@@ -490,7 +492,7 @@ boolean MeSmartServo::moveTo(uint8_t dev_id,long angle_value,float speed,smartSe
  * \par Output
  *   None
  * \return
- *   If the assignment is successful, return true. 
+ *   If the assignment is successful, return true.
  * \par Others
  *   None
  */
@@ -507,7 +509,6 @@ boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed,smartServ
   write(SET_SERVO_RELATIVE_ANGLE_LONG);
   checksum = (dev_id + SMART_SERVO + SET_SERVO_RELATIVE_ANGLE_LONG);
   checksum += sendLong(angle_value);
-  checksum = checksum & 0x7f;
   checksum += sendShort((int)speed,true);
   checksum = checksum & 0x7f;
   write(checksum);
@@ -539,7 +540,7 @@ boolean MeSmartServo::move(uint8_t dev_id,long angle_value,float speed,smartServ
  * \par Output
  *   None
  * \return
- *   If the assignment is successful, return true. 
+ *   If the assignment is successful, return true.
  * \par Others
  *   None
  */
@@ -554,8 +555,8 @@ boolean MeSmartServo::setZero(uint8_t dev_id)
   write(dev_id);
   write(SMART_SERVO);
   write(SET_SERVO_CURRENT_ANGLE_ZERO_DEGREES);
-  checksum = (dev_id + SMART_SERVO + SET_SERVO_CURRENT_ANGLE_ZERO_DEGREES);
-  write(checksum); 
+  checksum = (dev_id + SMART_SERVO + SET_SERVO_CURRENT_ANGLE_ZERO_DEGREES) & 0x7f;
+  write(checksum);
   write(END_SYSEX);
   resFlag &= 0xbf;
   cmdTimeOutValue = millis();
@@ -585,7 +586,7 @@ boolean MeSmartServo::setZero(uint8_t dev_id)
  * \par Output
  *   None
  * \return
- *   If the assignment is successful, return true. 
+ *   If the assignment is successful, return true.
  * \par Others
  *   None
  */
@@ -601,8 +602,8 @@ boolean MeSmartServo::setBreak(uint8_t dev_id, uint8_t breakStatus)
   write(SMART_SERVO);
   write(SET_SERVO_BREAK);
   write(breakStatus);
-  checksum = (dev_id + SMART_SERVO + SET_SERVO_BREAK + breakStatus);
-  write(checksum); 
+  checksum = (dev_id + SMART_SERVO + SET_SERVO_BREAK + breakStatus) & 0x7f;
+  write(checksum);
   write(END_SYSEX);
   resFlag &= 0xbf;
   cmdTimeOutValue = millis();
@@ -636,7 +637,7 @@ boolean MeSmartServo::setBreak(uint8_t dev_id, uint8_t breakStatus)
  * \par Output
  *   None
  * \return
- *   If the assignment is successful, return true. 
+ *   If the assignment is successful, return true.
  * \par Others
  *   None
  */
@@ -655,7 +656,8 @@ boolean MeSmartServo::setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value
   checksum += sendByte(r_value);
   checksum += sendByte(g_value);
   checksum += sendByte(b_value);
-  write(checksum); 
+  checksum &= 0x7f;
+  write(checksum);
   write(END_SYSEX);
   resFlag &= 0xbf;
   cmdTimeOutValue = millis();
@@ -683,7 +685,7 @@ boolean MeSmartServo::setRGBLed(uint8_t dev_id, uint8_t r_value, uint8_t g_value
  * \par Output
  *   None
  * \return
- *   If the assignment is successful, return true. 
+ *   If the assignment is successful, return true.
  * \par Others
  *   None
  */
@@ -698,8 +700,8 @@ boolean MeSmartServo::handSharke(uint8_t dev_id)
   write(dev_id);
   write(SMART_SERVO);
   write(SERVO_SHARKE_HAND);
-  checksum = (dev_id + SMART_SERVO + SERVO_SHARKE_HAND);
-  write(checksum); 
+  checksum = (dev_id + SMART_SERVO + SERVO_SHARKE_HAND) & 0x7f;
+  write(checksum);
   write(END_SYSEX);
   resFlag &= 0xbf;
   cmdTimeOutValue = millis();
@@ -729,7 +731,7 @@ boolean MeSmartServo::handSharke(uint8_t dev_id)
  * \par Output
  *   None
  * \return
- *   If the assignment is successful, return true. 
+ *   If the assignment is successful, return true.
  * \par Others
  *   None
  */
@@ -746,7 +748,8 @@ boolean MeSmartServo::setPwmMove(uint8_t dev_id, int16_t pwm_value)
   write(SET_SERVO_PWM_MOVE);
   checksum = (dev_id + SMART_SERVO + SET_SERVO_PWM_MOVE);
   checksum += sendShort(pwm_value,false);
-  write(checksum); 
+  checksum &= 0x7f;
+  write(checksum);
   write(END_SYSEX);
   resFlag &= 0xbf;
   cmdTimeOutValue = millis();
@@ -772,13 +775,13 @@ boolean MeSmartServo::setPwmMove(uint8_t dev_id, int16_t pwm_value)
  * \param[in]
  *    dev_id - the device id of servo that we want to set.
  * \param[in]
- *    mode - the return mode,  0 is the quick return mode. 
+ *    mode - the return mode,  0 is the quick return mode.
  * \param[in]
  *    speed - the speed value return to init angle.
  * \par Output
  *   None
  * \return
- *   If the assignment is successful, return true. 
+ *   If the assignment is successful, return true.
  * \par Others
  *   None
  */
@@ -796,7 +799,8 @@ boolean MeSmartServo::setInitAngle(uint8_t dev_id,uint8_t mode,int16_t speed)
   write(mode);
   checksum = (dev_id + SMART_SERVO + SET_SERVO_INIT_ANGLE + mode);
   checksum += sendShort(abs(speed),true);
-  write(checksum); 
+  checksum &= 0x7f;
+  write(checksum);
   write(END_SYSEX);
   resFlag &= 0xbf;
   cmdTimeOutValue = millis();
@@ -840,8 +844,8 @@ long MeSmartServo::getAngleRequest(uint8_t devId)
   write(SMART_SERVO);
   write(GET_SERVO_CUR_ANGLE);
   write(0x00);
-  checksum = devId + SMART_SERVO + GET_SERVO_CUR_ANGLE + 0x00;
-  write(checksum); 
+  checksum = (devId + SMART_SERVO + GET_SERVO_CUR_ANGLE + 0x00) & 0x7f;
+  write(checksum);
   write(END_SYSEX);
   resFlag &= 0xfd;
   cmdTimeOutValue = millis();
@@ -884,8 +888,8 @@ float MeSmartServo::getSpeedRequest(uint8_t devId)
   write(SMART_SERVO);
   write(GET_SERVO_SPEED);
   write(0x00);
-  checksum = devId + SMART_SERVO + GET_SERVO_SPEED + 0x00;
-  write(checksum); 
+  checksum = (devId + SMART_SERVO + GET_SERVO_SPEED + 0x00) & 0x7f;
+  write(checksum);
   write(END_SYSEX);
   resFlag &= 0xfb;
   cmdTimeOutValue = millis();
@@ -928,8 +932,8 @@ float MeSmartServo::getVoltageRequest(uint8_t devId)
   write(SMART_SERVO);
   write(GET_SERVO_VOLTAGE);
   write(0x00);
-  checksum = devId + SMART_SERVO + GET_SERVO_VOLTAGE + 0x00;
-  write(checksum); 
+  checksum = (devId + SMART_SERVO + GET_SERVO_VOLTAGE + 0x00) & 0x7f;
+  write(checksum);
   write(END_SYSEX);
   resFlag &= 0xf7;
   cmdTimeOutValue = millis();
@@ -971,8 +975,8 @@ float MeSmartServo::getTempRequest(uint8_t devId)
   write(SMART_SERVO);
   write(GET_SERVO_TEMPERATURE);
   write(0x00);
-  checksum = devId + SMART_SERVO + GET_SERVO_TEMPERATURE + 0x00;
-  write(checksum); 
+  checksum = (devId + SMART_SERVO + GET_SERVO_TEMPERATURE + 0x00) & 0x7f;
+  write(checksum);
   write(END_SYSEX);
   resFlag &= 0xef;
   cmdTimeOutValue = millis();
@@ -1015,8 +1019,8 @@ float MeSmartServo::getCurrentRequest(uint8_t devId)
   write(SMART_SERVO);
   write(GET_SERVO_ELECTRIC_CURRENT);
   write(0x00);
-  checksum = devId + SMART_SERVO + GET_SERVO_ELECTRIC_CURRENT + 0x00;
-  write(checksum); 
+  checksum = (devId + SMART_SERVO + GET_SERVO_ELECTRIC_CURRENT + 0x00) & 0x7f;
+  write(checksum);
   write(END_SYSEX);
   resFlag &= 0xdf;
   cmdTimeOutValue = millis();
@@ -1116,16 +1120,16 @@ void MeSmartServo::smartServoEventHandle(void)
   {
     // get the new byte:
     uint8_t inputData = read();
-    if(parsingSysex) 
+    if(parsingSysex)
     {
-      if (inputData == END_SYSEX) 
+      if (inputData == END_SYSEX)
       {
         //stop sysex byte
         parsingSysex = false;
         //fire off handler function
         processSysexMessage();
-      } 
-      else 
+      }
+      else
       {
         //normal data byte - add to buffer
         sysex.storedInputData[sysexBytesRead] = inputData;
@@ -1140,7 +1144,7 @@ void MeSmartServo::smartServoEventHandle(void)
     else if(inputData == START_SYSEX)
     {
       parsingSysex = true;
-      sysexBytesRead = 0; 
+      sysexBytesRead = 0;
     }
   }
 }
@@ -1201,13 +1205,15 @@ void MeSmartServo::smartServoCmdResponse(void *arg)
     case GET_SERVO_CUR_ANGLE:
       angle_v = readLong(sysex.val.value,1);
       servo_dev_list[sysex.val.dev_id - 1].angleValue = angle_v;
+      // Serial.print("servo angle: ");
+      // Serial.println(angle_v);
       resFlag |= 0x02;
       break;
     case GET_SERVO_SPEED:
       speed_v = readFloat(sysex.val.value,1);
       servo_dev_list[sysex.val.dev_id - 1].servoSpeed = speed_v;
       resFlag |= 0x04;
-      break; 
+      break;
     case GET_SERVO_VOLTAGE:
       vol_v = readFloat(sysex.val.value,1);
       servo_dev_list[sysex.val.dev_id - 1].voltage = vol_v;

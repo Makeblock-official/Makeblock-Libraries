@@ -73,6 +73,7 @@
 #include "MeGasSensor.h"
 #include "MePS2.h"
 #include "MeColorSensor.h"
+#include "MeSuperVariable.h"
 /*********************  Mbot Board GPIO Map *********************************/
 MePort_Sig mePort[17] =
 {
