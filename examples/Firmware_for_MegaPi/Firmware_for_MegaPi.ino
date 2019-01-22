@@ -805,13 +805,17 @@ void writeBuffer(int16_t index,uint8_t c)
   {
     buffer[index]=c;
   }
-  else if(BluetoothSource == DATA_SERIAL2)
+  else if(BluetoothSource == DATA_SERIAL1)
   {
     bufferBt1[index]=c;
   }
-  else if(BluetoothSource == DATA_SERIAL3)
+  else if(BluetoothSource == DATA_SERIAL2)
   {
     bufferBt2[index]=c;
+  }
+  else if(BluetoothSource == DATA_SERIAL3)
+  {
+    bufferBt3[index]=c;
   }
 }
 
@@ -855,6 +859,10 @@ void writeEnd(void)
   {
     Serial.println();
   }
+  else if(BluetoothSource == DATA_SERIAL1)
+  {
+    Serial1.println();
+  }
   else if(BluetoothSource == DATA_SERIAL2)
   {
     Serial2.println();
@@ -884,6 +892,10 @@ void writeSerial(uint8_t c)
   if(BluetoothSource == DATA_SERIAL)
   {
     Serial.write(c);
+  }
+  else if(BluetoothSource == DATA_SERIAL1)
+  {
+    Serial1.write(c);
   }
   else if(BluetoothSource == DATA_SERIAL2)
   {
@@ -918,6 +930,12 @@ void readSerial(void)
     isAvailable = true;
     BluetoothSource = DATA_SERIAL;
     serialRead = Serial.read();
+  }
+  else if(Serial1.available() > 0)
+  {
+    isAvailable = true;
+    BluetoothSource = DATA_SERIAL1;
+    serialRead = Serial1.read();
   }
   else if(Serial2.available() > 0)
   {
@@ -2782,6 +2800,7 @@ void setup()
   attachInterrupt(Encoder_3.getIntNum(), isr_process_encoder3, RISING);
   attachInterrupt(Encoder_4.getIntNum(), isr_process_encoder4, RISING);
   Serial.begin(115200);
+  Serial1.begin(115200);
   Serial2.begin(115200);
   Serial3.begin(115200);
   delay(5);
