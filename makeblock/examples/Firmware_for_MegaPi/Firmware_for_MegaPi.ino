@@ -25,6 +25,7 @@
 * Mark Yan         2017/03/01     0e.01.013        fix RGB lights issue.
 * Mark Yan         2017/06/21     0e.01.014        fix JIRA issue 668 710.
 * Mark Yan         2018/01/03     0e.01.015        add the absolute motor move for encode motor & add new stepper command.
+* Payton           2019/01/02     0e.01.016        in new stepper command, change SLOT1 to slot_num.
 **************************************************************************/
 #include <Arduino.h>
 #include <MeMegaPi.h>
@@ -171,7 +172,7 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0e.01.015";
+String mVersion = "0e.01.016";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
 #define PWM_MIN_OFFSET   0
@@ -1423,17 +1424,17 @@ void runModule(uint8_t device)
           int16_t speed_temp = readShort(12);
           maxSpeed = abs(speed_temp);
 
-          steppers[SLOT1 - 1] = MeStepperOnBoard(slot_num);
-          initStepper(SLOT1 - 1,maxSpeed);
-          steppers[SLOT1 - 1].move(pos_temp,extID,stepper_move_finish_callback);
+          steppers[slot_num - 1] = MeStepperOnBoard(slot_num);
+          initStepper(slot_num - 1,maxSpeed);
+          steppers[slot_num - 1].move(pos_temp,extID,stepper_move_finish_callback);
         }
         if(STEPPER_SPEED_MOTION == subcmd)
         {
           int16_t speed_temp = readShort(8);
 
-          steppers[SLOT1 - 1] = MeStepperOnBoard(slot_num);
-          initStepper(SLOT1 - 1,speed_temp);
-          steppers[SLOT1 - 1].setSpeed(speed_temp);
+          steppers[slot_num - 1] = MeStepperOnBoard(slot_num);
+          initStepper(slot_num - 1,speed_temp);
+          steppers[slot_num - 1].setSpeed(speed_temp);
         }
         if(STEPPER_POS_MOTION_MOVETO == subcmd)
         {
@@ -1441,14 +1442,14 @@ void runModule(uint8_t device)
           int16_t speed_temp = readShort(12);
           maxSpeed = abs(speed_temp);
 
-          steppers[SLOT1 - 1] = MeStepperOnBoard(slot_num);
-          initStepper(SLOT1 - 1,maxSpeed);
-          steppers[SLOT1 - 1].moveTo(pos_temp,extID,stepper_move_finish_callback);
+          steppers[slot_num - 1] = MeStepperOnBoard(slot_num);
+          initStepper(slot_num - 1,maxSpeed);
+          steppers[slot_num - 1].moveTo(pos_temp,extID,stepper_move_finish_callback);
         }
         else if(STEPPER_SET_CUR_POS_ZERO == subcmd)
         {
-          steppers[SLOT1 - 1] = MeStepperOnBoard(slot_num);
-          steppers[SLOT1 - 1].setCurrentPosition(0);
+          steppers[slot_num - 1] = MeStepperOnBoard(slot_num);
+          steppers[slot_num - 1].setCurrentPosition(0);
         }
       }
       break;
@@ -1456,9 +1457,9 @@ void runModule(uint8_t device)
       {
         int16_t maxSpeed = readShort(7);
         long distance = readLong(9);
-        steppers[SLOT1 - 1] = MeStepperOnBoard(port);
-        initStepper(SLOT1 - 1,maxSpeed);
-        steppers[SLOT1 - 1].moveTo(distance);
+        steppers[port - 1] = MeStepperOnBoard(port);
+        initStepper(port - 1,maxSpeed);
+        steppers[port - 1].moveTo(distance);
       } 
       break;
     case RGBLED:
