@@ -76,7 +76,6 @@
 #include "MePS2.h"
 #include "MePm25Sensor.h"
 #include "MeColorSensor.h"
-#include "MeSuperVariable.h"
 /*********************  Auriga Board GPIO Map *********************************/
 // struct defined in MeAuriga.h
  MePort_Sig mePort[17] =
