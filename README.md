@@ -75,5 +75,6 @@ If you have a discussion about licensing issues, please contact me (myan@makeblo
 7.Solve the problem that the function getPointFast() in the MeHumitureSensor. CPP cannot output the value normally.
 8.The mBot board cannot extinguish the RGB. First upload the program with the RGB in any color, and then upload the program with the RGB in all colors. The RGB cannot extinguish (MeRGBLed bled. CPP file).
 9.In the MegaPi firmware, SLOT1 is changed to slot_num instead of parameter transmission in the command processing stepper motor.
+|
 
 ### Learn more from Makeblock official website: www.makeblock.com
