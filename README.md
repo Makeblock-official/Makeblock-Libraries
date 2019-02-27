@@ -1,4 +1,4 @@
-# Makeblock Library v3.25
+# Makeblock Library v3.26
 
 Arduino Library for Makeblock Electronic Modules
 
@@ -66,5 +66,14 @@ If you have a discussion about licensing issues, please contact me (myan@makeblo
 |Mark Yan    |     2016/05/17  |   3.2.3      |    add support for MegaPi and Auriga Board.|
 |Mark Yan    |     2016/07/27  |   3.2.4      |    fix some JIRA issue, add PID motion for Megapi/Auriga on board encoder motor.|
 |Mark Yan  	 |     2018/05/16	 |   3.2.5	    |    Correct copyright information.
+|vincent HE  |     2019/02/27  |   3.2.6      |    1.Solve the blocking problem of 9g steering gear.
+2.Solve the problem that the intelligent steering gear cannot read back the parameters.
+3.Add version number function.
+4.High power code motor reinforcement version query function.
+5.Solve the problem that MeCompass will hang dead on 7 or 8 ports in Orion.
+6.Solve the problem of SetColor (uint8_t index, long value) function error in mergharp.cpp.
+7.Solve the problem that the function getPointFast() in the MeHumitureSensor. CPP cannot output the value normally.
+8.The mBot board cannot extinguish the RGB. First upload the program with the RGB in any color, and then upload the program with the RGB in all colors. The RGB cannot extinguish (MeRGBLed bled. CPP file).
+9.In the MegaPi firmware, SLOT1 is changed to slot_num instead of parameter transmission in the command processing stepper motor.
 
 ### Learn more from Makeblock official website: www.makeblock.com
