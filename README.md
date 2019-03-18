@@ -28,17 +28,13 @@ If you have a discussion about licensing issues, please contact me (myan@makeblo
 
 ### How to use:
 
-1. Download the source from the git https://github.com/Makeblock-official/Makeblock-Libraries
+1. Download the source from the git https://codeload.github.com/Makeblock-official/Makeblock-Libraries/zip/master
 
-2. copy the makeblock folder to your arduino default library. Your Arduino library folder should now look like this  
-   (on Windows): [arduino installation directory]\libraries\makeblock\src  
-   (on MACOS): [arduino Package Contents]\contents\Java\libraries\makeblock\src
+2. In the Arduino IDE: "Sketch-> Include Library-> Add .ZIP Library-> select the downloaded file-> Open"
 
-3. Open the Arduino Application. (If it's already open, you will need to restart it to see changes.)
+3. Click "File-> Examples". Here are some test programs in "MakeBlockDrive->"
 
-4. Click "File-> Examples". Here are some test programs in "MakeBlockDrive->"
-
-5. Depending on the type of board you're using, you need to modify the header file to match.
+4. Depending on the type of board you're using, you need to modify the header file to match.
    For example, if you're using a mCore. You should change `#include <MeOrion.h>` to `#include <MeMCore.h>`
    Corresponding boards and there header file are:
 
@@ -66,7 +62,6 @@ If you have a discussion about licensing issues, please contact me (myan@makeblo
 |Mark Yan    |     2016/05/17  |   3.2.3      |    add support for MegaPi and Auriga Board.|
 |Mark Yan    |     2016/07/27  |   3.2.4      |    fix some JIRA issue, add PID motion for Megapi/Auriga on board encoder motor.|
 |Mark Yan    |     2018/05/16  |   3.2.5      |    Correct copyright information.|
-|Vincent He  |     2019/01/04  |   3.2.6      |    1.Mbot /ranger adds the function of communication variables. 2.Solve the blocking problem of 9g steering gear. 3.Solve the problem that the intelligent steering gear cannot read back the parameters. 4.Add version number function. 5.High power code motor reinforcement version query function. 6.Solve the problem of SetColor (uint8_t index, long value) function error in mergharp.cpp. 7.The mBot board cannot extinguish the RGB. First upload the program with the RGB in any color, and then upload the program with the RGB in all colors. The RGB cannot extinguish (MeRGBLed bled. CPP file). 8.In the MegaPi firmware, SLOT1 is changed to slot_num instead of parameter transmission in the command processing stepper motor.
-|
+|Vincent He  |     2019/01/04  |   3.2.6      |    1.Mbot /ranger adds the function of communication variables. 2.Solve the blocking problem of 9g steering gear. 3.Solve the problem that the intelligent steering gear cannot read back the parameters. 4.Add version number function. 5.High power code motor reinforcement version query function. 6.Solve the problem of SetColor (uint8_t index, long value) function error in mergharp.cpp. 7.The mBot board cannot extinguish the RGB. First upload the program with the RGB in any color, and then upload the program with the RGB in all colors. The RGB cannot extinguish (MeRGBLed bled. CPP file). 8.In the MegaPi firmware, SLOT1 is changed to slot_num instead of parameter transmission in the command processing stepper motor.|
 
 ### Learn more from Makeblock official website: www.makeblock.com
