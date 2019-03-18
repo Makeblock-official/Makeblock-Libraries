@@ -6,10 +6,6 @@ Arduino Library for Makeblock Electronic Modules
 
 In makeblock's library, some of the modules are derived from other open source projects, and also part of some code is inspired by the algorithms of other individuals or organizations. We will retain the copyright of the original open source code.
 
-Before I released version 3.0.0, I didn't review the source of some old code in the makeblock library. This made me make some obvious mistakes. Fortunately, some of our users pointed out the mistakes we made.
-
-So I reviewed our code in 2018/05/16, and correct some copyright information.
-
 These modules is derived from other open source projects:
 
 - MeRGBLed
