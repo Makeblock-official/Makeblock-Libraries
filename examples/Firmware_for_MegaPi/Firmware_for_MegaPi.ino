@@ -1457,9 +1457,9 @@ void runModule(uint8_t device)
       {
         int16_t maxSpeed = readShort(7);
         long distance = readLong(9);
-        steppers[SLOT1 - 1] = MeStepperOnBoard(port);
-        initStepper(SLOT1 - 1,maxSpeed);
-        steppers[SLOT1 - 1].moveTo(distance);
+        steppers[port - 1] = MeStepperOnBoard(port);
+        initStepper(port - 1,maxSpeed);
+        steppers[port - 1].moveTo(distance);
       } 
       break;
     case RGBLED:
