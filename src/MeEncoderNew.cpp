@@ -56,6 +56,7 @@
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Mark Yan        2016/03/18     1.0.0            build the new
  * Mark Yan        2017/06/09     1.0.1            add function setAddr
+ * clplaneguy      4/17/2019      1.0.2            Update to 3.2.6
  * </pre>
  *
  * @example EncoderMotorChangeI2CDevID.ino
