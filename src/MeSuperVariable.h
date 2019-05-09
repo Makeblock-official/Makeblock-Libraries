@@ -301,7 +301,7 @@ public:
    * \par Others
    *    None
    */
-  void *set_variable(char *name,uint8_t type,void *data, uint8_t len);
+  bool set_variable(char *name,uint8_t type,void *data, uint8_t len);
   
   /**
    * \par Function

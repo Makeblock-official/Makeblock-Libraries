@@ -221,7 +221,7 @@ void MeSuperVariable::arduino_super_var(uint8_t *data, uint32_t len, uint8_t *ou
  * \par Others
  *    None
  */
-void * MeSuperVariable::set_variable(char *name, uint8_t type, void *data, uint8_t len)//设置变量的值，要指定数据类型
+bool MeSuperVariable::set_variable(char *name, uint8_t type, void *data, uint8_t len)//设置变量的值，要指定数据类型
 {
   bool ret;
   bool bool_val,*bool_p;
