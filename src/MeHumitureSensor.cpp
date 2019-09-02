@@ -417,7 +417,7 @@ double MeHumiture::getPointFast()
 {
   double a = 17.271;
   double b = 237.7;
-  double temp = (a * Temperature) / (b + Temperature) + log(Humidity/100);
+  double temp = (a * Temperature) / (b + Temperature) + log((double)Humidity/100);
   //double Td = (b * temp) / (a - temp);
   return ((b * temp) / (a - temp));
 }

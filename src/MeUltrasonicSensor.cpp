@@ -37,6 +37,7 @@
  * Mark Yan         2015/09/04     1.0.0            Rebuild the old lib.
  * Mark Yan         2015/11/16     1.0.1            Increase 100us delay, avoid ultrasonic read exception.
  * Mark Yan         2016/06/25     1.0.2            Modify Read mechanism of ultrasonic waves.
+ * Vincent He       2019/03/28     1.0.3            Fix the bug that ultrasonic module ranging can only measure the maximum of 376cm.
  * </pre>
  *
  * @example UltrasonicSensorTest.ino
@@ -121,12 +122,16 @@ void MeUltrasonicSensor::setpin(uint8_t SignalPin)
  */
 double MeUltrasonicSensor::distanceCm(uint16_t MAXcm)
 {
-  long distance = measure(MAXcm * 55 + 200);
-  if(distance == 0)
+  long distance = measure();
+
+  if((((double)distance / 58.0) >= 400.0) || (distance == 0))
   {
-    distance = MAXcm * 58;
+    return( (double)400.0);//MAXcm
   }
-  return( (double)distance / 58.0);
+  else
+  {
+    return( (double)distance / 58.0);
+  }
 }
 
 /**
@@ -145,12 +150,16 @@ double MeUltrasonicSensor::distanceCm(uint16_t MAXcm)
  */
 double MeUltrasonicSensor::distanceInch(uint16_t MAXinch)
 {
-  long distance = measure(MAXinch * 145 + 200);
-  if(distance == 0)
+  long distance = measure();
+
+  if((((double)distance / 148.0) >= 400.0) || (distance == 0))
   {
-    distance = MAXinch * 148;
+    return( (double)180.0);//MAXinch
   }
-  return( (double)(distance / 148.0) );
+  else
+  {
+    return( (double)distance / 148.0);
+  }
 }
 
 /**
@@ -186,7 +195,7 @@ long MeUltrasonicSensor::measure(unsigned long timeout)
     delayMicroseconds(10);
     MePort::dWrite2(LOW);
     pinMode(s2, INPUT);
-    duration = pulseIn(s2, HIGH, timeout);
+    duration = pulseIn(s2, HIGH);
     _measureValue = duration;
   }
   else
