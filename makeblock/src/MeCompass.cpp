@@ -40,6 +40,7 @@
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
  * Lawrence         2015/09/03           1.0.0       Rebuild the old lib.
  * Lawrence         2015/09/08           1.0.1       Added some comments and macros.
+ * Vincent He       2019/03/01           1.0.2       fix issue: In the Orion board, the electronic compass was hung in ports 7 and 8. To avoid the crash and added timeout processing.
  * </pre>
  *
  * @example MeCompassTest.ino
@@ -188,6 +189,11 @@ void MeCompass::begin(void)
   writeReg(COMPASS_RA_MODE, Measurement_Mode);
 
   read_EEPROM_Buffer();
+  
+#ifdef COMPASS_SERIAL_DEBUG
+  Serial.println("Compass begin !!!");
+#endif
+
   deviceCalibration();
 }
 
@@ -565,7 +571,7 @@ void MeCompass::deviceCalibration(void)
 #endif
         return;
       }  
-      long time_num,cal_time;
+      long time_num,cal_time,start_time;
       bool LED_state = 0;
       int16_t X_num,Y_num,Z_num;
       int16_t X_max = -32768;
@@ -578,7 +584,7 @@ void MeCompass::deviceCalibration(void)
 #ifdef COMPASS_SERIAL_DEBUG
       Serial.println("Compass calibration !!!");
 #endif  
-      time_num = millis();
+      start_time = time_num = millis();
 #ifdef ME_PORT_DEFINED
       while(dRead1(INPUT_PULLUP) == 0)
 #else  // ME_PORT_DEFINED
@@ -598,8 +604,16 @@ void MeCompass::deviceCalibration(void)
           digitalWrite(_ledPin, LED_state);
 #endif
 #ifdef COMPASS_SERIAL_DEBUG
-          Serial.println("You can free the KEY now ");
+          //Serial.println("You can free the KEY now ");
 #endif
+        }
+#ifdef COMPASS_SERIAL_DEBUG
+        Serial.println(millis(),DEC);
+        Serial.println(start_time,DEC);
+#endif
+        if( millis() - start_time > 300 )   //timeout!
+        {
+          break;
         }
       }  
 #ifdef COMPASS_SERIAL_DEBUG
@@ -610,6 +624,7 @@ void MeCompass::deviceCalibration(void)
 #ifndef ME_PORT_DEFINED 
       pinMode(_keyPin, INPUT_PULLUP);
 #endif
+      start_time = millis();
       do
       {
         if(millis() - time_num > 200)   //control the LED
@@ -653,12 +668,23 @@ void MeCompass::deviceCalibration(void)
             Z_max = Z_num;
           }
         }
+        if( millis() - start_time > 300 )   //timeout!
+        {
+          break;
+        }
       }
 #ifdef ME_PORT_DEFINED
-      while(dRead1(INPUT_PULLUP)==1);
+      while(dRead1(INPUT_PULLUP) == 1);
       dWrite2(LOW);  //turn off the LED
 #else  // ME_PORT_DEFINED
-      while(digitalRead(_keyPin) == 1);
+      start_time = millis();
+      while(digitalRead(_keyPin) == 1)
+      {
+        if( millis() - start_time > 10 )   //timeout!
+        {
+          break;
+        }
+      }
       pinMode(_ledPin, OUTPUT);
       digitalWrite(_ledPin, LOW);
 #endif
@@ -697,15 +723,27 @@ void MeCompass::deviceCalibration(void)
       write_EEPROM_Buffer(&Cal_parameter);  
 #ifdef ME_PORT_DEFINED
       dWrite2(HIGH);   //turn on the LED
+      start_time = millis();
       while(dRead1(INPUT_PULLUP) == 0)
-	  {
-        wdt_reset();
-	  };
+      {
+          wdt_reset();
+          if( millis() - start_time > 10 )   //timeout!
+          {
+            break;
+          }
+      }
 #else  // ME_PORT_DEFINED
       pinMode(_ledPin, OUTPUT);
       digitalWrite(_ledPin, HIGH);
       pinMode(_keyPin, INPUT_PULLUP);
-      while(digitalRead(_keyPin) == 0);
+      start_time = millis();
+      while(digitalRead(_keyPin) == 0)
+      {
+        if( millis() - start_time > 10 )   //timeout!
+        {
+          break;
+        }
+      }
 #endif
       wdt_reset();
       delay(100);
