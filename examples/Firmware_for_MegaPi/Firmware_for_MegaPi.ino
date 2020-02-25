@@ -1846,6 +1846,8 @@ void readSensor(uint8_t device)
   uint8_t port,slot,pin;
   port = readBuffer(6);
   pin = port;
+  writeHead();
+  writeSerial(command_index);
   switch(device)
   {
     case ULTRASONIC_SENSOR:
@@ -1860,12 +1862,10 @@ void readSensor(uint8_t device)
           us = new MeUltrasonicSensor(port);
         }
         value = (float)us->distanceCm();
-        writeHead();
-        writeSerial(command_index);
         sendFloat(value);
       }
       break;
-    case  TEMPERATURE_SENSOR:
+    case TEMPERATURE_SENSOR:
       {
         slot = readBuffer(7);
         if(ts.getPort() != port || ts.getSlot() != slot)
@@ -1876,9 +1876,9 @@ void readSensor(uint8_t device)
         sendFloat(value);
       }
       break;
-    case  LIGHT_SENSOR:
-    case  SOUND_SENSOR:
-    case  POTENTIONMETER:
+    case LIGHT_SENSOR:
+    case SOUND_SENSOR:
+    case POTENTIONMETER:
       {
         if(generalDevice.getPort() != port)
         {
@@ -1889,18 +1889,26 @@ void readSensor(uint8_t device)
         sendFloat(value);
       }
       break;
-    case  JOYSTICK:
+    case JOYSTICK:
       {
         slot = readBuffer(7);
         if(joystick.getPort() != port)
         {
           joystick.reset(port);
         }
-        value = joystick.read(slot);
-        sendFloat(value);
+        if(slot==0)
+        {
+          sendShort(joystick.read(1));
+          sendShort(joystick.read(2));
+        }
+        else
+        {
+          value = joystick.read(slot);
+          sendFloat(value);
+        }
       }
       break;
-    case  INFRARED:
+    case INFRARED:
       {
         if(ir == NULL)
         {
@@ -1924,7 +1932,7 @@ void readSensor(uint8_t device)
         }
       }
       break;
-    case  PIRMOTION:
+    case PIRMOTION:
       {
         if(generalDevice.getPort() != port)
         {
@@ -1935,7 +1943,7 @@ void readSensor(uint8_t device)
         sendFloat(value);
       }
       break;
-    case  LINEFOLLOWER:
+    case LINEFOLLOWER:
       {
         if(generalDevice.getPort() != port)
         {
@@ -1988,10 +1996,13 @@ void readSensor(uint8_t device)
         }
         uint8_t HumitureData;
         humiture.update();
-        HumitureData = humiture.getValue(index);
-        writeHead();
-        writeSerial(command_index);
-        sendByte(HumitureData);
+        if(index==2){
+          sendByte(humiture.getValue(0));
+          sendByte(humiture.getValue(1));
+        }else{
+          HumitureData = humiture.getValue(index);
+          sendByte(HumitureData);
+        }
       }
       break;
     case FLAMESENSOR:
@@ -2018,13 +2029,21 @@ void readSensor(uint8_t device)
         sendShort(GasData);
       }
       break;
-    case  GYRO:
+    case GYRO:
       {
         uint8_t axis = readBuffer(7);
         if((port == 0) && (gyro_ext.getDevAddr() == 0x68))      //extern gyro
         {
-          value = gyro_ext.getAngle(axis);
-          sendFloat(value);
+          if(axis==0)
+          {
+            sendFloat(gyro_ext.getAngle(1));
+            sendFloat(gyro_ext.getAngle(2));
+            sendFloat(gyro_ext.getAngle(3));
+          }
+          else
+          {
+            sendFloat(gyro_ext.getAngle(axis));
+          }
         }
         else
         {
@@ -2032,25 +2051,25 @@ void readSensor(uint8_t device)
         }
       }
       break;
-    case  VERSION:
+    case VERSION:
       {
         sendString(mVersion);
       }
       break;
-    case  DIGITAL:
+    case DIGITAL:
       {
         pinMode(pin,INPUT);
         sendFloat(digitalRead(pin));
       }
       break;
-    case  ANALOG:
+    case ANALOG:
       {
         pin = analogs[pin];
         pinMode(pin,INPUT);
         sendFloat(analogRead(pin));
       }
       break;
-    case  PULSEIN:
+    case PULSEIN:
       {
         int16_t pw = readShort(7);
         pinMode(pin, INPUT);
@@ -2776,14 +2795,17 @@ boolean read_serial(void)
 }
 void setup()
 {
+  Serial.begin(115200);
+  Serial2.begin(115200);
+  Serial3.begin(115200);
+  while(!Serial){}
+  while(!Serial2){}
+  while(!Serial3){}
   delay(5);
   attachInterrupt(Encoder_1.getIntNum(), isr_process_encoder1, RISING);
   attachInterrupt(Encoder_2.getIntNum(), isr_process_encoder2, RISING);
   attachInterrupt(Encoder_3.getIntNum(), isr_process_encoder3, RISING);
   attachInterrupt(Encoder_4.getIntNum(), isr_process_encoder4, RISING);
-  Serial.begin(115200);
-  Serial2.begin(115200);
-  Serial3.begin(115200);
   delay(5);
   gyro_ext.begin();
   delay(5);
@@ -2969,4 +2991,3 @@ void loop()
     line_model();
   }
 }
-
