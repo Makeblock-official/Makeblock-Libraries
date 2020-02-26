@@ -48,7 +48,7 @@ MeInfraredReceiver *ir = NULL;     //PORT_6
 MeGyro gyro_ext(0,0x68);           //external gryo sensor
 MeCompass Compass;
 MeJoystick joystick;
-MeStepperOnBoard steppers[4];
+MeStepperOnBoard steppers[4] = {MeStepperOnBoard(1),MeStepperOnBoard(2),MeStepperOnBoard(3),MeStepperOnBoard(4)};
 MeBuzzer buzzer;
 MeHumiture humiture;
 MeFlameSensor FlameSensor;
@@ -1345,6 +1345,7 @@ uint8_t* readUint8(int16_t idx,int16_t len)
  */
 void initStepper(uint8_t index,int16_t maxSpeed)
 {
+  // steppers[index].setpin(index+1);
   steppers[index].setMaxSpeed(maxSpeed);
   steppers[index].setAcceleration(20000);
   steppers[index].setMicroStep(16);
@@ -1424,7 +1425,6 @@ void runModule(uint8_t device)
           int16_t speed_temp = readShort(12);
           maxSpeed = abs(speed_temp);
 
-          steppers[slot_num - 1] = MeStepperOnBoard(slot_num);
           initStepper(slot_num - 1,maxSpeed);
           steppers[slot_num - 1].move(pos_temp,extID,stepper_move_finish_callback);
         }
@@ -1432,7 +1432,6 @@ void runModule(uint8_t device)
         {
           int16_t speed_temp = readShort(8);
 
-          steppers[slot_num - 1] = MeStepperOnBoard(slot_num);
           initStepper(slot_num - 1,speed_temp);
           steppers[slot_num - 1].setSpeed(speed_temp);
         }
@@ -1442,13 +1441,11 @@ void runModule(uint8_t device)
           int16_t speed_temp = readShort(12);
           maxSpeed = abs(speed_temp);
 
-          steppers[slot_num - 1] = MeStepperOnBoard(slot_num);
           initStepper(slot_num - 1,maxSpeed);
           steppers[slot_num - 1].moveTo(pos_temp,extID,stepper_move_finish_callback);
         }
         else if(STEPPER_SET_CUR_POS_ZERO == subcmd)
         {
-          steppers[slot_num - 1] = MeStepperOnBoard(slot_num);
           steppers[slot_num - 1].setCurrentPosition(0);
         }
       }

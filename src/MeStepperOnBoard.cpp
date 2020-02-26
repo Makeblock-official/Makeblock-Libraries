@@ -191,13 +191,13 @@ void MeStepperOnBoard::setMicroStep(int8_t value)
  */
 void MeStepperOnBoard::setpin(int slot)
 {
-  _currentPos = 0;
-  _targetPos = 0;
-  _acceleration = 0;
-  _lastStepTime = micros();
-  _speed = 0;
-  _dir = DIRECTION_CW;
-  setCurrentPosition(0);
+  // _currentPos = 0;
+  // _targetPos = 0;
+  // _acceleration = 0;
+  // _lastStepTime = micros();
+  // _speed = 0;
+  // _dir = DIRECTION_CW;
+  // setCurrentPosition(0);
   _enable_pin = megaPi_slots[slot-1].pin[0];
   _micro_step_pin1 = megaPi_slots[slot-1].pin[1];
   _micro_step_pin2 = megaPi_slots[slot-1].pin[2];
@@ -216,9 +216,9 @@ void MeStepperOnBoard::setpin(int slot)
   pinMode(_micro_step_pin1, OUTPUT);
   pinMode(_micro_step_pin2, OUTPUT);
   pinMode(_micro_step_pin3, OUTPUT);
-  digitalWrite(_micro_step_pin1,0);
-  digitalWrite(_micro_step_pin2,0);
-  digitalWrite(_micro_step_pin3,1);
+  // digitalWrite(_micro_step_pin1,0);
+  // digitalWrite(_micro_step_pin2,0);
+  // digitalWrite(_micro_step_pin3,1);
 }
 
 /**
@@ -271,7 +271,6 @@ void MeStepperOnBoard::moveTo(long absolute, int16_t extId, cb callback)
   if (_targetPos != absolute)
   {
     _targetPos = absolute;
-    //computeNewSpeed();
   }
 }
 
@@ -845,8 +844,10 @@ void MeStepperOnBoard::update(void)
         _moving = false;
         _callback(_slot, _extId);
       }
+    }else
+    {
+      runSpeedToPosition(); 
     }
-    runSpeedToPosition();  
   }
 }
 
