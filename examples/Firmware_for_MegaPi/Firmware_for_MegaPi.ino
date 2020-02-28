@@ -55,10 +55,7 @@ MeFlameSensor FlameSensor;
 MeGasSensor GasSensor;
 MeTouchSensor touchSensor;
 Me4Button buttonSensor;
-MeEncoderOnBoard Encoder_1(SLOT1);
-MeEncoderOnBoard Encoder_2(SLOT2);
-MeEncoderOnBoard Encoder_3(SLOT3);
-MeEncoderOnBoard Encoder_4(SLOT4);
+MeEncoderOnBoard encoders[4];
 MeLineFollower line(PORT_8);
 
 typedef struct MeModule
@@ -317,13 +314,13 @@ void stepper_move_finish_callback(int slot,int extId)
  */
 void isr_process_encoder1(void)
 {
-  if(digitalRead(Encoder_1.getPortB()) == 0)
+  if(digitalRead(encoders[0].getPortB()) == 0)
   {
-    Encoder_1.pulsePosMinus();
+    encoders[0].pulsePosMinus();
   }
   else
   {
-    Encoder_1.pulsePosPlus();;
+    encoders[0].pulsePosPlus();;
   }
 }
 
@@ -344,13 +341,13 @@ void isr_process_encoder1(void)
  */
 void isr_process_encoder2(void)
 {
-  if(digitalRead(Encoder_2.getPortB()) == 0)
+  if(digitalRead(encoders[1].getPortB()) == 0)
   {
-    Encoder_2.pulsePosMinus();
+    encoders[1].pulsePosMinus();
   }
   else
   {
-    Encoder_2.pulsePosPlus();
+    encoders[1].pulsePosPlus();
   }
 }
 
@@ -371,13 +368,13 @@ void isr_process_encoder2(void)
  */
 void isr_process_encoder3(void)
 {
-  if(digitalRead(Encoder_3.getPortB()) == 0)
+  if(digitalRead(encoders[2].getPortB()) == 0)
   {
-    Encoder_3.pulsePosMinus();
+    encoders[2].pulsePosMinus();
   }
   else
   {
-    Encoder_3.pulsePosPlus();
+    encoders[2].pulsePosPlus();
   }
 }
 
@@ -398,13 +395,13 @@ void isr_process_encoder3(void)
  */
 void isr_process_encoder4(void)
 {
-  if(digitalRead(Encoder_4.getPortB()) == 0)
+  if(digitalRead(encoders[3].getPortB()) == 0)
   {
-    Encoder_4.pulsePosMinus();
+    encoders[3].pulsePosMinus();
   }
   else
   {
-    Encoder_4.pulsePosPlus();
+    encoders[3].pulsePosPlus();
   }
 }
 
@@ -570,8 +567,8 @@ void readEEPROM(void)
  */
 void Forward(void)
 {
-  Encoder_1.setMotorPwm(moveSpeed);
-  Encoder_2.setMotorPwm(-moveSpeed);
+  encoders[0].setMotorPwm(moveSpeed);
+  encoders[1].setMotorPwm(-moveSpeed);
 }
 
 /**
@@ -590,8 +587,8 @@ void Forward(void)
  */
 void Backward(void)
 {
-  Encoder_1.setMotorPwm(-moveSpeed);
-  Encoder_2.setMotorPwm(moveSpeed);
+  encoders[0].setMotorPwm(-moveSpeed);
+  encoders[1].setMotorPwm(moveSpeed);
 }
 
 /**
@@ -610,8 +607,8 @@ void Backward(void)
  */
 void BackwardAndTurnLeft(void)
 {
-  Encoder_1.setMotorPwm(-moveSpeed/4);
-  Encoder_2.setMotorPwm(moveSpeed);
+  encoders[0].setMotorPwm(-moveSpeed/4);
+  encoders[1].setMotorPwm(moveSpeed);
 }
 
 /**
@@ -630,8 +627,8 @@ void BackwardAndTurnLeft(void)
  */
 void BackwardAndTurnRight(void)
 {
-  Encoder_1.setMotorPwm(-moveSpeed);
-  Encoder_2.setMotorPwm(moveSpeed/4);
+  encoders[0].setMotorPwm(-moveSpeed);
+  encoders[1].setMotorPwm(moveSpeed/4);
 }
 
 /**
@@ -650,8 +647,8 @@ void BackwardAndTurnRight(void)
  */
 void TurnLeft(void)
 {
-  Encoder_1.setMotorPwm(moveSpeed);
-  Encoder_2.setMotorPwm(-moveSpeed/2);
+  encoders[0].setMotorPwm(moveSpeed);
+  encoders[1].setMotorPwm(-moveSpeed/2);
 }
 
 /**
@@ -670,8 +667,8 @@ void TurnLeft(void)
  */
 void TurnRight(void)
 {
-  Encoder_1.setMotorPwm(moveSpeed/2);
-  Encoder_2.setMotorPwm(-moveSpeed);
+  encoders[0].setMotorPwm(moveSpeed/2);
+  encoders[1].setMotorPwm(-moveSpeed);
 }
 
 /**
@@ -690,8 +687,8 @@ void TurnRight(void)
  */
 void TurnLeft1(void)
 {
-  Encoder_1.setMotorPwm(moveSpeed);
-  Encoder_2.setMotorPwm(moveSpeed);
+  encoders[0].setMotorPwm(moveSpeed);
+  encoders[1].setMotorPwm(moveSpeed);
 }
 
 /**
@@ -710,8 +707,8 @@ void TurnLeft1(void)
  */
 void TurnRight1(void)
 {
-  Encoder_1.setMotorPwm(-moveSpeed);
-  Encoder_2.setMotorPwm(-moveSpeed);
+  encoders[0].setMotorPwm(-moveSpeed);
+  encoders[1].setMotorPwm(-moveSpeed);
 }
 
 /**
@@ -730,8 +727,8 @@ void TurnRight1(void)
  */
 void Stop(void)
 {
-  Encoder_1.setMotorPwm(0);
-  Encoder_2.setMotorPwm(0);
+  encoders[0].setMotorPwm(0);
+  encoders[1].setMotorPwm(0);
 }
 
 /**
@@ -982,22 +979,16 @@ void parseData(void)
       {
         //reset
         /* reset On-Board encoder driver */
-        Encoder_1.setPulsePos(0);
-        Encoder_2.setPulsePos(0);
-        Encoder_3.setPulsePos(0);
-        Encoder_4.setPulsePos(0);
-        Encoder_1.moveTo(0,10);
-        Encoder_2.moveTo(0,10);
-        Encoder_3.moveTo(0,10);
-        Encoder_4.moveTo(0,10);
-        Encoder_1.setMotorPwm(0);
-        Encoder_2.setMotorPwm(0);
-        Encoder_3.setMotorPwm(0);
-        Encoder_4.setMotorPwm(0);
-        Encoder_1.setMotionMode(DIRECT_MODE);
-        Encoder_2.setMotionMode(DIRECT_MODE);
-        Encoder_3.setMotionMode(DIRECT_MODE);
-        Encoder_4.setMotionMode(DIRECT_MODE);
+        for(int i=0;i<4;i++)
+        {
+          encoders[i].setPulsePos(0);
+          encoders[i].moveTo(0,10);
+          encoders[i].setMotorPwm(0);
+          encoders[i].setMotionMode(DIRECT_MODE);
+          steppers[i].setCurrentPosition(0);
+          steppers[i].moveTo(0);
+          steppers[i].disableOutputs();
+        }
 
         /* reset dc motor on driver port */
         dc.reset(PORT1A);
@@ -1018,18 +1009,7 @@ void parseData(void)
         dc.run(0);
 
         /* reset stepper motor driver */
-        steppers[0].setCurrentPosition(0);
-        steppers[1].setCurrentPosition(0);
-        steppers[2].setCurrentPosition(0);
-        steppers[3].setCurrentPosition(0);
-        steppers[0].moveTo(0);
-        steppers[1].moveTo(0);
-        steppers[2].moveTo(0);
-        steppers[3].moveTo(0);
-        steppers[0].disableOutputs();
-        steppers[1].disableOutputs();
-        steppers[2].disableOutputs();
-        steppers[3].disableOutputs();
+        
         callOK();
       }
       break;
@@ -1346,6 +1326,7 @@ uint8_t* readUint8(int16_t idx,int16_t len)
 void initStepper(uint8_t index,int16_t maxSpeed)
 {
   // steppers[index].setpin(index+1);
+
   steppers[index].setMaxSpeed(maxSpeed);
   steppers[index].setAcceleration(20000);
   steppers[index].setMicroStep(16);
@@ -1386,31 +1367,18 @@ void runModule(uint8_t device)
         uint8_t slot = readBuffer(7);
         int16_t speed_value = readShort(8);
         speed_value = -speed_value;
-
-        if(slot == SLOT_1)
-        {
-          Encoder_1.setTarPWM(speed_value);
-        }
-        else if(slot == SLOT_2)
-        {
-          Encoder_2.setTarPWM(speed_value);
-        }
-        else if(slot == SLOT_3)
-        {
-          Encoder_3.setTarPWM(speed_value);
-        }
-        else if(slot == SLOT_4)
-        {
-          Encoder_4.setTarPWM(speed_value);
-        }
+        encoders[slot-1].reset(slot);
+        encoders[slot-1].setTarPWM(speed_value);
       }
       break;
     case JOYSTICK:
       {
+        encoders[0].reset(0);
+        encoders[1].reset(1);
         int16_t leftSpeed = readShort(6);
-        Encoder_1.setTarPWM(-leftSpeed);
+        encoders[0].setTarPWM(-leftSpeed);
         int16_t rightSpeed = readShort(8);
-        Encoder_2.setTarPWM(-rightSpeed);
+        encoders[1].setTarPWM(-rightSpeed);
       }
       break;
     case STEPPER_NEW:
@@ -1655,108 +1623,34 @@ void runModule(uint8_t device)
         uint8_t subcmd = port;
         uint8_t extID = readBuffer(3);
         uint8_t slot_num = readBuffer(7);
+        encoders[slot_num-1].reset(slot_num);
         if(ENCODER_BOARD_POS_MOTION_MOVE == subcmd)
         {
           long pos_temp = readLong(8);
           int16_t speed_temp = readShort(12);
           speed_temp = abs(speed_temp);
-          if(slot_num == SLOT_1)
-          {
-            Encoder_1.move(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
-          }
-          else if(slot_num == SLOT_2)
-          {
-            Encoder_2.move(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
-          }
-          else if(slot_num == SLOT_3)
-          {
-            Encoder_3.move(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
-          }
-          else if(slot_num == SLOT_4)
-          {
-            Encoder_4.move(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
-          }
+          encoders[slot_num-1].move(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
         }
         if(ENCODER_BOARD_POS_MOTION_MOVETO == subcmd)
         {
           long pos_temp = readLong(8);
           int16_t speed_temp = readShort(12);
           speed_temp = abs(speed_temp);
-          if(slot_num == SLOT_1)
-          {
-            Encoder_1.moveTo(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
-          }
-          else if(slot_num == SLOT_2)
-          {
-            Encoder_2.moveTo(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
-          }
-          else if(slot_num == SLOT_3)
-          {
-            Encoder_3.moveTo(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
-          }
-          else if(slot_num == SLOT_4)
-          {
-            Encoder_4.moveTo(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
-          }
+          encoders[slot_num-1].moveTo(pos_temp,(float)speed_temp,extID,encoder_move_finish_callback);
         }
         else if(ENCODER_BOARD_SPEED_MOTION == subcmd)
         {
           int16_t speed_temp = readShort(8);  
-          if(slot_num == SLOT_1)
-          {
-            Encoder_1.runSpeed((float)speed_temp);
-          }
-          else if(slot_num == SLOT_2)
-          {
-            Encoder_2.runSpeed((float)speed_temp);
-          }
-          else if(slot_num == SLOT_3)
-          {
-            Encoder_3.runSpeed((float)speed_temp);
-          }
-          else if(slot_num == SLOT_4)
-          {
-            Encoder_4.runSpeed((float)speed_temp);
-          }
+          encoders[slot_num-1].runSpeed((float)speed_temp);
         }
         else if(ENCODER_BOARD_PWM_MOTION == subcmd)
         {
           int16_t speed_temp = readShort(8);  
-          if(slot_num == SLOT_1)
-          {
-            Encoder_1.setTarPWM(speed_temp);
-          }
-          else if(slot_num == SLOT_2)
-          {
-            Encoder_2.setTarPWM(speed_temp);
-          }
-          else if(slot_num == SLOT_3)
-          {
-            Encoder_3.setTarPWM(speed_temp);
-          }
-          else if(slot_num == SLOT_4)
-          {
-            Encoder_4.setTarPWM(speed_temp);
-          }         
+          encoders[slot_num-1].setTarPWM(speed_temp);     
         }
         else if(ENCODER_BOARD_SET_CUR_POS_ZERO == subcmd)
         {
-          if(slot_num == SLOT_1)
-          {
-            Encoder_1.setPulsePos(0);
-          }
-          else if(slot_num == SLOT_2)
-          {
-            Encoder_2.setPulsePos(0);
-          }
-          else if(slot_num == SLOT_3)
-          {
-            Encoder_3.setPulsePos(0);
-          }
-          else if(slot_num == SLOT_4)
-          {
-            Encoder_4.setPulsePos(0);
-          }       
+          encoders[slot_num-1].setPulsePos(0);     
         }
         else if(ENCODER_BOARD_CAR_POS_MOTION == subcmd)
         {
@@ -1764,23 +1658,23 @@ void runModule(uint8_t device)
           int16_t speed_temp = readShort(12);
           if(slot_num == 1)
           {
-            Encoder_1.move(pos_temp,(float)speed_temp);
-            Encoder_2.move(-pos_temp,(float)speed_temp);
+            encoders[0].move(pos_temp,(float)speed_temp);
+            encoders[1].move(-pos_temp,(float)speed_temp);
           }
           else if(slot_num == 2)
           {
-            Encoder_1.move(-pos_temp,(float)speed_temp);
-            Encoder_2.move(pos_temp,(float)speed_temp);
+            encoders[0].move(-pos_temp,(float)speed_temp);
+            encoders[1].move(pos_temp,(float)speed_temp);
           }
           else if(slot_num == 3)
           {
-            Encoder_1.move(pos_temp,(float)speed_temp);
-            Encoder_2.move(pos_temp,(float)speed_temp);
+            encoders[0].move(pos_temp,(float)speed_temp);
+            encoders[1].move(pos_temp,(float)speed_temp);
           }
           else if(slot_num == 4)
           {
-            Encoder_1.move(-pos_temp,(float)speed_temp);
-            Encoder_2.move(-pos_temp,(float)speed_temp);
+            encoders[0].move(-pos_temp,(float)speed_temp);
+            encoders[1].move(-pos_temp,(float)speed_temp);
           }
         }
       }
@@ -2123,49 +2017,13 @@ void readSensor(uint8_t device)
         {
           slot = readBuffer(7);
           uint8_t read_type = readBuffer(8);
-          if(slot == SLOT_1)
+          if(read_type == ENCODER_BOARD_POS)
           {
-            if(read_type == ENCODER_BOARD_POS)
-            {
-              sendLong(Encoder_1.getCurPos());
-            }
-            else if(read_type == ENCODER_BOARD_SPEED)
-            {
-              sendFloat(Encoder_1.getCurrentSpeed());
-            }
+            sendLong(encoders[slot-1].getCurPos());
           }
-          else if(slot == SLOT_2)
+          else if(read_type == ENCODER_BOARD_SPEED)
           {
-            if(read_type == ENCODER_BOARD_POS)
-            {
-              sendLong(Encoder_2.getCurPos());
-            }
-            else if(read_type == ENCODER_BOARD_SPEED)
-            {
-              sendFloat(Encoder_2.getCurrentSpeed());
-            }
-          }
-          else if(slot == SLOT_3)
-          {
-            if(read_type == ENCODER_BOARD_POS)
-            {
-              sendLong(Encoder_3.getCurPos());
-            }
-            else if(read_type == ENCODER_BOARD_SPEED)
-            {
-              sendFloat(Encoder_3.getCurrentSpeed());
-            }
-          }
-          else if(slot == SLOT_4)
-          {
-            if(read_type == ENCODER_BOARD_POS)
-            {
-              sendLong(Encoder_4.getCurPos());
-            }
-            else if(read_type == ENCODER_BOARD_SPEED)
-            {
-              sendFloat(Encoder_4.getCurrentSpeed());
-            }
+            sendFloat(encoders[slot-1].getCurrentSpeed());
           }
         }
       }
@@ -2237,8 +2095,8 @@ void PID_angle_compute(void)   //PID
   pwm_left = constrain(pwm_left, -255, 255);
   pwm_right = constrain(pwm_right, -255, 255);
 
-  Encoder_1.setMotorPwm(pwm_left);
-  Encoder_2.setMotorPwm(pwm_right);
+  encoders[0].setMotorPwm(pwm_left);
+  encoders[1].setMotorPwm(pwm_right);
 }
 
 /**
@@ -2257,7 +2115,7 @@ void PID_angle_compute(void)   //PID
  */
 void PID_speed_compute(void)
 {
-  double speed_now = (Encoder_2.getCurrentSpeed() - Encoder_1.getCurrentSpeed())/2;
+  double speed_now = (encoders[1].getCurrentSpeed() - encoders[0].getCurrentSpeed())/2;
 
   last_speed_setpoint_filter  = last_speed_setpoint_filter  * 0.8;
   last_speed_setpoint_filter  += PID_speed.Setpoint * 0.2;
@@ -2327,14 +2185,14 @@ void reset(void)
   if((start_flag == true) && (abs(gyro_ext.getAngleX()) > 32))
   {
     agx_start_count = 0;
-    Encoder_1.setMotorPwm(0);
-    Encoder_2.setMotorPwm(0);
+    encoders[0].setMotorPwm(0);
+    encoders[1].setMotorPwm(0);
     PID_speed.Integral = 0;
     PID_angle.Setpoint = RELAX_ANGLE;
     PID_speed.Setpoint = 0;
     PID_turn.Setpoint = 0;
-    Encoder_1.setPulsePos(0);
-    Encoder_2.setPulsePos(0);
+    encoders[0].setPulsePos(0);
+    encoders[1].setPulsePos(0);
     PID_speed.Integral = 0;
     start_flag = false;
     last_speed_setpoint_filter = 0.0;
@@ -2347,11 +2205,11 @@ void reset(void)
   {
     agx_start_count = 0;
     PID_speed.Integral = 0;
-    Encoder_1.setMotorPwm(0);
-    Encoder_2.setMotorPwm(0);
+    encoders[0].setMotorPwm(0);
+    encoders[1].setMotorPwm(0);
     PID_angle.Setpoint = RELAX_ANGLE;
-    Encoder_1.setPulsePos(0);
-    Encoder_2.setPulsePos(0);
+    encoders[0].setPulsePos(0);
+    encoders[1].setPulsePos(0);
     lasttime_speed = lasttime_angle = millis();
     start_flag = true;
 #ifdef DEBUG_INFO
@@ -2502,8 +2360,8 @@ void balanced_model(void)
   }
   else
   {
-    Encoder_1.setMotorPwm(0);
-    Encoder_2.setMotorPwm(0);
+    encoders[0].setMotorPwm(0);
+    encoders[1].setMotorPwm(0);
   } 
 }
 
@@ -2799,10 +2657,14 @@ void setup()
   while(!Serial2){}
   while(!Serial3){}
   delay(5);
-  attachInterrupt(Encoder_1.getIntNum(), isr_process_encoder1, RISING);
-  attachInterrupt(Encoder_2.getIntNum(), isr_process_encoder2, RISING);
-  attachInterrupt(Encoder_3.getIntNum(), isr_process_encoder3, RISING);
-  attachInterrupt(Encoder_4.getIntNum(), isr_process_encoder4, RISING);
+  for(int i=0;i<4;i++)
+  {
+    encoders[i].reset(i+1);
+  }
+  attachInterrupt(encoders[0].getIntNum(), isr_process_encoder1, RISING);
+  attachInterrupt(encoders[1].getIntNum(), isr_process_encoder2, RISING);
+  attachInterrupt(encoders[2].getIntNum(), isr_process_encoder3, RISING);
+  attachInterrupt(encoders[3].getIntNum(), isr_process_encoder4, RISING);
   delay(5);
   gyro_ext.begin();
   delay(5);
@@ -2813,27 +2675,14 @@ void setup()
 
   TCCR2A = _BV(WGM21) | _BV(WGM20);
   TCCR2B = _BV(CS21);
-
-  Encoder_1.setPulse(8);
-  Encoder_2.setPulse(8);
-  Encoder_3.setPulse(8);
-  Encoder_4.setPulse(8);
-  Encoder_1.setRatio(46.67);
-  Encoder_2.setRatio(46.67);
-  Encoder_3.setRatio(46.67);
-  Encoder_4.setRatio(46.67);
-  Encoder_1.setPosPid(1.8,0,1.2);
-  Encoder_2.setPosPid(1.8,0,1.2);
-  Encoder_3.setPosPid(1.8,0,1.2);
-  Encoder_4.setPosPid(1.8,0,1.2);
-  Encoder_1.setSpeedPid(0.18,0,0);
-  Encoder_2.setSpeedPid(0.18,0,0);
-  Encoder_3.setSpeedPid(0.18,0,0);
-  Encoder_4.setSpeedPid(0.18,0,0);
-  Encoder_1.setMotionMode(DIRECT_MODE);
-  Encoder_2.setMotionMode(DIRECT_MODE);
-  Encoder_3.setMotionMode(DIRECT_MODE);
-  Encoder_4.setMotionMode(DIRECT_MODE);
+  for(int i=0;i<4;i++)
+  {
+    encoders[i].setPulse(8);
+    encoders[i].setRatio(46.67);
+    encoders[i].setPosPid(1.8,0,1.2);
+    encoders[i].setSpeedPid(0.18,0,0);
+    encoders[i].setMotionMode(DIRECT_MODE);
+  }
 
   leftflag=false;
   rightflag=false;
@@ -2883,27 +2732,11 @@ void loop()
     IrProcess();
   }
 
-  if(steppers[0].getPort() == SLOT1)
+  for(int i=0;i<4;i++)
   {
-    steppers[0].update();
+    steppers[i].update();
+    encoders[i].loop();
   }
-  else if(steppers[1].getPort() == SLOT2)
-  {
-    steppers[1].update();
-  }
-  else if(steppers[2].getPort() == SLOT3)
-  {
-    steppers[2].update();
-  }
-  else if(steppers[3].getPort() == SLOT4)
-  {
-    steppers[3].update();
-  }
-
-  Encoder_1.loop();
-  Encoder_2.loop();
-  Encoder_3.loop();
-  Encoder_4.loop();
 
 //  while(Serial.available() > 0)
 //  {

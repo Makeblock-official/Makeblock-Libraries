@@ -88,6 +88,7 @@ MeStepperOnBoard::MeStepperOnBoard()
 MeStepperOnBoard::MeStepperOnBoard(int slot)
 {
   _currentPos = 0;
+  _enabled = false;
   _targetPos = 0;
   _acceleration = 0;
   _lastStepTime = micros();
@@ -792,6 +793,7 @@ void MeStepperOnBoard::runToNewPosition(long position)
  */
 void MeStepperOnBoard::disableOutputs(void)
 {
+  _enabled = false;
   digitalWrite(_enable_pin,1);
 }
 
@@ -811,6 +813,7 @@ void MeStepperOnBoard::disableOutputs(void)
  */
 void MeStepperOnBoard::enableOutputs(void)
 {
+  _enabled = true;
   digitalWrite(_enable_pin,0);
 }
 
@@ -830,6 +833,7 @@ void MeStepperOnBoard::enableOutputs(void)
  */
 void MeStepperOnBoard::update(void)
 {
+  if(!_enabled)return;
   if(_mode == 0)
   {
     runSpeed();

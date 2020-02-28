@@ -151,7 +151,7 @@ public:
  * \param[in]
  *   slot - megapi slot from SLOT1 to SLOT4(Auriga SLOT1 and SLOT2).
  */
-  MeEncoderOnBoard(uint8_t slot);
+  MeEncoderOnBoard(int slot);
 
 /**
  * \par Function
@@ -721,6 +721,7 @@ private:
    int16_t _Encoder_output;
    long _Measurement_speed_time;
    long _Encoder_move_time;
+   bool _enabled;
    cb _callback;
 };
 #endif

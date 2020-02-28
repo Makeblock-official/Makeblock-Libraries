@@ -99,8 +99,9 @@ MeEncoderOnBoard::MeEncoderOnBoard()
  * \param[in]
  *   slot - megapi slot from SLOT1 to SLOT4(Auriga SLOT1 and SLOT2).
  */
-MeEncoderOnBoard::MeEncoderOnBoard(uint8_t slot)
+MeEncoderOnBoard::MeEncoderOnBoard(int slot)
 {
+  _enabled = false;
   _Slot = slot;
   _Port_A = encoder_Port[slot].port_A;
   _Port_B = encoder_Port[slot].port_B;
@@ -165,6 +166,7 @@ MeEncoderOnBoard::MeEncoderOnBoard(uint8_t slot)
  */
 void MeEncoderOnBoard::reset(uint8_t slot)
 {
+  _enabled = true;
   _Slot = slot;
   _Port_A = encoder_Port[slot].port_A;
   _Port_B = encoder_Port[slot].port_B;
@@ -178,11 +180,11 @@ void MeEncoderOnBoard::reset(uint8_t slot)
   pinMode(_Port_H1, OUTPUT);
   pinMode(_Port_H2, OUTPUT);
   
-  encode_structure.pulsePos = 0;
-  encode_structure.previousPwm = 500;
-  encode_structure.mode = DIRECT_MODE;
-  encode_structure.pulseEncoder = 9;
-  encode_structure.ratio = 39.267;
+  // encode_structure.pulsePos = 0;
+  // encode_structure.previousPwm = 500;
+  // encode_structure.mode = DIRECT_MODE;
+  // encode_structure.pulseEncoder = 9;
+  // encode_structure.ratio = 39.267;
   
   if(_Port_A == 18)
   {
@@ -208,8 +210,8 @@ void MeEncoderOnBoard::reset(uint8_t slot)
   {
     _IntNum = 0;
   }
-  setMotorPwm(0);
-  setPulsePos(0);
+  // setMotorPwm(0);
+  // setPulsePos(0);
   _Measurement_speed_time = millis();
 }
 
@@ -1053,6 +1055,7 @@ boolean MeEncoderOnBoard::isTarPosReached(void)
  */
 void MeEncoderOnBoard::loop(void)
 {
+  if(!_enabled)return;
   updateCurPos();
   updateSpeed();
 

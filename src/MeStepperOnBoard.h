@@ -547,6 +547,7 @@ private:
   int16_t _extId;
   boolean _moving;
   int16_t _mode;
+  boolean _enabled;
 };
 
 #endif 
