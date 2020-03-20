@@ -2,8 +2,8 @@
 * File Name          : Firmware_for_MegaPi.ino
 * Author             : myan
 * Updated            : myan
-* Version            : V0e.01.015
-* Date               : 03/01/2018
+* Version            : V0e.01.017
+* Date               : 03/19/2020
 * Description        : Firmware for Makeblock Electronic modules with Scratch.  
 * License            : CC-BY-SA 3.0
 * Copyright (C) 2013 - 2016 Maker Works Technology Co., Ltd. All right reserved.
@@ -25,7 +25,8 @@
 * Mark Yan         2017/03/01     0e.01.013        fix RGB lights issue.
 * Mark Yan         2017/06/21     0e.01.014        fix JIRA issue 668 710.
 * Mark Yan         2018/01/03     0e.01.015        add the absolute motor move for encode motor & add new stepper command.
-* Payton           2019/01/02     0e.01.016        in new stepper command, change SLOT1 to slot_num.
+* payton           2018/07/30     0e.01.016        The "megapi_mode" is no longer saved when the power is broken. Default is "BLUETOOTH_MODE"
+* Payton           2020/03/19     0e.01.017        Support raspberry pi python lib.
 **************************************************************************/
 #include <Arduino.h>
 #include <MeMegaPi.h>
@@ -169,7 +170,7 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0e.01.016";
+String mVersion = "0e.01.017";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
 #define PWM_MIN_OFFSET   0
@@ -2004,11 +2005,21 @@ void readSensor(uint8_t device)
       break;
     case BUTTON:
       {
+
+        uint8_t key_num = readBuffer(7);
         if(buttonSensor.getPort() != port)
         {
           buttonSensor.reset(port);
         }
-        sendByte(keyPressed == readBuffer(7));
+
+        if(key_num == 0)
+        {
+          sendByte(keyPressed);
+        }
+        else
+        {
+          sendByte(keyPressed == readBuffer(7));
+        }
       }
       break;
     case ENCODER_BOARD:
@@ -2669,12 +2680,17 @@ void setup()
   gyro_ext.begin();
   delay(5);
   pinMode(13,OUTPUT);
-  //Set Pwm 8KHz
-  TCCR1A = _BV(WGM10);
-  TCCR1B = _BV(CS11) | _BV(WGM12);
 
+  //Set Pwm 970Hz
+  TCCR1A = _BV(WGM10);
+  TCCR1B = _BV(CS11) | _BV(CS10) | _BV(WGM12);
   TCCR2A = _BV(WGM21) | _BV(WGM20);
-  TCCR2B = _BV(CS21);
+  TCCR2B = _BV(CS22);
+  TCCR3A = _BV(WGM30);
+  TCCR3B = _BV(CS31) | _BV(CS30) | _BV(WGM32);
+  TCCR4A = _BV(WGM40);
+  TCCR4B = _BV(CS41) | _BV(CS40) | _BV(WGM42);
+
   for(int i=0;i<4;i++)
   {
     encoders[i].setPulse(8);
