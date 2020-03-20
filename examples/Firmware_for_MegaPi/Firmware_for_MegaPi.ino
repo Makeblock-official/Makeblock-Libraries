@@ -1432,21 +1432,21 @@ void runModule(uint8_t device)
       {
         uint8_t slot = readBuffer(7);
         uint8_t idx = readBuffer(8);
-        uint8_t r = readBuffer(9);
-        uint8_t g = readBuffer(10);
-        uint8_t b = readBuffer(11);
-        if((led.getPort() != port) || led.getSlot() != slot)
+        uint8_t pixels_len = readBuffer(2) - 6;
+        if((port != 0) && ((led.getPort() != port) || (led.getSlot() != slot)))
         {
           led.reset(port,slot);
         }
-
         if(idx>0)
         {
-          led.setColorAt(idx-1,r,g,b); 
+          for(uint8_t i=0;i<pixels_len;i+=3)
+          {
+            led.setColorAt(idx+i/3-1,readBuffer(9+i),readBuffer(10+i),readBuffer(11+i)); 
+          }
         }
         else
         {
-          led.setColor(r,g,b); 
+          led.setColor(readBuffer(9),readBuffer(10),readBuffer(11)); 
         }
         led.show();
       }
