@@ -2060,11 +2060,11 @@ uint8_t getPlayStatus(void)
   SREG = oldSREG;
   if (*portInputRegister(port) & bit) 
   {
-    return HIGH; //�Զ����׶�
+    return HIGH; //×Ô¶¯Èü½×¶Î
   }
   else
   {
-    return LOW; //�ֶ����׶�
+    return LOW; //ÊÖ¶¯Èü½×¶Î
   }
 }
 
@@ -2452,6 +2452,12 @@ void readSensor(uint8_t device)
             colorsensor->ColorDataReadOnebyOne();
             rgbcode = colorsensor->ReturnColorCode();
             result = (uint8_t)rgbcode;
+          }
+          else if(colorindex == 0x03)//rgb
+          {
+            colorsensor->ColorDataReadOnebyOne();
+            rgbcode = colorsensor->ReturnColorCode();
+            sendLong(rgbcode);
           }
         }
         else if(colorsubcmd == GETBOOL)
