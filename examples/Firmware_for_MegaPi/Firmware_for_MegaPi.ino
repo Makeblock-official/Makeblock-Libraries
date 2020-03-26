@@ -171,7 +171,7 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0e.01.017";
+String mVersion = "0e.01.018";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
 #define PWM_MIN_OFFSET   0
