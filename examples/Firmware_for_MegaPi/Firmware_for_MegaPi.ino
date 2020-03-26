@@ -60,6 +60,7 @@ MeEncoderOnBoard encoders[4];
 MeLineFollower line(PORT_8);
 MeColorSensor *colorsensor  = NULL;
 
+MeColorSensor *colorsensor  = NULL;
 typedef struct MeModule
 {
   int16_t device;
@@ -171,7 +172,7 @@ boolean start_flag = false;
 boolean move_flag = false;
 boolean blink_flag = false;
 
-String mVersion = "0e.01.017";
+String mVersion = "0e.01.018";
 //////////////////////////////////////////////////////////////////////////////////////
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
 #define PWM_MIN_OFFSET   0
@@ -248,6 +249,12 @@ float RELAX_ANGLE = -1;                    //Natural balance angle,should be adj
   #define STEPPER_SPEED_MOTION             0x02
   #define STEPPER_SET_CUR_POS_ZERO         0x04
   #define STEPPER_POS_MOTION_MOVETO        0x06
+
+#define COLORSENSOR            67
+  //Secondary command
+  #define GETRGB                           0x01
+  #define GETBOOL                          0x02
+  #define GETCOLOR                         0x03
 
 #define GET 1
 #define RUN 2
@@ -1941,6 +1948,126 @@ void readSensor(uint8_t device)
         {
           sendFloat(0);
         }
+      }
+      break;
+    case COLORSENSOR:
+      {
+        uint8_t colorsubcmd = 0;
+        uint8_t colorindex = 0;
+        uint8_t result = 0;
+        uint32_t rgbcode = 0;
+     
+        colorsubcmd = readBuffer(7);
+        colorindex  = readBuffer(8);
+
+        if(colorsensor == NULL)
+        {
+          colorsensor = new MeColorSensor(port);
+        }
+        else if(colorsensor->getPort() != port)
+        {
+          delete colorsensor;
+          colorsensor = new MeColorSensor(port);
+        }
+        
+        if(colorsubcmd == GETRGB)
+        {
+          if(colorindex == 0x00)//r
+          {
+            colorsensor->ColorDataReadOnebyOne();
+            rgbcode = colorsensor->ReturnColorCode();
+            result = (uint8_t)(rgbcode>>16);
+          }
+          else if(colorindex == 0x01)//g
+          {
+            colorsensor->ColorDataReadOnebyOne();
+            rgbcode = colorsensor->ReturnColorCode();
+            result = (uint8_t)(rgbcode>>8);
+          }
+          else if(colorindex == 0x02)//b
+          {
+            colorsensor->ColorDataReadOnebyOne();
+            rgbcode = colorsensor->ReturnColorCode();
+            result = (uint8_t)rgbcode;
+          }
+          else if(colorindex == 0x03)//rgb
+          {
+            colorsensor->ColorDataReadOnebyOne();
+            rgbcode = colorsensor->ReturnColorCode();
+            sendLong(rgbcode);
+          }
+        }
+        else if(colorsubcmd == GETBOOL)
+        {
+          result = colorsensor->ColorIdentify();
+          if(colorindex == 0x00)
+          {
+            if(result == WHITE)
+            {
+              result =0x01;
+            }
+            else
+            {
+              result =0x00;
+            }
+          }
+          else if(colorindex == 0x02)
+          {
+            if(result == RED)
+            {
+              result =0x01;
+            }
+            else
+            {
+              result =0x00;
+            }
+          }
+          else if(colorindex == 0x04)
+          {
+            if(result == YELLOW)
+            {
+              result =0x01;
+            }
+            else
+            {
+              result =0x00;
+            }
+          }
+          else if(colorindex == 0x05)
+          {
+            if(result == GREEN)
+            {
+              result =0x01;
+            }
+            else
+            {
+              result =0x00;
+            }
+          }
+          else if(colorindex == 0x07)
+          {
+            if(result == BLUE)
+            {
+              result =0x01;
+            }
+            else
+            {
+              result =0x00;
+            }
+          }
+          else if(colorindex == 0x09)
+          {
+            if(result == BLACK)
+            {
+              result =0x01;
+            }
+            else
+            {
+              result =0x00;
+            }
+          }
+        }
+        sendByte(result);
       }
       break;
     case VERSION:
