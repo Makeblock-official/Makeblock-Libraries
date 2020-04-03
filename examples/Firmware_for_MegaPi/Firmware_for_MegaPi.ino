@@ -27,6 +27,7 @@
 * Mark Yan         2018/01/03     0e.01.015        add the absolute motor move for encode motor & add new stepper command.
 * payton           2018/07/30     0e.01.016        The "megapi_mode" is no longer saved when the power is broken. Default is "BLUETOOTH_MODE"
 * Payton           2020/03/19     0e.01.017        Support raspberry pi python lib.
+* Payton           2020/04/01     0e.01.018        Repair encoder motor bug.
 **************************************************************************/
 #include <Arduino.h>
 #include <MeMegaPi.h>
@@ -1368,14 +1369,11 @@ void runModule(uint8_t device)
         uint8_t slot = readBuffer(7);
         int16_t speed_value = readShort(8);
         speed_value = -speed_value;
-        encoders[slot-1].reset(slot);
         encoders[slot-1].setTarPWM(speed_value);
       }
       break;
     case JOYSTICK:
       {
-        encoders[0].reset(0);
-        encoders[1].reset(1);
         int16_t leftSpeed = readShort(6);
         encoders[0].setTarPWM(-leftSpeed);
         int16_t rightSpeed = readShort(8);
@@ -1624,7 +1622,6 @@ void runModule(uint8_t device)
         uint8_t subcmd = port;
         uint8_t extID = readBuffer(3);
         uint8_t slot_num = readBuffer(7);
-        encoders[slot_num-1].reset(slot_num);
         if(ENCODER_BOARD_POS_MOTION_MOVE == subcmd)
         {
           long pos_temp = readLong(8);
