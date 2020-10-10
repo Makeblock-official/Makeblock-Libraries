@@ -28,7 +28,7 @@ If you have a discussion about licensing issues, please contact me (myan@makeblo
 
 2. In the Arduino IDE: "Sketch-> Include Library-> Add .ZIP Library-> select the downloaded file-> Open"
 
-3. Click "File-> Examples". Here are some test programs in "MakeBlockDrive->"
+3. Click "File-> Examples". There are some test programs in "MakeBlockDrive->"
 
 4. Depending on the type of board you're using, you need to modify the header file to match.
 
@@ -46,7 +46,7 @@ If you have a discussion about licensing issues, please contact me (myan@makeblo
    Auriga <------->  MeAuriga.h
 
    MegaPi <------->  MeMegaPi.h
-   
+
 ### Revision of history:
 
 |Author      |       Time      |   Version    |    Descr     |
