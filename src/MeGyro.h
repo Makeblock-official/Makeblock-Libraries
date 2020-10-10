@@ -209,7 +209,7 @@ public:
  * \par Others
  *   None
  */
-  uint8_t getDevAddr(void);
+  uint8_t getDevAddr(void) const;
 
 /**
  * \par Function
@@ -225,7 +225,7 @@ public:
  * \par Others
  *   X-axis angle value is calculated by complementary filter.
  */
-  double getAngleX(void);
+  double getAngleX(void) const;
 
 /**
  * \par Function
@@ -241,7 +241,7 @@ public:
  * \par Others
  *   Y-axis angle value is calculated by complementary filter.
  */
-  double getAngleY(void);
+  double getAngleY(void) const;
 
 /**
  * \par Function
@@ -257,7 +257,7 @@ public:
  * \par Others
  *   Z-axis angle value is integral of Z-axis angular velocity.
  */
-  double getAngleZ(void);
+  double getAngleZ(void) const;
 
 /**
  * \par Function
@@ -273,7 +273,7 @@ public:
  * \par Others
  *   None
  */
-  double getGyroX(void);
+  double getGyroX(void) const;
 
 /**
  * \par Function
@@ -289,7 +289,7 @@ public:
  * \par Others
  *   None
  */
-  double getGyroY(void);
+  double getGyroY(void) const;
 
 /**
  * \par Function
@@ -305,7 +305,7 @@ public:
  * \par Others
  *   Z-axis angle value is integral of Z-axis angular velocity.
  */
-  double getAngle(uint8_t index);
+  double getAngle(uint8_t index) const;
 
 private:
   volatile uint8_t  _AD0;

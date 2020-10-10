@@ -820,7 +820,6 @@ void MeCompass::read_EEPROM_Buffer(void)
 void MeCompass::write_EEPROM_Buffer(struct Compass_Calibration_Parameter *parameter_pointer)
 {
   uint8_t *buffer_pointer;
-  uint8_t verify_number;  
   parameter_pointer -> verify_flag = (uint8_t)( parameter_pointer -> X_excursion
                                               + parameter_pointer -> Y_excursion
                                               + parameter_pointer -> Z_excursion

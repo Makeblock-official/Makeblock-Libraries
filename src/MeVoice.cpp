@@ -128,7 +128,6 @@ void MeVoice::begin(long speed)
 int16_t MeVoice::read(void)
 {
   int16_t val;
-  uint16_t i;
   val = MeSerial::read();     /* Read serial infrared data */
   val &= 0xff;
   return(val);

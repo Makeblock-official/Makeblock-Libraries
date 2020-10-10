@@ -229,7 +229,7 @@ void MeEncoderOnBoard::reset(uint8_t slot)
  * \par Others
  *   None
  */
-uint8_t MeEncoderOnBoard::getSlotNum(void)
+uint8_t MeEncoderOnBoard::getSlotNum(void) const
 {
   return _Slot;
 }
@@ -248,7 +248,7 @@ uint8_t MeEncoderOnBoard::getSlotNum(void)
  * \par Others
  *   None
  */
-uint8_t MeEncoderOnBoard::getIntNum(void)
+uint8_t MeEncoderOnBoard::getIntNum(void) const
 {
   return _IntNum;
 }
@@ -267,7 +267,7 @@ uint8_t MeEncoderOnBoard::getIntNum(void)
  * \par Others
  *   None
  */
-uint8_t MeEncoderOnBoard::getPortA(void)
+uint8_t MeEncoderOnBoard::getPortA(void) const
 {
   return _Port_A;
 }
@@ -286,7 +286,7 @@ uint8_t MeEncoderOnBoard::getPortA(void)
  * \par Others
  *   None
  */
-uint8_t MeEncoderOnBoard::getPortB(void)
+uint8_t MeEncoderOnBoard::getPortB(void) const
 {
   return _Port_B;
 }
@@ -305,7 +305,7 @@ uint8_t MeEncoderOnBoard::getPortB(void)
  * \par Others
  *   None
  */
-long MeEncoderOnBoard::getPulsePos(void)
+long MeEncoderOnBoard::getPulsePos(void) const
 {
   return encode_structure.pulsePos;
 }
@@ -401,7 +401,7 @@ void MeEncoderOnBoard::setCurrentSpeed(float speed)
  * \par Others
  *   None
  */
-float MeEncoderOnBoard::getCurrentSpeed(void)
+float MeEncoderOnBoard::getCurrentSpeed(void) const
 {
   return encode_structure.currentSpeed;
 }
@@ -420,7 +420,7 @@ float MeEncoderOnBoard::getCurrentSpeed(void)
  * \par Others
  *   None
  */
-int16_t MeEncoderOnBoard::getCurPwm(void)
+int16_t MeEncoderOnBoard::getCurPwm(void) const
 {
   return encode_structure.currentPwm;
 }
@@ -547,7 +547,7 @@ void MeEncoderOnBoard::updateCurPos(void)
  * \par Others
  *    None
  */
-long MeEncoderOnBoard::getCurPos(void)
+long MeEncoderOnBoard::getCurPos(void) const
 {
   return encode_structure.currentPos;
 }
@@ -677,7 +677,7 @@ void MeEncoderOnBoard::moveTo(long position,float speed,int16_t extId,cb callbac
  * \par Others
  *    None
  */
-long MeEncoderOnBoard::distanceToGo(void)
+long MeEncoderOnBoard::distanceToGo(void) const
 {
   return encode_structure.targetPos - encode_structure.currentPos;
 }
@@ -805,9 +805,7 @@ void MeEncoderOnBoard::setMotionMode(int16_t motionMode)
  */
 int16_t MeEncoderOnBoard::pidPositionToPwm(void)
 {
-  float cur_pos = 0;
   float seek_speed = 0;
-  float seek_temp = 0;
   float pos_error = 0;
   float speed_error = 0;
   float d_component = 0;
@@ -1034,7 +1032,7 @@ void MeEncoderOnBoard::pwmMove(void)
  * \par Others
  *    None
  */
-boolean MeEncoderOnBoard::isTarPosReached(void)
+boolean MeEncoderOnBoard::isTarPosReached(void) const
 {
   return _Lock_flag;
 }
