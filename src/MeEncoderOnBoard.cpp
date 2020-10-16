@@ -148,6 +148,7 @@ MeEncoderOnBoard::MeEncoderOnBoard(int slot)
   setMotorPwm(0);
   setPulsePos(0);
   _Measurement_speed_time = millis();
+  reset(slot);
 }
 
 /**
