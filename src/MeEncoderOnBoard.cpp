@@ -531,6 +531,7 @@ void MeEncoderOnBoard::updateSpeed(void)
  */
 void MeEncoderOnBoard::updateCurPos(void)
 {
+  // currentPos =  CurrentPos / (tick_per_rotation) * 360 degrees
   encode_structure.currentPos = (long)((encode_structure.pulsePos/(encode_structure.pulseEncoder * encode_structure.ratio)) * 360);
 }
 
@@ -766,7 +767,7 @@ void MeEncoderOnBoard::setPulse(int16_t pulseValue)
  * \par Others
  *    None
  */
-void MeEncoderOnBoard::setRatio(int16_t RatioValue)
+void MeEncoderOnBoard::setRatio(float RatioValue)
 {
   encode_structure.ratio = RatioValue;
 }

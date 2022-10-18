@@ -590,7 +590,7 @@ public:
  * \par Others
  *    None
  */
-  void setRatio(int16_t RatioValue);
+  void setRatio(float RatioValue);
 
 /**
  * \par Function
