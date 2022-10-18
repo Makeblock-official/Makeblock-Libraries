@@ -475,6 +475,7 @@ void MeEncoderOnBoard::setMotorPwm(int16_t pwm)
 
   if(pwm < 0)
   {
+    // As per the datasheet, counter clock wise
     digitalWrite(MeEncoderOnBoard::_Port_H1, LOW);
     delayMicroseconds(5);
     digitalWrite(MeEncoderOnBoard::_Port_H2, HIGH);
@@ -482,6 +483,7 @@ void MeEncoderOnBoard::setMotorPwm(int16_t pwm)
   }
   else
   {
+    // As per the datasheet, clock wise
     digitalWrite(MeEncoderOnBoard::_Port_H1, HIGH);
     delayMicroseconds(5);
     digitalWrite(MeEncoderOnBoard::_Port_H2, LOW);
