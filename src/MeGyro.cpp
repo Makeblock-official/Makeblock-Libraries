@@ -438,6 +438,25 @@ double MeGyro::getGyroY(void) const
 
 /**
  * \par Function
+ *   getGyroZ
+ * \par Description
+ *   Get the data of gyroZrate.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of gyroZrate
+ * \par Others
+ *   None
+ */
+double MeGyro::getGyroZ(void) const
+{
+  return gyrZ;
+}
+
+/**
+ * \par Function
  *   getAngle
  * \par Description
  *   Get the angle value of setting axis.

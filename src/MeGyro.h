@@ -293,6 +293,22 @@ public:
 
 /**
  * \par Function
+ *   getGyroZ
+ * \par Description
+ *   Get the data of gyroZrate.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of gyroZrate
+ * \par Others
+ *   None
+ */
+  double getGyroZ(void) const;
+
+/**
+ * \par Function
  *   getAngle
  * \par Description
  *   Get the angle value of setting axis.
