@@ -37,6 +37,7 @@
 #define MeAuriga_H
 
 #include <Arduino.h>
+#include <Wire.h>
 #include "MeConfig.h"
 
 // Supported Modules drive needs to be added here
