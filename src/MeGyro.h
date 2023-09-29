@@ -323,6 +323,24 @@ public:
  */
   double getAngle(uint8_t index) const;
 
+/**
+ * \par Function
+ *   resetData
+ * \par Description
+ *   Reset the angle value of setting axis.
+ * \param[in]
+ *  None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ * \author
+ *   Nicolas Bourré
+ */  
+  void resetData(void);
+
 private:
   volatile uint8_t  _AD0;
   volatile uint8_t  _INT;
