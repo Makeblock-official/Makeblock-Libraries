@@ -63,4 +63,7 @@ If you have a discussion about licensing issues, please contact me (myan@makeblo
 |Vincent He  |     2019/09/02  |   3.2.7      |    1.fix the problem that the electronic compass Mecompass is hung on the Orion mainboard 7 or 8 ports and communication will be hung dead. 2.fix the problem that the function getPointFast() in MeHumitureSensor.cpp does not normally output the value. 3.fix the problem that compile smartservo_test.ino firmware error report using the arduino1.6.5 environment with mBlock V3.4.12. 4.remove MeSuperVariable.cpp/MeSuperVariable.h. 5.fix the problem that ultrasonic module can only measure the maximum range of 375cm,and the maximum range of normal requirements is 400cm.|
 | Nicolas Bourré |  2023/10/16 | 3.28 | 1. Added missing `gyro.getGyroZ`. 2. Compliant semver.org version number. 3. Added `gyro.resetData` function. 4. Modified the gyro address if it is an Auriga board. |
 
-### Learn more from Makeblock official website: www.makeblock.com
+# Issues
+
+## Remove old MakeBlock library
+If you have problem with the compiler complaining of ambiguous reference to `MePort`, you may have an old version of the MakeBlock library installed. You can remove it by uninstalling the official Makeblock library via the library manager.
