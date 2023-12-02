@@ -50,10 +50,16 @@
  * Mark Yan        2015/11/02     1.0.2            Fix bug that IRsend and IRreceive can't work at the same time.
  * forfish         2015/11/09     1.0.3            Add description.
  * Mark Yan        2015/11/16     1.0.4            add data recovery when timeout.
+ * Nick b          2023/12/05     1.0.5            Added an ignore define to allow the IR to be disabled.
  * </pre>
  *
  */
  
+
+#define IGNORE_ME_IR
+ 
+#ifndef IGNORE_ME_IR
+
 #include "MeIR.h"
 
 // Provides ISR
@@ -702,3 +708,10 @@ boolean MeIR::keyPressed(unsigned char r)
   return irRead == r;
 }
 #endif // !defined(__AVR_ATmega32U4__)
+
+#else
+
+#warning "NOT AN ERROR, but IR has been disabled, remove #define IGNORE_ME_IR to enable IR"
+
+
+#endif // !defined(IGNORE_ME_IR)
