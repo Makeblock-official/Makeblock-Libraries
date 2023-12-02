@@ -1,0 +1,45 @@
+\doxysection{Me\+Touch\+Sensor.\+h}
+\hypertarget{_me_touch_sensor_8h_source}{}\label{_me_touch_sensor_8h_source}\index{src/MeTouchSensor.h@{src/MeTouchSensor.h}}
+\mbox{\hyperlink{_me_touch_sensor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifndef\ MeTouchSensor\_H}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ MeTouchSensor\_H}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ME\_PORT\_DEFINED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_touch_sensor}{MeTouchSensor}}}
+\DoxyCodeLine{00059\ \#else\ \textcolor{comment}{/*\ !ME\_PORT\_DEFINED\ */}}
+\DoxyCodeLine{00060\ class\ \mbox{\hyperlink{class_me_touch_sensor}{MeTouchSensor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00071\ \ \ \mbox{\hyperlink{class_me_touch_sensor_a09705164b54337f2f36da27c62854599}{MeTouchSensor}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00072\ \ \ }
+\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{class_me_touch_sensor_a09705164b54337f2f36da27c62854599}{MeTouchSensor}}(uint8\_t\ port);}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00088\ \ \ MeTouchSensor(uint8\_t\ TogPin,\ uint8\_t\ OutputPin);}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00106\ \ \ void\ setpin(uint8\_t\ TogPin,\ uint8\_t\ OutputPin);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00120\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_touch_sensor_a859d24b3f023a2eaf4b2a87ca5c11768}{touched}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00136\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_touch_sensor_a1518fb0549ecf88e4d7060026563ecc6}{SetTogMode}}(uint8\_t\ TogMode);}
+\DoxyCodeLine{00137\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00138\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_TogPin;}
+\DoxyCodeLine{00139\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_OutputPin;}
+\DoxyCodeLine{00140\ \};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00143\ }
+
+\end{DoxyCode}

@@ -1,0 +1,9 @@
+<map id="_USB_CONFIG_DEscriptOR_LONG" name="_USB_CONFIG_DEscriptOR_LONG">
+<area shape="rect" id="Node000001" title=" " alt="" coords="193,96,424,123"/>
+<area shape="rect" id="Node000002" href="$struct___u_s_b___c_o_n_f_i_g___d_escript_o_r.html" title=" " alt="" coords="5,5,193,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,36,279,93,277,98,142,41"/>
+<area shape="rect" id="Node000003" href="$struct___u_s_b___i_n_t_e_r_f___d_escript_o_r.html" title=" " alt="" coords="217,5,400,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="311,48,311,95,306,95,306,48"/>
+<area shape="rect" id="Node000004" href="$struct___u_s_b___e_n_d_p_o_i_n_t___d_escript_o_r.html" title=" " alt="" coords="424,5,627,32"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="481,41,340,98,338,93,479,36"/>
+</map>

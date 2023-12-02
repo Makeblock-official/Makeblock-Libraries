@@ -1,0 +1,294 @@
+\doxysection{Me\+Shutter Class Reference}
+\hypertarget{class_me_shutter}{}\label{class_me_shutter}\index{MeShutter@{MeShutter}}
+
+
+Driver for Me Shutter device.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Shutter.\+h$>$}
+
+
+
+Inheritance diagram for Me\+Shutter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=141pt]{class_me_shutter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+Shutter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=141pt]{class_me_shutter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_shutter_a19cb9b364ab8e4309620b3f11dd3323d}{Me\+Shutter}} (void)
+\item 
+\mbox{\hyperlink{class_me_shutter_a072f6dd9c71d200ec8879784744e0576}{Me\+Shutter}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_shutter_a2fc368db549be0ae724d60095512c53f}{setpin}} (uint8\+\_\+t Shot\+Pin, uint8\+\_\+t Focus\+Pin)
+\item 
+void \mbox{\hyperlink{class_me_shutter_a44766a55c3bd837d77de4af19ec844f7}{shot\+On}} (void)
+\item 
+void \mbox{\hyperlink{class_me_shutter_a600e6f23491519772a16044c93691852}{shot\+Off}} (void)
+\item 
+void \mbox{\hyperlink{class_me_shutter_a4427ea37c8313acd5643ec6f3859fd36}{focus\+On}} (void)
+\item 
+void \mbox{\hyperlink{class_me_shutter_ad8a99473a3461e639eea31793ade7b4f}{focus\+Off}} (void)
+\item 
+void \mbox{\hyperlink{class_me_shutter_a1426ff39c1754dbfd32655c4b73f61ed}{set\+State}} (uint8\+\_\+t state)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me Shutter device. 
+
+Class\+: \doxylink{class_me_shutter}{Me\+Shutter} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_shutter}{Me\+Shutter}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_shutter_a19cb9b364ab8e4309620b3f11dd3323d}\label{class_me_shutter_a19cb9b364ab8e4309620b3f11dd3323d} 
+\index{MeShutter@{MeShutter}!MeShutter@{MeShutter}}
+\index{MeShutter@{MeShutter}!MeShutter@{MeShutter}}
+\doxysubsubsection{\texorpdfstring{MeShutter()}{MeShutter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Me\+Shutter\+::\+Me\+Shutter (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_shutter}{Me\+Shutter} to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_shutter_a072f6dd9c71d200ec8879784744e0576}\label{class_me_shutter_a072f6dd9c71d200ec8879784744e0576} 
+\index{MeShutter@{MeShutter}!MeShutter@{MeShutter}}
+\index{MeShutter@{MeShutter}!MeShutter@{MeShutter}}
+\doxysubsubsection{\texorpdfstring{MeShutter()}{MeShutter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Me\+Shutter\+::\+Me\+Shutter (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_shutter}{Me\+Shutter} to arduino port, and the shot and focus PIN will be set LOW 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_shutter_ad8a99473a3461e639eea31793ade7b4f}\label{class_me_shutter_ad8a99473a3461e639eea31793ade7b4f} 
+\index{MeShutter@{MeShutter}!focusOff@{focusOff}}
+\index{focusOff@{focusOff}!MeShutter@{MeShutter}}
+\doxysubsubsection{\texorpdfstring{focusOff()}{focusOff()}}
+{\footnotesize\ttfamily void Me\+Shutter\+::focus\+Off (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+focus\+Off 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set the focus PIN off 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_shutter_a4427ea37c8313acd5643ec6f3859fd36}\label{class_me_shutter_a4427ea37c8313acd5643ec6f3859fd36} 
+\index{MeShutter@{MeShutter}!focusOn@{focusOn}}
+\index{focusOn@{focusOn}!MeShutter@{MeShutter}}
+\doxysubsubsection{\texorpdfstring{focusOn()}{focusOn()}}
+{\footnotesize\ttfamily void Me\+Shutter\+::focus\+On (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+focus\+On 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set the focus PIN on 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_shutter_a2fc368db549be0ae724d60095512c53f}\label{class_me_shutter_a2fc368db549be0ae724d60095512c53f} 
+\index{MeShutter@{MeShutter}!setpin@{setpin}}
+\index{setpin@{setpin}!MeShutter@{MeShutter}}
+\doxysubsubsection{\texorpdfstring{setpin()}{setpin()}}
+{\footnotesize\ttfamily void Me\+Shutter\+::setpin (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Shot\+Pin,  }\item[{uint8\+\_\+t}]{Focus\+Pin }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+setpin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the shutter available PIN by its arduino port. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em Shot\+Pin} & -\/ arduino port for shot PIN(should digital pin) \\
+\hline
+\mbox{\texttt{ in}}  & {\em Focus\+Pin} & -\/ arduino port for focus PIN(should digital pin) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_shutter_a1426ff39c1754dbfd32655c4b73f61ed}\label{class_me_shutter_a1426ff39c1754dbfd32655c4b73f61ed} 
+\index{MeShutter@{MeShutter}!setState@{setState}}
+\index{setState@{setState}!MeShutter@{MeShutter}}
+\doxysubsubsection{\texorpdfstring{setState()}{setState()}}
+{\footnotesize\ttfamily void Me\+Shutter\+::set\+State (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{state }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+focus\+Off 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set shutter device\textquotesingle{}s work state. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em state} & -\/ 0\+:shot\+Off~\newline
+ 1\+:shot\+On~\newline
+ 2\+:focus\+Off~\newline
+ 3\+:focus\+On~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_shutter_a600e6f23491519772a16044c93691852}\label{class_me_shutter_a600e6f23491519772a16044c93691852} 
+\index{MeShutter@{MeShutter}!shotOff@{shotOff}}
+\index{shotOff@{shotOff}!MeShutter@{MeShutter}}
+\doxysubsubsection{\texorpdfstring{shotOff()}{shotOff()}}
+{\footnotesize\ttfamily void Me\+Shutter\+::shot\+Off (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+shot\+Off 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set the shot PIN off 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_shutter_a44766a55c3bd837d77de4af19ec844f7}\label{class_me_shutter_a44766a55c3bd837d77de4af19ec844f7} 
+\index{MeShutter@{MeShutter}!shotOn@{shotOn}}
+\index{shotOn@{shotOn}!MeShutter@{MeShutter}}
+\doxysubsubsection{\texorpdfstring{shotOn()}{shotOn()}}
+{\footnotesize\ttfamily void Me\+Shutter\+::shot\+On (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+shot\+On 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set the shot PIN on 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_shutter_8h}{Me\+Shutter.\+h}}\item 
+src/\mbox{\hyperlink{_me_shutter_8cpp}{Me\+Shutter.\+cpp}}\end{DoxyCompactItemize}

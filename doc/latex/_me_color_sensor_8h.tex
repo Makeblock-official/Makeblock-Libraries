@@ -1,0 +1,225 @@
+\doxysection{src/\+Me\+Color\+Sensor.h File Reference}
+\hypertarget{_me_color_sensor_8h}{}\label{_me_color_sensor_8h}\index{src/MeColorSensor.h@{src/MeColorSensor.h}}
+
+
+Header for \doxylink{_me_color_sensor_8cpp}{Me\+Color\+Sensor.\+cpp} module.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+Color\+Sensor.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_color_sensor_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_color_sensor_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_me_color_sensor}{Me\+Color\+Sensor}}
+\begin{DoxyCompactList}\small\item\em Driver for \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_color_sensor_8h_a516d5566e4ac72ba5138db73c6e4da09}\label{_me_color_sensor_8h_a516d5566e4ac72ba5138db73c6e4da09} 
+\#define {\bfseries I2\+C\+\_\+\+ERROR}~(-\/1)
+\item 
+\Hypertarget{_me_color_sensor_8h_ae73af846ce01ab1b1b9045c86508d232}\label{_me_color_sensor_8h_ae73af846ce01ab1b1b9045c86508d232} 
+\#define {\bfseries COLORSENSOR\+\_\+\+DEFAULT\+\_\+\+ADDRESS}~(0x38)
+\item 
+\Hypertarget{_me_color_sensor_8h_a97322a858ce3489a9c7a2fd904ee2f3c}\label{_me_color_sensor_8h_a97322a858ce3489a9c7a2fd904ee2f3c} 
+\#define {\bfseries SYSTEM\+\_\+\+CONTROL}~(0\+X40)
+\item 
+\Hypertarget{_me_color_sensor_8h_ac5344205585d63d21b57e0b2e038e303}\label{_me_color_sensor_8h_ac5344205585d63d21b57e0b2e038e303} 
+\#define {\bfseries MODE\+\_\+\+CONTROL1}~(0\+X41)
+\item 
+\Hypertarget{_me_color_sensor_8h_a49b47f4d604fa0bd82c4294454b1f1a8}\label{_me_color_sensor_8h_a49b47f4d604fa0bd82c4294454b1f1a8} 
+\#define {\bfseries MODE\+\_\+\+CONTROL2}~(0\+X42)
+\item 
+\Hypertarget{_me_color_sensor_8h_adb97720c039f11cc7c7507273c94a0aa}\label{_me_color_sensor_8h_adb97720c039f11cc7c7507273c94a0aa} 
+\#define {\bfseries MODE\+\_\+\+CONTROL3}~(0\+X44)
+\item 
+\Hypertarget{_me_color_sensor_8h_a6a6be15b507da3f132cae1da0c5d4ee5}\label{_me_color_sensor_8h_a6a6be15b507da3f132cae1da0c5d4ee5} 
+\#define {\bfseries RED\+\_\+\+DATA\+\_\+\+LSBs}~(0\+X50)
+\item 
+\Hypertarget{_me_color_sensor_8h_a96d62a5d78a9dbf5fea3a0ebbbdb4cc1}\label{_me_color_sensor_8h_a96d62a5d78a9dbf5fea3a0ebbbdb4cc1} 
+\#define {\bfseries RED\+\_\+\+DATA\+\_\+\+MSBs}~(0\+X51)
+\item 
+\Hypertarget{_me_color_sensor_8h_ae5dfe7532419686086df28ba0881d5a2}\label{_me_color_sensor_8h_ae5dfe7532419686086df28ba0881d5a2} 
+\#define {\bfseries GREEN\+\_\+\+DATA\+\_\+\+LSBs}~(0\+X52)
+\item 
+\Hypertarget{_me_color_sensor_8h_adb2a504dfe9173dc238a4480215d323f}\label{_me_color_sensor_8h_adb2a504dfe9173dc238a4480215d323f} 
+\#define {\bfseries GREEN\+\_\+\+DATA\+\_\+\+MSBs}~(0\+X53)
+\item 
+\Hypertarget{_me_color_sensor_8h_a41ccab0cb04fcd53771046224eb799f9}\label{_me_color_sensor_8h_a41ccab0cb04fcd53771046224eb799f9} 
+\#define {\bfseries BLUE\+\_\+\+DATA\+\_\+\+LSBs}~(0\+X54)
+\item 
+\Hypertarget{_me_color_sensor_8h_aaa00311885385d2e001772eaefe29b73}\label{_me_color_sensor_8h_aaa00311885385d2e001772eaefe29b73} 
+\#define {\bfseries BLUE\+\_\+\+DATA\+\_\+\+MSBs}~(0\+X55)
+\item 
+\Hypertarget{_me_color_sensor_8h_a1abd4f930a2ae8f24153bd1e3e204c8b}\label{_me_color_sensor_8h_a1abd4f930a2ae8f24153bd1e3e204c8b} 
+\#define {\bfseries CLEAR\+\_\+\+DATA\+\_\+\+LSBs}~(0\+X56)
+\item 
+\Hypertarget{_me_color_sensor_8h_a147b9d47e0b7899ce5769fa2e978ffb4}\label{_me_color_sensor_8h_a147b9d47e0b7899ce5769fa2e978ffb4} 
+\#define {\bfseries CLEAR\+\_\+\+DATA\+\_\+\+MSBs}~(0\+X57)
+\item 
+\Hypertarget{_me_color_sensor_8h_a716246f4d21538bb19984a406e44400d}\label{_me_color_sensor_8h_a716246f4d21538bb19984a406e44400d} 
+\#define {\bfseries DINT\+\_\+\+DATA\+\_\+\+LSBs}~(0\+X58)
+\item 
+\Hypertarget{_me_color_sensor_8h_a6bb3851b402aea0c662037cf4afb316c}\label{_me_color_sensor_8h_a6bb3851b402aea0c662037cf4afb316c} 
+\#define {\bfseries DINT\+\_\+\+DATA\+\_\+\+MSBs}~(0\+X59)
+\item 
+\Hypertarget{_me_color_sensor_8h_ac950c0db046e2f86d15e7ae1f558b017}\label{_me_color_sensor_8h_ac950c0db046e2f86d15e7ae1f558b017} 
+\#define {\bfseries INTERRUPT}~(0\+X60)
+\item 
+\Hypertarget{_me_color_sensor_8h_a6d1ac74e17a4f8ae30057bca23a5d21c}\label{_me_color_sensor_8h_a6d1ac74e17a4f8ae30057bca23a5d21c} 
+\#define {\bfseries PERSISTENCE}~(0\+X61)
+\item 
+\Hypertarget{_me_color_sensor_8h_ad0a6ee08e85ac341fbc8d8f267d80e1a}\label{_me_color_sensor_8h_ad0a6ee08e85ac341fbc8d8f267d80e1a} 
+\#define {\bfseries TH\+\_\+\+LSBs}~(0\+X62)
+\item 
+\Hypertarget{_me_color_sensor_8h_a06db74b853353c89c350c4598e79780c}\label{_me_color_sensor_8h_a06db74b853353c89c350c4598e79780c} 
+\#define {\bfseries TH\+\_\+\+MSBs}~(0\+X63)
+\item 
+\Hypertarget{_me_color_sensor_8h_a4d17517a380a5de5fcece0d4761c1771}\label{_me_color_sensor_8h_a4d17517a380a5de5fcece0d4761c1771} 
+\#define {\bfseries TL\+\_\+\+LSBs}~(0\+X64)
+\item 
+\Hypertarget{_me_color_sensor_8h_a813b97abc0997fe1d964a41b04231cba}\label{_me_color_sensor_8h_a813b97abc0997fe1d964a41b04231cba} 
+\#define {\bfseries TL\+\_\+\+MSBs}~(0\+X65)
+\item 
+\Hypertarget{_me_color_sensor_8h_ad6d06519161544439a58bb8f59fc3094}\label{_me_color_sensor_8h_ad6d06519161544439a58bb8f59fc3094} 
+\#define {\bfseries MANUFACTURER\+\_\+\+ID}~(0\+X92)
+\item 
+\Hypertarget{_me_color_sensor_8h_ab0aa3e54cd2934b67b9882957456c391}\label{_me_color_sensor_8h_ab0aa3e54cd2934b67b9882957456c391} 
+\#define {\bfseries CHIP\+\_\+\+ID}~(0\+XE0)
+\item 
+\Hypertarget{_me_color_sensor_8h_a7a76670ff212ef11fb7daf1c9fd5836a}\label{_me_color_sensor_8h_a7a76670ff212ef11fb7daf1c9fd5836a} 
+\#define {\bfseries SW\+\_\+\+RESET}~(1 $<$$<$ 7)
+\item 
+\Hypertarget{_me_color_sensor_8h_abb26c717fdebd23bfc872be429bb7a45}\label{_me_color_sensor_8h_abb26c717fdebd23bfc872be429bb7a45} 
+\#define {\bfseries INT\+\_\+\+RESET}~(1 $<$$<$ 6)
+\item 
+\Hypertarget{_me_color_sensor_8h_a149b003814ab861c573784baffcc8230}\label{_me_color_sensor_8h_a149b003814ab861c573784baffcc8230} 
+\#define {\bfseries MEASURE\+\_\+160\+MS}~(0x00)
+\item 
+\Hypertarget{_me_color_sensor_8h_ae718c7e9d57c74d868c6884e27b44410}\label{_me_color_sensor_8h_ae718c7e9d57c74d868c6884e27b44410} 
+\#define {\bfseries MEASURE\+\_\+320\+MS}~(0x01)
+\item 
+\Hypertarget{_me_color_sensor_8h_aebb4925acc9b50b630066cb5c0c68260}\label{_me_color_sensor_8h_aebb4925acc9b50b630066cb5c0c68260} 
+\#define {\bfseries MEASURE\+\_\+640\+MS}~(0x02)
+\item 
+\Hypertarget{_me_color_sensor_8h_ac50e448a2ea6132658d8e60c60d20285}\label{_me_color_sensor_8h_ac50e448a2ea6132658d8e60c60d20285} 
+\#define {\bfseries MEASURE\+\_\+1280\+MS}~(0x03)
+\item 
+\Hypertarget{_me_color_sensor_8h_a083df0ece98b8fb65083fdbab6418efa}\label{_me_color_sensor_8h_a083df0ece98b8fb65083fdbab6418efa} 
+\#define {\bfseries MEASURE\+\_\+2560\+MS}~(0x04)
+\item 
+\Hypertarget{_me_color_sensor_8h_adda5996873698e3b612b585b27b7fa35}\label{_me_color_sensor_8h_adda5996873698e3b612b585b27b7fa35} 
+\#define {\bfseries MEASUREMENT\+\_\+\+MAX}~(0x05)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_color_sensor_8h_a1156ac4ce12ff6c368f849908a2b3276}\label{_me_color_sensor_8h_a1156ac4ce12ff6c368f849908a2b3276} 
+enum {\bfseries COLORTYPES} \{ \newline
+{\bfseries WHITE} = 0
+, {\bfseries PINKE} = 1
+, {\bfseries RED} = 2
+, {\bfseries ORANGE} = 3
+, \newline
+{\bfseries YELLOW} = 4
+, {\bfseries GREEN} = 5
+, {\bfseries CYAN} = 6
+, {\bfseries BLUE} = 7
+, \newline
+{\bfseries PURPLE} = 8
+, {\bfseries BLACK} = 9
+, {\bfseries GOLD} = 10
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for \doxylink{_me_color_sensor_8cpp}{Me\+Color\+Sensor.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+3 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2017/01/17 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module, It supports \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} V1.\+0 device provided by Make\+Block.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_color_sensor_a1efe278e3a311adc4239a8ca9042447c}{Me\+Color\+Sensor\+::\+Sensor\+Init(void)}
+\item uint8\+\_\+t \doxylink{class_me_color_sensor_a1728909fc7199b95ad3e35734b3a16a6}{Me\+Color\+Sensor\+::\+Report\+Id(void)}
+\item void \doxylink{class_me_color_sensor_aa033b29d7464ebcbcf74e47794383e09}{Me\+Color\+Sensor\+::\+Color\+Data\+Read(void)}
+\item void \doxylink{class_me_color_sensor_a51c9c3cbcd5af42ec1f3fac7b4bf3818}{Me\+Color\+Sensor\+::\+Turn\+On\+Light(void)}
+\item void \doxylink{class_me_color_sensor_ab686f3e727861bc47ddbabb914f9c3a1}{Me\+Color\+Sensor\+::\+Turn\+Off\+Light(void)}
+\item uint16\+\_\+t \doxylink{class_me_color_sensor_aa5cf33bebe6d653a7164551629447287}{Me\+Color\+Sensor\+::\+Return\+Red\+Data(void)}
+\item uint16\+\_\+t \doxylink{class_me_color_sensor_a2ceb9fec73cf92a98421c3606a324320}{Me\+Color\+Sensor\+::\+Return\+Green\+Data(void)}
+\item uint16\+\_\+t \doxylink{class_me_color_sensor_a0a04f1d0592fb21febf7a7583fa9a9d9}{Me\+Color\+Sensor\+::\+Return\+Blue\+Data(void)}
+\item uint16\+\_\+t \doxylink{class_me_color_sensor_aea344bb117b012fb27ee6ed8ebf17c73}{Me\+Color\+Sensor\+::\+Return\+Color\+Data(void)}
+\item uint8\+\_\+t \doxylink{class_me_color_sensor_a37adb003fab4d09e2cc014c713e35e57}{Me\+Color\+Sensor\+::\+Color\+Identify(void)}
+\item long \doxylink{class_me_color_sensor_a403b066a178b7c438dab069bfed11dd7}{Me\+Color\+Sensor\+::\+Return\+Color\+Code(void)}
+\item uint16\+\_\+t Me\+Color\+Sensor\+::calculate\+Color\+Temperature(void)
+\item uint16\+\_\+t Me\+Color\+Sensor\+::calculate\+Lux(void)
+\item int8\+\_\+t \doxylink{class_me_color_sensor_aa4a1ce0523ec234b68387d0a38becab4}{Me\+Color\+Sensor\+::write\+Reg(int16\+\_\+t reg, uint8\+\_\+t data)}
+\item int8\+\_\+t \doxylink{class_me_color_sensor_aeb6c09291008af8b013e5462331e5c08}{Me\+Color\+Sensor\+::read\+Data(uint8\+\_\+t start, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint8\+\_\+t size)}
+\item int8\+\_\+t \doxylink{class_me_color_sensor_a9ba779e9fc9841177d80abf17cd4f973}{Me\+Color\+Sensor\+::write\+Data(uint8\+\_\+t start, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint8\+\_\+t size)}
+\item uint8\+\_\+t \doxylink{class_me_color_sensor_a96d8182a6239e536fb56792346371734}{Me\+Color\+Sensor\+::\+Returnresult(void)};
+\item uint8\+\_\+t \doxylink{class_me_color_sensor_af4713622f9fdb6487e9798b47a62e008}{Me\+Color\+Sensor\+::\+Return\+Grayscale(void)};
+\item uint16\+\_\+t \doxylink{class_me_color_sensor_ae0c377ebb860b67ebf01aae23722dc31}{Me\+Color\+Sensor\+::\+Return\+Colorhue(void)};
+\item uint8\+\_\+t \doxylink{class_me_color_sensor_a33fedc7e60aad74cf937389b82c1943e}{Me\+Color\+Sensor\+::\+MAX(uint8\+\_\+t r,uint8\+\_\+t g,uint8\+\_\+t b)};
+\item uint8\+\_\+t \doxylink{class_me_color_sensor_a7731131a09e0e0bc4121cd30353db745}{Me\+Color\+Sensor\+::\+MIN(uint8\+\_\+t r,uint8\+\_\+t g,uint8\+\_\+t b)};
+\item void \doxylink{class_me_color_sensor_a836878156e0d4b820b92769cd5df50f5}{Me\+Color\+Sensor\+::\+Turn\+Offmodule(void)};
+\item void \doxylink{class_me_color_sensor_a50a015a94ddab045cde3536a1f9bce44}{Me\+Color\+Sensor\+::\+Turn\+Onmodule(void)};
+\item uint8\+\_\+t \doxylink{class_me_color_sensor_a88ff70346c30ab33df2f02d964da6c17}{Me\+Color\+Sensor\+::\+Color\+Data\+Read\+Oneby\+One()};
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+ zzipeng         2017/01/17          1.0.0         complete the driver code.
+ zzipeng         2017/04/03          1.0.1         only detect six colors.
+ zzipeng         2017/04/10          1.0.2         only detect seven colors and add methods named \doxylink{class_me_color_sensor_a836878156e0d4b820b92769cd5df50f5}{MeColorSensor::TurnOffmodule(void)},\doxylink{class_me_color_sensor_a50a015a94ddab045cde3536a1f9bce44}{MeColorSensor::TurnOnmodule}.
+ zzipeng         2017/04/20          1.0.3         add methods \doxylink{class_me_color_sensor_a88ff70346c30ab33df2f02d964da6c17}{MeColorSensor::ColorDataReadOnebyOne()};
+ Lanweiting      2017/06/23          1.0.4         Canonical the code format.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

@@ -1,0 +1,235 @@
+\doxysection{Me\+Mega\+Pi\+Pro\+ESCMotor Class Reference}
+\hypertarget{class_me_mega_pi_pro_e_s_c_motor}{}\label{class_me_mega_pi_pro_e_s_c_motor}\index{MeMegaPiProESCMotor@{MeMegaPiProESCMotor}}
+
+
+Driver for Me Megapipro ESC motor device.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Mega\+Pi\+Pro\+ESCMotor.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_mega_pi_pro_e_s_c_motor_a5bac3025e305ce8cbfe0bb288e277ec2}{Me\+Mega\+Pi\+Pro\+ESCMotor}} (void)
+\item 
+\mbox{\hyperlink{class_me_mega_pi_pro_e_s_c_motor_a23bfa7d1caecb5801d98cc774fe108ae}{Me\+Mega\+Pi\+Pro\+ESCMotor}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_mega_pi_pro_e_s_c_motor_ad9e731bb9c8c3244b11c0d2014e64005}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_mega_pi_pro_e_s_c_motor_aed9f1a9466a577ec01330e3f1759f3f4}{setpin}} (uint8\+\_\+t pwm\+\_\+pin)
+\item 
+void \mbox{\hyperlink{class_me_mega_pi_pro_e_s_c_motor_a06d836fed26db76e706c02a9643b2329}{init}} (void)
+\item 
+void \mbox{\hyperlink{class_me_mega_pi_pro_e_s_c_motor_a7a247a91f39356e7e84200727f13abc1}{run}} (int16\+\_\+t speed)
+\item 
+void \mbox{\hyperlink{class_me_mega_pi_pro_e_s_c_motor_ad270cf24ae74e70c946094a0fe86f6ee}{stop}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me Megapipro ESC motor device. 
+
+Driver for Me Megapi Pro ESC motor device.
+
+Class\+: \doxylink{class_me_mega_pi_pro_e_s_c_motor}{Me\+Mega\+Pi\+Pro\+ESCMotor} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_mega_pi_pro_e_s_c_motor}{Me\+Mega\+Pi\+Pro\+ESCMotor}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2017, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_mega_pi_pro_e_s_c_motor_a5bac3025e305ce8cbfe0bb288e277ec2}\label{class_me_mega_pi_pro_e_s_c_motor_a5bac3025e305ce8cbfe0bb288e277ec2} 
+\index{MeMegaPiProESCMotor@{MeMegaPiProESCMotor}!MeMegaPiProESCMotor@{MeMegaPiProESCMotor}}
+\index{MeMegaPiProESCMotor@{MeMegaPiProESCMotor}!MeMegaPiProESCMotor@{MeMegaPiProESCMotor}}
+\doxysubsubsection{\texorpdfstring{MeMegaPiProESCMotor()}{MeMegaPiProESCMotor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Me\+Mega\+Pi\+Pro\+ESCMotor\+::\+Me\+Mega\+Pi\+Pro\+ESCMotor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the ESC motor to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_mega_pi_pro_e_s_c_motor_a23bfa7d1caecb5801d98cc774fe108ae}\label{class_me_mega_pi_pro_e_s_c_motor_a23bfa7d1caecb5801d98cc774fe108ae} 
+\index{MeMegaPiProESCMotor@{MeMegaPiProESCMotor}!MeMegaPiProESCMotor@{MeMegaPiProESCMotor}}
+\index{MeMegaPiProESCMotor@{MeMegaPiProESCMotor}!MeMegaPiProESCMotor@{MeMegaPiProESCMotor}}
+\doxysubsubsection{\texorpdfstring{MeMegaPiProESCMotor()}{MeMegaPiProESCMotor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Me\+Mega\+Pi\+Pro\+ESCMotor\+::\+Me\+Mega\+Pi\+Pro\+ESCMotor (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the ESC motor to arduino port 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ megapi dc port from PORT\+\_\+1 to PORT\+\_\+12\\
+\hline
+\end{DoxyParams}
+Alternate Constructor which can call your own function to map the ESC motor to arduino port 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ megapipro esc port from PORT\+\_\+1 to PORT\+\_\+12 \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_mega_pi_pro_e_s_c_motor_a06d836fed26db76e706c02a9643b2329}\label{class_me_mega_pi_pro_e_s_c_motor_a06d836fed26db76e706c02a9643b2329} 
+\index{MeMegaPiProESCMotor@{MeMegaPiProESCMotor}!init@{init}}
+\index{init@{init}!MeMegaPiProESCMotor@{MeMegaPiProESCMotor}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void Me\+Mega\+Pi\+Pro\+ESCMotor\+::init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+init 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+init ESC motor 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+init 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+init esc Motor 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_mega_pi_pro_e_s_c_motor_ad9e731bb9c8c3244b11c0d2014e64005}\label{class_me_mega_pi_pro_e_s_c_motor_ad9e731bb9c8c3244b11c0d2014e64005} 
+\index{MeMegaPiProESCMotor@{MeMegaPiProESCMotor}!reset@{reset}}
+\index{reset@{reset}!MeMegaPiProESCMotor@{MeMegaPiProESCMotor}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Me\+Mega\+Pi\+Pro\+ESCMotor\+::reset (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+setpin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the ESC motor available PIN by megapipro port. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ megapipro esc port from PORT\+\_\+1 to PORT\+\_\+12 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+reset 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the ESC motor available PIN by megapi port. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ megapipro esc port from PORT\+\_\+1 to PORT\+\_\+12 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_mega_pi_pro_e_s_c_motor_a7a247a91f39356e7e84200727f13abc1}\label{class_me_mega_pi_pro_e_s_c_motor_a7a247a91f39356e7e84200727f13abc1} 
+\index{MeMegaPiProESCMotor@{MeMegaPiProESCMotor}!run@{run}}
+\index{run@{run}!MeMegaPiProESCMotor@{MeMegaPiProESCMotor}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Me\+Mega\+Pi\+Pro\+ESCMotor\+::run (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{speed }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+run 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Control the motor forward or reverse 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em speed} & -\/ Speed value from 0 to 100 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_mega_pi_pro_e_s_c_motor_aed9f1a9466a577ec01330e3f1759f3f4}\label{class_me_mega_pi_pro_e_s_c_motor_aed9f1a9466a577ec01330e3f1759f3f4} 
+\index{MeMegaPiProESCMotor@{MeMegaPiProESCMotor}!setpin@{setpin}}
+\index{setpin@{setpin}!MeMegaPiProESCMotor@{MeMegaPiProESCMotor}}
+\doxysubsubsection{\texorpdfstring{setpin()}{setpin()}}
+{\footnotesize\ttfamily void Me\+Mega\+Pi\+Pro\+ESCMotor\+::setpin (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pwm\+\_\+pin }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+setpin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the ESC motor available PIN by its arduino port. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pwm\+\_\+pin} & -\/ arduino port for pwm input(should analog pin) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_mega_pi_pro_e_s_c_motor_ad270cf24ae74e70c946094a0fe86f6ee}\label{class_me_mega_pi_pro_e_s_c_motor_ad270cf24ae74e70c946094a0fe86f6ee} 
+\index{MeMegaPiProESCMotor@{MeMegaPiProESCMotor}!stop@{stop}}
+\index{stop@{stop}!MeMegaPiProESCMotor@{MeMegaPiProESCMotor}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void Me\+Mega\+Pi\+Pro\+ESCMotor\+::stop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+stop 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Stop the rotation of the motor 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_mega_pi_pro_e_s_c_motor_8h}{Me\+Mega\+Pi\+Pro\+ESCMotor.\+h}}\item 
+src/\mbox{\hyperlink{_me_mega_pi_pro_e_s_c_motor_8cpp}{Me\+Mega\+Pi\+Pro\+ESCMotor.\+cpp}}\end{DoxyCompactItemize}

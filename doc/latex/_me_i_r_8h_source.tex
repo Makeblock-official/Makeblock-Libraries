@@ -1,0 +1,185 @@
+\doxysection{Me\+IR.\+h}
+\hypertarget{_me_i_r_8h_source}{}\label{_me_i_r_8h_source}\index{src/MeIR.h@{src/MeIR.h}}
+\mbox{\hyperlink{_me_i_r_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#ifndef\ MeIR\_h}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ MeIR\_h}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{/*\ Includes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#ifndef\ \_\_AVR\_ATmega32U4\_\_}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ MARK\ \ 0}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ SPACE\ 1}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ NEC\_BITS\ 32}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ USECPERTICK\ 50\ \ }\textcolor{comment}{//\ microseconds\ per\ clock\ interrupt\ tick}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ RAWBUF\ 100\ }\textcolor{comment}{//\ Length\ of\ raw\ duration\ buffer}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{ERROR\ =\ 0,\ SUCCESS\ =\ !ERROR\}\ ErrorStatus;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ NEC\_HDR\_MARK\ \ \ \ 9000}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ NEC\_HDR\_SPACE\ \ \ 4500}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ NEC\_BIT\_MARK\ \ \ \ 560}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ NEC\_ONE\_SPACE\ \ \ 1600}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ NEC\_ZERO\_SPACE\ \ 560}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ NEC\_RPT\_SPACE\ \ \ 2250}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ NEC\_RPT\_PERIOD\ \ 110000}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ \#define\ TOLERANCE\ 25\ \ //\ percent\ tolerance\ in\ measurements}}
+\DoxyCodeLine{00090\ \textcolor{comment}{//\ \#define\ LTOL\ (1.0\ -\/\ TOLERANCE/100.)\ }}
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ \#define\ UTOL\ (1.0\ +\ TOLERANCE/100.)\ }}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ \_GAP\ 5000\ }\textcolor{comment}{//\ Minimum\ map\ between\ transmissions}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ \#define\ GAP\_TICKS\ 5000//(\_GAP/USECPERTICK)}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ \#define\ TICKS\_LOW(us)\ (int)\ (((us)*LTOL/USECPERTICK))}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ \#define\ TICKS\_HIGH(us)\ (int)\ (((us)*UTOL/USECPERTICK\ +\ 1))}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ receiver\ states}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ STATE\_IDLE\ \ \ \ \ 2}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ STATE\_MARK\ \ \ \ \ 3}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ STATE\_SPACE\ \ \ \ 4}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ STATE\_STOP\ \ \ \ \ 5}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{//\ Values\ for\ decode\_type}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ NEC\ 1}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ SONY\ 2}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ RC5\ 3}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ RC6\ 4}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ DISH\ 5}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ SHARP\ 6}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ PANASONIC\ 7}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ JVC\ 8}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ SANYO\ 9}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ MITSUBISHI\ 10}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ SAMSUNG\ 11}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ LG\ 12}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ UNKNOWN\ -\/1}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ TOPBIT\ 0x80000000}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#ifdef\ F\_CPU}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ SYSCLOCK\ F\_CPU\ \ \ \ \ }\textcolor{comment}{//\ main\ Arduino\ clock}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ SYSCLOCK\ 16000000\ \ }\textcolor{comment}{//\ main\ Arduino\ clock}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ \_GAP\ 5000\ }\textcolor{comment}{//\ Minimum\ map\ between\ transmissions}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ GAP\_TICKS\ (\_GAP/USECPERTICK)}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#define\ TIMER\_DISABLE\_INTR\ \ \ (TIMSK2\ =\ 0)}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ TIMER\_ENABLE\_PWM\ \ \ \ \ (TCCR2A\ |=\ \_BV(COM2B1))}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ TIMER\_DISABLE\_PWM\ \ \ \ (TCCR2A\ \&=\ \string~(\_BV(COM2B1)))}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ TIMER\_ENABLE\_INTR\ \ \ \ (TIMSK2\ =\ \_BV(OCIE2A))}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ TIMER\_DISABLE\_INTR\ \ \ (TIMSK2\ =\ 0)}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ TIMER\_INTR\_NAME\ \ \ \ \ \ TIMER2\_COMPA\_vect}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#define\ TIMER\_CONFIG\_KHZ(val)\ (\{\ \(\backslash\)}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\ \ const\ uint8\_t\ pwmval\ =\ F\_CPU\ /\ 2000\ /\ (val);\ \(\backslash\)}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\ \ TCCR2A\ =\ \_BV(WGM20);\ \(\backslash\)}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ TCCR2B\ =\ \_BV(WGM22)\ |\ \_BV(CS20);\ \(\backslash\)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ OCR2A\ =\ pwmval;\ \(\backslash\)}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ OCR2B\ =\ pwmval\ /\ 3;\ \(\backslash\)}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\})}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#define\ TIMER\_COUNT\_TOP\ \ \ \ \ \ (SYSCLOCK\ *\ USECPERTICK\ /\ 1000000)}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#if\ (TIMER\_COUNT\_TOP\ <\ 256)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#define\ TIMER\_CONFIG\_NORMAL()\ (\{\ \(\backslash\)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\ \ TCCR2A\ =\ \_BV(WGM21);\ \(\backslash\)}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\ \ TCCR2B\ =\ \_BV(CS20);\ \(\backslash\)}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\ \ OCR2A\ =\ TIMER\_COUNT\_TOP;\ \(\backslash\)}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\ \ TCNT2\ =\ 0;\ \(\backslash\)}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\})}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#define\ TIMER\_CONFIG\_NORMAL()\ (\{\ \(\backslash\)}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\ \ TCCR2A\ =\ \_BV(WGM21);\ \(\backslash\)}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\ \ TCCR2B\ =\ \_BV(CS21);\ \(\backslash\)}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\ \ OCR2A\ =\ TIMER\_COUNT\_TOP\ /\ 8;\ \(\backslash\)}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\ \ TCNT2\ =\ 0;\ \(\backslash\)}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\})}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ information\ for\ the\ interrupt\ handler}}
+\DoxyCodeLine{00167\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00168\ \ \ uint8\_t\ recvpin;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ pin\ for\ IR\ data\ from\ detector}}
+\DoxyCodeLine{00169\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ rcvstate;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ state\ machine}}
+\DoxyCodeLine{00170\ \ \ \textcolor{keyword}{volatile}\ uint32\_t\ lastTime;}
+\DoxyCodeLine{00171\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ timer;\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00172\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ rawbuf[RAWBUF];\ \textcolor{comment}{//\ raw\ data}}
+\DoxyCodeLine{00173\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ rawlen;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ counter\ of\ entries\ in\ rawbuf}}
+\DoxyCodeLine{00174\ \}\ }
+\DoxyCodeLine{00175\ \mbox{\hyperlink{structirparams__t}{irparams\_t}};}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{comment}{//\ main\ class\ for\ receiving\ IR}}
+\DoxyCodeLine{00183\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_i_r}{MeIR}}}
+\DoxyCodeLine{00184\ \{}
+\DoxyCodeLine{00185\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00192\ \ \ \mbox{\hyperlink{class_me_i_r_a9093e92f61e6fb20d5bc1e9f0d250e04}{MeIR}}();}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00208\ \ \ ErrorStatus\ \mbox{\hyperlink{class_me_i_r_a32e9dfb953176df04c4e2fb728a4a634}{decode}}();}
+\DoxyCodeLine{00209\ \ \ }
+\DoxyCodeLine{00224\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_i_r_aa307ef91b7d762ea970e54dba32a161c}{begin}}();}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00240\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_i_r_a7030203133352a4f6f8a3f1e99643858}{end}}();}
+\DoxyCodeLine{00241\ \ \ }
+\DoxyCodeLine{00256\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_i_r_aeca67335b28008603173082a00a53641}{loop}}();}
+\DoxyCodeLine{00257\ \ \ }
+\DoxyCodeLine{00272\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_i_r_a7b0f1947b326e956b7b6f7c06e95a3cc}{keyPressed}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ r);}
+\DoxyCodeLine{00273\ \ \ \textcolor{comment}{//\ void\ resume();}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ int8\_t\ decode\_type;\ \textcolor{comment}{//\ NEC,\ SONY,\ RC5,\ UNKNOWN}}
+\DoxyCodeLine{00276\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ value;\ \textcolor{comment}{//\ Decoded\ value}}
+\DoxyCodeLine{00277\ \ \ uint8\_t\ bits;\ \textcolor{comment}{//\ Number\ of\ bits\ in\ decoded\ value}}
+\DoxyCodeLine{00278\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ *rawbuf;\ \textcolor{comment}{//\ Raw\ intervals\ in\ .5\ us\ ticks}}
+\DoxyCodeLine{00279\ \ \ \textcolor{keywordtype}{int}\ rawlen;\ \textcolor{comment}{//\ Number\ of\ records\ in\ rawbuf.}}
+\DoxyCodeLine{00280\ \ \ }
+\DoxyCodeLine{00295\ \ \ String\ \mbox{\hyperlink{class_me_i_r_acb90c07d687f185d4ed36a57b41cf358}{getString}}();}
+\DoxyCodeLine{00296\ \ \ }
+\DoxyCodeLine{00311\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_me_i_r_ad28a726a055271ee450f49a1d9d56cca}{getCode}}();}
+\DoxyCodeLine{00312\ \ \ }
+\DoxyCodeLine{00327\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_i_r_ac16817f96bbdf3c065db67056b753b7e}{sendString}}(String\ s);}
+\DoxyCodeLine{00328\ \ \ }
+\DoxyCodeLine{00343\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_i_r_a3994b9b4bb24d8f69d1582a6289604ce}{sendString}}(\textcolor{keywordtype}{float}\ v);}
+\DoxyCodeLine{00344\ \ \ }
+\DoxyCodeLine{00361\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_i_r_abc9e6b20f70767186f9b9f849785bef7}{sendNEC}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ data,\ \textcolor{keywordtype}{int}\ nbits);}
+\DoxyCodeLine{00362\ \ \ }
+\DoxyCodeLine{00381\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_i_r_a1e24ad12d0d40449977f708748396438}{sendRaw}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ buf[],\ \textcolor{keywordtype}{int}\ len,\ uint8\_t\ hz);}
+\DoxyCodeLine{00382\ \ \ }
+\DoxyCodeLine{00397\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_i_r_a5ba678779cfbadc0de5836341f785fea}{enableIROut}}(uint8\_t\ khz);}
+\DoxyCodeLine{00398\ \ \ }
+\DoxyCodeLine{00413\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_i_r_ad53fd8d718609dab42c9937831306ee0}{enableIRIn}}();}
+\DoxyCodeLine{00414\ \ \ }
+\DoxyCodeLine{00429\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_i_r_a45a3d2442f3dc1ffbc7816655475ff82}{mark}}(uint16\_t\ us);}
+\DoxyCodeLine{00430\ \ \ }
+\DoxyCodeLine{00445\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_i_r_adeca6211b7bc6c3e0825087c3165abc0}{space}}(uint16\_t\ us);}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00448\ \ \ \textcolor{comment}{//\ These\ are\ called\ by\ decode}}
+\DoxyCodeLine{00463\ \ \ ErrorStatus\ decodeNEC();}
+\DoxyCodeLine{00464\ \ \ }
+\DoxyCodeLine{00465\ \ \ int16\_t\ irIndex;\ \ }
+\DoxyCodeLine{00466\ \ \ \textcolor{keywordtype}{char}\ irRead;}
+\DoxyCodeLine{00467\ \ \ \textcolor{keywordtype}{char}\ floatString[5];}
+\DoxyCodeLine{00468\ \ \ \textcolor{keywordtype}{boolean}\ irReady;}
+\DoxyCodeLine{00469\ \ \ \textcolor{keywordtype}{boolean}\ irPressed;}
+\DoxyCodeLine{00470\ \ \ String\ irBuffer;}
+\DoxyCodeLine{00471\ \ \ String\ Pre\_Str;}
+\DoxyCodeLine{00472\ \ \ \textcolor{keywordtype}{double}\ irDelayTime;}
+\DoxyCodeLine{00473\ \};}
+\DoxyCodeLine{00474\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !\_\_AVR\_ATmega32U4\_\_}}
+\DoxyCodeLine{00475\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00476\ }
+
+\end{DoxyCode}

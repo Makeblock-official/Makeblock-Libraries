@@ -1,0 +1,59 @@
+\doxysection{Me\+Temperature.\+h}
+\hypertarget{_me_temperature_8h_source}{}\label{_me_temperature_8h_source}\index{src/MeTemperature.h@{src/MeTemperature.h}}
+\mbox{\hyperlink{_me_temperature_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifndef\ MeTemperature\_H}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ MeTemperature\_H}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_one_wire_8h}{MeOneWire.h}}"{}}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ME\_PORT\_DEFINED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{/*\ DS18B20\ commands\ */}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ STARTCONVO\ \ \ \ \ \ \ 0x44\ \ \ \ }\textcolor{comment}{//\ Tells\ device\ to\ take\ a\ temperature\ reading\ and\ put\ it\ on\ the\ scratchpad}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ COPYSCRATCH\ \ \ \ \ \ 0x48\ \ \ \ }\textcolor{comment}{//\ Copy\ EEPROM}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ READSCRATCH\ \ \ \ \ \ 0xBE\ \ \ \ }\textcolor{comment}{//\ Read\ EEPROM}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ WRITESCRATCH\ \ \ \ \ 0x4E\ \ \ \ }\textcolor{comment}{//\ Write\ to\ EEPROM}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ RECALLSCRATCH\ \ \ \ 0xB8\ \ \ \ }\textcolor{comment}{//\ Reload\ from\ last\ known}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ READPOWERSUPPLY\ \ 0xB4\ \ \ \ }\textcolor{comment}{//\ Determine\ if\ device\ needs\ parasite\ power}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ ALARMSEARCH\ \ \ \ \ \ 0xEC\ \ \ \ }\textcolor{comment}{//\ Query\ bus\ for\ devices\ with\ an\ alarm\ condition}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_temperature}{MeTemperature}}}
+\DoxyCodeLine{00069\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00070\ class\ \mbox{\hyperlink{class_me_temperature}{MeTemperature}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00081\ \ \ \mbox{\hyperlink{class_me_temperature_a1583b8551a9f33b7abe02cbfe2761fa8}{MeTemperature}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00082\ \ \ }
+\DoxyCodeLine{00089\ \ \ \mbox{\hyperlink{class_me_temperature_a1583b8551a9f33b7abe02cbfe2761fa8}{MeTemperature}}(uint8\_t\ port);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00098\ \ \ \mbox{\hyperlink{class_me_temperature_a1583b8551a9f33b7abe02cbfe2761fa8}{MeTemperature}}(uint8\_t\ port,\ uint8\_t\ slot);}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00105\ \ \ MeTemperature(uint8\_t\ port);}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00122\ \ \ void\ reset(uint8\_t\ port);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00140\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_temperature_acd6c944b6634a5db1d01d9827e089076}{reset}}(uint8\_t\ port,\ uint8\_t\ slot);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00156\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_temperature_a4b6942b8b6c171c9b105d6e9f33dfcf8}{setpin}}(uint8\_t\ port);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_temperature_a8dbbe2ee926c8a957c433c99d508563b}{temperature}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00171\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00172\ \ \ \ \ \mbox{\hyperlink{class_me_one_wire}{MeOneWire}}\ \_ts;}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_DataPin;}
+\DoxyCodeLine{00174\ \};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00177\ }
+
+\end{DoxyCode}

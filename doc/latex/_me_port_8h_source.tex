@@ -1,0 +1,126 @@
+\doxysection{Me\+Port.\+h}
+\hypertarget{_me_port_8h_source}{}\label{_me_port_8h_source}\index{src/MePort.h@{src/MePort.h}}
+\mbox{\hyperlink{_me_port_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#ifndef\ MEPORT\_H\_}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ MEPORT\_H\_}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#include\ <avr/interrupt.h>}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ <avr/io.h>}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ <util/delay.h>}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ uint8\_t\ s1;}
+\DoxyCodeLine{00073\ \ \ uint8\_t\ s2;}
+\DoxyCodeLine{00074\ \}\ \mbox{\hyperlink{struct_me_port___sig}{MePort\_Sig}};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_me_port___sig}{MePort\_Sig}}\ mePort[17];\ \ \textcolor{comment}{//\ mePort[0]\ is\ nonsense}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ NC\ (0)\ \ }\textcolor{comment}{//use\ UART\ RX\ for\ NULL\ port}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ PORT\_1\ \ (0x01)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ PORT\_2\ \ (0x02)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ PORT\_3\ \ (0x03)}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ PORT\_4\ \ (0x04)}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ PORT\_5\ \ (0x05)}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ PORT\_6\ \ (0x06)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ PORT\_7\ \ (0x07)}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ PORT\_8\ \ (0x08)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ PORT\_9\ \ (0x09)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ PORT\_10\ (0x0a)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ M1\ \ \ \ \ \ (0x09)}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ M2\ \ \ \ \ \ (0x0a)}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ PORT\_11\ (0x0b)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ PORT\_12\ (0x0c)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ PORT\_13\ (0x0d)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ PORT\_14\ (0x0e)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ PORT\_15\ (0x0f)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ PORT\_16\ (0x10)}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#ifdef\ MeMbot\_H}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ PORT\_RGB\ \ \ \ \ \ \ \ \ \ \ (0x05)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ PORT\_LightSensor\ \ \ (0x06)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ SLOT1\ \ \ \ \ \ \ (1)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ SLOT2\ \ \ \ \ \ \ (2)}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ SLOT3\ \ \ \ \ \ \ (3)}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ SLOT4\ \ \ \ \ \ \ (4)}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ SLOT\_1\ \ SLOT1}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ SLOT\_2\ \ SLOT2}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ SLOT\_3\ \ SLOT3}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ SLOT\_4\ \ SLOT4}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#ifndef\ FALSE}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ FALSE\ \ \ (0)}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#ifndef\ TRUE}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ TRUE\ \ \ \ (1)}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00128\ \{}
+\DoxyCodeLine{00129\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00135\ \ \ \mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{MePort}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00143\ \ \ \mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{MePort}}(uint8\_t\ port);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00153\ \ \ \mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{MePort}}(uint8\_t\ port,\ uint8\_t\ slot);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00167\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{getPort}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00181\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{getSlot}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00197\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{dRead1}}(uint8\_t\ mode\ =\ INPUT);}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00213\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{dRead2}}(uint8\_t\ mode\ =\ INPUT);}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00228\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dpRead1}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00243\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dpRead2}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00259\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{dWrite1}}(\textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00275\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{dWrite2}}(\textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00289\ \ \ int16\_t\ \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{aRead1}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00303\ \ \ int16\_t\ \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{aRead2}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00319\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{aWrite1}}(int16\_t\ value);}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00335\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{aWrite2}}(int16\_t\ value);}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00351\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}}(uint8\_t\ port);}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00369\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}}(uint8\_t\ port,\ uint8\_t\ slot);}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00383\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00397\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00412\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00430\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}}(uint8\_t\ port,\ uint8\_t\ slot);}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00438\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}};}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00444\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}};}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00451\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\_port}};}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00457\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\_slot}};}
+\DoxyCodeLine{00458\ \};}
+\DoxyCodeLine{00459\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MEPORT\_H\_}}
+
+\end{DoxyCode}

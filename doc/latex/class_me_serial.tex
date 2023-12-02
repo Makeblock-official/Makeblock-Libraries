@@ -1,0 +1,530 @@
+\doxysection{Me\+Serial Class Reference}
+\hypertarget{class_me_serial}{}\label{class_me_serial}\index{MeSerial@{MeSerial}}
+
+
+Driver for serial.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Serial.\+h$>$}
+
+
+
+Inheritance diagram for Me\+Serial\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_me_serial__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+Serial\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_me_serial__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_serial_aaa113d4dc7bf62acae7b7ca559c23245}{Me\+Serial}} (void)
+\item 
+\mbox{\hyperlink{class_me_serial_a63ac4943dae1b910fd627758ba0c20a2}{Me\+Serial}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_serial_a06d4cb2f572533e9b1414cc1e6d4929b}{Me\+Serial}} (uint8\+\_\+t receive\+Pin, uint8\+\_\+t transmit\+Pin, bool inverse\+\_\+logic=false)
+\item 
+void \mbox{\hyperlink{class_me_serial_a73dde79161f876956fd6d070f14510d3}{set\+Hardware}} (bool mode)
+\item 
+void \mbox{\hyperlink{class_me_serial_a2e491a6206475d8d254a785043e0de22}{begin}} (long baudrate)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_me_serial_ad28782e0bebe4255a8ba7995957176e6}{write}} (uint8\+\_\+t byte)
+\item 
+int \mbox{\hyperlink{class_me_serial_a00be49316c437fdb4615c4e40869ff60}{read}} ()
+\item 
+int \mbox{\hyperlink{class_me_serial_a4b784a1b24df5e06f208d697e9e1ed3f}{available}} ()
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_serial_a721bd751d68b01eeafd206163eab10a4}{poll}} (void)
+\item 
+void \mbox{\hyperlink{class_me_serial_abd68e3efb8adfcc71089dadbd4acd143}{end}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_serial_a5dd4784d18202db78fb8333afd97c031}{listen}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_serial_a4c4af893caafb362da7906ddabe16327}{is\+Listening}} (void)
+\item 
+void \mbox{\hyperlink{class_me_serial_ab4d91285ca3d044f73793137cc1ff3cd}{send\+String}} (char \texorpdfstring{$\ast$}{*}str)
+\item 
+void \mbox{\hyperlink{class_me_serial_a30bae57ed633a2b7c8a41ff0de0a6679}{printf}} (char \texorpdfstring{$\ast$}{*}fmt,...)
+\item 
+\Hypertarget{class_me_serial_a4c7e1f26f5d3924623118884ea20c6ce}\label{class_me_serial_a4c7e1f26f5d3924623118884ea20c6ce} 
+boolean {\bfseries data\+Line\+Available} (void)
+\item 
+\Hypertarget{class_me_serial_a767af17d635f36dcb778789702437408}\label{class_me_serial_a767af17d635f36dcb778789702437408} 
+String {\bfseries read\+Data\+Line} (void)
+\item 
+\Hypertarget{class_me_serial_a4705df076b60740e12f243f92e202f2b}\label{class_me_serial_a4705df076b60740e12f243f92e202f2b} 
+String {\bfseries concatenate\+With} (String \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}, String \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}})
+\item 
+\Hypertarget{class_me_serial_aef0218582bf304d3821843e4d16e797f}\label{class_me_serial_aef0218582bf304d3821843e4d16e797f} 
+char {\bfseries letter\+Of} (int i, String s)
+\item 
+\Hypertarget{class_me_serial_ac38af80a0ba4d01a79a5536ee4c215ea}\label{class_me_serial_ac38af80a0ba4d01a79a5536ee4c215ea} 
+int {\bfseries string\+Length} (String s)
+\item 
+\Hypertarget{class_me_serial_a3a0fa1e2175687622b4637749995f0c0}\label{class_me_serial_a3a0fa1e2175687622b4637749995f0c0} 
+boolean {\bfseries equal\+String} (String \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}, String \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}})
+\item 
+\Hypertarget{class_me_serial_a338a68094904a20b13fe076c76bdc08e}\label{class_me_serial_a338a68094904a20b13fe076c76bdc08e} 
+float {\bfseries get\+Value} (String key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_software_serial}{Software\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Software\+Serial} (uint8\+\_\+t receive\+Pin, uint8\+\_\+t transmit\+Pin, bool inverse\+\_\+logic=false)
+\item 
+void {\bfseries begin} (long speed)
+\item 
+bool {\bfseries listen} ()
+\item 
+void {\bfseries end} ()
+\item 
+bool {\bfseries is\+Listening} ()
+\item 
+bool {\bfseries stop\+Listening} ()
+\item 
+bool {\bfseries overflow} ()
+\item 
+int {\bfseries peek} ()
+\item 
+virtual void {\bfseries flush} ()
+\item 
+{\bfseries operator bool} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_me_serial_ab779f371aa425347912c4711ec629af6}\label{class_me_serial_ab779f371aa425347912c4711ec629af6} 
+bool {\bfseries \+\_\+hard}
+\item 
+\Hypertarget{class_me_serial_a9542fa42d2a0a69f24f09bde29893d62}\label{class_me_serial_a9542fa42d2a0a69f24f09bde29893d62} 
+bool {\bfseries \+\_\+polling}
+\item 
+\Hypertarget{class_me_serial_a4892bf90204d84b55e4021edd2111999}\label{class_me_serial_a4892bf90204d84b55e4021edd2111999} 
+bool {\bfseries \+\_\+scratch}
+\item 
+\Hypertarget{class_me_serial_a7b176000f427bfe05532a360786cbf42}\label{class_me_serial_a7b176000f427bfe05532a360786cbf42} 
+int16\+\_\+t {\bfseries \+\_\+bit\+Period}
+\item 
+\Hypertarget{class_me_serial_af946bb4223b3aa50b1e690065f78fc0a}\label{class_me_serial_af946bb4223b3aa50b1e690065f78fc0a} 
+int16\+\_\+t {\bfseries \+\_\+byte}
+\item 
+\Hypertarget{class_me_serial_a0876491c98fee44a122987d024258ab8}\label{class_me_serial_a0876491c98fee44a122987d024258ab8} 
+long {\bfseries \+\_\+last\+Time}
+\item 
+\Hypertarget{class_me_serial_a42728f31f0362e391608ecb332a36184}\label{class_me_serial_a42728f31f0362e391608ecb332a36184} 
+char {\bfseries buffer} \mbox{[}64\mbox{]}
+\item 
+\Hypertarget{class_me_serial_a43cfb22e8cf51868d899f8148c15df88}\label{class_me_serial_a43cfb22e8cf51868d899f8148c15df88} 
+String {\bfseries last\+Line}
+\item 
+\Hypertarget{class_me_serial_ac0d8f6e428c03cb2db1f7394f93546c9}\label{class_me_serial_ac0d8f6e428c03cb2db1f7394f93546c9} 
+int {\bfseries buffer\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_software_serial}{Software\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bfseries handle\+\_\+interrupt} () \+\_\+\+\_\+attribute\+\_\+\+\_\+((\+\_\+\+\_\+always\+\_\+inline\+\_\+\+\_\+))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for serial. 
+
+Class\+: \doxylink{class_me_serial}{Me\+Serial} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_serial}{Me\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_serial_aaa113d4dc7bf62acae7b7ca559c23245}\label{class_me_serial_aaa113d4dc7bf62acae7b7ca559c23245} 
+\index{MeSerial@{MeSerial}!MeSerial@{MeSerial}}
+\index{MeSerial@{MeSerial}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{MeSerial()}{MeSerial()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Me\+Serial\+::\+Me\+Serial (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the serial to arduino port, no pins are used or initialized here. hardware serial will be used by default. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_serial_a63ac4943dae1b910fd627758ba0c20a2}\label{class_me_serial_a63ac4943dae1b910fd627758ba0c20a2} 
+\index{MeSerial@{MeSerial}!MeSerial@{MeSerial}}
+\index{MeSerial@{MeSerial}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{MeSerial()}{MeSerial()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Me\+Serial\+::\+Me\+Serial (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the serial to arduino port, If the hardware serial was selected, we will used the hardware serial. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_serial_a06d4cb2f572533e9b1414cc1e6d4929b}\label{class_me_serial_a06d4cb2f572533e9b1414cc1e6d4929b} 
+\index{MeSerial@{MeSerial}!MeSerial@{MeSerial}}
+\index{MeSerial@{MeSerial}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{MeSerial()}{MeSerial()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Me\+Serial\+::\+Me\+Serial (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{receive\+Pin,  }\item[{uint8\+\_\+t}]{transmit\+Pin,  }\item[{bool}]{inverse\+\_\+logic = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the serial to arduino port, If the hardware serial was selected, we will used the hardware serial. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em receive\+Pin} & -\/ the rx pin of serial(arduino port) \\
+\hline
+\mbox{\texttt{ in}}  & {\em transmit\+Pin} & -\/ the tx pin of serial(arduino port) \\
+\hline
+\mbox{\texttt{ in}}  & {\em inverse\+\_\+logic} & -\/ Whether the Serial level need inv. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_serial_a4b784a1b24df5e06f208d697e9e1ed3f}\label{class_me_serial_a4b784a1b24df5e06f208d697e9e1ed3f} 
+\index{MeSerial@{MeSerial}!available@{available}}
+\index{available@{available}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{available()}{available()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Serial\+::available (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\begin{DoxyParagraph}{Function}
+available 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the number of bytes (characters) available for reading from a software serial port. This is data that\textquotesingle{}s already arrived and stored in the serial receive buffer. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The number of bytes available to read 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+Reimplemented from \mbox{\hyperlink{class_software_serial}{Software\+Serial}}.
+
+\Hypertarget{class_me_serial_a2e491a6206475d8d254a785043e0de22}\label{class_me_serial_a2e491a6206475d8d254a785043e0de22} 
+\index{MeSerial@{MeSerial}!begin@{begin}}
+\index{begin@{begin}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily void Me\+Serial\+::begin (\begin{DoxyParamCaption}\item[{long}]{baudrate }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+begin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Sets the speed (baud rate) for the serial communication. Supported baud rates are 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 31250, 38400, 57600, and 115200. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em baudrate} & -\/ he baud rate (long) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_serial_abd68e3efb8adfcc71089dadbd4acd143}\label{class_me_serial_abd68e3efb8adfcc71089dadbd4acd143} 
+\index{MeSerial@{MeSerial}!end@{end}}
+\index{end@{end}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily void Me\+Serial\+::end (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+end 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Stop listening and release the object 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_serial_a4c4af893caafb362da7906ddabe16327}\label{class_me_serial_a4c4af893caafb362da7906ddabe16327} 
+\index{MeSerial@{MeSerial}!isListening@{isListening}}
+\index{isListening@{isListening}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{isListening()}{isListening()}}
+{\footnotesize\ttfamily bool Me\+Serial\+::is\+Listening (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+is\+Listening 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Tests to see if requested software serial port is actively listening. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+Returns true if we were actually listening. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_serial_a5dd4784d18202db78fb8333afd97c031}\label{class_me_serial_a5dd4784d18202db78fb8333afd97c031} 
+\index{MeSerial@{MeSerial}!listen@{listen}}
+\index{listen@{listen}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{listen()}{listen()}}
+{\footnotesize\ttfamily bool Me\+Serial\+::listen (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+listen 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Enables the selected software serial port to listen, used for software serial. Only one software serial port can listen at a time; data that arrives for other ports will be discarded. Any data already received is discarded during the call to \doxylink{class_me_serial_a5dd4784d18202db78fb8333afd97c031}{listen()} (unless the given instance is already listening). 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+This function sets the current object as the "{}listening"{} one and returns true if it replaces another 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_serial_a721bd751d68b01eeafd206163eab10a4}\label{class_me_serial_a721bd751d68b01eeafd206163eab10a4} 
+\index{MeSerial@{MeSerial}!poll@{poll}}
+\index{poll@{poll}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{poll()}{poll()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Serial\+::poll (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+poll 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+If we used the serial as software serial port, and set the \+\_\+polling mask true. we beed use this function to read the serial data. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The character read, or -\/1 if none is available 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_serial_a30bae57ed633a2b7c8a41ff0de0a6679}\label{class_me_serial_a30bae57ed633a2b7c8a41ff0de0a6679} 
+\index{MeSerial@{MeSerial}!printf@{printf}}
+\index{printf@{printf}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{printf()}{printf()}}
+{\footnotesize\ttfamily void Me\+Serial\+::printf (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+printf 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Printf format string (of which "{}printf"{} stands for "{}print formatted"{}) refers to a control parameter used by a class of functions in the string-\/processing libraries of various programming languages. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fmt} & -\/ A string that specifies the format of the output. The formatting string determines what additional arguments you need to provide. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_serial_a00be49316c437fdb4615c4e40869ff60}\label{class_me_serial_a00be49316c437fdb4615c4e40869ff60} 
+\index{MeSerial@{MeSerial}!read@{read}}
+\index{read@{read}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Serial\+::read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\begin{DoxyParagraph}{Function}
+read 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return a character that was received on the RX pin of the software serial port. Note that only one \doxylink{class_software_serial}{Software\+Serial} instance can receive incoming data at a time (select which one with the \doxylink{class_me_serial_a5dd4784d18202db78fb8333afd97c031}{listen()} function). 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The character read, or -\/1 if none is available 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+Reimplemented from \mbox{\hyperlink{class_software_serial}{Software\+Serial}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_me_voice_a8e03afa2722be68289d8e5d7963935e9}{Me\+Voice}}.
+
+\Hypertarget{class_me_serial_ab4d91285ca3d044f73793137cc1ff3cd}\label{class_me_serial_ab4d91285ca3d044f73793137cc1ff3cd} 
+\index{MeSerial@{MeSerial}!sendString@{sendString}}
+\index{sendString@{sendString}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{sendString()}{sendString()}}
+{\footnotesize\ttfamily void Me\+Serial\+::send\+String (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+send\+String 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Send a string as a series of bytes, used for \doxylink{class_me_serial_a30bae57ed633a2b7c8a41ff0de0a6679}{printf()}. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em str} & -\/ A string to send as a series of bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_serial_a73dde79161f876956fd6d070f14510d3}\label{class_me_serial_a73dde79161f876956fd6d070f14510d3} 
+\index{MeSerial@{MeSerial}!setHardware@{setHardware}}
+\index{setHardware@{setHardware}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{setHardware()}{setHardware()}}
+{\footnotesize\ttfamily void Me\+Serial\+::set\+Hardware (\begin{DoxyParamCaption}\item[{bool}]{mode }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Hardware 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+if need change the hardware and software serial, this function can be used. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mode} & -\/ if need use hardware serial this value should set to true, or set it false. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_serial_ad28782e0bebe4255a8ba7995957176e6}\label{class_me_serial_ad28782e0bebe4255a8ba7995957176e6} 
+\index{MeSerial@{MeSerial}!write@{write}}
+\index{write@{write}!MeSerial@{MeSerial}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily size\+\_\+t Me\+Serial\+::write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{byte }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\begin{DoxyParagraph}{Function}
+write 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Writes binary data to the serial port. This data is sent as a byte or series of bytes; 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em byte} & -\/ a value to send as a single byte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+it will return the number of bytes written, though reading that number is optional 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+Reimplemented from \mbox{\hyperlink{class_software_serial}{Software\+Serial}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_serial_8h}{Me\+Serial.\+h}}\item 
+src/\mbox{\hyperlink{_me_serial_8cpp}{Me\+Serial.\+cpp}}\end{DoxyCompactItemize}

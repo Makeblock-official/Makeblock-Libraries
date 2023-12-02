@@ -1,0 +1,140 @@
+\doxysection{src/\+Me\+RGBLed.cpp File Reference}
+\hypertarget{_me_r_g_b_led_8cpp}{}\label{_me_r_g_b_led_8cpp}\index{src/MeRGBLed.cpp@{src/MeRGBLed.cpp}}
+
+
+Driver for W2812 full-\/color LED lights.  
+
+
+{\ttfamily \#include "{}Me\+RGBLed.\+h"{}}\newline
+Include dependency graph for Me\+RGBLed.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_r_g_b_led_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_a499eb829fa8335b41171cb8d2086a4f1}\label{_me_r_g_b_led_8cpp_a499eb829fa8335b41171cb8d2086a4f1} 
+\#define {\bfseries w\+\_\+zeropulse}~(350)
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_a9bd9c35ce0f1aa812400bf2ac0f8ce0f}\label{_me_r_g_b_led_8cpp_a9bd9c35ce0f1aa812400bf2ac0f8ce0f} 
+\#define {\bfseries w\+\_\+onepulse}~(900)
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_a0ebb9c7ddf91c559a0e773d6622c74a1}\label{_me_r_g_b_led_8cpp_a0ebb9c7ddf91c559a0e773d6622c74a1} 
+\#define {\bfseries w\+\_\+totalperiod}~(1250)
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_af20eba0af4c1b15aefa464046143f034}\label{_me_r_g_b_led_8cpp_af20eba0af4c1b15aefa464046143f034} 
+\#define {\bfseries w\+\_\+fixedlow}~(3)
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_a8a099460b796ac2b7e76147c6f758a14}\label{_me_r_g_b_led_8cpp_a8a099460b796ac2b7e76147c6f758a14} 
+\#define {\bfseries w\+\_\+fixedhigh}~(6)
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_a5490c5f9163305e8f9a7501dbe07229c}\label{_me_r_g_b_led_8cpp_a5490c5f9163305e8f9a7501dbe07229c} 
+\#define {\bfseries w\+\_\+fixedtotal}~(10)
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_afb14eacbb2299b20dfa3bc2077364105}\label{_me_r_g_b_led_8cpp_afb14eacbb2299b20dfa3bc2077364105} 
+\#define {\bfseries w\+\_\+zerocycles}~( ( (F\+\_\+\+CPU / 1000) \texorpdfstring{$\ast$}{*} w\+\_\+zeropulse) / 1000000)
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_aff1eab374127b1be034e91ec47d60747}\label{_me_r_g_b_led_8cpp_aff1eab374127b1be034e91ec47d60747} 
+\#define {\bfseries w\+\_\+onecycles}~( ( (F\+\_\+\+CPU / 1000) \texorpdfstring{$\ast$}{*} w\+\_\+onepulse + 500000) / 1000000)
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_a137933b78ddd218d52345042fbd610cb}\label{_me_r_g_b_led_8cpp_a137933b78ddd218d52345042fbd610cb} 
+\#define {\bfseries w\+\_\+totalcycles}~( ( (F\+\_\+\+CPU / 1000) \texorpdfstring{$\ast$}{*} w\+\_\+totalperiod + 500000) / 1000000)
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_aab7c774e5d2496f420e70b067f5d2ae4}\label{_me_r_g_b_led_8cpp_aab7c774e5d2496f420e70b067f5d2ae4} 
+\#define {\bfseries w1}~(w\+\_\+zerocycles -\/ w\+\_\+fixedlow)
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_a4e2c02ff5e8c641967d763af0e76ac4b}\label{_me_r_g_b_led_8cpp_a4e2c02ff5e8c641967d763af0e76ac4b} 
+\#define {\bfseries w2}~(w\+\_\+onecycles -\/ w\+\_\+fixedhigh -\/ w1)
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_abeac6c0f86a7a600eca940f4921d2fc9}\label{_me_r_g_b_led_8cpp_abeac6c0f86a7a600eca940f4921d2fc9} 
+\#define {\bfseries w3}~(w\+\_\+totalcycles -\/ w\+\_\+fixedtotal -\/ w1 -\/ w2)
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_ac30fa3b0d4061d6c165ff4cc132dae77}\label{_me_r_g_b_led_8cpp_ac30fa3b0d4061d6c165ff4cc132dae77} 
+\#define {\bfseries w1\+\_\+nops}~0
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_a051b080f46f4d448ad15c9d90e071164}\label{_me_r_g_b_led_8cpp_a051b080f46f4d448ad15c9d90e071164} 
+\#define {\bfseries w\+\_\+lowtime}~( (w1\+\_\+nops + w\+\_\+fixedlow) \texorpdfstring{$\ast$}{*} 1000000) / (F\+\_\+\+CPU / 1000)
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_ac92cbe7ea3e50cf600803405e1be9cdf}\label{_me_r_g_b_led_8cpp_ac92cbe7ea3e50cf600803405e1be9cdf} 
+\#define {\bfseries w2\+\_\+nops}~0
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_acaa81c7920b7f846931a4a42f56bd5d7}\label{_me_r_g_b_led_8cpp_acaa81c7920b7f846931a4a42f56bd5d7} 
+\#define {\bfseries w3\+\_\+nops}~0
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_a30b25d9663fb770ec37b510236efe8c3}\label{_me_r_g_b_led_8cpp_a30b25d9663fb770ec37b510236efe8c3} 
+\#define {\bfseries w\+\_\+nop1}~"{}nop      \textbackslash{}n\textbackslash{}t"{}
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_a86304537221750510ec329ad47d0fe42}\label{_me_r_g_b_led_8cpp_a86304537221750510ec329ad47d0fe42} 
+\#define {\bfseries w\+\_\+nop2}~"{}rjmp .+0 \textbackslash{}n\textbackslash{}t"{}
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_a9b4d85cace31e767d9518e45792f758b}\label{_me_r_g_b_led_8cpp_a9b4d85cace31e767d9518e45792f758b} 
+\#define {\bfseries w\+\_\+nop4}~w\+\_\+nop2 w\+\_\+nop2
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_ae116e656e5797377e20ec301a4378a8f}\label{_me_r_g_b_led_8cpp_ae116e656e5797377e20ec301a4378a8f} 
+\#define {\bfseries w\+\_\+nop8}~w\+\_\+nop4 w\+\_\+nop4
+\item 
+\Hypertarget{_me_r_g_b_led_8cpp_a8652e9038d96a20508833c08695f78e3}\label{_me_r_g_b_led_8cpp_a8652e9038d96a20508833c08695f78e3} 
+\#define {\bfseries w\+\_\+nop16}~w\+\_\+nop8 w\+\_\+nop8
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for W2812 full-\/color LED lights. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+2 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2017/06/23 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2014-\/2018, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for WS2811/2812 full-\/color LED lights, It supports W2812B full-\/color LED lights device provided by the Make\+Block.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_r_g_b_led_a030e1f328cd19061104369868d5d1b1c}{Me\+RGBLed\+::reset(uint8\+\_\+t port)}
+\item void \doxylink{class_me_r_g_b_led_a08ac8295d2a090a51069f404fd375b29}{Me\+RGBLed\+::reset(uint8\+\_\+t port,uint8\+\_\+t slot)}
+\item void \doxylink{class_me_r_g_b_led_a8dfb56420333855fee707db26ede3b7e}{Me\+RGBLed\+::setpin(uint8\+\_\+t port)}
+\item uint8\+\_\+t \doxylink{class_me_r_g_b_led_a68784e19385f21058f9b4ffddba82b4d}{Me\+RGBLed\+::get\+Number()}
+\item \doxylink{structc_r_g_b}{c\+RGB} \doxylink{class_me_r_g_b_led_a2bf63b839691eed62c9a0eac076b290d}{Me\+RGBLed\+::get\+Color\+At(uint8\+\_\+t index)}
+\item void \doxylink{class_me_r_g_b_led_a25ae4338ba5b885746560fa277c065ba}{Me\+RGBLed\+::fill\+Pixels\+Bak(uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)}
+\item bool \doxylink{class_me_r_g_b_led_a31f967cfa254d0943b5712925dc381b8}{Me\+RGBLed\+::set\+Color\+At(uint8\+\_\+t index, uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)}
+\item bool \doxylink{class_me_r_g_b_led_ab7a91e9e4cfe48f1f38bd6ca25953834}{Me\+RGBLed\+::set\+Color(uint8\+\_\+t index, uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)}
+\item bool \doxylink{class_me_r_g_b_led_a921b6b54e13ffcb8b4d55a830d6cd28e}{Me\+RGBLed\+::set\+Color(uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)}
+\item bool \doxylink{class_me_r_g_b_led_a04c16004bb6035a004eb5b8042f4aa14}{Me\+RGBLed\+::set\+Color(uint8\+\_\+t index, long value)}
+\item void \doxylink{class_me_r_g_b_led_ac3d66e93ecd6dadc953d71e24728c26a}{Me\+RGBLed\+::show()}
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan         2015/09/01     1.0.0            Rebuild the old lib.
+Scott            2016/09/20     1.0.1            Add a delay.
+Mark Yan         2017/06/23     1.0.2            Add function fillPixelsBak.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

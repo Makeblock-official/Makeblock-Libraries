@@ -1,0 +1,202 @@
+\doxysection{Me\+Smart\+Servo.\+h}
+\hypertarget{_me_smart_servo_8h_source}{}\label{_me_smart_servo_8h_source}\index{src/MeSmartServo.h@{src/MeSmartServo.h}}
+\mbox{\hyperlink{_me_smart_servo_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#ifndef\ MeSmartServo\_H}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ MeSmartServo\_H}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_serial_8h}{MeSerial.h}}"{}}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ME\_PORT\_DEFINED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ ALL\_DEVICE\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0xff\ \ \ \ }\textcolor{comment}{//\ Broadcast\ command\ identifies}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ CUSTOM\_TYPE\ \ \ \ \ \ \ \ \ \ \ \ \ 0x00\ \ \ \ }\textcolor{comment}{//\ 0x00\ indicates\ no\ external\ module}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ CTL\_ASSIGN\_DEV\_ID\ \ \ \ \ \ \ 0x10\ }\textcolor{comment}{//\ Assignment\ device\ ID}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ CTL\_SYSTEM\_RESET\ \ \ \ \ \ \ \ 0x11\ }\textcolor{comment}{//\ reset\ from\ host}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ CTL\_READ\_DEV\_VERSION\ \ \ \ 0x12\ }\textcolor{comment}{//\ read\ the\ firmware\ version}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ CTL\_SET\_BAUD\_RATE\ \ \ \ \ \ \ 0x13\ }\textcolor{comment}{//\ Set\ the\ bandrate}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ CTL\_CMD\_TEST\ \ \ \ \ \ \ \ \ \ \ \ 0x14\ }\textcolor{comment}{//\ Just\ for\ test}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ CTL\_ERROR\_CODE\ \ \ \ \ \ \ \ \ \ 0x15\ }\textcolor{comment}{//\ error\ code}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ SMART\_SERVO\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x60}}
+\DoxyCodeLine{00088\ \ \ \textcolor{comment}{/*\ Secondary\ command\ */}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_PID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x10}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_ABSOLUTE\_POS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x11}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_RELATIVE\_POS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x12}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_CONTINUOUS\_ROTATION\ \ \ \ \ \ \ \ \ \ 0x13}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_MOTION\_COMPENSATION\ \ \ \ \ \ \ \ \ \ 0x14}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\ \ \#define\ CLR\_SERVO\_MOTION\_COMPENSATION\ \ \ \ \ \ \ \ \ \ 0x15}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_BREAK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x16}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_RGB\_LED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x17}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\ \ \#define\ SERVO\_SHARKE\_HAND\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x18}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_CMD\_MODE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x19}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\ \ \#define\ GET\_SERVO\_STATUS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x20}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\ \ \#define\ GET\_SERVO\_PID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x21}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\ \ \#define\ GET\_SERVO\_CUR\_POS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x22}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\ \ \#define\ GET\_SERVO\_SPEED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x23}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\ \ \#define\ GET\_SERVO\_MOTION\_COMPENSATION\ \ \ \ \ \ \ \ \ \ 0x24}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\ \ \#define\ GET\_SERVO\_TEMPERATURE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x25}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\ \ \#define\ GET\_SERVO\_ELECTRIC\_CURRENT\ \ \ \ \ \ \ \ \ \ \ \ \ 0x26}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\ \ \#define\ GET\_SERVO\_VOLTAGE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x27}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_CURRENT\_ANGLE\_ZERO\_DEGREES\ \ \ 0x30}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_ABSOLUTE\_ANGLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x31}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_RELATIVE\_ANGLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x32}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_ABSOLUTE\_ANGLE\_LONG\ \ \ \ \ \ \ \ \ \ 0x33}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_RELATIVE\_ANGLE\_LONG\ \ \ \ \ \ \ \ \ \ 0x34}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_PWM\_MOVE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x35}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\ \ \#define\ GET\_SERVO\_CUR\_ANGLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x36}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\ \ \#define\ SET\_SERVO\_INIT\_ANGLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x37}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\ \ \#define\ REPORT\_WHEN\_REACH\_THE\_SET\_POSITION\ \ \ \ \ 0x40}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ START\_SYSEX\ \ \ \ \ \ \ \ \ \ \ \ \ 0xF0\ }\textcolor{comment}{//\ start\ a\ MIDI\ Sysex\ message}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ END\_SYSEX\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0xF7\ }\textcolor{comment}{//\ end\ a\ MIDI\ Sysex\ message}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{comment}{/*\ report\ error\ code\ */}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ PROCESS\_SUC\ \ \ \ \ \ \ \ \ \ \ \ \ 0x0F}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ PROCESS\_BUSY\ \ \ \ \ \ \ \ \ \ \ \ 0x10}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ PROCESS\_ERROR\ \ \ \ \ \ \ \ \ \ \ 0x11}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ WRONG\_TYPE\_OF\_SERVICE\ \ \ 0x12}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ DEFAULT\_UART\_BUF\_SIZE\ \ \ \ \ \ 64}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{00131\ \ \ uint8\_t\ dev\_id;}
+\DoxyCodeLine{00132\ \ \ uint8\_t\ srv\_id;}
+\DoxyCodeLine{00133\ \ \ uint8\_t\ value[DEFAULT\_UART\_BUF\_SIZE\ -\/\ 2];}
+\DoxyCodeLine{00134\ \}\mbox{\hyperlink{structsysex__message__type}{sysex\_message\_type}};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{00137\ \ \ uint8\_t\ service\_id;}
+\DoxyCodeLine{00138\ \ \ void\ (*request\_fun)(\textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{00139\ \ \ void\ (*response\_fun)(\textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{00140\ \}\mbox{\hyperlink{struct_cmd__list__tab__type}{Cmd\_list\_tab\_type}};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{keyword}{union\ }\mbox{\hyperlink{unionsysex__message}{sysex\_message}}\{}
+\DoxyCodeLine{00143\ \ \ uint8\_t\ storedInputData[DEFAULT\_UART\_BUF\_SIZE];}
+\DoxyCodeLine{00144\ \ \ \mbox{\hyperlink{structsysex__message__type}{sysex\_message\_type}}\ val;}
+\DoxyCodeLine{00145\ \};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{union}\{}
+\DoxyCodeLine{00148\ \ \ uint8\_t\ byteVal[8];}
+\DoxyCodeLine{00149\ \ \ \textcolor{keywordtype}{double}\ doubleVal;}
+\DoxyCodeLine{00150\ \}val8byte;}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{union}\{}
+\DoxyCodeLine{00153\ \ \ uint8\_t\ byteVal[4];}
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordtype}{float}\ floatVal;}
+\DoxyCodeLine{00155\ \ \ \textcolor{keywordtype}{long}\ longVal;}
+\DoxyCodeLine{00156\ \}val4byte;}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{keyword}{union}\{}
+\DoxyCodeLine{00159\ \ \ uint8\_t\ byteVal[2];}
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordtype}{short}\ shortVal;}
+\DoxyCodeLine{00161\ \}val2byte;}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{union}\{}
+\DoxyCodeLine{00164\ \ \ uint8\_t\ byteVal[1];}
+\DoxyCodeLine{00165\ \ \ uint8\_t\ charVal;}
+\DoxyCodeLine{00166\ \}val1byte;}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00169\ \{}
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordtype}{long}\ angleValue;}
+\DoxyCodeLine{00171\ \ \ \textcolor{keywordtype}{float}\ servoSpeed;}
+\DoxyCodeLine{00172\ \ \ \textcolor{keywordtype}{float}\ voltage;}
+\DoxyCodeLine{00173\ \ \ \textcolor{keywordtype}{float}\ temperature;}
+\DoxyCodeLine{00174\ \ \ \textcolor{keywordtype}{float}\ current;}
+\DoxyCodeLine{00175\ \}\mbox{\hyperlink{structservo__device__type}{servo\_device\_type}};}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{typedef}\ void\ (*smartServoCb)(uint8\_t);\ }
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00185\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_smart_servo}{MeSmartServo}}}
+\DoxyCodeLine{00186\ \#else\ \textcolor{comment}{/*\ !ME\_PORT\_DEFINED\ */}}
+\DoxyCodeLine{00187\ class\ \mbox{\hyperlink{class_me_smart_servo}{MeSmartServo}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_serial}{MeSerial}}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !ME\_PORT\_DEFINED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00189\ \{}
+\DoxyCodeLine{00190\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00198\ \ \ \mbox{\hyperlink{class_me_smart_servo_a8423e173c2a4c24f442e0536054fbba0}{MeSmartServo}}();}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00206\ \ \ \mbox{\hyperlink{class_me_smart_servo_a8423e173c2a4c24f442e0536054fbba0}{MeSmartServo}}(uint8\_t\ port);}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00218\ \ \ MeSmartServo(uint8\_t\ receivePin,\ uint8\_t\ transmitPin,\ bool\ inverse\_logic);}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00237\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_smart_servo_a1aaad24e2abbcba8fe5be7d3d0d84e63}{readByte}}(uint8\_t\ *argv,int16\_t\ idx);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00257\ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{class_me_smart_servo_a86115d5159d786936b9f9fbde7669cb3}{readShort}}(uint8\_t\ *argv,int16\_t\ idx,\textcolor{keywordtype}{boolean}\ ignore\_high);}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00275\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_smart_servo_ae66a39120aa542835ed7baefe543170c}{readFloat}}(uint8\_t\ *argv,int16\_t\ idx);}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00293\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_smart_servo_add30c4b6013c26a2b92b37992a2a9feb}{readLong}}(uint8\_t\ *argv,\textcolor{keywordtype}{int}\ idx);}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00309\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_smart_servo_a412e124ef188a4937ea6d4648724ae96}{sendByte}}(uint8\_t\ val);}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00327\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_smart_servo_acf5bd557ed6e873d6832b765bc1ebdbc}{sendShort}}(int16\_t\ val,\textcolor{keywordtype}{boolean}\ ignore\_high);}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00343\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_smart_servo_a68d970c3f3634048cf85d31ee5475c86}{sendFloat}}(\textcolor{keywordtype}{float}\ val);}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00359\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_smart_servo_a640143e57999486cf952f8184ecdadbf}{sendLong}}(\textcolor{keywordtype}{long}\ val);}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00375\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_smart_servo_ad416c90e90bffb8e56caa8d79fe2d473}{assignDevIdRequest}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00397\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_smart_servo_aad84a194b3ed4f175d336bca6a596ec6}{moveTo}}(uint8\_t\ dev\_id,\textcolor{keywordtype}{long}\ angle\_value,\textcolor{keywordtype}{float}\ speed,smartServoCb\ callback\ =\ NULL);}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00419\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_smart_servo_accf6f85b682196fa8e3f36f2a2e5e508}{move}}(uint8\_t\ dev\_id,\textcolor{keywordtype}{long}\ angle\_value,\textcolor{keywordtype}{float}\ speed,smartServoCb\ callback\ =\ NULL);}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00435\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_smart_servo_ab86b0e9279876f94f28120aaa36c9429}{setZero}}(uint8\_t\ dev\_id);}
+\DoxyCodeLine{00436\ }
+\DoxyCodeLine{00453\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_smart_servo_ae7e58107842eb0c2d13596c99d0e8838}{setBreak}}(uint8\_t\ dev\_id,\ uint8\_t\ breakStatus);}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00475\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_smart_servo_a2ba807a9e25bf953e83f22e1f862edc9}{setRGBLed}}(uint8\_t\ dev\_id,\ uint8\_t\ r\_value,\ uint8\_t\ g\_value,\ uint8\_t\ b\_value);}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00491\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_smart_servo_aa3f5a58c87f7ae9c1bd46c4f9c3816c9}{handSharke}}(uint8\_t\ dev\_id);}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00509\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_smart_servo_a6117a6fdeb20a0da8310be42011f699e}{setPwmMove}}(uint8\_t\ dev\_id,\ int16\_t\ pwm\_value);}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00529\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_smart_servo_aedb7c0b2bba4e771865752acdae65b0d}{setInitAngle}}(uint8\_t\ dev\_id,uint8\_t\ =\ 0,int16\_t\ =\ 40);}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00545\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_smart_servo_adb14101ef4f0981f5ba3eabfd02775c7}{getAngleRequest}}(uint8\_t\ devId);}
+\DoxyCodeLine{00546\ }
+\DoxyCodeLine{00561\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_smart_servo_a058cffd56063ed54f5bcdd0995861c18}{getSpeedRequest}}(uint8\_t\ devId);}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00577\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_smart_servo_ae2f7bcf1cc941f324a0873129dd7b33b}{getVoltageRequest}}(uint8\_t\ devId);}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00593\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_smart_servo_ab65dd2a4b12d6604fac57595737cfeeb}{getTempRequest}}(uint8\_t\ devId);}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00609\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_smart_servo_adc467ef432434d9b279f794a453da64c}{getCurrentRequest}}(uint8\_t\ devId);}
+\DoxyCodeLine{00610\ }
+\DoxyCodeLine{00625\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_smart_servo_a5b6fa025da9977cba9212b64988acb2a}{assignDevIdResponse}}(\textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00641\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_smart_servo_ac003fe9876a2e1b6981326783718a12f}{errorCodeCheckResponse}}(\textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{00642\ }
+\DoxyCodeLine{00657\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_smart_servo_a9576044532f0ca58cf8d554e9f31cacf}{smartServoCmdResponse}}(\textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{00658\ }
+\DoxyCodeLine{00673\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_smart_servo_a3eb0b8f79dd50b4e55526d261b40d8a1}{processSysexMessage}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00674\ }
+\DoxyCodeLine{00689\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_smart_servo_a24f968f6117983c8c17bfbecc53793b6}{smartServoEventHandle}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00690\ }
+\DoxyCodeLine{00691\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00692\ \ \ \textcolor{keyword}{union\ }\mbox{\hyperlink{unionsysex__message}{sysex\_message}}\ sysex;}
+\DoxyCodeLine{00693\ \ \ \textcolor{keyword}{volatile}\ int16\_t\ sysexBytesRead;}
+\DoxyCodeLine{00694\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ servo\_num\_max;}
+\DoxyCodeLine{00695\ \ \ \textcolor{keyword}{volatile}\ uint16\_t\ resFlag;}
+\DoxyCodeLine{00696\ \ \ \textcolor{keyword}{volatile}\ \mbox{\hyperlink{structservo__device__type}{servo\_device\_type}}\ servo\_dev\_list[8];}
+\DoxyCodeLine{00697\ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{long}\ cmdTimeOutValue;}
+\DoxyCodeLine{00698\ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{boolean}\ parsingSysex;}
+\DoxyCodeLine{00699\ \ \ smartServoCb\ \_callback;}
+\DoxyCodeLine{00700\ \};}
+\DoxyCodeLine{00701\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

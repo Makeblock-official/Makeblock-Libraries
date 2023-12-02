@@ -1,0 +1,50 @@
+\doxysection{Me\+Line\+Follower.\+h}
+\hypertarget{_me_line_follower_8h_source}{}\label{_me_line_follower_8h_source}\index{src/MeLineFollower.h@{src/MeLineFollower.h}}
+\mbox{\hyperlink{_me_line_follower_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#ifndef\ MeLineFollower\_H}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ MeLineFollower\_H}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ S1\_IN\_S2\_IN\ \ \ (0x00)\ \ \ \ }\textcolor{comment}{//\ sensor1\ and\ sensor2\ are\ both\ inside\ of\ black\ line}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ S1\_IN\_S2\_OUT\ \ (0x01)\ \ \ \ }\textcolor{comment}{//\ sensor1\ is\ inside\ of\ black\ line\ and\ sensor2\ is\ outside\ of\ black\ line}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ S1\_OUT\_S2\_IN\ \ (0x02)\ \ \ \ }\textcolor{comment}{//\ sensor1\ is\ outside\ of\ black\ line\ and\ sensor2\ is\ inside\ of\ black\ line}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ S1\_OUT\_S2\_OUT\ (0x03)\ \ \ \ }\textcolor{comment}{//\ sensor1\ and\ sensor2\ are\ both\ outside\ of\ black\ line}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00065\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_line_follower}{MeLineFollower}}}
+\DoxyCodeLine{00066\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00067\ class\ \mbox{\hyperlink{class_me_line_follower}{MeLineFollower}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{class_me_line_follower_a0921a28658143998b3c9d794cbe44c9e}{MeLineFollower}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00085\ \ \ \mbox{\hyperlink{class_me_line_follower_a0921a28658143998b3c9d794cbe44c9e}{MeLineFollower}}(uint8\_t\ port);}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED\ }}
+\DoxyCodeLine{00095\ \ \ MeLineFollower(uint8\_t\ Sensor1,uint8\_t\ Sensor2);}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00113\ \ \ void\ setpin(uint8\_t\ Sensor1,uint8\_t\ Sensor2);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00130\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_line_follower_a88db0aaee6ffac54c106c2e8e9811f40}{readSensors}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00145\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_line_follower_aa0d1a6c71bde5d559db1dc82ba8960b7}{readSensor1}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_line_follower_a7cbd9125758887862416f2a4f65f58cd}{readSensor2}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00161\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00162\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_Sensor1;}
+\DoxyCodeLine{00163\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_Sensor2;}
+\DoxyCodeLine{00164\ \};}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

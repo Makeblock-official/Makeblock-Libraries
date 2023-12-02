@@ -1,0 +1,7 @@
+<map id="src/MeMegaPiProESCMotor.h" name="src/MeMegaPiProESCMotor.h">
+<area shape="rect" id="Node000001" title="Header for MeMegaPiProESCMotor.cpp module." alt="" coords="74,5,270,32"/>
+<area shape="rect" id="Node000002" href="$_me_mega_pi_pro_8h.html" title="Driver for MegaPiPro board." alt="" coords="5,80,142,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,44,92,82,89,77,141,39"/>
+<area shape="rect" id="Node000003" href="$_me_mega_pi_pro_e_s_c_motor_8cpp.html" title="Driver for Me Megapipro ESC motor device." alt="" coords="166,80,376,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="203,39,255,77,252,82,200,44"/>
+</map>

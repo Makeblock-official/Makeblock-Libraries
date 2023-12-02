@@ -1,0 +1,76 @@
+\doxysection{src/\+Me\+Gyro.cpp File Reference}
+\hypertarget{_me_gyro_8cpp}{}\label{_me_gyro_8cpp}\index{src/MeGyro.cpp@{src/MeGyro.cpp}}
+
+
+Driver for \doxylink{class_me_gyro}{Me\+Gyro} module.  
+
+
+{\ttfamily \#include "{}Me\+Gyro.\+h"{}}\newline
+Include dependency graph for Me\+Gyro.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_gyro_8cpp__incl}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+Driver for \doxylink{class_me_gyro}{Me\+Gyro} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+5 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2018/01/03 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for \doxylink{class_me_gyro}{Me\+Gyro} module, It supports \doxylink{class_me_gyro}{Me\+Gyro} V1.\+0 device provided by Make\+Block.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_gyro_ac183cec71c6d840b7c5d651d025e02ca}{Me\+Gyro\+::setpin(uint8\+\_\+t AD0, uint8\+\_\+t INT)}
+\item void \doxylink{class_me_gyro_ae12dbf32cc840e0d734dc813d1d3b8cc}{Me\+Gyro\+::begin(void)}
+\item void \doxylink{class_me_gyro_a85373ad8f4764f9ab9cd0d880fb8dd19}{Me\+Gyro\+::update(void)}
+\item void \doxylink{class_me_gyro_a01ab455745beef2583a64e83c88e54e0}{Me\+Gyro\+::fast\+\_\+update(void)}
+\item uint8\+\_\+t Me\+Gyro\+::get\+Dev\+Addr(void)
+\item double Me\+Gyro\+::get\+Angle\+X(void)
+\item double Me\+Gyro\+::get\+Angle\+Y(void)
+\item double Me\+Gyro\+::get\+Angle\+Z(void)
+\item double Me\+Gyro\+::get\+Gyro\+X(void)
+\item double Me\+Gyro\+::get\+Gyro\+Y(void)
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+ Lawrence         2015/09/02          1.0.0         rebuild the old lib.
+ Lawrence         2015/09/10          1.0.1         Added some comments and macros.
+ Mark Yan         2016/03/09          1.0.2         Add function fast\_update.
+ Mark Yan         2016/03/09          1.0.3         Add function getGyroX and getGyroY.
+ Leo lu           2017/04/27          1.0.4         fix issue of z-\/axis output double. getAngle function just return, do not call update anymore.
+ Mark Yan         2018/01/03          1.0.5         Adjust the initialization sequence to optimize the Z-\/axis drift.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

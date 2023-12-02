@@ -1,0 +1,60 @@
+\doxysection{Me\+Humiture\+Sensor.\+h}
+\hypertarget{_me_humiture_sensor_8h_source}{}\label{_me_humiture_sensor_8h_source}\index{src/MeHumitureSensor.h@{src/MeHumitureSensor.h}}
+\mbox{\hyperlink{_me_humiture_sensor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifndef\ MeHumitureSensor\_H}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ MeHumitureSensor\_H}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED\ \ }}
+\DoxyCodeLine{00065\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_humiture}{MeHumiture}}}
+\DoxyCodeLine{00066\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00067\ class\ \mbox{\hyperlink{class_me_humiture}{MeHumiture}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{class_me_humiture_a1795d111fb925d4dbbbe500d0698c724}{MeHumiture}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00079\ \ }
+\DoxyCodeLine{00086\ \ \ \mbox{\hyperlink{class_me_humiture_a1795d111fb925d4dbbbe500d0698c724}{MeHumiture}}(uint8\_t\ port);}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00102\ \ \ MeHumiture(uint8\_t\ port);}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00104\ \ \ }
+\DoxyCodeLine{00119\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_humiture_a3d96abbe15a836cfae534ec67f908f85}{setpin}}(uint8\_t\ port);}
+\DoxyCodeLine{00120\ \ \ }
+\DoxyCodeLine{00133\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_humiture_aa407c9adbdefaab8cf419d9748a11e56}{update}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00147\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_humiture_a8e2e8567ea52c7bea8148214636e5444}{getHumidity}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00161\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_humiture_a5811d17c07807b9617751adf382abf15}{getTemperature}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00178\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_humiture_a0aa1f08444d67c6bed1c3eb0f357afa7}{getValue}}(uint8\_t\ index);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00194\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_humiture_a2b70560a4598ec78832b13dfc63fdd07}{getFahrenheit}}(\textcolor{keywordtype}{void});\textcolor{comment}{//Celsius\ degrees\ to\ Fahrenheit}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00210\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_humiture_ae42e2c3fac7b1e53c0732d278de880c1}{getKelvin}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00228\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_humiture_af89ec5b9a23973e9256c8458c340f067}{getdewPoint}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00246\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_humiture_aad97cff43721852a7e2d72cd223d1d3f}{getPointFast}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00249\ \ \ uint8\_t\ Humidity;}
+\DoxyCodeLine{00250\ \ \ uint8\_t\ Temperature;}
+\DoxyCodeLine{00251\ \ \ uint8\_t\ \ \_DataPin;}
+\DoxyCodeLine{00252\ \};}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00255\ }
+
+\end{DoxyCode}

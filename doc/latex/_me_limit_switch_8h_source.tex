@@ -1,0 +1,46 @@
+\doxysection{Me\+Limit\+Switch.\+h}
+\hypertarget{_me_limit_switch_8h_source}{}\label{_me_limit_switch_8h_source}\index{src/MeLimitSwitch.h@{src/MeLimitSwitch.h}}
+\mbox{\hyperlink{_me_limit_switch_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{/*\ Define\ to\ prevent\ recursive\ inclusion\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifndef\ MeLimitSwitch\_H}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ MeLimitSwitch\_H}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{/*\ Includes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{/*\ Exported\ classes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_limit_switch}{MeLimitSwitch}}}
+\DoxyCodeLine{00061\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00062\ class\ \mbox{\hyperlink{class_me_limit_switch}{MeLimitSwitch}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00073\ \ \ \mbox{\hyperlink{class_me_limit_switch_a54eb87697a1b59d658cbf8862a7e070b}{MeLimitSwitch}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00081\ \ \ \mbox{\hyperlink{class_me_limit_switch_a54eb87697a1b59d658cbf8862a7e070b}{MeLimitSwitch}}(uint8\_t\ port);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{class_me_limit_switch_a54eb87697a1b59d658cbf8862a7e070b}{MeLimitSwitch}}(uint8\_t\ port,\ uint8\_t\ slot);}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00098\ \ \ MeLimitSwitch(uint8\_t\ switchPin);}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00114\ \ \ void\ setpin(uint8\_t\ switchPin);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_limit_switch_ab2be1e59342778f68be708ed45e40496}{touched}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00133\ \ \ uint8\_t\ \_switchPin;}
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

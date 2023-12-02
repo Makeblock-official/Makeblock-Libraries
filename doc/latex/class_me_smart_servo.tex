@@ -1,0 +1,1067 @@
+\doxysection{Me\+Smart\+Servo Class Reference}
+\hypertarget{class_me_smart_servo}{}\label{class_me_smart_servo}\index{MeSmartServo@{MeSmartServo}}
+
+
+Driver for Me Smart \doxylink{class_servo}{Servo} device.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Smart\+Servo.\+h$>$}
+
+
+
+Inheritance diagram for Me\+Smart\+Servo\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_me_smart_servo__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+Smart\+Servo\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_me_smart_servo__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_smart_servo_a8423e173c2a4c24f442e0536054fbba0}{Me\+Smart\+Servo}} ()
+\item 
+\mbox{\hyperlink{class_me_smart_servo_a488fddfc5eed85885f9652f820fb87e9}{Me\+Smart\+Servo}} (uint8\+\_\+t port)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_smart_servo_a1aaad24e2abbcba8fe5be7d3d0d84e63}{read\+Byte}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}argv, int16\+\_\+t idx)
+\item 
+short \mbox{\hyperlink{class_me_smart_servo_a86115d5159d786936b9f9fbde7669cb3}{read\+Short}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}argv, int16\+\_\+t idx, boolean ignore\+\_\+high)
+\item 
+float \mbox{\hyperlink{class_me_smart_servo_ae66a39120aa542835ed7baefe543170c}{read\+Float}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}argv, int16\+\_\+t idx)
+\item 
+long \mbox{\hyperlink{class_me_smart_servo_add30c4b6013c26a2b92b37992a2a9feb}{read\+Long}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}argv, int idx)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_smart_servo_a412e124ef188a4937ea6d4648724ae96}{send\+Byte}} (uint8\+\_\+t val)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_smart_servo_acf5bd557ed6e873d6832b765bc1ebdbc}{send\+Short}} (int16\+\_\+t val, boolean ignore\+\_\+high)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_smart_servo_a68d970c3f3634048cf85d31ee5475c86}{send\+Float}} (float val)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_smart_servo_a640143e57999486cf952f8184ecdadbf}{send\+Long}} (long val)
+\item 
+boolean \mbox{\hyperlink{class_me_smart_servo_ad416c90e90bffb8e56caa8d79fe2d473}{assign\+Dev\+Id\+Request}} (void)
+\item 
+boolean \mbox{\hyperlink{class_me_smart_servo_aad84a194b3ed4f175d336bca6a596ec6}{move\+To}} (uint8\+\_\+t dev\+\_\+id, long angle\+\_\+value, float speed, smart\+Servo\+Cb callback=NULL)
+\item 
+boolean \mbox{\hyperlink{class_me_smart_servo_accf6f85b682196fa8e3f36f2a2e5e508}{move}} (uint8\+\_\+t dev\+\_\+id, long angle\+\_\+value, float speed, smart\+Servo\+Cb callback=NULL)
+\item 
+boolean \mbox{\hyperlink{class_me_smart_servo_ab86b0e9279876f94f28120aaa36c9429}{set\+Zero}} (uint8\+\_\+t dev\+\_\+id)
+\item 
+boolean \mbox{\hyperlink{class_me_smart_servo_ae7e58107842eb0c2d13596c99d0e8838}{set\+Break}} (uint8\+\_\+t dev\+\_\+id, uint8\+\_\+t break\+Status)
+\item 
+boolean \mbox{\hyperlink{class_me_smart_servo_a2ba807a9e25bf953e83f22e1f862edc9}{set\+RGBLed}} (uint8\+\_\+t dev\+\_\+id, uint8\+\_\+t r\+\_\+value, uint8\+\_\+t g\+\_\+value, uint8\+\_\+t b\+\_\+value)
+\item 
+boolean \mbox{\hyperlink{class_me_smart_servo_aa3f5a58c87f7ae9c1bd46c4f9c3816c9}{hand\+Sharke}} (uint8\+\_\+t dev\+\_\+id)
+\item 
+boolean \mbox{\hyperlink{class_me_smart_servo_a6117a6fdeb20a0da8310be42011f699e}{set\+Pwm\+Move}} (uint8\+\_\+t dev\+\_\+id, int16\+\_\+t pwm\+\_\+value)
+\item 
+boolean \mbox{\hyperlink{class_me_smart_servo_aedb7c0b2bba4e771865752acdae65b0d}{set\+Init\+Angle}} (uint8\+\_\+t dev\+\_\+id, uint8\+\_\+t=0, int16\+\_\+t=40)
+\item 
+long \mbox{\hyperlink{class_me_smart_servo_adb14101ef4f0981f5ba3eabfd02775c7}{get\+Angle\+Request}} (uint8\+\_\+t dev\+Id)
+\item 
+float \mbox{\hyperlink{class_me_smart_servo_a058cffd56063ed54f5bcdd0995861c18}{get\+Speed\+Request}} (uint8\+\_\+t dev\+Id)
+\item 
+float \mbox{\hyperlink{class_me_smart_servo_ae2f7bcf1cc941f324a0873129dd7b33b}{get\+Voltage\+Request}} (uint8\+\_\+t dev\+Id)
+\item 
+float \mbox{\hyperlink{class_me_smart_servo_ab65dd2a4b12d6604fac57595737cfeeb}{get\+Temp\+Request}} (uint8\+\_\+t dev\+Id)
+\item 
+float \mbox{\hyperlink{class_me_smart_servo_adc467ef432434d9b279f794a453da64c}{get\+Current\+Request}} (uint8\+\_\+t dev\+Id)
+\item 
+void \mbox{\hyperlink{class_me_smart_servo_a5b6fa025da9977cba9212b64988acb2a}{assign\+Dev\+Id\+Response}} (void \texorpdfstring{$\ast$}{*}arg)
+\item 
+void \mbox{\hyperlink{class_me_smart_servo_ac003fe9876a2e1b6981326783718a12f}{error\+Code\+Check\+Response}} (void \texorpdfstring{$\ast$}{*}arg)
+\item 
+void \mbox{\hyperlink{class_me_smart_servo_a9576044532f0ca58cf8d554e9f31cacf}{smart\+Servo\+Cmd\+Response}} (void \texorpdfstring{$\ast$}{*}arg)
+\item 
+void \mbox{\hyperlink{class_me_smart_servo_a3eb0b8f79dd50b4e55526d261b40d8a1}{process\+Sysex\+Message}} (void)
+\item 
+void \mbox{\hyperlink{class_me_smart_servo_a24f968f6117983c8c17bfbecc53793b6}{smart\+Servo\+Event\+Handle}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_serial}{Me\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_serial_aaa113d4dc7bf62acae7b7ca559c23245}{Me\+Serial}} (void)
+\item 
+\mbox{\hyperlink{class_me_serial_a63ac4943dae1b910fd627758ba0c20a2}{Me\+Serial}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_serial_a06d4cb2f572533e9b1414cc1e6d4929b}{Me\+Serial}} (uint8\+\_\+t receive\+Pin, uint8\+\_\+t transmit\+Pin, bool inverse\+\_\+logic=false)
+\item 
+void \mbox{\hyperlink{class_me_serial_a73dde79161f876956fd6d070f14510d3}{set\+Hardware}} (bool mode)
+\item 
+void \mbox{\hyperlink{class_me_serial_a2e491a6206475d8d254a785043e0de22}{begin}} (long baudrate)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_me_serial_ad28782e0bebe4255a8ba7995957176e6}{write}} (uint8\+\_\+t byte)
+\item 
+int \mbox{\hyperlink{class_me_serial_a00be49316c437fdb4615c4e40869ff60}{read}} ()
+\item 
+int \mbox{\hyperlink{class_me_serial_a4b784a1b24df5e06f208d697e9e1ed3f}{available}} ()
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_serial_a721bd751d68b01eeafd206163eab10a4}{poll}} (void)
+\item 
+void \mbox{\hyperlink{class_me_serial_abd68e3efb8adfcc71089dadbd4acd143}{end}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_serial_a5dd4784d18202db78fb8333afd97c031}{listen}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_serial_a4c4af893caafb362da7906ddabe16327}{is\+Listening}} (void)
+\item 
+void \mbox{\hyperlink{class_me_serial_ab4d91285ca3d044f73793137cc1ff3cd}{send\+String}} (char \texorpdfstring{$\ast$}{*}str)
+\item 
+void \mbox{\hyperlink{class_me_serial_a30bae57ed633a2b7c8a41ff0de0a6679}{printf}} (char \texorpdfstring{$\ast$}{*}fmt,...)
+\item 
+boolean {\bfseries data\+Line\+Available} (void)
+\item 
+String {\bfseries read\+Data\+Line} (void)
+\item 
+String {\bfseries concatenate\+With} (String \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}, String \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}})
+\item 
+char {\bfseries letter\+Of} (int i, String s)
+\item 
+int {\bfseries string\+Length} (String s)
+\item 
+boolean {\bfseries equal\+String} (String \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}, String \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}})
+\item 
+float {\bfseries get\+Value} (String key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_software_serial}{Software\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Software\+Serial} (uint8\+\_\+t receive\+Pin, uint8\+\_\+t transmit\+Pin, bool inverse\+\_\+logic=false)
+\item 
+void {\bfseries begin} (long speed)
+\item 
+bool {\bfseries listen} ()
+\item 
+void {\bfseries end} ()
+\item 
+bool {\bfseries is\+Listening} ()
+\item 
+bool {\bfseries stop\+Listening} ()
+\item 
+bool {\bfseries overflow} ()
+\item 
+int {\bfseries peek} ()
+\item 
+virtual void {\bfseries flush} ()
+\item 
+{\bfseries operator bool} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_software_serial}{Software\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bfseries handle\+\_\+interrupt} () \+\_\+\+\_\+attribute\+\_\+\+\_\+((\+\_\+\+\_\+always\+\_\+inline\+\_\+\+\_\+))
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_serial}{Me\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+hard}
+\item 
+bool {\bfseries \+\_\+polling}
+\item 
+bool {\bfseries \+\_\+scratch}
+\item 
+int16\+\_\+t {\bfseries \+\_\+bit\+Period}
+\item 
+int16\+\_\+t {\bfseries \+\_\+byte}
+\item 
+long {\bfseries \+\_\+last\+Time}
+\item 
+char {\bfseries buffer} \mbox{[}64\mbox{]}
+\item 
+String {\bfseries last\+Line}
+\item 
+int {\bfseries buffer\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me Smart \doxylink{class_servo}{Servo} device. 
+
+Class\+: \doxylink{class_me_smart_servo}{Me\+Smart\+Servo} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_smart_servo}{Me\+Smart\+Servo}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_smart_servo_a8423e173c2a4c24f442e0536054fbba0}\label{class_me_smart_servo_a8423e173c2a4c24f442e0536054fbba0} 
+\index{MeSmartServo@{MeSmartServo}!MeSmartServo@{MeSmartServo}}
+\index{MeSmartServo@{MeSmartServo}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{MeSmartServo()}{MeSmartServo()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Me\+Smart\+Servo\+::\+Me\+Smart\+Servo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the Me Smart \doxylink{class_servo}{Servo} to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_smart_servo_a488fddfc5eed85885f9652f820fb87e9}\label{class_me_smart_servo_a488fddfc5eed85885f9652f820fb87e9} 
+\index{MeSmartServo@{MeSmartServo}!MeSmartServo@{MeSmartServo}}
+\index{MeSmartServo@{MeSmartServo}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{MeSmartServo()}{MeSmartServo()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Me\+Smart\+Servo\+::\+Me\+Smart\+Servo (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the Me Smart \doxylink{class_servo}{Servo} to arduino port, If the hardware serial was selected, it will used the hardware serial. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2\\
+\hline
+\end{DoxyParams}
+Alternate Constructor which can call your own function to map the Me Smart \doxylink{class_servo}{Servo} to arduino port, If the hardware serial was selected, it will used the hardware serial. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_smart_servo_ad416c90e90bffb8e56caa8d79fe2d473}\label{class_me_smart_servo_ad416c90e90bffb8e56caa8d79fe2d473} 
+\index{MeSmartServo@{MeSmartServo}!assignDevIdRequest@{assignDevIdRequest}}
+\index{assignDevIdRequest@{assignDevIdRequest}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{assignDevIdRequest()}{assignDevIdRequest()}}
+{\footnotesize\ttfamily boolean Me\+Smart\+Servo\+::assign\+Dev\+Id\+Request (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+assign\+Dev\+Id\+Request 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+distribution device ID number to the smart servo link. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+If the assignment is successful, return true. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_a5b6fa025da9977cba9212b64988acb2a}\label{class_me_smart_servo_a5b6fa025da9977cba9212b64988acb2a} 
+\index{MeSmartServo@{MeSmartServo}!assignDevIdResponse@{assignDevIdResponse}}
+\index{assignDevIdResponse@{assignDevIdResponse}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{assignDevIdResponse()}{assignDevIdResponse()}}
+{\footnotesize\ttfamily void Me\+Smart\+Servo\+::assign\+Dev\+Id\+Response (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{arg }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+assign\+Dev\+Id\+Response 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+distribution device ID number return packet processing. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+assign\+Dev\+Id\+Response 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+distribution device ID number return packet processing. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}arg} & -\/ address of input parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_ac003fe9876a2e1b6981326783718a12f}\label{class_me_smart_servo_ac003fe9876a2e1b6981326783718a12f} 
+\index{MeSmartServo@{MeSmartServo}!errorCodeCheckResponse@{errorCodeCheckResponse}}
+\index{errorCodeCheckResponse@{errorCodeCheckResponse}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{errorCodeCheckResponse()}{errorCodeCheckResponse()}}
+{\footnotesize\ttfamily void Me\+Smart\+Servo\+::error\+Code\+Check\+Response (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{arg }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+error\+Code\+Check\+Response 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function is used to process the error response message of smart servo. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}arg} & -\/ address of input parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_adb14101ef4f0981f5ba3eabfd02775c7}\label{class_me_smart_servo_adb14101ef4f0981f5ba3eabfd02775c7} 
+\index{MeSmartServo@{MeSmartServo}!getAngleRequest@{getAngleRequest}}
+\index{getAngleRequest@{getAngleRequest}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{getAngleRequest()}{getAngleRequest()}}
+{\footnotesize\ttfamily long Me\+Smart\+Servo\+::get\+Angle\+Request (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dev\+Id }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Angle\+Request 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the smart servo\textquotesingle{}s angle. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev\+Id} & -\/ the device id of servo that we want to read its angle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+the angle of smart servo. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_adc467ef432434d9b279f794a453da64c}\label{class_me_smart_servo_adc467ef432434d9b279f794a453da64c} 
+\index{MeSmartServo@{MeSmartServo}!getCurrentRequest@{getCurrentRequest}}
+\index{getCurrentRequest@{getCurrentRequest}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{getCurrentRequest()}{getCurrentRequest()}}
+{\footnotesize\ttfamily float Me\+Smart\+Servo\+::get\+Current\+Request (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dev\+Id }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Current\+Request 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the smart servo\textquotesingle{}s current. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev\+Id} & -\/ the device id of servo that we want to read its current. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+the current of smart servo. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_a058cffd56063ed54f5bcdd0995861c18}\label{class_me_smart_servo_a058cffd56063ed54f5bcdd0995861c18} 
+\index{MeSmartServo@{MeSmartServo}!getSpeedRequest@{getSpeedRequest}}
+\index{getSpeedRequest@{getSpeedRequest}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{getSpeedRequest()}{getSpeedRequest()}}
+{\footnotesize\ttfamily float Me\+Smart\+Servo\+::get\+Speed\+Request (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dev\+Id }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Speed\+Request 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the smart servo\textquotesingle{}s speed. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev\+Id} & -\/ the device id of servo that we want to read its speed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+the speed of smart servo. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_ab65dd2a4b12d6604fac57595737cfeeb}\label{class_me_smart_servo_ab65dd2a4b12d6604fac57595737cfeeb} 
+\index{MeSmartServo@{MeSmartServo}!getTempRequest@{getTempRequest}}
+\index{getTempRequest@{getTempRequest}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{getTempRequest()}{getTempRequest()}}
+{\footnotesize\ttfamily float Me\+Smart\+Servo\+::get\+Temp\+Request (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dev\+Id }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Temp\+Request 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the smart servo\textquotesingle{}s temperature. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev\+Id} & -\/ the device id of servo that we want to read its temperature. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+the temperature of smart servo. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_ae2f7bcf1cc941f324a0873129dd7b33b}\label{class_me_smart_servo_ae2f7bcf1cc941f324a0873129dd7b33b} 
+\index{MeSmartServo@{MeSmartServo}!getVoltageRequest@{getVoltageRequest}}
+\index{getVoltageRequest@{getVoltageRequest}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{getVoltageRequest()}{getVoltageRequest()}}
+{\footnotesize\ttfamily float Me\+Smart\+Servo\+::get\+Voltage\+Request (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dev\+Id }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Voltage\+Request 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the smart servo\textquotesingle{}s voltage. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev\+Id} & -\/ the device id of servo that we want to read its voltage. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+the voltage of smart servo. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_aa3f5a58c87f7ae9c1bd46c4f9c3816c9}\label{class_me_smart_servo_aa3f5a58c87f7ae9c1bd46c4f9c3816c9} 
+\index{MeSmartServo@{MeSmartServo}!handSharke@{handSharke}}
+\index{handSharke@{handSharke}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{handSharke()}{handSharke()}}
+{\footnotesize\ttfamily boolean Me\+Smart\+Servo\+::hand\+Sharke (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dev\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+hand\+Sharke 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function is used MCU and servo handshake. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev\+\_\+id} & -\/ the device id of servo that we want to handsharke. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+If the assignment is successful, return true. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_accf6f85b682196fa8e3f36f2a2e5e508}\label{class_me_smart_servo_accf6f85b682196fa8e3f36f2a2e5e508} 
+\index{MeSmartServo@{MeSmartServo}!move@{move}}
+\index{move@{move}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily boolean Me\+Smart\+Servo\+::move (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dev\+\_\+id,  }\item[{long}]{angle\+\_\+value,  }\item[{float}]{speed,  }\item[{smart\+Servo\+Cb}]{callback = {\ttfamily NULL} }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+move 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+smart servo moves to the relative angle. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev\+\_\+id} & -\/ the device id of servo that we want to move. \\
+\hline
+\mbox{\texttt{ in}}  & {\em angle\+\_\+value} & -\/ the relative angle value we want move to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em speed} & -\/ move speed value(\+The unit is rpm). \\
+\hline
+\mbox{\texttt{ in}}  & {\em callback} & -\/ callback function when the target position has been reached(\+Optional parameters). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+If the assignment is successful, return true. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_aad84a194b3ed4f175d336bca6a596ec6}\label{class_me_smart_servo_aad84a194b3ed4f175d336bca6a596ec6} 
+\index{MeSmartServo@{MeSmartServo}!moveTo@{moveTo}}
+\index{moveTo@{moveTo}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{moveTo()}{moveTo()}}
+{\footnotesize\ttfamily boolean Me\+Smart\+Servo\+::move\+To (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dev\+\_\+id,  }\item[{long}]{angle\+\_\+value,  }\item[{float}]{speed,  }\item[{smart\+Servo\+Cb}]{callback = {\ttfamily NULL} }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+move\+To 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+smart servo moves to the absolute angle. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev\+\_\+id} & -\/ the device id of servo that we want to move. \\
+\hline
+\mbox{\texttt{ in}}  & {\em angle\+\_\+value} & -\/ the absolute angle value we want move to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em speed} & -\/ move speed value(\+The unit is rpm). \\
+\hline
+\mbox{\texttt{ in}}  & {\em callback} & -\/ callback function when the target position has been reached(\+Optional parameters). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+If the assignment is successful, return true. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_a3eb0b8f79dd50b4e55526d261b40d8a1}\label{class_me_smart_servo_a3eb0b8f79dd50b4e55526d261b40d8a1} 
+\index{MeSmartServo@{MeSmartServo}!processSysexMessage@{processSysexMessage}}
+\index{processSysexMessage@{processSysexMessage}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{processSysexMessage()}{processSysexMessage()}}
+{\footnotesize\ttfamily void Me\+Smart\+Servo\+::process\+Sysex\+Message (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+process\+Sysex\+Message 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function is used to process protocol messages of smart servo. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_a1aaad24e2abbcba8fe5be7d3d0d84e63}\label{class_me_smart_servo_a1aaad24e2abbcba8fe5be7d3d0d84e63} 
+\index{MeSmartServo@{MeSmartServo}!readByte@{readByte}}
+\index{readByte@{readByte}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{readByte()}{readByte()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Smart\+Servo\+::read\+Byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{argv,  }\item[{int16\+\_\+t}]{idx }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_ae66a39120aa542835ed7baefe543170c}\label{class_me_smart_servo_ae66a39120aa542835ed7baefe543170c} 
+\index{MeSmartServo@{MeSmartServo}!readFloat@{readFloat}}
+\index{readFloat@{readFloat}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{readFloat()}{readFloat()}}
+{\footnotesize\ttfamily float Me\+Smart\+Servo\+::read\+Float (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{argv,  }\item[{int16\+\_\+t}]{idx }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Float 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change (5byte 7bit) read date to 4byte float data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_add30c4b6013c26a2b92b37992a2a9feb}\label{class_me_smart_servo_add30c4b6013c26a2b92b37992a2a9feb} 
+\index{MeSmartServo@{MeSmartServo}!readLong@{readLong}}
+\index{readLong@{readLong}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{readLong()}{readLong()}}
+{\footnotesize\ttfamily long Me\+Smart\+Servo\+::read\+Long (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{argv,  }\item[{int}]{idx }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Long 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change (5byte 7bit) read date to 4byte long data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_a86115d5159d786936b9f9fbde7669cb3}\label{class_me_smart_servo_a86115d5159d786936b9f9fbde7669cb3} 
+\index{MeSmartServo@{MeSmartServo}!readShort@{readShort}}
+\index{readShort@{readShort}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{readShort()}{readShort()}}
+{\footnotesize\ttfamily short Me\+Smart\+Servo\+::read\+Short (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{argv,  }\item[{int16\+\_\+t}]{idx,  }\item[{boolean}]{ignore\+\_\+high }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Short 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change (2byte 7bit) or (3byte 7bit) read date to 2byte short data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em ignore\+\_\+high} & -\/ is there have third byte high-\/level data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_a412e124ef188a4937ea6d4648724ae96}\label{class_me_smart_servo_a412e124ef188a4937ea6d4648724ae96} 
+\index{MeSmartServo@{MeSmartServo}!sendByte@{sendByte}}
+\index{sendByte@{sendByte}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{sendByte()}{sendByte()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Smart\+Servo\+::send\+Byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{val }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+send\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+send (1byte 8bit) date to 2byte 7bit data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em val} & -\/ the byte data to be converted.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the checksum data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_a68d970c3f3634048cf85d31ee5475c86}\label{class_me_smart_servo_a68d970c3f3634048cf85d31ee5475c86} 
+\index{MeSmartServo@{MeSmartServo}!sendFloat@{sendFloat}}
+\index{sendFloat@{sendFloat}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{sendFloat()}{sendFloat()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Smart\+Servo\+::send\+Float (\begin{DoxyParamCaption}\item[{float}]{val }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+send\+Float 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+send (4byte float) date to 5byte 7bit data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em val} & -\/ the short data to be converted.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the checksum data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_a640143e57999486cf952f8184ecdadbf}\label{class_me_smart_servo_a640143e57999486cf952f8184ecdadbf} 
+\index{MeSmartServo@{MeSmartServo}!sendLong@{sendLong}}
+\index{sendLong@{sendLong}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{sendLong()}{sendLong()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Smart\+Servo\+::send\+Long (\begin{DoxyParamCaption}\item[{long}]{val }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+send\+Long 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+send (4byte long) date to 5byte 7bit data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em val} & -\/ the short data to be converted.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the checksum data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_acf5bd557ed6e873d6832b765bc1ebdbc}\label{class_me_smart_servo_acf5bd557ed6e873d6832b765bc1ebdbc} 
+\index{MeSmartServo@{MeSmartServo}!sendShort@{sendShort}}
+\index{sendShort@{sendShort}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{sendShort()}{sendShort()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Smart\+Servo\+::send\+Short (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{val,  }\item[{boolean}]{ignore\+\_\+high }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+send\+Short 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+send (2byte short) date to 2byte or 3byte 7bit data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em val} & -\/ the short data to be converted.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em ignore\+\_\+high} & -\/ is there have third byte high-\/level data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the checksum data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_ae7e58107842eb0c2d13596c99d0e8838}\label{class_me_smart_servo_ae7e58107842eb0c2d13596c99d0e8838} 
+\index{MeSmartServo@{MeSmartServo}!setBreak@{setBreak}}
+\index{setBreak@{setBreak}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{setBreak()}{setBreak()}}
+{\footnotesize\ttfamily boolean Me\+Smart\+Servo\+::set\+Break (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dev\+\_\+id,  }\item[{uint8\+\_\+t}]{break\+Status }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Break 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+set smart servo break status. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev\+\_\+id} & -\/ the device id of servo that we want to set. \\
+\hline
+\mbox{\texttt{ in}}  & {\em break\+Status} & -\/ the break status of servo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+If the assignment is successful, return true. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_aedb7c0b2bba4e771865752acdae65b0d}\label{class_me_smart_servo_aedb7c0b2bba4e771865752acdae65b0d} 
+\index{MeSmartServo@{MeSmartServo}!setInitAngle@{setInitAngle}}
+\index{setInitAngle@{setInitAngle}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{setInitAngle()}{setInitAngle()}}
+{\footnotesize\ttfamily boolean Me\+Smart\+Servo\+::set\+Init\+Angle (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dev\+\_\+id,  }\item[{uint8\+\_\+t}]{mode = {\ttfamily 0},  }\item[{int16\+\_\+t}]{speed = {\ttfamily 40} }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Init\+Angle 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function is used to move smart servo to its 0 degrees. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev\+\_\+id} & -\/ the device id of servo that we want to set. \\
+\hline
+\mbox{\texttt{ in}}  & {\em mode} & -\/ the return mode, 0 is the quick return mode. \\
+\hline
+\mbox{\texttt{ in}}  & {\em speed} & -\/ the speed value return to init angle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+If the assignment is successful, return true. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_a6117a6fdeb20a0da8310be42011f699e}\label{class_me_smart_servo_a6117a6fdeb20a0da8310be42011f699e} 
+\index{MeSmartServo@{MeSmartServo}!setPwmMove@{setPwmMove}}
+\index{setPwmMove@{setPwmMove}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{setPwmMove()}{setPwmMove()}}
+{\footnotesize\ttfamily boolean Me\+Smart\+Servo\+::set\+Pwm\+Move (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dev\+\_\+id,  }\item[{int16\+\_\+t}]{pwm\+\_\+value }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Pwm\+Move 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function is used to set the pwm motion of smart servo. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev\+\_\+id} & -\/ the device id of servo that we want to set. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pwm\+\_\+value} & -\/ the pwm value we wan\textquotesingle{}t set the servo motor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+If the assignment is successful, return true. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_a2ba807a9e25bf953e83f22e1f862edc9}\label{class_me_smart_servo_a2ba807a9e25bf953e83f22e1f862edc9} 
+\index{MeSmartServo@{MeSmartServo}!setRGBLed@{setRGBLed}}
+\index{setRGBLed@{setRGBLed}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{setRGBLed()}{setRGBLed()}}
+{\footnotesize\ttfamily boolean Me\+Smart\+Servo\+::set\+RGBLed (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dev\+\_\+id,  }\item[{uint8\+\_\+t}]{r\+\_\+value,  }\item[{uint8\+\_\+t}]{g\+\_\+value,  }\item[{uint8\+\_\+t}]{b\+\_\+value }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+RGBLed 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+set the color of smart servo\textquotesingle{}s RGB LED. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev\+\_\+id} & -\/ the device id of servo that we want to set. \\
+\hline
+\mbox{\texttt{ in}}  & {\em r\+\_\+value} & -\/ Red component. \\
+\hline
+\mbox{\texttt{ in}}  & {\em g\+\_\+value} & -\/ green component. \\
+\hline
+\mbox{\texttt{ in}}  & {\em B\+\_\+value} & -\/ Blue component. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+If the assignment is successful, return true. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_ab86b0e9279876f94f28120aaa36c9429}\label{class_me_smart_servo_ab86b0e9279876f94f28120aaa36c9429} 
+\index{MeSmartServo@{MeSmartServo}!setZero@{setZero}}
+\index{setZero@{setZero}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{setZero()}{setZero()}}
+{\footnotesize\ttfamily boolean Me\+Smart\+Servo\+::set\+Zero (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dev\+\_\+id }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Zero 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+set smart servo current angle zero postion. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev\+\_\+id} & -\/ the device id of servo that we want to initialization position. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+If the assignment is successful, return true. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_a9576044532f0ca58cf8d554e9f31cacf}\label{class_me_smart_servo_a9576044532f0ca58cf8d554e9f31cacf} 
+\index{MeSmartServo@{MeSmartServo}!smartServoCmdResponse@{smartServoCmdResponse}}
+\index{smartServoCmdResponse@{smartServoCmdResponse}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{smartServoCmdResponse()}{smartServoCmdResponse()}}
+{\footnotesize\ttfamily void Me\+Smart\+Servo\+::smart\+Servo\+Cmd\+Response (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{arg }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+smart\+Servo\+Cmd\+Response 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function is used to process the response message of smart servo. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}arg} & -\/ address of input parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_smart_servo_a24f968f6117983c8c17bfbecc53793b6}\label{class_me_smart_servo_a24f968f6117983c8c17bfbecc53793b6} 
+\index{MeSmartServo@{MeSmartServo}!smartServoEventHandle@{smartServoEventHandle}}
+\index{smartServoEventHandle@{smartServoEventHandle}!MeSmartServo@{MeSmartServo}}
+\doxysubsubsection{\texorpdfstring{smartServoEventHandle()}{smartServoEventHandle()}}
+{\footnotesize\ttfamily void Me\+Smart\+Servo\+::smart\+Servo\+Event\+Handle (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+smart\+Servo\+Event\+Handle 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function is used to process protocol messages of smart servo. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_smart_servo_8h}{Me\+Smart\+Servo.\+h}}\item 
+src/\mbox{\hyperlink{_me_smart_servo_8cpp}{Me\+Smart\+Servo.\+cpp}}\end{DoxyCompactItemize}

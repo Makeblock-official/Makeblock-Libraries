@@ -1,0 +1,158 @@
+\doxysection{src/\+Me\+Encoder\+On\+Board.h File Reference}
+\hypertarget{_me_encoder_on_board_8h}{}\label{_me_encoder_on_board_8h}\index{src/MeEncoderOnBoard.h@{src/MeEncoderOnBoard.h}}
+
+
+Header for \doxylink{_me_encoder_on_board_8cpp}{Me\+Encoder\+On\+Board.\+cpp} module.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$avr/interrupt.\+h$>$}\newline
+Include dependency graph for Me\+Encoder\+On\+Board.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{_me_encoder_on_board_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_encoder_on_board_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_p_i_d__internal}{PID\+\_\+internal}}
+\item 
+struct \mbox{\hyperlink{struct_me___encoder__type}{Me\+\_\+\+Encoder\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{struct_encoder__port__type}{Encoder\+\_\+port\+\_\+type}}
+\item 
+class \mbox{\hyperlink{class_me_encoder_on_board}{Me\+Encoder\+On\+Board}}
+\begin{DoxyCompactList}\small\item\em Driver for Encoder module on Me\+Auriga and Me\+Mega\+Pi. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_encoder_on_board_8h_a1557992a96abd6a3b57d591e562954a6}\label{_me_encoder_on_board_8h_a1557992a96abd6a3b57d591e562954a6} 
+\#define {\bfseries DIRECT\+\_\+\+MODE}~0x00
+\item 
+\Hypertarget{_me_encoder_on_board_8h_a1e885e72e7ad11061ec0b4b95cc01049}\label{_me_encoder_on_board_8h_a1e885e72e7ad11061ec0b4b95cc01049} 
+\#define {\bfseries PID\+\_\+\+MODE}~0x01
+\item 
+\Hypertarget{_me_encoder_on_board_8h_ab5e3533bab20d16e08c7370af5a44222}\label{_me_encoder_on_board_8h_ab5e3533bab20d16e08c7370af5a44222} 
+\#define {\bfseries PWM\+\_\+\+MODE}~0x02
+\item 
+\Hypertarget{_me_encoder_on_board_8h_a7742558d5957a180eeb63222f0ae7169}\label{_me_encoder_on_board_8h_a7742558d5957a180eeb63222f0ae7169} 
+\#define {\bfseries MOTION\+\_\+\+WITH\+\_\+\+POS}~0x00
+\item 
+\Hypertarget{_me_encoder_on_board_8h_ae04dd51b0bd1019dab2764e59a56a530}\label{_me_encoder_on_board_8h_ae04dd51b0bd1019dab2764e59a56a530} 
+\#define {\bfseries MOTION\+\_\+\+WITHOUT\+\_\+\+POS}~0x01
+\item 
+\Hypertarget{_me_encoder_on_board_8h_a6bacefb042fd08ee747493347c6f478c}\label{_me_encoder_on_board_8h_a6bacefb042fd08ee747493347c6f478c} 
+\#define {\bfseries PWM\+\_\+\+MIN\+\_\+\+OFFSET}~25
+\item 
+\Hypertarget{_me_encoder_on_board_8h_a144e854cba295af7e71607d7014a386d}\label{_me_encoder_on_board_8h_a144e854cba295af7e71607d7014a386d} 
+\#define {\bfseries ENCODER\+\_\+\+POS\+\_\+\+DEADBAND}~10
+\item 
+\Hypertarget{_me_encoder_on_board_8h_a43b94c6aac1282bf0718ab5c0a6ae3a5}\label{_me_encoder_on_board_8h_a43b94c6aac1282bf0718ab5c0a6ae3a5} 
+\#define {\bfseries DECELERATION\+\_\+\+DISTANCE\+\_\+\+PITCH}~6
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_encoder_on_board_8h_a27d75c6b8e8f8be1cf4729d800993a67}\label{_me_encoder_on_board_8h_a27d75c6b8e8f8be1cf4729d800993a67} 
+typedef void(\texorpdfstring{$\ast$}{*} {\bfseries cb}) (int16\+\_\+t, int16\+\_\+t)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_encoder_on_board_8h_ad6b20863ba6829393067b5905e339b96}\label{_me_encoder_on_board_8h_ad6b20863ba6829393067b5905e339b96} 
+\mbox{\hyperlink{struct_encoder__port__type}{Encoder\+\_\+port\+\_\+type}} {\bfseries encoder\+\_\+\+Port} \mbox{[}6\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for \doxylink{_me_encoder_on_board_8cpp}{Me\+Encoder\+On\+Board.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+4 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2018/01/03 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Encoder On Me\+Auriga and Me\+Mega\+Pi.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_encoder_on_board_aeafd81a680a1444e923db41fc5071eca}{Me\+Encoder\+On\+Board\+::reset(uint8\+\_\+t slot)};
+\item uint8\+\_\+t Me\+Encoder\+On\+Board\+::get\+Slot\+Num(void);
+\item uint8\+\_\+t Me\+Encoder\+On\+Board\+::get\+Int\+Num(void);
+\item uint8\+\_\+t Me\+Encoder\+On\+Board\+::get\+Port\+A(void);
+\item uint8\+\_\+t Me\+Encoder\+On\+Board\+::get\+Port\+B(void);
+\item long Me\+Encoder\+On\+Board\+::get\+Pulse\+Pos(void);
+\item void \doxylink{class_me_encoder_on_board_a3fff87c540573fc74038bcf809dc311e}{Me\+Encoder\+On\+Board\+::set\+Pulse\+Pos(long pulse\+\_\+pos)};
+\item void \doxylink{class_me_encoder_on_board_a5860af63894f883a46e7faa448091315}{Me\+Encoder\+On\+Board\+::pulse\+Pos\+Plus(void)};
+\item void \doxylink{class_me_encoder_on_board_a8bf581cccdefbc31950d5ff81ed1cb9c}{Me\+Encoder\+On\+Board\+::pulse\+Pos\+Minus(void)};
+\item void \doxylink{class_me_encoder_on_board_a27ca91cfa7df12a997db8a0eb04ab536}{Me\+Encoder\+On\+Board\+::set\+Current\+Speed(float speed)};
+\item float Me\+Encoder\+On\+Board\+::get\+Current\+Speed(void);
+\item int16\+\_\+t Me\+Encoder\+On\+Board\+::get\+Cur\+Pwm(void);
+\item void \doxylink{class_me_encoder_on_board_a5a5e69839bf4e35865e4c31d443a9d7f}{Me\+Encoder\+On\+Board\+::set\+Tar\+PWM(int16\+\_\+t pwm\+\_\+value)};
+\item void \doxylink{class_me_encoder_on_board_a35f9d7b4962ff8b1ed1db67896c4ed0e}{Me\+Encoder\+On\+Board\+::set\+Motor\+Pwm(int16\+\_\+t pwm)};
+\item void \doxylink{class_me_encoder_on_board_a7edaebc0c6aa631955d20cf7923e57f2}{Me\+Encoder\+On\+Board\+::update\+Speed(void)};
+\item void \doxylink{class_me_encoder_on_board_ad4df58c9cbc5646df9223e7560857bec}{Me\+Encoder\+On\+Board\+::update\+Cur\+Pos(void)};
+\item long Me\+Encoder\+On\+Board\+::get\+Cur\+Pos(void)
+\item void \doxylink{class_me_encoder_on_board_aa13835d17bf0a523cacc9dc938efa3ca}{Me\+Encoder\+On\+Board\+::run\+Speed(float speed)};
+\item void \doxylink{class_me_encoder_on_board_a9aff7dfc02978f6d066cbd24ce0687b3}{Me\+Encoder\+On\+Board\+::set\+Speed(float speed)};
+\item void \doxylink{class_me_encoder_on_board_afae5f5d060a6bcefbe344b418455a819}{Me\+Encoder\+On\+Board\+::move(long position,float speed,int16\+\_\+t ext\+Id,cb callback)};
+\item void \doxylink{class_me_encoder_on_board_a288f72436792c55a8847bfc3fa94b972}{Me\+Encoder\+On\+Board\+::move\+To(long position,float speed,int16\+\_\+t ext\+Id,cb callback)};
+\item long Me\+Encoder\+On\+Board\+::distance\+To\+Go(void);
+\item void \doxylink{class_me_encoder_on_board_a5a668410ea2407e80627998161c7452d}{Me\+Encoder\+On\+Board\+::set\+Speed\+Pid(float p,float i,float d)};
+\item void \doxylink{class_me_encoder_on_board_ae8203fd1090bd08ccf2612642d6bb8e7}{Me\+Encoder\+On\+Board\+::set\+Pos\+Pid(float p,float i,float d)};
+\item void \doxylink{class_me_encoder_on_board_af1e72c2e0a40b0e8819adb4f3eef42dd}{Me\+Encoder\+On\+Board\+::set\+Pulse(int16\+\_\+t pulse\+Value)};
+\item void \doxylink{class_me_encoder_on_board_ab144dd43024fd80fbb251938f50adff6}{Me\+Encoder\+On\+Board\+::set\+Ratio(float Ratio\+Value)};
+\item void \doxylink{class_me_encoder_on_board_a0d5dc8c4a9c36dbd02236ab2358a37dd}{Me\+Encoder\+On\+Board\+::set\+Motion\+Mode(int16\+\_\+t motion\+Mode)};
+\item int16\+\_\+t \doxylink{class_me_encoder_on_board_ad22d95cd15408391e5638b5fc9fa6896}{Me\+Encoder\+On\+Board\+::pid\+Position\+To\+Pwm(void)};
+\item int16\+\_\+t \doxylink{class_me_encoder_on_board_a3296a20f1c19ff9c3f6721e5c1a4f0e2}{Me\+Encoder\+On\+Board\+::speed\+Without\+Pos(void)};
+\item void \doxylink{class_me_encoder_on_board_afae914fcb38cfeff89561ec1667ddb6b}{Me\+Encoder\+On\+Board\+::encoder\+Move(void)};
+\item void \doxylink{class_me_encoder_on_board_abf552ba0bf4e6e83dc9a63f510792cd0}{Me\+Encoder\+On\+Board\+::pwm\+Move(void)};
+\item boolean Me\+Encoder\+On\+Board\+::is\+Tar\+Pos\+Reached(void);
+\item void \doxylink{class_me_encoder_on_board_a40a21255f01a568dbdbdcbfe9236070c}{Me\+Encoder\+On\+Board\+::loop(void)};
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan         2015/12/15     1.0.0            Build New
+Mark Yan         2016/04/07     1.0.1            fix motor reset issue.
+Mark Yan         2016/05/17     1.0.2            add some comments.
+Mark Yan         2016/06/25     1.0.3            add PID calibration for encoder driver.
+Mark Yan         2018/01/03     1.0.4            add callback flag.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

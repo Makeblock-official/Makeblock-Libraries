@@ -1,0 +1,89 @@
+\doxysection{src/\+Me\+Color\+Sensor.cpp File Reference}
+\hypertarget{_me_color_sensor_8cpp}{}\label{_me_color_sensor_8cpp}\index{src/MeColorSensor.cpp@{src/MeColorSensor.cpp}}
+
+
+Driver for \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module.  
+
+
+{\ttfamily \#include "{}Me\+Color\+Sensor.\+h"{}}\newline
+Include dependency graph for Me\+Color\+Sensor.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_color_sensor_8cpp__incl}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+Driver for \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+4 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2017/01/17 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2017, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing +GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module, It supports \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} V1.\+0 device provided by Make\+Block.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_color_sensor_a1efe278e3a311adc4239a8ca9042447c}{Me\+Color\+Sensor\+::\+Sensor\+Init(void)}
+\item uint8\+\_\+t \doxylink{class_me_color_sensor_a1728909fc7199b95ad3e35734b3a16a6}{Me\+Color\+Sensor\+::\+Report\+Id(void)}
+\item void \doxylink{class_me_color_sensor_aa033b29d7464ebcbcf74e47794383e09}{Me\+Color\+Sensor\+::\+Color\+Data\+Read(void)}
+\item void \doxylink{class_me_color_sensor_a51c9c3cbcd5af42ec1f3fac7b4bf3818}{Me\+Color\+Sensor\+::\+Turn\+On\+Light(void)}
+\item void \doxylink{class_me_color_sensor_ab686f3e727861bc47ddbabb914f9c3a1}{Me\+Color\+Sensor\+::\+Turn\+Off\+Light(void)}
+\item uint16\+\_\+t \doxylink{class_me_color_sensor_aa5cf33bebe6d653a7164551629447287}{Me\+Color\+Sensor\+::\+Return\+Red\+Data(void)}
+\item uint16\+\_\+t \doxylink{class_me_color_sensor_a2ceb9fec73cf92a98421c3606a324320}{Me\+Color\+Sensor\+::\+Return\+Green\+Data(void)}
+\item uint16\+\_\+t \doxylink{class_me_color_sensor_a0a04f1d0592fb21febf7a7583fa9a9d9}{Me\+Color\+Sensor\+::\+Return\+Blue\+Data(void)}
+\item uint16\+\_\+t \doxylink{class_me_color_sensor_aea344bb117b012fb27ee6ed8ebf17c73}{Me\+Color\+Sensor\+::\+Return\+Color\+Data(void)}
+\item long \doxylink{class_me_color_sensor_a37adb003fab4d09e2cc014c713e35e57}{Me\+Color\+Sensor\+::\+Color\+Identify(void)}
+\item long \doxylink{class_me_color_sensor_a403b066a178b7c438dab069bfed11dd7}{Me\+Color\+Sensor\+::\+Return\+Color\+Code(void)}
+\item uint16\+\_\+t Me\+Color\+Sensor\+::calculate\+Color\+Temperature(void)
+\item uint16\+\_\+t Me\+Color\+Sensor\+::calculate\+Lux(void)
+\item int8\+\_\+t \doxylink{class_me_color_sensor_aa4a1ce0523ec234b68387d0a38becab4}{Me\+Color\+Sensor\+::write\+Reg(int16\+\_\+t reg, uint8\+\_\+t data)}
+\item int8\+\_\+t \doxylink{class_me_color_sensor_aeb6c09291008af8b013e5462331e5c08}{Me\+Color\+Sensor\+::read\+Data(uint8\+\_\+t start, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint8\+\_\+t size)}
+\item int8\+\_\+t \doxylink{class_me_color_sensor_a9ba779e9fc9841177d80abf17cd4f973}{Me\+Color\+Sensor\+::write\+Data(uint8\+\_\+t start, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint8\+\_\+t size)};
+\item uint8\+\_\+t \doxylink{class_me_color_sensor_a96d8182a6239e536fb56792346371734}{Me\+Color\+Sensor\+::\+Returnresult(void)};
+\item uint8\+\_\+t \doxylink{class_me_color_sensor_af4713622f9fdb6487e9798b47a62e008}{Me\+Color\+Sensor\+::\+Return\+Grayscale(void)};
+\item uint16\+\_\+t \doxylink{class_me_color_sensor_ae0c377ebb860b67ebf01aae23722dc31}{Me\+Color\+Sensor\+::\+Return\+Colorhue(void)};
+\item uint8\+\_\+t \doxylink{class_me_color_sensor_a33fedc7e60aad74cf937389b82c1943e}{Me\+Color\+Sensor\+::\+MAX(uint8\+\_\+t r,uint8\+\_\+t g,uint8\+\_\+t b)};
+\item uint8\+\_\+t \doxylink{class_me_color_sensor_a7731131a09e0e0bc4121cd30353db745}{Me\+Color\+Sensor\+::\+MIN(uint8\+\_\+t r,uint8\+\_\+t g,uint8\+\_\+t b)};
+\item void \doxylink{class_me_color_sensor_a836878156e0d4b820b92769cd5df50f5}{Me\+Color\+Sensor\+::\+Turn\+Offmodule(void)};
+\item void \doxylink{class_me_color_sensor_a50a015a94ddab045cde3536a1f9bce44}{Me\+Color\+Sensor\+::\+Turn\+Onmodule(void)};
+\item uint8\+\_\+t \doxylink{class_me_color_sensor_a88ff70346c30ab33df2f02d964da6c17}{Me\+Color\+Sensor\+::\+Color\+Data\+Read\+Oneby\+One()};
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+ zzipeng         2017/01/17          1.0.0         complete the driver code.
+ zzipeng         2017/04/03          1.0.1         only detect six colors.
+ zzipeng         2017/04/10          1.0.2         only detect seven colors and add methods named \doxylink{class_me_color_sensor_a836878156e0d4b820b92769cd5df50f5}{MeColorSensor::TurnOffmodule(void)},\doxylink{class_me_color_sensor_a50a015a94ddab045cde3536a1f9bce44}{MeColorSensor::TurnOnmodule}.
+ zzipeng         2017/04/20          1.0.3         add methods \doxylink{class_me_color_sensor_a88ff70346c30ab33df2f02d964da6c17}{MeColorSensor::ColorDataReadOnebyOne()};
+ Lanweiting      2017/06/23          1.0.4         Canonical the code format.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

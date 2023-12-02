@@ -1,0 +1,5 @@
+<map id="MePIRMotionSensor" name="MePIRMotionSensor">
+<area shape="rect" id="Node000001" title="Driver for Me PIR Motion Sensor module." alt="" coords="5,80,146,107"/>
+<area shape="rect" id="Node000002" href="$class_me_port.html" title="Port Mapping for RJ25." alt="" coords="44,5,107,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,48,78,80,73,80,73,48"/>
+</map>

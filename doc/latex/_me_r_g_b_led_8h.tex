@@ -1,0 +1,105 @@
+\doxysection{src/\+Me\+RGBLed.h File Reference}
+\hypertarget{_me_r_g_b_led_8h}{}\label{_me_r_g_b_led_8h}\index{src/MeRGBLed.h@{src/MeRGBLed.h}}
+
+
+Header for \doxylink{_me_r_g_b_led_8cpp}{Me\+RGBLed.\+cpp} module.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+RGBLed.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_r_g_b_led_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_r_g_b_led_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structc_r_g_b}{c\+RGB}}
+\begin{DoxyCompactList}\small\item\em Class for RGB Led Module. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_me_r_g_b_led}{Me\+RGBLed}}
+\begin{DoxyCompactList}\small\item\em Driver for W2812 full-\/color LED. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_r_g_b_led_8h_accaa8b0d81204c20ad314e3ba730d5c8}\label{_me_r_g_b_led_8h_accaa8b0d81204c20ad314e3ba730d5c8} 
+\#define {\bfseries DEFAULT\+\_\+\+MAX\+\_\+\+LED\+\_\+\+NUMBER}~(32)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for \doxylink{_me_r_g_b_led_8cpp}{Me\+RGBLed.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2017/06/23 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2014-\/2018, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for WS2811/2812 full-\/color LED lights, It supports W2812B full-\/color LED lights device provided by the Make\+Block.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_r_g_b_led_a030e1f328cd19061104369868d5d1b1c}{Me\+RGBLed\+::reset(uint8\+\_\+t port)}
+\item void \doxylink{class_me_r_g_b_led_a08ac8295d2a090a51069f404fd375b29}{Me\+RGBLed\+::reset(uint8\+\_\+t port,uint8\+\_\+t slot)}
+\item void \doxylink{class_me_r_g_b_led_a8dfb56420333855fee707db26ede3b7e}{Me\+RGBLed\+::setpin(uint8\+\_\+t port)}
+\item uint8\+\_\+t \doxylink{class_me_r_g_b_led_a68784e19385f21058f9b4ffddba82b4d}{Me\+RGBLed\+::get\+Number()}
+\item \doxylink{structc_r_g_b}{c\+RGB} \doxylink{class_me_r_g_b_led_a2bf63b839691eed62c9a0eac076b290d}{Me\+RGBLed\+::get\+Color\+At(uint8\+\_\+t index)}
+\item void \doxylink{class_me_r_g_b_led_a25ae4338ba5b885746560fa277c065ba}{Me\+RGBLed\+::fill\+Pixels\+Bak(uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)}
+\item bool \doxylink{class_me_r_g_b_led_a31f967cfa254d0943b5712925dc381b8}{Me\+RGBLed\+::set\+Color\+At(uint8\+\_\+t index, uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)}
+\item bool \doxylink{class_me_r_g_b_led_ab7a91e9e4cfe48f1f38bd6ca25953834}{Me\+RGBLed\+::set\+Color(uint8\+\_\+t index, uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)}
+\item bool \doxylink{class_me_r_g_b_led_a921b6b54e13ffcb8b4d55a830d6cd28e}{Me\+RGBLed\+::set\+Color(uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)}
+\item bool \doxylink{class_me_r_g_b_led_a04c16004bb6035a004eb5b8042f4aa14}{Me\+RGBLed\+::set\+Color(uint8\+\_\+t index, long value)}
+\item void \doxylink{class_me_r_g_b_led_ac3d66e93ecd6dadc953d71e24728c26a}{Me\+RGBLed\+::show()}
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan         2015/09/01     1.0.0            Rebuild the old lib.
+Mark Yan         2017/06/23     1.0.1            Add function fillPixelsBak.
+\end{DoxyPre}
+
+\end{DoxyParagraph}
+DERIVED FROM light weight WS2812 lib V2.\+1 -\/ Arduino support
+
+Controls WS2811/\+WS2812/\+WS2812B RGB-\/\+LEDs Author\+: Tim (\href{mailto:cpldcpu@gmail.com}{\texttt{ cpldcpu@gmail.\+com}})
+
+Jan 18th, 2014 v2.\+0b Initial Version March 7th, 2014 v2.\+1 Added option to retarget the port register during runtime Removes inlining to allow compiling with c++
+
+License\+: GNU GPL v2 (see License.\+txt) 

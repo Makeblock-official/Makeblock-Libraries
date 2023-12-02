@@ -1,0 +1,86 @@
+\doxysection{Me\+RGBLed.\+h}
+\hypertarget{_me_r_g_b_led_8h_source}{}\label{_me_r_g_b_led_8h_source}\index{src/MeRGBLed.h@{src/MeRGBLed.h}}
+\mbox{\hyperlink{_me_r_g_b_led_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#ifndef\ MeRGBLed\_h}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ MeRGBLed\_h}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ DEFAULT\_MAX\_LED\_NUMBER\ \ (32)}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structc_r_g_b}{cRGB}}}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \ \ uint8\_t\ g;}
+\DoxyCodeLine{00077\ \ \ uint8\_t\ r;}
+\DoxyCodeLine{00078\ \ \ uint8\_t\ b;}
+\DoxyCodeLine{00079\ \};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_r_g_b_led}{MeRGBLed}}}
+\DoxyCodeLine{00089\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00090\ class\ \mbox{\hyperlink{class_me_r_g_b_led}{MeRGBLed}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00092\ \{}
+\DoxyCodeLine{00093\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00102\ \ \ \mbox{\hyperlink{class_me_r_g_b_led_addbe094cefa309fc7a5486f13ba628c0}{MeRGBLed}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00111\ \ \ \mbox{\hyperlink{class_me_r_g_b_led_addbe094cefa309fc7a5486f13ba628c0}{MeRGBLed}}(uint8\_t\ port);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00122\ \ \ \mbox{\hyperlink{class_me_r_g_b_led_addbe094cefa309fc7a5486f13ba628c0}{MeRGBLed}}(uint8\_t\ port,\ uint8\_t\ led\_num);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00136\ \ \ \mbox{\hyperlink{class_me_r_g_b_led_addbe094cefa309fc7a5486f13ba628c0}{MeRGBLed}}(uint8\_t\ port,\ uint8\_t\ slot,\ uint8\_t\ led\_num);}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00145\ \ \ MeRGBLed(uint8\_t\ port);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00156\ \ \ \mbox{\hyperlink{class_me_r_g_b_led_addbe094cefa309fc7a5486f13ba628c0}{MeRGBLed}}(uint8\_t\ port,\ uint8\_t\ led\_num);}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00161\ \ \ \string~MeRGBLed(void);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00178\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_r_g_b_led_a030e1f328cd19061104369868d5d1b1c}{reset}}(uint8\_t\ port);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00196\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_r_g_b_led_a030e1f328cd19061104369868d5d1b1c}{reset}}(uint8\_t\ port,uint8\_t\ slot);}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00212\ \ \ void\ setpin(uint8\_t\ port);}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00226\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_r_g_b_led_a68784e19385f21058f9b4ffddba82b4d}{getNumber}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00242\ \ \ \mbox{\hyperlink{structc_r_g_b}{cRGB}}\ \mbox{\hyperlink{class_me_r_g_b_led_a2bf63b839691eed62c9a0eac076b290d}{getColorAt}}(uint8\_t\ index);}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00262\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_r_g_b_led_a25ae4338ba5b885746560fa277c065ba}{fillPixelsBak}}(uint8\_t\ red,\ uint8\_t\ green,\ uint8\_t\ blue);}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00285\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_r_g_b_led_a31f967cfa254d0943b5712925dc381b8}{setColorAt}}(uint8\_t\ index,\ uint8\_t\ red,\ uint8\_t\ green,\ uint8\_t\ blue);}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00308\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_r_g_b_led_ab7a91e9e4cfe48f1f38bd6ca25953834}{setColor}}(uint8\_t\ index,\ uint8\_t\ red,\ uint8\_t\ green,\ uint8\_t\ blue);}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00329\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_r_g_b_led_ab7a91e9e4cfe48f1f38bd6ca25953834}{setColor}}(uint8\_t\ red,\ uint8\_t\ green,\ uint8\_t\ blue);}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00346\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_r_g_b_led_ab7a91e9e4cfe48f1f38bd6ca25953834}{setColor}}(uint8\_t\ index,\ \textcolor{keywordtype}{long}\ value);}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00362\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_r_g_b_led_ac80f183e41fb3d860ac7100e0639390f}{setNumber}}(uint8\_t\ num\_led);}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00376\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_r_g_b_led_ac3d66e93ecd6dadc953d71e24728c26a}{show}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00379\ \ \ uint16\_t\ count\_led;}
+\DoxyCodeLine{00380\ \ \ uint8\_t\ *pixels;}
+\DoxyCodeLine{00381\ \ \ uint8\_t\ *pixels\_bak;}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00404\ \ \ \textcolor{keywordtype}{void}\ rgbled\_sendarray\_mask(uint8\_t\ *array,\ uint16\_t\ length,\ uint8\_t\ pinmask,\ uint8\_t\ *port);}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{volatile}\ uint8\_t\ *ws2812\_port;}
+\DoxyCodeLine{00407\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ *ws2812\_port\_reg;}
+\DoxyCodeLine{00408\ \ \ uint8\_t\ pinMask;}
+\DoxyCodeLine{00409\ \};}
+\DoxyCodeLine{00410\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,48 @@
+\doxysection{Me\+Mega\+Pi\+DCMotor.\+h}
+\hypertarget{_me_mega_pi_d_c_motor_8h_source}{}\label{_me_mega_pi_d_c_motor_8h_source}\index{src/MeMegaPiDCMotor.h@{src/MeMegaPiDCMotor.h}}
+\mbox{\hyperlink{_me_mega_pi_d_c_motor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#ifndef\ MeMegaPiDCMotor\_H}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ MeMegaPiDCMotor\_H}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \ \ uint8\_t\ dc\_dir\_h1;}
+\DoxyCodeLine{00052\ \ \ uint8\_t\ dc\_dir\_h2;}
+\DoxyCodeLine{00053\ \ \ uint8\_t\ pwm\_pin;\ \textcolor{comment}{//PWM}}
+\DoxyCodeLine{00054\ \}\ \mbox{\hyperlink{structmegapi__dc__type}{megapi\_dc\_type}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structmegapi__dc__type}{megapi\_dc\_type}}\ megapi\_dc\_Port[14];\ \ \textcolor{comment}{//\ megapi\_dc\_Port[0]\ is\ nonsense}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_mega_pi_d_c_motor}{MeMegaPiDCMotor}}}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00072\ \ \ \mbox{\hyperlink{class_me_mega_pi_d_c_motor_a514ff2f2c60e28567f803b75c95b59ca}{MeMegaPiDCMotor}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00079\ \ \ \mbox{\hyperlink{class_me_mega_pi_d_c_motor_a514ff2f2c60e28567f803b75c95b59ca}{MeMegaPiDCMotor}}(uint8\_t\ port);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{class_me_mega_pi_d_c_motor_a514ff2f2c60e28567f803b75c95b59ca}{MeMegaPiDCMotor}}(uint8\_t\ dc\_dir\_h1,uint8\_t\ dc\_dir\_h2,uint8\_t\ pwm\_pin);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00107\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_mega_pi_d_c_motor_a01f48a77e9fac7dcda0bba9dea5752aa}{reset}}(uint8\_t\ port);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00127\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_mega_pi_d_c_motor_a8d46dbfbce3b5f38622eb6f3febd4feb}{setpin}}(uint8\_t\ dc\_dir\_h1,uint8\_t\ dc\_dir\_h2,uint8\_t\ pwm\_pin);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00143\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_mega_pi_d_c_motor_ac324a1423bf3c3ed73e5df7ea9b2b92a}{run}}(int16\_t\ speed);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00157\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_mega_pi_d_c_motor_a1df48e25908553976462a4d0e4413eda}{stop}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00158\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00159\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_dc\_dir\_h1;}
+\DoxyCodeLine{00160\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_dc\_dir\_h2;}
+\DoxyCodeLine{00161\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_dc\_pwm\_pin;}
+\DoxyCodeLine{00162\ \ \ \textcolor{keyword}{volatile}\ int16\_t\ last\_speed;}
+\DoxyCodeLine{00163\ \};}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//MeMegaPiDCMotor\_H}}
+\DoxyCodeLine{00165\ }
+
+\end{DoxyCode}

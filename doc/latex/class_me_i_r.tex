@@ -1,0 +1,493 @@
+\doxysection{Me\+IR Class Reference}
+\hypertarget{class_me_i_r}{}\label{class_me_i_r}\index{MeIR@{MeIR}}
+
+
+Driver for Me IR module.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+IR.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_i_r_a9093e92f61e6fb20d5bc1e9f0d250e04}{Me\+IR}} ()
+\item 
+Error\+Status \mbox{\hyperlink{class_me_i_r_a32e9dfb953176df04c4e2fb728a4a634}{decode}} ()
+\item 
+void \mbox{\hyperlink{class_me_i_r_aa307ef91b7d762ea970e54dba32a161c}{begin}} ()
+\item 
+void \mbox{\hyperlink{class_me_i_r_a7030203133352a4f6f8a3f1e99643858}{end}} ()
+\item 
+void \mbox{\hyperlink{class_me_i_r_aeca67335b28008603173082a00a53641}{loop}} ()
+\item 
+boolean \mbox{\hyperlink{class_me_i_r_a7b0f1947b326e956b7b6f7c06e95a3cc}{key\+Pressed}} (unsigned char r)
+\item 
+String \mbox{\hyperlink{class_me_i_r_acb90c07d687f185d4ed36a57b41cf358}{get\+String}} ()
+\item 
+unsigned char \mbox{\hyperlink{class_me_i_r_ad28a726a055271ee450f49a1d9d56cca}{get\+Code}} ()
+\item 
+void \mbox{\hyperlink{class_me_i_r_ac16817f96bbdf3c065db67056b753b7e}{send\+String}} (String s)
+\item 
+void \mbox{\hyperlink{class_me_i_r_a3994b9b4bb24d8f69d1582a6289604ce}{send\+String}} (float v)
+\item 
+void \mbox{\hyperlink{class_me_i_r_abc9e6b20f70767186f9b9f849785bef7}{send\+NEC}} (unsigned long data, int nbits)
+\item 
+void \mbox{\hyperlink{class_me_i_r_a1e24ad12d0d40449977f708748396438}{send\+Raw}} (unsigned int buf\mbox{[}$\,$\mbox{]}, int len, uint8\+\_\+t hz)
+\item 
+void \mbox{\hyperlink{class_me_i_r_a5ba678779cfbadc0de5836341f785fea}{enable\+IROut}} (uint8\+\_\+t khz)
+\item 
+void \mbox{\hyperlink{class_me_i_r_ad53fd8d718609dab42c9937831306ee0}{enable\+IRIn}} ()
+\item 
+void \mbox{\hyperlink{class_me_i_r_a45a3d2442f3dc1ffbc7816655475ff82}{mark}} (uint16\+\_\+t us)
+\item 
+void \mbox{\hyperlink{class_me_i_r_adeca6211b7bc6c3e0825087c3165abc0}{space}} (uint16\+\_\+t us)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_me_i_r_ac01b322b9b979f143a637292ce0bf78e}\label{class_me_i_r_ac01b322b9b979f143a637292ce0bf78e} 
+int8\+\_\+t {\bfseries decode\+\_\+type}
+\item 
+\Hypertarget{class_me_i_r_a1464d17eaaebe01317759de6fa931c00}\label{class_me_i_r_a1464d17eaaebe01317759de6fa931c00} 
+unsigned long {\bfseries value}
+\item 
+\Hypertarget{class_me_i_r_a81b87c7088bc5a596aa64ab687086577}\label{class_me_i_r_a81b87c7088bc5a596aa64ab687086577} 
+uint8\+\_\+t {\bfseries bits}
+\item 
+\Hypertarget{class_me_i_r_ad25958a58a486d9097455733d3f4cc12}\label{class_me_i_r_ad25958a58a486d9097455733d3f4cc12} 
+volatile uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries rawbuf}
+\item 
+\Hypertarget{class_me_i_r_ac1e92e50772692095ebe3208eced05a1}\label{class_me_i_r_ac1e92e50772692095ebe3208eced05a1} 
+int {\bfseries rawlen}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me IR module. 
+
+Class\+: \doxylink{class_me_i_r}{Me\+IR} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_i_r}{Me\+IR}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_i_r_a9093e92f61e6fb20d5bc1e9f0d250e04}\label{class_me_i_r_a9093e92f61e6fb20d5bc1e9f0d250e04} 
+\index{MeIR@{MeIR}!MeIR@{MeIR}}
+\index{MeIR@{MeIR}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{MeIR()}{MeIR()}}
+{\footnotesize\ttfamily Me\+IR\+::\+Me\+IR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the IR to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_i_r_aa307ef91b7d762ea970e54dba32a161c}\label{class_me_i_r_aa307ef91b7d762ea970e54dba32a161c} 
+\index{MeIR@{MeIR}!begin@{begin}}
+\index{begin@{begin}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily void Me\+IR\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+begin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Initialize interrupt. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_a32e9dfb953176df04c4e2fb728a4a634}\label{class_me_i_r_a32e9dfb953176df04c4e2fb728a4a634} 
+\index{MeIR@{MeIR}!decode@{decode}}
+\index{decode@{decode}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily Error\+Status Me\+IR\+::decode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+decode 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Decodes the received IR message. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Returns 0 if no data ready, 1 if data ready. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+Results of decoding are stored in results. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_ad53fd8d718609dab42c9937831306ee0}\label{class_me_i_r_ad53fd8d718609dab42c9937831306ee0} 
+\index{MeIR@{MeIR}!enableIRIn@{enableIRIn}}
+\index{enableIRIn@{enableIRIn}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{enableIRIn()}{enableIRIn()}}
+{\footnotesize\ttfamily void Me\+IR\+::enable\+IRIn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+enable\+IRIn 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Enable an IR to write in. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_a5ba678779cfbadc0de5836341f785fea}\label{class_me_i_r_a5ba678779cfbadc0de5836341f785fea} 
+\index{MeIR@{MeIR}!enableIROut@{enableIROut}}
+\index{enableIROut@{enableIROut}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{enableIROut()}{enableIROut()}}
+{\footnotesize\ttfamily void Me\+IR\+::enable\+IROut (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{khz }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+enable\+IROut 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Enable an IR for the specified number of khz. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em us} & -\/ THe time of a INTR. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_a7030203133352a4f6f8a3f1e99643858}\label{class_me_i_r_a7030203133352a4f6f8a3f1e99643858} 
+\index{MeIR@{MeIR}!end@{end}}
+\index{end@{end}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily void Me\+IR\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+end 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Close the interrupt. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_ad28a726a055271ee450f49a1d9d56cca}\label{class_me_i_r_ad28a726a055271ee450f49a1d9d56cca} 
+\index{MeIR@{MeIR}!getCode@{getCode}}
+\index{getCode@{getCode}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{getCode()}{getCode()}}
+{\footnotesize\ttfamily unsigned char Me\+IR\+::get\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Code 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the reading code. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the result of reading. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_acb90c07d687f185d4ed36a57b41cf358}\label{class_me_i_r_acb90c07d687f185d4ed36a57b41cf358} 
+\index{MeIR@{MeIR}!getString@{getString}}
+\index{getString@{getString}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{getString()}{getString()}}
+{\footnotesize\ttfamily String Me\+IR\+::get\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+String 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get string in a INTR. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the result in a IRQ. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_a7b0f1947b326e956b7b6f7c06e95a3cc}\label{class_me_i_r_a7b0f1947b326e956b7b6f7c06e95a3cc} 
+\index{MeIR@{MeIR}!keyPressed@{keyPressed}}
+\index{keyPressed@{keyPressed}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{keyPressed()}{keyPressed()}}
+{\footnotesize\ttfamily boolean Me\+IR\+::key\+Pressed (\begin{DoxyParamCaption}\item[{unsigned char}]{r }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+key\+Pressed 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Press key. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return you the pressed key or not. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_aeca67335b28008603173082a00a53641}\label{class_me_i_r_aeca67335b28008603173082a00a53641} 
+\index{MeIR@{MeIR}!loop@{loop}}
+\index{loop@{loop}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily void Me\+IR\+::loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+loop 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+A circle of operation. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output0}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_a45a3d2442f3dc1ffbc7816655475ff82}\label{class_me_i_r_a45a3d2442f3dc1ffbc7816655475ff82} 
+\index{MeIR@{MeIR}!mark@{mark}}
+\index{mark@{mark}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{mark()}{mark()}}
+{\footnotesize\ttfamily void Me\+IR\+::mark (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{us }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+mark 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Sends an IR mark for the specified number of microseconds. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em us} & -\/ THe time of a PWM. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_abc9e6b20f70767186f9b9f849785bef7}\label{class_me_i_r_abc9e6b20f70767186f9b9f849785bef7} 
+\index{MeIR@{MeIR}!sendNEC@{sendNEC}}
+\index{sendNEC@{sendNEC}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{sendNEC()}{sendNEC()}}
+{\footnotesize\ttfamily void Me\+IR\+::send\+NEC (\begin{DoxyParamCaption}\item[{unsigned long}]{data,  }\item[{int}]{nbits }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+send\+NEC 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Send NEC. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em data} & -\/ The data you want to send. \\
+\hline
+\mbox{\texttt{ in}}  & {\em nbits} & -\/ The data bit you want to send. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_a1e24ad12d0d40449977f708748396438}\label{class_me_i_r_a1e24ad12d0d40449977f708748396438} 
+\index{MeIR@{MeIR}!sendRaw@{sendRaw}}
+\index{sendRaw@{sendRaw}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{sendRaw()}{sendRaw()}}
+{\footnotesize\ttfamily void Me\+IR\+::send\+Raw (\begin{DoxyParamCaption}\item[{unsigned int}]{buf\mbox{[}$\,$\mbox{]},  }\item[{int}]{len,  }\item[{uint8\+\_\+t}]{hz }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+send\+Raw 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Send the length of data with hz. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em buf\mbox{[}$\,$\mbox{]}} & -\/ The data\textquotesingle{}s buffer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em len} & -\/ The data\textquotesingle{}s length. \\
+\hline
+\mbox{\texttt{ in}}  & {\em hz} & -\/ The hz for sending data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_a3994b9b4bb24d8f69d1582a6289604ce}\label{class_me_i_r_a3994b9b4bb24d8f69d1582a6289604ce} 
+\index{MeIR@{MeIR}!sendString@{sendString}}
+\index{sendString@{sendString}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{sendString()}{sendString()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Me\+IR\+::send\+String (\begin{DoxyParamCaption}\item[{float}]{v }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+send\+String 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Send data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em v} & -\/ The string you want to send. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_ac16817f96bbdf3c065db67056b753b7e}\label{class_me_i_r_ac16817f96bbdf3c065db67056b753b7e} 
+\index{MeIR@{MeIR}!sendString@{sendString}}
+\index{sendString@{sendString}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{sendString()}{sendString()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Me\+IR\+::send\+String (\begin{DoxyParamCaption}\item[{String}]{s }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+send\+String 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Send data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em s} & -\/ The string you want to send. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_i_r_adeca6211b7bc6c3e0825087c3165abc0}\label{class_me_i_r_adeca6211b7bc6c3e0825087c3165abc0} 
+\index{MeIR@{MeIR}!space@{space}}
+\index{space@{space}!MeIR@{MeIR}}
+\doxysubsubsection{\texorpdfstring{space()}{space()}}
+{\footnotesize\ttfamily void Me\+IR\+::space (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{us }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+space 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Sends an IR mark for the specified number of microseconds. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em us} & -\/ THe time of a PWM. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_i_r_8h}{Me\+IR.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,79 @@
+\doxysection{Me\+Serial.\+h}
+\hypertarget{_me_serial_8h_source}{}\label{_me_serial_8h_source}\index{src/MeSerial.h@{src/MeSerial.h}}
+\mbox{\hyperlink{_me_serial_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#ifndef\ MeSerial\_H}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ MeSerial\_H}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_serial}{MeSerial}}}
+\DoxyCodeLine{00064\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00065\ class\ \mbox{\hyperlink{class_me_serial}{MeSerial}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_software_serial}{SoftwareSerial}}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00075\ \ \ \mbox{\hyperlink{class_me_serial_aaa113d4dc7bf62acae7b7ca559c23245}{MeSerial}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00076\ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \mbox{\hyperlink{class_me_serial_aaa113d4dc7bf62acae7b7ca559c23245}{MeSerial}}(uint8\_t\ port);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{class_me_serial_aaa113d4dc7bf62acae7b7ca559c23245}{MeSerial}}(uint8\_t\ receivePin,\ uint8\_t\ transmitPin,\ \textcolor{keywordtype}{bool}\ inverse\_logic\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00111\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_serial_a73dde79161f876956fd6d070f14510d3}{setHardware}}(\textcolor{keywordtype}{bool}\ mode);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00129\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_serial_a2e491a6206475d8d254a785043e0de22}{begin}}(\textcolor{keywordtype}{long}\ baudrate);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00145\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_me_serial_ad28782e0bebe4255a8ba7995957176e6}{write}}(uint8\_t\ \textcolor{keywordtype}{byte});}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_me_serial_a00be49316c437fdb4615c4e40869ff60}{read}}();}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00177\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_me_serial_a4b784a1b24df5e06f208d697e9e1ed3f}{available}}();}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00192\ \ \ int16\_t\ \mbox{\hyperlink{class_me_serial_a721bd751d68b01eeafd206163eab10a4}{poll}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00206\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_serial_abd68e3efb8adfcc71089dadbd4acd143}{end}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00224\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_serial_a5dd4784d18202db78fb8333afd97c031}{listen}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00238\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_serial_a4c4af893caafb362da7906ddabe16327}{isListening}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00239\ \ \ \ \ }
+\DoxyCodeLine{00254\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_serial_ab4d91285ca3d044f73793137cc1ff3cd}{sendString}}(\textcolor{keywordtype}{char}\ *str);}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00273\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_serial_a30bae57ed633a2b7c8a41ff0de0a6679}{printf}}(\textcolor{keywordtype}{char}\ *fmt,...);}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \textcolor{keywordtype}{boolean}\ dataLineAvailable(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00276\ \ \ String\ readDataLine(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00277\ \ \ String\ concatenateWith(String\ \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}},String\ \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}});}
+\DoxyCodeLine{00278\ \ \ \textcolor{keywordtype}{char}\ letterOf(\textcolor{keywordtype}{int}\ i,String\ s);}
+\DoxyCodeLine{00279\ \ \ \textcolor{keywordtype}{int}\ stringLength(String\ s);}
+\DoxyCodeLine{00280\ \ \ \textcolor{keywordtype}{boolean}\ equalString(String\ \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}},String\ \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}});}
+\DoxyCodeLine{00281\ \ \ \textcolor{keywordtype}{float}\ getValue(String\ key);}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00284\ \ \ \textcolor{keywordtype}{bool}\ \_hard;}
+\DoxyCodeLine{00285\ \ \ \textcolor{keywordtype}{bool}\ \_polling;}
+\DoxyCodeLine{00286\ \ \ \textcolor{keywordtype}{bool}\ \_scratch;}
+\DoxyCodeLine{00287\ \ \ int16\_t\ \_bitPeriod;}
+\DoxyCodeLine{00288\ \ \ int16\_t\ \_byte;}
+\DoxyCodeLine{00289\ \ \ \textcolor{keywordtype}{long}\ \_lastTime;}
+\DoxyCodeLine{00290\ \ \ \textcolor{keywordtype}{char}\ buffer[64];}
+\DoxyCodeLine{00291\ \ \ String\ lastLine;}
+\DoxyCodeLine{00292\ \ \ \textcolor{keywordtype}{int}\ bufferIndex;}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00295\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_RxPin;}
+\DoxyCodeLine{00296\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_TxPin;\ }
+\DoxyCodeLine{00297\ \};}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00299\ }
+
+\end{DoxyCode}

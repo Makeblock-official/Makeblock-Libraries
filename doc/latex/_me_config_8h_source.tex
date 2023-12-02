@@ -1,0 +1,32 @@
+\doxysection{Me\+Config.\+h}
+\hypertarget{_me_config_8h_source}{}\label{_me_config_8h_source}\index{src/MeConfig.h@{src/MeConfig.h}}
+\mbox{\hyperlink{_me_config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#ifndef\ MeConfig\_H}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ MeConfig\_H}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#include\ <utility/Servo.h>}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#include\ <utility/Wire.h>}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#include\ <utility/EEPROM.h>}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#include\ <utility/SoftwareSerial.h>}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#include\ <utility/SPI.h>}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#if\ defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ MePIN\_TO\_BASEREG(pin)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ portInputRegister\ (digitalPinToPort\ (pin)\ )\ )}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ MePIN\_TO\_BITMASK(pin)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ digitalPinToBitMask\ (pin)\ )}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ MeIO\_REG\_TYPE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ MeIO\_REG\_ASM\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ asm\ ("{}r30"{})}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ MeDIRECT\_READ(base,\ mask)\ \ \ \ \ \ \ \ \ \ \ (\ (\ (*(base)\ )\ \&\ (mask)\ )\ ?\ 1\ :\ 0)}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ MeDIRECT\_MODE\_INPUT(base,\ mask)\ \ \ \ \ (\ (*(\ (base)\ +\ 1)\ )\ \&=\ \string~(mask)\ ),\ (\ (*(\ (base)\ +\ 2)\ )\ |=\ (mask)\ )\ }\textcolor{comment}{//\ INPUT\_PULLUP}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ MeDIRECT\_MODE\_OUTPUT(base,\ mask)\ \ \ \ (\ (*(\ (base)\ +\ 1)\ )\ |=\ (mask)\ )}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ MeDIRECT\_WRITE\_LOW(base,\ mask)\ \ \ \ \ \ (\ (*(\ (base)\ +\ 2)\ )\ \&=\ \string~(mask)\ )}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ MeDIRECT\_WRITE\_HIGH(base,\ mask)\ \ \ \ \ (\ (*(\ (base)\ +\ 2)\ )\ |=\ (mask)\ )}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_AVR\_\_}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MeConfig\_H}}
+\DoxyCodeLine{00117\ }
+
+\end{DoxyCode}

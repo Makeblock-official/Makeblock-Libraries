@@ -1,0 +1,210 @@
+\doxysection{Me\+Host\+Parser Class Reference}
+\hypertarget{class_me_host_parser}{}\label{class_me_host_parser}\index{MeHostParser@{MeHostParser}}
+
+
+Driver for Me Host Parser module.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Host\+Parser.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_host_parser_a05210809fce73b62b8864c8cc07c67e5}{Me\+Host\+Parser}} ()
+\item 
+\mbox{\hyperlink{class_me_host_parser_a33eea4b1148451559c18f52ea7e0916d}{\texorpdfstring{$\sim$}{\string~}\+Me\+Host\+Parser}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_host_parser_a0103f25edd15026dcf5ae8a19cb25abf}{push\+Str}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}str, uint32\+\_\+t length)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_host_parser_aea2e516581e88dc2f807759bc2a679b2}{push\+Byte}} (uint8\+\_\+t ch)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_host_parser_a29f974647d06c7cb1c75db2963958478}{run}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_host_parser_a4e07eae4722fba03fd463447cb8526d4}{get\+Package\+Ready}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_host_parser_a653298e64d1ac2633b23e4ae420121c3}{get\+Data}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint32\+\_\+t size)
+\item 
+\Hypertarget{class_me_host_parser_a48057c0e0519481bf696bf66bc9db99a}\label{class_me_host_parser_a48057c0e0519481bf696bf66bc9db99a} 
+void {\bfseries print} (char \texorpdfstring{$\ast$}{*}str, uint32\+\_\+t \texorpdfstring{$\ast$}{*}cnt)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me Host Parser module. 
+
+Class\+: \doxylink{class_me_host_parser}{Me\+Host\+Parser} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_host_parser}{Me\+Host\+Parser}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_host_parser_a05210809fce73b62b8864c8cc07c67e5}\label{class_me_host_parser_a05210809fce73b62b8864c8cc07c67e5} 
+\index{MeHostParser@{MeHostParser}!MeHostParser@{MeHostParser}}
+\index{MeHostParser@{MeHostParser}!MeHostParser@{MeHostParser}}
+\doxysubsubsection{\texorpdfstring{MeHostParser()}{MeHostParser()}}
+{\footnotesize\ttfamily Me\+Host\+Parser\+::\+Me\+Host\+Parser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the Host Parser to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_host_parser_a33eea4b1148451559c18f52ea7e0916d}\label{class_me_host_parser_a33eea4b1148451559c18f52ea7e0916d} 
+\index{MeHostParser@{MeHostParser}!````~MeHostParser@{\texorpdfstring{$\sim$}{\string~}MeHostParser}}
+\index{````~MeHostParser@{\texorpdfstring{$\sim$}{\string~}MeHostParser}!MeHostParser@{MeHostParser}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MeHostParser()}{\string~MeHostParser()}}
+{\footnotesize\ttfamily Me\+Host\+Parser\+::\texorpdfstring{$\sim$}{\string~}\+Me\+Host\+Parser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Alternate Destructor which can call the system\textquotesingle{}s destructor to free space, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_host_parser_a653298e64d1ac2633b23e4ae420121c3}\label{class_me_host_parser_a653298e64d1ac2633b23e4ae420121c3} 
+\index{MeHostParser@{MeHostParser}!getData@{getData}}
+\index{getData@{getData}!MeHostParser@{MeHostParser}}
+\doxysubsubsection{\texorpdfstring{getData()}{getData()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Host\+Parser\+::get\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Copy data to user\textquotesingle{}s buffer. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em buf} & -\/ A buffer for a getting data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & -\/ The length of getting data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the length of getting data or 0. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_host_parser_a4e07eae4722fba03fd463447cb8526d4}\label{class_me_host_parser_a4e07eae4722fba03fd463447cb8526d4} 
+\index{MeHostParser@{MeHostParser}!getPackageReady@{getPackageReady}}
+\index{getPackageReady@{getPackageReady}!MeHostParser@{MeHostParser}}
+\doxysubsubsection{\texorpdfstring{getPackageReady()}{getPackageReady()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Host\+Parser\+::get\+Package\+Ready (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Package\+Ready 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the package ready state. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the status ready or not. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_host_parser_aea2e516581e88dc2f807759bc2a679b2}\label{class_me_host_parser_aea2e516581e88dc2f807759bc2a679b2} 
+\index{MeHostParser@{MeHostParser}!pushByte@{pushByte}}
+\index{pushByte@{pushByte}!MeHostParser@{MeHostParser}}
+\doxysubsubsection{\texorpdfstring{pushByte()}{pushByte()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Host\+Parser\+::push\+Byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+push\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+To push a byte to Host Parser. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ch} & -\/ A pointer to a char. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the status of pushing char. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_host_parser_a0103f25edd15026dcf5ae8a19cb25abf}\label{class_me_host_parser_a0103f25edd15026dcf5ae8a19cb25abf} 
+\index{MeHostParser@{MeHostParser}!pushStr@{pushStr}}
+\index{pushStr@{pushStr}!MeHostParser@{MeHostParser}}
+\doxysubsubsection{\texorpdfstring{pushStr()}{pushStr()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Host\+Parser\+::push\+Str (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{str,  }\item[{uint32\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+push\+Str 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+To push a string to Host Parser. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em str} & -\/ A pointer to a string. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & -\/ The length of the string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the index of pushing string. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_host_parser_a29f974647d06c7cb1c75db2963958478}\label{class_me_host_parser_a29f974647d06c7cb1c75db2963958478} 
+\index{MeHostParser@{MeHostParser}!run@{run}}
+\index{run@{run}!MeHostParser@{MeHostParser}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Host\+Parser\+::run (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+run 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+The running status of Host Parser. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the status of Host Parser\textquotesingle{}s running. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_host_parser_8h}{Me\+Host\+Parser.\+h}}\item 
+src/\mbox{\hyperlink{_me_host_parser_8cpp}{Me\+Host\+Parser.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="MeMegaPiPro4DcMotor" name="MeMegaPiPro4DcMotor">
+<area shape="rect" id="Node000001" title="Driver for Me DC motor device." alt="" coords="5,80,165,107"/>
+<area shape="rect" id="Node000002" href="$class_me_port.html" title="Port Mapping for RJ25." alt="" coords="53,5,117,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,48,88,80,82,80,82,48"/>
+</map>

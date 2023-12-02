@@ -1,0 +1,37 @@
+\doxysection{Me\+Wifi.\+h}
+\hypertarget{_me_wifi_8h_source}{}\label{_me_wifi_8h_source}\index{src/MeWifi.h@{src/MeWifi.h}}
+\mbox{\hyperlink{_me_wifi_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#ifndef\ MeWifi\_H}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ MeWifi\_H}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_serial_8h}{MeSerial.h}}"{}}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ME\_PORT\_DEFINED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00057\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_wifi}{MeWifi}}}
+\DoxyCodeLine{00058\ \#else\ \textcolor{comment}{/*\ !ME\_PORT\_DEFINED\ */}}
+\DoxyCodeLine{00059\ class\ \mbox{\hyperlink{class_me_wifi}{MeWifi}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_serial}{MeSerial}}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ !ME\_PORT\_DEFINED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00070\ \ \ \mbox{\hyperlink{class_me_wifi_aaec7c63be7254e4a4471b42c75ddf320}{MeWifi}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{class_me_wifi_aaec7c63be7254e4a4471b42c75ddf320}{MeWifi}}(uint8\_t\ port);}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00090\ \ \ MeWifi(uint8\_t\ receivePin,\ uint8\_t\ transmitPin,\ bool\ inverse\_logic);}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00094\ }
+
+\end{DoxyCode}
