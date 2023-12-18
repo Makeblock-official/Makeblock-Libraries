@@ -56,9 +56,6 @@
  */
  
 
-#define IGNORE_ME_IR
- 
-#ifndef IGNORE_ME_IR
 
 #include "MeIR.h"
 
@@ -708,10 +705,3 @@ boolean MeIR::keyPressed(unsigned char r)
   return irRead == r;
 }
 #endif // !defined(__AVR_ATmega32U4__)
-
-#else
-
-#warning "NOT AN ERROR, but IR has been disabled, remove #define IGNORE_ME_IR to enable IR"
-
-
-#endif // !defined(IGNORE_ME_IR)
