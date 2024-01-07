@@ -1,0 +1,97 @@
+\doxysection{src/\+Me\+Line\+Follower.h File Reference}
+\hypertarget{_me_line_follower_8h}{}\label{_me_line_follower_8h}\index{src/MeLineFollower.h@{src/MeLineFollower.h}}
+
+
+Header for for \doxylink{_me_line_follower_8cpp}{Me\+Line\+Follower.\+cpp} module.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+Line\+Follower.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_line_follower_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_line_follower_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_me_line_follower}{Me\+Line\+Follower}}
+\begin{DoxyCompactList}\small\item\em Driver for Me line follwer device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_line_follower_8h_aef958ea56c8bb627445b363a22de7a87}\label{_me_line_follower_8h_aef958ea56c8bb627445b363a22de7a87} 
+\#define {\bfseries S1\+\_\+\+IN\+\_\+\+S2\+\_\+\+IN}~(0x00)
+\item 
+\Hypertarget{_me_line_follower_8h_ad44991cc6d1437f2017485af926e4545}\label{_me_line_follower_8h_ad44991cc6d1437f2017485af926e4545} 
+\#define {\bfseries S1\+\_\+\+IN\+\_\+\+S2\+\_\+\+OUT}~(0x01)
+\item 
+\Hypertarget{_me_line_follower_8h_a996a651e0834085d16d618bf13ea7b5c}\label{_me_line_follower_8h_a996a651e0834085d16d618bf13ea7b5c} 
+\#define {\bfseries S1\+\_\+\+OUT\+\_\+\+S2\+\_\+\+IN}~(0x02)
+\item 
+\Hypertarget{_me_line_follower_8h_aab967e78bbb8f6d06dde1bc09e2e3f6b}\label{_me_line_follower_8h_aab967e78bbb8f6d06dde1bc09e2e3f6b} 
+\#define {\bfseries S1\+\_\+\+OUT\+\_\+\+S2\+\_\+\+OUT}~(0x03)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for for \doxylink{_me_line_follower_8cpp}{Me\+Line\+Follower.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2015/09/07 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me line follwer device, It supports line follwer device V2.\+2 provided by the Make\+Block. The line follwer used Infrared Tube to Use infrared receiver and transmitter to detect the black line.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_line_follower_aafb9c399cf49bd9877ba9d19d3f55922}{Me\+Line\+Follower\+::setpin(uint8\+\_\+t Sensor1,uint8\+\_\+t Sensor2)}
+\item uint8\+\_\+t \doxylink{class_me_line_follower_a88db0aaee6ffac54c106c2e8e9811f40}{Me\+Line\+Follower\+::read\+Sensors(void)}
+\item bool \doxylink{class_me_line_follower_aa0d1a6c71bde5d559db1dc82ba8960b7}{Me\+Line\+Follower\+::read\+Sensor1(void)}
+\item bool \doxylink{class_me_line_follower_aa0d1a6c71bde5d559db1dc82ba8960b7}{Me\+Line\+Follower\+::read\+Sensor1(void)}
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan         2015/09/07     1.0.0            Rebuild the old lib.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

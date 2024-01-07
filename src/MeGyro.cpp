@@ -438,6 +438,25 @@ double MeGyro::getGyroY(void) const
 
 /**
  * \par Function
+ *   getGyroZ
+ * \par Description
+ *   Get the data of gyroZrate.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of gyroZrate
+ * \par Others
+ *   None
+ */
+double MeGyro::getGyroZ(void) const
+{
+  return gyrZ;
+}
+
+/**
+ * \par Function
  *   getAngle
  * \par Description
  *   Get the angle value of setting axis.
@@ -621,4 +640,33 @@ int8_t MeGyro::writeData(uint8_t start, const uint8_t *pData, uint8_t size)
   Wire.write(pData, size);  
   return_value = Wire.endTransmission(true); 
   return(return_value); //return: no error                     
+}
+
+/**
+ * \par Function
+ *   resetData
+ * \par Description
+ *   Reset the angle value of setting axis.
+ * \param[in]
+ *  None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ * \author
+ *   Nicolas Bourré
+ */  
+void MeGyro::resetData(void)
+{
+  gx = 0;
+  gy = 0;
+  gz = 0;
+  gyrX = 0;
+  gyrY = 0;
+  gyrZ = 0;
+  accX = 0;
+  accY = 0;
+  accZ = 0;
 }

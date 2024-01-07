@@ -1,0 +1,91 @@
+\doxysection{Wire.\+h}
+\hypertarget{_wire_8h_source}{}\label{_wire_8h_source}\index{src/utility/Wire.h@{src/utility/Wire.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ TwoWire.h\ -\/\ TWI/I2C\ library\ for\ Arduino\ \&\ Wiring}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Copyright\ (c)\ 2006\ Nicholas\ Zambetti.\ \ All\ right\ reserved.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ License\ as\ published\ by\ the\ Free\ Software\ Foundation;\ either}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ version\ 2.1\ of\ the\ License,\ or\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ This\ library\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ GNU}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ License\ along\ with\ this\ library;\ if\ not,\ write\ to\ the\ Free\ Software}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ Foundation,\ Inc.,\ 51\ Franklin\ St,\ Fifth\ Floor,\ Boston,\ MA\ \ 02110-\/1301\ \ USA}}
+\DoxyCodeLine{00018\ \textcolor{comment}{}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ \ Modified\ 2012\ by\ Todd\ Krein\ (todd@krein.org)\ to\ implement\ repeated\ starts}}
+\DoxyCodeLine{00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ TwoWire\_h}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ TwoWire\_h}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <inttypes.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}Stream.h"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ BUFFER\_LENGTH\ 32}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ WIRE\_HAS\_END\ means\ Wire\ has\ end()}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ WIRE\_HAS\_END\ 1}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_two_wire}{TwoWire}}\ :\ \textcolor{keyword}{public}\ Stream}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ rxBuffer[];}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ rxBufferIndex;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ rxBufferLength;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ txAddress;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ txBuffer[];}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ txBufferIndex;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ txBufferLength;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ transmitting;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static}\ void\ (*user\_onRequest)(void);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ void\ (*user\_onReceive)(int);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ onRequestService(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ onReceiveService(uint8\_t*,\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_two_wire}{TwoWire}}();}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ begin();}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ begin(uint8\_t);}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ begin(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ end();}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ setClock(uint32\_t);}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ beginTransmission(uint8\_t);}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ beginTransmission(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{00059\ \ \ \ \ uint8\_t\ endTransmission(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00060\ \ \ \ \ uint8\_t\ endTransmission(uint8\_t);}
+\DoxyCodeLine{00061\ \ \ \ \ uint8\_t\ requestFrom(uint8\_t,\ uint8\_t);}
+\DoxyCodeLine{00062\ \ \ \ \ uint8\_t\ requestFrom(uint8\_t,\ uint8\_t,\ uint8\_t);}
+\DoxyCodeLine{00063\ \ \ \ \ uint8\_t\ requestFrom(uint8\_t,\ uint8\_t,\ uint32\_t,\ uint8\_t,\ uint8\_t);}
+\DoxyCodeLine{00064\ \ \ \ \ uint8\_t\ requestFrom(\textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{00065\ \ \ \ \ uint8\_t\ requestFrom(\textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int},\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ write(uint8\_t);}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ write(\textcolor{keyword}{const}\ uint8\_t\ *,\ \textcolor{keywordtype}{size\_t});}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ available(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ read(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ peek(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ flush(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ onReceive(\ \textcolor{keywordtype}{void}\ (*)(\textcolor{keywordtype}{int})\ );}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ onRequest(\ \textcolor{keywordtype}{void}\ (*)(\textcolor{keywordtype}{void})\ );}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{size\_t}\ write(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ n)\ \{\ \textcolor{keywordflow}{return}\ write((uint8\_t)n);\ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{size\_t}\ write(\textcolor{keywordtype}{long}\ n)\ \{\ \textcolor{keywordflow}{return}\ write((uint8\_t)n);\ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{size\_t}\ write(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ n)\ \{\ \textcolor{keywordflow}{return}\ write((uint8\_t)n);\ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{size\_t}\ write(\textcolor{keywordtype}{int}\ n)\ \{\ \textcolor{keywordflow}{return}\ write((uint8\_t)n);\ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{using\ }Print::write;}
+\DoxyCodeLine{00080\ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{class_two_wire}{TwoWire}}\ Wire;}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00085\ }
+
+\end{DoxyCode}

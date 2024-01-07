@@ -1,0 +1,109 @@
+\doxysection{Me7\+Segment\+Display.\+h}
+\hypertarget{_me7_segment_display_8h_source}{}\label{_me7_segment_display_8h_source}\index{src/Me7SegmentDisplay.h@{src/Me7SegmentDisplay.h}}
+\mbox{\hyperlink{_me7_segment_display_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{/*\ Define\ to\ prevent\ recursive\ inclusion\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#ifndef\ Me7SegmentDisplay\_H}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ Me7SegmentDisplay\_H}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{comment}{//************definitions\ for\ TM1637*********************}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{comment}{/*\ Exported\ constants\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00097\ \textcolor{comment}{/******************definitions\ for\ TM1637**********************/}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{const}\ uint8\_t\ \ \ ADDR\_AUTO\ =\ 0x40;\ \ \ \textcolor{comment}{//Automatic\ address\ increment\ mode}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{const}\ uint8\_t\ \ \ ADDR\_FIXED\ =\ 0x44;\ \ \ \textcolor{comment}{//Fixed\ address\ mode}}
+\DoxyCodeLine{00100\ \textcolor{keyword}{const}\ uint8\_t\ \ \ STARTADDR\ =\ 0xc0;\ \ \ \textcolor{comment}{//start\ address\ of\ display\ register}}
+\DoxyCodeLine{00101\ \textcolor{keyword}{const}\ uint8\_t\ \ \ SEGDIS\_ON\ =\ 0x88;\ \ \ \textcolor{comment}{//diplay\ on}}
+\DoxyCodeLine{00102\ \textcolor{keyword}{const}\ uint8\_t\ \ \ SEGDIS\_OFF\ =\ 0x80;\ \ \ \textcolor{comment}{//diplay\ off}}
+\DoxyCodeLine{00103\ \textcolor{comment}{/****\ definitions\ for\ the\ clock\ point\ of\ the\ digit\ tube\ *******/}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{const}\ uint8\_t\ POINT\_ON\ =\ 1;}
+\DoxyCodeLine{00105\ \textcolor{keyword}{const}\ uint8\_t\ POINT\_OFF\ =\ 0;}
+\DoxyCodeLine{00106\ \textcolor{comment}{/**************definitions\ for\ brightness***********************/}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{const}\ uint8\_t\ BRIGHTNESS\_0\ =\ 0;}
+\DoxyCodeLine{00108\ \textcolor{keyword}{const}\ uint8\_t\ BRIGHTNESS\_1\ =\ 1;}
+\DoxyCodeLine{00109\ \textcolor{keyword}{const}\ uint8\_t\ BRIGHTNESS\_2\ =\ 2;}
+\DoxyCodeLine{00110\ \textcolor{keyword}{const}\ uint8\_t\ BRIGHTNESS\_3\ =\ 3;}
+\DoxyCodeLine{00111\ \textcolor{keyword}{const}\ uint8\_t\ BRIGHTNESS\_4\ =\ 4;}
+\DoxyCodeLine{00112\ \textcolor{keyword}{const}\ uint8\_t\ BRIGHTNESS\_5\ =\ 5;}
+\DoxyCodeLine{00113\ \textcolor{keyword}{const}\ uint8\_t\ BRIGHTNESS\_6\ =\ 6;}
+\DoxyCodeLine{00114\ \textcolor{keyword}{const}\ uint8\_t\ BRIGHTNESS\_7\ =\ 7;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00123\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me7_segment_display}{Me7SegmentDisplay}}}
+\DoxyCodeLine{00124\ \#else\ \textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00125\ class\ \mbox{\hyperlink{class_me7_segment_display}{Me7SegmentDisplay}}\ :\textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00127\ \{}
+\DoxyCodeLine{00128\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00136\ \ \ \mbox{\hyperlink{class_me7_segment_display_a0c19f7b481f2f4be039b1eee70b5057d}{Me7SegmentDisplay}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00137\ \ \ }
+\DoxyCodeLine{00144\ \ \ \mbox{\hyperlink{class_me7_segment_display_a0c19f7b481f2f4be039b1eee70b5057d}{Me7SegmentDisplay}}(uint8\_t\ port);}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00153\ \ \ Me7SegmentDisplay(uint8\_t\ dataPin,\ uint8\_t\ clkPin);}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_ac8d890fddfbd86a221d2d990ff8a405a}{reset}}(uint8\_t\ port);}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00184\ \ \ void\ init(void);\ \textcolor{comment}{//\ Clear\ display}}
+\DoxyCodeLine{00185\ \ \ }
+\DoxyCodeLine{00206\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_a761c4852237699b3504f901c3a30166c}{set}}(uint8\_t\ =\ BRIGHTNESS\_2,\ uint8\_t\ =\ ADDR\_AUTO,\ uint8\_t\ =\ STARTADDR);\textcolor{comment}{//\ Take\ effect\ next\ display\ cycle.}}
+\DoxyCodeLine{00207\ \ \ }
+\DoxyCodeLine{00224\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_a76d0b14ce4e0146ab1620dd462014caa}{setpin}}(uint8\_t\ dataPin,\ uint8\_t\ clkPin);}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00240\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_a4b5cfc6eea577542021edf8f812bff2f}{write}}(uint8\_t\ SegData[]);}
+\DoxyCodeLine{00241\ \ \ }
+\DoxyCodeLine{00258\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_a4b5cfc6eea577542021edf8f812bff2f}{write}}(uint8\_t\ BitAddr,\ uint8\_t\ SegData);}
+\DoxyCodeLine{00259\ \ \ }
+\DoxyCodeLine{00274\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_ac1d7b706bf23e38fbdf60b1caad42a4e}{display}}(uint16\_t\ value);}
+\DoxyCodeLine{00275\ \ \ }
+\DoxyCodeLine{00290\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_ac1d7b706bf23e38fbdf60b1caad42a4e}{display}}(int16\_t\ value);}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00306\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_ac1d7b706bf23e38fbdf60b1caad42a4e}{display}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00322\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_ac1d7b706bf23e38fbdf60b1caad42a4e}{display}}(\textcolor{keywordtype}{long}\ value);}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00340\ \ \ int16\_t\ \mbox{\hyperlink{class_me7_segment_display_a50109f40f87591fbe2a907768b03678c}{checkNum}}(\textcolor{keywordtype}{float}\ v,int16\_t\ b);}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00358\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_ac1d7b706bf23e38fbdf60b1caad42a4e}{display}}(\textcolor{keywordtype}{double}\ value,\ uint8\_t\ =\ 1);}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00374\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_ac1d7b706bf23e38fbdf60b1caad42a4e}{display}}(uint8\_t\ DispData[]);}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00392\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_ac1d7b706bf23e38fbdf60b1caad42a4e}{display}}(uint8\_t\ BitAddr,\ uint8\_t\ DispData);}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00412\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_ac1d7b706bf23e38fbdf60b1caad42a4e}{display}}(uint8\_t\ BitAddr,\ uint8\_t\ DispData,\ uint8\_t\ point\_on);}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00426\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_aa7cf32e953eae84bde132cc38e1b91db}{clearDisplay}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00427\ \ \ }
+\DoxyCodeLine{00442\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_a7761bf8b50f0a91a3c2b27b1230b1132}{setBrightness}}(uint8\_t\ brightness);}
+\DoxyCodeLine{00443\ \ \ }
+\DoxyCodeLine{00458\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me7_segment_display_ad19ac6b355cc8da9e77c2fee4a908814}{coding}}(uint8\_t\ DispData[]);}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00474\ \ \ uint8\_t\ \mbox{\hyperlink{class_me7_segment_display_ad19ac6b355cc8da9e77c2fee4a908814}{coding}}(uint8\_t\ DispData);}
+\DoxyCodeLine{00475\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00476\ \ \ uint8\_t\ Cmd\_SetData;}
+\DoxyCodeLine{00477\ \ \ uint8\_t\ Cmd\_SetAddr;}
+\DoxyCodeLine{00478\ \ \ uint8\_t\ Cmd\_DispCtrl;}
+\DoxyCodeLine{00479\ \ \ \textcolor{keywordtype}{bool}\ \_PointFlag;\ \textcolor{comment}{//\_PointFlag=1:the\ clock\ point\ on}}
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00495\ \ \ \textcolor{keywordtype}{void}\ writeByte(uint8\_t\ wr\_data);\textcolor{comment}{//\ Write\ 8\ bits\ data\ to\ tm1637.}}
+\DoxyCodeLine{00496\ \ \ }
+\DoxyCodeLine{00511\ \ \ \textcolor{keywordtype}{void}\ start(\textcolor{keywordtype}{void});\textcolor{comment}{//\ Send\ start\ bits}}
+\DoxyCodeLine{00512\ \ \ \textcolor{keywordtype}{void}\ point(\textcolor{keywordtype}{bool}\ PointFlag);\textcolor{comment}{//\ Whether\ to\ light\ the\ clock\ point\ "{}:"{}.\ Take\ effect\ next\ display\ cycle.}}
+\DoxyCodeLine{00513\ \ }
+\DoxyCodeLine{00528\ \ \ \textcolor{keywordtype}{void}\ stop(\textcolor{keywordtype}{void});\ \textcolor{comment}{//\ Send\ stop\ bits.}}
+\DoxyCodeLine{00529\ \ \ uint8\_t\ \_clkPin;}
+\DoxyCodeLine{00530\ \ \ uint8\_t\ \_dataPin;}
+\DoxyCodeLine{00531\ \};}
+\DoxyCodeLine{00532\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

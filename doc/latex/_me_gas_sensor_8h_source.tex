@@ -1,0 +1,48 @@
+\doxysection{Me\+Gas\+Sensor.\+h}
+\hypertarget{_me_gas_sensor_8h_source}{}\label{_me_gas_sensor_8h_source}\index{src/MeGasSensor.h@{src/MeGasSensor.h}}
+\mbox{\hyperlink{_me_gas_sensor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifndef\ MeGasSensor\_H}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ MeGasSensor\_H}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ Gas\_Exceeded\ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ Gas\_not\_Exceeded\ (0x01)}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED\ \ }}
+\DoxyCodeLine{00061\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_gas_sensor}{MeGasSensor}}}
+\DoxyCodeLine{00062\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00063\ class\ \mbox{\hyperlink{class_me_gas_sensor}{MeGasSensor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00074\ \ \ \mbox{\hyperlink{class_me_gas_sensor_a96b281de59928839b6d267f7c368fdfe}{MeGasSensor}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \ \ \mbox{\hyperlink{class_me_gas_sensor_a96b281de59928839b6d267f7c368fdfe}{MeGasSensor}}(uint8\_t\ port);}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00091\ \ \ MeGasSensor(uint8\_t\ digital\_pin,uint8\_t\ analog\_pin)}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00109\ \ \ void\ setpin(uint8\_t\ digital\_pin,uint8\_t\ analog\_pin);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00125\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_gas_sensor_aeac19b4e212288e4c3ec309ef69ce881}{readDigital}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00139\ \ \ int16\_t\ \mbox{\hyperlink{class_me_gas_sensor_ab074be57436cbeda3788a109435b6d45}{readAnalog}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00140\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00141\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_digital\_pin;}
+\DoxyCodeLine{00142\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_analog\_pin;}
+\DoxyCodeLine{00143\ \};}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00145\ }
+
+\end{DoxyCode}

@@ -1,0 +1,158 @@
+\doxysection{src/\+Me\+Encoder\+New.cpp File Reference}
+\hypertarget{_me_encoder_new_8cpp}{}\label{_me_encoder_new_8cpp}\index{src/MeEncoderNew.cpp@{src/MeEncoderNew.cpp}}
+
+
+Driver for Me Encoder New module.  
+
+
+{\ttfamily \#include "{}Me\+Encoder\+New.\+h"{}}\newline
+Include dependency graph for Me\+Encoder\+New.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_encoder_new_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a6cd41e8f5251975ad17340ca31ff53cc}\label{_me_encoder_new_8cpp_a6cd41e8f5251975ad17340ca31ff53cc} 
+\#define {\bfseries HOLD}~0x40
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a9ac82e856c7683e23553431e5224d5f4}\label{_me_encoder_new_8cpp_a9ac82e856c7683e23553431e5224d5f4} 
+\#define {\bfseries SYNC}~0x80
+\item 
+\Hypertarget{_me_encoder_new_8cpp_afe1dd8546b0a8cd30b19a0229205c8df}\label{_me_encoder_new_8cpp_afe1dd8546b0a8cd30b19a0229205c8df} 
+\#define {\bfseries CMD\+\_\+\+RESET}~0x00
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a22bd6b792d5123213018a24266cd3954}\label{_me_encoder_new_8cpp_a22bd6b792d5123213018a24266cd3954} 
+\#define {\bfseries CMD\+\_\+\+MOVE\+\_\+\+TO}~0x01
+\item 
+\Hypertarget{_me_encoder_new_8cpp_ab0b6207219b9ccdecff1eef892d6d3ff}\label{_me_encoder_new_8cpp_ab0b6207219b9ccdecff1eef892d6d3ff} 
+\#define {\bfseries CMD\+\_\+\+MOVE}~0x02
+\item 
+\Hypertarget{_me_encoder_new_8cpp_aca84cb7cbe65ae8a971876cca1e20c3c}\label{_me_encoder_new_8cpp_aca84cb7cbe65ae8a971876cca1e20c3c} 
+\#define {\bfseries CMD\+\_\+\+MOVE\+\_\+\+SPD}~0x03
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a46dc7ae84992bfe62cc00731959a67f4}\label{_me_encoder_new_8cpp_a46dc7ae84992bfe62cc00731959a67f4} 
+\#define {\bfseries CMD\+\_\+\+STOP}~0x05
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a9ac0c53eb0f5f07ef93dfb8ade2aaaba}\label{_me_encoder_new_8cpp_a9ac0c53eb0f5f07ef93dfb8ade2aaaba} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+SPEED\+\_\+\+PID}~0x10
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a325b36d68fc36f49b988d8b2dbab7843}\label{_me_encoder_new_8cpp_a325b36d68fc36f49b988d8b2dbab7843} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+POS\+\_\+\+PID}~0x11
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a8ef7ea564a1040d2e0e3f0930cd6cd90}\label{_me_encoder_new_8cpp_a8ef7ea564a1040d2e0e3f0930cd6cd90} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+CUR\+\_\+\+POS}~0x12
+\item 
+\Hypertarget{_me_encoder_new_8cpp_ab08c18e4b6ea58665d8743bd47182946}\label{_me_encoder_new_8cpp_ab08c18e4b6ea58665d8743bd47182946} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+MODE}~0x13
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a08ecaaa653c27bc127f1e1714b3b8069}\label{_me_encoder_new_8cpp_a08ecaaa653c27bc127f1e1714b3b8069} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+PWM}~0x14
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a91f6aa4ad2dacf3e3453faa88e5a0f0b}\label{_me_encoder_new_8cpp_a91f6aa4ad2dacf3e3453faa88e5a0f0b} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+RATIO}~0x15
+\item 
+\Hypertarget{_me_encoder_new_8cpp_aed6757fa3d3dcd7328e02f6f5434060c}\label{_me_encoder_new_8cpp_aed6757fa3d3dcd7328e02f6f5434060c} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+PULSE}~0x16
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a63080d35e61bdf588e5634f0c49c51cc}\label{_me_encoder_new_8cpp_a63080d35e61bdf588e5634f0c49c51cc} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+DEVID}~0x17
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a8329b8237e8c05a37f64ae1c74f67b5a}\label{_me_encoder_new_8cpp_a8329b8237e8c05a37f64ae1c74f67b5a} 
+\#define {\bfseries CMD\+\_\+\+GET\+\_\+\+SPEED\+\_\+\+PID}~0x20
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a71b306a9fb7eb874cf44a379ecb93db8}\label{_me_encoder_new_8cpp_a71b306a9fb7eb874cf44a379ecb93db8} 
+\#define {\bfseries CMD\+\_\+\+GET\+\_\+\+POS\+\_\+\+PID}~0x21
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a39b99223958661dad580cfa6ff6fa1b8}\label{_me_encoder_new_8cpp_a39b99223958661dad580cfa6ff6fa1b8} 
+\#define {\bfseries CMD\+\_\+\+GET\+\_\+\+POS}~0x23
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a822258f5f23a35eb957cd7e2c103d32c}\label{_me_encoder_new_8cpp_a822258f5f23a35eb957cd7e2c103d32c} 
+\#define {\bfseries CMD\+\_\+\+GET\+\_\+\+SPEED}~0x24
+\item 
+\Hypertarget{_me_encoder_new_8cpp_aa33990b1c046be94ef3cce3c705fbe41}\label{_me_encoder_new_8cpp_aa33990b1c046be94ef3cce3c705fbe41} 
+\#define {\bfseries CMD\+\_\+\+GET\+\_\+\+RATIO}~0x25
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a6bee25ded754e8cff73eb2de220c8a7d}\label{_me_encoder_new_8cpp_a6bee25ded754e8cff73eb2de220c8a7d} 
+\#define {\bfseries CMD\+\_\+\+GET\+\_\+\+PULSE}~0x26
+\item 
+\Hypertarget{_me_encoder_new_8cpp_ad7843b173bf91a21df4eb5355d95cd8a}\label{_me_encoder_new_8cpp_ad7843b173bf91a21df4eb5355d95cd8a} 
+\#define {\bfseries CMD\+\_\+\+GET\+\_\+\+LOCK\+\_\+\+STATE}~0x27
+\item 
+\Hypertarget{_me_encoder_new_8cpp_a8552f1d937b21385cfe76ab09a8243ed}\label{_me_encoder_new_8cpp_a8552f1d937b21385cfe76ab09a8243ed} 
+\#define {\bfseries CMD\+\_\+\+GET\+\_\+\+FIRWARE\+\_\+\+VERSION}~0x30
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me Encoder New module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/03/18 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me Encoder\+New device, The Me Encoder\+New inherited the \doxylink{class_me_serial}{Me\+Serial} class from \doxylink{class_software_serial}{Software\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_encoder_new_a7502d17074b0de59a44406f1c67aa1fa}{Me\+Encoder\+New\+::begin(void)};
+\item void \doxylink{class_me_encoder_new_a6bf91a91af5bde030d9656e3314d0c96}{Me\+Encoder\+New\+::set\+Addr(uint8\+\_\+t i2c\+Addr,uint8\+\_\+t slot)};
+\item void \doxylink{class_me_encoder_new_abe1fe2665edfaae677ed00eea1fef040}{Me\+Encoder\+New\+::move(long angle, float speed, float lock\+\_\+state)};
+\item void \doxylink{class_me_encoder_new_a2b9316c366c67ef88b6f03635f8c9468}{Me\+Encoder\+New\+::move\+To(long angle, float speed,float lock\+\_\+state)};
+\item void Me\+Encoder\+New\+::run\+Speed(int speed);
+\item void \doxylink{class_me_encoder_new_ab7c6be174df72535937b1bc640d07b3a}{Me\+Encoder\+New\+::run\+Turns(long turns, float speed,float lock\+\_\+state)};
+\item void \doxylink{class_me_encoder_new_a1b73a317a6ed28c0b6ee61899da4c2ff}{Me\+Encoder\+New\+::reset(void)};
+\item void \doxylink{class_me_encoder_new_ab6575651faefb9e22c73305d79655c76}{Me\+Encoder\+New\+::set\+Speed\+PID(float p,float i,float d)};
+\item void \doxylink{class_me_encoder_new_a7314cbf995b8b11fc954d12f96302fe5}{Me\+Encoder\+New\+::set\+Pos\+PID(float p,float i,float d)};
+\item void \doxylink{class_me_encoder_new_a8a54a728b9077dcd0e95a0277d54fcb3}{Me\+Encoder\+New\+::set\+Mode(uint8\+\_\+t mode)};
+\item void \doxylink{class_me_encoder_new_ad642ecd7bbb1015d5dab74ffce7b3b04}{Me\+Encoder\+New\+::set\+PWM(int pwm)};
+\item void \doxylink{class_me_encoder_new_a36caaf02601282f0a5543c1f115bca15}{Me\+Encoder\+New\+::set\+Current\+Position(long pulse\+\_\+counter)}
+\item long \doxylink{class_me_encoder_new_ab161f5bd122c55b9564f8ce1263a8c0b}{Me\+Encoder\+New\+::get\+Current\+Position()};
+\item void \doxylink{class_me_encoder_new_afe29430100b70233abc4f991bb2e27be}{Me\+Encoder\+New\+::get\+Speed\+PID(float \texorpdfstring{$\ast$}{*} p,float \texorpdfstring{$\ast$}{*} i,float \texorpdfstring{$\ast$}{*} d)};
+\item void \doxylink{class_me_encoder_new_a8729ee00ccdf13ebb0385b29de057320}{Me\+Encoder\+New\+::get\+Pos\+PID(float \texorpdfstring{$\ast$}{*} p,float \texorpdfstring{$\ast$}{*} i,float \texorpdfstring{$\ast$}{*} d)};
+\item float \doxylink{class_me_encoder_new_a15f163ff89aeba26ea17be4a3b77737f}{Me\+Encoder\+New\+::get\+Current\+Speed(void)};
+\item void Me\+Encoder\+New\+::send\+Cmd(void);
+\item float \doxylink{class_me_encoder_new_a476f3a1e0364be857b07b238cdf9eb08}{Me\+Encoder\+New\+::get\+Ratio(void)};
+\item void \doxylink{class_me_encoder_new_a033ffc24a1a7c2ea2bba48afb86b9ee2}{Me\+Encoder\+New\+::set\+Ratio(float r)};
+\item int \doxylink{class_me_encoder_new_a4cee6129526a9d8c3111acb61a9d3a88}{Me\+Encoder\+New\+::get\+Pulse(void)};
+\item void \doxylink{class_me_encoder_new_a658cae48c69e374ee22d29fd54b8f5ab}{Me\+Encoder\+New\+::set\+Pulse(int p)};
+\item void Me\+Encoder\+New\+::set\+Devid(int devid);
+\item void \doxylink{class_me_encoder_new_a8b93e11a6d0ba0cedbc8e4a4ae44471b}{Me\+Encoder\+New\+::run\+Speed\+And\+Time(float speed, float time, float lock\+\_\+state)};
+\item boolean \doxylink{class_me_encoder_new_a0fec98e0dcfd4d1df08039810f450f6d}{Me\+Encoder\+New\+::is\+Tar\+Pos\+Reached(void)};
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan        2016/03/18     1.0.0            build the new
+Mark Yan        2017/06/09     1.0.1            add function setAddr
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

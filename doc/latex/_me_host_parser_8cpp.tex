@@ -1,0 +1,130 @@
+\doxysection{src/\+Me\+Host\+Parser.cpp File Reference}
+\hypertarget{_me_host_parser_8cpp}{}\label{_me_host_parser_8cpp}\index{src/MeHostParser.cpp@{src/MeHostParser.cpp}}
+
+
+Driver for Me Host Parser module.  
+
+
+{\ttfamily \#include "{}Me\+Host\+Parser.\+h"{}}\newline
+Include dependency graph for Me\+Host\+Parser.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{_me_host_parser_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_host_parser_8cpp_a110f3b6cdacd45daee818b3e5965f6da}\label{_me_host_parser_8cpp_a110f3b6cdacd45daee818b3e5965f6da} 
+\#define {\bfseries HEAD}~0x\+A5
+\item 
+\Hypertarget{_me_host_parser_8cpp_a53295d05a2e17797421059d6c8f58cdd}\label{_me_host_parser_8cpp_a53295d05a2e17797421059d6c8f58cdd} 
+\#define {\bfseries TAIL}~0x5A
+\item 
+\Hypertarget{_me_host_parser_8cpp_adf671125879f259fdf6f84145224baa3}\label{_me_host_parser_8cpp_adf671125879f259fdf6f84145224baa3} 
+\#define {\bfseries ST\+\_\+\+WAIT\+\_\+4\+\_\+\+START}~0x01
+\item 
+\Hypertarget{_me_host_parser_8cpp_acb535e1f587513e215f37ad438b94f83}\label{_me_host_parser_8cpp_acb535e1f587513e215f37ad438b94f83} 
+\#define {\bfseries ST\+\_\+\+HEAD\+\_\+\+READ}~0x02
+\item 
+\Hypertarget{_me_host_parser_8cpp_a4ee075dd112e61c43cebc9ffd08c8ce1}\label{_me_host_parser_8cpp_a4ee075dd112e61c43cebc9ffd08c8ce1} 
+\#define {\bfseries ST\+\_\+\+MODULE\+\_\+\+READ}~0x03
+\item 
+\Hypertarget{_me_host_parser_8cpp_a3d1bb207263f55c1d2f3a8ae9674d19c}\label{_me_host_parser_8cpp_a3d1bb207263f55c1d2f3a8ae9674d19c} 
+\#define {\bfseries ST\+\_\+\+LENGTH\+\_\+\+READ}~0x04
+\item 
+\Hypertarget{_me_host_parser_8cpp_aff8fd607aa31f0b119652b35a930dc78}\label{_me_host_parser_8cpp_aff8fd607aa31f0b119652b35a930dc78} 
+\#define {\bfseries ST\+\_\+\+DATA\+\_\+\+READ}~0x05
+\item 
+\Hypertarget{_me_host_parser_8cpp_a16efe7e6510c0a0e48ca153afc81f43c}\label{_me_host_parser_8cpp_a16efe7e6510c0a0e48ca153afc81f43c} 
+\#define {\bfseries ST\+\_\+\+CHECK\+\_\+\+READ}~0x06
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_me_host_parser_8cpp_a59acdd9a3bd91179b07a28853591e88d}{calculate\+LRC}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t length)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me Host Parser module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2015/11/12 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me Host Parser device, The Me Host Parser inherited the \doxylink{class_me_serial}{Me\+Serial} class from \doxylink{class_software_serial}{Software\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item uint8\+\_\+t \doxylink{class_me_host_parser_a0103f25edd15026dcf5ae8a19cb25abf}{Me\+Host\+Parser\+::push\+Str(uint8\+\_\+t \texorpdfstring{$\ast$}{*} str, uint32\+\_\+t length)};
+\item uint8\+\_\+t \doxylink{class_me_host_parser_aea2e516581e88dc2f807759bc2a679b2}{Me\+Host\+Parser\+::push\+Byte(uint8\+\_\+t ch)};
+\item uint8\+\_\+t \doxylink{class_me_host_parser_a29f974647d06c7cb1c75db2963958478}{Me\+Host\+Parser\+::run()};
+\item uint8\+\_\+t \doxylink{class_me_host_parser_a4e07eae4722fba03fd463447cb8526d4}{Me\+Host\+Parser\+::get\+Package\+Ready()};
+\item uint8\+\_\+t \doxylink{class_me_host_parser_a653298e64d1ac2633b23e4ae420121c3}{Me\+Host\+Parser\+::get\+Data(uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint32\+\_\+t size)};
+\item void Me\+Host\+Parser\+::print(char \texorpdfstring{$\ast$}{*}str, uint32\+\_\+t \texorpdfstring{$\ast$}{*} cnt);
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+forfish         2015/11/12    1.0.0            Add description
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_me_host_parser_8cpp_a59acdd9a3bd91179b07a28853591e88d}\label{_me_host_parser_8cpp_a59acdd9a3bd91179b07a28853591e88d} 
+\index{MeHostParser.cpp@{MeHostParser.cpp}!calculateLRC@{calculateLRC}}
+\index{calculateLRC@{calculateLRC}!MeHostParser.cpp@{MeHostParser.cpp}}
+\doxysubsubsection{\texorpdfstring{calculateLRC()}{calculateLRC()}}
+{\footnotesize\ttfamily uint8\+\_\+t calculate\+LRC (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data,  }\item[{uint32\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+calculate\+LRC 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+To calculate the LRC. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em data} & -\/ A pointer to data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & -\/ The length of LRC. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the LRC. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}

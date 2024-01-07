@@ -1,0 +1,105 @@
+\doxysection{Software\+Serial Class Reference}
+\hypertarget{class_software_serial}{}\label{class_software_serial}\index{SoftwareSerial@{SoftwareSerial}}
+
+
+Inheritance diagram for Software\+Serial\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_software_serial__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Software\+Serial\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{class_software_serial__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_software_serial_aab36336db4a1ca5073071c07d910cb87}\label{class_software_serial_aab36336db4a1ca5073071c07d910cb87} 
+{\bfseries Software\+Serial} (uint8\+\_\+t receive\+Pin, uint8\+\_\+t transmit\+Pin, bool inverse\+\_\+logic=false)
+\item 
+\Hypertarget{class_software_serial_af1b194359d70894b3a2f38236a68480e}\label{class_software_serial_af1b194359d70894b3a2f38236a68480e} 
+void {\bfseries begin} (long speed)
+\item 
+\Hypertarget{class_software_serial_ad235539ef28939836bd0bde9387eb8fc}\label{class_software_serial_ad235539ef28939836bd0bde9387eb8fc} 
+bool {\bfseries listen} ()
+\item 
+\Hypertarget{class_software_serial_a9034270f7de617b3cc7d3f38f3a8e0df}\label{class_software_serial_a9034270f7de617b3cc7d3f38f3a8e0df} 
+void {\bfseries end} ()
+\item 
+\Hypertarget{class_software_serial_a7b3fb4a8f57d2b5f2233f841d71ef80f}\label{class_software_serial_a7b3fb4a8f57d2b5f2233f841d71ef80f} 
+bool {\bfseries is\+Listening} ()
+\item 
+\Hypertarget{class_software_serial_a1c87a6b43c176c104f28e2c2eec2841e}\label{class_software_serial_a1c87a6b43c176c104f28e2c2eec2841e} 
+bool {\bfseries stop\+Listening} ()
+\item 
+\Hypertarget{class_software_serial_ac6d4d5dfbe05515bf23766e2c8abfd46}\label{class_software_serial_ac6d4d5dfbe05515bf23766e2c8abfd46} 
+bool {\bfseries overflow} ()
+\item 
+\Hypertarget{class_software_serial_a51c2d2e79f0d982b1ef9cc9ac4453648}\label{class_software_serial_a51c2d2e79f0d982b1ef9cc9ac4453648} 
+int {\bfseries peek} ()
+\item 
+virtual size\+\_\+t \mbox{\hyperlink{class_software_serial_ad35c61492ca373f2bdc108ebc7dcdda7}{write}} (uint8\+\_\+t byte)
+\item 
+virtual int \mbox{\hyperlink{class_software_serial_af6d7c49b7ccf5c92cd4bdea2c5c51f48}{read}} ()
+\item 
+virtual int \mbox{\hyperlink{class_software_serial_ad5e6b6484193f9a2dbaf3131899b6eee}{available}} ()
+\item 
+\Hypertarget{class_software_serial_aeb34e4965efca5ebf402e0b737e40546}\label{class_software_serial_aeb34e4965efca5ebf402e0b737e40546} 
+virtual void {\bfseries flush} ()
+\item 
+\Hypertarget{class_software_serial_ab0cba63b2a27fcfa4760a2f3f7389de0}\label{class_software_serial_ab0cba63b2a27fcfa4760a2f3f7389de0} 
+{\bfseries operator bool} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_software_serial_ac2401da36f0349d105935030699d70da}\label{class_software_serial_ac2401da36f0349d105935030699d70da} 
+static void {\bfseries handle\+\_\+interrupt} () \+\_\+\+\_\+attribute\+\_\+\+\_\+((\+\_\+\+\_\+always\+\_\+inline\+\_\+\+\_\+))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_software_serial_ad5e6b6484193f9a2dbaf3131899b6eee}\label{class_software_serial_ad5e6b6484193f9a2dbaf3131899b6eee} 
+\index{SoftwareSerial@{SoftwareSerial}!available@{available}}
+\index{available@{available}!SoftwareSerial@{SoftwareSerial}}
+\doxysubsubsection{\texorpdfstring{available()}{available()}}
+{\footnotesize\ttfamily virtual int Software\+Serial\+::available (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_me_serial_a4b784a1b24df5e06f208d697e9e1ed3f}{Me\+Serial}}.
+
+\Hypertarget{class_software_serial_af6d7c49b7ccf5c92cd4bdea2c5c51f48}\label{class_software_serial_af6d7c49b7ccf5c92cd4bdea2c5c51f48} 
+\index{SoftwareSerial@{SoftwareSerial}!read@{read}}
+\index{read@{read}!SoftwareSerial@{SoftwareSerial}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily virtual int Software\+Serial\+::read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_me_infrared_receiver_aaccf198c3a013b38e783a3e055631110}{Me\+Infrared\+Receiver}}, \mbox{\hyperlink{class_me_serial_a00be49316c437fdb4615c4e40869ff60}{Me\+Serial}}, and \mbox{\hyperlink{class_me_voice_a8e03afa2722be68289d8e5d7963935e9}{Me\+Voice}}.
+
+\Hypertarget{class_software_serial_ad35c61492ca373f2bdc108ebc7dcdda7}\label{class_software_serial_ad35c61492ca373f2bdc108ebc7dcdda7} 
+\index{SoftwareSerial@{SoftwareSerial}!write@{write}}
+\index{write@{write}!SoftwareSerial@{SoftwareSerial}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily virtual size\+\_\+t Software\+Serial\+::write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{byte }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_me_serial_ad28782e0bebe4255a8ba7995957176e6}{Me\+Serial}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/utility/Software\+Serial.\+h\end{DoxyCompactItemize}

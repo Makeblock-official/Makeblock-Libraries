@@ -1,0 +1,160 @@
+\doxysection{Me\+Color\+Sensor.\+h}
+\hypertarget{_me_color_sensor_8h_source}{}\label{_me_color_sensor_8h_source}\index{src/MeColorSensor.h@{src/MeColorSensor.h}}
+\mbox{\hyperlink{_me_color_sensor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{/*\ Define\ to\ prevent\ recursive\ inclusion\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#ifndef\ \_MeColorSensor\_H\_}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ \_MeColorSensor\_H\_}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{/*\ Includes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\ \#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{comment}{/*\ Exported\ macro\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ I2C\_ERROR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (-\/1)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ COLORSENSOR\_DEFAULT\_ADDRESS\ \ \ \ \ (0x38)}\textcolor{comment}{//0011\ 1000}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{/*\ Register\ List\ define-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ SYSTEM\_CONTROL\ \ \ \ \ \ \ \ \ (0X40)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ MODE\_CONTROL1\ \ \ \ \ \ \ \ \ \ (0X41)}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ MODE\_CONTROL2\ \ \ \ \ \ \ \ \ \ (0X42)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ MODE\_CONTROL3\ \ \ \ \ \ \ \ \ \ (0X44)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ RED\_DATA\_LSBs\ \ \ \ \ \ \ \ \ \ (0X50)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ RED\_DATA\_MSBs\ \ \ \ \ \ \ \ \ \ (0X51)}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ GREEN\_DATA\_LSBs\ \ \ \ \ \ \ \ (0X52)}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ GREEN\_DATA\_MSBs\ \ \ \ \ \ \ \ (0X53)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ BLUE\_DATA\_LSBs\ \ \ \ \ \ \ \ \ (0X54)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ BLUE\_DATA\_MSBs\ \ \ \ \ \ \ \ \ (0X55)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ CLEAR\_DATA\_LSBs\ \ \ \ \ \ \ \ (0X56)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ CLEAR\_DATA\_MSBs\ \ \ \ \ \ \ \ (0X57)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ DINT\_DATA\_LSBs\ \ \ \ \ \ \ \ \ (0X58)}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ DINT\_DATA\_MSBs\ \ \ \ \ \ \ \ \ (0X59)}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ INTERRUPT\ \ \ \ \ \ \ \ \ \ \ \ \ \ (0X60)}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ PERSISTENCE\ \ \ \ \ \ \ \ \ \ \ \ (0X61)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ TH\_LSBs\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0X62)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ TH\_MSBs\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0X63)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ TL\_LSBs\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0X64)}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ TL\_MSBs\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0X65)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ MANUFACTURER\_ID\ \ \ \ \ \ \ \ (0X92)}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ CHIP\_ID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0XE0)}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ SW\_RESET\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1\ <<\ 7)}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ INT\_RESET\ \ \ \ \ \ \ \ \ \ \ \ \ \ (1\ <<\ 6)}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{/*\ REG\_MODECONTROL1(0x41)\ */}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ MEASURE\_160MS\ \ \ \ \ \ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ MEASURE\_320MS\ \ \ \ \ \ \ \ \ \ (0x01)}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ MEASURE\_640MS\ \ \ \ \ \ \ \ \ \ (0x02)}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ MEASURE\_1280MS\ \ \ \ \ \ \ \ \ (0x03)}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ MEASURE\_2560MS\ \ \ \ \ \ \ \ \ (0x04)}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ MEASUREMENT\_MAX\ \ \ \ \ \ \ \ (0x05)}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{comment}{/*\ Color\ result\ list*/}}
+\DoxyCodeLine{00120\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00121\ \{}
+\DoxyCodeLine{00122\ \ \ WHITE\ =\ 0,}
+\DoxyCodeLine{00123\ \ \ PINKE\ =\ 1,}
+\DoxyCodeLine{00124\ \ \ RED\ \ \ =\ 2,}
+\DoxyCodeLine{00125\ \ \ ORANGE=\ 3,}
+\DoxyCodeLine{00126\ \ \ YELLOW=\ 4,}
+\DoxyCodeLine{00127\ \ \ GREEN\ =\ 5,}
+\DoxyCodeLine{00128\ \ \ CYAN\ \ =\ 6,}
+\DoxyCodeLine{00129\ \ \ BLUE\ \ =\ 7,}
+\DoxyCodeLine{00130\ \ \ PURPLE=\ 8,}
+\DoxyCodeLine{00131\ \ \ BLACK\ =\ 9,}
+\DoxyCodeLine{00132\ \ \ GOLD\ \ =\ 10,}
+\DoxyCodeLine{00133\ \}COLORTYPES;}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00136\ \textcolor{comment}{\ *\ Class:\ MeColorSensor}}
+\DoxyCodeLine{00137\ \textcolor{comment}{\ *\ \(\backslash\)par\ Description}}
+\DoxyCodeLine{00138\ \textcolor{comment}{\ *\ Declaration\ of\ Class\ MeColorSensor}}
+\DoxyCodeLine{00139\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00142\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_color_sensor}{MeColorSensor}}}
+\DoxyCodeLine{00143\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00144\ class\ \mbox{\hyperlink{class_me_color_sensor}{MeColorSensor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00146\ \{}
+\DoxyCodeLine{00147\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00153\ \ \ \mbox{\hyperlink{class_me_color_sensor_af5fe6429a8b59d988c0edb070cdf66ab}{MeColorSensor}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00160\ \ \ \mbox{\hyperlink{class_me_color_sensor_af5fe6429a8b59d988c0edb070cdf66ab}{MeColorSensor}}(uint8\_t\ port);}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00170\ \ \ \mbox{\hyperlink{class_me_color_sensor_af5fe6429a8b59d988c0edb070cdf66ab}{MeColorSensor}}(uint8\_t\ port,\ uint8\_t\ address);}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00179\ \ \ MeColorSensor(uint8\_t\ \_AD0,\ uint8\_t\ \_INT);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00191\ \ \ \mbox{\hyperlink{class_me_color_sensor_af5fe6429a8b59d988c0edb070cdf66ab}{MeColorSensor}}(uint8\_t\ \_AD0,\ uint8\_t\ \_INT,\ uint8\_t\ address);}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ ME\_PORT\_DEFINED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00208\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_color_sensor_a1efe278e3a311adc4239a8ca9042447c}{SensorInit}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00209\ \ }
+\DoxyCodeLine{00224\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_color_sensor_a1728909fc7199b95ad3e35734b3a16a6}{ReportId}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00240\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_color_sensor_aa033b29d7464ebcbcf74e47794383e09}{ColorDataRead}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00256\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_color_sensor_a88ff70346c30ab33df2f02d964da6c17}{ColorDataReadOnebyOne}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00272\ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_color_sensor_a403b066a178b7c438dab069bfed11dd7}{ReturnColorCode}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00273\ \ }
+\DoxyCodeLine{00288\ \ uint8\_t\ \mbox{\hyperlink{class_me_color_sensor_a37adb003fab4d09e2cc014c713e35e57}{ColorIdentify}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00304\ \ uint8\_t\ \mbox{\hyperlink{class_me_color_sensor_a96d8182a6239e536fb56792346371734}{Returnresult}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00321\ \ uint8\_t\ \mbox{\hyperlink{class_me_color_sensor_af4713622f9fdb6487e9798b47a62e008}{ReturnGrayscale}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00337\ \ uint16\_t\ \mbox{\hyperlink{class_me_color_sensor_ae0c377ebb860b67ebf01aae23722dc31}{ReturnColorhue}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00353\ uint16\_t\ \mbox{\hyperlink{class_me_color_sensor_aa5cf33bebe6d653a7164551629447287}{ReturnRedData}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00369\ \ \ uint16\_t\ \mbox{\hyperlink{class_me_color_sensor_a2ceb9fec73cf92a98421c3606a324320}{ReturnGreenData}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00385\ \ \ uint16\_t\ \mbox{\hyperlink{class_me_color_sensor_a0a04f1d0592fb21febf7a7583fa9a9d9}{ReturnBlueData}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00401\ \ \ uint16\_t\ \mbox{\hyperlink{class_me_color_sensor_aea344bb117b012fb27ee6ed8ebf17c73}{ReturnColorData}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00417\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_color_sensor_a51c9c3cbcd5af42ec1f3fac7b4bf3818}{TurnOnLight}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00418\ \ }
+\DoxyCodeLine{00433\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_color_sensor_ab686f3e727861bc47ddbabb914f9c3a1}{TurnOffLight}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00449\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_color_sensor_a836878156e0d4b820b92769cd5df50f5}{TurnOffmodule}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00450\ \ }
+\DoxyCodeLine{00465\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_color_sensor_a50a015a94ddab045cde3536a1f9bce44}{TurnOnmodule}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00488\ \ \ int8\_t\ \mbox{\hyperlink{class_me_color_sensor_aa4a1ce0523ec234b68387d0a38becab4}{writeReg}}(int16\_t\ reg,\ uint8\_t\ data);}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00515\ \ \ int8\_t\ \mbox{\hyperlink{class_me_color_sensor_aeb6c09291008af8b013e5462331e5c08}{readData}}(uint8\_t\ start,\ uint8\_t\ *buffer,\ uint8\_t\ size);}
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00542\ \ \ int8\_t\ \mbox{\hyperlink{class_me_color_sensor_a9ba779e9fc9841177d80abf17cd4f973}{writeData}}(uint8\_t\ start,\ \textcolor{keyword}{const}\ uint8\_t\ *pData,\ uint8\_t\ size);}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00557\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_color_sensor_a33fedc7e60aad74cf937389b82c1943e}{MAX}}(uint8\_t\ r,uint8\_t\ g,uint8\_t\ b);}
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00572\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_color_sensor_a7731131a09e0e0bc4121cd30353db745}{MIN}}(uint8\_t\ r,uint8\_t\ g,uint8\_t\ b);}
+\DoxyCodeLine{00573\ }
+\DoxyCodeLine{00574\ \textcolor{comment}{/***********************************/}}
+\DoxyCodeLine{00575\ \ \ uint8\_t\ Device\_Address;}
+\DoxyCodeLine{00576\ }
+\DoxyCodeLine{00577\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00578\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_S1;}
+\DoxyCodeLine{00579\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_S2;}
+\DoxyCodeLine{00580\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_AD0;}
+\DoxyCodeLine{00581\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_INT;}
+\DoxyCodeLine{00582\ \ \ uint16\_t\ Redvalue;}
+\DoxyCodeLine{00583\ \ \ uint16\_t\ Greenvalue;}
+\DoxyCodeLine{00584\ \ \ uint16\_t\ Bluevalue;}
+\DoxyCodeLine{00585\ \ \ uint16\_t\ Colorvalue;}
+\DoxyCodeLine{00586\ \};}
+\DoxyCodeLine{00587\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00588\ }
+
+\end{DoxyCode}

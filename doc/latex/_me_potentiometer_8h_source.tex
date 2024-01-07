@@ -1,0 +1,40 @@
+\doxysection{Me\+Potentiometer.\+h}
+\hypertarget{_me_potentiometer_8h_source}{}\label{_me_potentiometer_8h_source}\index{src/MePotentiometer.h@{src/MePotentiometer.h}}
+\mbox{\hyperlink{_me_potentiometer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#ifndef\ MePotentiometer\_H}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ MePotentiometer\_H}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_potentiometer}{MePotentiometer}}}
+\DoxyCodeLine{00057\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00058\ class\ \mbox{\hyperlink{class_me_potentiometer}{MePotentiometer}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00069\ \ \ \mbox{\hyperlink{class_me_potentiometer_add2858c8d9ea25a49f498be2fe33785d}{MePotentiometer}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00076\ \ \ \mbox{\hyperlink{class_me_potentiometer_add2858c8d9ea25a49f498be2fe33785d}{MePotentiometer}}(uint8\_t\ port);}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00083\ \ \ MePotentiometer(uint8\_t\ potentiometerPin);}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00099\ \ \ void\ setpin(uint8\_t\ potentiometerPin);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00115\ \ \ uint16\_t\ \mbox{\hyperlink{class_me_potentiometer_a10026bd4d880b63d8bd4b06834e2a115}{read}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00116\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_potentiometerPin;}
+\DoxyCodeLine{00118\ \};}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MePotentiometer\_H}}
+
+\end{DoxyCode}

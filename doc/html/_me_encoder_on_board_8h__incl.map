@@ -1,0 +1,9 @@
+<map id="src/MeEncoderOnBoard.h" name="src/MeEncoderOnBoard.h">
+<area shape="rect" id="Node000001" title="Header for MeEncoderOnBoard.cpp module." alt="" coords="58,5,229,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,82,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,35,75,73,72,68,125,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="106,80,181,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="146,33,146,64,141,64,141,33"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="205,80,304,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="164,30,224,69,221,74,161,35"/>
+</map>

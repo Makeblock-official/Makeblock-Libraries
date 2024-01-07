@@ -81,10 +81,10 @@ void setup()
   Encoder_2.setPulse(7);
   Encoder_1.setRatio(26.9);
   Encoder_2.setRatio(26.9);
-  Encoder_1.setPosPid(1.8,0,1.2);
-  Encoder_2.setPosPid(1.8,0,1.2);
-  Encoder_1.setSpeedPid(0.18,0,0);
-  Encoder_2.setSpeedPid(0.18,0,0);
+  Encoder_1.setPosPid(1.8, 0, 1.2);
+  Encoder_2.setPosPid(1.8, 0, 1.2);
+  Encoder_1.setSpeedPid(0.18, 0, 0);
+  Encoder_2.setSpeedPid(0.18, 0, 0);
 }
 
 void loop()

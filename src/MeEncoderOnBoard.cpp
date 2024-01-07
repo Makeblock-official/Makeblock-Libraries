@@ -50,7 +50,7 @@
  *    23. void MeEncoderOnBoard::setSpeedPid(float p,float i,float d);
  *    24. void MeEncoderOnBoard::setPosPid(float p,float i,float d);
  *    25. void MeEncoderOnBoard::setPulse(int16_t pulseValue);
- *    26. void MeEncoderOnBoard::setRatio(int16_t RatioValue);
+ *    26. void MeEncoderOnBoard::setRatio(float RatioValue);
  *    27. void MeEncoderOnBoard::setMotionMode(int16_t motionMode);
  *    28. int16_t MeEncoderOnBoard::pidPositionToPwm(void);
  *    29. int16_t MeEncoderOnBoard::speedWithoutPos(void);
@@ -475,6 +475,7 @@ void MeEncoderOnBoard::setMotorPwm(int16_t pwm)
 
   if(pwm < 0)
   {
+    // As per the datasheet, counter clock wise
     digitalWrite(MeEncoderOnBoard::_Port_H1, LOW);
     delayMicroseconds(5);
     digitalWrite(MeEncoderOnBoard::_Port_H2, HIGH);
@@ -482,6 +483,7 @@ void MeEncoderOnBoard::setMotorPwm(int16_t pwm)
   }
   else
   {
+    // As per the datasheet, clock wise
     digitalWrite(MeEncoderOnBoard::_Port_H1, HIGH);
     delayMicroseconds(5);
     digitalWrite(MeEncoderOnBoard::_Port_H2, LOW);
@@ -531,6 +533,7 @@ void MeEncoderOnBoard::updateSpeed(void)
  */
 void MeEncoderOnBoard::updateCurPos(void)
 {
+  // currentPos =  CurrentPos / (tick_per_rotation) * 360 degrees
   encode_structure.currentPos = (long)((encode_structure.pulsePos/(encode_structure.pulseEncoder * encode_structure.ratio)) * 360);
 }
 
@@ -766,7 +769,7 @@ void MeEncoderOnBoard::setPulse(int16_t pulseValue)
  * \par Others
  *    None
  */
-void MeEncoderOnBoard::setRatio(int16_t RatioValue)
+void MeEncoderOnBoard::setRatio(float RatioValue)
 {
   encode_structure.ratio = RatioValue;
 }

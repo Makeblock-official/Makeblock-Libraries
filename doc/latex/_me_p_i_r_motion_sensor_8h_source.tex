@@ -1,0 +1,44 @@
+\doxysection{Me\+PIRMotion\+Sensor.\+h}
+\hypertarget{_me_p_i_r_motion_sensor_8h_source}{}\label{_me_p_i_r_motion_sensor_8h_source}\index{src/MePIRMotionSensor.h@{src/MePIRMotionSensor.h}}
+\mbox{\hyperlink{_me_p_i_r_motion_sensor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifndef\ MePIRMotionSensor\_H}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ MePIRMotionSensor\_H}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_p_i_r_motion_sensor}{MePIRMotionSensor}}}
+\DoxyCodeLine{00059\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00060\ class\ \mbox{\hyperlink{class_me_p_i_r_motion_sensor}{MePIRMotionSensor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00071\ \ \ \mbox{\hyperlink{class_me_p_i_r_motion_sensor_a02248fc5af91a2e8778bd4031ff434e0}{MePIRMotionSensor}}();}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{class_me_p_i_r_motion_sensor_a02248fc5af91a2e8778bd4031ff434e0}{MePIRMotionSensor}}(uint8\_t\ port);}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00087\ \ \ MePIRMotionSensor(uint8\_t\ ModePin,uint8\_t\ SensorPin);}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00105\ \ \ void\ setpin(uint8\_t\ ModePin,uint8\_t\ SensorPin);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00121\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_p_i_r_motion_sensor_aa7aa0020adee8562ff4ae2c7b84fd8de}{SetPirMotionMode}}(uint8\_t\ ModePin);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_p_i_r_motion_sensor_a1e7b90004c44efd782f7691a8140c3e0}{isHumanDetected}}();}
+\DoxyCodeLine{00139\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00140\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ uint8\_t\ \_SensorPin;}
+\DoxyCodeLine{00141\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ uint8\_t\ \_ModePin;}
+\DoxyCodeLine{00142\ \};}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MePIRMotionSensor\_H}}
+\DoxyCodeLine{00144\ }
+
+\end{DoxyCode}

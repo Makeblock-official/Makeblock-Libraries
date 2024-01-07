@@ -1,0 +1,126 @@
+\doxysection{src/\+Me\+Encoder\+New.h File Reference}
+\hypertarget{_me_encoder_new_8h}{}\label{_me_encoder_new_8h}\index{src/MeEncoderNew.h@{src/MeEncoderNew.h}}
+
+
+Header for \doxylink{_me_encoder_new_8cpp}{Me\+Encoder\+New.\+cpp} module.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+Encoder\+New.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_encoder_new_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_encoder_new_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_me_encoder_new}{Me\+Encoder\+New}}
+\begin{DoxyCompactList}\small\item\em Driver for Me Encoder New module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_encoder_new_8h_aa915bb5064c7f9555c156592021eccfe}\label{_me_encoder_new_8h_aa915bb5064c7f9555c156592021eccfe} 
+\#define {\bfseries LEONARDO\+\_\+\+PORT1}
+\item 
+\Hypertarget{_me_encoder_new_8h_ac47af8b0e510ef86f6b69e120ac7f9de}\label{_me_encoder_new_8h_ac47af8b0e510ef86f6b69e120ac7f9de} 
+\#define {\bfseries SDA\+\_\+\+PORT}~PORTB
+\item 
+\Hypertarget{_me_encoder_new_8h_a526d580d324bce60a3e964066fae77e3}\label{_me_encoder_new_8h_a526d580d324bce60a3e964066fae77e3} 
+\#define {\bfseries SDA\+\_\+\+PIN}~7
+\item 
+\Hypertarget{_me_encoder_new_8h_ac290a46b6e8e07654c81d01d5e5f288b}\label{_me_encoder_new_8h_ac290a46b6e8e07654c81d01d5e5f288b} 
+\#define {\bfseries SCL\+\_\+\+PORT}~PORTB
+\item 
+\Hypertarget{_me_encoder_new_8h_a06c967e78bcedcee909a70764f879433}\label{_me_encoder_new_8h_a06c967e78bcedcee909a70764f879433} 
+\#define {\bfseries SCL\+\_\+\+PIN}~4
+\item 
+\Hypertarget{_me_encoder_new_8h_a0e1c9e6ca00fe824f98e8b7310589f5f}\label{_me_encoder_new_8h_a0e1c9e6ca00fe824f98e8b7310589f5f} 
+\#define {\bfseries I2\+C\+\_\+\+SLOWMODE}~1
+\item 
+\Hypertarget{_me_encoder_new_8h_ae1dfa5346c5387191abc406782f0a162}\label{_me_encoder_new_8h_ae1dfa5346c5387191abc406782f0a162} 
+\#define {\bfseries PULSE\+\_\+\+PER\+\_\+C}~8
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for \doxylink{_me_encoder_new_8cpp}{Me\+Encoder\+New.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/03/18 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me Encoder\+New device, The Me Encoder\+New inherited the \doxylink{class_me_serial}{Me\+Serial} class from \doxylink{class_software_serial}{Software\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_encoder_new_a7502d17074b0de59a44406f1c67aa1fa}{Me\+Encoder\+New\+::begin(void)};
+\item void \doxylink{class_me_encoder_new_a6bf91a91af5bde030d9656e3314d0c96}{Me\+Encoder\+New\+::set\+Addr(uint8\+\_\+t i2c\+Addr,uint8\+\_\+t slot)};
+\item void \doxylink{class_me_encoder_new_abe1fe2665edfaae677ed00eea1fef040}{Me\+Encoder\+New\+::move(long angle, float speed, float lock\+\_\+state)};
+\item void \doxylink{class_me_encoder_new_a2b9316c366c67ef88b6f03635f8c9468}{Me\+Encoder\+New\+::move\+To(long angle, float speed,float lock\+\_\+state)};
+\item void Me\+Encoder\+New\+::run\+Speed(int speed);
+\item void \doxylink{class_me_encoder_new_ab7c6be174df72535937b1bc640d07b3a}{Me\+Encoder\+New\+::run\+Turns(long turns, float speed,float lock\+\_\+state)};
+\item void \doxylink{class_me_encoder_new_a1b73a317a6ed28c0b6ee61899da4c2ff}{Me\+Encoder\+New\+::reset(void)};
+\item void \doxylink{class_me_encoder_new_ab6575651faefb9e22c73305d79655c76}{Me\+Encoder\+New\+::set\+Speed\+PID(float p,float i,float d)};
+\item void \doxylink{class_me_encoder_new_a7314cbf995b8b11fc954d12f96302fe5}{Me\+Encoder\+New\+::set\+Pos\+PID(float p,float i,float d)};
+\item void \doxylink{class_me_encoder_new_a8a54a728b9077dcd0e95a0277d54fcb3}{Me\+Encoder\+New\+::set\+Mode(uint8\+\_\+t mode)};
+\item void \doxylink{class_me_encoder_new_ad642ecd7bbb1015d5dab74ffce7b3b04}{Me\+Encoder\+New\+::set\+PWM(int pwm)};
+\item void \doxylink{class_me_encoder_new_a36caaf02601282f0a5543c1f115bca15}{Me\+Encoder\+New\+::set\+Current\+Position(long pulse\+\_\+counter)}
+\item long \doxylink{class_me_encoder_new_ab161f5bd122c55b9564f8ce1263a8c0b}{Me\+Encoder\+New\+::get\+Current\+Position()};
+\item void \doxylink{class_me_encoder_new_afe29430100b70233abc4f991bb2e27be}{Me\+Encoder\+New\+::get\+Speed\+PID(float \texorpdfstring{$\ast$}{*} p,float \texorpdfstring{$\ast$}{*} i,float \texorpdfstring{$\ast$}{*} d)};
+\item void \doxylink{class_me_encoder_new_a8729ee00ccdf13ebb0385b29de057320}{Me\+Encoder\+New\+::get\+Pos\+PID(float \texorpdfstring{$\ast$}{*} p,float \texorpdfstring{$\ast$}{*} i,float \texorpdfstring{$\ast$}{*} d)};
+\item float \doxylink{class_me_encoder_new_a15f163ff89aeba26ea17be4a3b77737f}{Me\+Encoder\+New\+::get\+Current\+Speed(void)};
+\item void Me\+Encoder\+New\+::send\+Cmd(void);
+\item float \doxylink{class_me_encoder_new_a476f3a1e0364be857b07b238cdf9eb08}{Me\+Encoder\+New\+::get\+Ratio(void)};
+\item void \doxylink{class_me_encoder_new_a033ffc24a1a7c2ea2bba48afb86b9ee2}{Me\+Encoder\+New\+::set\+Ratio(float r)};
+\item int \doxylink{class_me_encoder_new_a4cee6129526a9d8c3111acb61a9d3a88}{Me\+Encoder\+New\+::get\+Pulse(void)};
+\item void \doxylink{class_me_encoder_new_a658cae48c69e374ee22d29fd54b8f5ab}{Me\+Encoder\+New\+::set\+Pulse(int p)};
+\item void Me\+Encoder\+New\+::set\+Devid(int devid);
+\item void \doxylink{class_me_encoder_new_a8b93e11a6d0ba0cedbc8e4a4ae44471b}{Me\+Encoder\+New\+::run\+Speed\+And\+Time(float speed, float time, float lock\+\_\+state)};
+\item boolean \doxylink{class_me_encoder_new_a0fec98e0dcfd4d1df08039810f450f6d}{Me\+Encoder\+New\+::is\+Tar\+Pos\+Reached(void)};
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan        2016/03/18     1.0.0            build the new
+Mark Yan        2017/06/09     1.0.1            add function setAddr
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

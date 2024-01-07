@@ -1,0 +1,799 @@
+\doxysection{Me\+Stepper\+On\+Board Class Reference}
+\hypertarget{class_me_stepper_on_board}{}\label{class_me_stepper_on_board}\index{MeStepperOnBoard@{MeStepperOnBoard}}
+
+
+Driver for Me Stepper on Mega\+Pi.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Stepper\+On\+Board.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_stepper_on_board_a6476b785a367f0bf0f6be0b5f1d256db}{Me\+Stepper\+On\+Board}} ()
+\item 
+\mbox{\hyperlink{class_me_stepper_on_board_a8f2852b3a7c35103dae8b9cae3f9ec54}{Me\+Stepper\+On\+Board}} (int slot)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_a8cb61d386f7b800f1a2f752c46cfff54}{set\+Micro\+Step}} (int8\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_a881cf1984ee0cfcb773b5ab6265c40cf}{setpin}} (int slot)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_a52fd44017b98f6f557321483f98dda71}{move\+To}} (long absolute)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_a952049fc3361c7f33f5bfb2c8f78707e}{move\+To}} (long absolute, int16\+\_\+t ext\+Id, cb callback)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_aad362da829622be269f2903cf2000b3e}{move}} (long relative)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_a6f0502cf085c9a108cd7c0f29eb18273}{move}} (long relative, int16\+\_\+t ext\+Id, cb callback)
+\item 
+boolean \mbox{\hyperlink{class_me_stepper_on_board_a49e9754f36126eee4b63403dc581822f}{run}} (void)
+\item 
+boolean \mbox{\hyperlink{class_me_stepper_on_board_a0f376d74435f5cf1f6adece94c372d71}{run\+Speed}} (void)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_ab8d690efadd05acd2f453989990872b5}{set\+Max\+Speed}} (float \mbox{\hyperlink{class_me_stepper_on_board_aa7bd0bc1c0dd3a147398ec654b4cf8ac}{speed}})
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_a568dff526477425da5dd7640dd6f8dca}{set\+Acceleration}} (float acceleration)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_a61eea9139c60f539c7e439676d819ba0}{set\+Speed}} (float \mbox{\hyperlink{class_me_stepper_on_board_aa7bd0bc1c0dd3a147398ec654b4cf8ac}{speed}})
+\item 
+float \mbox{\hyperlink{class_me_stepper_on_board_aa7bd0bc1c0dd3a147398ec654b4cf8ac}{speed}} (void)
+\item 
+long \mbox{\hyperlink{class_me_stepper_on_board_aaa90efc7806ed103617729527bf3f7f7}{distance\+To\+Go}} (void)
+\item 
+long \mbox{\hyperlink{class_me_stepper_on_board_a2ad468c8d4083b29aa445d8ee516a16b}{target\+Position}} (void)
+\item 
+long \mbox{\hyperlink{class_me_stepper_on_board_a836435093e011021ba4c0db7a3896617}{current\+Position}} (void)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_af8e05271185ffe7c3bd520c8483d930d}{set\+Current\+Position}} (long position)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_a951f051a706bdda80961766ce5f2e388}{run\+To\+Position}} (void)
+\item 
+boolean \mbox{\hyperlink{class_me_stepper_on_board_ada03839c1d65ef9ffd1bb64db5da0bc9}{run\+Speed\+To\+Position}} (void)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_a20298c8fc1fb1ef4998fbcd2dd7c52ba}{run\+To\+New\+Position}} (long position)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_ad663fa9672bc29c860558ab65884f51b}{disable\+Outputs}} (void)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_af749d02703cca7e3651ee273e918308b}{enable\+Outputs}} (void)
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_a1f6128e6d2943f70fd9431a0df08fa01}{update}} (void)
+\item 
+virtual void \mbox{\hyperlink{class_me_stepper_on_board_a2df202c7c7cf5a72c200e4063555cb97}{step}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_stepper_on_board_a3f0d66021a8967ad91b7ed7cd62a8123}{get\+Port}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_me_stepper_on_board_acee54708cc0281b3a4643e2661eb5c83}{compute\+New\+Speed}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me Stepper on Mega\+Pi. 
+
+Class\+: \doxylink{class_me_stepper_on_board}{Me\+Stepper\+On\+Board} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_stepper_on_board}{Me\+Stepper\+On\+Board}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_stepper_on_board_a6476b785a367f0bf0f6be0b5f1d256db}\label{class_me_stepper_on_board_a6476b785a367f0bf0f6be0b5f1d256db} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!MeStepperOnBoard@{MeStepperOnBoard}}
+\index{MeStepperOnBoard@{MeStepperOnBoard}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{MeStepperOnBoard()}{MeStepperOnBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Me\+Stepper\+On\+Board\+::\+Me\+Stepper\+On\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the stepper to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_stepper_on_board_a8f2852b3a7c35103dae8b9cae3f9ec54}\label{class_me_stepper_on_board_a8f2852b3a7c35103dae8b9cae3f9ec54} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!MeStepperOnBoard@{MeStepperOnBoard}}
+\index{MeStepperOnBoard@{MeStepperOnBoard}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{MeStepperOnBoard()}{MeStepperOnBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Me\+Stepper\+On\+Board\+::\+Me\+Stepper\+On\+Board (\begin{DoxyParamCaption}\item[{int}]{slot }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the stepper to arduino port. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em slot} & -\/ The slot of Mega\+Pi boards.\\
+\hline
+\end{DoxyParams}
+Alternate Constructor which can call your own function to map the stepper to arduino port. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em slot} & -\/ The slot of megapi boards. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_stepper_on_board_acee54708cc0281b3a4643e2661eb5c83}\label{class_me_stepper_on_board_acee54708cc0281b3a4643e2661eb5c83} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!computeNewSpeed@{computeNewSpeed}}
+\index{computeNewSpeed@{computeNewSpeed}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{computeNewSpeed()}{computeNewSpeed()}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::compute\+New\+Speed (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyParagraph}{Function}
+compute\+New\+Speed 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Compute New Speed of Stepper. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a836435093e011021ba4c0db7a3896617}\label{class_me_stepper_on_board_a836435093e011021ba4c0db7a3896617} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!currentPosition@{currentPosition}}
+\index{currentPosition@{currentPosition}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{currentPosition()}{currentPosition()}}
+{\footnotesize\ttfamily long Me\+Stepper\+On\+Board\+::current\+Position (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+current\+Position 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Stepper\textquotesingle{}s current position. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the current position of Stepper. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_ad663fa9672bc29c860558ab65884f51b}\label{class_me_stepper_on_board_ad663fa9672bc29c860558ab65884f51b} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!disableOutputs@{disableOutputs}}
+\index{disableOutputs@{disableOutputs}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{disableOutputs()}{disableOutputs()}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::disable\+Outputs (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+disable\+Outputs 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+The Stepper disable the outputs. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_aaa90efc7806ed103617729527bf3f7f7}\label{class_me_stepper_on_board_aaa90efc7806ed103617729527bf3f7f7} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!distanceToGo@{distanceToGo}}
+\index{distanceToGo@{distanceToGo}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{distanceToGo()}{distanceToGo()}}
+{\footnotesize\ttfamily long Me\+Stepper\+On\+Board\+::distance\+To\+Go (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+distance\+To\+Go 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+The distance that Stepper should go. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the length of Stepper\textquotesingle{}s running. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_af749d02703cca7e3651ee273e918308b}\label{class_me_stepper_on_board_af749d02703cca7e3651ee273e918308b} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!enableOutputs@{enableOutputs}}
+\index{enableOutputs@{enableOutputs}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{enableOutputs()}{enableOutputs()}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::enable\+Outputs (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+enable\+Outputs 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+The Stepper disable the outputs. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a3f0d66021a8967ad91b7ed7cd62a8123}\label{class_me_stepper_on_board_a3f0d66021a8967ad91b7ed7cd62a8123} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!getPort@{getPort}}
+\index{getPort@{getPort}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{getPort()}{getPort()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Stepper\+On\+Board\+::get\+Port (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Port 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+get the slot number of the stepper. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+The Slot number Stepper used. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_aad362da829622be269f2903cf2000b3e}\label{class_me_stepper_on_board_aad362da829622be269f2903cf2000b3e} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!move@{move}}
+\index{move@{move}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::move (\begin{DoxyParamCaption}\item[{long}]{relative }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+move 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Stepper moves to the relative positions. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em relative} & -\/ The relative length to Stepper\textquotesingle{}s movement. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a6f0502cf085c9a108cd7c0f29eb18273}\label{class_me_stepper_on_board_a6f0502cf085c9a108cd7c0f29eb18273} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!move@{move}}
+\index{move@{move}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::move (\begin{DoxyParamCaption}\item[{long}]{relative,  }\item[{int16\+\_\+t}]{ext\+Id,  }\item[{cb}]{callback }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+move 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Stepper moves to the relative positions. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em relative} & -\/ The relative length to Stepper\textquotesingle{}s movement. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ext\+Id} & -\/ It is used to indicate the ID of motor. \\
+\hline
+\mbox{\texttt{ in}}  & {\em callback} & -\/ callback function when the target position has been reached. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a52fd44017b98f6f557321483f98dda71}\label{class_me_stepper_on_board_a52fd44017b98f6f557321483f98dda71} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!moveTo@{moveTo}}
+\index{moveTo@{moveTo}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{moveTo()}{moveTo()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::move\+To (\begin{DoxyParamCaption}\item[{long}]{absolute }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+move\+To 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Stepper moves to the absolute position. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em absolute} & -\/ The absolute length to Stepper\textquotesingle{}s movement. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a952049fc3361c7f33f5bfb2c8f78707e}\label{class_me_stepper_on_board_a952049fc3361c7f33f5bfb2c8f78707e} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!moveTo@{moveTo}}
+\index{moveTo@{moveTo}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{moveTo()}{moveTo()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::move\+To (\begin{DoxyParamCaption}\item[{long}]{absolute,  }\item[{int16\+\_\+t}]{ext\+Id,  }\item[{cb}]{callback }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+move\+To 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Stepper moves to the absolute position. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em absolute} & -\/ The absolute length to Stepper\textquotesingle{}s movement. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ext\+Id} & -\/ It is used to indicate the ID of motor. \\
+\hline
+\mbox{\texttt{ in}}  & {\em callback} & -\/ callback function when the target position has been reached. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a49e9754f36126eee4b63403dc581822f}\label{class_me_stepper_on_board_a49e9754f36126eee4b63403dc581822f} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!run@{run}}
+\index{run@{run}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily boolean Me\+Stepper\+On\+Board\+::run (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+run 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Stepper\textquotesingle{}s status-\/---run or not. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the status. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a0f376d74435f5cf1f6adece94c372d71}\label{class_me_stepper_on_board_a0f376d74435f5cf1f6adece94c372d71} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!runSpeed@{runSpeed}}
+\index{runSpeed@{runSpeed}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{runSpeed()}{runSpeed()}}
+{\footnotesize\ttfamily boolean Me\+Stepper\+On\+Board\+::run\+Speed (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+run\+Speed 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+The speed of Stepper\textquotesingle{}s running. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return true or false. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_ada03839c1d65ef9ffd1bb64db5da0bc9}\label{class_me_stepper_on_board_ada03839c1d65ef9ffd1bb64db5da0bc9} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!runSpeedToPosition@{runSpeedToPosition}}
+\index{runSpeedToPosition@{runSpeedToPosition}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{runSpeedToPosition()}{runSpeedToPosition()}}
+{\footnotesize\ttfamily boolean Me\+Stepper\+On\+Board\+::run\+Speed\+To\+Position (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+run\+Speed\+To\+Position 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+The speed of Stepper on the way to position. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return true or false. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a20298c8fc1fb1ef4998fbcd2dd7c52ba}\label{class_me_stepper_on_board_a20298c8fc1fb1ef4998fbcd2dd7c52ba} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!runToNewPosition@{runToNewPosition}}
+\index{runToNewPosition@{runToNewPosition}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{runToNewPosition()}{runToNewPosition()}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::run\+To\+New\+Position (\begin{DoxyParamCaption}\item[{long}]{position }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+run\+To\+New\+Position 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+The Stepper runs to new position. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a951f051a706bdda80961766ce5f2e388}\label{class_me_stepper_on_board_a951f051a706bdda80961766ce5f2e388} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!runToPosition@{runToPosition}}
+\index{runToPosition@{runToPosition}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{runToPosition()}{runToPosition()}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::run\+To\+Position (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+run\+To\+Position 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Stepper runs to position. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a568dff526477425da5dd7640dd6f8dca}\label{class_me_stepper_on_board_a568dff526477425da5dd7640dd6f8dca} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!setAcceleration@{setAcceleration}}
+\index{setAcceleration@{setAcceleration}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{setAcceleration()}{setAcceleration()}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::set\+Acceleration (\begin{DoxyParamCaption}\item[{float}]{acceleration }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Acceleration 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set Acceleration for Stepper. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em acceleration} & -\/ The acceleration for Stepper. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_af8e05271185ffe7c3bd520c8483d930d}\label{class_me_stepper_on_board_af8e05271185ffe7c3bd520c8483d930d} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!setCurrentPosition@{setCurrentPosition}}
+\index{setCurrentPosition@{setCurrentPosition}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{setCurrentPosition()}{setCurrentPosition()}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::set\+Current\+Position (\begin{DoxyParamCaption}\item[{long}]{position }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Current\+Position 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set Stepper\textquotesingle{}s current position. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em position} & -\/ The current position for Stepper. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the current position of Stepper. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_ab8d690efadd05acd2f453989990872b5}\label{class_me_stepper_on_board_ab8d690efadd05acd2f453989990872b5} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!setMaxSpeed@{setMaxSpeed}}
+\index{setMaxSpeed@{setMaxSpeed}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{setMaxSpeed()}{setMaxSpeed()}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::set\+Max\+Speed (\begin{DoxyParamCaption}\item[{float}]{speed }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Max\+Speed 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set Max Speed for Stepper. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a8cb61d386f7b800f1a2f752c46cfff54}\label{class_me_stepper_on_board_a8cb61d386f7b800f1a2f752c46cfff54} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!setMicroStep@{setMicroStep}}
+\index{setMicroStep@{setMicroStep}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{setMicroStep()}{setMicroStep()}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::set\+Micro\+Step (\begin{DoxyParamCaption}\item[{int8\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Micro\+Step 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set the micro step. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em value} & -\/ the Subdivided value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a881cf1984ee0cfcb773b5ab6265c40cf}\label{class_me_stepper_on_board_a881cf1984ee0cfcb773b5ab6265c40cf} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!setpin@{setpin}}
+\index{setpin@{setpin}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{setpin()}{setpin()}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::setpin (\begin{DoxyParamCaption}\item[{int}]{slot }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+setpin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set pin for Stepper. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em slot} & -\/ The slot of Mega\+Pi boards. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+setpin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set pin for Stepper. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em slot} & -\/ The slot of megapi boards. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a61eea9139c60f539c7e439676d819ba0}\label{class_me_stepper_on_board_a61eea9139c60f539c7e439676d819ba0} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!setSpeed@{setSpeed}}
+\index{setSpeed@{setSpeed}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{setSpeed()}{setSpeed()}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::set\+Speed (\begin{DoxyParamCaption}\item[{float}]{speed }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Speed 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set Speed for Stepper. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em speed} & -\/ The speed of Stepper. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_aa7bd0bc1c0dd3a147398ec654b4cf8ac}\label{class_me_stepper_on_board_aa7bd0bc1c0dd3a147398ec654b4cf8ac} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!speed@{speed}}
+\index{speed@{speed}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{speed()}{speed()}}
+{\footnotesize\ttfamily float Me\+Stepper\+On\+Board\+::speed (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+speed 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+The Speed of Stepper. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the Stepper\textquotesingle{}s speed. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a2df202c7c7cf5a72c200e4063555cb97}\label{class_me_stepper_on_board_a2df202c7c7cf5a72c200e4063555cb97} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!step@{step}}
+\index{step@{step}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{step()}{step()}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::step (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\begin{DoxyParagraph}{Function}
+step 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Stepper runs step by step. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a2ad468c8d4083b29aa445d8ee516a16b}\label{class_me_stepper_on_board_a2ad468c8d4083b29aa445d8ee516a16b} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!targetPosition@{targetPosition}}
+\index{targetPosition@{targetPosition}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{targetPosition()}{targetPosition()}}
+{\footnotesize\ttfamily long Me\+Stepper\+On\+Board\+::target\+Position (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+target\+Position 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Stepper goes to target position. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the position of Stepper. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_stepper_on_board_a1f6128e6d2943f70fd9431a0df08fa01}\label{class_me_stepper_on_board_a1f6128e6d2943f70fd9431a0df08fa01} 
+\index{MeStepperOnBoard@{MeStepperOnBoard}!update@{update}}
+\index{update@{update}!MeStepperOnBoard@{MeStepperOnBoard}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Me\+Stepper\+On\+Board\+::update (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+update 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+The Stepper loop function, used to move the stepper. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_stepper_on_board_8h}{Me\+Stepper\+On\+Board.\+h}}\item 
+src/\mbox{\hyperlink{_me_stepper_on_board_8cpp}{Me\+Stepper\+On\+Board.\+cpp}}\end{DoxyCompactItemize}

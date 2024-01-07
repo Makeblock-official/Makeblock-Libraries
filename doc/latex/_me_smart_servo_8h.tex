@@ -1,0 +1,290 @@
+\doxysection{src/\+Me\+Smart\+Servo.h File Reference}
+\hypertarget{_me_smart_servo_8h}{}\label{_me_smart_servo_8h}\index{src/MeSmartServo.h@{src/MeSmartServo.h}}
+
+
+Header for for \doxylink{_me_smart_servo_8cpp}{Me\+Smart\+Servo.\+cpp} module.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Serial.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+Smart\+Servo.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_smart_servo_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_smart_servo_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsysex__message__type}{sysex\+\_\+message\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{struct_cmd__list__tab__type}{Cmd\+\_\+list\+\_\+tab\+\_\+type}}
+\item 
+union \mbox{\hyperlink{unionsysex__message}{sysex\+\_\+message}}
+\item 
+struct \mbox{\hyperlink{structservo__device__type}{servo\+\_\+device\+\_\+type}}
+\item 
+class \mbox{\hyperlink{class_me_smart_servo}{Me\+Smart\+Servo}}
+\begin{DoxyCompactList}\small\item\em Driver for Me Smart \doxylink{class_servo}{Servo} device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_smart_servo_8h_ad611a6df4609f1d97476f4120f754da4}\label{_me_smart_servo_8h_ad611a6df4609f1d97476f4120f754da4} 
+\#define {\bfseries ALL\+\_\+\+DEVICE}~0xff
+\item 
+\Hypertarget{_me_smart_servo_8h_a168e54ef413207ecafa0e4d74e14336f}\label{_me_smart_servo_8h_a168e54ef413207ecafa0e4d74e14336f} 
+\#define {\bfseries CUSTOM\+\_\+\+TYPE}~0x00
+\item 
+\Hypertarget{_me_smart_servo_8h_a4f2ae1fc9e359e61566308b587b0bcd9}\label{_me_smart_servo_8h_a4f2ae1fc9e359e61566308b587b0bcd9} 
+\#define {\bfseries CTL\+\_\+\+ASSIGN\+\_\+\+DEV\+\_\+\+ID}~0x10
+\item 
+\Hypertarget{_me_smart_servo_8h_ab53ad53f2c3d0cd350532581bc08ee63}\label{_me_smart_servo_8h_ab53ad53f2c3d0cd350532581bc08ee63} 
+\#define {\bfseries CTL\+\_\+\+SYSTEM\+\_\+\+RESET}~0x11
+\item 
+\Hypertarget{_me_smart_servo_8h_a9dae6c73cba451aec7312ae467ea7932}\label{_me_smart_servo_8h_a9dae6c73cba451aec7312ae467ea7932} 
+\#define {\bfseries CTL\+\_\+\+READ\+\_\+\+DEV\+\_\+\+VERSION}~0x12
+\item 
+\Hypertarget{_me_smart_servo_8h_abd6372c82d9341d4973a459e5d3943a2}\label{_me_smart_servo_8h_abd6372c82d9341d4973a459e5d3943a2} 
+\#define {\bfseries CTL\+\_\+\+SET\+\_\+\+BAUD\+\_\+\+RATE}~0x13
+\item 
+\Hypertarget{_me_smart_servo_8h_a2c5b8bb7c1241780397964651debce03}\label{_me_smart_servo_8h_a2c5b8bb7c1241780397964651debce03} 
+\#define {\bfseries CTL\+\_\+\+CMD\+\_\+\+TEST}~0x14
+\item 
+\Hypertarget{_me_smart_servo_8h_a9d04c0061d7a53c69601abb1b38e9cfa}\label{_me_smart_servo_8h_a9d04c0061d7a53c69601abb1b38e9cfa} 
+\#define {\bfseries CTL\+\_\+\+ERROR\+\_\+\+CODE}~0x15
+\item 
+\Hypertarget{_me_smart_servo_8h_a90abce56b9efaeaffd3407344f5374cb}\label{_me_smart_servo_8h_a90abce56b9efaeaffd3407344f5374cb} 
+\#define {\bfseries SMART\+\_\+\+SERVO}~0x60
+\item 
+\Hypertarget{_me_smart_servo_8h_afff942ebc5d682831fa06ee238ce4ca8}\label{_me_smart_servo_8h_afff942ebc5d682831fa06ee238ce4ca8} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+PID}~0x10
+\item 
+\Hypertarget{_me_smart_servo_8h_a7c84f4c053ffd1d1a4cc6706ad09aefb}\label{_me_smart_servo_8h_a7c84f4c053ffd1d1a4cc6706ad09aefb} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+ABSOLUTE\+\_\+\+POS}~0x11
+\item 
+\Hypertarget{_me_smart_servo_8h_ac9c62f73a3482288ea3f6f6731341ae2}\label{_me_smart_servo_8h_ac9c62f73a3482288ea3f6f6731341ae2} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+RELATIVE\+\_\+\+POS}~0x12
+\item 
+\Hypertarget{_me_smart_servo_8h_aa8feb62eb74dd07c1903226a239474bd}\label{_me_smart_servo_8h_aa8feb62eb74dd07c1903226a239474bd} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+CONTINUOUS\+\_\+\+ROTATION}~0x13
+\item 
+\Hypertarget{_me_smart_servo_8h_a117d2788d1ec399226136a3413b4483d}\label{_me_smart_servo_8h_a117d2788d1ec399226136a3413b4483d} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+MOTION\+\_\+\+COMPENSATION}~0x14
+\item 
+\Hypertarget{_me_smart_servo_8h_aef45c8d90fb49f53b8762a850e4f8ed7}\label{_me_smart_servo_8h_aef45c8d90fb49f53b8762a850e4f8ed7} 
+\#define {\bfseries CLR\+\_\+\+SERVO\+\_\+\+MOTION\+\_\+\+COMPENSATION}~0x15
+\item 
+\Hypertarget{_me_smart_servo_8h_a942762cf793c3aa23a1cddd070e74aee}\label{_me_smart_servo_8h_a942762cf793c3aa23a1cddd070e74aee} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+BREAK}~0x16
+\item 
+\Hypertarget{_me_smart_servo_8h_ac40e954e330639d52c6094ba9590e6ed}\label{_me_smart_servo_8h_ac40e954e330639d52c6094ba9590e6ed} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+RGB\+\_\+\+LED}~0x17
+\item 
+\Hypertarget{_me_smart_servo_8h_a57ec3688add74451d3de55ee092f86a9}\label{_me_smart_servo_8h_a57ec3688add74451d3de55ee092f86a9} 
+\#define {\bfseries SERVO\+\_\+\+SHARKE\+\_\+\+HAND}~0x18
+\item 
+\Hypertarget{_me_smart_servo_8h_abad3d45b03e4d50d1977c5d9ebe13a7f}\label{_me_smart_servo_8h_abad3d45b03e4d50d1977c5d9ebe13a7f} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+CMD\+\_\+\+MODE}~0x19
+\item 
+\Hypertarget{_me_smart_servo_8h_a18200c04e19aae30e45c7a781534f706}\label{_me_smart_servo_8h_a18200c04e19aae30e45c7a781534f706} 
+\#define {\bfseries GET\+\_\+\+SERVO\+\_\+\+STATUS}~0x20
+\item 
+\Hypertarget{_me_smart_servo_8h_a8e78b8556c1915e808fb0a7ce359ed0a}\label{_me_smart_servo_8h_a8e78b8556c1915e808fb0a7ce359ed0a} 
+\#define {\bfseries GET\+\_\+\+SERVO\+\_\+\+PID}~0x21
+\item 
+\Hypertarget{_me_smart_servo_8h_acfc05b8104b168adf08ddffae842a005}\label{_me_smart_servo_8h_acfc05b8104b168adf08ddffae842a005} 
+\#define {\bfseries GET\+\_\+\+SERVO\+\_\+\+CUR\+\_\+\+POS}~0x22
+\item 
+\Hypertarget{_me_smart_servo_8h_a37213fa1954f248fdf8e5e47bb9afe92}\label{_me_smart_servo_8h_a37213fa1954f248fdf8e5e47bb9afe92} 
+\#define {\bfseries GET\+\_\+\+SERVO\+\_\+\+SPEED}~0x23
+\item 
+\Hypertarget{_me_smart_servo_8h_a322922145c24ecb3bb6b500c45dfa8d1}\label{_me_smart_servo_8h_a322922145c24ecb3bb6b500c45dfa8d1} 
+\#define {\bfseries GET\+\_\+\+SERVO\+\_\+\+MOTION\+\_\+\+COMPENSATION}~0x24
+\item 
+\Hypertarget{_me_smart_servo_8h_a6f5a654394d6078177fc813923b0b641}\label{_me_smart_servo_8h_a6f5a654394d6078177fc813923b0b641} 
+\#define {\bfseries GET\+\_\+\+SERVO\+\_\+\+TEMPERATURE}~0x25
+\item 
+\Hypertarget{_me_smart_servo_8h_a4a1d79eefb26ceea87a1dff815382629}\label{_me_smart_servo_8h_a4a1d79eefb26ceea87a1dff815382629} 
+\#define {\bfseries GET\+\_\+\+SERVO\+\_\+\+ELECTRIC\+\_\+\+CURRENT}~0x26
+\item 
+\Hypertarget{_me_smart_servo_8h_a89adc0148fc1c74947d41b746dfa64bd}\label{_me_smart_servo_8h_a89adc0148fc1c74947d41b746dfa64bd} 
+\#define {\bfseries GET\+\_\+\+SERVO\+\_\+\+VOLTAGE}~0x27
+\item 
+\Hypertarget{_me_smart_servo_8h_ac42acdc07bb13311b58d24a8b959f70e}\label{_me_smart_servo_8h_ac42acdc07bb13311b58d24a8b959f70e} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+CURRENT\+\_\+\+ANGLE\+\_\+\+ZERO\+\_\+\+DEGREES}~0x30
+\item 
+\Hypertarget{_me_smart_servo_8h_a94b664f13d5315d0d15956af90e1b908}\label{_me_smart_servo_8h_a94b664f13d5315d0d15956af90e1b908} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+ABSOLUTE\+\_\+\+ANGLE}~0x31
+\item 
+\Hypertarget{_me_smart_servo_8h_a8aedd6fad627435977e42ed5af68a4da}\label{_me_smart_servo_8h_a8aedd6fad627435977e42ed5af68a4da} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+RELATIVE\+\_\+\+ANGLE}~0x32
+\item 
+\Hypertarget{_me_smart_servo_8h_a20bb017cf577685929c4ea3c7d3f260f}\label{_me_smart_servo_8h_a20bb017cf577685929c4ea3c7d3f260f} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+ABSOLUTE\+\_\+\+ANGLE\+\_\+\+LONG}~0x33
+\item 
+\Hypertarget{_me_smart_servo_8h_a30ede94397ac2fe67b90802cb618a22b}\label{_me_smart_servo_8h_a30ede94397ac2fe67b90802cb618a22b} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+RELATIVE\+\_\+\+ANGLE\+\_\+\+LONG}~0x34
+\item 
+\Hypertarget{_me_smart_servo_8h_a6c738b72410b9c8d4fce4bdb91541b7c}\label{_me_smart_servo_8h_a6c738b72410b9c8d4fce4bdb91541b7c} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+PWM\+\_\+\+MOVE}~0x35
+\item 
+\Hypertarget{_me_smart_servo_8h_ac90e7fd1738d40a458dfde6193d61e0a}\label{_me_smart_servo_8h_ac90e7fd1738d40a458dfde6193d61e0a} 
+\#define {\bfseries GET\+\_\+\+SERVO\+\_\+\+CUR\+\_\+\+ANGLE}~0x36
+\item 
+\Hypertarget{_me_smart_servo_8h_a3f0303828164d82830c8d0e8de9436fd}\label{_me_smart_servo_8h_a3f0303828164d82830c8d0e8de9436fd} 
+\#define {\bfseries SET\+\_\+\+SERVO\+\_\+\+INIT\+\_\+\+ANGLE}~0x37
+\item 
+\Hypertarget{_me_smart_servo_8h_ad6dc0939595b3bfdb60c0ab8368a8ef3}\label{_me_smart_servo_8h_ad6dc0939595b3bfdb60c0ab8368a8ef3} 
+\#define {\bfseries REPORT\+\_\+\+WHEN\+\_\+\+REACH\+\_\+\+THE\+\_\+\+SET\+\_\+\+POSITION}~0x40
+\item 
+\Hypertarget{_me_smart_servo_8h_a59347abb8dbf9faf06194cce640f59b6}\label{_me_smart_servo_8h_a59347abb8dbf9faf06194cce640f59b6} 
+\#define {\bfseries START\+\_\+\+SYSEX}~0x\+F0
+\item 
+\Hypertarget{_me_smart_servo_8h_a59b17efb4e682f59d0f8179aea08474f}\label{_me_smart_servo_8h_a59b17efb4e682f59d0f8179aea08474f} 
+\#define {\bfseries END\+\_\+\+SYSEX}~0x\+F7
+\item 
+\Hypertarget{_me_smart_servo_8h_ae8e605cf79513f0a81af8e843255a03a}\label{_me_smart_servo_8h_ae8e605cf79513f0a81af8e843255a03a} 
+\#define {\bfseries PROCESS\+\_\+\+SUC}~0x0F
+\item 
+\Hypertarget{_me_smart_servo_8h_ab47af4ebd9bd7f12be266287d903733b}\label{_me_smart_servo_8h_ab47af4ebd9bd7f12be266287d903733b} 
+\#define {\bfseries PROCESS\+\_\+\+BUSY}~0x10
+\item 
+\Hypertarget{_me_smart_servo_8h_a574b88c339e11e3b583b16d32af713e9}\label{_me_smart_servo_8h_a574b88c339e11e3b583b16d32af713e9} 
+\#define {\bfseries PROCESS\+\_\+\+ERROR}~0x11
+\item 
+\Hypertarget{_me_smart_servo_8h_a3f7575313527389a039e254bfdcaa59b}\label{_me_smart_servo_8h_a3f7575313527389a039e254bfdcaa59b} 
+\#define {\bfseries WRONG\+\_\+\+TYPE\+\_\+\+OF\+\_\+\+SERVICE}~0x12
+\item 
+\Hypertarget{_me_smart_servo_8h_a050a2847dd14d19abbe99fb4c41acb53}\label{_me_smart_servo_8h_a050a2847dd14d19abbe99fb4c41acb53} 
+\#define {\bfseries DEFAULT\+\_\+\+UART\+\_\+\+BUF\+\_\+\+SIZE}~64
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_smart_servo_8h_ae00ec5117fa9c52201086bfeb6953fe9}\label{_me_smart_servo_8h_ae00ec5117fa9c52201086bfeb6953fe9} 
+typedef void(\texorpdfstring{$\ast$}{*} {\bfseries smart\+Servo\+Cb}) (uint8\+\_\+t)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_smart_servo_8h_a7d8f7185d51054ec7caeff6f7d5cad98}\label{_me_smart_servo_8h_a7d8f7185d51054ec7caeff6f7d5cad98} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>uint8\_t {\bfseries byteVal} \mbox{[}8\mbox{]}\\
+\>double {\bfseries doubleVal}\\
+\} {\bfseries val8byte}\\
+
+\end{tabbing}\item 
+\Hypertarget{_me_smart_servo_8h_a20119dac7d042ba9f33ea098b62a7fa2}\label{_me_smart_servo_8h_a20119dac7d042ba9f33ea098b62a7fa2} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>uint8\_t {\bfseries byteVal} \mbox{[}4\mbox{]}\\
+\>float {\bfseries floatVal}\\
+\>long {\bfseries longVal}\\
+\} {\bfseries val4byte}\\
+
+\end{tabbing}\item 
+\Hypertarget{_me_smart_servo_8h_a78d56812a236805945ddbfbc991bc61e}\label{_me_smart_servo_8h_a78d56812a236805945ddbfbc991bc61e} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>uint8\_t {\bfseries byteVal} \mbox{[}2\mbox{]}\\
+\>short {\bfseries shortVal}\\
+\} {\bfseries val2byte}\\
+
+\end{tabbing}\item 
+\Hypertarget{_me_smart_servo_8h_a6805a92ea2d3c94b96c7128a961de93d}\label{_me_smart_servo_8h_a6805a92ea2d3c94b96c7128a961de93d} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>uint8\_t {\bfseries byteVal} \mbox{[}1\mbox{]}\\
+\>uint8\_t {\bfseries charVal}\\
+\} {\bfseries val1byte}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for for \doxylink{_me_smart_servo_8cpp}{Me\+Smart\+Servo.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/08/23 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Smart \doxylink{class_servo}{Servo} device, The Smart \doxylink{class_servo}{Servo} inherited the \doxylink{class_me_serial}{Me\+Serial} class from \doxylink{class_software_serial}{Software\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\begin{DoxyEnumerate}
+\item uint8\+\_\+t \doxylink{class_me_smart_servo_a1aaad24e2abbcba8fe5be7d3d0d84e63}{Me\+Smart\+Servo\+::read\+Byte(uint8\+\_\+t \texorpdfstring{$\ast$}{*}argv,int16\+\_\+t idx)};
+\item short \doxylink{class_me_smart_servo_a86115d5159d786936b9f9fbde7669cb3}{Me\+Smart\+Servo\+::read\+Short(uint8\+\_\+t \texorpdfstring{$\ast$}{*}argv,int16\+\_\+t idx,boolean ignore\+\_\+high)};
+\item float \doxylink{class_me_smart_servo_ae66a39120aa542835ed7baefe543170c}{Me\+Smart\+Servo\+::read\+Float(uint8\+\_\+t \texorpdfstring{$\ast$}{*}argv,int16\+\_\+t idx)};
+\item long \doxylink{class_me_smart_servo_add30c4b6013c26a2b92b37992a2a9feb}{Me\+Smart\+Servo\+::read\+Long(uint8\+\_\+t \texorpdfstring{$\ast$}{*}argv,int idx)};
+\item uint8\+\_\+t \doxylink{class_me_smart_servo_a412e124ef188a4937ea6d4648724ae96}{Me\+Smart\+Servo\+::send\+Byte(uint8\+\_\+t val)};
+\item uint8\+\_\+t \doxylink{class_me_smart_servo_acf5bd557ed6e873d6832b765bc1ebdbc}{Me\+Smart\+Servo\+::send\+Short(int16\+\_\+t val,boolean ignore\+\_\+high)};
+\item uint8\+\_\+t \doxylink{class_me_smart_servo_a68d970c3f3634048cf85d31ee5475c86}{Me\+Smart\+Servo\+::send\+Float(float val)};
+\item uint8\+\_\+t \doxylink{class_me_smart_servo_a640143e57999486cf952f8184ecdadbf}{Me\+Smart\+Servo\+::send\+Long(long val)};
+\item boolean \doxylink{class_me_smart_servo_ad416c90e90bffb8e56caa8d79fe2d473}{Me\+Smart\+Servo\+::assign\+Dev\+Id\+Request(void)};
+\item boolean \doxylink{class_me_smart_servo_aad84a194b3ed4f175d336bca6a596ec6}{Me\+Smart\+Servo\+::move\+To(uint8\+\_\+t dev\+\_\+id,long angle\+\_\+value,float speed,smart\+Servo\+Cb callback)};
+\item boolean \doxylink{class_me_smart_servo_accf6f85b682196fa8e3f36f2a2e5e508}{Me\+Smart\+Servo\+::move(uint8\+\_\+t dev\+\_\+id,long angle\+\_\+value,float speed,smart\+Servo\+Cb callback)};
+\item boolean \doxylink{class_me_smart_servo_ab86b0e9279876f94f28120aaa36c9429}{Me\+Smart\+Servo\+::set\+Zero(uint8\+\_\+t dev\+\_\+id)};
+\item boolean \doxylink{class_me_smart_servo_ae7e58107842eb0c2d13596c99d0e8838}{Me\+Smart\+Servo\+::set\+Break(uint8\+\_\+t dev\+\_\+id, uint8\+\_\+t break\+Status)};
+\item boolean \doxylink{class_me_smart_servo_a2ba807a9e25bf953e83f22e1f862edc9}{Me\+Smart\+Servo\+::set\+RGBLed(uint8\+\_\+t dev\+\_\+id, uint8\+\_\+t r\+\_\+value, uint8\+\_\+t g\+\_\+value, uint8\+\_\+t b\+\_\+value)};
+\item boolean \doxylink{class_me_smart_servo_aa3f5a58c87f7ae9c1bd46c4f9c3816c9}{Me\+Smart\+Servo\+::hand\+Sharke(uint8\+\_\+t dev\+\_\+id)};
+\item boolean \doxylink{class_me_smart_servo_a6117a6fdeb20a0da8310be42011f699e}{Me\+Smart\+Servo\+::set\+Pwm\+Move(uint8\+\_\+t dev\+\_\+id, int16\+\_\+t pwm\+\_\+value)};
+\item boolean \doxylink{class_me_smart_servo_aedb7c0b2bba4e771865752acdae65b0d}{Me\+Smart\+Servo\+::set\+Init\+Angle(uint8\+\_\+t dev\+\_\+id,uint8\+\_\+t mode,int16\+\_\+t speed)};
+\item long \doxylink{class_me_smart_servo_adb14101ef4f0981f5ba3eabfd02775c7}{Me\+Smart\+Servo\+::get\+Angle\+Request(uint8\+\_\+t dev\+Id)};
+\item float \doxylink{class_me_smart_servo_a058cffd56063ed54f5bcdd0995861c18}{Me\+Smart\+Servo\+::get\+Speed\+Request(uint8\+\_\+t dev\+Id)};
+\item float \doxylink{class_me_smart_servo_ae2f7bcf1cc941f324a0873129dd7b33b}{Me\+Smart\+Servo\+::get\+Voltage\+Request(uint8\+\_\+t dev\+Id)};
+\item float \doxylink{class_me_smart_servo_ab65dd2a4b12d6604fac57595737cfeeb}{Me\+Smart\+Servo\+::get\+Temp\+Request(uint8\+\_\+t dev\+Id)};
+\item float \doxylink{class_me_smart_servo_adc467ef432434d9b279f794a453da64c}{Me\+Smart\+Servo\+::get\+Current\+Request(uint8\+\_\+t dev\+Id)};
+\item void \doxylink{class_me_smart_servo_a5b6fa025da9977cba9212b64988acb2a}{Me\+Smart\+Servo\+::assign\+Dev\+Id\+Response(void \texorpdfstring{$\ast$}{*}arg)};
+\item void \doxylink{class_me_smart_servo_a3eb0b8f79dd50b4e55526d261b40d8a1}{Me\+Smart\+Servo\+::process\+Sysex\+Message(void)};
+\item void \doxylink{class_me_smart_servo_a24f968f6117983c8c17bfbecc53793b6}{Me\+Smart\+Servo\+::smart\+Servo\+Event\+Handle(void)};
+\item void \doxylink{class_me_smart_servo_ac003fe9876a2e1b6981326783718a12f}{Me\+Smart\+Servo\+::error\+Code\+Check\+Response(void \texorpdfstring{$\ast$}{*}arg)};
+\item void \doxylink{class_me_smart_servo_a9576044532f0ca58cf8d554e9f31cacf}{Me\+Smart\+Servo\+::smart\+Servo\+Cmd\+Response(void \texorpdfstring{$\ast$}{*}arg)};
+\end{DoxyEnumerate}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan         2016/08/23     1.0.0            Build the new.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

@@ -1,0 +1,90 @@
+\doxysection{src/\+Me\+Flame\+Sensor.h File Reference}
+\hypertarget{_me_flame_sensor_8h}{}\label{_me_flame_sensor_8h}\index{src/MeFlameSensor.h@{src/MeFlameSensor.h}}
+
+
+Header for \doxylink{_me_flame_sensor_8cpp}{Me\+Flame\+Sensor.\+cpp} module.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+Flame\+Sensor.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_flame_sensor_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_flame_sensor_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_me_flame_sensor}{Me\+Flame\+Sensor}}
+\begin{DoxyCompactList}\small\item\em Driver for Me flame snesor device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_flame_sensor_8h_a1e0eb1f1b6daca7d9cd25f609860def3}\label{_me_flame_sensor_8h_a1e0eb1f1b6daca7d9cd25f609860def3} 
+\#define {\bfseries Fire}~(0x00)
+\item 
+\Hypertarget{_me_flame_sensor_8h_a5e17e7686ddf4795538bea5885210e12}\label{_me_flame_sensor_8h_a5e17e7686ddf4795538bea5885210e12} 
+\#define {\bfseries No\+Fire}~(0x01)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for \doxylink{_me_flame_sensor_8cpp}{Me\+Flame\+Sensor.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2015/09/09 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for flame snesor device.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_flame_sensor_a42b0282962ea9afea2d2b0d4bbdb1ce4}{Me\+Flame\+Sensor\+::setpin(uint8\+\_\+t digital\+\_\+pin,uint8\+\_\+t analog\+\_\+pin)}
+\item uint8\+\_\+t \doxylink{class_me_flame_sensor_a01b134562c8fff15c7f7f48e18839cd0}{Me\+Flame\+Sensor\+::read\+Digital(void)}
+\item int16\+\_\+t \doxylink{class_me_flame_sensor_a09baccd24c256f1ad1b59e148f43450a}{Me\+Flame\+Sensor\+::read\+Analog(void)}
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan         2015/09/09     1.0.0            Rebuild the old lib.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

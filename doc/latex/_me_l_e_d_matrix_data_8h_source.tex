@@ -1,0 +1,140 @@
+\doxysection{Me\+LEDMatrix\+Data.\+h}
+\hypertarget{_me_l_e_d_matrix_data_8h_source}{}\label{_me_l_e_d_matrix_data_8h_source}\index{src/MeLEDMatrixData.h@{src/MeLEDMatrixData.h}}
+\mbox{\hyperlink{_me_l_e_d_matrix_data_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#ifndef\ \_ME\_LEDMATRIX\_FONT\_DATA\_H\_}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ \_ME\_LEDMATRIX\_FONT\_DATA\_H\_}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ uint8\_t\ Character[1];}
+\DoxyCodeLine{00041\ \ \ uint8\_t\ data[6];}
+\DoxyCodeLine{00042\ \}\mbox{\hyperlink{struct_l_e_d___matrix___font__6x8___type_def}{LED\_Matrix\_Font\_6x8\_TypeDef}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//Terminal}}
+\DoxyCodeLine{00045\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_l_e_d___matrix___font__6x8___type_def}{LED\_Matrix\_Font\_6x8\_TypeDef}}\ Character\_font\_6x8[]\ PROGMEM\ =}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{charliteral}{'\ '},\ \ 0x00,0x00,0x00,0x00,0x00,0x00,}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{charliteral}{'0'},\ \ 0x00,0x7C,0x82,0x82,0x7C,0x00,}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{charliteral}{'1'},\ \ 0x00,0x42,0xFE,0x02,0x00,0x00,}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{charliteral}{'2'},\ \ 0x00,0x46,0x8A,0x92,0x62,0x00,}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{charliteral}{'3'},\ \ 0x00,0x44,0x92,0x92,0x6C,0x00,}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{charliteral}{'4'},\ \ 0x00,0x1C,0x64,0xFE,0x04,0x00,}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{charliteral}{'5'},\ \ 0x00,0xF2,0x92,0x92,0x8C,0x00,}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{charliteral}{'6'},\ \ 0x00,0x7C,0x92,0x92,0x4C,0x00,}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{charliteral}{'7'},\ \ 0x00,0xC0,0x8E,0x90,0xE0,0x00,}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{charliteral}{'8'},\ \ 0x00,0x6C,0x92,0x92,0x6C,0x00,}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{charliteral}{'9'},\ \ 0x00,0x64,0x92,0x92,0x7C,0x00,}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{charliteral}{'a'},\ \ 0x00,0x04,0x2A,0x2A,0x1E,0x00,}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{charliteral}{'b'},\ \ 0x00,0xFE,0x12,0x12,0x0C,0x00,}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{charliteral}{'c'},\ \ 0x00,0x0C,0x12,0x12,0x12,0x00,}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{charliteral}{'d'},\ \ 0x00,0x0C,0x12,0x12,0xFE,0x00,}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{charliteral}{'e'},\ \ 0x00,0x1C,0x2A,0x2A,0x18,0x00,}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{charliteral}{'f'},\ \ 0x00,0x10,0x3E,0x50,0x50,0x00,}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{charliteral}{'g'},\ \ 0x00,0x08,0x15,0x15,0x1E,0x00,}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{charliteral}{'h'},\ \ 0x00,0xFE,0x10,0x1E,0x00,0x00,}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{charliteral}{'i'},\ \ 0x00,0x00,0x2E,0x00,0x00,0x00,}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{charliteral}{'j'},\ \ 0x00,0x02,0x01,0x2E,0x00,0x00,}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{charliteral}{'k'},\ \ 0x00,0xFE,0x08,0x14,0x12,0x00,}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{charliteral}{'l'},\ \ 0x00,0x00,0xFE,0x02,0x00,0x00,}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{charliteral}{'m'},\ \ 0x00,0x1E,0x10,0x0E,0x10,0x0E,}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{charliteral}{'n'},\ \ 0x00,0x1E,0x10,0x10,0x0E,0x00,}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{charliteral}{'o'},\ \ 0x00,0x0C,0x12,0x12,0x0C,0x00,}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{charliteral}{'p'},\ \ 0x00,0x1F,0x12,0x12,0x0C,0x00,}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{charliteral}{'q'},\ \ 0x00,0x0C,0x12,0x12,0x1F,0x00,}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{charliteral}{'r'},\ \ 0x00,0x1E,0x08,0x10,0x10,0x00,}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{charliteral}{'s'},\ \ 0x00,0x12,0x29,0x25,0x12,0x00,}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{charliteral}{'t'},\ \ 0x00,0x10,0x3E,0x12,0x00,0x00,}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{charliteral}{'u'},\ \ 0x00,0x1C,0x02,0x02,0x1E,0x00,}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{charliteral}{'v'},\ \ 0x18,0x04,0x02,0x04,0x18,0x00,}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{charliteral}{'w'},\ \ 0x18,0x06,0x1C,0x06,0x18,0x00,}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{charliteral}{'x'},\ \ 0x00,0x12,0x0C,0x0C,0x12,0x00,}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{charliteral}{'y'},\ \ 0x00,0x18,0x05,0x05,0x1E,0x00,}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{charliteral}{'z'},\ \ 0x00,0x12,0x16,0x1A,0x12,0x00,}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{charliteral}{'A'},\ \ 0x00,0x7E,0x88,0x88,0x7E,0x00,}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{charliteral}{'B'},\ \ 0x00,0xFE,0x92,0x92,0x6C,0x00,}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{charliteral}{'C'},\ \ 0x00,0x7C,0x82,0x82,0x44,0x00,}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{charliteral}{'D'},\ \ 0x00,0xFE,0x82,0x82,0x7C,0x00,}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{charliteral}{'E'},\ \ 0x00,0xFE,0x92,0x92,0x82,0x00,}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{charliteral}{'F'},\ \ 0x00,0xFE,0x90,0x90,0x80,0x00,}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{charliteral}{'G'},\ \ 0x00,0x7C,0x82,0x92,0x5C,0x00,}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{charliteral}{'H'},\ \ 0x00,0xFE,0x10,0x10,0xFE,0x00,}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{charliteral}{'I'},\ \ 0x00,0x82,0xFE,0x82,0x00,0x00,}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{charliteral}{'J'},\ \ 0x00,0x0C,0x02,0x02,0xFC,0x00,}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{charliteral}{'K'},\ \ 0x00,0xFE,0x10,0x28,0xC6,0x00,}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{charliteral}{'L'},\ \ 0x00,0xFE,0x02,0x02,0x02,0x00,}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{charliteral}{'M'},\ \ 0x00,0xFE,0x40,0x30,0x40,0xFE,}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{charliteral}{'N'},\ \ 0x00,0xFE,0x40,0x30,0x08,0xFE,}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{charliteral}{'O'},\ \ 0x00,0x7C,0x82,0x82,0x82,0x7C,}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{charliteral}{'P'},\ \ 0x00,0xFE,0x90,0x90,0x60,0x00,}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{charliteral}{'Q'},\ \ 0x00,0x7C,0x82,0x8A,0x84,0x7A,}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{charliteral}{'R'},\ \ 0x00,0xFE,0x98,0x94,0x62,0x00,}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{charliteral}{'S'},\ \ 0x00,0x64,0x92,0x92,0x4C,0x00,}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{charliteral}{'T'},\ \ 0x00,0x80,0xFE,0x80,0x80,0x00,}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{charliteral}{'U'},\ \ 0x00,0xFC,0x02,0x02,0xFC,0x00,}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{charliteral}{'V'},\ \ 0x00,0xF0,0x0C,0x02,0x0C,0xF0,}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{charliteral}{'W'},\ \ 0x00,0xFE,0x04,0x38,0x04,0xFE,}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{charliteral}{'X'},\ \ 0x00,0xC6,0x38,0x38,0xC6,0x00,}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{charliteral}{'Y'},\ \ 0xC0,0x20,0x1E,0x20,0xC0,0x00,}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{charliteral}{'Z'},\ \ 0x00,0x86,0x9A,0xB2,0xC2,0x00,}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{charliteral}{','},\ \ 0x00,0x01,0x0e,0x0c,0x00,0x00,}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{charliteral}{'.'},\ \ 0x00,0x00,0x06,0x06,0x00,0x00,}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{charliteral}{'\%'},\ \ 0x72,0x54,0x78,0x1e,0x2a,0x4e,}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{charliteral}{'!'},\ \ 0x00,0x00,0x7a,0x00,0x00,0x00,}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{charliteral}{'?'},\ \ 0x00,0x20,0x4a,0x30,0x00,0x00,}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{charliteral}{'-\/'},\ \ 0x00,0x10,0x10,0x10,0x10,0x00,}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{charliteral}{'+'},\ \ 0x08,0x08,0x3e,0x08,0x08,0x00,}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{charliteral}{'/'},\ \ 0x00,0x02,0x0c,0x30,0x40,0x00,}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{charliteral}{'*'},\ \ 0x22,0x14,0x08,0x14,0x22,0x00,}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{charliteral}{':'},\ \ 0x00,0x00,0x14,0x00,0x00,0x00,}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{charliteral}{'"{}'},\ \ 0x00,0xC0,0x00,0xC0,0x00,0x00,}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{charliteral}{'\#'},\ \ 0x28,0xFE,0x28,0xFE,0x28,0x00,}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{charliteral}{'('},\ \ 0x00,0x00,0x7C,0x82,0x00,0x00,}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{charliteral}{')'},\ \ 0x00,0x00,0x82,0x7C,0x00,0x00,}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{charliteral}{';'},\ \ 0x00,0x02,0x24,0x00,0x00,0x00,}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{charliteral}{'\string~'},\ \ 0x00,0x40,0x80,0x40,0x80,0x00,}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{charliteral}{';'},\ \ 0x00,0x02,0x24,0x00,0x00,0x00,}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{charliteral}{'='},\ \ 0x00,0x28,0x28,0x28,0x28,0x00,}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{charliteral}{'|'},\ \ 0x00,0x00,0xFE,0x00,0x00,0x00,}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{charliteral}{'>'},\ \ 0x00,0x82,0x44,0x28,0x10,0x00,}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{charliteral}{'<'},\ \ 0x00,0x10,0x28,0x44,0x82,0x00,\ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{charliteral}{'@'},\ \ 0x00,0x00,0x00,0x00,0x00,0x00,\ \ \textcolor{comment}{//\ End\ mark\ of\ Character\_font\_6x8}}
+\DoxyCodeLine{00135\ \};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00143\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ uint8\_t\ data[3];}
+\DoxyCodeLine{00145\ \}\mbox{\hyperlink{struct_l_e_d___matrix___clock___number___font__3x8___type_def}{LED\_Matrix\_Clock\_Number\_Font\_3x8\_TypeDef}};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_l_e_d___matrix___clock___number___font__3x8___type_def}{LED\_Matrix\_Clock\_Number\_Font\_3x8\_TypeDef}}\ Clock\_Number\_font\_3x8[]\ PROGMEM\ =}
+\DoxyCodeLine{00148\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ 0x7C,0x44,0x7C,\ \ \textcolor{comment}{//0}}
+\DoxyCodeLine{00150\ \ \ \ \ 0x00,0x7C,0x00,\ \ \textcolor{comment}{//1}}
+\DoxyCodeLine{00151\ \ \ \ \ 0x5C,0x54,0x74,\ \ \textcolor{comment}{//2}}
+\DoxyCodeLine{00152\ \ \ \ \ 0x54,0x54,0x7C,\ \ \textcolor{comment}{//3}}
+\DoxyCodeLine{00153\ \ \ \ \ 0x70,0x10,0x7C,\ \ \textcolor{comment}{//4}}
+\DoxyCodeLine{00154\ \ \ \ \ 0x74,0x54,0x5C,\ \ \textcolor{comment}{//5}}
+\DoxyCodeLine{00155\ \ \ \ \ 0x7C,0x54,0x5C,\ \ \textcolor{comment}{//6}}
+\DoxyCodeLine{00156\ \ \ \ \ 0x40,0x40,0x7C,\ \ \textcolor{comment}{//7}}
+\DoxyCodeLine{00157\ \ \ \ \ 0x7C,0x54,0x7C,\ \ \textcolor{comment}{//8}}
+\DoxyCodeLine{00158\ \ \ \ \ 0x74,0x54,0x7C,\ \ \textcolor{comment}{//9}}
+\DoxyCodeLine{00159\ \ \ \ \ 0x00,0x04,0x00,\ \ \textcolor{comment}{//.}}
+\DoxyCodeLine{00160\ \ \ \ \ 0x20,0x20,0x20,\ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{00161\ \ \ \ \ 0x00,0x00,0x00,\ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00162\ \};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ }
+
+\end{DoxyCode}

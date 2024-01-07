@@ -63,6 +63,7 @@
 
 /* Exported macro ------------------------------------------------------------*/
 #define I2C_ERROR                  (-1)
+
 #define GYRO_DEFAULT_ADDRESS       (0x68)
 
 /**
@@ -293,6 +294,22 @@ public:
 
 /**
  * \par Function
+ *   getGyroZ
+ * \par Description
+ *   Get the data of gyroZrate.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of gyroZrate
+ * \par Others
+ *   None
+ */
+  double getGyroZ(void) const;
+
+/**
+ * \par Function
  *   getAngle
  * \par Description
  *   Get the angle value of setting axis.
@@ -306,6 +323,24 @@ public:
  *   Z-axis angle value is integral of Z-axis angular velocity.
  */
   double getAngle(uint8_t index) const;
+
+/**
+ * \par Function
+ *   resetData
+ * \par Description
+ *   Reset the angle value of setting axis.
+ * \param[in]
+ *  None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ * \author
+ *   Nicolas Bourré
+ */  
+  void resetData(void);
 
 private:
   volatile uint8_t  _AD0;

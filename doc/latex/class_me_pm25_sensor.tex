@@ -1,0 +1,963 @@
+\doxysection{Me\+Pm25\+Sensor Class Reference}
+\hypertarget{class_me_pm25_sensor}{}\label{class_me_pm25_sensor}\index{MePm25Sensor@{MePm25Sensor}}
+
+
+Driver for Me PM2.\+5 sensor device.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Pm25\+Sensor.\+h$>$}
+
+
+
+Inheritance diagram for Me\+Pm25\+Sensor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_me_pm25_sensor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+Pm25\+Sensor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_me_pm25_sensor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_pm25_sensor_a1cc18797bdc8959a726025fbb8ea888a}{Me\+Pm25\+Sensor}} ()
+\item 
+\mbox{\hyperlink{class_me_pm25_sensor_a1d7cdd82e198a2e040a190c8f6fe652a}{Me\+Pm25\+Sensor}} (uint8\+\_\+t port)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_a3ab7cc63abcb3d89abf615d3c8f68f78}{read\+Pm1\+\_\+0\+Concentration}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_ad4f1efe5497f5e2978fc2a3d2fcfcfe8}{read\+Pm2\+\_\+5\+Concentration}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_a3835d73853146cbbedb10bf35b24469a}{read\+Pm10\+Concentration}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_aef664694c3ca8512d694795dd704e5a3}{read0\+\_\+3\+Num\+In100ml}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_aae4537c8e8a21c6304221193b9f35472}{read0\+\_\+5\+Num\+In100ml}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_ad07e4c9369d6def86457816936e4ce1e}{read1\+\_\+0\+Num\+In100ml}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_a5e6ad588c26febcdf79d53231d492553}{read2\+\_\+5\+Num\+In100ml}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_ac780e647570499912c45802baaee8dc2}{read5\+\_\+0\+Num\+In100ml}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_a7abb152fbb1530757a3b4e6994b4a578}{read10\+Num\+In100ml}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_af061f8c09a9e3bfb4509f7f8cb6b59c6}{set\+Ouput\+Compatibility}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_a15457eb6a96687f86ed148e593a94a33}{turn\+On\+Fan\+Laser}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_ae2c91a85f42874ba1f9a4b2cc985ad24}{turn\+Off\+Fan\+Laser}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_a98a6e7af47ae69ffd23fdae581aef083}{Output\+Intime\+On}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_a255b47a6afeeac32f7dd9d50a97241e7}{Output\+Intime\+Off}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_ac126c70ddc9816cac9eedbb9b4387c33}{set\+Output\+Intime\+Period}} (uint16\+\_\+t settime)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_abcec24407e3cbc74c6e47ca2abdd082a}{ask\+For\+Data}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_a8c2cb9ec0e5e254eb20639e3167e9d14}{core\+Self\+Test}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_a8fec18eca69dbfaa2e55797ffa8cca60}{return\+Core\+Self\+Test}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_a59a38b9cfb0a6145308dfef3a73db42e}{set\+Core\+Self\+Test\+Time}} (uint8\+\_\+t settime)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_aa25fb8cdc6c8ea19f5d8495a3844fb42}{set\+Core\+Efficient}} (uint8\+\_\+t efficent)
+\item 
+void \mbox{\hyperlink{class_me_pm25_sensor_a17bf2e8a068c549f0be44465735899cb}{rxloop}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_af756cb35791d5643cebcac6a7ae06514}{returnlen}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_pm25_sensor_ae8e7a458edbc826dd1b75f3d135540bf}{returnchecksum}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_serial}{Me\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_serial_aaa113d4dc7bf62acae7b7ca559c23245}{Me\+Serial}} (void)
+\item 
+\mbox{\hyperlink{class_me_serial_a63ac4943dae1b910fd627758ba0c20a2}{Me\+Serial}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_serial_a06d4cb2f572533e9b1414cc1e6d4929b}{Me\+Serial}} (uint8\+\_\+t receive\+Pin, uint8\+\_\+t transmit\+Pin, bool inverse\+\_\+logic=false)
+\item 
+void \mbox{\hyperlink{class_me_serial_a73dde79161f876956fd6d070f14510d3}{set\+Hardware}} (bool mode)
+\item 
+void \mbox{\hyperlink{class_me_serial_a2e491a6206475d8d254a785043e0de22}{begin}} (long baudrate)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_me_serial_ad28782e0bebe4255a8ba7995957176e6}{write}} (uint8\+\_\+t byte)
+\item 
+int \mbox{\hyperlink{class_me_serial_a00be49316c437fdb4615c4e40869ff60}{read}} ()
+\item 
+int \mbox{\hyperlink{class_me_serial_a4b784a1b24df5e06f208d697e9e1ed3f}{available}} ()
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_serial_a721bd751d68b01eeafd206163eab10a4}{poll}} (void)
+\item 
+void \mbox{\hyperlink{class_me_serial_abd68e3efb8adfcc71089dadbd4acd143}{end}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_serial_a5dd4784d18202db78fb8333afd97c031}{listen}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_serial_a4c4af893caafb362da7906ddabe16327}{is\+Listening}} (void)
+\item 
+void \mbox{\hyperlink{class_me_serial_ab4d91285ca3d044f73793137cc1ff3cd}{send\+String}} (char \texorpdfstring{$\ast$}{*}str)
+\item 
+void \mbox{\hyperlink{class_me_serial_a30bae57ed633a2b7c8a41ff0de0a6679}{printf}} (char \texorpdfstring{$\ast$}{*}fmt,...)
+\item 
+boolean {\bfseries data\+Line\+Available} (void)
+\item 
+String {\bfseries read\+Data\+Line} (void)
+\item 
+String {\bfseries concatenate\+With} (String \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}, String \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}})
+\item 
+char {\bfseries letter\+Of} (int i, String s)
+\item 
+int {\bfseries string\+Length} (String s)
+\item 
+boolean {\bfseries equal\+String} (String \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}, String \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}})
+\item 
+float {\bfseries get\+Value} (String key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_software_serial}{Software\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Software\+Serial} (uint8\+\_\+t receive\+Pin, uint8\+\_\+t transmit\+Pin, bool inverse\+\_\+logic=false)
+\item 
+void {\bfseries begin} (long speed)
+\item 
+bool {\bfseries listen} ()
+\item 
+void {\bfseries end} ()
+\item 
+bool {\bfseries is\+Listening} ()
+\item 
+bool {\bfseries stop\+Listening} ()
+\item 
+bool {\bfseries overflow} ()
+\item 
+int {\bfseries peek} ()
+\item 
+virtual void {\bfseries flush} ()
+\item 
+{\bfseries operator bool} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_software_serial}{Software\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bfseries handle\+\_\+interrupt} () \+\_\+\+\_\+attribute\+\_\+\+\_\+((\+\_\+\+\_\+always\+\_\+inline\+\_\+\+\_\+))
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_serial}{Me\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+hard}
+\item 
+bool {\bfseries \+\_\+polling}
+\item 
+bool {\bfseries \+\_\+scratch}
+\item 
+int16\+\_\+t {\bfseries \+\_\+bit\+Period}
+\item 
+int16\+\_\+t {\bfseries \+\_\+byte}
+\item 
+long {\bfseries \+\_\+last\+Time}
+\item 
+char {\bfseries buffer} \mbox{[}64\mbox{]}
+\item 
+String {\bfseries last\+Line}
+\item 
+int {\bfseries buffer\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me PM2.\+5 sensor device. 
+
+Class\+: \doxylink{class_me_pm25_sensor}{Me\+Pm25\+Sensor} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_pm25_sensor}{Me\+Pm25\+Sensor}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_pm25_sensor_a1cc18797bdc8959a726025fbb8ea888a}\label{class_me_pm25_sensor_a1cc18797bdc8959a726025fbb8ea888a} 
+\index{MePm25Sensor@{MePm25Sensor}!MePm25Sensor@{MePm25Sensor}}
+\index{MePm25Sensor@{MePm25Sensor}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{MePm25Sensor()}{MePm25Sensor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Me\+Pm25\+Sensor\+::\+Me\+Pm25\+Sensor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the Me Smart \doxylink{class_servo}{Servo} to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_pm25_sensor_a1d7cdd82e198a2e040a190c8f6fe652a}\label{class_me_pm25_sensor_a1d7cdd82e198a2e040a190c8f6fe652a} 
+\index{MePm25Sensor@{MePm25Sensor}!MePm25Sensor@{MePm25Sensor}}
+\index{MePm25Sensor@{MePm25Sensor}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{MePm25Sensor()}{MePm25Sensor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Me\+Pm25\+Sensor\+::\+Me\+Pm25\+Sensor (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the Me Smart \doxylink{class_servo}{Servo} to arduino port, If the hardware serial was selected, it will used the hardware serial. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2\\
+\hline
+\end{DoxyParams}
+Alternate Constructor which can call your own function to map the Me Smart \doxylink{class_servo}{Servo} to arduino port, If the hardware serial was selected, it will used the hardware serial. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_pm25_sensor_abcec24407e3cbc74c6e47ca2abdd082a}\label{class_me_pm25_sensor_abcec24407e3cbc74c6e47ca2abdd082a} 
+\index{MePm25Sensor@{MePm25Sensor}!askForData@{askForData}}
+\index{askForData@{askForData}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{askForData()}{askForData()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::ask\+For\+Data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_a8c2cb9ec0e5e254eb20639e3167e9d14}\label{class_me_pm25_sensor_a8c2cb9ec0e5e254eb20639e3167e9d14} 
+\index{MePm25Sensor@{MePm25Sensor}!coreSelfTest@{coreSelfTest}}
+\index{coreSelfTest@{coreSelfTest}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{coreSelfTest()}{coreSelfTest()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::core\+Self\+Test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_a255b47a6afeeac32f7dd9d50a97241e7}\label{class_me_pm25_sensor_a255b47a6afeeac32f7dd9d50a97241e7} 
+\index{MePm25Sensor@{MePm25Sensor}!OutputIntimeOff@{OutputIntimeOff}}
+\index{OutputIntimeOff@{OutputIntimeOff}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{OutputIntimeOff()}{OutputIntimeOff()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::\+Output\+Intime\+Off (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_a98a6e7af47ae69ffd23fdae581aef083}\label{class_me_pm25_sensor_a98a6e7af47ae69ffd23fdae581aef083} 
+\index{MePm25Sensor@{MePm25Sensor}!OutputIntimeOn@{OutputIntimeOn}}
+\index{OutputIntimeOn@{OutputIntimeOn}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{OutputIntimeOn()}{OutputIntimeOn()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::\+Output\+Intime\+On (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_aef664694c3ca8512d694795dd704e5a3}\label{class_me_pm25_sensor_aef664694c3ca8512d694795dd704e5a3} 
+\index{MePm25Sensor@{MePm25Sensor}!read0\_3NumIn100ml@{read0\_3NumIn100ml}}
+\index{read0\_3NumIn100ml@{read0\_3NumIn100ml}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{read0\_3NumIn100ml()}{read0\_3NumIn100ml()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::read0\+\_\+3\+Num\+In100ml (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_aae4537c8e8a21c6304221193b9f35472}\label{class_me_pm25_sensor_aae4537c8e8a21c6304221193b9f35472} 
+\index{MePm25Sensor@{MePm25Sensor}!read0\_5NumIn100ml@{read0\_5NumIn100ml}}
+\index{read0\_5NumIn100ml@{read0\_5NumIn100ml}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{read0\_5NumIn100ml()}{read0\_5NumIn100ml()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::read0\+\_\+5\+Num\+In100ml (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_a7abb152fbb1530757a3b4e6994b4a578}\label{class_me_pm25_sensor_a7abb152fbb1530757a3b4e6994b4a578} 
+\index{MePm25Sensor@{MePm25Sensor}!read10NumIn100ml@{read10NumIn100ml}}
+\index{read10NumIn100ml@{read10NumIn100ml}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{read10NumIn100ml()}{read10NumIn100ml()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::read10\+Num\+In100ml (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_ad07e4c9369d6def86457816936e4ce1e}\label{class_me_pm25_sensor_ad07e4c9369d6def86457816936e4ce1e} 
+\index{MePm25Sensor@{MePm25Sensor}!read1\_0NumIn100ml@{read1\_0NumIn100ml}}
+\index{read1\_0NumIn100ml@{read1\_0NumIn100ml}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{read1\_0NumIn100ml()}{read1\_0NumIn100ml()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::read1\+\_\+0\+Num\+In100ml (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_a5e6ad588c26febcdf79d53231d492553}\label{class_me_pm25_sensor_a5e6ad588c26febcdf79d53231d492553} 
+\index{MePm25Sensor@{MePm25Sensor}!read2\_5NumIn100ml@{read2\_5NumIn100ml}}
+\index{read2\_5NumIn100ml@{read2\_5NumIn100ml}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{read2\_5NumIn100ml()}{read2\_5NumIn100ml()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::read2\+\_\+5\+Num\+In100ml (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_ac780e647570499912c45802baaee8dc2}\label{class_me_pm25_sensor_ac780e647570499912c45802baaee8dc2} 
+\index{MePm25Sensor@{MePm25Sensor}!read5\_0NumIn100ml@{read5\_0NumIn100ml}}
+\index{read5\_0NumIn100ml@{read5\_0NumIn100ml}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{read5\_0NumIn100ml()}{read5\_0NumIn100ml()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::read5\+\_\+0\+Num\+In100ml (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_a3835d73853146cbbedb10bf35b24469a}\label{class_me_pm25_sensor_a3835d73853146cbbedb10bf35b24469a} 
+\index{MePm25Sensor@{MePm25Sensor}!readPm10Concentration@{readPm10Concentration}}
+\index{readPm10Concentration@{readPm10Concentration}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{readPm10Concentration()}{readPm10Concentration()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::read\+Pm10\+Concentration (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_a3ab7cc63abcb3d89abf615d3c8f68f78}\label{class_me_pm25_sensor_a3ab7cc63abcb3d89abf615d3c8f68f78} 
+\index{MePm25Sensor@{MePm25Sensor}!readPm1\_0Concentration@{readPm1\_0Concentration}}
+\index{readPm1\_0Concentration@{readPm1\_0Concentration}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{readPm1\_0Concentration()}{readPm1\_0Concentration()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::read\+Pm1\+\_\+0\+Concentration (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_ad4f1efe5497f5e2978fc2a3d2fcfcfe8}\label{class_me_pm25_sensor_ad4f1efe5497f5e2978fc2a3d2fcfcfe8} 
+\index{MePm25Sensor@{MePm25Sensor}!readPm2\_5Concentration@{readPm2\_5Concentration}}
+\index{readPm2\_5Concentration@{readPm2\_5Concentration}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{readPm2\_5Concentration()}{readPm2\_5Concentration()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::read\+Pm2\+\_\+5\+Concentration (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_ae8e7a458edbc826dd1b75f3d135540bf}\label{class_me_pm25_sensor_ae8e7a458edbc826dd1b75f3d135540bf} 
+\index{MePm25Sensor@{MePm25Sensor}!returnchecksum@{returnchecksum}}
+\index{returnchecksum@{returnchecksum}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{returnchecksum()}{returnchecksum()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::returnchecksum (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+smart\+Servo\+Event\+Handle 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function is used to process protocol messages of smart servo. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_a8fec18eca69dbfaa2e55797ffa8cca60}\label{class_me_pm25_sensor_a8fec18eca69dbfaa2e55797ffa8cca60} 
+\index{MePm25Sensor@{MePm25Sensor}!returnCoreSelfTest@{returnCoreSelfTest}}
+\index{returnCoreSelfTest@{returnCoreSelfTest}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{returnCoreSelfTest()}{returnCoreSelfTest()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::return\+Core\+Self\+Test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_af756cb35791d5643cebcac6a7ae06514}\label{class_me_pm25_sensor_af756cb35791d5643cebcac6a7ae06514} 
+\index{MePm25Sensor@{MePm25Sensor}!returnlen@{returnlen}}
+\index{returnlen@{returnlen}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{returnlen()}{returnlen()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::returnlen (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+smart\+Servo\+Event\+Handle 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function is used to process protocol messages of smart servo. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_a17bf2e8a068c549f0be44465735899cb}\label{class_me_pm25_sensor_a17bf2e8a068c549f0be44465735899cb} 
+\index{MePm25Sensor@{MePm25Sensor}!rxloop@{rxloop}}
+\index{rxloop@{rxloop}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{rxloop()}{rxloop()}}
+{\footnotesize\ttfamily void Me\+Pm25\+Sensor\+::rxloop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+smart\+Servo\+Event\+Handle 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function is used to process protocol messages of smart servo. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_aa25fb8cdc6c8ea19f5d8495a3844fb42}\label{class_me_pm25_sensor_aa25fb8cdc6c8ea19f5d8495a3844fb42} 
+\index{MePm25Sensor@{MePm25Sensor}!setCoreEfficient@{setCoreEfficient}}
+\index{setCoreEfficient@{setCoreEfficient}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{setCoreEfficient()}{setCoreEfficient()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::set\+Core\+Efficient (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{efficent }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_a59a38b9cfb0a6145308dfef3a73db42e}\label{class_me_pm25_sensor_a59a38b9cfb0a6145308dfef3a73db42e} 
+\index{MePm25Sensor@{MePm25Sensor}!setCoreSelfTestTime@{setCoreSelfTestTime}}
+\index{setCoreSelfTestTime@{setCoreSelfTestTime}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{setCoreSelfTestTime()}{setCoreSelfTestTime()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::set\+Core\+Self\+Test\+Time (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{settime }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_af061f8c09a9e3bfb4509f7f8cb6b59c6}\label{class_me_pm25_sensor_af061f8c09a9e3bfb4509f7f8cb6b59c6} 
+\index{MePm25Sensor@{MePm25Sensor}!setOuputCompatibility@{setOuputCompatibility}}
+\index{setOuputCompatibility@{setOuputCompatibility}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{setOuputCompatibility()}{setOuputCompatibility()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::set\+Ouput\+Compatibility (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_ac126c70ddc9816cac9eedbb9b4387c33}\label{class_me_pm25_sensor_ac126c70ddc9816cac9eedbb9b4387c33} 
+\index{MePm25Sensor@{MePm25Sensor}!setOutputIntimePeriod@{setOutputIntimePeriod}}
+\index{setOutputIntimePeriod@{setOutputIntimePeriod}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{setOutputIntimePeriod()}{setOutputIntimePeriod()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::set\+Output\+Intime\+Period (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{settime }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_ae2c91a85f42874ba1f9a4b2cc985ad24}\label{class_me_pm25_sensor_ae2c91a85f42874ba1f9a4b2cc985ad24} 
+\index{MePm25Sensor@{MePm25Sensor}!turnOffFanLaser@{turnOffFanLaser}}
+\index{turnOffFanLaser@{turnOffFanLaser}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{turnOffFanLaser()}{turnOffFanLaser()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::turn\+Off\+Fan\+Laser (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_pm25_sensor_a15457eb6a96687f86ed148e593a94a33}\label{class_me_pm25_sensor_a15457eb6a96687f86ed148e593a94a33} 
+\index{MePm25Sensor@{MePm25Sensor}!turnOnFanLaser@{turnOnFanLaser}}
+\index{turnOnFanLaser@{turnOnFanLaser}!MePm25Sensor@{MePm25Sensor}}
+\doxysubsubsection{\texorpdfstring{turnOnFanLaser()}{turnOnFanLaser()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Pm25\+Sensor\+::turn\+On\+Fan\+Laser (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Byte 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+change 2byte 7bit read date to 1byte byte data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \texorpdfstring{$\ast$}{*}argv} & -\/ the buffer for input data.~\newline
+\\
+\hline
+\mbox{\texttt{ in}}  & {\em idx} & -\/ the index used to identify the first address of read data.~\newline
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+return the converted data. 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_pm25_sensor_8h}{Me\+Pm25\+Sensor.\+h}}\item 
+src/\mbox{\hyperlink{_me_pm25_sensor_8cpp}{Me\+Pm25\+Sensor.\+cpp}}\end{DoxyCompactItemize}

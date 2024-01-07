@@ -1,0 +1,403 @@
+\doxysection{Me\+Humiture Class Reference}
+\hypertarget{class_me_humiture}{}\label{class_me_humiture}\index{MeHumiture@{MeHumiture}}
+
+
+Driver for humiture sensor device.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Humiture\+Sensor.\+h$>$}
+
+
+
+Inheritance diagram for Me\+Humiture\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=149pt]{class_me_humiture__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+Humiture\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=149pt]{class_me_humiture__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_humiture_a1795d111fb925d4dbbbe500d0698c724}{Me\+Humiture}} (void)
+\item 
+\mbox{\hyperlink{class_me_humiture_a89b2b014a729287e7a2de580da6c96c0}{Me\+Humiture}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_humiture_a3d96abbe15a836cfae534ec67f908f85}{setpin}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_humiture_aa407c9adbdefaab8cf419d9748a11e56}{update}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_humiture_a8e2e8567ea52c7bea8148214636e5444}{get\+Humidity}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_humiture_a5811d17c07807b9617751adf382abf15}{get\+Temperature}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_humiture_a0aa1f08444d67c6bed1c3eb0f357afa7}{get\+Value}} (uint8\+\_\+t index)
+\item 
+double \mbox{\hyperlink{class_me_humiture_a2b70560a4598ec78832b13dfc63fdd07}{get\+Fahrenheit}} (void)
+\item 
+double \mbox{\hyperlink{class_me_humiture_ae42e2c3fac7b1e53c0732d278de880c1}{get\+Kelvin}} (void)
+\item 
+double \mbox{\hyperlink{class_me_humiture_af89ec5b9a23973e9256c8458c340f067}{getdew\+Point}} (void)
+\item 
+double \mbox{\hyperlink{class_me_humiture_aad97cff43721852a7e2d72cd223d1d3f}{get\+Point\+Fast}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for humiture sensor device. 
+
+Class\+: \doxylink{class_me_humiture}{Me\+Humiture} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_humiture}{Me\+Humiture}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_humiture_a1795d111fb925d4dbbbe500d0698c724}\label{class_me_humiture_a1795d111fb925d4dbbbe500d0698c724} 
+\index{MeHumiture@{MeHumiture}!MeHumiture@{MeHumiture}}
+\index{MeHumiture@{MeHumiture}!MeHumiture@{MeHumiture}}
+\doxysubsubsection{\texorpdfstring{MeHumiture()}{MeHumiture()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Me\+Humiture\+::\+Me\+Humiture (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the humiture sensor to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_humiture_a89b2b014a729287e7a2de580da6c96c0}\label{class_me_humiture_a89b2b014a729287e7a2de580da6c96c0} 
+\index{MeHumiture@{MeHumiture}!MeHumiture@{MeHumiture}}
+\index{MeHumiture@{MeHumiture}!MeHumiture@{MeHumiture}}
+\doxysubsubsection{\texorpdfstring{MeHumiture()}{MeHumiture()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Me\+Humiture\+::\+Me\+Humiture (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the temperature sensor to arduino port, the slot2 pin will be used here since specify slot is not be set. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_humiture_af89ec5b9a23973e9256c8458c340f067}\label{class_me_humiture_af89ec5b9a23973e9256c8458c340f067} 
+\index{MeHumiture@{MeHumiture}!getdewPoint@{getdewPoint}}
+\index{getdewPoint@{getdewPoint}!MeHumiture@{MeHumiture}}
+\doxysubsubsection{\texorpdfstring{getdewPoint()}{getdewPoint()}}
+{\footnotesize\ttfamily double Me\+Humiture\+::getdew\+Point (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+dew\+Point 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+The dew-\/point temperature (Point at this temperature, the air is saturated and produce dew). 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em celsius} & -\/ The celsius degrees of air. \\
+\hline
+\mbox{\texttt{ in}}  & {\em humidity} & -\/ The humidity of air. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the dew-\/point of air. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_humiture_a2b70560a4598ec78832b13dfc63fdd07}\label{class_me_humiture_a2b70560a4598ec78832b13dfc63fdd07} 
+\index{MeHumiture@{MeHumiture}!getFahrenheit@{getFahrenheit}}
+\index{getFahrenheit@{getFahrenheit}!MeHumiture@{MeHumiture}}
+\doxysubsubsection{\texorpdfstring{getFahrenheit()}{getFahrenheit()}}
+{\footnotesize\ttfamily double Me\+Humiture\+::get\+Fahrenheit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Fahrenheit 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Change celsius degrees into Fahrenheit. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em celsius} & -\/ The number of celsius degrees. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the number of Fahrenheit 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_humiture_a8e2e8567ea52c7bea8148214636e5444}\label{class_me_humiture_a8e2e8567ea52c7bea8148214636e5444} 
+\index{MeHumiture@{MeHumiture}!getHumidity@{getHumidity}}
+\index{getHumidity@{getHumidity}!MeHumiture@{MeHumiture}}
+\doxysubsubsection{\texorpdfstring{getHumidity()}{getHumidity()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Humiture\+::get\+Humidity (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Humidity 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Use this function to Get the Humidity data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The value of Humidity 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_humiture_ae42e2c3fac7b1e53c0732d278de880c1}\label{class_me_humiture_ae42e2c3fac7b1e53c0732d278de880c1} 
+\index{MeHumiture@{MeHumiture}!getKelvin@{getKelvin}}
+\index{getKelvin@{getKelvin}!MeHumiture@{MeHumiture}}
+\doxysubsubsection{\texorpdfstring{getKelvin()}{getKelvin()}}
+{\footnotesize\ttfamily double Me\+Humiture\+::get\+Kelvin (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Kelvin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Change celsius degrees into Kelvin. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em celsius} & -\/ The number of celsius degrees. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the number of Kelvin temperature. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_humiture_aad97cff43721852a7e2d72cd223d1d3f}\label{class_me_humiture_aad97cff43721852a7e2d72cd223d1d3f} 
+\index{MeHumiture@{MeHumiture}!getPointFast@{getPointFast}}
+\index{getPointFast@{getPointFast}!MeHumiture@{MeHumiture}}
+\doxysubsubsection{\texorpdfstring{getPointFast()}{getPointFast()}}
+{\footnotesize\ttfamily double Me\+Humiture\+::get\+Point\+Fast (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+dew\+Point\+Fast 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Fast calculating dew point, Speed is 5 times to dew\+Point(). 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em celsius} & -\/ The celsius degrees of air. \\
+\hline
+\mbox{\texttt{ in}}  & {\em humidity} & -\/ The humidity of air. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the Fast calculating dew point of air. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+dew\+Point\+Fast 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Fast calculating dew point, peed is 5 times to dew\+Point(). 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em celsius} & -\/ The celsius degrees of air. \\
+\hline
+\mbox{\texttt{ in}}  & {\em humidity} & -\/ The humidity of air. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+Return the Fast calculating dew point of air. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_humiture_a5811d17c07807b9617751adf382abf15}\label{class_me_humiture_a5811d17c07807b9617751adf382abf15} 
+\index{MeHumiture@{MeHumiture}!getTemperature@{getTemperature}}
+\index{getTemperature@{getTemperature}!MeHumiture@{MeHumiture}}
+\doxysubsubsection{\texorpdfstring{getTemperature()}{getTemperature()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Humiture\+::get\+Temperature (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Temperature 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Use this function to Get the Temperature data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The value of Temperature 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_humiture_a0aa1f08444d67c6bed1c3eb0f357afa7}\label{class_me_humiture_a0aa1f08444d67c6bed1c3eb0f357afa7} 
+\index{MeHumiture@{MeHumiture}!getValue@{getValue}}
+\index{getValue@{getValue}!MeHumiture@{MeHumiture}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Humiture\+::get\+Value (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Value 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Use this function to Get the Temperature data or Humidity data 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em index} & -\/ The value \textquotesingle{}0\textquotesingle{} means get the value of Humidity data and \textquotesingle{}1\textquotesingle{} used to get the Temperature data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The value of Temperature 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_humiture_a3d96abbe15a836cfae534ec67f908f85}\label{class_me_humiture_a3d96abbe15a836cfae534ec67f908f85} 
+\index{MeHumiture@{MeHumiture}!setpin@{setpin}}
+\index{setpin@{setpin}!MeHumiture@{MeHumiture}}
+\doxysubsubsection{\texorpdfstring{setpin()}{setpin()}}
+{\footnotesize\ttfamily void Me\+Humiture\+::setpin (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+setpin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset available PIN for temperature sensor by its arduino port. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ arduino port(should digital pin) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_humiture_aa407c9adbdefaab8cf419d9748a11e56}\label{class_me_humiture_aa407c9adbdefaab8cf419d9748a11e56} 
+\index{MeHumiture@{MeHumiture}!update@{update}}
+\index{update@{update}!MeHumiture@{MeHumiture}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Me\+Humiture\+::update (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+update 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Use this function to update the sensor data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_humiture_sensor_8h}{Me\+Humiture\+Sensor.\+h}}\item 
+src/\mbox{\hyperlink{_me_humiture_sensor_8cpp}{Me\+Humiture\+Sensor.\+cpp}}\end{DoxyCompactItemize}

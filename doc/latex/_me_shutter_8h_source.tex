@@ -1,0 +1,49 @@
+\doxysection{Me\+Shutter.\+h}
+\hypertarget{_me_shutter_8h_source}{}\label{_me_shutter_8h_source}\index{src/MeShutter.h@{src/MeShutter.h}}
+\mbox{\hyperlink{_me_shutter_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#ifndef\ MeShutter\_H}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ MeShutter\_H}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ ME\_PORT\_DEFINED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_shutter}{MeShutter}}}
+\DoxyCodeLine{00061\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00062\ class\ \mbox{\hyperlink{class_me_shutter}{MeShutter}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00073\ \ \ \mbox{\hyperlink{class_me_shutter_a19cb9b364ab8e4309620b3f11dd3323d}{MeShutter}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00081\ \ \ \mbox{\hyperlink{class_me_shutter_a19cb9b364ab8e4309620b3f11dd3323d}{MeShutter}}(uint8\_t\ port);}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00091\ \ \ MeShutter(uint8\_t\ ShotPin,\ uint8\_t\ FocusPin);}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00110\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_shutter_a2fc368db549be0ae724d60095512c53f}{setpin}}(uint8\_t\ ShotPin,\ uint8\_t\ FocusPin);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00124\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_shutter_a44766a55c3bd837d77de4af19ec844f7}{shotOn}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_shutter_a600e6f23491519772a16044c93691852}{shotOff}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00152\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_shutter_a4427ea37c8313acd5643ec6f3859fd36}{focusOn}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00166\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_shutter_ad8a99473a3461e639eea31793ade7b4f}{focusOff}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00185\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_shutter_a1426ff39c1754dbfd32655c4b73f61ed}{setState}}(uint8\_t\ state);}
+\DoxyCodeLine{00186\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00187\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_ShotPin;}
+\DoxyCodeLine{00188\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_FocusPin;}
+\DoxyCodeLine{00189\ \};}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00191\ }
+
+\end{DoxyCode}

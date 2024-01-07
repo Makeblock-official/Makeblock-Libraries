@@ -1,0 +1,19 @@
+<map id="src/MeCompass.h" name="src/MeCompass.h">
+<area shape="rect" id="Node000001" title="Header for MeCompass.cpp module." alt="" coords="523,5,650,32"/>
+<area shape="rect" id="Node000002" href="$_me_auriga_8h.html" title="Driver for MeAuriga board." alt="" coords="5,80,115,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="508,32,333,54,127,83,116,84,115,79,126,77,333,48,507,26"/>
+<area shape="rect" id="Node000003" href="$_me_base_board_8h.html" title="Driver for BaseBoard." alt="" coords="139,80,275,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="508,38,273,82,272,77,507,32"/>
+<area shape="rect" id="Node000004" href="$_me_compass_8cpp.html" title="Driver for MeCompass module." alt="" coords="299,80,440,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="535,40,408,82,407,77,534,35"/>
+<area shape="rect" id="Node000005" href="$_me_m_core_8h.html" title="Driver for mCore Board." alt="" coords="464,80,574,107"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="566,45,532,81,528,78,562,42"/>
+<area shape="rect" id="Node000006" href="$_me_mega_pi_8h.html" title="Driver for MegaPi board." alt="" coords="598,80,714,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="611,41,646,78,642,81,607,45"/>
+<area shape="rect" id="Node000007" href="$_me_mega_pi_pro_8h.html" title="Driver for MegaPiPro board." alt="" coords="739,80,875,107"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="640,35,769,77,767,82,639,40"/>
+<area shape="rect" id="Node000008" href="$_me_orion_8h.html" title="Driver for MeOrion board." alt="" coords="899,80,1002,107"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="666,33,899,79,898,84,665,38"/>
+<area shape="rect" id="Node000009" href="$_me_shield_8h.html" title="Driver for Shield Board." alt="" coords="1026,80,1134,107"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="666,27,1015,77,1026,79,1025,84,1014,83,665,33"/>
+</map>

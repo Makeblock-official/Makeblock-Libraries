@@ -1,0 +1,67 @@
+\doxysection{Me4\+Button.\+h}
+\hypertarget{_me4_button_8h_source}{}\label{_me4_button_8h_source}\index{src/Me4Button.h@{src/Me4Button.h}}
+\mbox{\hyperlink{_me4_button_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{/*\ Define\ to\ prevent\ recursive\ inclusion\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifndef\ Me4Button\_H}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ Me4Button\_H}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{/*\ Includes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{/*\ Exported\ macro\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ KEY\_NULL\ \ \ (0)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ KEY\_1\ \ \ \ \ \ (1)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ KEY\_2\ \ \ \ \ \ (2)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ KEY\_3\ \ \ \ \ \ (3)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ KEY\_4\ \ \ \ \ \ (4)}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ KEY\_NULL\_VALUE\ \ \ (962)\ \ \ \ \ }\textcolor{comment}{//\ 1023*((5-\/0.3)/5)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ KEY\_1\_VALUE\ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ KEY\_2\_VALUE\ \ \ \ \ \ (481)\ \ \ \ \ }\textcolor{comment}{//\ 962/2}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ KEY\_3\_VALUE\ \ \ \ \ \ (641)\ \ \ \ \ }\textcolor{comment}{//\ 962*2/3}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ KEY\_4\_VALUE\ \ \ \ \ \ (721)\ \ \ \ \ }\textcolor{comment}{//\ 962*3/4}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ DEBOUNCED\_INTERVAL\ (8)}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ If\ you\ want\ key\ response\ faster,\ you\ can\ set\ DEBOUNCED\_INTERVAL\ to\ a}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ smaller\ number.}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ FALSE\ \ (0)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ TRUE\ \ \ (1)}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00079\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me4_button}{Me4Button}}}
+\DoxyCodeLine{00080\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00081\ class\ \mbox{\hyperlink{class_me4_button}{Me4Button}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00092\ \ \ \mbox{\hyperlink{class_me4_button_a084dc6572ea890e9c1e5d50cb60c11e1}{Me4Button}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00093\ \ \ }
+\DoxyCodeLine{00100\ \ \ \mbox{\hyperlink{class_me4_button_a084dc6572ea890e9c1e5d50cb60c11e1}{Me4Button}}(uint8\_t\ port);}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ \ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00107\ \ \ Me4Button(uint8\_t\ port);}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ \ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00123\ \ \ void\ setpin(uint8\_t\ port);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00139\ \ \ uint8\_t\ \mbox{\hyperlink{class_me4_button_a51d9728459f5323d59d1543931ba2dc9}{pressed}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00140\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00141\ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ previous\_time;}
+\DoxyCodeLine{00142\ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ key\_debounced\_count;}
+\DoxyCodeLine{00143\ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ key\_match\_count;}
+\DoxyCodeLine{00144\ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ key\_debounced\_value;}
+\DoxyCodeLine{00145\ \ \ \textcolor{keyword}{volatile}\ int16\_t\ \ Pre\_Button\_Value;}
+\DoxyCodeLine{00146\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_KeyPin;}
+\DoxyCodeLine{00147\ \};}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ Me4Button\_H}}
+
+\end{DoxyCode}

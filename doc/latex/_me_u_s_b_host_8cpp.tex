@@ -1,0 +1,103 @@
+\doxysection{src/\+Me\+USBHost.cpp File Reference}
+\hypertarget{_me_u_s_b_host_8cpp}{}\label{_me_u_s_b_host_8cpp}\index{src/MeUSBHost.cpp@{src/MeUSBHost.cpp}}
+
+
+Driver for Me USB Host module.  
+
+
+{\ttfamily \#include "{}Me\+USBHost.\+h"{}}\newline
+Include dependency graph for Me\+USBHost.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_u_s_b_host_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_u_s_b_host_8cpp_a0fad3529bd7324f86d424930cc4d3e65}\label{_me_u_s_b_host_8cpp_a0fad3529bd7324f86d424930cc4d3e65} 
+\#define {\bfseries p\+\_\+dev\+\_\+descr}~((\mbox{\hyperlink{struct___u_s_b___d_e_v_i_c_e___d_escript_o_r}{PUSB\+\_\+\+DEV\+\_\+\+DESCR}})RECV\+\_\+\+BUFFER)
+\item 
+\Hypertarget{_me_u_s_b_host_8cpp_a903df32493668696cc94d0052ae524e7}\label{_me_u_s_b_host_8cpp_a903df32493668696cc94d0052ae524e7} 
+\#define {\bfseries p\+\_\+cfg\+\_\+descr}~((\mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r___l_o_n_g}{PUSB\+\_\+\+CFG\+\_\+\+DESCR\+\_\+\+LONG}})RECV\+\_\+\+BUFFER)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_u_s_b_host_8cpp_a2c2396ef5bcbd76bca02c331a274c8e2}\label{_me_u_s_b_host_8cpp_a2c2396ef5bcbd76bca02c331a274c8e2} 
+uint8\+\_\+t {\bfseries endp\+\_\+out\+\_\+addr}
+\item 
+\Hypertarget{_me_u_s_b_host_8cpp_a8924c9bd46b237844074bece04c86447}\label{_me_u_s_b_host_8cpp_a8924c9bd46b237844074bece04c86447} 
+uint8\+\_\+t {\bfseries endp\+\_\+out\+\_\+size}
+\item 
+\Hypertarget{_me_u_s_b_host_8cpp_ad1c34a69270d9f9a2faed5fa5774685d}\label{_me_u_s_b_host_8cpp_ad1c34a69270d9f9a2faed5fa5774685d} 
+uint8\+\_\+t {\bfseries endp\+\_\+in\+\_\+addr}
+\item 
+\Hypertarget{_me_u_s_b_host_8cpp_a77e773d0d307b0a013288c372b039696}\label{_me_u_s_b_host_8cpp_a77e773d0d307b0a013288c372b039696} 
+uint8\+\_\+t {\bfseries endp6\+\_\+mode}
+\item 
+\Hypertarget{_me_u_s_b_host_8cpp_a1600fa40fbfe61c817efcfe41b49a718}\label{_me_u_s_b_host_8cpp_a1600fa40fbfe61c817efcfe41b49a718} 
+uint8\+\_\+t {\bfseries endp7\+\_\+mode}
+\item 
+\Hypertarget{_me_u_s_b_host_8cpp_ae622c98792de50444e276637fc5e221f}\label{_me_u_s_b_host_8cpp_ae622c98792de50444e276637fc5e221f} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries cmd\+\_\+buf}
+\item 
+\Hypertarget{_me_u_s_b_host_8cpp_a76958167ca29b2e0b54a7ccee1081bb7}\label{_me_u_s_b_host_8cpp_a76958167ca29b2e0b54a7ccee1081bb7} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries ret\+\_\+buf}
+\item 
+\Hypertarget{_me_u_s_b_host_8cpp_a5a0bad68ee17485482a77de93780a4b5}\label{_me_u_s_b_host_8cpp_a5a0bad68ee17485482a77de93780a4b5} 
+\mbox{\hyperlink{struct___u_s_b___e_n_d_p_o_i_n_t___d_escript_o_r}{PUSB\+\_\+\+ENDP\+\_\+\+DESCR}} {\bfseries tmp\+Ep}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me USB Host module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/01/20 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me Bluetooth device, The bluetooth inherited the \doxylink{class_me_serial}{Me\+Serial} class from \doxylink{class_software_serial}{Software\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_u_s_b_host_a4a05983202d4f7479f3480053543d7e5}{Me\+USBHost\+::init(int8\+\_\+t type)};
+\item int16\+\_\+t \doxylink{class_me_u_s_b_host_ab243f4416f3d91498c3b7a94abf96e0e}{Me\+USBHost\+::init\+HIDDevice()};
+\item int16\+\_\+t \doxylink{class_me_u_s_b_host_a1ec6f4ebdb3f888e04d8ef5c83ff75f0}{Me\+USBHost\+::probe\+Device()};
+\item void \doxylink{class_me_u_s_b_host_a11d5c84408175ade230ef51021c42232}{Me\+USBHost\+::reset\+Bus()};
+\item uint8\+\_\+t \doxylink{class_me_u_s_b_host_afdf22bd1a9c271c87d981b3da4a6e711}{Me\+USBHost\+::host\+\_\+recv()};
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+forfish         2015/11/10     1.0.0            Add description
+Mark Yan        2016/01/20     1.0.1            Support hardware serial automatic Identification
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

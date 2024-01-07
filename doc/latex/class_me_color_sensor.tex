@@ -1,0 +1,1002 @@
+\doxysection{Me\+Color\+Sensor Class Reference}
+\hypertarget{class_me_color_sensor}{}\label{class_me_color_sensor}\index{MeColorSensor@{MeColorSensor}}
+
+
+Driver for \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module.  
+
+
+
+
+Inheritance diagram for Me\+Color\+Sensor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{class_me_color_sensor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+Color\+Sensor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{class_me_color_sensor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_color_sensor_af5fe6429a8b59d988c0edb070cdf66ab}{Me\+Color\+Sensor}} (void)
+\item 
+\mbox{\hyperlink{class_me_color_sensor_a0c82b287c01d688df13fadedf0737014}{Me\+Color\+Sensor}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_color_sensor_a09474c3805cbbff251af6699425d6742}{Me\+Color\+Sensor}} (uint8\+\_\+t port, uint8\+\_\+t address)
+\item 
+void \mbox{\hyperlink{class_me_color_sensor_a1efe278e3a311adc4239a8ca9042447c}{Sensor\+Init}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_color_sensor_a1728909fc7199b95ad3e35734b3a16a6}{Report\+Id}} (void)
+\item 
+void \mbox{\hyperlink{class_me_color_sensor_aa033b29d7464ebcbcf74e47794383e09}{Color\+Data\+Read}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_color_sensor_a88ff70346c30ab33df2f02d964da6c17}{Color\+Data\+Read\+Oneby\+One}} (void)
+\item 
+long \mbox{\hyperlink{class_me_color_sensor_a403b066a178b7c438dab069bfed11dd7}{Return\+Color\+Code}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_color_sensor_a37adb003fab4d09e2cc014c713e35e57}{Color\+Identify}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_color_sensor_a96d8182a6239e536fb56792346371734}{Returnresult}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_color_sensor_af4713622f9fdb6487e9798b47a62e008}{Return\+Grayscale}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_color_sensor_ae0c377ebb860b67ebf01aae23722dc31}{Return\+Colorhue}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_color_sensor_aa5cf33bebe6d653a7164551629447287}{Return\+Red\+Data}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_color_sensor_a2ceb9fec73cf92a98421c3606a324320}{Return\+Green\+Data}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_color_sensor_a0a04f1d0592fb21febf7a7583fa9a9d9}{Return\+Blue\+Data}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_me_color_sensor_aea344bb117b012fb27ee6ed8ebf17c73}{Return\+Color\+Data}} (void)
+\item 
+void \mbox{\hyperlink{class_me_color_sensor_a51c9c3cbcd5af42ec1f3fac7b4bf3818}{Turn\+On\+Light}} (void)
+\item 
+void \mbox{\hyperlink{class_me_color_sensor_ab686f3e727861bc47ddbabb914f9c3a1}{Turn\+Off\+Light}} (void)
+\item 
+void \mbox{\hyperlink{class_me_color_sensor_a836878156e0d4b820b92769cd5df50f5}{Turn\+Offmodule}} (void)
+\item 
+void \mbox{\hyperlink{class_me_color_sensor_a50a015a94ddab045cde3536a1f9bce44}{Turn\+Onmodule}} (void)
+\item 
+int8\+\_\+t \mbox{\hyperlink{class_me_color_sensor_aa4a1ce0523ec234b68387d0a38becab4}{write\+Reg}} (int16\+\_\+t reg, uint8\+\_\+t data)
+\item 
+int8\+\_\+t \mbox{\hyperlink{class_me_color_sensor_aeb6c09291008af8b013e5462331e5c08}{read\+Data}} (uint8\+\_\+t start, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint8\+\_\+t size)
+\item 
+int8\+\_\+t \mbox{\hyperlink{class_me_color_sensor_a9ba779e9fc9841177d80abf17cd4f973}{write\+Data}} (uint8\+\_\+t start, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint8\+\_\+t size)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_color_sensor_a33fedc7e60aad74cf937389b82c1943e}{MAX}} (uint8\+\_\+t r, uint8\+\_\+t g, uint8\+\_\+t b)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_color_sensor_a7731131a09e0e0bc4121cd30353db745}{MIN}} (uint8\+\_\+t r, uint8\+\_\+t g, uint8\+\_\+t b)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_me_color_sensor_a05b927d584e68a8d45532c93a555952e}\label{class_me_color_sensor_a05b927d584e68a8d45532c93a555952e} 
+uint8\+\_\+t {\bfseries Device\+\_\+\+Address}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module. 
+
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2017, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_color_sensor_af5fe6429a8b59d988c0edb070cdf66ab}\label{class_me_color_sensor_af5fe6429a8b59d988c0edb070cdf66ab} 
+\index{MeColorSensor@{MeColorSensor}!MeColorSensor@{MeColorSensor}}
+\index{MeColorSensor@{MeColorSensor}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{MeColorSensor()}{MeColorSensor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Me\+Color\+Sensor\+::\+Me\+Color\+Sensor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} to arduino port, no pins are used or initialized here \Hypertarget{class_me_color_sensor_a0c82b287c01d688df13fadedf0737014}\label{class_me_color_sensor_a0c82b287c01d688df13fadedf0737014} 
+\index{MeColorSensor@{MeColorSensor}!MeColorSensor@{MeColorSensor}}
+\index{MeColorSensor@{MeColorSensor}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{MeColorSensor()}{MeColorSensor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Me\+Color\+Sensor\+::\+Me\+Color\+Sensor (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} to arduino port. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port number\\
+\hline
+\end{DoxyParams}
+Alternate Constructor which can call your own function to map the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} to arduino port, 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port number \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_color_sensor_a09474c3805cbbff251af6699425d6742}\label{class_me_color_sensor_a09474c3805cbbff251af6699425d6742} 
+\index{MeColorSensor@{MeColorSensor}!MeColorSensor@{MeColorSensor}}
+\index{MeColorSensor@{MeColorSensor}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{MeColorSensor()}{MeColorSensor()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Me\+Color\+Sensor\+::\+Me\+Color\+Sensor (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{uint8\+\_\+t}]{address }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} to arduino port and change the i2c device address 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port number \\
+\hline
+\mbox{\texttt{ in}}  & {\em address} & -\/ the i2c address you want to set \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_color_sensor_aa033b29d7464ebcbcf74e47794383e09}\label{class_me_color_sensor_aa033b29d7464ebcbcf74e47794383e09} 
+\index{MeColorSensor@{MeColorSensor}!ColorDataRead@{ColorDataRead}}
+\index{ColorDataRead@{ColorDataRead}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{ColorDataRead()}{ColorDataRead()}}
+{\footnotesize\ttfamily void Me\+Color\+Sensor\+::\+Color\+Data\+Read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Color\+Data\+Read 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+read the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module color data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+color RGB value 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a88ff70346c30ab33df2f02d964da6c17}\label{class_me_color_sensor_a88ff70346c30ab33df2f02d964da6c17} 
+\index{MeColorSensor@{MeColorSensor}!ColorDataReadOnebyOne@{ColorDataReadOnebyOne}}
+\index{ColorDataReadOnebyOne@{ColorDataReadOnebyOne}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{ColorDataReadOnebyOne()}{ColorDataReadOnebyOne()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Color\+Sensor\+::\+Color\+Data\+Read\+Oneby\+One (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Color\+Data\+Read\+Oneby\+One 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+one by on to read the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module color data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+Color\+Data\+Read\+Oneby\+One 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+one by on to read the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module color data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+return 0 is detected ID,else return Black 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a37adb003fab4d09e2cc014c713e35e57}\label{class_me_color_sensor_a37adb003fab4d09e2cc014c713e35e57} 
+\index{MeColorSensor@{MeColorSensor}!ColorIdentify@{ColorIdentify}}
+\index{ColorIdentify@{ColorIdentify}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{ColorIdentify()}{ColorIdentify()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Color\+Sensor\+::\+Color\+Identify (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Color\+Identify 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Identify Color for the Module.\+when you want to use two modules, you can use this methods to get data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+Color\+Identify 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Identify Color for the Module.\+when you want to use two modules, you can use this methods to get data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+return Color result 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a33fedc7e60aad74cf937389b82c1943e}\label{class_me_color_sensor_a33fedc7e60aad74cf937389b82c1943e} 
+\index{MeColorSensor@{MeColorSensor}!MAX@{MAX}}
+\index{MAX@{MAX}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{MAX()}{MAX()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Color\+Sensor\+::\+MAX (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{r,  }\item[{uint8\+\_\+t}]{g,  }\item[{uint8\+\_\+t}]{b }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+MAX 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+find the max one from r g b. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em r} & g b ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+Return the max one. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a7731131a09e0e0bc4121cd30353db745}\label{class_me_color_sensor_a7731131a09e0e0bc4121cd30353db745} 
+\index{MeColorSensor@{MeColorSensor}!MIN@{MIN}}
+\index{MIN@{MIN}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{MIN()}{MIN()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Color\+Sensor\+::\+MIN (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{r,  }\item[{uint8\+\_\+t}]{g,  }\item[{uint8\+\_\+t}]{b }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+MIN 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+find the min one from r g b. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em r} & g b ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+Return the min one. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_aeb6c09291008af8b013e5462331e5c08}\label{class_me_color_sensor_aeb6c09291008af8b013e5462331e5c08} 
+\index{MeColorSensor@{MeColorSensor}!readData@{readData}}
+\index{readData@{readData}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{readData()}{readData()}}
+{\footnotesize\ttfamily int8\+\_\+t Me\+Color\+Sensor\+::read\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{start,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{uint8\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+Data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Write the data to i2c device. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em start} & -\/ the address which will write the data to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em p\+Data} & -\/ the head address of data array. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & -\/ set the number of data will be written to the devide. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+Return the error code. the definition of the value of variable return\+\_\+value\+: 0\+:success 1\+:BUFFER\+\_\+\+LENGTH is shorter than size 2\+:address send, nack received 3\+:data send, nack received 4\+:other twi error refer to the arduino official library twi.\+c 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+Calling the official i2c library to read data. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a1728909fc7199b95ad3e35734b3a16a6}\label{class_me_color_sensor_a1728909fc7199b95ad3e35734b3a16a6} 
+\index{MeColorSensor@{MeColorSensor}!ReportId@{ReportId}}
+\index{ReportId@{ReportId}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{ReportId()}{ReportId()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Color\+Sensor\+::\+Report\+Id (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Report\+Id 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Report the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} Module ID. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+default ID 0x\+E0 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+Report\+Id 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Report the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} Module ID. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+return default ID 0x\+E0 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a0a04f1d0592fb21febf7a7583fa9a9d9}\label{class_me_color_sensor_a0a04f1d0592fb21febf7a7583fa9a9d9} 
+\index{MeColorSensor@{MeColorSensor}!ReturnBlueData@{ReturnBlueData}}
+\index{ReturnBlueData@{ReturnBlueData}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{ReturnBlueData()}{ReturnBlueData()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Color\+Sensor\+::\+Return\+Blue\+Data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Return\+Blue\+Data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return Color Blue value. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+Return\+Blue\+Data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return Color Blue value. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+return blue value 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a403b066a178b7c438dab069bfed11dd7}\label{class_me_color_sensor_a403b066a178b7c438dab069bfed11dd7} 
+\index{MeColorSensor@{MeColorSensor}!ReturnColorCode@{ReturnColorCode}}
+\index{ReturnColorCode@{ReturnColorCode}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{ReturnColorCode()}{ReturnColorCode()}}
+{\footnotesize\ttfamily long Me\+Color\+Sensor\+::\+Return\+Color\+Code (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Return\+Color\+Code 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} Color Code. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+Return\+Color\+Code 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} Color Code. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+return color RGB code 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_aea344bb117b012fb27ee6ed8ebf17c73}\label{class_me_color_sensor_aea344bb117b012fb27ee6ed8ebf17c73} 
+\index{MeColorSensor@{MeColorSensor}!ReturnColorData@{ReturnColorData}}
+\index{ReturnColorData@{ReturnColorData}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{ReturnColorData()}{ReturnColorData()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Color\+Sensor\+::\+Return\+Color\+Data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Return\+Color\+Data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return Color data value. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+Return\+Color\+Data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return Color data value. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+return color data value 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_ae0c377ebb860b67ebf01aae23722dc31}\label{class_me_color_sensor_ae0c377ebb860b67ebf01aae23722dc31} 
+\index{MeColorSensor@{MeColorSensor}!ReturnColorhue@{ReturnColorhue}}
+\index{ReturnColorhue@{ReturnColorhue}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{ReturnColorhue()}{ReturnColorhue()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Color\+Sensor\+::\+Return\+Colorhue (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Return\+Colorhue 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return Color hue. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+Return\+Colorhue 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return Color hue. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+return color hue 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_af4713622f9fdb6487e9798b47a62e008}\label{class_me_color_sensor_af4713622f9fdb6487e9798b47a62e008} 
+\index{MeColorSensor@{MeColorSensor}!ReturnGrayscale@{ReturnGrayscale}}
+\index{ReturnGrayscale@{ReturnGrayscale}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{ReturnGrayscale()}{ReturnGrayscale()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Color\+Sensor\+::\+Return\+Grayscale (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Return\+Grayscale 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return Color Grayscale. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+Gray = R\texorpdfstring{$\ast$}{*}0.299 + G\texorpdfstring{$\ast$}{*}0.587 + B\texorpdfstring{$\ast$}{*}0.114 Gray = (r\texorpdfstring{$\ast$}{*}38 + g\texorpdfstring{$\ast$}{*}75 + b\texorpdfstring{$\ast$}{*}15)\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}7; ~\newline
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+Return\+Grayscale 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return Color Grayscale. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+return Color Grayscale value 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+Gray = R\texorpdfstring{$\ast$}{*}0.299 + G\texorpdfstring{$\ast$}{*}0.587 + B\texorpdfstring{$\ast$}{*}0.114 Gray = (r\texorpdfstring{$\ast$}{*}38 + g\texorpdfstring{$\ast$}{*}75 + b\texorpdfstring{$\ast$}{*}15)\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}7; ~\newline
+ 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a2ceb9fec73cf92a98421c3606a324320}\label{class_me_color_sensor_a2ceb9fec73cf92a98421c3606a324320} 
+\index{MeColorSensor@{MeColorSensor}!ReturnGreenData@{ReturnGreenData}}
+\index{ReturnGreenData@{ReturnGreenData}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{ReturnGreenData()}{ReturnGreenData()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Color\+Sensor\+::\+Return\+Green\+Data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Return\+Green\+Data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return Color Green value. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+Return\+Green\+Data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return Color Green value. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+return green value 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_aa5cf33bebe6d653a7164551629447287}\label{class_me_color_sensor_aa5cf33bebe6d653a7164551629447287} 
+\index{MeColorSensor@{MeColorSensor}!ReturnRedData@{ReturnRedData}}
+\index{ReturnRedData@{ReturnRedData}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{ReturnRedData()}{ReturnRedData()}}
+{\footnotesize\ttfamily uint16\+\_\+t Me\+Color\+Sensor\+::\+Return\+Red\+Data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Return\+Red\+Data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return Color Red value. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+Return\+Red\+Data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return Color Red value. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+return red value 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a96d8182a6239e536fb56792346371734}\label{class_me_color_sensor_a96d8182a6239e536fb56792346371734} 
+\index{MeColorSensor@{MeColorSensor}!Returnresult@{Returnresult}}
+\index{Returnresult@{Returnresult}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{Returnresult()}{Returnresult()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Color\+Sensor\+::\+Returnresult (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Returnresult 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Identify Color for the Module.\+when you use just one module, you can use this methods to get data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+Returnresult 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Identify Color for the Module.\+when you use just one module, you can use this methods to get data. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+return color result 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a1efe278e3a311adc4239a8ca9042447c}\label{class_me_color_sensor_a1efe278e3a311adc4239a8ca9042447c} 
+\index{MeColorSensor@{MeColorSensor}!SensorInit@{SensorInit}}
+\index{SensorInit@{SensorInit}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{SensorInit()}{SensorInit()}}
+{\footnotesize\ttfamily void Me\+Color\+Sensor\+::\+Sensor\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Sensor\+Init 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Initialize the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor}. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+You can check the bh1745 datasheet for the registor address. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_ab686f3e727861bc47ddbabb914f9c3a1}\label{class_me_color_sensor_ab686f3e727861bc47ddbabb914f9c3a1} 
+\index{MeColorSensor@{MeColorSensor}!TurnOffLight@{TurnOffLight}}
+\index{TurnOffLight@{TurnOffLight}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{TurnOffLight()}{TurnOffLight()}}
+{\footnotesize\ttfamily void Me\+Color\+Sensor\+::\+Turn\+Off\+Light (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Turn\+Off\+Light 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Turn Off the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module Light. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a836878156e0d4b820b92769cd5df50f5}\label{class_me_color_sensor_a836878156e0d4b820b92769cd5df50f5} 
+\index{MeColorSensor@{MeColorSensor}!TurnOffmodule@{TurnOffmodule}}
+\index{TurnOffmodule@{TurnOffmodule}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{TurnOffmodule()}{TurnOffmodule()}}
+{\footnotesize\ttfamily void Me\+Color\+Sensor\+::\+Turn\+Offmodule (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Turn\+Offmodule 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Turn Off the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a51c9c3cbcd5af42ec1f3fac7b4bf3818}\label{class_me_color_sensor_a51c9c3cbcd5af42ec1f3fac7b4bf3818} 
+\index{MeColorSensor@{MeColorSensor}!TurnOnLight@{TurnOnLight}}
+\index{TurnOnLight@{TurnOnLight}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{TurnOnLight()}{TurnOnLight()}}
+{\footnotesize\ttfamily void Me\+Color\+Sensor\+::\+Turn\+On\+Light (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Turn\+On\+Light 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Turn On the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module Light. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a50a015a94ddab045cde3536a1f9bce44}\label{class_me_color_sensor_a50a015a94ddab045cde3536a1f9bce44} 
+\index{MeColorSensor@{MeColorSensor}!TurnOnmodule@{TurnOnmodule}}
+\index{TurnOnmodule@{TurnOnmodule}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{TurnOnmodule()}{TurnOnmodule()}}
+{\footnotesize\ttfamily void Me\+Color\+Sensor\+::\+Turn\+Onmodule (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Turn\+Onmodule 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Turn On the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_a9ba779e9fc9841177d80abf17cd4f973}\label{class_me_color_sensor_a9ba779e9fc9841177d80abf17cd4f973} 
+\index{MeColorSensor@{MeColorSensor}!writeData@{writeData}}
+\index{writeData@{writeData}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{writeData()}{writeData()}}
+{\footnotesize\ttfamily int8\+\_\+t Me\+Color\+Sensor\+::write\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{start,  }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Data,  }\item[{uint8\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+write\+Data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Write the data to i2c device. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em start} & -\/ the address which will write the data to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em p\+Data} & -\/ the head address of data array. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & -\/ set the number of data will be written to the devide. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+Return the error code. the definition of the value of variable return\+\_\+value\+: 0\+:success 1\+:BUFFER\+\_\+\+LENGTH is shorter than size 2\+:address send, nack received 3\+:data send, nack received 4\+:other twi error refer to the arduino official library twi.\+c 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+Calling the official i2c library to write data. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_color_sensor_aa4a1ce0523ec234b68387d0a38becab4}\label{class_me_color_sensor_aa4a1ce0523ec234b68387d0a38becab4} 
+\index{MeColorSensor@{MeColorSensor}!writeReg@{writeReg}}
+\index{writeReg@{writeReg}!MeColorSensor@{MeColorSensor}}
+\doxysubsubsection{\texorpdfstring{writeReg()}{writeReg()}}
+{\footnotesize\ttfamily int8\+\_\+t Me\+Color\+Sensor\+::write\+Reg (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{reg,  }\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+write\+Reg 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+write the \doxylink{class_me_color_sensor}{Me\+Color\+Sensor} module register. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+Return the error code. the definition of the value of variable return\+\_\+value\+: 0\+:success 1\+:BUFFER\+\_\+\+LENGTH is shorter than size 2\+:address send, nack received 3\+:data send, nack received 4\+:other twi error refer to the arduino official library twi.\+c 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+To set the register for initializing. 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_color_sensor_8h}{Me\+Color\+Sensor.\+h}}\item 
+src/\mbox{\hyperlink{_me_color_sensor_8cpp}{Me\+Color\+Sensor.\+cpp}}\end{DoxyCompactItemize}

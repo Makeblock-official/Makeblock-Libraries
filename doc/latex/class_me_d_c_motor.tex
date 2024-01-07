@@ -1,0 +1,279 @@
+\doxysection{Me\+DCMotor Class Reference}
+\hypertarget{class_me_d_c_motor}{}\label{class_me_d_c_motor}\index{MeDCMotor@{MeDCMotor}}
+
+
+Driver for Me DC motor device.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+DCMotor.\+h$>$}
+
+
+
+Inheritance diagram for Me\+DCMotor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{class_me_d_c_motor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+DCMotor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{class_me_d_c_motor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_d_c_motor_ac0d5e24deae9f03c1f76e7cc780c52fb}{Me\+DCMotor}} (void)
+\item 
+\mbox{\hyperlink{class_me_d_c_motor_a34753a0be6495d847dd37caa4427cdc6}{Me\+DCMotor}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_d_c_motor_a3ed0c7598287a9dce9725e0cfd96069d}{setpin}} (uint8\+\_\+t dir\+\_\+pin, uint8\+\_\+t pwm\+\_\+pin)
+\item 
+void \mbox{\hyperlink{class_me_d_c_motor_a098d4ebc2b9ecfe6652c045ae27253ae}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_d_c_motor_a8bcda74bb585d40c372ac5894a79fe2c}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+void \mbox{\hyperlink{class_me_d_c_motor_a4509ba013726e48cbb70423263f8dccc}{run}} (int16\+\_\+t speed)
+\item 
+void \mbox{\hyperlink{class_me_d_c_motor_ac96a250d77ab11c1db0f15592e98be03}{stop}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me DC motor device. 
+
+Class\+: \doxylink{class_me_d_c_motor}{Me\+DCMotor} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_d_c_motor}{Me\+DCMotor}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_d_c_motor_ac0d5e24deae9f03c1f76e7cc780c52fb}\label{class_me_d_c_motor_ac0d5e24deae9f03c1f76e7cc780c52fb} 
+\index{MeDCMotor@{MeDCMotor}!MeDCMotor@{MeDCMotor}}
+\index{MeDCMotor@{MeDCMotor}!MeDCMotor@{MeDCMotor}}
+\doxysubsubsection{\texorpdfstring{MeDCMotor()}{MeDCMotor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Me\+DCMotor\+::\+Me\+DCMotor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the DC motor to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_d_c_motor_a34753a0be6495d847dd37caa4427cdc6}\label{class_me_d_c_motor_a34753a0be6495d847dd37caa4427cdc6} 
+\index{MeDCMotor@{MeDCMotor}!MeDCMotor@{MeDCMotor}}
+\index{MeDCMotor@{MeDCMotor}!MeDCMotor@{MeDCMotor}}
+\doxysubsubsection{\texorpdfstring{MeDCMotor()}{MeDCMotor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Me\+DCMotor\+::\+Me\+DCMotor (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the DC motor to arduino port 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_d_c_motor_a098d4ebc2b9ecfe6652c045ae27253ae}\label{class_me_d_c_motor_a098d4ebc2b9ecfe6652c045ae27253ae} 
+\index{MeDCMotor@{MeDCMotor}!reset@{reset}}
+\index{reset@{reset}!MeDCMotor@{MeDCMotor}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Me\+DCMotor\+::reset (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+reset 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the DC motor available PIN by its RJ25 port. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_d_c_motor_a8bcda74bb585d40c372ac5894a79fe2c}\label{class_me_d_c_motor_a8bcda74bb585d40c372ac5894a79fe2c} 
+\index{MeDCMotor@{MeDCMotor}!reset@{reset}}
+\index{reset@{reset}!MeDCMotor@{MeDCMotor}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Me\+DCMotor\+::reset (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{uint8\+\_\+t}]{slot }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+reset 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the DC motor available PIN by its RJ25 port and slot. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\mbox{\texttt{ in}}  & {\em slot} & -\/ SLOT1 or SLOT2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_d_c_motor_a4509ba013726e48cbb70423263f8dccc}\label{class_me_d_c_motor_a4509ba013726e48cbb70423263f8dccc} 
+\index{MeDCMotor@{MeDCMotor}!run@{run}}
+\index{run@{run}!MeDCMotor@{MeDCMotor}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Me\+DCMotor\+::run (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{speed }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+run 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Control the motor forward or reverse 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em speed} & -\/ Speed value from -\/255 to 255 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_d_c_motor_a3ed0c7598287a9dce9725e0cfd96069d}\label{class_me_d_c_motor_a3ed0c7598287a9dce9725e0cfd96069d} 
+\index{MeDCMotor@{MeDCMotor}!setpin@{setpin}}
+\index{setpin@{setpin}!MeDCMotor@{MeDCMotor}}
+\doxysubsubsection{\texorpdfstring{setpin()}{setpin()}}
+{\footnotesize\ttfamily void Me\+DCMotor\+::setpin (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dir\+\_\+pin,  }\item[{uint8\+\_\+t}]{pwm\+\_\+pin }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+setpin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the DC motor available PIN by its arduino port. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dir\+\_\+pin} & -\/ arduino port for direction pin(should analog pin) \\
+\hline
+\mbox{\texttt{ in}}  & {\em pwm\+\_\+pin} & -\/ arduino port for pwm input(should analog pin) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_d_c_motor_ac96a250d77ab11c1db0f15592e98be03}\label{class_me_d_c_motor_ac96a250d77ab11c1db0f15592e98be03} 
+\index{MeDCMotor@{MeDCMotor}!stop@{stop}}
+\index{stop@{stop}!MeDCMotor@{MeDCMotor}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void Me\+DCMotor\+::stop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+stop 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Stop the rotation of the motor 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_d_c_motor_8h}{Me\+DCMotor.\+h}}\item 
+src/\mbox{\hyperlink{_me_d_c_motor_8cpp}{Me\+DCMotor.\+cpp}}\end{DoxyCompactItemize}

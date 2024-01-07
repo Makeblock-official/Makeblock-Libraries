@@ -50,7 +50,7 @@
  *    23. void MeEncoderOnBoard::setSpeedPid(float p,float i,float d);
  *    24. void MeEncoderOnBoard::setPosPid(float p,float i,float d);
  *    25. void MeEncoderOnBoard::setPulse(int16_t pulseValue);
- *    26. void MeEncoderOnBoard::setRatio(int16_t RatioValue);
+ *    26. void MeEncoderOnBoard::setRatio(float RatioValue);
  *    27. void MeEncoderOnBoard::setMotionMode(int16_t motionMode);
  *    28. int16_t MeEncoderOnBoard::pidPositionToPwm(void);
  *    29. int16_t MeEncoderOnBoard::speedWithoutPos(void);
@@ -590,7 +590,7 @@ public:
  * \par Others
  *    None
  */
-  void setRatio(int16_t RatioValue);
+  void setRatio(float RatioValue);
 
 /**
  * \par Function

@@ -1,0 +1,81 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$class_me_port.html" title="Port Mapping for RJ25." alt="" coords="137,689,201,716"/>
+<area shape="rect" id="Node000001" href="$class_me4_button.html" title="Driver for Me 4 Button module." alt="" coords="307,5,391,32"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="168,674,173,541,187,353,200,256,217,167,239,93,252,65,267,42,285,28,305,21,307,26,287,33,271,46,257,67,244,95,222,168,205,257,192,353,178,541,173,674"/>
+<area shape="rect" id="Node000002" href="$class_me7_segment_display.html" title="Class for numeric display module." alt="" coords="278,56,419,83"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="168,674,174,550,190,377,203,288,219,207,241,140,253,113,267,93,281,81,285,85,271,96,258,116,246,142,225,208,208,289,195,377,180,550,174,674"/>
+<area shape="rect" id="Node000003" href="$class_me_buzzer.html" title="Driver for Me Buzzer module." alt="" coords="309,107,389,133"/>
+<area shape="poly" id="edge3_Node000000_Node000003" title=" " alt="" coords="169,674,176,559,193,401,206,320,222,247,242,186,267,144,286,130,307,122,309,127,288,134,271,147,247,188,227,248,211,321,198,402,182,560,174,674"/>
+<area shape="rect" id="Node000004" href="$class_me_color_sensor.html" title="Driver for MeColorSensor module." alt="" coords="294,157,404,184"/>
+<area shape="poly" id="edge4_Node000000_Node000004" title=" " alt="" coords="169,674,178,569,196,426,209,353,225,287,244,232,267,194,292,178,295,182,271,198,249,234,230,288,215,354,202,427,184,569,175,674"/>
+<area shape="rect" id="Node000005" href="$class_me_compass.html" title="Driver for MeCompass module." alt="" coords="302,208,396,235"/>
+<area shape="poly" id="edge5_Node000000_Node000005" title=" " alt="" coords="170,674,180,578,200,450,213,386,228,327,246,279,267,245,282,233,300,225,302,230,285,237,271,248,251,281,233,329,218,387,205,451,186,579,175,674"/>
+<area shape="rect" id="Node000006" href="$class_me_d_c_motor.html" title="Driver for Me DC motor device." alt="" coords="304,259,394,285"/>
+<area shape="poly" id="edge6_Node000000_Node000006" title=" " alt="" coords="171,674,183,588,203,475,231,367,248,325,267,296,283,283,302,276,304,280,286,288,271,299,253,327,236,369,208,476,188,589,176,674"/>
+<area shape="rect" id="Node000008" href="$class_me_encoder_motor.html" title="Class for Encoder Motor Driver." alt="" coords="289,309,409,336"/>
+<area shape="poly" id="edge8_Node000000_Node000008" title=" " alt="" coords="167,674,170,608,183,520,196,474,213,428,237,384,267,346,286,333,290,337,271,350,241,387,218,430,201,475,189,521,175,608,172,674"/>
+<area shape="rect" id="Node000009" href="$class_me_flame_sensor.html" title="Driver for Me flame snesor device." alt="" coords="291,360,407,387"/>
+<area shape="poly" id="edge9_Node000000_Node000009" title=" " alt="" coords="169,673,175,616,190,542,203,503,219,465,241,429,267,397,289,382,292,387,271,401,245,432,224,467,208,505,195,543,180,617,174,674"/>
+<area shape="rect" id="Node000010" href="$class_me_gas_sensor.html" title="Driver for Me gas snesor device." alt="" coords="297,411,401,437"/>
+<area shape="poly" id="edge10_Node000000_Node000010" title=" " alt="" coords="171,673,180,625,197,564,225,502,244,473,267,447,295,431,297,436,271,451,248,476,230,504,202,566,185,626,176,674"/>
+<area shape="rect" id="Node000011" href="$class_me_gyro.html" title="Driver for MeGyro module." alt="" coords="315,461,382,488"/>
+<area shape="poly" id="edge11_Node000000_Node000011" title=" " alt="" coords="174,674,185,635,204,587,231,539,267,498,290,484,314,477,315,482,292,489,271,502,235,543,209,590,190,636,179,675"/>
+<area shape="rect" id="Node000012" href="$class_me_humiture.html" title="Driver for humiture sensor device." alt="" coords="303,512,394,539"/>
+<area shape="poly" id="edge12_Node000000_Node000012" title=" " alt="" coords="179,674,212,611,237,578,267,548,301,532,304,537,271,553,241,581,217,614,183,677"/>
+<area shape="rect" id="Node000013" href="$class_me_joystick.html" title="Driver for Me Joystick module." alt="" coords="305,563,392,589"/>
+<area shape="poly" id="edge13_Node000000_Node000013" title=" " alt="" coords="187,675,222,636,268,599,304,583,306,588,270,604,226,640,191,678"/>
+<area shape="rect" id="Node000014" href="$class_me_l_e_d_matrix.html" title="Driver for Me LED Matrix module." alt="" coords="299,613,399,640"/>
+<area shape="poly" id="edge14_Node000000_Node000014" title=" " alt="" coords="206,679,268,650,299,638,301,643,270,654,209,684"/>
+<area shape="rect" id="Node000015" href="$class_me_light_sensor.html" title="Driver for Me&#45;Light Sensor module." alt="" coords="295,664,403,691"/>
+<area shape="poly" id="edge15_Node000000_Node000015" title=" " alt="" coords="216,693,294,682,294,688,217,699"/>
+<area shape="rect" id="Node000016" href="$class_me_limit_switch.html" title="Driver for Me_LimitSwitch module." alt="" coords="296,715,402,741"/>
+<area shape="poly" id="edge16_Node000000_Node000016" title=" " alt="" coords="216,707,295,718,295,723,216,712"/>
+<area shape="rect" id="Node000017" href="$class_me_line_follower.html" title="Driver for Me line follwer device." alt="" coords="293,765,404,792"/>
+<area shape="poly" id="edge17_Node000000_Node000017" title=" " alt="" coords="209,721,270,751,301,762,299,767,268,756,206,726"/>
+<area shape="rect" id="Node000018" href="$class_me_mega_pi_pro4_dc_motor.html" title="Driver for Me DC motor device." alt="" coords="269,816,428,843"/>
+<area shape="poly" id="edge18_Node000000_Node000018" title=" " alt="" coords="191,727,226,766,270,802,294,813,292,818,268,806,222,769,187,730"/>
+<area shape="rect" id="Node000019" href="$class_me_on_board_temp.html" title="Driver for Auriga On Board Temperature device." alt="" coords="288,867,410,893"/>
+<area shape="poly" id="edge19_Node000000_Node000019" title=" " alt="" coords="183,729,217,791,241,824,271,853,290,864,288,868,267,857,237,828,212,794,179,731"/>
+<area shape="rect" id="Node000020" href="$class_me_p_i_r_motion_sensor.html" title="Driver for Me PIR Motion Sensor module." alt="" coords="279,917,419,944"/>
+<area shape="poly" id="edge20_Node000000_Node000020" title=" " alt="" coords="179,730,190,769,209,816,235,863,271,903,288,915,285,919,267,907,231,866,204,818,185,771,174,732"/>
+<area shape="rect" id="Node000021" href="$class_me_potentiometer.html" title="Driver for Me potentiometer module." alt="" coords="289,968,409,995"/>
+<area shape="poly" id="edge21_Node000000_Node000021" title=" " alt="" coords="176,731,185,779,202,839,230,901,248,929,271,954,290,966,287,971,267,958,244,932,225,903,197,841,180,781,171,732"/>
+<area shape="rect" id="Node000022" href="$class_me_r_g_b_led.html" title="Driver for W2812 full&#45;color LED." alt="" coords="305,1019,393,1045"/>
+<area shape="poly" id="edge22_Node000000_Node000022" title=" " alt="" coords="174,731,180,789,195,862,208,901,224,938,245,974,271,1005,287,1016,305,1023,303,1028,284,1021,267,1009,241,977,219,941,203,903,190,863,175,790,169,732"/>
+<area shape="rect" id="Node000023" href="$class_me_serial.html" title="Driver for serial." alt="" coords="313,1373,385,1400"/>
+<area shape="poly" id="edge23_Node000000_Node000023" title=" " alt="" coords="173,731,178,864,192,1052,205,1149,222,1237,244,1310,257,1338,271,1359,290,1374,313,1381,311,1386,287,1378,267,1363,252,1341,239,1312,217,1238,200,1150,187,1053,173,864,168,731"/>
+<area shape="rect" id="Node000034" href="$class_me_shutter.html" title="Driver for Me Shutter device." alt="" coords="308,1069,389,1096"/>
+<area shape="poly" id="edge31_Node000000_Node000034" title=" " alt="" coords="172,731,175,797,189,884,201,930,218,975,241,1018,271,1055,288,1068,308,1075,306,1080,286,1072,267,1059,237,1021,213,978,196,932,183,885,170,798,167,732"/>
+<area shape="rect" id="Node000035" href="$class_me_stepper.html" title="Driver for Me Stepper device." alt="" coords="307,1120,391,1147"/>
+<area shape="poly" id="edge32_Node000000_Node000035" title=" " alt="" coords="176,731,188,817,208,929,236,1036,253,1078,271,1106,287,1118,307,1126,305,1131,285,1123,267,1110,248,1080,231,1038,203,930,183,818,171,732"/>
+<area shape="rect" id="Node000036" href="$class_me_temperature.html" title="Driver for temperature sensor device." alt="" coords="293,1171,404,1197"/>
+<area shape="poly" id="edge33_Node000000_Node000036" title=" " alt="" coords="175,731,186,826,205,954,218,1018,233,1077,251,1124,271,1157,294,1172,291,1177,267,1161,246,1127,228,1078,213,1020,200,955,180,827,170,731"/>
+<area shape="rect" id="Node000037" href="$class_me_touch_sensor.html" title="Driver for Me touch sensor device." alt="" coords="291,1221,406,1248"/>
+<area shape="poly" id="edge34_Node000000_Node000037" title=" " alt="" coords="175,731,184,836,202,979,215,1051,230,1117,249,1171,271,1208,292,1222,289,1227,267,1211,244,1173,225,1118,209,1052,196,980,178,837,169,731"/>
+<area shape="rect" id="Node000038" href="$class_me_u_s_b_host.html" title="Driver for Me USB Host module." alt="" coords="302,1272,395,1299"/>
+<area shape="poly" id="edge35_Node000000_Node000038" title=" " alt="" coords="174,731,182,846,198,1004,211,1084,227,1157,247,1217,271,1258,285,1270,303,1277,300,1282,282,1274,267,1262,242,1219,222,1159,206,1085,193,1004,176,846,169,732"/>
+<area shape="rect" id="Node000039" href="$class_me_ultrasonic_sensor.html" title="Driver for Me ultrasonic sensor device." alt="" coords="280,1323,418,1349"/>
+<area shape="poly" id="edge36_Node000000_Node000039" title=" " alt="" coords="174,731,180,855,195,1028,208,1116,225,1197,246,1264,258,1289,271,1309,285,1320,281,1324,267,1312,253,1292,241,1266,219,1199,203,1117,190,1029,174,855,168,732"/>
+<area shape="rect" id="Node000007" href="$class_m_bot_d_c_motor.html" title=" " alt="" coords="490,259,593,285"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="409,269,489,269,489,275,409,275"/>
+<area shape="rect" id="Node000024" href="$class_me_bluetooth.html" title="Driver for Me Bluetooth device." alt="" coords="494,1221,589,1248"/>
+<area shape="poly" id="edge24_Node000023_Node000024" title=" " alt="" coords="399,1375,427,1359,437,1347,444,1335,450,1310,456,1285,463,1271,475,1258,492,1246,495,1250,478,1262,468,1274,461,1287,455,1312,449,1337,442,1350,430,1363,401,1380"/>
+<area shape="rect" id="Node000025" href="$class_me_infrared_receiver.html" title="Driver for Me Infrared Receiver device." alt="" coords="476,1272,607,1299"/>
+<area shape="poly" id="edge25_Node000023_Node000025" title=" " alt="" coords="398,1372,427,1359,441,1347,450,1335,460,1322,475,1308,496,1297,499,1302,478,1313,464,1325,455,1338,445,1351,430,1364,401,1377"/>
+<area shape="rect" id="Node000026" href="$class_me_p_s2.html" title="Driver for MePS2 handle device." alt="" coords="509,1323,574,1349"/>
+<area shape="poly" id="edge26_Node000023_Node000026" title=" " alt="" coords="399,1371,508,1342,510,1347,401,1376"/>
+<area shape="rect" id="Node000027" href="$class_me_pm25_sensor.html" title="Driver for Me PM2.5 sensor device." alt="" coords="484,1373,599,1400"/>
+<area shape="poly" id="edge27_Node000023_Node000027" title=" " alt="" coords="400,1384,484,1384,484,1389,400,1389"/>
+<area shape="rect" id="Node000028" href="$class_me_smart_servo.html" title="Driver for Me Smart Servo device." alt="" coords="488,1424,595,1451"/>
+<area shape="poly" id="edge28_Node000023_Node000028" title=" " alt="" coords="401,1397,488,1421,487,1426,399,1403"/>
+<area shape="rect" id="Node000029" href="$class_me_voice.html" title="Driver for Me voice device." alt="" coords="505,1475,578,1501"/>
+<area shape="poly" id="edge29_Node000023_Node000029" title=" " alt="" coords="384,1406,478,1460,506,1473,504,1478,475,1465,382,1411"/>
+<area shape="rect" id="Node000030" href="$class_me_wifi.html" title="Driver for Me wifi device." alt="" coords="511,1525,572,1552"/>
+<area shape="poly" id="edge30_Node000023_Node000030" title=" " alt="" coords="372,1410,418,1461,447,1487,478,1511,511,1527,509,1532,475,1516,443,1492,414,1465,368,1414"/>
+<area shape="rect" id="Node000032" title=" " alt="" coords="5,1399,69,1425"/>
+<area shape="rect" id="Node000031" href="$class_software_serial.html" title=" " alt="" coords="117,1373,221,1400"/>
+<area shape="poly" id="edge37_Node000032_Node000031" title=" " alt="" coords="83,1400,116,1394,117,1399,84,1406"/>
+<area shape="rect" id="Node000033" href="$class_two_wire.html" title=" " alt="" coords="133,1424,205,1451"/>
+<area shape="poly" id="edge39_Node000032_Node000033" title=" " alt="" coords="84,1418,133,1428,132,1433,83,1424"/>
+<area shape="poly" id="edge38_Node000031_Node000023" title=" " alt="" coords="237,1384,312,1384,312,1389,237,1389"/>
+</map>

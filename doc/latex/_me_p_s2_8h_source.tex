@@ -1,0 +1,92 @@
+\doxysection{Me\+PS2.\+h}
+\hypertarget{_me_p_s2_8h_source}{}\label{_me_p_s2_8h_source}\index{src/MePS2.h@{src/MePS2.h}}
+\mbox{\hyperlink{_me_p_s2_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifndef\ MePS2\_H}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ MePS2\_H}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_serial_8h}{MeSerial.h}}"{}}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#endif\ }}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_RX\ \ \ \ \ \ \ \ \ \ \ 6}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_RY\ \ \ \ \ \ \ \ \ \ \ 8}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_LX\ \ \ \ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_LY\ \ \ \ \ \ \ \ \ \ \ 4}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_R1\ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_R2\ \ \ \ \ \ \ \ \ \ \ 3}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_L1\ \ \ \ \ \ \ \ \ \ \ 5}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_L2\ \ \ \ \ \ \ \ \ \ \ 7}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_TRIANGLE\ \ \ \ \ 9}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_XSHAPED\ \ \ \ \ \ 10}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_SQUARE\ \ \ \ \ \ \ 11}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_ROUND\ \ \ \ \ \ \ \ 12}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_START\ \ \ \ \ \ \ \ 13}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_UP\ \ \ \ \ \ \ \ \ \ \ 14}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_DOWN\ \ \ \ \ \ \ \ \ 15}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_LEFT\ \ \ \ \ \ \ \ \ 16}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_RIGHT\ \ \ \ \ \ \ \ 17}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_SELECT\ \ \ \ \ \ \ 18}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_MODE\ \ \ \ \ \ \ \ \ 19}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_BUTTON\_L\ \ \ \ \ 20}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_BUTTON\_R\ \ \ \ \ 21}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_INIT\_VALUE\ \ \ 0}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ MeJOYSTICK\_ANALOG\_ERROR\ 0}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_p_s2}{MePS2}}}
+\DoxyCodeLine{00092\ \#else\ \textcolor{comment}{/*\ !ME\_PORT\_DEFINED\ */}}
+\DoxyCodeLine{00093\ \ \ class\ \mbox{\hyperlink{class_me_p_s2}{MePS2}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_serial}{MeSerial}}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ !ME\_PORT\_DEFINED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00106\ \ \ \mbox{\hyperlink{class_me_p_s2_a2fd79fe40df482bad8eacb00666f8d61}{MePS2}}();}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00114\ \ \ \mbox{\hyperlink{class_me_p_s2_a2fd79fe40df482bad8eacb00666f8d61}{MePS2}}(uint8\_t\ port);}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#else\ \ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00127\ \ \ \mbox{\hyperlink{class_me_p_s2_a2fd79fe40df482bad8eacb00666f8d61}{MePS2}}(uint8\_t\ receivePin,\ uint8\_t\ transmitPin,\ \textcolor{keywordtype}{bool}\ inverse\_logic);}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00144\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_p_s2_a65d5b08003a94c6bc333dec3a6957f37}{readSerial}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00160\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_p_s2_a4df0b0985f4b63366fc8ed2b6489916b}{readBuffer}}(int16\_t\ index);}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00176\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_p_s2_a89823992bc9d4fef006cc7f9782aa685}{writeBuffer}}(int16\_t\ index,uint8\_t\ c);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00192\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_p_s2_a83482bf8ea7f5654ad6af4603045943e}{readjoystick}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00208\ \ \ int16\_t\ \mbox{\hyperlink{class_me_p_s2_a9418cffcc31f2325b022189d9c02713a}{MeAnalog}}(uint8\_t\ button);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00224\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_p_s2_af6995881e6754c128b4b978f378f2ef7}{ButtonPressed}}(uint8\_t\ button);}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00240\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_p_s2_a6801dbef44b2b324731cea5d75215a41}{loop}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00243\ \ \ uint8\_t\ \_serialRead;}
+\DoxyCodeLine{00244\ \ \ uint8\_t\ \_dataLen;}
+\DoxyCodeLine{00245\ \ \ uint8\_t\ \_index\ =\ 0;}
+\DoxyCodeLine{00246\ \ \ uint8\_t\ \_prevc\ =\ 0;}
+\DoxyCodeLine{00247\ \ \ uint8\_t\ buffer[16];}
+\DoxyCodeLine{00248\ \ \ uint8\_t\ ps2\_data\_list[23];}
+\DoxyCodeLine{00249\ \ \ uint8\_t\ ps2\_data\_list\_bak[23];}
+\DoxyCodeLine{00250\ \ \ \textcolor{keywordtype}{long}\ \_lasttime;}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \textcolor{keywordtype}{boolean}\ \_isStart;}
+\DoxyCodeLine{00253\ \ \ \textcolor{keywordtype}{boolean}\ \_isAvailable;}
+\DoxyCodeLine{00254\ \ \ \textcolor{keywordtype}{boolean}\ \_isReady;}
+\DoxyCodeLine{00255\ \};}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

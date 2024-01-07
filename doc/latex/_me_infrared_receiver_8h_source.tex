@@ -1,0 +1,86 @@
+\doxysection{Me\+Infrared\+Receiver.\+h}
+\hypertarget{_me_infrared_receiver_8h_source}{}\label{_me_infrared_receiver_8h_source}\index{src/MeInfraredReceiver.h@{src/MeInfraredReceiver.h}}
+\mbox{\hyperlink{_me_infrared_receiver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#ifndef\ MeInfraredReceiver\_H}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ MeInfraredReceiver\_H}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_serial_8h}{MeSerial.h}}"{}}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{/*\ NEC\ Code\ table\ */}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_POWER\ \ \ \ \ (0x45)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_A\ \ \ \ \ \ \ \ \ (0x45)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_B\ \ \ \ \ \ \ \ \ (0x46)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_MENU\ \ \ \ \ \ (0x47)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_C\ \ \ \ \ \ \ \ \ (0x47)}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_TEST\ \ \ \ \ \ (0x44)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_D\ \ \ \ \ \ \ \ \ (0x44)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_PLUS\ \ \ \ \ \ (0x40)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_UP\ \ \ \ \ \ \ \ (0x40)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_RETURN\ \ \ \ (0x43)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_E\ \ \ \ \ \ \ \ \ (0x43)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_PREVIOUS\ \ (0x07)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_LEFT\ \ \ \ \ \ (0x07)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_PLAY\ \ \ \ \ \ (0x15)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_SETTING\ \ \ (0x15)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_NEXT\ \ \ \ \ \ (0x09)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_RIGHT\ \ \ \ \ (0x09)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_MINUS\ \ \ \ \ (0x19)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_DOWN\ \ \ \ \ \ (0x19)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_CLR\ \ \ \ \ \ \ (0x0D)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_F\ \ \ \ \ (0x0D)}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_0\ \ \ \ \ (0x16)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_1\ \ \ \ \ (0x0C)}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_2\ \ \ \ \ (0x18)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_3\ \ \ \ \ (0x5E)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_4\ \ \ \ \ (0x08)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_5\ \ \ \ \ (0x1C)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_6\ \ \ \ \ (0x5A)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_7\ \ \ \ \ (0x42)}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_8\ \ \ \ \ (0x52)}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ IR\_BUTTON\_9\ \ \ \ \ (0x4A)}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ME\_PORT\_DEFINED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00096\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_infrared_receiver}{MeInfraredReceiver}}}
+\DoxyCodeLine{00097\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00098\ class\ \mbox{\hyperlink{class_me_infrared_receiver}{MeInfraredReceiver}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_serial}{MeSerial}}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00100\ \{}
+\DoxyCodeLine{00101\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00109\ \ \ \mbox{\hyperlink{class_me_infrared_receiver_a41adf4b88eaec8d9c770ba29ddaa22f6}{MeInfraredReceiver}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00117\ \ \ \mbox{\hyperlink{class_me_infrared_receiver_a41adf4b88eaec8d9c770ba29ddaa22f6}{MeInfraredReceiver}}(uint8\_t\ port);}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00129\ \ \ MeInfraredReceiver(uint8\_t\ receivePin,\ uint8\_t\ transmitPin,\ bool\ inverse\_logic);}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00145\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_infrared_receiver_ac25056e96b50a1bf16c05eedbfeaaf78}{begin}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_me_infrared_receiver_aaccf198c3a013b38e783a3e055631110}{read}}();}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00175\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_infrared_receiver_a85d4066f35e6838f24e6d3f23a5236a1}{buttonState}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00189\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_infrared_receiver_a2b4385744d5ff2cd325f15095d257126}{getCode}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00203\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_infrared_receiver_ab178d4d0bb7a3af0aa35a88183c2f928}{loop}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00204\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00205\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_RxPin;}
+\DoxyCodeLine{00206\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_KeyCheckPin;}
+\DoxyCodeLine{00207\ \ \ uint8\_t\ \_irCode;}
+\DoxyCodeLine{00208\ \ \ uint8\_t\ \_preIrCode;}
+\DoxyCodeLine{00209\ \};}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00212\ }
+
+\end{DoxyCode}

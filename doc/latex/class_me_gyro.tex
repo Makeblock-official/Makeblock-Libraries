@@ -1,0 +1,553 @@
+\doxysection{Me\+Gyro Class Reference}
+\hypertarget{class_me_gyro}{}\label{class_me_gyro}\index{MeGyro@{MeGyro}}
+
+
+Driver for \doxylink{class_me_gyro}{Me\+Gyro} module.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Gyro.\+h$>$}
+
+
+
+Inheritance diagram for Me\+Gyro\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=131pt]{class_me_gyro__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+Gyro\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=131pt]{class_me_gyro__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_gyro_a4a6b3f7485716b1943e15eb554b51ae7}{Me\+Gyro}} (void)
+\item 
+\mbox{\hyperlink{class_me_gyro_a207095ed46ba017c930c4fefe856828e}{Me\+Gyro}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_gyro_a0340b5dfd830cbfc25034a3277ad071f}{Me\+Gyro}} (uint8\+\_\+t port, uint8\+\_\+t address)
+\item 
+void \mbox{\hyperlink{class_me_gyro_ac183cec71c6d840b7c5d651d025e02ca}{setpin}} (uint8\+\_\+t AD0, uint8\+\_\+t INT)
+\item 
+void \mbox{\hyperlink{class_me_gyro_ae12dbf32cc840e0d734dc813d1d3b8cc}{begin}} ()
+\item 
+void \mbox{\hyperlink{class_me_gyro_a85373ad8f4764f9ab9cd0d880fb8dd19}{update}} (void)
+\item 
+void \mbox{\hyperlink{class_me_gyro_a01ab455745beef2583a64e83c88e54e0}{fast\+\_\+update}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_gyro_a15122f1ff89422a7aa0f0bb0a7af82ad}{get\+Dev\+Addr}} (void) const
+\item 
+double \mbox{\hyperlink{class_me_gyro_a22f9944d93ab6c8b3c09195fcf002675}{get\+AngleX}} (void) const
+\item 
+double \mbox{\hyperlink{class_me_gyro_a32858bdbdbc045d5885c8294d811c351}{get\+AngleY}} (void) const
+\item 
+double \mbox{\hyperlink{class_me_gyro_aee097463680345da15710d7e2f5bad04}{get\+AngleZ}} (void) const
+\item 
+double \mbox{\hyperlink{class_me_gyro_acd4874b1d99d4a79c4194b5f0a2691d1}{get\+GyroX}} (void) const
+\item 
+double \mbox{\hyperlink{class_me_gyro_a2409cc23fd683a3f546f1660da49bf8d}{get\+GyroY}} (void) const
+\item 
+double \mbox{\hyperlink{class_me_gyro_a973d074ad4c72fec8bf77a43db27da06}{get\+GyroZ}} (void) const
+\item 
+double \mbox{\hyperlink{class_me_gyro_a7ff55cc89d2507d47d193d659341b6b2}{get\+Angle}} (uint8\+\_\+t index) const
+\item 
+void \mbox{\hyperlink{class_me_gyro_a1a7b23e100b983b19b83ff78f4a66af0}{reset\+Data}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for \doxylink{class_me_gyro}{Me\+Gyro} module. 
+
+Class\+: \doxylink{class_me_gyro}{Me\+Gyro} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_gyro}{Me\+Gyro}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_gyro_a4a6b3f7485716b1943e15eb554b51ae7}\label{class_me_gyro_a4a6b3f7485716b1943e15eb554b51ae7} 
+\index{MeGyro@{MeGyro}!MeGyro@{MeGyro}}
+\index{MeGyro@{MeGyro}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{MeGyro()}{MeGyro()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Me\+Gyro\+::\+Me\+Gyro (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_compass}{Me\+Compass} to arduino port, no pins are used or initialized here
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_gyro}{Me\+Gyro} to arduino port, no pins are used or initialized here \Hypertarget{class_me_gyro_a207095ed46ba017c930c4fefe856828e}\label{class_me_gyro_a207095ed46ba017c930c4fefe856828e} 
+\index{MeGyro@{MeGyro}!MeGyro@{MeGyro}}
+\index{MeGyro@{MeGyro}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{MeGyro()}{MeGyro()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Me\+Gyro\+::\+Me\+Gyro (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_compass}{Me\+Compass} to arduino port, no pins are used or initialized here, but PWM frequency set to 976 Hz 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2\\
+\hline
+\end{DoxyParams}
+Alternate Constructor which can call your own function to map the \doxylink{class_me_gyro}{Me\+Gyro} to arduino port, no pins are used or initialized here, but PWM frequency set to 976 Hz 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_gyro_a0340b5dfd830cbfc25034a3277ad071f}\label{class_me_gyro_a0340b5dfd830cbfc25034a3277ad071f} 
+\index{MeGyro@{MeGyro}!MeGyro@{MeGyro}}
+\index{MeGyro@{MeGyro}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{MeGyro()}{MeGyro()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Me\+Gyro\+::\+Me\+Gyro (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{uint8\+\_\+t}]{address }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_compass}{Me\+Compass} to arduino port and change the i2c device address no pins are used or initialized here, but PWM frequency set to 976 Hz 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\mbox{\texttt{ in}}  & {\em address} & -\/ the i2c address you want to set\\
+\hline
+\end{DoxyParams}
+Alternate Constructor which can call your own function to map the \doxylink{class_me_gyro}{Me\+Gyro} to arduino port and change the i2c device address no pins are used or initialized here, but PWM frequency set to 976 Hz 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\mbox{\texttt{ in}}  & {\em address} & -\/ the i2c address you want to set \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_gyro_ae12dbf32cc840e0d734dc813d1d3b8cc}\label{class_me_gyro_ae12dbf32cc840e0d734dc813d1d3b8cc} 
+\index{MeGyro@{MeGyro}!begin@{begin}}
+\index{begin@{begin}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily void Me\+Gyro\+::begin (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+begin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Initialize the \doxylink{class_me_gyro}{Me\+Gyro}. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+You can check the MPU6050 datasheet for the registor address. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_gyro_a01ab455745beef2583a64e83c88e54e0}\label{class_me_gyro_a01ab455745beef2583a64e83c88e54e0} 
+\index{MeGyro@{MeGyro}!fast\_update@{fast\_update}}
+\index{fast\_update@{fast\_update}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{fast\_update()}{fast\_update()}}
+{\footnotesize\ttfamily void Me\+Gyro\+::fast\+\_\+update (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+fast\+\_\+update 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Fast update some calculated angle values to the variable. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+The angle values are calculated by complementary filter. The time constant of filter is set to 0.\+5 second, but period dt is not a constant, so the filter coefficient will be calculated dynamically. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_gyro_a7ff55cc89d2507d47d193d659341b6b2}\label{class_me_gyro_a7ff55cc89d2507d47d193d659341b6b2} 
+\index{MeGyro@{MeGyro}!getAngle@{getAngle}}
+\index{getAngle@{getAngle}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{getAngle()}{getAngle()}}
+{\footnotesize\ttfamily double Me\+Gyro\+::get\+Angle (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+Angle 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the angle value of setting axis. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em index} & -\/ Axis settings(1\+:X-\/axis, 2\+:Y-\/axis, 3\+:Z-\/axis) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The angle value of setting axis 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+Z-\/axis angle value is integral of Z-\/axis angular velocity. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_gyro_a22f9944d93ab6c8b3c09195fcf002675}\label{class_me_gyro_a22f9944d93ab6c8b3c09195fcf002675} 
+\index{MeGyro@{MeGyro}!getAngleX@{getAngleX}}
+\index{getAngleX@{getAngleX}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{getAngleX()}{getAngleX()}}
+{\footnotesize\ttfamily double Me\+Gyro\+::get\+AngleX (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+AngleX 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the angle value of X-\/axis. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The angle value of X-\/axis 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+X-\/axis angle value is calculated by complementary filter.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+get\+AngleY 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the angle value of X-\/axis. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The angle value of X-\/axis 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+X-\/axis angle value is calculated by complementary filter. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_gyro_a32858bdbdbc045d5885c8294d811c351}\label{class_me_gyro_a32858bdbdbc045d5885c8294d811c351} 
+\index{MeGyro@{MeGyro}!getAngleY@{getAngleY}}
+\index{getAngleY@{getAngleY}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{getAngleY()}{getAngleY()}}
+{\footnotesize\ttfamily double Me\+Gyro\+::get\+AngleY (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+AngleY 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the angle value of Y-\/axis. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The angle value of Y-\/axis 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+Y-\/axis angle value is calculated by complementary filter. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_gyro_aee097463680345da15710d7e2f5bad04}\label{class_me_gyro_aee097463680345da15710d7e2f5bad04} 
+\index{MeGyro@{MeGyro}!getAngleZ@{getAngleZ}}
+\index{getAngleZ@{getAngleZ}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{getAngleZ()}{getAngleZ()}}
+{\footnotesize\ttfamily double Me\+Gyro\+::get\+AngleZ (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+AngleZ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the angle value of Z-\/axis. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The angle value of Z-\/axis 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+Z-\/axis angle value is integral of Z-\/axis angular velocity. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_gyro_a15122f1ff89422a7aa0f0bb0a7af82ad}\label{class_me_gyro_a15122f1ff89422a7aa0f0bb0a7af82ad} 
+\index{MeGyro@{MeGyro}!getDevAddr@{getDevAddr}}
+\index{getDevAddr@{getDevAddr}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{getDevAddr()}{getDevAddr()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Gyro\+::get\+Dev\+Addr (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+Dev\+Addr 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the device address of Gyro. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The device address of Gyro 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_gyro_acd4874b1d99d4a79c4194b5f0a2691d1}\label{class_me_gyro_acd4874b1d99d4a79c4194b5f0a2691d1} 
+\index{MeGyro@{MeGyro}!getGyroX@{getGyroX}}
+\index{getGyroX@{getGyroX}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{getGyroX()}{getGyroX()}}
+{\footnotesize\ttfamily double Me\+Gyro\+::get\+GyroX (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+GyroX 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the data of gyro\+Xrate. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The data of gyro\+Xrate 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_gyro_a2409cc23fd683a3f546f1660da49bf8d}\label{class_me_gyro_a2409cc23fd683a3f546f1660da49bf8d} 
+\index{MeGyro@{MeGyro}!getGyroY@{getGyroY}}
+\index{getGyroY@{getGyroY}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{getGyroY()}{getGyroY()}}
+{\footnotesize\ttfamily double Me\+Gyro\+::get\+GyroY (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+GyroY 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the data of gyro\+Yrate. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The data of gyro\+Yrate 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_gyro_a973d074ad4c72fec8bf77a43db27da06}\label{class_me_gyro_a973d074ad4c72fec8bf77a43db27da06} 
+\index{MeGyro@{MeGyro}!getGyroZ@{getGyroZ}}
+\index{getGyroZ@{getGyroZ}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{getGyroZ()}{getGyroZ()}}
+{\footnotesize\ttfamily double Me\+Gyro\+::get\+GyroZ (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+GyroZ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the data of gyro\+Zrate. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The data of gyro\+Zrate 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_gyro_a1a7b23e100b983b19b83ff78f4a66af0}\label{class_me_gyro_a1a7b23e100b983b19b83ff78f4a66af0} 
+\index{MeGyro@{MeGyro}!resetData@{resetData}}
+\index{resetData@{resetData}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{resetData()}{resetData()}}
+{\footnotesize\ttfamily void Me\+Gyro\+::reset\+Data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+reset\+Data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the angle value of setting axis. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\begin{DoxyAuthor}{Author}
+Nicolas Bourré 
+\end{DoxyAuthor}
+\Hypertarget{class_me_gyro_ac183cec71c6d840b7c5d651d025e02ca}\label{class_me_gyro_ac183cec71c6d840b7c5d651d025e02ca} 
+\index{MeGyro@{MeGyro}!setpin@{setpin}}
+\index{setpin@{setpin}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{setpin()}{setpin()}}
+{\footnotesize\ttfamily void Me\+Gyro\+::setpin (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{AD0,  }\item[{uint8\+\_\+t}]{INT }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+setpin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set the PIN of the button module. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em AD0} & -\/ pin mapping for arduino \\
+\hline
+\mbox{\texttt{ in}}  & {\em INT} & -\/ pin mapping for arduino \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+Set global variable \+\_\+\+AD0, \+\_\+\+INT, s1 and s2 
+\end{DoxyParagraph}
+\Hypertarget{class_me_gyro_a85373ad8f4764f9ab9cd0d880fb8dd19}\label{class_me_gyro_a85373ad8f4764f9ab9cd0d880fb8dd19} 
+\index{MeGyro@{MeGyro}!update@{update}}
+\index{update@{update}!MeGyro@{MeGyro}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Me\+Gyro\+::update (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+update 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Update some calculated angle values to the variable. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+The angle values are calculated by complementary filter. The time constant of filter is set to 0.\+5 second, but period dt is not a constant, so the filter coefficient will be calculated dynamically. 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_gyro_8h}{Me\+Gyro.\+h}}\item 
+src/\mbox{\hyperlink{_me_gyro_8cpp}{Me\+Gyro.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,374 @@
+\doxysection{Me\+LEDMatrix Class Reference}
+\hypertarget{class_me_l_e_d_matrix}{}\label{class_me_l_e_d_matrix}\index{MeLEDMatrix@{MeLEDMatrix}}
+
+
+Driver for Me LED Matrix module.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+LEDMatrix.\+h$>$}
+
+
+
+Inheritance diagram for Me\+LEDMatrix\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{class_me_l_e_d_matrix__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+LEDMatrix\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{class_me_l_e_d_matrix__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_l_e_d_matrix_add0de4df6d4eedf76f259a08df8322f7}{Me\+LEDMatrix}} ()
+\item 
+\mbox{\hyperlink{class_me_l_e_d_matrix_ac90091e7105e8a85eec4edb25561bb1a}{Me\+LEDMatrix}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_l_e_d_matrix_ab2309b562a05e4a6a1fc8d301d0c6f85}{Me\+LEDMatrix}} (uint8\+\_\+t SCK\+\_\+\+Pin, uint8\+\_\+t DIN\+\_\+\+Pin)
+\item 
+void \mbox{\hyperlink{class_me_l_e_d_matrix_afe559a6e2d6fa09ef27560c472db4131}{clear\+Screen}} ()
+\item 
+void \mbox{\hyperlink{class_me_l_e_d_matrix_af0a710afc6c9314faf92b17484d8b89f}{set\+Brightness}} (uint8\+\_\+t Bright)
+\item 
+void \mbox{\hyperlink{class_me_l_e_d_matrix_ac32458aff39a381c5b4600fa3cb731ed}{set\+Color\+Index}} (bool Color\+\_\+\+Number)
+\item 
+void \mbox{\hyperlink{class_me_l_e_d_matrix_a7e41bda67de56c3d8f568d6f31c93d6d}{draw\+Bitmap}} (int8\+\_\+t x, int8\+\_\+t y, uint8\+\_\+t Bitmap\+\_\+\+Width, uint8\+\_\+t \texorpdfstring{$\ast$}{*}Bitmap)
+\item 
+void \mbox{\hyperlink{class_me_l_e_d_matrix_a2bc5822502b9600d838a163a82820c02}{draw\+Str}} (int16\+\_\+t X\+\_\+position, int8\+\_\+t Y\+\_\+position, const char \texorpdfstring{$\ast$}{*}str)
+\item 
+void \mbox{\hyperlink{class_me_l_e_d_matrix_ae34d06e56a00bd8d1de86a9b500941a6}{show\+Clock}} (uint8\+\_\+t hour, uint8\+\_\+t minute, bool=Point\+On)
+\item 
+void \mbox{\hyperlink{class_me_l_e_d_matrix_ae2cd6f8f1b7b2077b49a4d05f7af1b79}{show\+Num}} (float value, uint8\+\_\+t=3)
+\item 
+void \mbox{\hyperlink{class_me_l_e_d_matrix_a54aa7ad77d5ef8d67ce0623431e99f53}{reset}} (uint8\+\_\+t port)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me LED Matrix module. 
+
+Class\+: \doxylink{class_me_l_e_d_matrix}{Me\+LEDMatrix} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_l_e_d_matrix}{Me\+LEDMatrix}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2015, Make\+Block}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_l_e_d_matrix_add0de4df6d4eedf76f259a08df8322f7}\label{class_me_l_e_d_matrix_add0de4df6d4eedf76f259a08df8322f7} 
+\index{MeLEDMatrix@{MeLEDMatrix}!MeLEDMatrix@{MeLEDMatrix}}
+\index{MeLEDMatrix@{MeLEDMatrix}!MeLEDMatrix@{MeLEDMatrix}}
+\doxysubsubsection{\texorpdfstring{MeLEDMatrix()}{MeLEDMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Me\+LEDMatrix\+::\+Me\+LEDMatrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the LED Matrix to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_l_e_d_matrix_ac90091e7105e8a85eec4edb25561bb1a}\label{class_me_l_e_d_matrix_ac90091e7105e8a85eec4edb25561bb1a} 
+\index{MeLEDMatrix@{MeLEDMatrix}!MeLEDMatrix@{MeLEDMatrix}}
+\index{MeLEDMatrix@{MeLEDMatrix}!MeLEDMatrix@{MeLEDMatrix}}
+\doxysubsubsection{\texorpdfstring{MeLEDMatrix()}{MeLEDMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Me\+LEDMatrix\+::\+Me\+LEDMatrix (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the LED Matrix to arduino port, If the hardware serial was selected, we will used the hardware serial. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_l_e_d_matrix_ab2309b562a05e4a6a1fc8d301d0c6f85}\label{class_me_l_e_d_matrix_ab2309b562a05e4a6a1fc8d301d0c6f85} 
+\index{MeLEDMatrix@{MeLEDMatrix}!MeLEDMatrix@{MeLEDMatrix}}
+\index{MeLEDMatrix@{MeLEDMatrix}!MeLEDMatrix@{MeLEDMatrix}}
+\doxysubsubsection{\texorpdfstring{MeLEDMatrix()}{MeLEDMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Me\+LEDMatrix\+::\+Me\+LEDMatrix (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{SCK\+\_\+\+Pin,  }\item[{uint8\+\_\+t}]{DIN\+\_\+\+Pin }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the Buzzer to arduino port, you can set any slot for the buzzer device. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em SCK\+\_\+\+Pin} & -\/ The SCk of LED Matrix. \\
+\hline
+\mbox{\texttt{ in}}  & {\em DIN\+\_\+\+Pin} & -\/ Put in parameter. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_l_e_d_matrix_afe559a6e2d6fa09ef27560c472db4131}\label{class_me_l_e_d_matrix_afe559a6e2d6fa09ef27560c472db4131} 
+\index{MeLEDMatrix@{MeLEDMatrix}!clearScreen@{clearScreen}}
+\index{clearScreen@{clearScreen}!MeLEDMatrix@{MeLEDMatrix}}
+\doxysubsubsection{\texorpdfstring{clearScreen()}{clearScreen()}}
+{\footnotesize\ttfamily void Me\+LEDMatrix\+::clear\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+clear\+Screen 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Clear the screen. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None \textbackslash{}\+Return None. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_l_e_d_matrix_a7e41bda67de56c3d8f568d6f31c93d6d}\label{class_me_l_e_d_matrix_a7e41bda67de56c3d8f568d6f31c93d6d} 
+\index{MeLEDMatrix@{MeLEDMatrix}!drawBitmap@{drawBitmap}}
+\index{drawBitmap@{drawBitmap}!MeLEDMatrix@{MeLEDMatrix}}
+\doxysubsubsection{\texorpdfstring{drawBitmap()}{drawBitmap()}}
+{\footnotesize\ttfamily void Me\+LEDMatrix\+::draw\+Bitmap (\begin{DoxyParamCaption}\item[{int8\+\_\+t}]{x,  }\item[{int8\+\_\+t}]{y,  }\item[{uint8\+\_\+t}]{Bitmap\+\_\+\+Width,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{Bitmap }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+draw\+Bitmap 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Draw a bitmap. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x} & -\/ The x coordinate of bitmap. \\
+\hline
+\mbox{\texttt{ in}}  & {\em y} & -\/ The y coordinate of bitmap. \\
+\hline
+\mbox{\texttt{ in}}  & {\em Bitmap\+\_\+\+Width} & -\/ The width of bitmap. \\
+\hline
+\mbox{\texttt{ in}}  & {\em Bitmap} & -\/ A pointer to bitmap. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None \textbackslash{}\+Return None. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_l_e_d_matrix_a2bc5822502b9600d838a163a82820c02}\label{class_me_l_e_d_matrix_a2bc5822502b9600d838a163a82820c02} 
+\index{MeLEDMatrix@{MeLEDMatrix}!drawStr@{drawStr}}
+\index{drawStr@{drawStr}!MeLEDMatrix@{MeLEDMatrix}}
+\doxysubsubsection{\texorpdfstring{drawStr()}{drawStr()}}
+{\footnotesize\ttfamily void Me\+LEDMatrix\+::draw\+Str (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{X\+\_\+position,  }\item[{int8\+\_\+t}]{Y\+\_\+position,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{str }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+draw\+Str 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Draw a string. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x} & -\/ The x coordinate for the beginning of string. \\
+\hline
+\mbox{\texttt{ in}}  & {\em y} & -\/ The y coordinate for the beginning of string. \\
+\hline
+\mbox{\texttt{ in}}  & {\em str} & -\/ A pointer to string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None \textbackslash{}\+Return None. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_l_e_d_matrix_a54aa7ad77d5ef8d67ce0623431e99f53}\label{class_me_l_e_d_matrix_a54aa7ad77d5ef8d67ce0623431e99f53} 
+\index{MeLEDMatrix@{MeLEDMatrix}!reset@{reset}}
+\index{reset@{reset}!MeLEDMatrix@{MeLEDMatrix}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Me\+LEDMatrix\+::reset (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+reset 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the port of LED Matrix. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ The port of LED Matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None \textbackslash{}\+Return None. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_l_e_d_matrix_af0a710afc6c9314faf92b17484d8b89f}\label{class_me_l_e_d_matrix_af0a710afc6c9314faf92b17484d8b89f} 
+\index{MeLEDMatrix@{MeLEDMatrix}!setBrightness@{setBrightness}}
+\index{setBrightness@{setBrightness}!MeLEDMatrix@{MeLEDMatrix}}
+\doxysubsubsection{\texorpdfstring{setBrightness()}{setBrightness()}}
+{\footnotesize\ttfamily void Me\+LEDMatrix\+::set\+Brightness (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Bright }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Brightness 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set the brightness of LED Matrix. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em Bright} & -\/ The brightness of LED Matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None \textbackslash{}\+Return None. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_l_e_d_matrix_ac32458aff39a381c5b4600fa3cb731ed}\label{class_me_l_e_d_matrix_ac32458aff39a381c5b4600fa3cb731ed} 
+\index{MeLEDMatrix@{MeLEDMatrix}!setColorIndex@{setColorIndex}}
+\index{setColorIndex@{setColorIndex}!MeLEDMatrix@{MeLEDMatrix}}
+\doxysubsubsection{\texorpdfstring{setColorIndex()}{setColorIndex()}}
+{\footnotesize\ttfamily void Me\+LEDMatrix\+::set\+Color\+Index (\begin{DoxyParamCaption}\item[{bool}]{Color\+\_\+\+Number }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Color\+Index 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set the color index for LED Matrix. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em Color\+\_\+\+Number} & -\/ The number of LED Matrix\textquotesingle{}s color. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None \textbackslash{}\+Return None. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_l_e_d_matrix_ae34d06e56a00bd8d1de86a9b500941a6}\label{class_me_l_e_d_matrix_ae34d06e56a00bd8d1de86a9b500941a6} 
+\index{MeLEDMatrix@{MeLEDMatrix}!showClock@{showClock}}
+\index{showClock@{showClock}!MeLEDMatrix@{MeLEDMatrix}}
+\doxysubsubsection{\texorpdfstring{showClock()}{showClock()}}
+{\footnotesize\ttfamily void Me\+LEDMatrix\+::show\+Clock (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{hour,  }\item[{uint8\+\_\+t}]{minute,  }\item[{bool}]{point\+\_\+flag = {\ttfamily PointOn} }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+show\+Clock 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Show the clock on LED Matrix. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em hour} & -\/ The part of hour in clock. \\
+\hline
+\mbox{\texttt{ in}}  & {\em minute} & -\/ The part of minute in clock. \\
+\hline
+\mbox{\texttt{ in}}  & {\em Point\+On} & -\/ Point on or not. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None \textbackslash{}\+Return None. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_l_e_d_matrix_ae2cd6f8f1b7b2077b49a4d05f7af1b79}\label{class_me_l_e_d_matrix_ae2cd6f8f1b7b2077b49a4d05f7af1b79} 
+\index{MeLEDMatrix@{MeLEDMatrix}!showNum@{showNum}}
+\index{showNum@{showNum}!MeLEDMatrix@{MeLEDMatrix}}
+\doxysubsubsection{\texorpdfstring{showNum()}{showNum()}}
+{\footnotesize\ttfamily void Me\+LEDMatrix\+::show\+Num (\begin{DoxyParamCaption}\item[{float}]{value,  }\item[{uint8\+\_\+t}]{digits = {\ttfamily 3} }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+show\+Num 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Show the number on LED Matrix. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em value} & -\/ The float data need show. \\
+\hline
+\mbox{\texttt{ in}}  & {\em digits} & -\/ Number of digits to display. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None \textbackslash{}\+Return None. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_l_e_d_matrix_8h}{Me\+LEDMatrix.\+h}}\item 
+src/\mbox{\hyperlink{_me_l_e_d_matrix_8cpp}{Me\+LEDMatrix.\+cpp}}\end{DoxyCompactItemize}

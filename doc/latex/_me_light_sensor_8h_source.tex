@@ -1,0 +1,48 @@
+\doxysection{Me\+Light\+Sensor.\+h}
+\hypertarget{_me_light_sensor_8h_source}{}\label{_me_light_sensor_8h_source}\index{src/MeLightSensor.h@{src/MeLightSensor.h}}
+\mbox{\hyperlink{_me_light_sensor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{/*\ Define\ to\ prevent\ recursive\ inclusion\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#ifndef\ MeLightSensor\_H}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ MeLightSensor\_H}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{/*\ Includes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_light_sensor}{MeLightSensor}}}
+\DoxyCodeLine{00062\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00063\ class\ \mbox{\hyperlink{class_me_light_sensor}{MeLightSensor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00074\ \ \ \mbox{\hyperlink{class_me_light_sensor_a369148767eeac2ad59e724554621298d}{MeLightSensor}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \ \ \mbox{\hyperlink{class_me_light_sensor_a369148767eeac2ad59e724554621298d}{MeLightSensor}}(uint8\_t\ port);}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00090\ \ \ MeLightSensor(uint8\_t\ ledPin,\ uint8\_t\ sensorPin);}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00110\ \ \ void\ setpin(uint8\_t\ ledPin,\ uint8\_t\ sensorPin);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00125\ \ \ int16\_t\ \mbox{\hyperlink{class_me_light_sensor_aaae9be2df39ab2c86c4b27c618e3fb48}{read}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00140\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_light_sensor_aab0e6ecb7bb432e9e131811fabac77c3}{lightOn}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00155\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_light_sensor_a0b787d14763d3c34e353ff6f6ef9b3f8}{lightOff}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00156\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00157\ \ \ uint8\_t\ \_ledPin;}
+\DoxyCodeLine{00158\ \ \ uint8\_t\ \_sensorPin;}
+\DoxyCodeLine{00159\ \};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MeLightSensor\_H}}
+
+\end{DoxyCode}
