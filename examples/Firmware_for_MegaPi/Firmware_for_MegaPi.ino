@@ -47,8 +47,8 @@ Me7SegmentDisplay seg;
 MePort generalDevice;
 MeLEDMatrix ledMx;
 MeInfraredReceiver *ir = NULL;     //PORT_6
-MeGyro gyro_ext(0,0x68);           //external gryo sensor
-MeCompass Compass;
+MeGyro gyro_ext(0,0x68);           //external gryo sensor ジャイロセンサー https://support.makeblock.com/hc/en-us/articles/12880946059159-About-Me-3-Axis-Accelerometer-and-Gyro-Sensor-for-Ultimate-2-0
+MeCompass Compass;                 //compass sensor コンパスセンサー
 MeJoystick joystick;
 MeStepperOnBoard steppers[4] = {MeStepperOnBoard(1),MeStepperOnBoard(2),MeStepperOnBoard(3),MeStepperOnBoard(4)};
 MeBuzzer buzzer;
@@ -132,7 +132,7 @@ int16_t LineFollowFlag=0;
 #define DATA_SERIAL3                           3
 
 uint8_t command_index = 0;
-uint8_t megapi_mode = BLUETOOTH_MODE;
+uint8_t megapi_mode = BLUETOOTH_MODE; // これでultimate2.0のモードを切り替える
 uint8_t index = 0;
 uint8_t dataLen;
 uint8_t modulesLen=0;
@@ -260,8 +260,10 @@ typedef struct
   double P, I, D;
   double Setpoint, Output, Integral,differential, last_error;
 } PID;
+// Setpointは目標値、Outputは出力値、Integralはエラーの積分値、differentialは微分値、last_errorは前回の誤差
 
 PID  PID_angle, PID_speed, PID_turn;
+// PID_angleは角度のPID制御、PID_speedは速度のPID制御、PID_turnは旋回のPID制御
 
 /**
  * \par Function
@@ -885,7 +887,7 @@ void writeEnd(void)
  * \par Others
  *    None
  */
-void writeSerial(uint8_t c)
+void writeSerial(uint8_t c) // bluetoothでデータを送信する、スマホ側で受信することになると思う
 {
   if(BluetoothSource == DATA_SERIAL)
   {
@@ -916,7 +918,7 @@ void writeSerial(uint8_t c)
  * \par Others
  *    None
  */
-void readSerial(void)
+void readSerial(void) // シリアルポートからデータを読み込んでいる。ここではblueToothでスマホアプリからデータを受け取るときに使う。
 {
   isAvailable = false;
   if(Serial.available() > 0)
@@ -956,7 +958,7 @@ void readSerial(void)
  * \par Others
  *    None
  */
-void parseData(void)
+void parseData(void) // bluethoothから受け取ったデータがbufferにあるので、それを読み取ってコマンドを実行する
 {
   isStart = false;
   uint8_t idx = readBuffer(3);
@@ -967,6 +969,10 @@ void parseData(void)
   {
     case GET:
       {
+        // センサーからデータを読み取る。センサーはRJ25ポートに接続されている。
+        // https://www.cnx-software.com/2023/04/23/makeblock-ultimate-2-0-review-a-multi-function-10-in-1-educational-robot-kit/#megapi-shield-for-rj25
+        // 下記を見ればわかるが、SPI通信でデータをやり取りしていることがわかる。
+        // https://support.makeblock.com/hc/en-us/articles/4412894483095-About-MegaPi
         readSensor(device);
         writeEnd();
       }
@@ -1106,7 +1112,9 @@ void sendString(String s)
  */
 void sendFloat(float value)
 { 
-  writeSerial(2);
+  writeSerial(2); // おそらく、データ送信の開始を示している。
+
+  // データをバイトに変換して送信している。
   val.floatVal = value;
   writeSerial(val.byteVal[0]);
   writeSerial(val.byteVal[1]);
@@ -1739,7 +1747,7 @@ void readSensor(uint8_t device)
   writeSerial(command_index);
   switch(device)
   {
-    case ULTRASONIC_SENSOR:
+    case ULTRASONIC_SENSOR: // 超音波センサーからデータを読み取る
       {
         if(us == NULL)
         {
@@ -1750,8 +1758,8 @@ void readSensor(uint8_t device)
           delete us;
           us = new MeUltrasonicSensor(port);
         }
-        value = (float)us->distanceCm();
-        sendFloat(value);
+        value = (float)us->distanceCm(); // 超音波センサーから距離を取得する
+        sendFloat(value); // シリアルポートにデータを送信する(これはbluetoothでデータを送信することになりスマホアプリで受信することになる)
       }
       break;
     case TEMPERATURE_SENSOR:
@@ -2189,7 +2197,7 @@ void readSensor(uint8_t device)
  */
 void PID_angle_compute(void)   //PID
 {
-  CompAngleX = -gyro_ext.getAngleX();
+  CompAngleX = -gyro_ext.getAngleX(); // x軸の角度を取得して、正負を逆にする
   double error = CompAngleX - PID_angle.Setpoint;
   PID_angle.Integral += error;
   PID_angle.Integral = constrain(PID_angle.Integral,-100,100); 
@@ -2223,8 +2231,8 @@ void PID_angle_compute(void)   //PID
   pwm_left = constrain(pwm_left, -255, 255);
   pwm_right = constrain(pwm_right, -255, 255);
 
-  encoders[0].setMotorPwm(pwm_left);
-  encoders[1].setMotorPwm(pwm_right);
+  encoders[0].setMotorPwm(pwm_left); // port 1にPWMを出力
+  encoders[1].setMotorPwm(pwm_right); // port 2にPWMを出力
 }
 
 /**
@@ -2467,6 +2475,7 @@ void parseCmd(char * cmd)
  * \par Others
  *    None
  */
+// megapi_mode == BALANCED_MODEの時にloop()で呼ばれる
 void balanced_model(void)
 {
   reset();
@@ -2850,10 +2859,10 @@ void setup()
  */
 void loop()
 {
-  currentTime = millis()/1000.0-lastTime;
-  keyPressed = buttonSensor.pressed();
+  currentTime = millis()/1000.0-lastTime; // 前回のloopの時間情報がlastTimeに入っている
+  keyPressed = buttonSensor.pressed(); // ボタンが押されているかどうかを取得
 
-  if(millis() - blink_time > 1000)
+  if(millis() - blink_time > 1000) // 1秒ごとにLEDなどのoutputを点滅させるためにblink_timeを管理している
   {
     blink_time = millis();
     blink_flag = !blink_flag;
@@ -2862,13 +2871,13 @@ void loop()
 
   if(ir != NULL)
   {
-    IrProcess();
+    IrProcess(); // IRリモコンのボタン(赤外線受信機)が押されたかどうかを取得
   }
 
   for(int i=0;i<4;i++)
   {
-    steppers[i].update();
-    encoders[i].loop();
+    steppers[i].update(); // ステッピングモータの状態を更新
+    encoders[i].loop(); // エンコーダの状態を更新。エンコーダーとはアナログからデジタルに変換してマイコンに伝える。その部品(モーターなど)に搭載されていることが一般的
   }
 
 //  while(Serial.available() > 0)
@@ -2884,13 +2893,13 @@ void loop()
 //    }
 //  }
 
-  readSerial();
-  while(isAvailable)
+  readSerial(); // ここではblueToothのデータを読み込むために使われている
+  while(isAvailable) // blueToothからのデータがある場合、一つずつデータ(どういう指示があったか)を読み込んでparseData()で処理する
   {
     unsigned char c = serialRead & 0xff;
-    if((c == 0x55) && (isStart == false))
+    if((c == 0x55) && (isStart == false)) // 0x55が送られてきた場合は新しいデータの開始
     {
-      if(prevc == 0xff)
+      if(prevc == 0xff) // 0xffが前回送られてきた場合は、新しいデータの開始
       {
         index=1;
         isStart = true;
@@ -2901,37 +2910,46 @@ void loop()
       prevc = c;
       if(isStart)
       {
-        if(index == 2)
+        if(index == 2) // データ開始をしているするパケットの次にはデータ長が入っている
         {
           dataLen = c; 
         }
-        else if(index > 2)
+        else if(index > 2) // データ長を読み込んだ後は徐々にデータを読み込む(dataLenが-1されていく)、それをdataLenが0になるまで続ける
         {
           dataLen--;
         }
-        writeBuffer(index,c);
+        writeBuffer(index,c); // データをバッファに書き込む、indexはバッファの位置、parseData()で使う
       }
     }
     index++;
-    if(index > 51)
+    if(index > 51) // max buffer sizeが52なので、それ以上のデータが送られてきた場合は、データを破棄する
     {
       index=0; 
       isStart=false;
     }
-    if(isStart && (dataLen == 0) && (index > 3))
+    if(isStart && (dataLen == 0) && (index > 3)) // データ長が0になった場合は、データをパースする
     { 
       isStart = false;
-      parseData(); 
+      parseData(); // parseData()でデータを処理しており、センサーからのデータを取得していたりする。
       index=0;
     }
-    readSerial();
+    readSerial(); // シリアルポートのデータを読み込むことで次のデータを読み込む
   }
 
+  // Compassはおそらく角度センサーの値を取得している。
+  // 周囲の磁場の強さを検出し、新しい環境でも正確に角度を測定することができます
+  // https://makex.shop/items/5e8498be0fe7194977d97b54
+  // https://www.makeblock.com.cn/en/project/me-compass
   if(Compass.getPort() != 0)
   {
-    Compass.getAngle();
+    Compass.getAngle(); // Calculate the yaw angle by the calibrated sensor value.
   }
+
+  // ジャイロセンサーのY軸の値を取得、y軸でのジャイロなので、ロボットが前後に傾いているかどうかを判定するために使われる。
+  // angle_speedに保存して、バランスの制御で飲み利用する模様(PID_angle_compute)
+  // https://www.marutsu.co.jp/sv/murata_lp/gyro/
   angle_speed = gyro_ext.getGyroY();
+
   if(megapi_mode == BLUETOOTH_MODE)
   {
     if(millis() - update_sensor > 10)
@@ -2942,12 +2960,14 @@ void loop()
   }
   else if(megapi_mode == AUTOMATIC_OBSTACLE_AVOIDANCE_MODE)
   { 
-    ultrCarProcess();
+    ultrCarProcess(); // 超音波センサーで障害物を検知して、自動で避ける
   }
   else if(megapi_mode == BALANCED_MODE)
   {
-    gyro_ext.fast_update();
-    balanced_model();
+    gyro_ext.fast_update(); // ジャイロセンサーの値を更新して保存している
+    balanced_model(); // バランスカーの制御
+
+    // ここでは超音波センサーの値を取得している(while(isAvailable)の部分)が、バランスカーの制御には使われていない
   }
   else if(megapi_mode == LINE_FOLLOW_MODE)
   {

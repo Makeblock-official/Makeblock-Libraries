@@ -207,29 +207,36 @@ void MeGyro::begin(void)
 void MeGyro::update(void)
 {
   static unsigned long	last_time = 0;
-  int8_t return_value;
+  int8_t return_value; // readDataのstatus codeみたいな値を返すところ(readDataの返り値に説明あり)
   double dt, filter_coefficient;
   /* read imu data */
   return_value = readData(0x3b, i2cData, 14);
-  if(return_value != 0)
+  if(return_value != 0) // readDataの返り値が0はsuccess
   {
     return;
   }
 
   double ax, ay;
   /* assemble 16 bit sensor data */
+  // 加速度センサの値を16bitに結合
   accX = ( (i2cData[0] << 8) | i2cData[1] );
   accY = ( (i2cData[2] << 8) | i2cData[3] );
   accZ = ( (i2cData[4] << 8) | i2cData[5] );  
+
+  // ジャイロセンサの値を16bitに結合
   gyrX = ( ( (i2cData[8] << 8) | i2cData[9] ) - gyrXoffs) / gSensitivity;
   gyrY = ( ( (i2cData[10] << 8) | i2cData[11] ) - gyrYoffs) / gSensitivity;
   gyrZ = ( ( (i2cData[12] << 8) | i2cData[13] ) - gyrZoffs) / gSensitivity;  
+
+  // 加速度センサの値を角度に変換
   ax = atan2(accX, sqrt( pow(accY, 2) + pow(accZ, 2) ) ) * 180 / 3.1415926;
   ay = atan2(accY, sqrt( pow(accX, 2) + pow(accZ, 2) ) ) * 180 / 3.1415926;  
 
   dt = (double)(millis() - last_time) / 1000;
   last_time = millis();
 
+  // おそらくgx,gy,gzはジャイロセンサの軸でそれを補正している模様
+  // This part integrates the gyroscope data to estimate the change in angles (gx, gy, gz).
   if(accZ > 0)
   {
     gx = gx - gyrY * dt;
@@ -291,12 +298,16 @@ void MeGyro::fast_update(void)
 
   double ax, ay;
   /* assemble 16 bit sensor data */
+  // 
   accX = ( (i2cData[0] << 8) | i2cData[1] );
   accY = ( (i2cData[2] << 8) | i2cData[3] );
-  accZ = ( (i2cData[4] << 8) | i2cData[5] );  
+  accZ = ( (i2cData[4] << 8) | i2cData[5] );
+
   gyrX = ( ( (i2cData[8] << 8) | i2cData[9] ) - gyrXoffs) / gSensitivity;
   gyrY = ( ( (i2cData[10] << 8) | i2cData[11] ) - gyrYoffs) / gSensitivity;
   gyrZ = ( ( (i2cData[12] << 8) | i2cData[13] ) - gyrZoffs) / gSensitivity;  
+
+
   ax = atan2(accX, sqrt( pow(accY, 2) + pow(accZ, 2) ) ) * 180 / 3.1415926;
   ay = atan2(accY, sqrt( pow(accX, 2) + pow(accZ, 2) ) ) * 180 / 3.1415926;  
 
