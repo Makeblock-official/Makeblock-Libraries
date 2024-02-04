@@ -166,13 +166,13 @@ void MeGyro::setpin(uint8_t AD0, uint8_t INT)
 void MeGyro::begin(void)
 {
   gSensitivity = 65.5; //for 500 deg/s, check data sheet
-  gx = 0;
-  gy = 0;
+  gx = 0; // gxとはy軸を中心にしたx軸の角度
+  gy = 0; // gyとはx軸を中心にしたy軸の角度
   gz = 0;
-  gyrX = 0;
-  gyrY = 0;
-  gyrZ = 0;
-  accX = 0;
+  gyrX = 0; // gyrXはx軸を中心にした時の角速度。y軸やz軸がどのくらい動いたかを示す。
+  gyrY = 0; // gyrYはy軸を中心にした時の角速度。x軸やz軸がどのくらい動いたかを示す。
+  gyrZ = 0; // gyrZはz軸を中心にした時の角速度。x軸やy軸がどのくらい動いたかを示す。
+  accX = 0; 
   accY = 0;
   accZ = 0;
   gyrXoffs = 0;
@@ -224,6 +224,9 @@ void MeGyro::update(void)
   accZ = ( (i2cData[4] << 8) | i2cData[5] );  
 
   // ジャイロセンサの値を16bitに結合
+  // gyrXはx軸を中心にした時の角速度。y軸やz軸がどのくらい動いたかを示す。
+  // gyrYはy軸を中心にした時の角速度。x軸やz軸がどのくらい動いたかを示す。
+  // gyrZはz軸を中心にした時の角速度。x軸やy軸がどのくらい動いたかを示す。
   gyrX = ( ( (i2cData[8] << 8) | i2cData[9] ) - gyrXoffs) / gSensitivity;
   gyrY = ( ( (i2cData[10] << 8) | i2cData[11] ) - gyrYoffs) / gSensitivity;
   gyrZ = ( ( (i2cData[12] << 8) | i2cData[13] ) - gyrZoffs) / gSensitivity;  
@@ -239,8 +242,8 @@ void MeGyro::update(void)
   // This part integrates the gyroscope data to estimate the change in angles (gx, gy, gz).
   if(accZ > 0)
   {
-    gx = gx - gyrY * dt;
-    gy = gy + gyrX * dt;
+    gx = gx - gyrY * dt; // gxとはy軸を中心にしたx軸の角度。gyrYはy軸を中心とした時の角速度。dtは経過時間。
+    gy = gy + gyrX * dt; // gyとはx軸を中心にしたy軸の角度。gyrXはx軸を中心とした時の角速度。dtは経過時間。
   }
   else
   {

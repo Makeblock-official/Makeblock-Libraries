@@ -174,8 +174,9 @@ boolean blink_flag = false;
 
 String mVersion = "0e.01.018";
 //////////////////////////////////////////////////////////////////////////////////////
+// RELAX_ANGLEを0ではなく-1にしているのは、-1だと毎回不安定になって、常にバランスを取ろうとするようになるからだと思う。
 float RELAX_ANGLE = -1;                    //Natural balance angle,should be adjustment according to your own car
-#define PWM_MIN_OFFSET   0
+#define PWM_MIN_OFFSET   0 // PWM_MIN_OFFSETは信号の位相を調整するためのもの。PWM_MIN_OFFSETが大きいほど、モーターの回転が遅くなる。
 
 #define VERSION                0
 #define ULTRASONIC_SENSOR      1
@@ -257,13 +258,19 @@ float RELAX_ANGLE = -1;                    //Natural balance angle,should be adj
 
 typedef struct
 {
-  double P, I, D;
+  double P, I, D; // PID制御のP,I,Dに対してかける係数。あらかじめ設定される
   double Setpoint, Output, Integral,differential, last_error;
 } PID;
-// Setpointは目標値、Outputは出力値、Integralはエラーの積分値、differentialは微分値、last_errorは前回の誤差
+// Setpointは目標値。self balanceではここは不変になる。void reset(void)でスピードと旋回は0となっており、角度はRELAX_ANGLEになっている。
+// Outputは今回の出力値(次の入力に利用される)、last_errorとIntegralとdifferentialを使って計算される。
+// last_errorは前回の誤差(角度誤差、スピード誤差など)
+// Integralは前回のエラーの時間積分値
+// differentialは前回のエラー時間微分値
 
 PID  PID_angle, PID_speed, PID_turn;
 // PID_angleは角度のPID制御、PID_speedは速度のPID制御、PID_turnは旋回のPID制御
+// PID_angle.Setpointはy軸を中心にした時のx軸の理想角度
+// PID_turnは左側に旋回するときは正の値、右側に旋回するときは負の値になる。PID_turn.Setpoint = joy_x_temp;からわかる
 
 /**
  * \par Function
@@ -2197,12 +2204,12 @@ void readSensor(uint8_t device)
  */
 void PID_angle_compute(void)   //PID
 {
-  CompAngleX = -gyro_ext.getAngleX(); // x軸の角度を取得して、正負を逆にする
-  double error = CompAngleX - PID_angle.Setpoint;
-  PID_angle.Integral += error;
+  CompAngleX = -gyro_ext.getAngleX(); // y軸を中心にした時のx軸の角度を取得して、正負を逆にする
+  double error = CompAngleX - PID_angle.Setpoint; // y軸を中心にした時のx軸の目標角度と、現在の角度の差を計算(P制御で利用する)
+  PID_angle.Integral += error; // 前回までのエラーに今回のエラーを加算する
   PID_angle.Integral = constrain(PID_angle.Integral,-100,100); 
-  PID_angle.differential = angle_speed;
-  PID_angle.Output = PID_angle.P * error + PID_angle.I * PID_angle.Integral + PID_angle.D * PID_angle.differential;
+  PID_angle.differential = angle_speed; // angle_speedは前後の傾きのスピード(ジャイロ)を意味する。それは時間あたりにどれだけの角度が変化するかを意味する。
+  PID_angle.Output = PID_angle.P * error + PID_angle.I * PID_angle.Integral + PID_angle.D * PID_angle.differential; // PID制御の出力を計算する
   if(PID_angle.Output > 0)
   {
     PID_angle.Output = PID_angle.Output + PWM_MIN_OFFSET;
@@ -2212,8 +2219,9 @@ void PID_angle_compute(void)   //PID
     PID_angle.Output = PID_angle.Output - PWM_MIN_OFFSET;
   }
 
-  double pwm_left = PID_angle.Output - PID_turn.Output;
-  double pwm_right = -PID_angle.Output - PID_turn.Output;
+  // BALANCED_MODEの場合はPID_turn.Outputは常に0になる
+  double pwm_left = PID_angle.Output - PID_turn.Output; // どのくらい傾きたいか - どのくらい旋回したいか
+  double pwm_right = -PID_angle.Output - PID_turn.Output; // どのくらい傾きたいか - どのくらい旋回したいか(左右逆になるのでマイナスをつける)
 
 #ifdef DEBUG_INFO
   Serial.print("Relay: ");
@@ -2251,11 +2259,15 @@ void PID_angle_compute(void)   //PID
  */
 void PID_speed_compute(void)
 {
-  double speed_now = (encoders[1].getCurrentSpeed() - encoders[0].getCurrentSpeed())/2;
+  double speed_now = (encoders[1].getCurrentSpeed() - encoders[0].getCurrentSpeed())/2; // 左右のモーターの速度の平均を取得する
 
+  // ジョイコンによる操作がない(BALANCE_MODE)場合は、PID_speed.Setpointは0になるので
+  // last_speed_setpoint_filterは常に0になる
+  // また move_flag = false;になる
   last_speed_setpoint_filter  = last_speed_setpoint_filter  * 0.8;
   last_speed_setpoint_filter  += PID_speed.Setpoint * 0.2;
  
+  // BALANCE_MODEではmove_flagは常にfalseになるので通らない
   if((move_flag == true) && (abs(speed_now) < 8) && (PID_speed.Setpoint == 0))
   {
     move_flag = false;
@@ -2263,8 +2275,8 @@ void PID_speed_compute(void)
     PID_speed.Integral = speed_Integral_average;
   }
 
-  double error = speed_now - last_speed_setpoint_filter;
-  PID_speed.Integral += error;
+  double error = speed_now - last_speed_setpoint_filter; // BALENCE_MODEの場合はerrorは常にspeed_nowになる
+  PID_speed.Integral += error; // 前回までのエラーに今回のエラーを加算する(エラーの積分)。どんどん大きくなる。
 
   if(move_flag == true) 
   { 
@@ -2275,9 +2287,9 @@ void PID_speed_compute(void)
   else
   {  
     PID_speed.Integral = constrain(PID_speed.Integral , -2000, 2000);
-    PID_speed.Output = PID_speed.P * speed_now + PID_speed.I * PID_speed.Integral;
+    PID_speed.Output = PID_speed.P * speed_now + PID_speed.I * PID_speed.Integral; // 次のスピードの出力を計算する。PID_speed.PもPID_speed.Iも正なので、どんどん大きくなる。ダメじゃね？
     PID_speed.Output = constrain(PID_speed.Output , -10.0, 10.0);
-    speed_Integral_average = 0.8 * speed_Integral_average + 0.2 * PID_speed.Integral;
+    speed_Integral_average = 0.8 * speed_Integral_average + 0.2 * PID_speed.Integral; // BALANCE_MODEでもspeed_Integral_averageは利用されていない
   }
   
 #ifdef DEBUG_INFO
@@ -2368,7 +2380,7 @@ void reset(void)
  * \par Others
  *    None
  */
-void parseGcode(char * cmd)
+void parseGcode(char * cmd)  // deprecatedぽい
 {
   char * tmp;
   char * str;
@@ -2452,7 +2464,7 @@ void parseGcode(char * cmd)
  * \par Others
  *    None
  */
-void parseCmd(char * cmd)
+void parseCmd(char * cmd) // deprecatedぽい
 {
   if((cmd[0]=='g') || (cmd[0]=='G'))
   { 
@@ -2481,14 +2493,21 @@ void balanced_model(void)
   reset();
   if(start_flag == true)
   {
-    if((millis() - lasttime_angle) > 10)
+    if((millis() - lasttime_angle) > 10) // 10msごとに角度を制御する
     {
+      // PID_angle_computeでは、angleのためのPID制御として、
+      // setMotorPwmで進行方向のスピードの調整をしている。
       PID_angle_compute();
       lasttime_angle = millis();
     }    
-    if((millis() - lasttime_speed) > 100)
+    if((millis() - lasttime_speed) > 100) // 100msごとにスピードを制御する
     {
+      // PID_speed_computeではスピードのPID制御を行って次のスピードを計算する
+      // 次のスピードから理想の角度(PID_angle.Setpoint)を修正する
       PID_speed_compute();
+
+      // (前回のターン * 0.8 + 今回の理想ターン * 0.2)を今回のターンとする
+      // ジョイコンによる操作がないかぎり、理想のターン(PID_turn.Setpoint)は0になる
       last_turn_setpoint_filter  = last_turn_setpoint_filter * 0.8;
       last_turn_setpoint_filter  += PID_turn.Setpoint * 0.2;
       PID_turn.Output = last_turn_setpoint_filter;
