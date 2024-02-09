@@ -153,6 +153,7 @@ double  last_speed_setpoint_filter = 0.0;
 double  last_speed_error_filter = 0.0;
 double  speed_Integral_average = 0.0;
 double  angle_speed = 0.0;
+double  last_angle_speed = 0.0;
 
 float angleServo = 90.0;
 float dt;
@@ -2219,9 +2220,62 @@ void PID_angle_compute(void)   //PID
     PID_angle.Output = PID_angle.Output - PWM_MIN_OFFSET;
   }
 
-  // BALANCED_MODEの場合はPID_turn.Outputは常に0になる
+  // double speed_now = (encoders[1].getCurrentSpeed() - encoders[0].getCurrentSpeed())/2; // 左右のモーターの速度の平均を取得する。単位は回転数/分rpmであるrpm(https://github.com/Makeblock-official/Makeblock-Libraries/blob/master/src/MeEncoderOnBoard.h#L321)
+
+  // double K_Speed = 0.1;
+  // double K_Speed_Angle = 0.2;
+
+  double angle_acc = (angle_speed - last_angle_speed) / 10;
+  last_angle_speed = angle_speed;
+  Serial.print("angle_speed: ");
+  Serial.println(angle_speed);
+  // Serial.print("speed_now:");
+  // Serial.println(speed_now);
+  // Serial.print("error:");
+  // Serial.println(error);
+
   double pwm_left = PID_angle.Output - PID_turn.Output; // どのくらい傾きたいか - どのくらい旋回したいか
-  double pwm_right = -PID_angle.Output - PID_turn.Output; // どのくらい傾きたいか - どのくらい旋回したいか(左右逆になるのでマイナスをつける)
+  double pwm_right = -(PID_angle.Output - PID_turn.Output); // どのくらい傾きたいか - どのくらい旋回したいか(左右逆になるのでマイナスをつける)
+
+  if (error >= 10) {
+    pwm_left += 10 * PID_angle.P * error;
+    pwm_right -= 10 * PID_angle.P * error;
+  }
+
+  // if (angle_speed > 100 && error > 0) { // 前に傾いているとき
+  //   pwm_left += 10 * PID_angle.P * error;
+  //   pwm_right -= 10 * PID_angle.P * error;
+  // }
+
+  // if (angle_acc <= -30) {
+  //   pwm_left += 10 * PID_angle.P * error;
+  //   pwm_right -= 10 * PID_angle.P * error;
+  // }
+
+  if (error <= -15) {
+    pwm_left -= 10 * PID_angle.P * error;
+    pwm_right += 10 * PID_angle.P * error;
+  }
+
+  // if (angle_speed < -100 && error < 0) { // 後ろに傾いているとき
+  //   pwm_left -= 10 * PID_angle.P * error;
+  //   pwm_right += 10 * PID_angle.P * error;
+  // }
+
+  // if (angle_acc >= 30) {
+  //   pwm_left -= 10 * PID_angle.P * error;
+  //   pwm_right += 10 * PID_angle.P * error;
+  // }
+
+  // if (speed_now >= 100) {
+  //   pwm_left += 4 * PID_angle.P * error;
+  //   pwm_right -= 4 * PID_angle.P * error;
+  // }
+
+  // if (speed_now <= - 100) {
+  //   pwm_left -= 4 * PID_angle.P * error;
+  //   pwm_right += 4 * PID_angle.P * error;
+  // }
 
 #ifdef DEBUG_INFO
   Serial.print("Relay: ");
@@ -2236,8 +2290,8 @@ void PID_angle_compute(void)   //PID
   Serial.println(PID_angle.differential);
 #endif
 
-  pwm_left = constrain(pwm_left, -255, 255);
-  pwm_right = constrain(pwm_right, -255, 255);
+  pwm_left = constrain(pwm_left, -255, 255); // ⁺が後ろに行く
+  pwm_right = constrain(pwm_right, -255, 255); // -が後ろに行く
 
   encoders[0].setMotorPwm(pwm_left); // port 1にPWMを出力
   encoders[1].setMotorPwm(pwm_right); // port 2にPWMを出力
@@ -2259,53 +2313,56 @@ void PID_angle_compute(void)   //PID
  */
 void PID_speed_compute(void)
 {
-  double speed_now = (encoders[1].getCurrentSpeed() - encoders[0].getCurrentSpeed())/2; // 左右のモーターの速度の平均を取得する
+  double speed_now = (encoders[1].getCurrentSpeed() - encoders[0].getCurrentSpeed())/2; // 左右のモーターの速度の平均を取得する。単位は回転数/分rpmであるrpm(https://github.com/Makeblock-official/Makeblock-Libraries/blob/master/src/MeEncoderOnBoard.h#L321)
 
-  // ジョイコンによる操作がない(BALANCE_MODE)場合は、PID_speed.Setpointは0になるので
-  // last_speed_setpoint_filterは常に0になる
-  // また move_flag = false;になる
-  last_speed_setpoint_filter  = last_speed_setpoint_filter  * 0.8;
-  last_speed_setpoint_filter  += PID_speed.Setpoint * 0.2;
+  Serial.print("speed_now:");
+  Serial.println(speed_now);
+
+//   // ジョイコンによる操作がない(BALANCE_MODE)場合は、PID_speed.Setpointは0になるので
+//   // last_speed_setpoint_filterは常に0になる
+//   // また move_flag = false;になる
+//   last_speed_setpoint_filter  = last_speed_setpoint_filter  * 0.8;
+//   last_speed_setpoint_filter  += PID_speed.Setpoint * 0.2;
  
-  // BALANCE_MODEではmove_flagは常にfalseになるので通らない
-  if((move_flag == true) && (abs(speed_now) < 8) && (PID_speed.Setpoint == 0))
-  {
-    move_flag = false;
-    last_speed_setpoint_filter = 0;
-    PID_speed.Integral = speed_Integral_average;
-  }
+//   // BALANCE_MODEではmove_flagは常にfalseになるので通らない
+//   if((move_flag == true) && (abs(speed_now) < 8) && (PID_speed.Setpoint == 0))
+//   {
+//     move_flag = false;
+//     last_speed_setpoint_filter = 0;
+//     PID_speed.Integral = speed_Integral_average;
+//   }
 
-  double error = speed_now - last_speed_setpoint_filter; // BALENCE_MODEの場合はerrorは常にspeed_nowになる
-  PID_speed.Integral += error; // 前回までのエラーに今回のエラーを加算する(エラーの積分)。どんどん大きくなる。
+//   double error = speed_now - last_speed_setpoint_filter; // BALENCE_MODEの場合はerrorは常にspeed_nowになる
+//   PID_speed.Integral += error; // 前回までのエラーに今回のエラーを加算する(エラーの積分)。どんどん大きくなる。
 
-  if(move_flag == true) 
-  { 
-    PID_speed.Integral = constrain(PID_speed.Integral , -2000, 2000);
-    PID_speed.Output = PID_speed.P * error + PID_speed.I * PID_speed.Integral;
-    PID_speed.Output = constrain(PID_speed.Output , -8.0, 8.0);
-  }
-  else
-  {  
-    PID_speed.Integral = constrain(PID_speed.Integral , -2000, 2000);
-    PID_speed.Output = PID_speed.P * speed_now + PID_speed.I * PID_speed.Integral; // 次のスピードの出力を計算する。PID_speed.PもPID_speed.Iも正なので、どんどん大きくなる。ダメじゃね？
-    PID_speed.Output = constrain(PID_speed.Output , -10.0, 10.0);
-    speed_Integral_average = 0.8 * speed_Integral_average + 0.2 * PID_speed.Integral; // BALANCE_MODEでもspeed_Integral_averageは利用されていない
-  }
+//   if(move_flag == true) 
+//   { 
+//     PID_speed.Integral = constrain(PID_speed.Integral , -2000, 2000);
+//     PID_speed.Output = PID_speed.P * error + PID_speed.I * PID_speed.Integral;
+//     PID_speed.Output = constrain(PID_speed.Output , -8.0, 8.0);
+//   }
+//   else
+//   {  
+//     PID_speed.Integral = constrain(PID_speed.Integral , -2000, 2000);
+//     PID_speed.Output = PID_speed.P * speed_now + PID_speed.I * PID_speed.Integral; // 次のスピードの出力を計算する。PID_speed.PもPID_speed.Iも正なので、どんどん大きくなる。ダメじゃね？
+//     PID_speed.Output = constrain(PID_speed.Output , -10.0, 10.0);
+//     speed_Integral_average = 0.8 * speed_Integral_average + 0.2 * PID_speed.Integral; // BALANCE_MODEでもspeed_Integral_averageは利用されていない
+//   }
   
-#ifdef DEBUG_INFO
-  Serial.print(speed_now);
-  Serial.print(","); 
-  Serial.print(PID_speed.Setpoint);
-  Serial.print(",");      
-  Serial.print(last_speed_error_filter);
-  Serial.print(",");
-  Serial.print(last_speed_setpoint_filter);
-  Serial.print(",");
-  Serial.print(PID_speed.Integral);
-  Serial.print(",");
-  Serial.println(PID_speed.Output);
-#endif
-  PID_angle.Setpoint =  RELAX_ANGLE + PID_speed.Output;
+// #ifdef DEBUG_INFO
+//   Serial.print(speed_now);
+//   Serial.print(","); 
+//   Serial.print(PID_speed.Setpoint);
+//   Serial.print(",");      
+//   Serial.print(last_speed_error_filter);
+//   Serial.print(",");
+//   Serial.print(last_speed_setpoint_filter);
+//   Serial.print(",");
+//   Serial.print(PID_speed.Integral);
+//   Serial.print(",");
+//   Serial.println(PID_speed.Output);
+// #endif
+//   PID_angle.Setpoint =  RELAX_ANGLE + PID_speed.Output;
 }
 
 int16_t agx_start_count;
@@ -2500,19 +2557,19 @@ void balanced_model(void)
       PID_angle_compute();
       lasttime_angle = millis();
     }    
-    if((millis() - lasttime_speed) > 100) // 100msごとにスピードを制御する
-    {
-      // PID_speed_computeではスピードのPID制御を行って次のスピードを計算する
-      // 次のスピードから理想の角度(PID_angle.Setpoint)を修正する
-      PID_speed_compute();
+    // if((millis() - lasttime_speed) > 100) // 100msごとにスピードを制御する
+    // {
+    //   // PID_speed_computeではスピードのPID制御を行って次のスピードを計算する
+    //   // 次のスピードから理想の角度(PID_angle.Setpoint)を修正する
+    //   PID_speed_compute();
 
-      // (前回のターン * 0.8 + 今回の理想ターン * 0.2)を今回のターンとする
-      // ジョイコンによる操作がないかぎり、理想のターン(PID_turn.Setpoint)は0になる
-      last_turn_setpoint_filter  = last_turn_setpoint_filter * 0.8;
-      last_turn_setpoint_filter  += PID_turn.Setpoint * 0.2;
-      PID_turn.Output = last_turn_setpoint_filter;
-      lasttime_speed = millis();
-    }
+    //   // (前回のターン * 0.8 + 今回の理想ターン * 0.2)を今回のターンとする
+    //   // ジョイコンによる操作がないかぎり、理想のターン(PID_turn.Setpoint)は0になる
+    //   last_turn_setpoint_filter  = last_turn_setpoint_filter * 0.8;
+    //   last_turn_setpoint_filter  += PID_turn.Setpoint * 0.2;
+    //   PID_turn.Output = last_turn_setpoint_filter;
+    //   lasttime_speed = millis();
+    // }
   }
   else
   {
@@ -2848,7 +2905,7 @@ void setup()
   leftflag=false;
   rightflag=false;
   PID_angle.Setpoint = RELAX_ANGLE;
-  PID_angle.P = 20;          // 20;
+  PID_angle.P = 10;          // 20;
   PID_angle.I = 1;           // 1;
   PID_angle.D = 0.2;         // 0.2;
   PID_speed.P = 0.06;        // 0.06
