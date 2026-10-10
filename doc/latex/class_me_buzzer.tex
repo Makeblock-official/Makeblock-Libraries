@@ -1,0 +1,294 @@
+\doxysection{Me\+Buzzer Class Reference}
+\hypertarget{class_me_buzzer}{}\label{class_me_buzzer}\index{MeBuzzer@{MeBuzzer}}
+
+
+Driver for Me Buzzer module.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Buzzer.\+h$>$}
+
+
+
+Inheritance diagram for Me\+Buzzer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=140pt]{class_me_buzzer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+Buzzer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=140pt]{class_me_buzzer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_buzzer_a227e3cc7515146d9f5951184f4c285fe}{Me\+Buzzer}} ()
+\item 
+\mbox{\hyperlink{class_me_buzzer_a5af903da92e6142eae69ae7c12eebcbe}{Me\+Buzzer}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_buzzer_a545e0f080ecc289e7d39aa81954e08d6}{Me\+Buzzer}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+void \mbox{\hyperlink{class_me_buzzer_a5b6bba509b80d4239b1480822f2737dc}{setpin}} (int \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}})
+\item 
+void \mbox{\hyperlink{class_me_buzzer_abac0ae73dab72895c956f2f11ca032ac}{tone}} (int \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}}, uint16\+\_\+t frequency, uint32\+\_\+t duration)
+\item 
+void \mbox{\hyperlink{class_me_buzzer_aa412cf2bc1512c389f4d729037e16ed0}{tone}} (uint16\+\_\+t frequency, uint32\+\_\+t duration=0)
+\item 
+void \mbox{\hyperlink{class_me_buzzer_a25ea6412895981c00bc9ff67dbacb7d0}{no\+Tone}} (int \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}})
+\item 
+void \mbox{\hyperlink{class_me_buzzer_a17f2d0a133f49125f2aa24dd970e926f}{no\+Tone}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me Buzzer module. 
+
+Class\+: \doxylink{class_me_buzzer}{Me\+Buzzer} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_buzzer}{Me\+Buzzer}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_buzzer_a227e3cc7515146d9f5951184f4c285fe}\label{class_me_buzzer_a227e3cc7515146d9f5951184f4c285fe} 
+\index{MeBuzzer@{MeBuzzer}!MeBuzzer@{MeBuzzer}}
+\index{MeBuzzer@{MeBuzzer}!MeBuzzer@{MeBuzzer}}
+\doxysubsubsection{\texorpdfstring{MeBuzzer()}{MeBuzzer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Me\+Buzzer\+::\+Me\+Buzzer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the buzzer to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+Alternate Constructor which can call your own function to map the Buzzer to arduino port, Buzzer pins are used and initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_buzzer_a5af903da92e6142eae69ae7c12eebcbe}\label{class_me_buzzer_a5af903da92e6142eae69ae7c12eebcbe} 
+\index{MeBuzzer@{MeBuzzer}!MeBuzzer@{MeBuzzer}}
+\index{MeBuzzer@{MeBuzzer}!MeBuzzer@{MeBuzzer}}
+\doxysubsubsection{\texorpdfstring{MeBuzzer()}{MeBuzzer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Me\+Buzzer\+::\+Me\+Buzzer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the Buzzer to arduino port, If the hardware serial was selected, we will used the hardware serial. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_buzzer_a545e0f080ecc289e7d39aa81954e08d6}\label{class_me_buzzer_a545e0f080ecc289e7d39aa81954e08d6} 
+\index{MeBuzzer@{MeBuzzer}!MeBuzzer@{MeBuzzer}}
+\index{MeBuzzer@{MeBuzzer}!MeBuzzer@{MeBuzzer}}
+\doxysubsubsection{\texorpdfstring{MeBuzzer()}{MeBuzzer()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Me\+Buzzer\+::\+Me\+Buzzer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{uint8\+\_\+t}]{slot }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the Buzzer to arduino port, you can set any slot for the buzzer device. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\mbox{\texttt{ in}}  & {\em slot} & -\/ SLOT1 or SLOT2 \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_buzzer_a17f2d0a133f49125f2aa24dd970e926f}\label{class_me_buzzer_a17f2d0a133f49125f2aa24dd970e926f} 
+\index{MeBuzzer@{MeBuzzer}!noTone@{noTone}}
+\index{noTone@{noTone}!MeBuzzer@{MeBuzzer}}
+\doxysubsubsection{\texorpdfstring{noTone()}{noTone()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Me\+Buzzer\+::no\+Tone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+no\+Tone 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Do not playing the tones. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None \textbackslash{}\+Return None. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_buzzer_a25ea6412895981c00bc9ff67dbacb7d0}\label{class_me_buzzer_a25ea6412895981c00bc9ff67dbacb7d0} 
+\index{MeBuzzer@{MeBuzzer}!noTone@{noTone}}
+\index{noTone@{noTone}!MeBuzzer@{MeBuzzer}}
+\doxysubsubsection{\texorpdfstring{noTone()}{noTone()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Me\+Buzzer\+::no\+Tone (\begin{DoxyParamCaption}\item[{int}]{pin }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+no\+Tone 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Do not playing the tones. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin} & -\/ Which pin on board that buzzer is connecting to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None \textbackslash{}\+Return None. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_buzzer_a5b6bba509b80d4239b1480822f2737dc}\label{class_me_buzzer_a5b6bba509b80d4239b1480822f2737dc} 
+\index{MeBuzzer@{MeBuzzer}!setpin@{setpin}}
+\index{setpin@{setpin}!MeBuzzer@{MeBuzzer}}
+\doxysubsubsection{\texorpdfstring{setpin()}{setpin()}}
+{\footnotesize\ttfamily void Me\+Buzzer\+::setpin (\begin{DoxyParamCaption}\item[{int}]{pin }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+setpin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the buzzer available pin by its arduino port. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin} & -\/ arduino port for buzzer detect pin. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_buzzer_abac0ae73dab72895c956f2f11ca032ac}\label{class_me_buzzer_abac0ae73dab72895c956f2f11ca032ac} 
+\index{MeBuzzer@{MeBuzzer}!tone@{tone}}
+\index{tone@{tone}!MeBuzzer@{MeBuzzer}}
+\doxysubsubsection{\texorpdfstring{tone()}{tone()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Me\+Buzzer\+::tone (\begin{DoxyParamCaption}\item[{int}]{pin,  }\item[{uint16\+\_\+t}]{frequency,  }\item[{uint32\+\_\+t}]{duration }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+tone 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Playing the tones. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin} & -\/ Which pin on board that buzzer is connecting to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em frequency} & -\/ The speed of buzzer\textquotesingle{}s tone play. \\
+\hline
+\mbox{\texttt{ in}}  & {\em duration} & -\/ Time of a tone play. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None \textbackslash{}\+Return None. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+Frequency (in hertz) and duration (in milliseconds). 
+\end{DoxyParagraph}
+\Hypertarget{class_me_buzzer_aa412cf2bc1512c389f4d729037e16ed0}\label{class_me_buzzer_aa412cf2bc1512c389f4d729037e16ed0} 
+\index{MeBuzzer@{MeBuzzer}!tone@{tone}}
+\index{tone@{tone}!MeBuzzer@{MeBuzzer}}
+\doxysubsubsection{\texorpdfstring{tone()}{tone()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Me\+Buzzer\+::tone (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{frequency,  }\item[{uint32\+\_\+t}]{duration = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+tone 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Playing the tones. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em frequency} & -\/ The speed of buzzer\textquotesingle{}s tone play. \\
+\hline
+\mbox{\texttt{ in}}  & {\em duration} & -\/ Time of a tone play. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None \textbackslash{}\+Return None. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+Frequency (in hertz) and duration (in milliseconds). 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_buzzer_8h}{Me\+Buzzer.\+h}}\item 
+src/\mbox{\hyperlink{_me_buzzer_8cpp}{Me\+Buzzer.\+cpp}}\end{DoxyCompactItemize}

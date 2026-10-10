@@ -1,0 +1,115 @@
+\doxysection{Me\+Encoder\+New.\+h}
+\hypertarget{_me_encoder_new_8h_source}{}\label{_me_encoder_new_8h_source}\index{src/MeEncoderNew.h@{src/MeEncoderNew.h}}
+\mbox{\hyperlink{_me_encoder_new_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#ifndef\ ME\_LEGOENCODER\_H}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ ME\_LEGOENCODER\_H}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ LEONARDO\_PORT1}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#if\ defined(UNO\_PORT1)\ }\textcolor{comment}{//10:PB3\ 11:PB2}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ SDA\_PORT\ PORTB}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ SDA\_PIN\ 3}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ SCL\_PORT\ PORTB}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ SCL\_PIN\ 2}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ I2C\_SLOWMODE\ 1}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#elif\ defined(UNO\_PORT2)\ }\textcolor{comment}{//3:PD3\ 9:PB1}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ SDA\_PORT\ PORTD}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ SDA\_PIN\ 3}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ SCL\_PORT\ PORTB}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ SCL\_PIN\ 1}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ I2C\_SLOWMODE\ 1}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#elif\ defined(LEONARDO\_PORT1)\ }\textcolor{comment}{//11:PB7\ 8:PB4}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ SDA\_PORT\ PORTB}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ SDA\_PIN\ 7}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ SCL\_PORT\ PORTB}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ SCL\_PIN\ 4}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ I2C\_SLOWMODE\ 1}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#elif\ defined(LEONARDO\_PORT2)\ }\textcolor{comment}{//13:PC7\ 12:PD6}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ SDA\_PORT\ PORTC}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ SDA\_PIN\ 7}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ SCL\_PORT\ PORTD}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ SCL\_PIN\ 6}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ I2C\_SLOWMODE\ 1}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ change\ sda\ scl\ if\ you\ use\ a\ different\ pin\ mapping}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ PULSE\_PER\_C\ 8\ }}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_encoder_new}{MeEncoderNew}}\{}
+\DoxyCodeLine{00108\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00117\ \ \ \mbox{\hyperlink{class_me_encoder_new_a809786152a62ec4d737f45a3cc8d3ea0}{MeEncoderNew}}(uint8\_t\ addr,uint8\_t\ slot);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00125\ \ \ \mbox{\hyperlink{class_me_encoder_new_a809786152a62ec4d737f45a3cc8d3ea0}{MeEncoderNew}}(uint8\_t\ slot);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00133\ \ \ \mbox{\hyperlink{class_me_encoder_new_a809786152a62ec4d737f45a3cc8d3ea0}{MeEncoderNew}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00149\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a7502d17074b0de59a44406f1c67aa1fa}{begin}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00150\ \ \ }
+\DoxyCodeLine{00167\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a6bf91a91af5bde030d9656e3314d0c96}{setAddr}}(uint8\_t\ i2cAddr,uint8\_t\ slot);}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00181\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a1b73a317a6ed28c0b6ee61899da4c2ff}{reset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00201\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_abe1fe2665edfaae677ed00eea1fef040}{move}}(\textcolor{keywordtype}{long}\ angle,\ \textcolor{keywordtype}{float}\ speed\ =\ 220,\ \textcolor{keywordtype}{float}\ lock\_state\ =\ 1);}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00221\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a2b9316c366c67ef88b6f03635f8c9468}{moveTo}}(\textcolor{keywordtype}{long}\ angle,\ \textcolor{keywordtype}{float}\ speed\ =\ 220,\ \textcolor{keywordtype}{float}\ lock\_state\ =\ 1);}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00241\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_ab7c6be174df72535937b1bc640d07b3a}{runTurns}}(\textcolor{keywordtype}{long}\ turns,\ \textcolor{keywordtype}{float}\ speed\ =\ 220,\textcolor{keywordtype}{float}\ lock\_state\ =\ 1);}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00257\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a37dc43618ad8f23e690dd1d39fe13edb}{runSpeed}}(\textcolor{keywordtype}{float}\ speed,\textcolor{keywordtype}{float}\ lock\_state\ =\ 1);}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00273\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_encoder_new_a15f163ff89aeba26ea17be4a3b77737f}{getCurrentSpeed}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00289\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a36caaf02601282f0a5543c1f115bca15}{setCurrentPosition}}(\textcolor{keywordtype}{long}\ pulse\_counter);}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00305\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_encoder_new_ab161f5bd122c55b9564f8ce1263a8c0b}{getCurrentPosition}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00325\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_ab6575651faefb9e22c73305d79655c76}{setSpeedPID}}(\textcolor{keywordtype}{float}\ p,\textcolor{keywordtype}{float}\ i,\textcolor{keywordtype}{float}\ d);}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00345\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a7314cbf995b8b11fc954d12f96302fe5}{setPosPID}}(\textcolor{keywordtype}{float}\ p,\textcolor{keywordtype}{float}\ i,\textcolor{keywordtype}{float}\ d);}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00365\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_afe29430100b70233abc4f991bb2e27be}{getSpeedPID}}(\textcolor{keywordtype}{float}\ *\ p,\textcolor{keywordtype}{float}\ *\ i,\textcolor{keywordtype}{float}\ *\ d);}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00385\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a8729ee00ccdf13ebb0385b29de057320}{getPosPID}}(\textcolor{keywordtype}{float}\ *\ p,\textcolor{keywordtype}{float}\ *\ i,\textcolor{keywordtype}{float}\ *\ d);}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00401\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_encoder_new_a476f3a1e0364be857b07b238cdf9eb08}{getRatio}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00417\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a033ffc24a1a7c2ea2bba48afb86b9ee2}{setRatio}}(\textcolor{keywordtype}{float}\ r);}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00433\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_me_encoder_new_a4cee6129526a9d8c3111acb61a9d3a88}{getPulse}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00449\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a658cae48c69e374ee22d29fd54b8f5ab}{setPulse}}(\textcolor{keywordtype}{int}\ p);}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00465\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a800797c599c551731a65225f459a076a}{setDevid}}(uint8\_t\ devid);}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00481\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a8a54a728b9077dcd0e95a0277d54fcb3}{setMode}}(uint8\_t\ mode);}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00497\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_ad642ecd7bbb1015d5dab74ffce7b3b04}{setPWM}}(\textcolor{keywordtype}{int}\ pwm);}
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00517\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a8b93e11a6d0ba0cedbc8e4a4ae44471b}{runSpeedAndTime}}(\textcolor{keywordtype}{float}\ speed,\ \textcolor{keywordtype}{float}\ time,\ \textcolor{keywordtype}{float}\ lock\_state\ =\ 1);}
+\DoxyCodeLine{00518\ \ \ }
+\DoxyCodeLine{00534\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_encoder_new_a0fec98e0dcfd4d1df08039810f450f6d}{isTarPosReached}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00549\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_new_a02ff4e42930711e7ab228f25b80e045c}{getFirmwareVersion}}(\textcolor{keywordtype}{char}\ *buffer);}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00566\ \ \ \textcolor{keywordtype}{void}\ sendCmd(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00568\ \ \ uint8\_t\ \_slot;\ }
+\DoxyCodeLine{00569\ \ \ uint8\_t\ address;}
+\DoxyCodeLine{00570\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \_lastTime;}
+\DoxyCodeLine{00571\ \ \ \textcolor{keywordtype}{char}\ cmdBuf[18];}
+\DoxyCodeLine{00572\ \};}
+\DoxyCodeLine{00573\ }
+\DoxyCodeLine{00574\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00575\ }
+\DoxyCodeLine{00576\ }
+\DoxyCodeLine{00577\ }
+
+\end{DoxyCode}

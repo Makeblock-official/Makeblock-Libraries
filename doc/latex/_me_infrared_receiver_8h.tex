@@ -1,0 +1,183 @@
+\doxysection{src/\+Me\+Infrared\+Receiver.h File Reference}
+\hypertarget{_me_infrared_receiver_8h}{}\label{_me_infrared_receiver_8h}\index{src/MeInfraredReceiver.h@{src/MeInfraredReceiver.h}}
+
+
+Header for for \doxylink{_me_infrared_receiver_8cpp}{Me\+Infrared\+Receiver.\+cpp} module.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Serial.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+Infrared\+Receiver.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_infrared_receiver_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_infrared_receiver_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_me_infrared_receiver}{Me\+Infrared\+Receiver}}
+\begin{DoxyCompactList}\small\item\em Driver for Me Infrared Receiver device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a1b97fbd6fd7d9d9280ad9c5f159751a2}\label{_me_infrared_receiver_8h_a1b97fbd6fd7d9d9280ad9c5f159751a2} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+POWER}~(0x45)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a14d9fc95fc79a5190adcc4a744318d89}\label{_me_infrared_receiver_8h_a14d9fc95fc79a5190adcc4a744318d89} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+A}~(0x45)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a9e6d17ef5e592ef1dc16b845c497cee4}\label{_me_infrared_receiver_8h_a9e6d17ef5e592ef1dc16b845c497cee4} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+B}~(0x46)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a5e6467664bb3c8f7c4ad90574afd0761}\label{_me_infrared_receiver_8h_a5e6467664bb3c8f7c4ad90574afd0761} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+MENU}~(0x47)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a6f5dbecf6abae1daaa5ec3ee0224704a}\label{_me_infrared_receiver_8h_a6f5dbecf6abae1daaa5ec3ee0224704a} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+C}~(0x47)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a7da11ee5ac86549d608cd3910236b8e6}\label{_me_infrared_receiver_8h_a7da11ee5ac86549d608cd3910236b8e6} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+TEST}~(0x44)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_aa097b347fd0a55bd860be8716969be46}\label{_me_infrared_receiver_8h_aa097b347fd0a55bd860be8716969be46} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+D}~(0x44)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a1a817a481b7ca1be031df54a94273bdb}\label{_me_infrared_receiver_8h_a1a817a481b7ca1be031df54a94273bdb} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+PLUS}~(0x40)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a5ce627e6b1c111ade01b7e20077ad761}\label{_me_infrared_receiver_8h_a5ce627e6b1c111ade01b7e20077ad761} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+UP}~(0x40)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a218b0f96da5a461c981a40b6a54881a1}\label{_me_infrared_receiver_8h_a218b0f96da5a461c981a40b6a54881a1} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+RETURN}~(0x43)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_abd19fe999bbbc5d5965b6aaea59befe4}\label{_me_infrared_receiver_8h_abd19fe999bbbc5d5965b6aaea59befe4} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+E}~(0x43)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_ad8543fef3e8692724446fc756404b8fb}\label{_me_infrared_receiver_8h_ad8543fef3e8692724446fc756404b8fb} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+PREVIOUS}~(0x07)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a644f1f2ecbcd0d9e31ad7d495a6529a0}\label{_me_infrared_receiver_8h_a644f1f2ecbcd0d9e31ad7d495a6529a0} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+LEFT}~(0x07)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_ab96332af1868fd8911b3740358153102}\label{_me_infrared_receiver_8h_ab96332af1868fd8911b3740358153102} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+PLAY}~(0x15)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a28e5853273b681ec25aa8820cf86360c}\label{_me_infrared_receiver_8h_a28e5853273b681ec25aa8820cf86360c} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+SETTING}~(0x15)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a0ebaf73c74c20e685e69043b13f9305c}\label{_me_infrared_receiver_8h_a0ebaf73c74c20e685e69043b13f9305c} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+NEXT}~(0x09)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a52010afe68144c8b967aebf6c35bd2c7}\label{_me_infrared_receiver_8h_a52010afe68144c8b967aebf6c35bd2c7} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+RIGHT}~(0x09)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a4c932ceaf87aeccaeba5497907751884}\label{_me_infrared_receiver_8h_a4c932ceaf87aeccaeba5497907751884} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+MINUS}~(0x19)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a532a6f8bdf5ccd43a9df6fd72c7c1144}\label{_me_infrared_receiver_8h_a532a6f8bdf5ccd43a9df6fd72c7c1144} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+DOWN}~(0x19)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a9e2c693b562747f490f99a520767911e}\label{_me_infrared_receiver_8h_a9e2c693b562747f490f99a520767911e} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+\+CLR}~(0x0D)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a0bee3909412b28ca584241bdaee2a577}\label{_me_infrared_receiver_8h_a0bee3909412b28ca584241bdaee2a577} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+F}~(0x0D)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_aef648edd8acd0e8718f77fc0c47ab3a2}\label{_me_infrared_receiver_8h_aef648edd8acd0e8718f77fc0c47ab3a2} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+0}~(0x16)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_ae3a281f558e4666430d5692e9d5ee513}\label{_me_infrared_receiver_8h_ae3a281f558e4666430d5692e9d5ee513} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+1}~(0x0C)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a4bbe0493f09e47ce69e952e5fcb0e7cf}\label{_me_infrared_receiver_8h_a4bbe0493f09e47ce69e952e5fcb0e7cf} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+2}~(0x18)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_acf424023907d8aa5feba4150c98cf5b3}\label{_me_infrared_receiver_8h_acf424023907d8aa5feba4150c98cf5b3} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+3}~(0x5E)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a4022acad56a54982eedad7020039bc20}\label{_me_infrared_receiver_8h_a4022acad56a54982eedad7020039bc20} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+4}~(0x08)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_abd5432160016036097045183eb4ab090}\label{_me_infrared_receiver_8h_abd5432160016036097045183eb4ab090} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+5}~(0x1C)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a6caa1225c00144314a86d79ff0358eca}\label{_me_infrared_receiver_8h_a6caa1225c00144314a86d79ff0358eca} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+6}~(0x5A)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_af55e728012f1dec06f38c3272ee4de8a}\label{_me_infrared_receiver_8h_af55e728012f1dec06f38c3272ee4de8a} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+7}~(0x42)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_a657ed21d8c9532f3145db79419c65cad}\label{_me_infrared_receiver_8h_a657ed21d8c9532f3145db79419c65cad} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+8}~(0x52)
+\item 
+\Hypertarget{_me_infrared_receiver_8h_ad0d8a1c6f94d70c3bf3f6fc0bf404e2c}\label{_me_infrared_receiver_8h_ad0d8a1c6f94d70c3bf3f6fc0bf404e2c} 
+\#define {\bfseries IR\+\_\+\+BUTTON\+\_\+9}~(0x4A)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for for \doxylink{_me_infrared_receiver_8cpp}{Me\+Infrared\+Receiver.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2017/04/06 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Description}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+Description\+: this file is a drive for Me Infrared Receiver, It supports Infrared Receiver V2.\+0 and V3.\+0 device provided by the Make\+Block company.
+
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_infrared_receiver_ac25056e96b50a1bf16c05eedbfeaaf78}{Me\+Infrared\+Receiver\+::begin(void)}
+\item int16\+\_\+t \doxylink{class_me_infrared_receiver_aaccf198c3a013b38e783a3e055631110}{Me\+Infrared\+Receiver\+::read(void)}
+\item bool \doxylink{class_me_infrared_receiver_a85d4066f35e6838f24e6d3f23a5236a1}{Me\+Infrared\+Receiver\+::button\+State(void)}
+\item uint8\+\_\+t \doxylink{class_me_infrared_receiver_a2b4385744d5ff2cd325f15095d257126}{Me\+Infrared\+Receiver\+::get\+Code(void)}
+\item void \doxylink{class_me_infrared_receiver_ab178d4d0bb7a3af0aa35a88183c2f928}{Me\+Infrared\+Receiver\+::loop(void)}
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan         2015/09/09     1.0.0            Rebuild the old lib.
+Mark Yan         2017/04/06     1.0.1            Filter out the 0 value of infrared remote.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

@@ -1,0 +1,199 @@
+\doxysection{src/\+Me\+Port.h File Reference}
+\hypertarget{_me_port_8h}{}\label{_me_port_8h}\index{src/MePort.h@{src/MePort.h}}
+
+
+Header for \doxylink{_me_port_8cpp}{Me\+Port.\+cpp} module.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$avr/interrupt.\+h$>$}\newline
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+{\ttfamily \#include $<$util/delay.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+Include dependency graph for Me\+Port.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_port_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_port_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_me_port___sig}{Me\+Port\+\_\+\+Sig}}
+\item 
+class \mbox{\hyperlink{class_me_port}{Me\+Port}}
+\begin{DoxyCompactList}\small\item\em Port Mapping for RJ25. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_port_8h_a1fa2460e32327ade49189c95740bc1b5}\label{_me_port_8h_a1fa2460e32327ade49189c95740bc1b5} 
+\#define {\bfseries NC}~(0)
+\item 
+\Hypertarget{_me_port_8h_a381df6cc2c92e7935057f010fe949326}\label{_me_port_8h_a381df6cc2c92e7935057f010fe949326} 
+\#define {\bfseries PORT\+\_\+1}~(0x01)
+\item 
+\Hypertarget{_me_port_8h_a64e474e5f8be468f8ec13a9869dd54d4}\label{_me_port_8h_a64e474e5f8be468f8ec13a9869dd54d4} 
+\#define {\bfseries PORT\+\_\+2}~(0x02)
+\item 
+\Hypertarget{_me_port_8h_a04e76d8b6ae75c91eebf40147d8ef2d9}\label{_me_port_8h_a04e76d8b6ae75c91eebf40147d8ef2d9} 
+\#define {\bfseries PORT\+\_\+3}~(0x03)
+\item 
+\Hypertarget{_me_port_8h_aaf1ce903d30a30c201b6ead4ec0c112b}\label{_me_port_8h_aaf1ce903d30a30c201b6ead4ec0c112b} 
+\#define {\bfseries PORT\+\_\+4}~(0x04)
+\item 
+\Hypertarget{_me_port_8h_a8adcf78813e9d0e625738de20aaa0a22}\label{_me_port_8h_a8adcf78813e9d0e625738de20aaa0a22} 
+\#define {\bfseries PORT\+\_\+5}~(0x05)
+\item 
+\Hypertarget{_me_port_8h_a676f7869631345fe72e310299b1b1c47}\label{_me_port_8h_a676f7869631345fe72e310299b1b1c47} 
+\#define {\bfseries PORT\+\_\+6}~(0x06)
+\item 
+\Hypertarget{_me_port_8h_a5743c0ec9a3d1e23470f255a9641c8aa}\label{_me_port_8h_a5743c0ec9a3d1e23470f255a9641c8aa} 
+\#define {\bfseries PORT\+\_\+7}~(0x07)
+\item 
+\Hypertarget{_me_port_8h_aead0874b2e41238617a16668629246e3}\label{_me_port_8h_aead0874b2e41238617a16668629246e3} 
+\#define {\bfseries PORT\+\_\+8}~(0x08)
+\item 
+\Hypertarget{_me_port_8h_ae5a6415cf592ac79391b1e67d8bca176}\label{_me_port_8h_ae5a6415cf592ac79391b1e67d8bca176} 
+\#define {\bfseries PORT\+\_\+9}~(0x09)
+\item 
+\Hypertarget{_me_port_8h_a4c39a294d7b3a360c172b65151a5bfc8}\label{_me_port_8h_a4c39a294d7b3a360c172b65151a5bfc8} 
+\#define {\bfseries PORT\+\_\+10}~(0x0a)
+\item 
+\Hypertarget{_me_port_8h_ac597abe7cf610f262f7aaec53ed1d413}\label{_me_port_8h_ac597abe7cf610f262f7aaec53ed1d413} 
+\#define {\bfseries M1}~(0x09)
+\item 
+\Hypertarget{_me_port_8h_a2a187ef3afced0eb4c4cb99515e5429c}\label{_me_port_8h_a2a187ef3afced0eb4c4cb99515e5429c} 
+\#define {\bfseries M2}~(0x0a)
+\item 
+\Hypertarget{_me_port_8h_abeebf6334cb5240b09d97d35fc0128f3}\label{_me_port_8h_abeebf6334cb5240b09d97d35fc0128f3} 
+\#define {\bfseries PORT\+\_\+11}~(0x0b)
+\item 
+\Hypertarget{_me_port_8h_ae57c3ffa4df15481a9a219e16b011ef3}\label{_me_port_8h_ae57c3ffa4df15481a9a219e16b011ef3} 
+\#define {\bfseries PORT\+\_\+12}~(0x0c)
+\item 
+\Hypertarget{_me_port_8h_ae76dfcae2263b7d43d1ee23fa9548293}\label{_me_port_8h_ae76dfcae2263b7d43d1ee23fa9548293} 
+\#define {\bfseries PORT\+\_\+13}~(0x0d)
+\item 
+\Hypertarget{_me_port_8h_a9c8783d66b07c093c559a5fd74add129}\label{_me_port_8h_a9c8783d66b07c093c559a5fd74add129} 
+\#define {\bfseries PORT\+\_\+14}~(0x0e)
+\item 
+\Hypertarget{_me_port_8h_aeb88886b16b5a8ea23147000fd9af3cc}\label{_me_port_8h_aeb88886b16b5a8ea23147000fd9af3cc} 
+\#define {\bfseries PORT\+\_\+15}~(0x0f)
+\item 
+\Hypertarget{_me_port_8h_aa9fff44f99e434f31b19ed55462b45d4}\label{_me_port_8h_aa9fff44f99e434f31b19ed55462b45d4} 
+\#define {\bfseries PORT\+\_\+16}~(0x10)
+\item 
+\Hypertarget{_me_port_8h_a86e7f1b7f5ebbab30d693661f380d1b9}\label{_me_port_8h_a86e7f1b7f5ebbab30d693661f380d1b9} 
+\#define {\bfseries SLOT1}~(1)
+\item 
+\Hypertarget{_me_port_8h_a31de44a4d7df249dd52269e2192fad86}\label{_me_port_8h_a31de44a4d7df249dd52269e2192fad86} 
+\#define {\bfseries SLOT2}~(2)
+\item 
+\Hypertarget{_me_port_8h_a036fbc14cce3b67513de25a348ceda9f}\label{_me_port_8h_a036fbc14cce3b67513de25a348ceda9f} 
+\#define {\bfseries SLOT3}~(3)
+\item 
+\Hypertarget{_me_port_8h_aa04579e8d5ec2ed904350993982388ec}\label{_me_port_8h_aa04579e8d5ec2ed904350993982388ec} 
+\#define {\bfseries SLOT4}~(4)
+\item 
+\Hypertarget{_me_port_8h_acaefa2133071f702f159249efb0f2939}\label{_me_port_8h_acaefa2133071f702f159249efb0f2939} 
+\#define {\bfseries SLOT\+\_\+1}~SLOT1
+\item 
+\Hypertarget{_me_port_8h_a1df46fb9761115bd75609db9f4ef579e}\label{_me_port_8h_a1df46fb9761115bd75609db9f4ef579e} 
+\#define {\bfseries SLOT\+\_\+2}~SLOT2
+\item 
+\Hypertarget{_me_port_8h_ad52d75c1c513c81c7bcda244047216e8}\label{_me_port_8h_ad52d75c1c513c81c7bcda244047216e8} 
+\#define {\bfseries SLOT\+\_\+3}~SLOT3
+\item 
+\Hypertarget{_me_port_8h_ab9b657482b42b99cfda207e22024d683}\label{_me_port_8h_ab9b657482b42b99cfda207e22024d683} 
+\#define {\bfseries SLOT\+\_\+4}~SLOT4
+\item 
+\Hypertarget{_me_port_8h_aa93f0eb578d23995850d61f7d61c55c1}\label{_me_port_8h_aa93f0eb578d23995850d61f7d61c55c1} 
+\#define {\bfseries FALSE}~(0)
+\item 
+\Hypertarget{_me_port_8h_aa8cecfc5c5c054d2875c03e77b7be15d}\label{_me_port_8h_aa8cecfc5c5c054d2875c03e77b7be15d} 
+\#define {\bfseries TRUE}~(1)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_port_8h_a7daa0f0960832f11443da8b53e954056}\label{_me_port_8h_a7daa0f0960832f11443da8b53e954056} 
+\mbox{\hyperlink{struct_me_port___sig}{Me\+Port\+\_\+\+Sig}} {\bfseries me\+Port} \mbox{[}17\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for \doxylink{_me_port_8cpp}{Me\+Port.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+3 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/09/20 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Make\+Block rj25 port.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item uint8\+\_\+t \doxylink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{Me\+Port\+::get\+Slot()}
+\item uint8\+\_\+t \doxylink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{Me\+Port\+::get\+Slot()}
+\item bool \doxylink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{Me\+Port\+::d\+Read1(uint8\+\_\+t mode)}
+\item bool \doxylink{class_me_port_ab4fd13565335bd781da8f44bae803031}{Me\+Port\+::d\+Read2(uint8\+\_\+t mode)}
+\item bool \doxylink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{Me\+Port\+::dp\+Read1(void)}
+\item bool \doxylink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{Me\+Port\+::dp\+Read1(void)}
+\item void \doxylink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{Me\+Port\+::d\+Write1(bool value)}
+\item void \doxylink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{Me\+Port\+::d\+Write2(bool value)}
+\item int16\+\_\+t \doxylink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{Me\+Port\+::a\+Read1()}
+\item int16\+\_\+t \doxylink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{Me\+Port\+::a\+Read2()}
+\item void \doxylink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{Me\+Port\+::a\+Write1(int16\+\_\+t value)}
+\item void \doxylink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{Me\+Port\+::a\+Write2(int16\+\_\+t value)}
+\item void \doxylink{class_me_port_a7b82ce913d98ecff906569d795073892}{Me\+Port\+::reset(uint8\+\_\+t port)}
+\item void \doxylink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{Me\+Port\+::reset(uint8\+\_\+t port, uint8\+\_\+t slot)}
+\item uint8\+\_\+t \doxylink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{Me\+Port\+::pin1()}
+\item uint8\+\_\+t \doxylink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{Me\+Port\+::pin2()}
+\item uint8\+\_\+t \doxylink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{Me\+Port\+::pin()}
+\item uint8\+\_\+t \doxylink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{Me\+Port\+::pin(uint8\+\_\+t port, uint8\+\_\+t slot)}
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`         `<Descr>`
+Mark Yan         2015/09/01          1.0.0            Rebuild the old lib.
+Lawrence         2015/09/09          1.0.1            Add a input parameter of function dRead1 and dRead2.
+Scott wang       2016/09/18          1.0.2            Add the PORT[15].
+Scott            2016/09/20          1.0.3            Add the PORT[16].
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

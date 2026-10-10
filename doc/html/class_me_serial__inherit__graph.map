@@ -1,0 +1,23 @@
+<map id="MeSerial" name="MeSerial">
+<area shape="rect" id="Node000001" title="Driver for serial." alt="" coords="387,155,459,181"/>
+<area shape="rect" id="Node000005" href="$class_me_bluetooth.html" title="Driver for Me Bluetooth device." alt="" coords="5,229,100,256"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="372,182,112,232,100,234,99,229,111,227,371,176"/>
+<area shape="rect" id="Node000006" href="$class_me_infrared_receiver.html" title="Driver for Me Infrared Receiver device." alt="" coords="123,229,254,256"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="373,188,230,231,229,226,371,182"/>
+<area shape="rect" id="Node000007" href="$class_me_p_s2.html" title="Driver for MePS2 handle device." alt="" coords="278,229,342,256"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="392,192,331,231,328,226,389,188"/>
+<area shape="rect" id="Node000008" href="$class_me_pm25_sensor.html" title="Driver for Me PM2.5 sensor device." alt="" coords="366,229,480,256"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="426,197,426,229,421,229,421,197"/>
+<area shape="rect" id="Node000009" href="$class_me_smart_servo.html" title="Driver for Me Smart Servo device." alt="" coords="505,229,611,256"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="461,187,535,226,533,231,458,191"/>
+<area shape="rect" id="Node000010" href="$class_me_voice.html" title="Driver for Me voice device." alt="" coords="635,229,707,256"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="475,182,635,228,634,233,474,187"/>
+<area shape="rect" id="Node000011" href="$class_me_wifi.html" title="Driver for Me wifi device." alt="" coords="731,229,793,256"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="475,176,588,198,720,227,731,230,730,235,719,232,587,203,474,181"/>
+<area shape="rect" id="Node000002" href="$class_me_port.html" title="Port Mapping for RJ25." alt="" coords="338,80,402,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="390,118,416,153,412,156,386,121"/>
+<area shape="rect" id="Node000003" href="$class_software_serial.html" title=" " alt="" coords="426,80,530,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="461,121,435,156,430,153,457,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="446,5,510,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="481,48,481,80,475,80,475,48"/>
+</map>

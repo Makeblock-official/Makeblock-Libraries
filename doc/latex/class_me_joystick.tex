@@ -1,0 +1,320 @@
+\doxysection{Me\+Joystick Class Reference}
+\hypertarget{class_me_joystick}{}\label{class_me_joystick}\index{MeJoystick@{MeJoystick}}
+
+
+Driver for Me Joystick module.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Joystick.\+h$>$}
+
+
+
+Inheritance diagram for Me\+Joystick\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=146pt]{class_me_joystick__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+Joystick\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=146pt]{class_me_joystick__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_joystick_a1fdc2f7f587fc30f7fce0b4efcb6fa1c}{Me\+Joystick}} (void)
+\item 
+\mbox{\hyperlink{class_me_joystick_abbc566b261a9b3029a21e68f62462e26}{Me\+Joystick}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_joystick_a250f11087c929f5e892b5670f5fdb7d4}{setpin}} (uint8\+\_\+t x\+\_\+port, uint8\+\_\+t y\+\_\+port)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_joystick_a0dea00e7568e3c2d4fd3c50d5b79cf90}{readX}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_joystick_a0ff4c70c343dcec6f3dc1b7a0d9caace}{readY}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_joystick_a5a690937c49c9ee5623006d2acfe0766}{read}} (uint8\+\_\+t index)
+\item 
+void \mbox{\hyperlink{class_me_joystick_ac229685677e2195d2bed8edc9a5308d1}{Cal\+Center\+Value}} (int16\+\_\+t=0, int16\+\_\+t=0)
+\item 
+float \mbox{\hyperlink{class_me_joystick_ae6ce1a51a3023c9017a560de91497adf}{angle}} (void)
+\item 
+float \mbox{\hyperlink{class_me_joystick_a6402a4343716a84282366e25035f4297}{Off\+Center}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me Joystick module. 
+
+Class\+: \doxylink{class_me_joystick}{Me\+Joystick} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_joystick}{Me\+Joystick}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_joystick_a1fdc2f7f587fc30f7fce0b4efcb6fa1c}\label{class_me_joystick_a1fdc2f7f587fc30f7fce0b4efcb6fa1c} 
+\index{MeJoystick@{MeJoystick}!MeJoystick@{MeJoystick}}
+\index{MeJoystick@{MeJoystick}!MeJoystick@{MeJoystick}}
+\doxysubsubsection{\texorpdfstring{MeJoystick()}{MeJoystick()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Me\+Joystick\+::\+Me\+Joystick (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_joystick}{Me\+Joystick} to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_joystick_abbc566b261a9b3029a21e68f62462e26}\label{class_me_joystick_abbc566b261a9b3029a21e68f62462e26} 
+\index{MeJoystick@{MeJoystick}!MeJoystick@{MeJoystick}}
+\index{MeJoystick@{MeJoystick}!MeJoystick@{MeJoystick}}
+\doxysubsubsection{\texorpdfstring{MeJoystick()}{MeJoystick()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Me\+Joystick\+::\+Me\+Joystick (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_joystick}{Me\+Joystick} to arduino port. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_joystick_ae6ce1a51a3023c9017a560de91497adf}\label{class_me_joystick_ae6ce1a51a3023c9017a560de91497adf} 
+\index{MeJoystick@{MeJoystick}!angle@{angle}}
+\index{angle@{angle}!MeJoystick@{MeJoystick}}
+\doxysubsubsection{\texorpdfstring{angle()}{angle()}}
+{\footnotesize\ttfamily float Me\+Joystick\+::angle (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+angle 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+We can use function to get the angle of the joystick 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The angle of the joystick(-\/180 -\/ 180) 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_joystick_ac229685677e2195d2bed8edc9a5308d1}\label{class_me_joystick_ac229685677e2195d2bed8edc9a5308d1} 
+\index{MeJoystick@{MeJoystick}!CalCenterValue@{CalCenterValue}}
+\index{CalCenterValue@{CalCenterValue}!MeJoystick@{MeJoystick}}
+\doxysubsubsection{\texorpdfstring{CalCenterValue()}{CalCenterValue()}}
+{\footnotesize\ttfamily void Me\+Joystick\+::\+Cal\+Center\+Value (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{x\+\_\+offset = {\ttfamily 0},  }\item[{int16\+\_\+t}]{y\+\_\+offset = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Cal\+Center\+Value 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+If joystick not been triggered(\+The default middle position), But the X-\/axis and Y-\/axis is not 0, we can use this function to calibration its 0 value. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x\+\_\+offset} & -\/ The offset vlaue we needed to calibrate the X-\/axis \\
+\hline
+\mbox{\texttt{ in}}  & {\em y\+\_\+offset} & -\/ The offset vlaue we needed to calibrate the Y-\/axis \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_joystick_a6402a4343716a84282366e25035f4297}\label{class_me_joystick_a6402a4343716a84282366e25035f4297} 
+\index{MeJoystick@{MeJoystick}!OffCenter@{OffCenter}}
+\index{OffCenter@{OffCenter}!MeJoystick@{MeJoystick}}
+\doxysubsubsection{\texorpdfstring{OffCenter()}{OffCenter()}}
+{\footnotesize\ttfamily float Me\+Joystick\+::\+Off\+Center (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Off\+Center 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+We can use function to get the off-\/center distance of the joystick 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The off-\/center distance of the joystick(0 -\/ 700) 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_joystick_a5a690937c49c9ee5623006d2acfe0766}\label{class_me_joystick_a5a690937c49c9ee5623006d2acfe0766} 
+\index{MeJoystick@{MeJoystick}!read@{read}}
+\index{read@{read}!MeJoystick@{MeJoystick}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Joystick\+::read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the value of setting axis 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em index} & -\/ \textquotesingle{}1\textquotesingle{} for X-\/axis and \textquotesingle{}2\textquotesingle{} for Y-\/axis \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The setting axis value from(-\/500 -\/ 500) 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_joystick_a0dea00e7568e3c2d4fd3c50d5b79cf90}\label{class_me_joystick_a0dea00e7568e3c2d4fd3c50d5b79cf90} 
+\index{MeJoystick@{MeJoystick}!readX@{readX}}
+\index{readX@{readX}!MeJoystick@{MeJoystick}}
+\doxysubsubsection{\texorpdfstring{readX()}{readX()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Joystick\+::readX (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+readX 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the value of X-\/axis 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The X-\/axis value from(-\/500 -\/ 500) 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_joystick_a0ff4c70c343dcec6f3dc1b7a0d9caace}\label{class_me_joystick_a0ff4c70c343dcec6f3dc1b7a0d9caace} 
+\index{MeJoystick@{MeJoystick}!readY@{readY}}
+\index{readY@{readY}!MeJoystick@{MeJoystick}}
+\doxysubsubsection{\texorpdfstring{readY()}{readY()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Joystick\+::readY (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+readY 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the value of Y-\/axis 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The Y-\/axis value from(-\/500 -\/ 500) 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_joystick_a250f11087c929f5e892b5670f5fdb7d4}\label{class_me_joystick_a250f11087c929f5e892b5670f5fdb7d4} 
+\index{MeJoystick@{MeJoystick}!setpin@{setpin}}
+\index{setpin@{setpin}!MeJoystick@{MeJoystick}}
+\doxysubsubsection{\texorpdfstring{setpin()}{setpin()}}
+{\footnotesize\ttfamily void Me\+Joystick\+::setpin (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{x\+\_\+port,  }\item[{uint8\+\_\+t}]{y\+\_\+port }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+setpin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the \doxylink{class_me_joystick}{Me\+Joystick} available PIN by its arduino port. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x\+\_\+port} & -\/ arduino port for X value PIN(should analog pin) \\
+\hline
+\mbox{\texttt{ in}}  & {\em y\+\_\+port} & -\/ arduino port for Y value PIN(should analog pin) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_joystick_8h}{Me\+Joystick.\+h}}\item 
+src/\mbox{\hyperlink{_me_joystick_8cpp}{Me\+Joystick.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,245 @@
+\doxysection{src/\+Me\+Mega\+Pi\+Pro.h File Reference}
+\hypertarget{_me_mega_pi_pro_8h}{}\label{_me_mega_pi_pro_8h}\index{src/MeMegaPiPro.h@{src/MeMegaPiPro.h}}
+
+
+Driver for Mega\+Pi\+Pro board.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me7\+Segment\+Display.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Ultrasonic\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+DCMotor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+RGBLed.\+h"{}}\newline
+{\ttfamily \#include "{}Me4\+Button.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Potentiometer.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Joystick.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+PIRMotion\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Shutter.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Line\+Follower.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Sound\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Limit\+Switch.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Light\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Serial.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Bluetooth.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Wifi.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Temperature.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Gyro.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Infrared\+Receiver.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Compass.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+USBHost.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Touch\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Stepper.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Stepper\+On\+Board.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Encoder\+Motor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Encoder\+New.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Buzzer.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+LEDMatrix.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Humiture\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Flame\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Gas\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Encoder\+On\+Board.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Mega\+Pi\+DCMotor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Pressure\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+PS2.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Smart\+Servo.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Mega\+Pi\+Pro\+ESCMotor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Color\+Sensor.\+h"{}}\newline
+Include dependency graph for Me\+Mega\+Pi\+Pro.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_mega_pi_pro_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_mega_pi_pro_8h_acb32134692198c984a1ebd32468c1295}\label{_me_mega_pi_pro_8h_acb32134692198c984a1ebd32468c1295} 
+\#define {\bfseries PORT1A}~PORT\+\_\+1
+\item 
+\Hypertarget{_me_mega_pi_pro_8h_ae4abc9913cd3c32713af13c5d326e6fe}\label{_me_mega_pi_pro_8h_ae4abc9913cd3c32713af13c5d326e6fe} 
+\#define {\bfseries PORT1B}~PORT\+\_\+9
+\item 
+\Hypertarget{_me_mega_pi_pro_8h_a3ea87e372e0c4067d16782dfb8baef29}\label{_me_mega_pi_pro_8h_a3ea87e372e0c4067d16782dfb8baef29} 
+\#define {\bfseries PORT2A}~PORT\+\_\+2
+\item 
+\Hypertarget{_me_mega_pi_pro_8h_a77a9b3beae1455c7c089cb2e88f85b06}\label{_me_mega_pi_pro_8h_a77a9b3beae1455c7c089cb2e88f85b06} 
+\#define {\bfseries PORT2B}~PORT\+\_\+10
+\item 
+\Hypertarget{_me_mega_pi_pro_8h_a7e8b89c1addee260f38e8265df543560}\label{_me_mega_pi_pro_8h_a7e8b89c1addee260f38e8265df543560} 
+\#define {\bfseries PORT3A}~PORT\+\_\+3
+\item 
+\Hypertarget{_me_mega_pi_pro_8h_ae3a0c1975ffebfcfd803bdc4a49dc7dc}\label{_me_mega_pi_pro_8h_ae3a0c1975ffebfcfd803bdc4a49dc7dc} 
+\#define {\bfseries PORT3B}~PORT\+\_\+11
+\item 
+\Hypertarget{_me_mega_pi_pro_8h_a7dead11d61222e845e04e994f337fc70}\label{_me_mega_pi_pro_8h_a7dead11d61222e845e04e994f337fc70} 
+\#define {\bfseries PORT4A}~PORT\+\_\+4
+\item 
+\Hypertarget{_me_mega_pi_pro_8h_a2493ba01c5751882001547c855824880}\label{_me_mega_pi_pro_8h_a2493ba01c5751882001547c855824880} 
+\#define {\bfseries PORT4B}~PORT\+\_\+12
+\item 
+\Hypertarget{_me_mega_pi_pro_8h_a55be408e63eeea7ed9d808d7e8385e3d}\label{_me_mega_pi_pro_8h_a55be408e63eeea7ed9d808d7e8385e3d} 
+\#define {\bfseries M9}~(0\+X01)
+\item 
+\Hypertarget{_me_mega_pi_pro_8h_a41e82513c3788074d8b003bedf120153}\label{_me_mega_pi_pro_8h_a41e82513c3788074d8b003bedf120153} 
+\#define {\bfseries M10}~(0\+X02)
+\item 
+\Hypertarget{_me_mega_pi_pro_8h_a8cb24086c1f9c78cc72c7d0240f85e99}\label{_me_mega_pi_pro_8h_a8cb24086c1f9c78cc72c7d0240f85e99} 
+\#define {\bfseries M11}~(0\+X03)
+\item 
+\Hypertarget{_me_mega_pi_pro_8h_ac6035e4b41faf9c44a9d50d41b4daebb}\label{_me_mega_pi_pro_8h_ac6035e4b41faf9c44a9d50d41b4daebb} 
+\#define {\bfseries M12}~(0\+X04)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_me_port___sig}{Me\+Port\+\_\+\+Sig}} \mbox{\hyperlink{_me_mega_pi_pro_8h_a7daa0f0960832f11443da8b53e954056}{me\+Port}} \mbox{[}17\mbox{]}
+\item 
+\mbox{\hyperlink{structmegapi__dc__type}{megapi\+\_\+dc\+\_\+type}} \mbox{\hyperlink{_me_mega_pi_pro_8h_a1504d45ba642438cc182f33db6191fc9}{megapi\+\_\+dc\+\_\+\+Port}} \mbox{[}14\mbox{]}
+\item 
+\mbox{\hyperlink{struct_encoder__port__type}{Encoder\+\_\+port\+\_\+type}} \mbox{\hyperlink{_me_mega_pi_pro_8h_ad6b20863ba6829393067b5905e339b96}{encoder\+\_\+\+Port}} \mbox{[}6\mbox{]}
+\item 
+\mbox{\hyperlink{structmega_pi__slot}{mega\+Pi\+\_\+slot\+\_\+type}} \mbox{\hyperlink{_me_mega_pi_pro_8h_ab098b4ae4f3f82b380eb7f5fe2070766}{mega\+Pi\+\_\+slots}} \mbox{[}4\mbox{]}
+\item 
+\mbox{\hyperlink{structmegapipro__esc__type}{megapipro\+\_\+esc\+\_\+type}} \mbox{\hyperlink{_me_mega_pi_pro_8h_a8680b2dd324bef4831e0ec563f58503e}{megapi\+\_\+esc\+\_\+\+Port}} \mbox{[}5\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Mega\+Pi\+Pro board. 
+
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2017, Make\+Block}
+
+\end{DoxyParagraph}
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+3 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2017/05/22
+\end{DoxyDate}
+Driver for Mega\+Pi\+Pro board.
+
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is the driver for Mega\+Pi\+Pro board by Make\+Block.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Zzipeng          2017/02/27          1.0.0            build the new
+Zzipeng          2017/03/14          1.0.1            add \doxylink{_me_smart_servo_8h}{MeSmartServo.h}.
+Zzipeng          2017/02/20          1.0.2            put the array megaPi\_slots[4] to MegaPipro.h
+Zzipeng          2017/05/20          1.0.3            add \doxylink{_me_mega_pi_pro_e_s_c_motor_8h}{MeMegaPiProESCMotor.h}
+Zzipeng          2017/05/22          1.0.4            add \doxylink{_me_color_sensor_8h}{MeColorSensor.h}
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{_me_mega_pi_pro_8h_ad6b20863ba6829393067b5905e339b96}\label{_me_mega_pi_pro_8h_ad6b20863ba6829393067b5905e339b96} 
+\index{MeMegaPiPro.h@{MeMegaPiPro.h}!encoder\_Port@{encoder\_Port}}
+\index{encoder\_Port@{encoder\_Port}!MeMegaPiPro.h@{MeMegaPiPro.h}}
+\doxysubsubsection{\texorpdfstring{encoder\_Port}{encoder\_Port}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_encoder__port__type}{Encoder\+\_\+port\+\_\+type}} encoder\+\_\+\+Port\mbox{[}6\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \{\ NC,\ \ \ \ \ NC,\ \ \ \ \ NC,\ \ \ \ \ NC,\ \ \ \ \ NC\},}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ \{\ 18,\ \ \ \ \ 31,\ \ \ \ \ 12,\ \ \ \ \ 34,\ \ \ \ \ 35\},}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ \{\ 19,\ \ \ \ \ 38,\ \ \ \ \ 8,\ \ \ \ \ \ 37,\ \ \ \ \ 36\},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \{\ 3,\ \ \ \ \ \ 49,\ \ \ \ \ 9,\ \ \ \ \ \ 43,\ \ \ \ \ 42\},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \{\ 2,\ \ \ \ \ \ 26,\ \ \ \ \ 5,\ \ \ \ \ \ 29,\ \ \ \ \ 39\},}
+\DoxyCodeLine{\ \ \{\ NC,\ \ \ \ \ NC,\ \ \ \ \ NC,\ \ \ \ \ NC,\ \ \ \ \ NC\},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{_me_mega_pi_pro_8h_a1504d45ba642438cc182f33db6191fc9}\label{_me_mega_pi_pro_8h_a1504d45ba642438cc182f33db6191fc9} 
+\index{MeMegaPiPro.h@{MeMegaPiPro.h}!megapi\_dc\_Port@{megapi\_dc\_Port}}
+\index{megapi\_dc\_Port@{megapi\_dc\_Port}!MeMegaPiPro.h@{MeMegaPiPro.h}}
+\doxysubsubsection{\texorpdfstring{megapi\_dc\_Port}{megapi\_dc\_Port}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmegapi__dc__type}{megapi\+\_\+dc\+\_\+type}} megapi\+\_\+dc\+\_\+\+Port\mbox{[}14\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \{\ NC,\ NC\ \},\ \{33,32,11\},\ \{40,41,\ 7\},\ \{47,48,\ 6\},\ \{28,27,\ 4\},}
+\DoxyCodeLine{\ \ \{\ NC,\ NC\ \},\ \{\ NC,\ NC\ \},\ \{\ NC,\ NC\ \},\ \{\ NC,\ NC\ \},\ \{35,34,12\},}
+\DoxyCodeLine{\ \ \{36,37,\ 8\},\ \{42,43,\ 9\},\ \{39,29,\ 5\},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{_me_mega_pi_pro_8h_a8680b2dd324bef4831e0ec563f58503e}\label{_me_mega_pi_pro_8h_a8680b2dd324bef4831e0ec563f58503e} 
+\index{MeMegaPiPro.h@{MeMegaPiPro.h}!megapi\_esc\_Port@{megapi\_esc\_Port}}
+\index{megapi\_esc\_Port@{megapi\_esc\_Port}!MeMegaPiPro.h@{MeMegaPiPro.h}}
+\doxysubsubsection{\texorpdfstring{megapi\_esc\_Port}{megapi\_esc\_Port}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmegapipro__esc__type}{megapipro\+\_\+esc\+\_\+type}} megapi\+\_\+esc\+\_\+\+Port\mbox{[}5\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \{\ NC\},\ \{12\},\ \{8\},\ \{9\},\ \{5\},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{_me_mega_pi_pro_8h_ab098b4ae4f3f82b380eb7f5fe2070766}\label{_me_mega_pi_pro_8h_ab098b4ae4f3f82b380eb7f5fe2070766} 
+\index{MeMegaPiPro.h@{MeMegaPiPro.h}!megaPi\_slots@{megaPi\_slots}}
+\index{megaPi\_slots@{megaPi\_slots}!MeMegaPiPro.h@{MeMegaPiPro.h}}
+\doxysubsubsection{\texorpdfstring{megaPi\_slots}{megaPi\_slots}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmega_pi__slot}{mega\+Pi\+\_\+slot\+\_\+type}} mega\+Pi\+\_\+slots\mbox{[}4\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \{35,\ \ \ 34,\ \ \ 33,\ \ \ 32,\ \ \ 31,\ \ 18,\ \ 12,\ \ 11\},}
+\DoxyCodeLine{\ \ \{36,\ \ \ 37,\ \ \ 40,\ \ \ 41,\ \ \ 38,\ \ 19,\ \ \ 8,\ \ \ 7\},}
+\DoxyCodeLine{\ \ \{42,\ \ \ 43,\ \ \ 47,\ \ \ 48,\ \ \ 49,\ \ \ 3,\ \ \ 9,\ \ \ 6\},}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ \{39,\ \ \ 29,\ \ \ 28,\ \ \ 27,\ \ \ 26,\ \ \ 2,\ \ \ 5,\ \ \ 4\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{_me_mega_pi_pro_8h_a7daa0f0960832f11443da8b53e954056}\label{_me_mega_pi_pro_8h_a7daa0f0960832f11443da8b53e954056} 
+\index{MeMegaPiPro.h@{MeMegaPiPro.h}!mePort@{mePort}}
+\index{mePort@{mePort}!MeMegaPiPro.h@{MeMegaPiPro.h}}
+\doxysubsubsection{\texorpdfstring{mePort}{mePort}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_me_port___sig}{Me\+Port\+\_\+\+Sig}} me\+Port\mbox{[}17\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \{}
+\DoxyCodeLine{\ \ \ \{\ NC,\ NC\ \},\{\ 46,\ 23\ \},\ \{\ 45,\ \ 22\ \},\ \{\ 44,\ 25\ \},\ \ \{\ 10,\ 24\ \},}
+\DoxyCodeLine{\ \ \ \{\ 16,\ 17\ \},\{\ A9,\ A4\ \},\ \{\ A10,\ A11\},\ \{\ A15,\ A14\},\ \{\ A13,\ A12\ \},\ }
+\DoxyCodeLine{\ \ \ \{\ A7,\ A8\ \},\{\ A6,\ A5\ \},\ \{\ A1,\ \ A2\ \},\ \{\ NC,\ NC\ \},\ \{\ NC,\ NC\ \},\ }
+\DoxyCodeLine{\ \ \ \{\ NC,\ NC\ \},\ \{\ NC,\ NC\ \},}
+\DoxyCodeLine{\ \}}
+
+\end{DoxyCode}

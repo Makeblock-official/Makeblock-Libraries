@@ -1,0 +1,273 @@
+\doxysection{src/\+Me\+IR.h File Reference}
+\hypertarget{_me_i_r_8h}{}\label{_me_i_r_8h}\index{src/MeIR.h@{src/MeIR.h}}
+
+
+Header for \doxylink{_me_i_r_8cpp}{Me\+IR.\+cpp} module.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+IR.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_i_r_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{_me_i_r_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structirparams__t}{irparams\+\_\+t}}
+\item 
+class \mbox{\hyperlink{class_me_i_r}{Me\+IR}}
+\begin{DoxyCompactList}\small\item\em Driver for Me IR module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_i_r_8h_abeb214368f7f34cff98de9047aa6eb2f}\label{_me_i_r_8h_abeb214368f7f34cff98de9047aa6eb2f} 
+\#define {\bfseries MARK}~0
+\item 
+\Hypertarget{_me_i_r_8h_a5ff6e798033f03e74730e99f01936f84}\label{_me_i_r_8h_a5ff6e798033f03e74730e99f01936f84} 
+\#define {\bfseries SPACE}~1
+\item 
+\Hypertarget{_me_i_r_8h_aa82c77bc0131ac28bc3534b8cf3422bc}\label{_me_i_r_8h_aa82c77bc0131ac28bc3534b8cf3422bc} 
+\#define {\bfseries NEC\+\_\+\+BITS}~32
+\item 
+\Hypertarget{_me_i_r_8h_aad2fcaac88c28bf54ecbd42146a56e3f}\label{_me_i_r_8h_aad2fcaac88c28bf54ecbd42146a56e3f} 
+\#define {\bfseries USECPERTICK}~50
+\item 
+\Hypertarget{_me_i_r_8h_abb919079668bcc14433d4c857ab8a196}\label{_me_i_r_8h_abb919079668bcc14433d4c857ab8a196} 
+\#define {\bfseries RAWBUF}~100
+\item 
+\Hypertarget{_me_i_r_8h_aa8aa16e823db70a88ab66e690734185d}\label{_me_i_r_8h_aa8aa16e823db70a88ab66e690734185d} 
+\#define {\bfseries NEC\+\_\+\+HDR\+\_\+\+MARK}~9000
+\item 
+\Hypertarget{_me_i_r_8h_a3f2ab883609d37c1442f39b6e7a8c4af}\label{_me_i_r_8h_a3f2ab883609d37c1442f39b6e7a8c4af} 
+\#define {\bfseries NEC\+\_\+\+HDR\+\_\+\+SPACE}~4500
+\item 
+\Hypertarget{_me_i_r_8h_a3abbe30ef3781c1cf2490003e1c1443a}\label{_me_i_r_8h_a3abbe30ef3781c1cf2490003e1c1443a} 
+\#define {\bfseries NEC\+\_\+\+BIT\+\_\+\+MARK}~560
+\item 
+\Hypertarget{_me_i_r_8h_a5ac04ec8b2185c9fb257d39c472733b1}\label{_me_i_r_8h_a5ac04ec8b2185c9fb257d39c472733b1} 
+\#define {\bfseries NEC\+\_\+\+ONE\+\_\+\+SPACE}~1600
+\item 
+\Hypertarget{_me_i_r_8h_a5ee46914e98bf7f87f32a7104843b243}\label{_me_i_r_8h_a5ee46914e98bf7f87f32a7104843b243} 
+\#define {\bfseries NEC\+\_\+\+ZERO\+\_\+\+SPACE}~560
+\item 
+\Hypertarget{_me_i_r_8h_a2e1b469c1f07809df3140c8c1e09283d}\label{_me_i_r_8h_a2e1b469c1f07809df3140c8c1e09283d} 
+\#define {\bfseries NEC\+\_\+\+RPT\+\_\+\+SPACE}~2250
+\item 
+\Hypertarget{_me_i_r_8h_a26ae9f0af624f6f19d1afec5fd25f5de}\label{_me_i_r_8h_a26ae9f0af624f6f19d1afec5fd25f5de} 
+\#define {\bfseries NEC\+\_\+\+RPT\+\_\+\+PERIOD}~110000
+\item 
+\Hypertarget{_me_i_r_8h_a20a1f39fddcb80d2135298f293f7081b}\label{_me_i_r_8h_a20a1f39fddcb80d2135298f293f7081b} 
+\#define {\bfseries \+\_\+\+GAP}~5000
+\item 
+\Hypertarget{_me_i_r_8h_aafff27c7165f059a969fe60fee51f683}\label{_me_i_r_8h_aafff27c7165f059a969fe60fee51f683} 
+\#define {\bfseries STATE\+\_\+\+IDLE}~2
+\item 
+\Hypertarget{_me_i_r_8h_acc0b44dd83d7dbc4a5505e9eaea1f76f}\label{_me_i_r_8h_acc0b44dd83d7dbc4a5505e9eaea1f76f} 
+\#define {\bfseries STATE\+\_\+\+MARK}~3
+\item 
+\Hypertarget{_me_i_r_8h_a356fac3e2ee472d393b5da4a518b4cbb}\label{_me_i_r_8h_a356fac3e2ee472d393b5da4a518b4cbb} 
+\#define {\bfseries STATE\+\_\+\+SPACE}~4
+\item 
+\Hypertarget{_me_i_r_8h_aacae076377c971590fc9d8a116c0e4e6}\label{_me_i_r_8h_aacae076377c971590fc9d8a116c0e4e6} 
+\#define {\bfseries STATE\+\_\+\+STOP}~5
+\item 
+\Hypertarget{_me_i_r_8h_aa3331693d369a00262eb7ad3b85e93a2}\label{_me_i_r_8h_aa3331693d369a00262eb7ad3b85e93a2} 
+\#define {\bfseries NEC}~1
+\item 
+\Hypertarget{_me_i_r_8h_a9d62bb9a6b31f5359e262e13599d5fc6}\label{_me_i_r_8h_a9d62bb9a6b31f5359e262e13599d5fc6} 
+\#define {\bfseries SONY}~2
+\item 
+\Hypertarget{_me_i_r_8h_a91697bfec209fb3146fde1f40e425ede}\label{_me_i_r_8h_a91697bfec209fb3146fde1f40e425ede} 
+\#define {\bfseries RC5}~3
+\item 
+\Hypertarget{_me_i_r_8h_a259ca3c51823b7454fb93db646b81bb1}\label{_me_i_r_8h_a259ca3c51823b7454fb93db646b81bb1} 
+\#define {\bfseries RC6}~4
+\item 
+\Hypertarget{_me_i_r_8h_ac319b4534727a441b09affaeadc95518}\label{_me_i_r_8h_ac319b4534727a441b09affaeadc95518} 
+\#define {\bfseries DISH}~5
+\item 
+\Hypertarget{_me_i_r_8h_ac5e45530a894323f3ab61b529cf00b85}\label{_me_i_r_8h_ac5e45530a894323f3ab61b529cf00b85} 
+\#define {\bfseries SHARP}~6
+\item 
+\Hypertarget{_me_i_r_8h_a8c665ce1a76baeeb9af50fca11c6d322}\label{_me_i_r_8h_a8c665ce1a76baeeb9af50fca11c6d322} 
+\#define {\bfseries PANASONIC}~7
+\item 
+\Hypertarget{_me_i_r_8h_a10a30f916d697884c6ecad5b085a9c21}\label{_me_i_r_8h_a10a30f916d697884c6ecad5b085a9c21} 
+\#define {\bfseries JVC}~8
+\item 
+\Hypertarget{_me_i_r_8h_a7dc5e051cc54cc2cf4f8dbb6b0846ff2}\label{_me_i_r_8h_a7dc5e051cc54cc2cf4f8dbb6b0846ff2} 
+\#define {\bfseries SANYO}~9
+\item 
+\Hypertarget{_me_i_r_8h_a9840da547a6a5c070f953867bce0e9f1}\label{_me_i_r_8h_a9840da547a6a5c070f953867bce0e9f1} 
+\#define {\bfseries MITSUBISHI}~10
+\item 
+\Hypertarget{_me_i_r_8h_a0357f7060d6f6fec7f9bad63ee6340fa}\label{_me_i_r_8h_a0357f7060d6f6fec7f9bad63ee6340fa} 
+\#define {\bfseries SAMSUNG}~11
+\item 
+\Hypertarget{_me_i_r_8h_af20d7160628374562c5536fc1a4277c6}\label{_me_i_r_8h_af20d7160628374562c5536fc1a4277c6} 
+\#define {\bfseries LG}~12
+\item 
+\Hypertarget{_me_i_r_8h_ac1ae4add974b9cfc6b5aaf8a578f01ab}\label{_me_i_r_8h_ac1ae4add974b9cfc6b5aaf8a578f01ab} 
+\#define {\bfseries UNKNOWN}~-\/1
+\item 
+\Hypertarget{_me_i_r_8h_a118ad552670dbefa1df0ba72d147f5e1}\label{_me_i_r_8h_a118ad552670dbefa1df0ba72d147f5e1} 
+\#define {\bfseries TOPBIT}~0x80000000
+\item 
+\Hypertarget{_me_i_r_8h_a5ddef41d8d83c63205c5fd0dff9b0ab3}\label{_me_i_r_8h_a5ddef41d8d83c63205c5fd0dff9b0ab3} 
+\#define {\bfseries SYSCLOCK}~16000000
+\item 
+\Hypertarget{_me_i_r_8h_a20a1f39fddcb80d2135298f293f7081b}\label{_me_i_r_8h_a20a1f39fddcb80d2135298f293f7081b} 
+\#define {\bfseries \+\_\+\+GAP}~5000
+\item 
+\Hypertarget{_me_i_r_8h_a9d8275bffb8c217b07a58518b03ad3e3}\label{_me_i_r_8h_a9d8275bffb8c217b07a58518b03ad3e3} 
+\#define {\bfseries GAP\+\_\+\+TICKS}~(\+\_\+\+GAP/USECPERTICK)
+\item 
+\Hypertarget{_me_i_r_8h_a61c03dba74edfd4172e628a24b0aa6fb}\label{_me_i_r_8h_a61c03dba74edfd4172e628a24b0aa6fb} 
+\#define {\bfseries TIMER\+\_\+\+DISABLE\+\_\+\+INTR}~(TIMSK2 = 0)
+\item 
+\Hypertarget{_me_i_r_8h_a68f14dcdf1606930995e844b01a4763b}\label{_me_i_r_8h_a68f14dcdf1606930995e844b01a4763b} 
+\#define {\bfseries TIMER\+\_\+\+ENABLE\+\_\+\+PWM}~(TCCR2A \texorpdfstring{$\vert$}{|}= \+\_\+\+BV(COM2\+B1))
+\item 
+\Hypertarget{_me_i_r_8h_a47b4fedbcb1d6009f98c1c0aac8db543}\label{_me_i_r_8h_a47b4fedbcb1d6009f98c1c0aac8db543} 
+\#define {\bfseries TIMER\+\_\+\+DISABLE\+\_\+\+PWM}~(TCCR2A \&= \texorpdfstring{$\sim$}{\string~}(\+\_\+\+BV(COM2\+B1)))
+\item 
+\Hypertarget{_me_i_r_8h_a48620ce9fc7fac57a6ccac069bad37ed}\label{_me_i_r_8h_a48620ce9fc7fac57a6ccac069bad37ed} 
+\#define {\bfseries TIMER\+\_\+\+ENABLE\+\_\+\+INTR}~(TIMSK2 = \+\_\+\+BV(OCIE2A))
+\item 
+\Hypertarget{_me_i_r_8h_a61c03dba74edfd4172e628a24b0aa6fb}\label{_me_i_r_8h_a61c03dba74edfd4172e628a24b0aa6fb} 
+\#define {\bfseries TIMER\+\_\+\+DISABLE\+\_\+\+INTR}~(TIMSK2 = 0)
+\item 
+\Hypertarget{_me_i_r_8h_a7c2448c6431d83ee924446bc7386f5d5}\label{_me_i_r_8h_a7c2448c6431d83ee924446bc7386f5d5} 
+\#define {\bfseries TIMER\+\_\+\+INTR\+\_\+\+NAME}~TIMER2\+\_\+\+COMPA\+\_\+vect
+\item 
+\#define \mbox{\hyperlink{_me_i_r_8h_a3ae43330f23d64b7b556165982034040}{TIMER\+\_\+\+CONFIG\+\_\+\+KHZ}}(val)
+\item 
+\Hypertarget{_me_i_r_8h_a5abc7b3b0d80e028e821c0843c184723}\label{_me_i_r_8h_a5abc7b3b0d80e028e821c0843c184723} 
+\#define {\bfseries TIMER\+\_\+\+COUNT\+\_\+\+TOP}~(SYSCLOCK \texorpdfstring{$\ast$}{*} USECPERTICK / 1000000)
+\item 
+\#define \mbox{\hyperlink{_me_i_r_8h_a9e4021c5656ed3fdd0ec6a58ab9ef0c5}{TIMER\+\_\+\+CONFIG\+\_\+\+NORMAL}}()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_i_r_8h_a8333b96c67f83cba354b3407fcbb6ee8}\label{_me_i_r_8h_a8333b96c67f83cba354b3407fcbb6ee8} 
+enum {\bfseries Error\+Status} \{ {\bfseries ERROR} = 0
+, {\bfseries SUCCESS} = !\+ERROR
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for \doxylink{_me_i_r_8cpp}{Me\+IR.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+4 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2015/11/16 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me IR device, The IR inherited the \doxylink{class_me_serial}{Me\+Serial} class from \doxylink{class_software_serial}{Software\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item Error\+Status \doxylink{class_me_i_r_a32e9dfb953176df04c4e2fb728a4a634}{Me\+IR\+::decode()};
+\item void \doxylink{class_me_i_r_aa307ef91b7d762ea970e54dba32a161c}{Me\+IR\+::begin()};
+\item void \doxylink{class_me_i_r_a7030203133352a4f6f8a3f1e99643858}{Me\+IR\+::end()};
+\item void \doxylink{class_me_i_r_aeca67335b28008603173082a00a53641}{Me\+IR\+::loop()};
+\item boolean \doxylink{class_me_i_r_a7b0f1947b326e956b7b6f7c06e95a3cc}{Me\+IR\+::key\+Pressed(unsigned char r)};
+\item String \doxylink{class_me_i_r_acb90c07d687f185d4ed36a57b41cf358}{Me\+IR\+::get\+String()};
+\item unsigned char \doxylink{class_me_i_r_ad28a726a055271ee450f49a1d9d56cca}{Me\+IR\+::get\+Code()}
+\item void \doxylink{class_me_i_r_ac16817f96bbdf3c065db67056b753b7e}{Me\+IR\+::send\+String(\+String s)};
+\item void \doxylink{class_me_i_r_a3994b9b4bb24d8f69d1582a6289604ce}{Me\+IR\+::send\+String(float v)};
+\item void \doxylink{class_me_i_r_abc9e6b20f70767186f9b9f849785bef7}{Me\+IR\+::send\+NEC(unsigned long data, int nbits)};
+\item void \doxylink{class_me_i_r_a1e24ad12d0d40449977f708748396438}{Me\+IR\+::send\+Raw(unsigned int buf\mbox{[}$\,$\mbox{]}, int len, uint8\+\_\+t hz)};
+\item void \doxylink{class_me_i_r_a5ba678779cfbadc0de5836341f785fea}{Me\+IR\+::enable\+IROut(uint8\+\_\+t khz)};
+\item void \doxylink{class_me_i_r_ad53fd8d718609dab42c9937831306ee0}{Me\+IR\+::enable\+IRIn()};
+\item void \doxylink{class_me_i_r_a45a3d2442f3dc1ffbc7816655475ff82}{Me\+IR\+::mark(uint16\+\_\+t us)};
+\item void \doxylink{class_me_i_r_adeca6211b7bc6c3e0825087c3165abc0}{Me\+IR\+::space(uint16\+\_\+t us)};
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan        2015/10/09     1.0.0            Bulid the new.
+Mark Yan        2015/10/29     1.0.1            Fix minor errors on format.
+Mark Yan        2015/11/02     1.0.2            Fix bug that IRsend and IRreceive can't work at the same time.
+forfish         2015/11/09     1.0.3            Add description.
+Mark Yan        2015/11/16     1.0.4            add data recovery when timeout.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_me_i_r_8h_a3ae43330f23d64b7b556165982034040}\label{_me_i_r_8h_a3ae43330f23d64b7b556165982034040} 
+\index{MeIR.h@{MeIR.h}!TIMER\_CONFIG\_KHZ@{TIMER\_CONFIG\_KHZ}}
+\index{TIMER\_CONFIG\_KHZ@{TIMER\_CONFIG\_KHZ}!MeIR.h@{MeIR.h}}
+\doxysubsubsection{\texorpdfstring{TIMER\_CONFIG\_KHZ}{TIMER\_CONFIG\_KHZ}}
+{\footnotesize\ttfamily \#define TIMER\+\_\+\+CONFIG\+\_\+\+KHZ(\begin{DoxyParamCaption}\item[{}]{val }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ (\{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{keyword}{const}\ uint8\_t\ pwmval\ =\ F\_CPU\ /\ 2000\ /\ (val);\ \(\backslash\)}
+\DoxyCodeLine{\ \ TCCR2A\ =\ \_BV(WGM20);\ \(\backslash\)}
+\DoxyCodeLine{\ \ TCCR2B\ =\ \_BV(WGM22)\ |\ \_BV(CS20);\ \(\backslash\)}
+\DoxyCodeLine{\ \ OCR2A\ =\ pwmval;\ \(\backslash\)}
+\DoxyCodeLine{\ \ OCR2B\ =\ pwmval\ /\ 3;\ \(\backslash\)}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+\Hypertarget{_me_i_r_8h_a9e4021c5656ed3fdd0ec6a58ab9ef0c5}\label{_me_i_r_8h_a9e4021c5656ed3fdd0ec6a58ab9ef0c5} 
+\index{MeIR.h@{MeIR.h}!TIMER\_CONFIG\_NORMAL@{TIMER\_CONFIG\_NORMAL}}
+\index{TIMER\_CONFIG\_NORMAL@{TIMER\_CONFIG\_NORMAL}!MeIR.h@{MeIR.h}}
+\doxysubsubsection{\texorpdfstring{TIMER\_CONFIG\_NORMAL}{TIMER\_CONFIG\_NORMAL}}
+{\footnotesize\ttfamily \#define TIMER\+\_\+\+CONFIG\+\_\+\+NORMAL(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ (\{\ \(\backslash\)}
+\DoxyCodeLine{\ \ TCCR2A\ =\ \_BV(WGM21);\ \(\backslash\)}
+\DoxyCodeLine{\ \ TCCR2B\ =\ \_BV(CS21);\ \(\backslash\)}
+\DoxyCodeLine{\ \ OCR2A\ =\ TIMER\_COUNT\_TOP\ /\ 8;\ \(\backslash\)}
+\DoxyCodeLine{\ \ TCNT2\ =\ 0;\ \(\backslash\)}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}

@@ -1,0 +1,353 @@
+\doxysection{Me\+Infrared\+Receiver Class Reference}
+\hypertarget{class_me_infrared_receiver}{}\label{class_me_infrared_receiver}\index{MeInfraredReceiver@{MeInfraredReceiver}}
+
+
+Driver for Me Infrared Receiver device.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Infrared\+Receiver.\+h$>$}
+
+
+
+Inheritance diagram for Me\+Infrared\+Receiver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_me_infrared_receiver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+Infrared\+Receiver\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_me_infrared_receiver__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_infrared_receiver_a41adf4b88eaec8d9c770ba29ddaa22f6}{Me\+Infrared\+Receiver}} (void)
+\item 
+\mbox{\hyperlink{class_me_infrared_receiver_a98474aa37cad10df237c006e22ec50a2}{Me\+Infrared\+Receiver}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_infrared_receiver_ac25056e96b50a1bf16c05eedbfeaaf78}{begin}} (void)
+\item 
+int \mbox{\hyperlink{class_me_infrared_receiver_aaccf198c3a013b38e783a3e055631110}{read}} ()
+\item 
+bool \mbox{\hyperlink{class_me_infrared_receiver_a85d4066f35e6838f24e6d3f23a5236a1}{button\+State}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_infrared_receiver_a2b4385744d5ff2cd325f15095d257126}{get\+Code}} (void)
+\item 
+void \mbox{\hyperlink{class_me_infrared_receiver_ab178d4d0bb7a3af0aa35a88183c2f928}{loop}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_serial}{Me\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_serial_aaa113d4dc7bf62acae7b7ca559c23245}{Me\+Serial}} (void)
+\item 
+\mbox{\hyperlink{class_me_serial_a63ac4943dae1b910fd627758ba0c20a2}{Me\+Serial}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_serial_a06d4cb2f572533e9b1414cc1e6d4929b}{Me\+Serial}} (uint8\+\_\+t receive\+Pin, uint8\+\_\+t transmit\+Pin, bool inverse\+\_\+logic=false)
+\item 
+void \mbox{\hyperlink{class_me_serial_a73dde79161f876956fd6d070f14510d3}{set\+Hardware}} (bool mode)
+\item 
+void \mbox{\hyperlink{class_me_serial_a2e491a6206475d8d254a785043e0de22}{begin}} (long baudrate)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_me_serial_ad28782e0bebe4255a8ba7995957176e6}{write}} (uint8\+\_\+t byte)
+\item 
+int \mbox{\hyperlink{class_me_serial_a00be49316c437fdb4615c4e40869ff60}{read}} ()
+\item 
+int \mbox{\hyperlink{class_me_serial_a4b784a1b24df5e06f208d697e9e1ed3f}{available}} ()
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_serial_a721bd751d68b01eeafd206163eab10a4}{poll}} (void)
+\item 
+void \mbox{\hyperlink{class_me_serial_abd68e3efb8adfcc71089dadbd4acd143}{end}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_serial_a5dd4784d18202db78fb8333afd97c031}{listen}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_serial_a4c4af893caafb362da7906ddabe16327}{is\+Listening}} (void)
+\item 
+void \mbox{\hyperlink{class_me_serial_ab4d91285ca3d044f73793137cc1ff3cd}{send\+String}} (char \texorpdfstring{$\ast$}{*}str)
+\item 
+void \mbox{\hyperlink{class_me_serial_a30bae57ed633a2b7c8a41ff0de0a6679}{printf}} (char \texorpdfstring{$\ast$}{*}fmt,...)
+\item 
+boolean {\bfseries data\+Line\+Available} (void)
+\item 
+String {\bfseries read\+Data\+Line} (void)
+\item 
+String {\bfseries concatenate\+With} (String \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}, String \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}})
+\item 
+char {\bfseries letter\+Of} (int i, String s)
+\item 
+int {\bfseries string\+Length} (String s)
+\item 
+boolean {\bfseries equal\+String} (String \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}, String \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}})
+\item 
+float {\bfseries get\+Value} (String key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_software_serial}{Software\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Software\+Serial} (uint8\+\_\+t receive\+Pin, uint8\+\_\+t transmit\+Pin, bool inverse\+\_\+logic=false)
+\item 
+void {\bfseries begin} (long speed)
+\item 
+bool {\bfseries listen} ()
+\item 
+void {\bfseries end} ()
+\item 
+bool {\bfseries is\+Listening} ()
+\item 
+bool {\bfseries stop\+Listening} ()
+\item 
+bool {\bfseries overflow} ()
+\item 
+int {\bfseries peek} ()
+\item 
+virtual void {\bfseries flush} ()
+\item 
+{\bfseries operator bool} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_software_serial}{Software\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bfseries handle\+\_\+interrupt} () \+\_\+\+\_\+attribute\+\_\+\+\_\+((\+\_\+\+\_\+always\+\_\+inline\+\_\+\+\_\+))
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_serial}{Me\+Serial}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+hard}
+\item 
+bool {\bfseries \+\_\+polling}
+\item 
+bool {\bfseries \+\_\+scratch}
+\item 
+int16\+\_\+t {\bfseries \+\_\+bit\+Period}
+\item 
+int16\+\_\+t {\bfseries \+\_\+byte}
+\item 
+long {\bfseries \+\_\+last\+Time}
+\item 
+char {\bfseries buffer} \mbox{[}64\mbox{]}
+\item 
+String {\bfseries last\+Line}
+\item 
+int {\bfseries buffer\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me Infrared Receiver device. 
+
+Class\+: \doxylink{class_me_infrared_receiver}{Me\+Infrared\+Receiver} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_infrared_receiver}{Me\+Infrared\+Receiver}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_infrared_receiver_a41adf4b88eaec8d9c770ba29ddaa22f6}\label{class_me_infrared_receiver_a41adf4b88eaec8d9c770ba29ddaa22f6} 
+\index{MeInfraredReceiver@{MeInfraredReceiver}!MeInfraredReceiver@{MeInfraredReceiver}}
+\index{MeInfraredReceiver@{MeInfraredReceiver}!MeInfraredReceiver@{MeInfraredReceiver}}
+\doxysubsubsection{\texorpdfstring{MeInfraredReceiver()}{MeInfraredReceiver()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Me\+Infrared\+Receiver\+::\+Me\+Infrared\+Receiver (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the Infrared Receiver to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_infrared_receiver_a98474aa37cad10df237c006e22ec50a2}\label{class_me_infrared_receiver_a98474aa37cad10df237c006e22ec50a2} 
+\index{MeInfraredReceiver@{MeInfraredReceiver}!MeInfraredReceiver@{MeInfraredReceiver}}
+\index{MeInfraredReceiver@{MeInfraredReceiver}!MeInfraredReceiver@{MeInfraredReceiver}}
+\doxysubsubsection{\texorpdfstring{MeInfraredReceiver()}{MeInfraredReceiver()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Me\+Infrared\+Receiver\+::\+Me\+Infrared\+Receiver (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the Infrared Receiver to arduino port, If the hardware serial was selected, we will used the hardware serial. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_infrared_receiver_ac25056e96b50a1bf16c05eedbfeaaf78}\label{class_me_infrared_receiver_ac25056e96b50a1bf16c05eedbfeaaf78} 
+\index{MeInfraredReceiver@{MeInfraredReceiver}!begin@{begin}}
+\index{begin@{begin}!MeInfraredReceiver@{MeInfraredReceiver}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily void Me\+Infrared\+Receiver\+::begin (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+begin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Sets the speed (baud rate) for the serial communication. Supported baud rates is 9600bps 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_infrared_receiver_a85d4066f35e6838f24e6d3f23a5236a1}\label{class_me_infrared_receiver_a85d4066f35e6838f24e6d3f23a5236a1} 
+\index{MeInfraredReceiver@{MeInfraredReceiver}!buttonState@{buttonState}}
+\index{buttonState@{buttonState}!MeInfraredReceiver@{MeInfraredReceiver}}
+\doxysubsubsection{\texorpdfstring{buttonState()}{buttonState()}}
+{\footnotesize\ttfamily bool Me\+Infrared\+Receiver\+::button\+State (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+button\+State 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Check button press state 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+true\+: The button is pressed, false\+: No button is pressed 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_infrared_receiver_a2b4385744d5ff2cd325f15095d257126}\label{class_me_infrared_receiver_a2b4385744d5ff2cd325f15095d257126} 
+\index{MeInfraredReceiver@{MeInfraredReceiver}!getCode@{getCode}}
+\index{getCode@{getCode}!MeInfraredReceiver@{MeInfraredReceiver}}
+\doxysubsubsection{\texorpdfstring{getCode()}{getCode()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Infrared\+Receiver\+::get\+Code (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Code 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the button code 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+Return the button code 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_infrared_receiver_ab178d4d0bb7a3af0aa35a88183c2f928}\label{class_me_infrared_receiver_ab178d4d0bb7a3af0aa35a88183c2f928} 
+\index{MeInfraredReceiver@{MeInfraredReceiver}!loop@{loop}}
+\index{loop@{loop}!MeInfraredReceiver@{MeInfraredReceiver}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily void Me\+Infrared\+Receiver\+::loop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+loop 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used with get\+Code, it should called in the main loop 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+This function used with get\+Code 
+\end{DoxyParagraph}
+\Hypertarget{class_me_infrared_receiver_aaccf198c3a013b38e783a3e055631110}\label{class_me_infrared_receiver_aaccf198c3a013b38e783a3e055631110} 
+\index{MeInfraredReceiver@{MeInfraredReceiver}!read@{read}}
+\index{read@{read}!MeInfraredReceiver@{MeInfraredReceiver}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily int Me\+Infrared\+Receiver\+::read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\begin{DoxyParagraph}{Function}
+read 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Return a character that was received on the RX pin of the software serial port. Note that only one \doxylink{class_software_serial}{Software\+Serial} instance can receive incoming data at a time (select which one with the \doxylink{class_me_serial_a5dd4784d18202db78fb8333afd97c031}{listen()} function). 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The character read, or -\/1 if none is available 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+Reimplemented from \mbox{\hyperlink{class_software_serial}{Software\+Serial}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_infrared_receiver_8h}{Me\+Infrared\+Receiver.\+h}}\item 
+src/\mbox{\hyperlink{_me_infrared_receiver_8cpp}{Me\+Infrared\+Receiver.\+cpp}}\end{DoxyCompactItemize}

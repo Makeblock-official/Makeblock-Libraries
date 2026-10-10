@@ -1,0 +1,15 @@
+<map id="src/MeColorSensor.h" name="src/MeColorSensor.h">
+<area shape="rect" id="Node000001" title="Header for MeColorSensor.cpp module." alt="" coords="371,5,514,32"/>
+<area shape="rect" id="Node000002" href="$_me_auriga_8h.html" title="Driver for MeAuriga board." alt="" coords="5,80,115,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="361,38,116,84,115,79,360,33"/>
+<area shape="rect" id="Node000003" href="$_me_color_sensor_8cpp.html" title="Driver for MeColorSensor module." alt="" coords="139,80,296,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="390,40,258,82,256,77,388,35"/>
+<area shape="rect" id="Node000004" href="$_me_m_core_8h.html" title="Driver for mCore Board." alt="" coords="320,80,430,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="422,45,388,81,384,78,418,42"/>
+<area shape="rect" id="Node000005" href="$_me_mega_pi_8h.html" title="Driver for MegaPi board." alt="" coords="454,80,570,107"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="467,41,502,78,498,81,463,45"/>
+<area shape="rect" id="Node000006" href="$_me_mega_pi_pro_8h.html" title="Driver for MegaPiPro board." alt="" coords="595,80,731,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="496,35,625,77,623,82,495,40"/>
+<area shape="rect" id="Node000007" href="$_me_orion_8h.html" title="Driver for MeOrion board." alt="" coords="755,80,858,107"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="522,33,755,79,754,84,521,38"/>
+</map>

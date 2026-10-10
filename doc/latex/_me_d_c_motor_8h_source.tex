@@ -1,0 +1,49 @@
+\doxysection{Me\+DCMotor.\+h}
+\hypertarget{_me_d_c_motor_8h_source}{}\label{_me_d_c_motor_8h_source}\index{src/MeDCMotor.h@{src/MeDCMotor.h}}
+\mbox{\hyperlink{_me_d_c_motor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#ifndef\ MeDCMotor\_H}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ MeDCMotor\_H}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_d_c_motor}{MeDCMotor}}}
+\DoxyCodeLine{00061\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00062\ class\ \mbox{\hyperlink{class_me_d_c_motor}{MeDCMotor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00073\ \ \ \mbox{\hyperlink{class_me_d_c_motor_ac0d5e24deae9f03c1f76e7cc780c52fb}{MeDCMotor}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00080\ \ \ \mbox{\hyperlink{class_me_d_c_motor_ac0d5e24deae9f03c1f76e7cc780c52fb}{MeDCMotor}}(uint8\_t\ port);}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00090\ \ \ MeDCMotor(uint8\_t\ dir\_pin,uint8\_t\ pwm\_pin);}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00108\ \ \ void\ setpin(uint8\_t\ dir\_pin,uint8\_t\ pwm\_pin);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00124\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_d_c_motor_a098d4ebc2b9ecfe6652c045ae27253ae}{reset}}(uint8\_t\ port);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_d_c_motor_a098d4ebc2b9ecfe6652c045ae27253ae}{reset}}(uint8\_t\ port,\ uint8\_t\ slot);}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00158\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_d_c_motor_a4509ba013726e48cbb70423263f8dccc}{run}}(int16\_t\ speed);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00172\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_d_c_motor_ac96a250d77ab11c1db0f15592e98be03}{stop}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00173\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00174\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ dc\_dir\_pin;}
+\DoxyCodeLine{00175\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ dc\_pwm\_pin;}
+\DoxyCodeLine{00176\ \ \ int16\_t\ \ last\_speed;}
+\DoxyCodeLine{00177\ \};}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00179\ }
+
+\end{DoxyCode}

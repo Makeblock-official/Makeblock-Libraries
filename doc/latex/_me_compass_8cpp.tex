@@ -1,0 +1,72 @@
+\doxysection{src/\+Me\+Compass.cpp File Reference}
+\hypertarget{_me_compass_8cpp}{}\label{_me_compass_8cpp}\index{src/MeCompass.cpp@{src/MeCompass.cpp}}
+
+
+Driver for \doxylink{class_me_compass}{Me\+Compass} module.  
+
+
+{\ttfamily \#include "{}Me\+Compass.\+h"{}}\newline
+{\ttfamily \#include $<$avr/wdt.\+h$>$}\newline
+Include dependency graph for Me\+Compass.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_compass_8cpp__incl}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+Driver for \doxylink{class_me_compass}{Me\+Compass} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2015/09/08 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for \doxylink{class_me_compass}{Me\+Compass} module, It supports \doxylink{class_me_compass}{Me\+Compass} V1.\+0 device provided by Make\+Block.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_compass_acb63b0ff0fdfb216718b827f66f2915e}{Me\+Compass\+::setpin(uint8\+\_\+t key\+Pin, uint8\+\_\+t led\+Pin)}
+\item void \doxylink{class_me_compass_aa514632f78e2095ee341e146789cc6b3}{Me\+Compass\+::begin(void)}
+\item bool \doxylink{class_me_compass_a20480fba91e33e557ffb210ff06681d6}{Me\+Compass\+::test\+Connection(void)}
+\item double \doxylink{class_me_compass_a544592a96b717dfd4d7f7357d22440a6}{Me\+Compass\+::get\+Angle(void)}
+\item int16\+\_\+t \doxylink{class_me_compass_a968a8f7bc7534fefc8aad19b56472be4}{Me\+Compass\+::get\+Heading\+X(void)}
+\item int16\+\_\+t \doxylink{class_me_compass_a39e81714f6c14f8dcc0faec9330eaa2c}{Me\+Compass\+::get\+Heading\+Y(void)}
+\item int16\+\_\+t \doxylink{class_me_compass_ae0cb31dcc67e6a1f25292edd9506046d}{Me\+Compass\+::get\+Heading\+Z(void)}
+\item int16\+\_\+t \doxylink{class_me_compass_a151c87c12cdcf667faf5f307bae8e418}{Me\+Compass\+::get\+Heading(int16\+\_\+t \texorpdfstring{$\ast$}{*}x, int16\+\_\+t \texorpdfstring{$\ast$}{*}y, int16\+\_\+t \texorpdfstring{$\ast$}{*}z)}
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Lawrence         2015/09/03           1.0.0       Rebuild the old lib.
+Lawrence         2015/09/08           1.0.1       Added some comments and macros.
+Vincent He       2019/03/01           1.0.2       fix issue: In the Orion board, the electronic compass was hung in ports 7 and 8. To avoid the crash and added timeout processing.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

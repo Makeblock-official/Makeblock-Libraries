@@ -1,0 +1,60 @@
+\doxysection{Servo\+Timers.\+h}
+\hypertarget{_servo_timers_8h_source}{}\label{_servo_timers_8h_source}\index{src/utility/avr/ServoTimers.h@{src/utility/avr/ServoTimers.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ Servo.h\ -\/\ Interrupt\ driven\ Servo\ library\ for\ Arduino\ using\ 16\ bit\ timers-\/\ Version\ 2}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Copyright\ (c)\ 2009\ Michael\ Margolis.\ \ All\ right\ reserved.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ License\ as\ published\ by\ the\ Free\ Software\ Foundation;\ either}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ version\ 2.1\ of\ the\ License,\ or\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ This\ library\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ GNU}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ License\ along\ with\ this\ library;\ if\ not,\ write\ to\ the\ Free\ Software}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ Foundation,\ Inc.,\ 51\ Franklin\ St,\ Fifth\ Floor,\ Boston,\ MA\ \ 02110-\/1301\ \ USA}}
+\DoxyCodeLine{00018\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ Defines\ for\ 16\ bit\ timers\ used\ with\ \ Servo\ library}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ If\ \_useTimerX\ is\ defined\ then\ TimerX\ is\ a\ 16\ bit\ timer\ on\ the\ current\ board}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ timer16\_Sequence\_t\ enumerates\ the\ sequence\ that\ the\ timers\ should\ be\ allocated}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ \_Nbr\_16timers\ indicates\ how\ many\ 16\ bit\ timers\ are\ available.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ Say\ which\ 16\ bit\ timers\ can\ be\ used\ and\ in\ what\ order}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#if\ defined(\_\_AVR\_ATmega1280\_\_)\ ||\ defined(\_\_AVR\_ATmega2560\_\_)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ \_useTimer5}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ \_useTimer1}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ \_useTimer3}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ \_useTimer4}}
+\DoxyCodeLine{00039\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{\ \_timer5,\ \_timer1,\ \_timer3,\ \_timer4,\ \_Nbr\_16timers\ \}\ timer16\_Sequence\_t;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#elif\ defined(\_\_AVR\_ATmega32U4\_\_)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ \_useTimer1}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{\ \_timer1,\ \_Nbr\_16timers\ \}\ timer16\_Sequence\_t;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#elif\ defined(\_\_AVR\_AT90USB646\_\_)\ ||\ defined(\_\_AVR\_AT90USB1286\_\_)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ \_useTimer3}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ \_useTimer1}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{\ \_timer3,\ \_timer1,\ \_Nbr\_16timers\ \}\ timer16\_Sequence\_t;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#elif\ defined(\_\_AVR\_ATmega128\_\_)\ ||\ defined(\_\_AVR\_ATmega1281\_\_)\ ||\ defined(\_\_AVR\_ATmega1284\_\_)\ ||\ defined(\_\_AVR\_ATmega1284P\_\_)\ ||\ defined(\_\_AVR\_ATmega2561\_\_)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ \_useTimer3}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ \_useTimer1}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{\ \_timer3,\ \_timer1,\ \_Nbr\_16timers\ \}\ timer16\_Sequence\_t;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#else\ \ }\textcolor{comment}{//\ everything\ else}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ \_useTimer1}}
+\DoxyCodeLine{00057\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{\ \_timer1,\ \_Nbr\_16timers\ \}\ timer16\_Sequence\_t;}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00059\ }
+
+\end{DoxyCode}

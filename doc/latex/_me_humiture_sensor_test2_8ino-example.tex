@@ -1,0 +1,21 @@
+\doxysection{Me\+Humiture\+Sensor\+Test2.\+ino}
+\hypertarget{_me_humiture_sensor_test2_8ino-example}{}\label{_me_humiture_sensor_test2_8ino-example}DERIVED FROM /\texorpdfstring{$\ast$}{*}\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# FILE\+: dht11.\+cpp VERSION\+: 0.\+4.\+5 PURPOSE\+: DHT11 Temperature \& Humidity Sensor library for Arduino LICENSE\+: GPL v3 (\href{http://www.gnu.org/licenses/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/licenses/gpl.\+html}}) DATASHEET\+: \href{http://feed.virtuabotix.com/wp-content/uploads/2011/11/DHT11.pdf}{\texttt{ http\+://feed.\+virtuabotix.\+com/wp-\/content/uploads/2011/11/\+DHT11.\+pdf}} GET UPDATES\+: \href{http://feed.virtuabotix.com/?239}{\texttt{ http\+://feed.\+virtuabotix.\+com/?239}} --\#\#--\#\#--\#\#--\#\#--\#\#--\#\#--\#\#--\#\#--\#\#--\#\#-- ~\newline
+ \hypertarget{MeHumitureSensor.cpp_autotoc_md0}{}\doxysubsubsection{\texorpdfstring{autotoc\+\_\+md0}{autotoc\_md0}}\label{MeHumitureSensor.cpp_autotoc_md0}
+\hypertarget{MeHumitureSensor.cpp_autotoc_md1}{}\doxysubsubsection{\texorpdfstring{autotoc\+\_\+md1}{autotoc\_md1}}\label{MeHumitureSensor.cpp_autotoc_md1}
+\texorpdfstring{$\vert$}{|} \#\# \#\# \#\# \#\# \#\# \#\# \#\# \#\# \#\# \#\# \texorpdfstring{$\vert$}{|} \hypertarget{MeHumitureSensor.cpp_autotoc_md2}{}\doxysubsubsection{\texorpdfstring{autotoc\+\_\+md2}{autotoc\_md2}}\label{MeHumitureSensor.cpp_autotoc_md2}
+\hypertarget{MeHumitureSensor.cpp_autotoc_md3}{}\doxysubsubsection{\texorpdfstring{autotoc\+\_\+md3}{autotoc\_md3}}\label{MeHumitureSensor.cpp_autotoc_md3}
+\texorpdfstring{$\vert$}{|} \#\# \#\# \#\# \#\# \#\# \#\# \#\# \#\# \#\# \#\# \texorpdfstring{$\vert$}{|} \hypertarget{MeHumitureSensor.cpp_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{\#\#  \#\#  \#\# DHT11 SENSOR}{\#\#  \#\#  \#\# DHT11 SENSOR}}\label{MeHumitureSensor.cpp_autotoc_md4}
+\hypertarget{MeHumitureSensor.cpp_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{\#\#  \#\#  \#\#  \#\#\+FRONT}{\#\#  \#\#  \#\#  \#\#FRONT}}\label{MeHumitureSensor.cpp_autotoc_md5}
+\texorpdfstring{$\vert$}{|} \#\# \#\# \#\# \#\# \#\# \#\# \#\# \#\# \#\# \#\# \texorpdfstring{$\vert$}{|} \hypertarget{MeHumitureSensor.cpp_autotoc_md6}{}\doxysubsubsection{\texorpdfstring{autotoc\+\_\+md6}{autotoc\_md6}}\label{MeHumitureSensor.cpp_autotoc_md6}
+\hypertarget{MeHumitureSensor.cpp_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{autotoc\+\_\+md7}{autotoc\_md7}}\label{MeHumitureSensor.cpp_autotoc_md7}
+\texorpdfstring{$\vert$}{|} \#\# \#\# \#\# \#\# \#\# \#\# \#\# \#\# \#\# \#\# \texorpdfstring{$\vert$}{|} \hypertarget{MeHumitureSensor.cpp_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{autotoc\+\_\+md8}{autotoc\_md8}}\label{MeHumitureSensor.cpp_autotoc_md8}
+\hypertarget{MeHumitureSensor.cpp_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{autotoc\+\_\+md9}{autotoc\_md9}}\label{MeHumitureSensor.cpp_autotoc_md9}
+--\#\#--\#\#--\#\#--\#\#--\#\#--\#\#--\#\#--\#\#--\#\#--\#\#-- \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} (Not \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} Used) \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} VDD(5\+V) Readout(I/O) Ground
+
+HISTORY\+: Mod by Joseph Dattilo (Virtuabotix LLC) -\/ Version 0.\+4.\+5 (11/11/11) Mod by Joseph Dattilo (Virtuabotix LLC) -\/ Version 0.\+4.\+0 (06/11/11) Mod by Rob Tillaart -\/ Version 0.\+3 (28/03/2011) Mod by Sim\+Kard -\/ Version 0.\+2 (24/11/2010) George Hadjikyriacou -\/ Original version (??)
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 

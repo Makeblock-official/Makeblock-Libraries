@@ -1,0 +1,59 @@
+\doxysection{Me\+EEPROM.\+h}
+\hypertarget{_me_e_e_p_r_o_m_8h_source}{}\label{_me_e_e_p_r_o_m_8h_source}\index{src/MeEEPROM.h@{src/MeEEPROM.h}}
+\mbox{\hyperlink{_me_e_e_p_r_o_m_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#ifndef\ ME\_EEPROM\_H}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ ME\_EEPROM\_H}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ EEPROM\_START\_POS\ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//0x00\ -\/\ 0x34\ \ \ (26*2\ =\ 52)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ EEPROM\_IF\_HAVEPID\_CHECK1\ 0xAB}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ EEPROM\_IF\_HAVEPID\_CHECK2\ 0xCD}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ EEPROM\_CHECK\_START\ 0xAB}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ EEPROM\_CHECK\_MID\ \ \ 0xCD}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ EEPROM\_CHECK\_END\ \ \ 0xEF}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ ON\_BOARD\_ENCODER\_SLOT0\_PARTITION\_CHECK\ \ \ EEPROM\_START\_POS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ ON\_BOARD\_ENCODER\_SLOT0\_START\_ADDR\ \ \ \ \ \ \ \ ON\_BOARD\_ENCODER\_SLOT0\_PARTITION\_CHECK\ \ +\ 2\ \ }\textcolor{comment}{//Partition\ checksum}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ ON\_BOARD\_ENCODER\_SLOT0\_PID\_ADDR\ \ \ \ \ \ \ \ \ \ ON\_BOARD\_ENCODER\_SLOT0\_START\_ADDR\ +\ 1\ \ \ \ \ \ \ \ }\textcolor{comment}{//start\ data}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ ON\_BOARD\_ENCODER\_SLOT0\_RATIO\_ADDR\ \ \ \ \ \ \ \ ON\_BOARD\_ENCODER\_SLOT0\_PID\_ADDR\ +\ 16\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//pids\ data,\ 4\ float}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ ON\_BOARD\_ENCODER\_SLOT0\_PLUS\_ADDR\ \ \ \ \ \ \ \ \ ON\_BOARD\_ENCODER\_SLOT0\_RATIO\_ADDR\ +\ 4\ \ \ \ \ \ \ \ }\textcolor{comment}{//ratio0\ data}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ ON\_BOARD\_ENCODER\_SLOT0\_END\_ADDR\ \ \ \ \ \ \ \ \ \ ON\_BOARD\_ENCODER\_SLOT0\_PLUS\_ADDR\ +\ 2\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//plus\ data}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ ON\_BOARD\_ENCODER\_SLOT1\_PARTITION\_CHECK\ \ \ ON\_BOARD\_ENCODER\_SLOT0\_END\_ADDR\ +\ 1\ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//end\ data}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ ON\_BOARD\_ENCODER\_SLOT1\_START\_ADDR\ \ \ \ \ \ \ \ ON\_BOARD\_ENCODER\_SLOT1\_PARTITION\_CHECK\ \ +\ 2\ \ }\textcolor{comment}{//Partition\ checksum}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ ON\_BOARD\_ENCODER\_SLOT1\_PID\_ADDR\ \ \ \ \ \ \ \ \ \ ON\_BOARD\_ENCODER\_SLOT1\_START\_ADDR\ +\ 1\ \ \ \ \ \ \ \ }\textcolor{comment}{//start\ data}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ ON\_BOARD\_ENCODER\_SLOT1\_RATIO\_ADDR\ \ \ \ \ \ \ \ ON\_BOARD\_ENCODER\_SLOT1\_PID\_ADDR\ +\ 16\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//pids\ data,\ 4\ float}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ ON\_BOARD\_ENCODER\_SLOT1\_PLUS\_ADDR\ \ \ \ \ \ \ \ \ ON\_BOARD\_ENCODER\_SLOT1\_RATIO\_ADDR\ +\ 4\ \ \ \ \ \ \ \ }\textcolor{comment}{//ratio0\ data}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ ON\_BOARD\_ENCODER\_SLOT0\_END\_ADDR\ \ \ \ \ \ \ \ \ \ ON\_BOARD\_ENCODER\_SLOT0\_PLUS\_ADDR\ +\ 2\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//plus\ data}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//0x50\ -\/\ 0x70}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ BALANCED\_CAR\_PARTITION\_CHECK\ \ \ \ 0x50}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ BALANCED\_CAR\_START\_ADDR\ \ \ \ \ \ \ \ \ BALANCED\_CAR\_PARTITION\_CHECK\ +\ 2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//Partition\ checksum}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ BALANCED\_CAR\_NATURAL\_BALANCE\ \ \ \ BALANCED\_CAR\_START\_ADDR\ +\ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//start\ data}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ BALANCED\_CAR\_ANGLE\_PID\_ADDR\ \ \ \ \ BALANCED\_CAR\_NATURAL\_BALANCE\ +\ 4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//Natural\ balance\ angle\ 4}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ BALANCED\_CAR\_SPEED\_PID\_ADDR\ \ \ \ \ BALANCED\_CAR\_ANGLE\_PID\_ADDR\ +\ 12\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//PID\ 4*3}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ BALANCED\_CAR\_DIR\_PID\_ADDR\ \ \ \ \ \ \ BALANCED\_CAR\_SPEED\_PID\_ADDR\ +\ 12\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//PID\ 4*3}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ BALANCED\_CAR\_END\_ADDR\ \ \ \ \ \ \ \ \ \ \ BALANCED\_CAR\_DIR\_PID\_ADDR\ +\ 4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//only\ P}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{comment}{//0x80\ -\/\ 0x90}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ AURIGA\_MODE\_PARTITION\_CHECK\ \ \ \ 0x80}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ AURIGA\_MODE\_START\_ADDR\ \ \ \ \ \ \ \ \ AURIGA\_MODE\_PARTITION\_CHECK\ +\ 2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//Partition\ checksum}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ AURIGA\_MODE\_CONFIGURE\ \ \ \ \ \ \ \ \ \ AURIGA\_MODE\_START\_ADDR\ +\ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//start\ data}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ AURIGA\_MODE\_END\_ADDR\ \ \ \ \ \ \ \ \ \ \ AURIGA\_MODE\_CONFIGURE\ +\ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//auriga\ mode}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{comment}{//0x90\ -\/\ 0xa0}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ MEGAPI\_MODE\_PARTITION\_CHECK\ \ \ \ 0x90}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ MEGAPI\_MODE\_START\_ADDR\ \ \ \ \ \ \ \ \ MEGAPI\_MODE\_PARTITION\_CHECK\ +\ 2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//Partition\ checksum}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ MEGAPI\_MODE\_CONFIGURE\ \ \ \ \ \ \ \ \ \ MEGAPI\_MODE\_START\_ADDR\ +\ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//start\ data}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ MEGAPI\_MODE\_END\_ADDR\ \ \ \ \ \ \ \ \ \ \ MEGAPI\_MODE\_CONFIGURE\ +\ 1}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

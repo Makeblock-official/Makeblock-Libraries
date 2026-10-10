@@ -1,0 +1,52 @@
+\doxysection{Me\+Host\+Parser.\+h}
+\hypertarget{_me_host_parser_8h_source}{}\label{_me_host_parser_8h_source}\index{src/MeHostParser.h@{src/MeHostParser.h}}
+\mbox{\hyperlink{_me_host_parser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#ifndef\ MeHostParser\_h}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ MeHostParser\_h}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ BUF\_SIZE\ \ \ \ \ \ \ \ \ \ \ \ 256}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ MASK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 255}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_host_parser}{MeHostParser}}}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \ \ \mbox{\hyperlink{class_me_host_parser_a05210809fce73b62b8864c8cc07c67e5}{MeHostParser}}();}
+\DoxyCodeLine{00065\ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \mbox{\hyperlink{class_me_host_parser_a33eea4b1148451559c18f52ea7e0916d}{\string~MeHostParser}}();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00090\ \ \ \ uint8\_t\ \mbox{\hyperlink{class_me_host_parser_a0103f25edd15026dcf5ae8a19cb25abf}{pushStr}}(uint8\_t\ *\ str,\ uint32\_t\ length);}
+\DoxyCodeLine{00091\ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ uint8\_t\ \mbox{\hyperlink{class_me_host_parser_aea2e516581e88dc2f807759bc2a679b2}{pushByte}}(uint8\_t\ ch);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00122\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_host_parser_a29f974647d06c7cb1c75db2963958478}{run}}();}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00138\ \ \ \ \textcolor{comment}{//\ \ get\ the\ package\ ready\ state}}
+\DoxyCodeLine{00139\ \ \ \ uint8\_t\ \mbox{\hyperlink{class_me_host_parser_a4e07eae4722fba03fd463447cb8526d4}{getPackageReady}}();}
+\DoxyCodeLine{00140\ \ \ \ }
+\DoxyCodeLine{00157\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_host_parser_a653298e64d1ac2633b23e4ae420121c3}{getData}}(uint8\_t\ *buf,\ uint32\_t\ size);}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \textcolor{keywordtype}{void}\ print(\textcolor{keywordtype}{char}\ *str,\ uint32\_t\ *\ cnt);}
+\DoxyCodeLine{00160\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordtype}{int}\ state;}
+\DoxyCodeLine{00162\ \ \ uint8\_t\ buffer[BUF\_SIZE];}
+\DoxyCodeLine{00163\ \ \ uint32\_t\ in;}
+\DoxyCodeLine{00164\ \ \ uint32\_t\ out;}
+\DoxyCodeLine{00165\ \ \ uint8\_t\ packageReady;}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ uint8\_t\ \textcolor{keyword}{module};}
+\DoxyCodeLine{00168\ \ \ uint32\_t\ length;}
+\DoxyCodeLine{00169\ \ \ uint8\_t\ *data;}
+\DoxyCodeLine{00170\ \ \ uint8\_t\ check;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ uint32\_t\ lengthRead;}
+\DoxyCodeLine{00173\ \ \ uint32\_t\ currentDataPos;}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00189\ \ \ uint8\_t\ getByte(uint8\_t\ *\ ch);}
+\DoxyCodeLine{00190\ \};}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#endif\ }}
+
+\end{DoxyCode}

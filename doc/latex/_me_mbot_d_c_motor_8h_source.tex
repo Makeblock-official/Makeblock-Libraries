@@ -1,0 +1,32 @@
+\doxysection{Me\+Mbot\+DCMotor.\+h}
+\hypertarget{_me_mbot_d_c_motor_8h_source}{}\label{_me_mbot_d_c_motor_8h_source}\index{src/MeMbotDCMotor.h@{src/MeMbotDCMotor.h}}
+\mbox{\hyperlink{_me_mbot_d_c_motor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#ifndef\ MeMbotDCMotor\_H}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ MeMbotDCMotor\_H}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_d_c_motor_8h}{MeDCMotor.h}}"{}}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_m_bot_d_c_motor}{MBotDCMotor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_d_c_motor}{MeDCMotor}}}
+\DoxyCodeLine{00059\ \{}
+\DoxyCodeLine{00060\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00067\ \ \ \mbox{\hyperlink{class_m_bot_d_c_motor}{MBotDCMotor}}(uint8\_t\ port);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_m_bot_d_c_motor_afe0b361462f7660fd767cd7e5a23ea77}{move}}(\textcolor{keywordtype}{int}\ direction,\ \textcolor{keywordtype}{int}\ speed);}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//MeMbotDCMotor\_H}}
+\DoxyCodeLine{00089\ }
+
+\end{DoxyCode}

@@ -504,7 +504,7 @@ bool MeRGBLed::setColor(uint8_t index, long value)
   {
     for(int16_t i = 0; i < count_led; i++)
     {
-      uint8_t tmp    = index * 3;
+      uint8_t tmp    = i * 3;
       uint8_t red    = (value & 0xff0000) >> 16;
       uint8_t green  = (value & 0xff00) >> 8;
       uint8_t blue   = value & 0xff;

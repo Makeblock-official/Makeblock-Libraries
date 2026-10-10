@@ -1,0 +1,113 @@
+\doxysection{src/\+Me\+Stepper.cpp File Reference}
+\hypertarget{_me_stepper_8cpp}{}\label{_me_stepper_8cpp}\index{src/MeStepper.cpp@{src/MeStepper.cpp}}
+
+
+Driver for Stepper device.  
+
+
+{\ttfamily \#include "{}Me\+Stepper.\+h"{}}\newline
+Include dependency graph for Me\+Stepper.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_stepper_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_me_stepper_8cpp_a224b9163917ac32fc95a60d8c1eec3aa}{Direction}} \{ \mbox{\hyperlink{_me_stepper_8cpp_a224b9163917ac32fc95a60d8c1eec3aaad8096a357e6a61f6746147d0b19467c2}{DIRECTION\+\_\+\+CCW}} = 0
+, \mbox{\hyperlink{_me_stepper_8cpp_a224b9163917ac32fc95a60d8c1eec3aaa0f98509d24ebeef4508c20b9d8bfa0a6}{DIRECTION\+\_\+\+CW}} = 1
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Stepper device. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+3 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/01/20 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me Stepper device.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_stepper_a4ca8dff894ce12f5639afbc276345435}{Me\+Stepper\+::setpin(uint8\+\_\+t dir\+\_\+data, uint8\+\_\+t step\+\_\+data)};
+\item void \doxylink{class_me_stepper_a2bf300dfaa8901eac1fe334a3d01bb50}{Me\+Stepper\+::move\+To(long absolute)};
+\item void \doxylink{class_me_stepper_aa8020356bb0c793c2ea78737f9c5f387}{Me\+Stepper\+::move(long relative)};
+\item boolean \doxylink{class_me_stepper_aab1323d0500213e02ddc17527b7487a2}{Me\+Stepper\+::run()};
+\item boolean \doxylink{class_me_stepper_ad615be6e513b7d519e1b546ae9f2aac6}{Me\+Stepper\+::run\+Speed()};
+\item void \doxylink{class_me_stepper_a5bbeb502699499f95116ba48ee690978}{Me\+Stepper\+::set\+Max\+Speed(float speed)};
+\item void \doxylink{class_me_stepper_ac9ed9b7961f4812b4cb3455aa0987f64}{Me\+Stepper\+::set\+Acceleration(float acceleration)};
+\item void \doxylink{class_me_stepper_aa938e51919218e49bfc89b95e1bff27a}{Me\+Stepper\+::set\+Speed(float speed)};
+\item float \doxylink{class_me_stepper_aebc944454624fecb1c1d676a08990f08}{Me\+Stepper\+::speed()};
+\item long \doxylink{class_me_stepper_ace0023e3e3dcb3fed6dee4754211a64d}{Me\+Stepper\+::distance\+To\+Go()};
+\item long \doxylink{class_me_stepper_a48397cd52c4edf5d5c4c8b23df4f86de}{Me\+Stepper\+::target\+Position()};
+\item long \doxylink{class_me_stepper_a98ecf9b60b9c5bc588963a27d141106a}{Me\+Stepper\+::current\+Position()}; ~\newline
+
+\item void \doxylink{class_me_stepper_a3a3a66d03b75a43d6f33cf5cfcfe63ca}{Me\+Stepper\+::set\+Current\+Position(long position)}; ~\newline
+
+\item void \doxylink{class_me_stepper_a6076bbfe63621dc4f08a83756a3fd570}{Me\+Stepper\+::run\+To\+Position()};
+\item boolean \doxylink{class_me_stepper_a901a56566194e21be9ebacc5e2bd9dfc}{Me\+Stepper\+::run\+Speed\+To\+Position()};
+\item void \doxylink{class_me_stepper_a5b936d0e8e9684e89de40c4740a95952}{Me\+Stepper\+::run\+To\+New\+Position(long position)};
+\item void Me\+Stepper\+::disable\+Outputs();
+\item void Me\+Stepper\+::enable\+Outputs();
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan        2015/10/09     1.0.0            Bulid the new
+Mark Yan        2015/10/29     1.0.1            Fix minor errors in format
+forfish         2015/11/11     1.0.2            Add description.
+Mark Yan        2016/01/20     1.0.3            Fix minor errors in comment.
+\end{DoxyPre}
+
+\end{DoxyParagraph}
+DERIVED FROM // Accel\+Stepper.\+h // // Copyright (C) 2009-\/2013 Mike Mc\+Cauley // \begin{DoxyParagraph}{Id}
+Accel\+Stepper.\+cpp,v 1.\+23 2016/08/09 00\+:39\+:10 mikem Exp 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_me_stepper_8cpp_a224b9163917ac32fc95a60d8c1eec3aa}\label{_me_stepper_8cpp_a224b9163917ac32fc95a60d8c1eec3aa} 
+\index{MeStepper.cpp@{MeStepper.cpp}!Direction@{Direction}}
+\index{Direction@{Direction}!MeStepper.cpp@{MeStepper.cpp}}
+\doxysubsubsection{\texorpdfstring{Direction}{Direction}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_me_stepper_8cpp_a224b9163917ac32fc95a60d8c1eec3aa}{Direction}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIRECTION\_CCW@{DIRECTION\_CCW}!MeStepper.cpp@{MeStepper.cpp}}\index{MeStepper.cpp@{MeStepper.cpp}!DIRECTION\_CCW@{DIRECTION\_CCW}}}\Hypertarget{_me_stepper_8cpp_a224b9163917ac32fc95a60d8c1eec3aaad8096a357e6a61f6746147d0b19467c2}\label{_me_stepper_8cpp_a224b9163917ac32fc95a60d8c1eec3aaad8096a357e6a61f6746147d0b19467c2} 
+DIRECTION\+\_\+\+CCW&Clockwise. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIRECTION\_CW@{DIRECTION\_CW}!MeStepper.cpp@{MeStepper.cpp}}\index{MeStepper.cpp@{MeStepper.cpp}!DIRECTION\_CW@{DIRECTION\_CW}}}\Hypertarget{_me_stepper_8cpp_a224b9163917ac32fc95a60d8c1eec3aaa0f98509d24ebeef4508c20b9d8bfa0a6}\label{_me_stepper_8cpp_a224b9163917ac32fc95a60d8c1eec3aaa0f98509d24ebeef4508c20b9d8bfa0a6} 
+DIRECTION\+\_\+\+CW&Counter-\/\+Clockwise. \\
+\hline
+
+\end{DoxyEnumFields}

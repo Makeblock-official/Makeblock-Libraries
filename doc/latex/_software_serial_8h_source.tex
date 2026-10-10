@@ -1,0 +1,126 @@
+\doxysection{Software\+Serial.\+h}
+\hypertarget{_software_serial_8h_source}{}\label{_software_serial_8h_source}\index{src/utility/SoftwareSerial.h@{src/utility/SoftwareSerial.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{SoftwareSerial.h\ (formerly\ NewSoftSerial.h)\ -\/\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{Multi-\/instance\ software\ serial\ library\ for\ Arduino/Wiring}}
+\DoxyCodeLine{00004\ \textcolor{comment}{-\/-\/\ Interrupt-\/driven\ receive\ and\ other\ improvements\ by\ ladyada}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ (http://ladyada.net)}}
+\DoxyCodeLine{00006\ \textcolor{comment}{-\/-\/\ Tuning,\ circular\ buffer,\ derivation\ from\ class\ Print/Stream,}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ \ multi-\/instance\ support,\ porting\ to\ 8MHz\ processors,}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ \ various\ optimizations,\ PROGMEM\ delay\ tables,\ inverse\ logic\ and\ }}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ direct\ port\ writing\ by\ Mikal\ Hart\ (http://www.arduiniana.org)}}
+\DoxyCodeLine{00010\ \textcolor{comment}{-\/-\/\ Pin\ change\ interrupt\ macros\ by\ Paul\ Stoffregen\ (http://www.pjrc.com)}}
+\DoxyCodeLine{00011\ \textcolor{comment}{-\/-\/\ 20MHz\ processor\ support\ by\ Garrett\ Mace\ (http://www.macetech.com)}}
+\DoxyCodeLine{00012\ \textcolor{comment}{-\/-\/\ ATmega1280/2560\ support\ by\ Brett\ Hagman\ (http://www.roguerobotics.com/)}}
+\DoxyCodeLine{00013\ \textcolor{comment}{}}
+\DoxyCodeLine{00014\ \textcolor{comment}{This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00016\ \textcolor{comment}{License\ as\ published\ by\ the\ Free\ Software\ Foundation;\ either}}
+\DoxyCodeLine{00017\ \textcolor{comment}{version\ 2.1\ of\ the\ License,\ or\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{}}
+\DoxyCodeLine{00019\ \textcolor{comment}{This\ library\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00021\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ GNU}}
+\DoxyCodeLine{00022\ \textcolor{comment}{Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00025\ \textcolor{comment}{License\ along\ with\ this\ library;\ if\ not,\ write\ to\ the\ Free\ Software}}
+\DoxyCodeLine{00026\ \textcolor{comment}{Foundation,\ Inc.,\ 51\ Franklin\ St,\ Fifth\ Floor,\ Boston,\ MA\ \ 02110-\/1301\ \ USA}}
+\DoxyCodeLine{00027\ \textcolor{comment}{}}
+\DoxyCodeLine{00028\ \textcolor{comment}{The\ latest\ version\ of\ this\ library\ can\ always\ be\ found\ at}}
+\DoxyCodeLine{00029\ \textcolor{comment}{http://arduiniana.org.}}
+\DoxyCodeLine{00030\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#ifndef\ SoftwareSerial\_h}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ SoftwareSerial\_h}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ <inttypes.h>}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ <Stream.h>}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00039\ \textcolor{comment}{*\ Definitions}}
+\DoxyCodeLine{00040\ \textcolor{comment}{******************************************************************************/}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ \_SS\_MAX\_RX\_BUFF\ 64\ }\textcolor{comment}{//\ RX\ buffer\ size}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#ifndef\ GCC\_VERSION}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ GCC\_VERSION\ (\_\_GNUC\_\_\ *\ 10000\ +\ \_\_GNUC\_MINOR\_\_\ *\ 100\ +\ \_\_GNUC\_PATCHLEVEL\_\_)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_software_serial}{SoftwareSerial}}\ :\ \textcolor{keyword}{public}\ Stream}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \textcolor{comment}{//\ per\ object\ data}}
+\DoxyCodeLine{00051\ \ \ uint8\_t\ \_receivePin;}
+\DoxyCodeLine{00052\ \ \ uint8\_t\ \_receiveBitMask;}
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ *\_receivePortRegister;}
+\DoxyCodeLine{00054\ \ \ uint8\_t\ \_transmitBitMask;}
+\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ *\_transmitPortRegister;}
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ *\_pcint\_maskreg;}
+\DoxyCodeLine{00057\ \ \ uint8\_t\ \_pcint\_maskvalue;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \textcolor{comment}{//\ Expressed\ as\ 4-\/cycle\ delays\ (must\ never\ be\ 0!)}}
+\DoxyCodeLine{00060\ \ \ uint16\_t\ \_rx\_delay\_centering;}
+\DoxyCodeLine{00061\ \ \ uint16\_t\ \_rx\_delay\_intrabit;}
+\DoxyCodeLine{00062\ \ \ uint16\_t\ \_rx\_delay\_stopbit;}
+\DoxyCodeLine{00063\ \ \ uint16\_t\ \_tx\_delay;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ uint16\_t\ \_buffer\_overflow:1;}
+\DoxyCodeLine{00066\ \ \ uint16\_t\ \_inverse\_logic:1;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{comment}{//\ static\ data}}
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ \_receive\_buffer[\_SS\_MAX\_RX\_BUFF];\ }
+\DoxyCodeLine{00070\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ uint8\_t\ \_receive\_buffer\_tail;}
+\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ uint8\_t\ \_receive\_buffer\_head;}
+\DoxyCodeLine{00072\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_software_serial}{SoftwareSerial}}\ *active\_object;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{comment}{//\ private\ methods}}
+\DoxyCodeLine{00075\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ recv()\ \_\_attribute\_\_((\_\_always\_inline\_\_));}
+\DoxyCodeLine{00076\ \ \ uint8\_t\ rx\_pin\_read();}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordtype}{void}\ setTX(uint8\_t\ transmitPin);}
+\DoxyCodeLine{00078\ \ \ \textcolor{keywordtype}{void}\ setRX(uint8\_t\ receivePin);}
+\DoxyCodeLine{00079\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setRxIntMsk(\textcolor{keywordtype}{bool}\ enable)\ \_\_attribute\_\_((\_\_always\_inline\_\_));}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{comment}{//\ Return\ num\ -\/\ sub,\ or\ 1\ if\ the\ result\ would\ be\ <\ 1}}
+\DoxyCodeLine{00082\ \ \ \textcolor{keyword}{static}\ uint16\_t\ subtract\_cap(uint16\_t\ num,\ uint16\_t\ sub);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \textcolor{comment}{//\ private\ static\ method\ for\ timing}}
+\DoxyCodeLine{00085\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ tunedDelay(uint16\_t\ delay);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00088\ \ \ \textcolor{comment}{//\ public\ methods}}
+\DoxyCodeLine{00089\ \ \ \mbox{\hyperlink{class_software_serial}{SoftwareSerial}}(uint8\_t\ receivePin,\ uint8\_t\ transmitPin,\ \textcolor{keywordtype}{bool}\ inverse\_logic\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00090\ \ \ \mbox{\hyperlink{class_software_serial}{\string~SoftwareSerial}}();}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{void}\ begin(\textcolor{keywordtype}{long}\ speed);}
+\DoxyCodeLine{00092\ \ \ \textcolor{keywordtype}{bool}\ listen();}
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordtype}{void}\ end();}
+\DoxyCodeLine{00094\ \ \ \textcolor{keywordtype}{bool}\ isListening()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this}\ ==\ active\_object;\ \}}
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordtype}{bool}\ stopListening();}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordtype}{bool}\ overflow()\ \{\ \textcolor{keywordtype}{bool}\ ret\ =\ \_buffer\_overflow;\ \textcolor{keywordflow}{if}\ (ret)\ \_buffer\_overflow\ =\ \textcolor{keyword}{false};\ \textcolor{keywordflow}{return}\ ret;\ \}}
+\DoxyCodeLine{00097\ \ \ \textcolor{keywordtype}{int}\ peek();}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ write(uint8\_t\ \textcolor{keywordtype}{byte});}
+\DoxyCodeLine{00100\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ read();}
+\DoxyCodeLine{00101\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ available();}
+\DoxyCodeLine{00102\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ flush();}
+\DoxyCodeLine{00103\ \ \ \textcolor{keyword}{operator}\ bool()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00104\ \ \ }
+\DoxyCodeLine{00105\ \ \ \textcolor{keyword}{using\ }Print::write;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \textcolor{comment}{//\ public\ only\ for\ easy\ access\ by\ interrupt\ handlers}}
+\DoxyCodeLine{00108\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ handle\_interrupt()\ \_\_attribute\_\_((\_\_always\_inline\_\_));}
+\DoxyCodeLine{00109\ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ Arduino\ 0012\ workaround}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#undef\ int}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#undef\ char}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#undef\ long}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#undef\ byte}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#undef\ float}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#undef\ abs}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#undef\ round}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

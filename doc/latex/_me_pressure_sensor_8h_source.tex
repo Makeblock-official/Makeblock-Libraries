@@ -1,0 +1,68 @@
+\doxysection{Me\+Pressure\+Sensor.\+h}
+\hypertarget{_me_pressure_sensor_8h_source}{}\label{_me_pressure_sensor_8h_source}\index{src/MePressureSensor.h@{src/MePressureSensor.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MePressureSensor\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MePressureSensor\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#if\ (ARDUINO\ >=\ 100)}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\ \#include\ "{}Arduino.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\ \#include\ "{}WProgram.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ BMP180\_DEBUG\ 0}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ BMP180\_I2CADDR\ 0x77}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ BMP180\_ULTRALOWPOWER\ 0}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ BMP180\_STANDARD\ \ \ \ \ \ 1}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ BMP180\_HIGHRES\ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ BMP180\_ULTRAHIGHRES\ \ 3}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ BMP180\_CAL\_AC1\ \ \ \ \ \ \ \ \ \ \ 0xAA\ \ }}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ BMP180\_CAL\_AC2\ \ \ \ \ \ \ \ \ \ \ 0xAC\ \ }}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ BMP180\_CAL\_AC3\ \ \ \ \ \ \ \ \ \ \ 0xAE\ \ \ \ \ \ }}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ BMP180\_CAL\_AC4\ \ \ \ \ \ \ \ \ \ \ 0xB0\ \ }}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ BMP180\_CAL\_AC5\ \ \ \ \ \ \ \ \ \ \ 0xB2\ \ }}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ BMP180\_CAL\_AC6\ \ \ \ \ \ \ \ \ \ \ 0xB4\ \ }}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ BMP180\_CAL\_B1\ \ \ \ \ \ \ \ \ \ \ \ 0xB6\ \ }}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ BMP180\_CAL\_B2\ \ \ \ \ \ \ \ \ \ \ \ 0xB8\ \ }}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ BMP180\_CAL\_MB\ \ \ \ \ \ \ \ \ \ \ \ 0xBA\ \ }}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ BMP180\_CAL\_MC\ \ \ \ \ \ \ \ \ \ \ \ 0xBC\ \ }}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ BMP180\_CAL\_MD\ \ \ \ \ \ \ \ \ \ \ \ 0xBE\ \ }}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ BMP180\_CONTROL\ \ \ \ \ \ \ \ \ \ \ 0xF4\ }}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ BMP180\_TEMPDATA\ \ \ \ \ \ \ \ \ \ 0xF6}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ BMP180\_PRESSUREDATA\ \ \ \ \ \ 0xF6}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ BMP180\_READTEMPCMD\ \ \ \ \ \ \ \ \ \ 0x2E}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ BMP180\_READPRESSURECMD\ \ \ \ \ \ \ \ \ \ \ \ 0x34}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_pressure_sensor}{MePressureSensor}}\ \{}
+\DoxyCodeLine{00039\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \mbox{\hyperlink{class_me_pressure_sensor}{MePressureSensor}}();}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{boolean}\ begin(uint8\_t\ mode\ =\ BMP180\_ULTRAHIGHRES);\ }
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{float}\ readTemperature(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00043\ \ \ int32\_t\ readPressure(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00044\ \ \ int32\_t\ readSealevelPressure(\textcolor{keywordtype}{float}\ altitude\_meters\ =\ 0);}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{float}\ readAltitude(\textcolor{keywordtype}{float}\ sealevelPressure\ =\ 101325);\ }
+\DoxyCodeLine{00046\ \ \ uint16\_t\ readRawTemperature(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00047\ \ \ uint32\_t\ readRawPressure(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00048\ \ \ }
+\DoxyCodeLine{00049\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ int32\_t\ computeB5(int32\_t\ UT);}
+\DoxyCodeLine{00051\ \ \ uint8\_t\ readUInt8(uint8\_t\ addr);}
+\DoxyCodeLine{00052\ \ \ uint16\_t\ readUInt16(uint8\_t\ addr);}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordtype}{void}\ writeUInt8(uint8\_t\ addr,\ uint8\_t\ data);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ uint8\_t\ oversampling;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ int16\_t\ ac1,\ ac2,\ ac3,\ b1,\ b2,\ mb,\ mc,\ md;}
+\DoxyCodeLine{00058\ \ \ uint16\_t\ ac4,\ ac5,\ ac6;}
+\DoxyCodeLine{00059\ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif\ }}
+
+\end{DoxyCode}

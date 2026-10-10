@@ -1,0 +1,121 @@
+\doxysection{Me\+Stepper\+On\+Board.\+h}
+\hypertarget{_me_stepper_on_board_8h_source}{}\label{_me_stepper_on_board_8h_source}\index{src/MeStepperOnBoard.h@{src/MeStepperOnBoard.h}}
+\mbox{\hyperlink{_me_stepper_on_board_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#ifndef\ MeStepperOnBoard\_h}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ MeStepperOnBoard\_h}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#if\ ARDUINO\ >=\ 100}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \#include\ "{}Arduino.h"{}}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \#include\ "{}WProgram.h"{}}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \#include\ "{}stdlib.h"{}}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \#include\ "{}wiring.h"{}}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ NUM\_SLOTS\ \ \ \ \ \ \ \ \ \ 4}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ SLOT\_NUM\_PINS\ \ \ \ \ \ 8}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmega_pi__slot}{megaPi\_slot}}}
+\DoxyCodeLine{00077\ \ \{}
+\DoxyCodeLine{00078\ \ \ \ uint8\_t\ pin[SLOT\_NUM\_PINS];}
+\DoxyCodeLine{00079\ \ \}\ \mbox{\hyperlink{structmega_pi__slot}{megaPi\_slot\_type}};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structmega_pi__slot}{megaPi\_slot\_type}}\ megaPi\_slots[NUM\_SLOTS];}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ These\ defs\ cause\ trouble\ on\ some\ versions\ of\ Arduino}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#undef\ round}}
+\DoxyCodeLine{00085\ \textcolor{keyword}{typedef}\ void\ (*cb)(int,int);\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_stepper_on_board}{MeStepperOnBoard}}}
+\DoxyCodeLine{00092\ \{}
+\DoxyCodeLine{00093\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00100\ \ \ \mbox{\hyperlink{class_me_stepper_on_board_a6476b785a367f0bf0f6be0b5f1d256db}{MeStepperOnBoard}}();}
+\DoxyCodeLine{00101\ \ \ }
+\DoxyCodeLine{00107\ \ \ \mbox{\hyperlink{class_me_stepper_on_board_a6476b785a367f0bf0f6be0b5f1d256db}{MeStepperOnBoard}}(\textcolor{keywordtype}{int}\ slot);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00123\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_a8cb61d386f7b800f1a2f752c46cfff54}{setMicroStep}}(int8\_t\ value);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00139\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_a881cf1984ee0cfcb773b5ab6265c40cf}{setpin}}(\textcolor{keywordtype}{int}\ slot);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00155\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_a52fd44017b98f6f557321483f98dda71}{moveTo}}(\textcolor{keywordtype}{long}\ absolute);}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00175\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_a52fd44017b98f6f557321483f98dda71}{moveTo}}(\textcolor{keywordtype}{long}\ absolute,\ int16\_t\ extId,\ cb\ callback);}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00191\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_aad362da829622be269f2903cf2000b3e}{move}}(\textcolor{keywordtype}{long}\ relative);}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00211\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_aad362da829622be269f2903cf2000b3e}{move}}(\textcolor{keywordtype}{long}\ relative,\ int16\_t\ extId,\ cb\ callback);}
+\DoxyCodeLine{00212\ \ \ }
+\DoxyCodeLine{00227\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_stepper_on_board_a49e9754f36126eee4b63403dc581822f}{run}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00228\ \ \ }
+\DoxyCodeLine{00243\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_stepper_on_board_a0f376d74435f5cf1f6adece94c372d71}{runSpeed}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00244\ \ \ }
+\DoxyCodeLine{00259\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_ab8d690efadd05acd2f453989990872b5}{setMaxSpeed}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_stepper_on_board_aa7bd0bc1c0dd3a147398ec654b4cf8ac}{speed}});}
+\DoxyCodeLine{00260\ \ \ }
+\DoxyCodeLine{00275\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_a568dff526477425da5dd7640dd6f8dca}{setAcceleration}}(\textcolor{keywordtype}{float}\ acceleration);}
+\DoxyCodeLine{00276\ \ \ }
+\DoxyCodeLine{00291\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_a61eea9139c60f539c7e439676d819ba0}{setSpeed}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_stepper_on_board_aa7bd0bc1c0dd3a147398ec654b4cf8ac}{speed}});}
+\DoxyCodeLine{00292\ \ \ }
+\DoxyCodeLine{00307\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_stepper_on_board_aa7bd0bc1c0dd3a147398ec654b4cf8ac}{speed}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00308\ \ \ }
+\DoxyCodeLine{00323\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_stepper_on_board_aaa90efc7806ed103617729527bf3f7f7}{distanceToGo}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00324\ \ \ }
+\DoxyCodeLine{00339\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_stepper_on_board_a2ad468c8d4083b29aa445d8ee516a16b}{targetPosition}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00340\ \ \ }
+\DoxyCodeLine{00355\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_stepper_on_board_a836435093e011021ba4c0db7a3896617}{currentPosition}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00356\ \ \ }
+\DoxyCodeLine{00371\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_af8e05271185ffe7c3bd520c8483d930d}{setCurrentPosition}}(\textcolor{keywordtype}{long}\ position);}
+\DoxyCodeLine{00372\ \ \ }
+\DoxyCodeLine{00387\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_a951f051a706bdda80961766ce5f2e388}{runToPosition}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00388\ \ \ }
+\DoxyCodeLine{00403\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_stepper_on_board_ada03839c1d65ef9ffd1bb64db5da0bc9}{runSpeedToPosition}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00404\ \ \ }
+\DoxyCodeLine{00419\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_a20298c8fc1fb1ef4998fbcd2dd7c52ba}{runToNewPosition}}(\textcolor{keywordtype}{long}\ position);}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00435\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_ad663fa9672bc29c860558ab65884f51b}{disableOutputs}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00436\ }
+\DoxyCodeLine{00451\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_af749d02703cca7e3651ee273e918308b}{enableOutputs}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00467\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_a1f6128e6d2943f70fd9431a0df08fa01}{update}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00482\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_a2df202c7c7cf5a72c200e4063555cb97}{step}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00483\ \ \ }
+\DoxyCodeLine{00498\ \ \ int16\_t\ \mbox{\hyperlink{class_me_stepper_on_board_a3f0d66021a8967ad91b7ed7cd62a8123}{getPort}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00515\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_on_board_acee54708cc0281b3a4643e2661eb5c83}{computeNewSpeed}}();}
+\DoxyCodeLine{00516\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00517\ \ \ uint8\_t\ \_dir\_data;}
+\DoxyCodeLine{00518\ \ \ uint8\_t\ \_step\_data;}
+\DoxyCodeLine{00519\ \ \ uint8\_t\ \_enable\_pin;}
+\DoxyCodeLine{00520\ \ \ uint8\_t\ \_micro\_step\_pin1;}
+\DoxyCodeLine{00521\ \ \ uint8\_t\ \_micro\_step\_pin2;}
+\DoxyCodeLine{00522\ \ \ uint8\_t\ \_micro\_step\_pin3;}
+\DoxyCodeLine{00523\ \ \ uint8\_t\ \_reset\_pin;}
+\DoxyCodeLine{00524\ \ \ uint8\_t\ \_sleep\_pin;}
+\DoxyCodeLine{00525\ \ \ uint8\_t\ \_micro\_step;}
+\DoxyCodeLine{00526\ \ \ uint8\_t\ \_dir;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2\ or\ 4}}
+\DoxyCodeLine{00527\ \ \ \textcolor{keywordtype}{long}\ \_currentPos;\ \ \ \ \ \ \textcolor{comment}{//\ Steps}}
+\DoxyCodeLine{00528\ \ \ \textcolor{keywordtype}{long}\ \_targetPos;\ \ \ \ \ \ \ \textcolor{comment}{//\ Steps}}
+\DoxyCodeLine{00529\ \ \ \textcolor{keywordtype}{float}\ \_speed;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Steps\ per\ second}}
+\DoxyCodeLine{00530\ \ \ \textcolor{keywordtype}{float}\ \_maxSpeed;}
+\DoxyCodeLine{00531\ \ \ \textcolor{keywordtype}{float}\ \_acceleration;}
+\DoxyCodeLine{00532\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \_stepInterval;}
+\DoxyCodeLine{00533\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \_lastStepTime;}
+\DoxyCodeLine{00535\ \ \ \textcolor{keywordtype}{long}\ \_n;}
+\DoxyCodeLine{00536\ }
+\DoxyCodeLine{00538\ \ \ \textcolor{keywordtype}{float}\ \_c0;}
+\DoxyCodeLine{00539\ }
+\DoxyCodeLine{00541\ \ \ \textcolor{keywordtype}{float}\ \_cn;}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00544\ \ \ \textcolor{keywordtype}{float}\ \_cmin;\ \textcolor{comment}{//\ at\ max\ speed}}
+\DoxyCodeLine{00545\ \ \ cb\ \_callback;}
+\DoxyCodeLine{00546\ \ \ int16\_t\ \_slot;}
+\DoxyCodeLine{00547\ \ \ int16\_t\ \_extId;}
+\DoxyCodeLine{00548\ \ \ \textcolor{keywordtype}{boolean}\ \_moving;}
+\DoxyCodeLine{00549\ \ \ int16\_t\ \_mode;}
+\DoxyCodeLine{00550\ \ \ \textcolor{keywordtype}{boolean}\ \_enabled;}
+\DoxyCodeLine{00551\ \};}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00553\ \textcolor{preprocessor}{\#endif\ }}
+
+\end{DoxyCode}

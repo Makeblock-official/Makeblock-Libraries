@@ -1,0 +1,5 @@
+<map id="MeLimitSwitch" name="MeLimitSwitch">
+<area shape="rect" id="Node000001" title="Driver for Me_LimitSwitch module." alt="" coords="5,80,112,107"/>
+<area shape="rect" id="Node000002" href="$class_me_port.html" title="Port Mapping for RJ25." alt="" coords="27,5,90,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,48,61,80,56,80,56,48"/>
+</map>

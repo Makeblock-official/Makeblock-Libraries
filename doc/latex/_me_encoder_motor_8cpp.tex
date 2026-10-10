@@ -1,0 +1,162 @@
+\doxysection{src/\+Me\+Encoder\+Motor.cpp File Reference}
+\hypertarget{_me_encoder_motor_8cpp}{}\label{_me_encoder_motor_8cpp}\index{src/MeEncoderMotor.cpp@{src/MeEncoderMotor.cpp}}
+
+
+Driver for Encoder Motor module.  
+
+
+{\ttfamily \#include "{}Me\+Encoder\+Motor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Host\+Parser.\+h"{}}\newline
+Include dependency graph for Me\+Encoder\+Motor.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_encoder_motor_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_a8afe1ea7d8cc5e30e12e01a775b9f753}\label{_me_encoder_motor_8cpp_a8afe1ea7d8cc5e30e12e01a775b9f753} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+GET\+\_\+\+PARAM}~0x01
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_a88f269325756c29dd3d231f0c43e6b7f}\label{_me_encoder_motor_8cpp_a88f269325756c29dd3d231f0c43e6b7f} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+SAVE\+\_\+\+PARAM}~0x02
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_adc0cd256d0954f4c5e977077b6f73e8a}\label{_me_encoder_motor_8cpp_adc0cd256d0954f4c5e977077b6f73e8a} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+TEST\+\_\+\+PARAM}~0x03
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_a6e1b3c867dc1f523a5d2e3eccb64b4c2}\label{_me_encoder_motor_8cpp_a6e1b3c867dc1f523a5d2e3eccb64b4c2} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+SHOW\+\_\+\+PARAM}~0x04
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_a309f011cc7b8152e6e7730f5813cea5f}\label{_me_encoder_motor_8cpp_a309f011cc7b8152e6e7730f5813cea5f} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+RUN\+\_\+\+STOP}~0x05
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_ac0683f84d9d15105fcc35a6f385736c6}\label{_me_encoder_motor_8cpp_ac0683f84d9d15105fcc35a6f385736c6} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+GET\+\_\+\+DIFF\+\_\+\+POS}~0x06
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_afe277314eceb68d494bcaba9899ac0e1}\label{_me_encoder_motor_8cpp_afe277314eceb68d494bcaba9899ac0e1} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+RESET}~0x07
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_a3e9dcd1f976ca0e0baa040ded09c915c}\label{_me_encoder_motor_8cpp_a3e9dcd1f976ca0e0baa040ded09c915c} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+SPEED\+\_\+\+TIME}~0x08
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_a06da2837327b8c91cb9639c20f1df38e}\label{_me_encoder_motor_8cpp_a06da2837327b8c91cb9639c20f1df38e} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+GET\+\_\+\+SPEED}~0x09
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_a24629da1d19ff2fd8cc35cd63f8a1340}\label{_me_encoder_motor_8cpp_a24629da1d19ff2fd8cc35cd63f8a1340} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+GET\+\_\+\+POS}~0x10
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_aec2d6cdfbdc18a1a370ca73fe041c0e7}\label{_me_encoder_motor_8cpp_aec2d6cdfbdc18a1a370ca73fe041c0e7} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+MOVE}~0x11
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_acafef282eb7709702416973280f6ede6}\label{_me_encoder_motor_8cpp_acafef282eb7709702416973280f6ede6} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+MOVE\+\_\+\+TO}~0x12
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_a6480331b554f5757e13bc9a58194e86e}\label{_me_encoder_motor_8cpp_a6480331b554f5757e13bc9a58194e86e} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+DEBUG\+\_\+\+STR}~0x\+CC
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_aa6decfcb581e847686c3e117d6f25a86}\label{_me_encoder_motor_8cpp_aa6decfcb581e847686c3e117d6f25a86} 
+\#define {\bfseries ENCODER\+\_\+\+MOTOR\+\_\+\+ACKNOWLEDGE}~0x\+FF
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{_me_encoder_motor_8cpp_af46216bf6587148906d641d9fa0a89cb}{Me\+Host\+\_\+\+Pack}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint32\+\_\+t buf\+Size, uint8\+\_\+t module, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t length)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_encoder_motor_8cpp_a1cb933ef4b03f41f48c35b656674ca0d}\label{_me_encoder_motor_8cpp_a1cb933ef4b03f41f48c35b656674ca0d} 
+\mbox{\hyperlink{class_me_host_parser}{Me\+Host\+Parser}} {\bfseries encoder\+Parser} = \mbox{\hyperlink{class_me_host_parser}{Me\+Host\+Parser}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Encoder Motor module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2015/11/09 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me Encoder\+Motor device, The Me Encoder\+Motor inherited the \doxylink{class_me_serial}{Me\+Serial} class from \doxylink{class_software_serial}{Software\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_encoder_motor_aeda692228687464c10a47f279b682d53}{Me\+Encoder\+Motor\+::begin()};
+\item boolean \doxylink{class_me_encoder_motor_a83b974e7a06af62d268bd251cc118509}{Me\+Encoder\+Motor\+::reset()};
+\item boolean \doxylink{class_me_encoder_motor_a10a88a426631d9251a0db96f921f1bcd}{Me\+Encoder\+Motor\+::move(float angle, float speed)};
+\item boolean \doxylink{class_me_encoder_motor_a05f1de71458b1ab75bd34f9c948cc463}{Me\+Encoder\+Motor\+::move\+To(float angle, float speed)};
+\item boolean \doxylink{class_me_encoder_motor_a94231a437d93fe7681fa41024207a28e}{Me\+Encoder\+Motor\+::run\+Turns(float turns, float speed)};
+\item boolean \doxylink{class_me_encoder_motor_aff4c3a4f790b712a36fff5184927af00}{Me\+Encoder\+Motor\+::run\+Speed(float speed)};
+\item boolean \doxylink{class_me_encoder_motor_adc48a3b9f3508aa50b80d00e7fdce178}{Me\+Encoder\+Motor\+::run\+Speed\+And\+Time(float speed, float time)};
+\item float \doxylink{class_me_encoder_motor_a7ff4246627c94976d97141da3a31ad00}{Me\+Encoder\+Motor\+::get\+Current\+Speed()};
+\item float \doxylink{class_me_encoder_motor_a3e0f684f694a4ace231ac8fe90c68c62}{Me\+Encoder\+Motor\+::get\+Current\+Position()};
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan        2015/11/03     1.0.0            Fix minor errors on format
+forfish         2015/11/09     1.0.1            Add description
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_me_encoder_motor_8cpp_af46216bf6587148906d641d9fa0a89cb}\label{_me_encoder_motor_8cpp_af46216bf6587148906d641d9fa0a89cb} 
+\index{MeEncoderMotor.cpp@{MeEncoderMotor.cpp}!MeHost\_Pack@{MeHost\_Pack}}
+\index{MeHost\_Pack@{MeHost\_Pack}!MeEncoderMotor.cpp@{MeEncoderMotor.cpp}}
+\doxysubsubsection{\texorpdfstring{MeHost\_Pack()}{MeHost\_Pack()}}
+{\footnotesize\ttfamily uint32\+\_\+t Me\+Host\+\_\+\+Pack (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{uint32\+\_\+t}]{buf\+Size,  }\item[{uint8\+\_\+t}]{module,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data,  }\item[{uint32\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+Me\+Host\+\_\+\+Pack 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Pack data into a package to send. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em buf} & -\/ Buffer to save package. \\
+\hline
+\mbox{\texttt{ in}}  & {\em buf\+Size} & -\/ Size of buf. \\
+\hline
+\mbox{\texttt{ in}}  & {\em module} & -\/ The associated module of package. \\
+\hline
+\mbox{\texttt{ in}}  & {\em data} & -\/ The data to pack. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & -\/ The length(size) of data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None \textbackslash{}\+Return 0. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+package size. 
+\end{DoxyParagraph}

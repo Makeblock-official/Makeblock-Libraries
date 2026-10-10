@@ -1,0 +1,50 @@
+\doxysection{Me\+Ultrasonic\+Sensor.\+h}
+\hypertarget{_me_ultrasonic_sensor_8h_source}{}\label{_me_ultrasonic_sensor_8h_source}\index{src/MeUltrasonicSensor.h@{src/MeUltrasonicSensor.h}}
+\mbox{\hyperlink{_me_ultrasonic_sensor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifndef\ MeUltrasonicSensor\_H}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ MeUltrasonicSensor\_H}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00071\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_ultrasonic_sensor}{MeUltrasonicSensor}}}
+\DoxyCodeLine{00072\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00073\ class\ \mbox{\hyperlink{class_me_ultrasonic_sensor}{MeUltrasonicSensor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00084\ \ \ \mbox{\hyperlink{class_me_ultrasonic_sensor_a1c80a8cdd1d38cbeda6d643d41dc1fa0}{MeUltrasonicSensor}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{class_me_ultrasonic_sensor_a1c80a8cdd1d38cbeda6d643d41dc1fa0}{MeUltrasonicSensor}}(uint8\_t\ port);}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00099\ \ \ MeUltrasonicSensor(uint8\_t\ port);}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00116\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_ultrasonic_sensor_aebf1069f210e0dcd0a8d8d44e9810f63}{setpin}}(uint8\_t\ SignalPin);}
+\DoxyCodeLine{00117\ \ \ }
+\DoxyCodeLine{00132\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_ultrasonic_sensor_a72ad8300b4ab09413acb1e3f0a54c208}{distanceCm}}(uint16\_t\ =\ 400);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00148\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_ultrasonic_sensor_a1a4ed1ecf9c37b556c4514306347ee29}{distanceInch}}(uint16\_t\ =\ 180);}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00165\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_ultrasonic_sensor_ac2ccac04ce9765c9c4b33d878db32ff6}{measure}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ =\ 30000);}
+\DoxyCodeLine{00166\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00167\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_SignalPin;}
+\DoxyCodeLine{00168\ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{bool}\ \_measureFlag;}
+\DoxyCodeLine{00169\ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{long}\ \_lastEnterTime;}
+\DoxyCodeLine{00170\ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{float}\ \_measureValue;}
+\DoxyCodeLine{00171\ \};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#endif\ }}
+\DoxyCodeLine{00174\ }
+
+\end{DoxyCode}

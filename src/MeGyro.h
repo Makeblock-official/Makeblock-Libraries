@@ -63,6 +63,7 @@
 
 /* Exported macro ------------------------------------------------------------*/
 #define I2C_ERROR                  (-1)
+
 #define GYRO_DEFAULT_ADDRESS       (0x68)
 
 /**
@@ -293,6 +294,22 @@ public:
 
 /**
  * \par Function
+ *   getGyroZ
+ * \par Description
+ *   Get the data of gyroZrate.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The data of gyroZrate
+ * \par Others
+ *   None
+ */
+  double getGyroZ(void) const;
+
+/**
+ * \par Function
  *   getAngle
  * \par Description
  *   Get the angle value of setting axis.
@@ -307,32 +324,72 @@ public:
  */
   double getAngle(uint8_t index) const;
 
+/**
+ * \par Function
+ *   getTemperature
+ * \par Description
+ *   Get the temperature value from MPU-6050 internal temperature sensor.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The temperature in degrees Celsius
+ * \par Others
+ *   Temperature is calculated from raw sensor data using the formula:
+ *   Temperature = (TEMP_OUT / 340.0) + 36.53
+ * \author
+ *   Nick B
+ */
+  double getTemperature(void) const;
+
+
+/**
+ * \par Function
+ *   resetData
+ * \par Description
+ *   Reset the angle value of setting axis.
+ * \param[in]
+ *  None
+ * \par Output
+ *   None
+ * \return
+ *   None
+ * \par Others
+ *   None
+ * \author
+ *   Nicolas Bourré
+ */  
+  void resetData(void);
+
 private:
   volatile uint8_t  _AD0;
   volatile uint8_t  _INT;
   double  gSensitivity; /* for 500 deg/s, check data sheet */
   double  gx, gy, gz;
   double  gyrX, gyrY, gyrZ;
-  int16_t accX, accY, accZ;
+  int16_t accX, accY, accZ, rawTemp;
   double  gyrXoffs, gyrYoffs, gyrZoffs;
   uint8_t i2cData[14];
   uint8_t Device_Address;
-  
-/**
- * \par Function
- *   deviceCalibration
- * \par Description
- *   Calibration function for the MeGyro. 
- * \param[in]
- *   None
- * \par Output
- *   None
- * \return
- *   None.
- * \par Others
- *   The calibration function will be called in initial process, please keep the 
- *   device in a rest status at that time.
- */
+
+  double temperature;
+
+  /**
+   * \par Function
+   *   deviceCalibration
+   * \par Description
+   *   Calibration function for the MeGyro.
+   * \param[in]
+   *   None
+   * \par Output
+   *   None
+   * \return
+   *   None.
+   * \par Others
+   *   The calibration function will be called in initial process, please keep the
+   *   device in a rest status at that time.
+   */
   void deviceCalibration(void);
 
 /**

@@ -1,0 +1,88 @@
+\doxysection{src/\+Me\+Serial.h File Reference}
+\hypertarget{_me_serial_8h}{}\label{_me_serial_8h}\index{src/MeSerial.h@{src/MeSerial.h}}
+
+
+Header for for \doxylink{_me_serial_8cpp}{Me\+Serial.\+cpp} module.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+Serial.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_serial_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_serial_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_me_serial}{Me\+Serial}}
+\begin{DoxyCompactList}\small\item\em Driver for serial. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for for \doxylink{_me_serial_8cpp}{Me\+Serial.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2015/01/20 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for serial, It support hardware and software serial
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_serial_a73dde79161f876956fd6d070f14510d3}{Me\+Serial\+::set\+Hardware(bool mode)}
+\item void \doxylink{class_me_serial_a2e491a6206475d8d254a785043e0de22}{Me\+Serial\+::begin(long baudrate)}
+\item void \doxylink{class_me_serial_abd68e3efb8adfcc71089dadbd4acd143}{Me\+Serial\+::end(void)}
+\item size\+\_\+t \doxylink{class_me_serial_ad28782e0bebe4255a8ba7995957176e6}{Me\+Serial\+::write(uint8\+\_\+t byte)}
+\item int16\+\_\+t \doxylink{class_me_serial_a00be49316c437fdb4615c4e40869ff60}{Me\+Serial\+::read(void)}
+\item int16\+\_\+t \doxylink{class_me_serial_a4b784a1b24df5e06f208d697e9e1ed3f}{Me\+Serial\+::available(void)}
+\item bool \doxylink{class_me_serial_a5dd4784d18202db78fb8333afd97c031}{Me\+Serial\+::listen(void)}
+\item bool \doxylink{class_me_serial_a4c4af893caafb362da7906ddabe16327}{Me\+Serial\+::is\+Listening(void)}
+\item int16\+\_\+t \doxylink{class_me_serial_a721bd751d68b01eeafd206163eab10a4}{Me\+Serial\+::poll(void)}
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan         2015/09/08     1.0.0            Rebuild the old lib.
+Mark Yan         2016/01/20     1.0.1            support arduino pin-\/setting.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

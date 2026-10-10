@@ -1,6 +1,11 @@
-# Makeblock Library v3.27
+# Makeblock Library v3.29.0 - Updated
 
 Arduino Library for Makeblock Electronic Modules
+
+## Note
+The original library from Makeblock is not maintained anymore. I have a fleet of Makeblock Ranger robots and I needed to fix some issues with the library. I will try to keep it up to date with the original library.
+
+Feel free to open an issue if you have any problem with the library or create a pull request if you have a fix.
 
 # Copyright notice
 
@@ -13,6 +18,7 @@ These modules is derived from other open source projects:
 - Me7SegmentDisplay
 - MeOneWire
 - MeStepper
+- [MeRGBLineFollower](./doc/devices/MeRGBLineFollower.md)
 
 and these modules is inspired by some projects:
 
@@ -22,15 +28,12 @@ As an open source library, we respect all contributors to the open source commun
 
 If you have a discussion about licensing issues, please contact me (myan@makeblock.com -- Mark Yan)
 
-### How to use:
+## How to use:
 
-1. Download the source from the git https://codeload.github.com/Makeblock-official/Makeblock-Libraries/zip/master
-
-2. In the Arduino IDE: "Sketch-> Include Library-> Add .ZIP Library-> select the downloaded file-> Open"
-
-3. Click "File-> Examples". There are some test programs in "MakeBlockDrive->"
-
-4. Depending on the type of board you're using, you need to modify the header file to match.
+1. Download the library from the Arduino Library manager
+2. Search for Makeblock in the Library Manager and select `Makeblock Drive Updated`
+4. Click "File-> Examples". There are some test programs in "MakeBlock Drive Updated->"
+5. Depending on the type of board you're using, you need to modify the header file to match.
 
    For example, if you're using a mCore. You should change `#include <MeOrion.h>` to `#include <MeMCore.h>`
    Corresponding boards and there header file are:
@@ -47,7 +50,7 @@ If you have a discussion about licensing issues, please contact me (myan@makeblo
 
    MegaPi <------->  MeMegaPi.h
 
-### Revision of history:
+## Revision of history:
 
 |Author      |       Time      |   Version    |    Descr     |
 |:--------   |      :-----:    |   :----:     |    :-----    |
@@ -61,5 +64,11 @@ If you have a discussion about licensing issues, please contact me (myan@makeblo
 |Mark Yan    |     2018/05/16  |   3.2.5      |    Correct copyright information.|
 |Vincent He  |     2019/01/04  |   3.2.6      |    1.Mbot /ranger adds the function of communication variables. 2.Solve the blocking problem of 9g steering gear. 3.Solve the problem that the intelligent steering gear cannot read back the parameters. 4.Add version number function. 5.High power code motor reinforcement version query function. 6.Solve the problem of SetColor (uint8_t index, long value) function error in mergharp.cpp. 7.The mBot board cannot extinguish the RGB. First upload the program with the RGB in any color, and then upload the program with the RGB in all colors. The RGB cannot extinguish (MeRGBLed bled. CPP file). 8.In the MegaPi firmware, SLOT1 is changed to slot_num instead of parameter transmission in the command processing stepper motor.|
 |Vincent He  |     2019/09/02  |   3.2.7      |    1.fix the problem that the electronic compass Mecompass is hung on the Orion mainboard 7 or 8 ports and communication will be hung dead. 2.fix the problem that the function getPointFast() in MeHumitureSensor.cpp does not normally output the value. 3.fix the problem that compile smartservo_test.ino firmware error report using the arduino1.6.5 environment with mBlock V3.4.12. 4.remove MeSuperVariable.cpp/MeSuperVariable.h. 5.fix the problem that ultrasonic module can only measure the maximum range of 375cm,and the maximum range of normal requirements is 400cm.|
+| Nicolas Bourré |  2023/10/16 | 3.28 | 1. Added missing `gyro.getGyroZ`. 2. Compliant semver.org version number. 3. Added `gyro.resetData` function. 4. Modified the gyro address if it is an Auriga board. |
+| Nicolas Bourré |  2025/04/30 | 3.28.1 | Added the MeRGBLineFollower class. |
+| Nick B |  2025/09/24 | 3.29.0 | 1. Added `getTemperature()` method to MeGyro class for MPU-6050 internal temperature sensor. 2. Fixed multiple definition linker errors by moving MeAuriga global array initializations to .cpp file. 3. Added AurigaTempSensors example demonstrating dual temperature sensor reading (gyro + onboard NTC). |
 
-### Learn more from Makeblock official website: www.makeblock.com
+# Issues
+
+## Remove old MakeBlock library
+If you have problem with the compiler complaining of ambiguous reference to `MePort`, you may have an old version of the MakeBlock library installed. You can remove it by uninstalling the official Makeblock library via the library manager.

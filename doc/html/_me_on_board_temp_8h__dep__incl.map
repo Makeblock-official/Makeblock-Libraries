@@ -1,0 +1,7 @@
+<map id="src/MeOnBoardTemp.h" name="src/MeOnBoardTemp.h">
+<area shape="rect" id="Node000001" title="Header for MeOnBoardTemp.cpp module." alt="" coords="64,5,219,32"/>
+<area shape="rect" id="Node000002" href="$_me_auriga_8h.html" title="Driver for MeAuriga board." alt="" coords="5,80,115,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,44,76,82,72,78,114,41"/>
+<area shape="rect" id="Node000003" href="$_me_on_board_temp_8cpp.html" title="Driver for Auriga On Board Temperature device." alt="" coords="139,80,309,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="169,40,212,78,208,82,165,45"/>
+</map>

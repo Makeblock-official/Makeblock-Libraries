@@ -1,0 +1,72 @@
+\doxysection{src/\+Me\+IR.cpp File Reference}
+\hypertarget{_me_i_r_8cpp}{}\label{_me_i_r_8cpp}\index{src/MeIR.cpp@{src/MeIR.cpp}}
+
+
+Driver for Me IR module.  
+
+
+
+
+\doxysubsection{Detailed Description}
+Driver for Me IR module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+4 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2015/11/16 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me IR device, The IR inherited the \doxylink{class_me_serial}{Me\+Serial} class from \doxylink{class_software_serial}{Software\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item Error\+Status \doxylink{class_me_i_r_a32e9dfb953176df04c4e2fb728a4a634}{Me\+IR\+::decode()};
+\item void \doxylink{class_me_i_r_aa307ef91b7d762ea970e54dba32a161c}{Me\+IR\+::begin()};
+\item void \doxylink{class_me_i_r_a7030203133352a4f6f8a3f1e99643858}{Me\+IR\+::end()};
+\item void \doxylink{class_me_i_r_aeca67335b28008603173082a00a53641}{Me\+IR\+::loop()};
+\item boolean \doxylink{class_me_i_r_a7b0f1947b326e956b7b6f7c06e95a3cc}{Me\+IR\+::key\+Pressed(unsigned char r)};
+\item String \doxylink{class_me_i_r_acb90c07d687f185d4ed36a57b41cf358}{Me\+IR\+::get\+String()};
+\item unsigned char \doxylink{class_me_i_r_ad28a726a055271ee450f49a1d9d56cca}{Me\+IR\+::get\+Code()}
+\item void \doxylink{class_me_i_r_ac16817f96bbdf3c065db67056b753b7e}{Me\+IR\+::send\+String(\+String s)};
+\item void \doxylink{class_me_i_r_a3994b9b4bb24d8f69d1582a6289604ce}{Me\+IR\+::send\+String(float v)};
+\item void \doxylink{class_me_i_r_abc9e6b20f70767186f9b9f849785bef7}{Me\+IR\+::send\+NEC(unsigned long data, int nbits)};
+\item void \doxylink{class_me_i_r_a1e24ad12d0d40449977f708748396438}{Me\+IR\+::send\+Raw(unsigned int buf\mbox{[}$\,$\mbox{]}, int len, uint8\+\_\+t hz)};
+\item void \doxylink{class_me_i_r_a5ba678779cfbadc0de5836341f785fea}{Me\+IR\+::enable\+IROut(uint8\+\_\+t khz)};
+\item void \doxylink{class_me_i_r_ad53fd8d718609dab42c9937831306ee0}{Me\+IR\+::enable\+IRIn()};
+\item void \doxylink{class_me_i_r_a45a3d2442f3dc1ffbc7816655475ff82}{Me\+IR\+::mark(uint16\+\_\+t us)};
+\item void \doxylink{class_me_i_r_adeca6211b7bc6c3e0825087c3165abc0}{Me\+IR\+::space(uint16\+\_\+t us)};
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan        2015/10/09     1.0.0            Bulid the new.
+Mark Yan        2015/10/29     1.0.1            Fix minor errors on format.
+Mark Yan        2015/11/02     1.0.2            Fix bug that IRsend and IRreceive can't work at the same time.
+forfish         2015/11/09     1.0.3            Add description.
+Mark Yan        2015/11/16     1.0.4            add data recovery when timeout.
+Nick b          2023/12/05     1.0.5            Added an ignore define to allow the IR to be disabled.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

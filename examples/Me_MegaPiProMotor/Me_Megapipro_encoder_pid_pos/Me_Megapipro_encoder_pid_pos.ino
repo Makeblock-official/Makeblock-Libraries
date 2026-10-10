@@ -85,8 +85,8 @@ void setup()
   
   Encoder_1.setPosPid(1.8,0,0.5);
   Encoder_2.setPosPid(1.8,0,0.5);
-  Encoder_1.setSpeedPid(0.18,0,0);
-  Encoder_2.setSpeedPid(0.18,0,0);
+  Encoder_1.setSpeedPid(0.18, 0, 0);
+  Encoder_2.setSpeedPid(0.18, 0, 0);
 }
 
 void loop()

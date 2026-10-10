@@ -1,0 +1,60 @@
+\doxysection{Me\+Orion.\+h}
+\hypertarget{_me_orion_8h_source}{}\label{_me_orion_8h_source}\index{src/MeOrion.h@{src/MeOrion.h}}
+\mbox{\hyperlink{_me_orion_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#ifndef\ MeOrion\_H}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ MeOrion\_H}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ Supported\ Modules\ drive\ needs\ to\ be\ added\ here}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me7_segment_display_8h}{Me7SegmentDisplay.h}}"{}}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_ultrasonic_sensor_8h}{MeUltrasonicSensor.h}}"{}}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_d_c_motor_8h}{MeDCMotor.h}}"{}}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_r_g_b_led_8h}{MeRGBLed.h}}"{}}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me4_button_8h}{Me4Button.h}}"{}}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_potentiometer_8h}{MePotentiometer.h}}"{}}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_joystick_8h}{MeJoystick.h}}"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_p_i_r_motion_sensor_8h}{MePIRMotionSensor.h}}"{}}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_shutter_8h}{MeShutter.h}}"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_line_follower_8h}{MeLineFollower.h}}"{}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}MeSoundSensor.h"{}}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_limit_switch_8h}{MeLimitSwitch.h}}"{}}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_light_sensor_8h}{MeLightSensor.h}}"{}}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_serial_8h}{MeSerial.h}}"{}}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_bluetooth_8h}{MeBluetooth.h}}"{}}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_wifi_8h}{MeWifi.h}}"{}}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_temperature_8h}{MeTemperature.h}}"{}}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_gyro_8h}{MeGyro.h}}"{}}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_infrared_receiver_8h}{MeInfraredReceiver.h}}"{}}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_compass_8h}{MeCompass.h}}"{}}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_u_s_b_host_8h}{MeUSBHost.h}}"{}}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_touch_sensor_8h}{MeTouchSensor.h}}"{}}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_stepper_8h}{MeStepper.h}}"{}}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_encoder_motor_8h}{MeEncoderMotor.h}}"{}}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_encoder_new_8h}{MeEncoderNew.h}}"{}}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_buzzer_8h}{MeBuzzer.h}}"{}}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_l_e_d_matrix_8h}{MeLEDMatrix.h}}"{}}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_humiture_sensor_8h}{MeHumitureSensor.h}}"{}}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_flame_sensor_8h}{MeFlameSensor.h}}"{}}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_gas_sensor_8h}{MeGasSensor.h}}"{}}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_color_sensor_8h}{MeColorSensor.h}}"{}}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{/*********************\ \ Orion\ Board\ GPIO\ Map\ *********************************/}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ struct\ defined\ in\ MePort.h}}
+\DoxyCodeLine{00075\ \mbox{\hyperlink{struct_me_port___sig}{MePort\_Sig}}\ mePort[17]\ =}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \ \ \{\ NC,\ NC\ \},\ \{\ 11,\ 10\ \},\ \{\ \ 3,\ \ 9\ \},\ \{\ 12,\ 13\ \},\ \{\ \ 8,\ \ 2\ \},}
+\DoxyCodeLine{00078\ \ \ \{\ NC,\ NC\ \},\ \{\ A2,\ A3\ \},\ \{\ A6,\ A1\ \},\ \{\ A7,\ A0\ \},\ \{\ \ 6,\ \ 7\ \},}
+\DoxyCodeLine{00079\ \ \ \{\ \ 5,\ \ 4\ \},\ \{\ NC,\ NC\ \},\ \{\ NC,\ NC\ \},\ \{\ NC,\ NC\ \},\ \{\ NC,\ NC\ \},}
+\DoxyCodeLine{00080\ \ \ \{\ NC,\ NC\ \},\{\ NC,\ NC\ \},}
+\DoxyCodeLine{00081\ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ buzzerOn()\ \ pinMode(SCL,OUTPUT),digitalWrite(SCL,\ HIGH)}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ buzzerOff()\ pinMode(SCL,OUTPUT),digitalWrite(SCL,\ LOW)}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MeOrion\_H}}
+
+\end{DoxyCode}

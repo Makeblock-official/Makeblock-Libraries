@@ -1,0 +1,88 @@
+\doxysection{src/\+Me\+Smart\+Servo.cpp File Reference}
+\hypertarget{_me_smart_servo_8cpp}{}\label{_me_smart_servo_8cpp}\index{src/MeSmartServo.cpp@{src/MeSmartServo.cpp}}
+
+
+Driver for Me Smart \doxylink{class_servo}{Servo} device.  
+
+
+{\ttfamily \#include "{}Me\+Smart\+Servo.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Serial.\+h"{}}\newline
+{\ttfamily \#include $<$avr/wdt.\+h$>$}\newline
+Include dependency graph for Me\+Smart\+Servo.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_smart_servo_8cpp__incl}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me Smart \doxylink{class_servo}{Servo} device. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/08/23 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Smart \doxylink{class_servo}{Servo} device, The Smart \doxylink{class_servo}{Servo} inherited the \doxylink{class_me_serial}{Me\+Serial} class from \doxylink{class_software_serial}{Software\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\begin{DoxyEnumerate}
+\item uint8\+\_\+t \doxylink{class_me_smart_servo_a1aaad24e2abbcba8fe5be7d3d0d84e63}{Me\+Smart\+Servo\+::read\+Byte(uint8\+\_\+t \texorpdfstring{$\ast$}{*}argv,int16\+\_\+t idx)};
+\item short \doxylink{class_me_smart_servo_a86115d5159d786936b9f9fbde7669cb3}{Me\+Smart\+Servo\+::read\+Short(uint8\+\_\+t \texorpdfstring{$\ast$}{*}argv,int16\+\_\+t idx,boolean ignore\+\_\+high)};
+\item float \doxylink{class_me_smart_servo_ae66a39120aa542835ed7baefe543170c}{Me\+Smart\+Servo\+::read\+Float(uint8\+\_\+t \texorpdfstring{$\ast$}{*}argv,int16\+\_\+t idx)};
+\item long \doxylink{class_me_smart_servo_add30c4b6013c26a2b92b37992a2a9feb}{Me\+Smart\+Servo\+::read\+Long(uint8\+\_\+t \texorpdfstring{$\ast$}{*}argv,int idx)};
+\item uint8\+\_\+t \doxylink{class_me_smart_servo_a412e124ef188a4937ea6d4648724ae96}{Me\+Smart\+Servo\+::send\+Byte(uint8\+\_\+t val)};
+\item uint8\+\_\+t \doxylink{class_me_smart_servo_acf5bd557ed6e873d6832b765bc1ebdbc}{Me\+Smart\+Servo\+::send\+Short(int16\+\_\+t val,boolean ignore\+\_\+high)};
+\item uint8\+\_\+t \doxylink{class_me_smart_servo_a68d970c3f3634048cf85d31ee5475c86}{Me\+Smart\+Servo\+::send\+Float(float val)};
+\item uint8\+\_\+t \doxylink{class_me_smart_servo_a640143e57999486cf952f8184ecdadbf}{Me\+Smart\+Servo\+::send\+Long(long val)};
+\item boolean \doxylink{class_me_smart_servo_ad416c90e90bffb8e56caa8d79fe2d473}{Me\+Smart\+Servo\+::assign\+Dev\+Id\+Request(void)};
+\item boolean \doxylink{class_me_smart_servo_aad84a194b3ed4f175d336bca6a596ec6}{Me\+Smart\+Servo\+::move\+To(uint8\+\_\+t dev\+\_\+id,long angle\+\_\+value,float speed,smart\+Servo\+Cb callback)};
+\item boolean \doxylink{class_me_smart_servo_accf6f85b682196fa8e3f36f2a2e5e508}{Me\+Smart\+Servo\+::move(uint8\+\_\+t dev\+\_\+id,long angle\+\_\+value,float speed,smart\+Servo\+Cb callback)};
+\item boolean \doxylink{class_me_smart_servo_ab86b0e9279876f94f28120aaa36c9429}{Me\+Smart\+Servo\+::set\+Zero(uint8\+\_\+t dev\+\_\+id)};
+\item boolean \doxylink{class_me_smart_servo_ae7e58107842eb0c2d13596c99d0e8838}{Me\+Smart\+Servo\+::set\+Break(uint8\+\_\+t dev\+\_\+id, uint8\+\_\+t break\+Status)};
+\item boolean \doxylink{class_me_smart_servo_a2ba807a9e25bf953e83f22e1f862edc9}{Me\+Smart\+Servo\+::set\+RGBLed(uint8\+\_\+t dev\+\_\+id, uint8\+\_\+t r\+\_\+value, uint8\+\_\+t g\+\_\+value, uint8\+\_\+t b\+\_\+value)};
+\item boolean \doxylink{class_me_smart_servo_aa3f5a58c87f7ae9c1bd46c4f9c3816c9}{Me\+Smart\+Servo\+::hand\+Sharke(uint8\+\_\+t dev\+\_\+id)};
+\item boolean \doxylink{class_me_smart_servo_a6117a6fdeb20a0da8310be42011f699e}{Me\+Smart\+Servo\+::set\+Pwm\+Move(uint8\+\_\+t dev\+\_\+id, int16\+\_\+t pwm\+\_\+value)};
+\item boolean \doxylink{class_me_smart_servo_aedb7c0b2bba4e771865752acdae65b0d}{Me\+Smart\+Servo\+::set\+Init\+Angle(uint8\+\_\+t dev\+\_\+id,uint8\+\_\+t mode,int16\+\_\+t speed)};
+\item long \doxylink{class_me_smart_servo_adb14101ef4f0981f5ba3eabfd02775c7}{Me\+Smart\+Servo\+::get\+Angle\+Request(uint8\+\_\+t dev\+Id)};
+\item float \doxylink{class_me_smart_servo_a058cffd56063ed54f5bcdd0995861c18}{Me\+Smart\+Servo\+::get\+Speed\+Request(uint8\+\_\+t dev\+Id)};
+\item float \doxylink{class_me_smart_servo_ae2f7bcf1cc941f324a0873129dd7b33b}{Me\+Smart\+Servo\+::get\+Voltage\+Request(uint8\+\_\+t dev\+Id)};
+\item float \doxylink{class_me_smart_servo_ab65dd2a4b12d6604fac57595737cfeeb}{Me\+Smart\+Servo\+::get\+Temp\+Request(uint8\+\_\+t dev\+Id)};
+\item float \doxylink{class_me_smart_servo_adc467ef432434d9b279f794a453da64c}{Me\+Smart\+Servo\+::get\+Current\+Request(uint8\+\_\+t dev\+Id)};
+\item void \doxylink{class_me_smart_servo_a5b6fa025da9977cba9212b64988acb2a}{Me\+Smart\+Servo\+::assign\+Dev\+Id\+Response(void \texorpdfstring{$\ast$}{*}arg)};
+\item void \doxylink{class_me_smart_servo_a3eb0b8f79dd50b4e55526d261b40d8a1}{Me\+Smart\+Servo\+::process\+Sysex\+Message(void)};
+\item void \doxylink{class_me_smart_servo_a24f968f6117983c8c17bfbecc53793b6}{Me\+Smart\+Servo\+::smart\+Servo\+Event\+Handle(void)};
+\item void \doxylink{class_me_smart_servo_ac003fe9876a2e1b6981326783718a12f}{Me\+Smart\+Servo\+::error\+Code\+Check\+Response(void \texorpdfstring{$\ast$}{*}arg)};
+\item void \doxylink{class_me_smart_servo_a9576044532f0ca58cf8d554e9f31cacf}{Me\+Smart\+Servo\+::smart\+Servo\+Cmd\+Response(void \texorpdfstring{$\ast$}{*}arg)};
+\end{DoxyEnumerate}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan         2016/08/23     1.0.0            Build the new.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

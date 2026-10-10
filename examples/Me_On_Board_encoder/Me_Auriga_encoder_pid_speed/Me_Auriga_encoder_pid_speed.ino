@@ -76,8 +76,8 @@ void setup()
   Encoder_2.setRatio(39.267);
   Encoder_1.setPosPid(0.18,0,0);
   Encoder_2.setPosPid(0.18,0,0);
-  Encoder_1.setSpeedPid(0.18,0,0);
-  Encoder_2.setSpeedPid(0.18,0,0);
+  Encoder_1.setSpeedPid(0.18, 0, 0);
+  Encoder_2.setSpeedPid(0.18, 0, 0);
 }
 
 void loop()

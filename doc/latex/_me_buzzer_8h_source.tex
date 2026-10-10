@@ -1,0 +1,42 @@
+\doxysection{Me\+Buzzer.\+h}
+\hypertarget{_me_buzzer_8h_source}{}\label{_me_buzzer_8h_source}\index{src/MeBuzzer.h@{src/MeBuzzer.h}}
+\mbox{\hyperlink{_me_buzzer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#ifndef\ MeBuzzer\_H}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ MeBuzzer\_H}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_buzzer}{MeBuzzer}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00070\ \ \ \mbox{\hyperlink{class_me_buzzer_a227e3cc7515146d9f5951184f4c285fe}{MeBuzzer}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{class_me_buzzer_a227e3cc7515146d9f5951184f4c285fe}{MeBuzzer}}(uint8\_t\ port);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00088\ \ \ \mbox{\hyperlink{class_me_buzzer_a227e3cc7515146d9f5951184f4c285fe}{MeBuzzer}}(uint8\_t\ port,\ uint8\_t\ slot);}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00095\ \ \ MeBuzzer(int\ pin);}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00111\ \ \ void\ setpin(int\ pin);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_buzzer_abac0ae73dab72895c956f2f11ca032ac}{tone}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}},\ uint16\_t\ frequency,\ uint32\_t\ duration);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00149\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_buzzer_abac0ae73dab72895c956f2f11ca032ac}{tone}}(uint16\_t\ frequency,\ uint32\_t\ duration\ =\ 0);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00165\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_buzzer_a17f2d0a133f49125f2aa24dd970e926f}{noTone}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}});}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00181\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_buzzer_a17f2d0a133f49125f2aa24dd970e926f}{noTone}}();}
+\DoxyCodeLine{00182\ \};}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

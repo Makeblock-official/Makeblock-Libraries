@@ -1,0 +1,59 @@
+\doxysection{Me\+Voice.\+h}
+\hypertarget{_me_voice_8h_source}{}\label{_me_voice_8h_source}\index{src/MeVoice.h@{src/MeVoice.h}}
+\mbox{\hyperlink{_me_voice_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#ifndef\ MeVoice\_H}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ MeVoice\_H}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_serial_8h}{MeSerial.h}}"{}}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{/*\ NEC\ Code\ table\ */}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ CMD\_FORWARD\ \ \ \ \ (11)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ CMD\_BACK\ \ \ \ \ \ \ \ (13)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ CMD\_LEFT\ \ \ \ \ \ \ \ (7)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ CMD\_RIGHT\ \ \ \ \ \ \ (9)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ CMD\_DIS\_ON\ \ \ \ \ \ (3)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ CMD\_DIS\_OFF\ \ \ \ \ (5)}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ME\_PORT\_DEFINED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_voice}{MeVoice}}}
+\DoxyCodeLine{00071\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00072\ class\ \mbox{\hyperlink{class_me_voice}{MeVoice}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_serial}{MeSerial}}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00074\ \{}
+\DoxyCodeLine{00075\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00083\ \ \ \mbox{\hyperlink{class_me_voice_af9c1752c4d82263049f676b31ffb2438}{MeVoice}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{class_me_voice_af9c1752c4d82263049f676b31ffb2438}{MeVoice}}(uint8\_t\ port);}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00103\ \ \ MeVoice(uint8\_t\ receivePin,\ uint8\_t\ transmitPin,\ bool\ inverse\_logic);}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00119\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_voice_a54a988d062a82fa0514a2c268043bf7c}{begin}}(\textcolor{keywordtype}{long}\ =\ 9600);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00135\ \ \ int16\_t\ \mbox{\hyperlink{class_me_voice_a8e03afa2722be68289d8e5d7963935e9}{read}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00149\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_voice_a0ea6a575219b569d2c093cf50838e30b}{getCode}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00163\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_voice_ae31f0be6411947ecef97104bf26bf646}{loop}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00164\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00165\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ uint8\_t\ \_RxPin;}
+\DoxyCodeLine{00166\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ uint8\_t\ \_TxPin;}
+\DoxyCodeLine{00167\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ last\_time;}
+\DoxyCodeLine{00168\ \ \ uint8\_t\ \_irCode;}
+\DoxyCodeLine{00169\ \};}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00172\ }
+
+\end{DoxyCode}

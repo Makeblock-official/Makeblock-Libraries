@@ -1,0 +1,150 @@
+\doxysection{EEPROM.\+h}
+\hypertarget{_e_e_p_r_o_m_8h_source}{}\label{_e_e_p_r_o_m_8h_source}\index{src/utility/EEPROM.h@{src/utility/EEPROM.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ EEPROM.h\ -\/\ EEPROM\ library}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Original\ Copyright\ (c)\ 2006\ David\ A.\ Mellis.\ \ All\ right\ reserved.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ New\ version\ by\ Christopher\ Andrews\ 2015.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License\ as\ published\ by\ the\ Free\ Software\ Foundation;\ either}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ version\ 2.1\ of\ the\ License,\ or\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ This\ library\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ GNU}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ License\ along\ with\ this\ library;\ if\ not,\ write\ to\ the\ Free\ Software}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ Foundation,\ Inc.,\ 51\ Franklin\ St,\ Fifth\ Floor,\ Boston,\ MA\ \ 02110-\/1301\ \ USA}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ EEPROM\_h}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ EEPROM\_h}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <inttypes.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <avr/eeprom.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <avr/io.h>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{/***}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ EERef\ class.}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ This\ object\ references\ an\ EEPROM\ cell.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ Its\ purpose\ is\ to\ mimic\ a\ typical\ byte\ of\ RAM,\ however\ its\ storage\ is\ the\ EEPROM.}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ This\ class\ has\ an\ overhead\ of\ two\ bytes,\ similar\ to\ storing\ a\ pointer\ to\ an\ EEPROM\ cell.}}
+\DoxyCodeLine{00034\ \textcolor{comment}{***/}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_e_e_ref}{EERef}}\{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ index\ )}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ :\ index(\ index\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00040\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//Access/read\ members.}}
+\DoxyCodeLine{00042\ \ \ \ \ uint8\_t\ operator*()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ eeprom\_read\_byte(\ (uint8\_t*)\ index\ );\ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{operator}\ uint8\_t()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ **\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00044\ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//Assignment/write\ members.}}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&operator=(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&ref\ )\ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ *ref;\ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&operator=(\ uint8\_t\ in\ )\ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ eeprom\_write\_byte(\ (uint8\_t*)\ index,\ in\ ),\ *\textcolor{keyword}{this};\ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&operator\ +=(\ uint8\_t\ in\ )\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ **\textcolor{keyword}{this}\ +\ in;\ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&operator\ -\/=(\ uint8\_t\ in\ )\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ **\textcolor{keyword}{this}\ -\/\ in;\ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&operator\ *=(\ uint8\_t\ in\ )\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ **\textcolor{keyword}{this}\ *\ in;\ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&operator\ /=(\ uint8\_t\ in\ )\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ **\textcolor{keyword}{this}\ /\ in;\ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&operator\ \string^=(\ uint8\_t\ in\ )\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ **\textcolor{keyword}{this}\ \string^\ in;\ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&operator\ \%=(\ uint8\_t\ in\ )\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ **\textcolor{keyword}{this}\ \%\ in;\ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&operator\ \&=(\ uint8\_t\ in\ )\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ **\textcolor{keyword}{this}\ \&\ in;\ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&operator\ |=(\ uint8\_t\ in\ )\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ **\textcolor{keyword}{this}\ |\ in;\ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&operator\ <<=(\ uint8\_t\ in\ )\ \ \ \ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ **\textcolor{keyword}{this}\ <<\ in;\ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&operator\ >>=(\ uint8\_t\ in\ )\ \ \ \ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ =\ **\textcolor{keyword}{this}\ >>\ in;\ \}}
+\DoxyCodeLine{00058\ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ \&update(\ uint8\_t\ in\ )\ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \ in\ !=\ *\textcolor{keyword}{this}\ ?\ *\textcolor{keyword}{this}\ =\ in\ :\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00060\ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\&\ \mbox{\hyperlink{struct_e_e_ref_a5b230b800d3bf6fa6396aba8a3ac5cdb}{operator++}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ +=\ 1;\ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\&\ operator-\/-\/()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ -\/=\ 1;\ \}}
+\DoxyCodeLine{00064\ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_e_e_ref_a5b230b800d3bf6fa6396aba8a3ac5cdb}{operator++\ }}(\textcolor{keywordtype}{int})\{\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ uint8\_t\ ret\ =\ **\textcolor{keyword}{this};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ++(*this),\ ret;}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ uint8\_t\ operator-\/-\/\ (\textcolor{keywordtype}{int})\{\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ uint8\_t\ ret\ =\ **\textcolor{keyword}{this};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/-\/(*this),\ ret;}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{int}\ index;\ \textcolor{comment}{//Index\ of\ current\ EEPROM\ cell.}}
+\DoxyCodeLine{00077\ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{comment}{/***}}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ \ \ \ EEPtr\ class.}}
+\DoxyCodeLine{00081\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ \ \ \ This\ object\ is\ a\ bidirectional\ pointer\ to\ EEPROM\ cells\ represented\ by\ EERef\ objects.}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ \ Just\ like\ a\ normal\ pointer\ type,\ this\ can\ be\ dereferenced\ and\ repositioned\ using\ }}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ increment/decrement\ operators.}}
+\DoxyCodeLine{00085\ \textcolor{comment}{***/}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_e_e_ptr}{EEPtr}}\{}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ptr}{EEPtr}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ index\ )}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ :\ index(\ index\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{operator}\ int()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ index;\ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ptr}{EEPtr}}\ \&operator=(\ \textcolor{keywordtype}{int}\ in\ )\ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ index\ =\ in,\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00094\ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//Iterator\ functionality.}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_e_e_ptr}{EEPtr}}\ \&ptr\ )\ \{\ \textcolor{keywordflow}{return}\ index\ !=\ ptr.index;\ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ operator*()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ index;\ \}}
+\DoxyCodeLine{00098\ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ptr}{EEPtr}}\&\ \mbox{\hyperlink{struct_e_e_ptr_a7473bc4e92c4970fb5414d050265a981}{operator++}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ ++index,\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ptr}{EEPtr}}\&\ operator-\/-\/()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ -\/-\/index,\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ptr}{EEPtr}}\ \mbox{\hyperlink{struct_e_e_ptr_a7473bc4e92c4970fb5414d050265a981}{operator++\ }}(\textcolor{keywordtype}{int})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ index++;\ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ptr}{EEPtr}}\ operator-\/-\/\ (\textcolor{keywordtype}{int})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ index-\/-\/;\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{int}\ index;\ \textcolor{comment}{//Index\ of\ current\ EEPROM\ cell.}}
+\DoxyCodeLine{00106\ \};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{comment}{/***}}
+\DoxyCodeLine{00109\ \textcolor{comment}{\ \ \ \ EEPROMClass\ class.}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00111\ \textcolor{comment}{\ \ \ \ This\ object\ represents\ the\ entire\ EEPROM\ space.}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ \ \ \ It\ wraps\ the\ functionality\ of\ EEPtr\ and\ EERef\ into\ a\ basic\ interface.}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ This\ class\ is\ also\ 100\%\ backwards\ compatible\ with\ earlier\ Arduino\ core\ releases.}}
+\DoxyCodeLine{00114\ \textcolor{comment}{***/}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_e_e_p_r_o_m_class}{EEPROMClass}}\{}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//Basic\ user\ access\ methods.}}
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ref}{EERef}}\ operator[](\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ idx\ )\ \ \ \ \{\ \textcolor{keywordflow}{return}\ idx;\ \}}
+\DoxyCodeLine{00120\ \ \ \ \ uint8\_t\ read(\ \textcolor{keywordtype}{int}\ idx\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_e_e_ref}{EERef}}(\ idx\ );\ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ write(\ \textcolor{keywordtype}{int}\ idx,\ uint8\_t\ val\ )\ \ \ \{\ (\mbox{\hyperlink{struct_e_e_ref}{EERef}}(\ idx\ ))\ =\ val;\ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\ \textcolor{keywordtype}{int}\ idx,\ uint8\_t\ val\ )\ \ \{\ \mbox{\hyperlink{struct_e_e_ref}{EERef}}(\ idx\ ).update(\ val\ );\ \}}
+\DoxyCodeLine{00123\ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//STL\ and\ C++11\ iteration\ capability.}}
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ptr}{EEPtr}}\ begin()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ 0x00;\ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{struct_e_e_ptr}{EEPtr}}\ end()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ length();\ \}\ \textcolor{comment}{//Standards\ requires\ this\ to\ be\ the\ item\ after\ the\ last\ valid\ entry.\ The\ returned\ pointer\ is\ invalid.}}
+\DoxyCodeLine{00127\ \ \ \ \ uint16\_t\ length()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ E2END\ +\ 1;\ \}}
+\DoxyCodeLine{00128\ \ \ \ \ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{//Functionality\ to\ 'get'\ and\ 'put'\ objects\ to\ and\ from\ EEPROM.}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{template}<\ \textcolor{keyword}{typename}\ T\ >\ T\ \&get(\ \textcolor{keywordtype}{int}\ idx,\ T\ \&t\ )\{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_e_e_ptr}{EEPtr}}\ e\ =\ idx;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ uint8\_t\ *ptr\ =\ (uint8\_t*)\ \&t;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{int}\ count\ =\ \textcolor{keyword}{sizeof}(T)\ ;\ count\ ;\ -\/-\/count,\ ++e\ )\ \ *ptr++\ =\ *e;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{template}<\ \textcolor{keyword}{typename}\ T\ >\ \textcolor{keyword}{const}\ T\ \&put(\ \textcolor{keywordtype}{int}\ idx,\ \textcolor{keyword}{const}\ T\ \&t\ )\{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_e_e_ptr}{EEPtr}}\ e\ =\ idx;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *ptr\ =\ (\textcolor{keyword}{const}\ uint8\_t*)\ \&t;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{int}\ count\ =\ \textcolor{keyword}{sizeof}(T)\ ;\ count\ ;\ -\/-\/count,\ ++e\ )\ \ (*e).update(\ *ptr++\ );}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \_\_attribute\_\_((unused))}
+\DoxyCodeLine{00146\ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_e_e_p_r_o_m_class}{EEPROMClass}}\ EEPROM;}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

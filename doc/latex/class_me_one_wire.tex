@@ -1,0 +1,463 @@
+\doxysection{Me\+One\+Wire Class Reference}
+\hypertarget{class_me_one_wire}{}\label{class_me_one_wire}\index{MeOneWire@{MeOneWire}}
+
+
+Driver for 1-\/wire protocol.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+One\+Wire.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_one_wire_a8069007f7070f2f239af17cd824651f2}{Me\+One\+Wire}} (void)
+\item 
+\mbox{\hyperlink{class_me_one_wire_a56ca2b54bd03dc44d888a823ba388566}{Me\+One\+Wire}} (uint8\+\_\+t pin)
+\item 
+bool \mbox{\hyperlink{class_me_one_wire_a8cfacb53d1246333f94c25508e833f22}{read\+IO}} (void)
+\item 
+void \mbox{\hyperlink{class_me_one_wire_ac7ae473bec8198fba76040fe8422cea7}{reset}} (uint8\+\_\+t pin)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_one_wire_afdf58430b9beb67f2ebba55430e7aa3c}{reset}} (void)
+\item 
+void \mbox{\hyperlink{class_me_one_wire_afa0cc28fb5fec3b805cc7eeb955ae8d3}{select}} (const uint8\+\_\+t rom\mbox{[}8\mbox{]})
+\item 
+void \mbox{\hyperlink{class_me_one_wire_adf1fe69dac4bda2511ce613c0e51d1cf}{skip}} (void)
+\item 
+void \mbox{\hyperlink{class_me_one_wire_a50f690ef7f97a23844da2b89e78232d7}{write}} (uint8\+\_\+t v, uint8\+\_\+t power=0)
+\item 
+void \mbox{\hyperlink{class_me_one_wire_a0f66689a98b50c8fd681ba6a324054a8}{write\+\_\+bytes}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t count, bool power=0)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_one_wire_a9930a16f2cdc36d15f646e41a1a083a4}{read}} (void)
+\item 
+void \mbox{\hyperlink{class_me_one_wire_acbaaa04392b4b406500f4953ef389a6c}{read\+\_\+bytes}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t count)
+\item 
+void \mbox{\hyperlink{class_me_one_wire_a71ff538d319b4492e3002e027b07e9fa}{write\+\_\+bit}} (uint8\+\_\+t v)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_one_wire_abd22dddea19354d857f5e3b33b02add3}{read\+\_\+bit}} (void)
+\item 
+void \mbox{\hyperlink{class_me_one_wire_af049edcbd9d0f09bc5ce54973c2305eb}{depower}} (void)
+\item 
+void \mbox{\hyperlink{class_me_one_wire_a83f6c2c88d9f2fa5c4aabb7f540bc6ac}{reset\+\_\+search}} (void)
+\item 
+void \mbox{\hyperlink{class_me_one_wire_a72274992cccec07f9ee20525edcd7208}{target\+\_\+search}} (uint8\+\_\+t family\+\_\+code)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_one_wire_a2d48b3c80326da96b627f7dc15ad1b56}{search}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}new\+Addr)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for 1-\/wire protocol. 
+
+Class\+: \doxylink{class_me_one_wire}{Me\+One\+Wire} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_one_wire}{Me\+One\+Wire}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_one_wire_a8069007f7070f2f239af17cd824651f2}\label{class_me_one_wire_a8069007f7070f2f239af17cd824651f2} 
+\index{MeOneWire@{MeOneWire}!MeOneWire@{MeOneWire}}
+\index{MeOneWire@{MeOneWire}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{MeOneWire()}{MeOneWire()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Me\+One\+Wire\+::\+Me\+One\+Wire (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_one_wire}{Me\+One\+Wire} to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_one_wire_a56ca2b54bd03dc44d888a823ba388566}\label{class_me_one_wire_a56ca2b54bd03dc44d888a823ba388566} 
+\index{MeOneWire@{MeOneWire}!MeOneWire@{MeOneWire}}
+\index{MeOneWire@{MeOneWire}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{MeOneWire()}{MeOneWire()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Me\+One\+Wire\+::\+Me\+One\+Wire (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_one_wire}{Me\+One\+Wire} to arduino port, it will assigned the shot PIN and focus pin. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin} & -\/ arduino port for 1-\/wire(should digital pin) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_one_wire_af049edcbd9d0f09bc5ce54973c2305eb}\label{class_me_one_wire_af049edcbd9d0f09bc5ce54973c2305eb} 
+\index{MeOneWire@{MeOneWire}!depower@{depower}}
+\index{depower@{depower}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{depower()}{depower()}}
+{\footnotesize\ttfamily void Me\+One\+Wire\+::depower (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+depower 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Stop forcing power onto the bus. You only need to do this if you used the \textquotesingle{}power\textquotesingle{} flag to \doxylink{class_me_one_wire_a50f690ef7f97a23844da2b89e78232d7}{write()} or used a \doxylink{class_me_one_wire_a71ff538d319b4492e3002e027b07e9fa}{write\+\_\+bit()} call and aren\textquotesingle{}t about to do another read or write. You would rather not leave this powered if you don\textquotesingle{}t have to, just in case someone shorts your bus. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_a9930a16f2cdc36d15f646e41a1a083a4}\label{class_me_one_wire_a9930a16f2cdc36d15f646e41a1a083a4} 
+\index{MeOneWire@{MeOneWire}!read@{read}}
+\index{read@{read}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+One\+Wire\+::read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Read a byte of data 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The read data(8-\/bit data) 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_abd22dddea19354d857f5e3b33b02add3}\label{class_me_one_wire_abd22dddea19354d857f5e3b33b02add3} 
+\index{MeOneWire@{MeOneWire}!read\_bit@{read\_bit}}
+\index{read\_bit@{read\_bit}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{read\_bit()}{read\_bit()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+One\+Wire\+::read\+\_\+bit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+\_\+bit 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Read a bit. Port and bit is used to cut lookup time and provide more certain timing 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+return the bit value we read 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_acbaaa04392b4b406500f4953ef389a6c}\label{class_me_one_wire_acbaaa04392b4b406500f4953ef389a6c} 
+\index{MeOneWire@{MeOneWire}!read\_bytes@{read\_bytes}}
+\index{read\_bytes@{read\_bytes}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{read\_bytes()}{read\_bytes()}}
+{\footnotesize\ttfamily void Me\+One\+Wire\+::read\+\_\+bytes (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{uint16\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+\_\+bytes 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Read certain number of data 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em buf} & -\/ The buffer used to store the read data \\
+\hline
+\mbox{\texttt{ in}}  & {\em count} & -\/ The count of the bytes we need to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_a8cfacb53d1246333f94c25508e833f22}\label{class_me_one_wire_a8cfacb53d1246333f94c25508e833f22} 
+\index{MeOneWire@{MeOneWire}!readIO@{readIO}}
+\index{readIO@{readIO}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{readIO()}{readIO()}}
+{\footnotesize\ttfamily bool Me\+One\+Wire\+::read\+IO (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+read\+IO 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Read a bit from 1-\/wire data port 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+return the bit value we read 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_ac7ae473bec8198fba76040fe8422cea7}\label{class_me_one_wire_ac7ae473bec8198fba76040fe8422cea7} 
+\index{MeOneWire@{MeOneWire}!reset@{reset}}
+\index{reset@{reset}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Me\+One\+Wire\+::reset (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+reset 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the available PIN for 1-\/wire 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin} & -\/ arduino port(should digital pin) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_afdf58430b9beb67f2ebba55430e7aa3c}\label{class_me_one_wire_afdf58430b9beb67f2ebba55430e7aa3c} 
+\index{MeOneWire@{MeOneWire}!reset@{reset}}
+\index{reset@{reset}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+One\+Wire\+::reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+reset 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Perform the \doxylink{class_me_one_wire}{Me\+One\+Wire} reset function. We will wait up to 250uS for the bus to come high, if it doesn\textquotesingle{}t then it is broken or shorted. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em v} & -\/ The bit value need be written \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+Returns 1 if a device asserted a presence pulse, 0 otherwise. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_a83f6c2c88d9f2fa5c4aabb7f540bc6ac}\label{class_me_one_wire_a83f6c2c88d9f2fa5c4aabb7f540bc6ac} 
+\index{MeOneWire@{MeOneWire}!reset\_search@{reset\_search}}
+\index{reset\_search@{reset\_search}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{reset\_search()}{reset\_search()}}
+{\footnotesize\ttfamily void Me\+One\+Wire\+::reset\+\_\+search (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+reset\+\_\+search 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+If we need search a new device, we need call this function to clear the search state and all stored values ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+Reset all stored values 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_a2d48b3c80326da96b627f7dc15ad1b56}\label{class_me_one_wire_a2d48b3c80326da96b627f7dc15ad1b56} 
+\index{MeOneWire@{MeOneWire}!search@{search}}
+\index{search@{search}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{search()}{search()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+One\+Wire\+::search (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{new\+Addr }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+search 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Perform a search. If this function returns a \textquotesingle{}1\textquotesingle{} then it has enumerated the next device and you may retrieve the ROM from the Me\+One\+Wire\+::address variable. If there are no devices, no further devices, or something horrible happens in the middle of the enumeration then a \textquotesingle{}0\textquotesingle{} is returned. If a new device is found then its address is copied to new\+Addr. Use \doxylink{class_me_one_wire_a83f6c2c88d9f2fa5c4aabb7f540bc6ac}{Me\+One\+Wire\+::reset\+\_\+search()} to start over. you can get the algorithm from doc\textbackslash{}\+Me\+\_\+\+Temperature\textbackslash{}\+Datasheet\textbackslash{}1-\/\+Wire\+\_\+\+Search\+\_\+\+Algorithm.\+pdf 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em new\+Addr} & -\/ The adrress to store the ROM data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+true -\/ device found, ROM number in ROM\+\_\+\+NO buffer\textbackslash{}r~\newline
+ \texorpdfstring{$\ast$}{*}   false -\/ device not found, end of search 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_afa0cc28fb5fec3b805cc7eeb955ae8d3}\label{class_me_one_wire_afa0cc28fb5fec3b805cc7eeb955ae8d3} 
+\index{MeOneWire@{MeOneWire}!select@{select}}
+\index{select@{select}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{select()}{select()}}
+{\footnotesize\ttfamily void Me\+One\+Wire\+::select (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{rom\mbox{[}8\mbox{]} }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+select 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Issue a 1-\/Wire rom select command. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em rom\mbox{[}8\mbox{]}} & -\/ 64bit ROM code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_adf1fe69dac4bda2511ce613c0e51d1cf}\label{class_me_one_wire_adf1fe69dac4bda2511ce613c0e51d1cf} 
+\index{MeOneWire@{MeOneWire}!skip@{skip}}
+\index{skip@{skip}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{skip()}{skip()}}
+{\footnotesize\ttfamily void Me\+One\+Wire\+::skip (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+skip 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Issue a 1-\/Wire rom skip command. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_a72274992cccec07f9ee20525edcd7208}\label{class_me_one_wire_a72274992cccec07f9ee20525edcd7208} 
+\index{MeOneWire@{MeOneWire}!target\_search@{target\_search}}
+\index{target\_search@{target\_search}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{target\_search()}{target\_search()}}
+{\footnotesize\ttfamily void Me\+One\+Wire\+::target\+\_\+search (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{family\+\_\+code }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+target\+\_\+search 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Setup the search to find the device type \textquotesingle{}family\+\_\+code\textquotesingle{} on the next call of search(\texorpdfstring{$\ast$}{*}new\+Addr) if it is present. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em family\+\_\+code} & -\/ the device type we need search \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_a50f690ef7f97a23844da2b89e78232d7}\label{class_me_one_wire_a50f690ef7f97a23844da2b89e78232d7} 
+\index{MeOneWire@{MeOneWire}!write@{write}}
+\index{write@{write}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily void Me\+One\+Wire\+::write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{v,  }\item[{uint8\+\_\+t}]{power = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+write 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Write a byte of data 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em v} & -\/ The value need be written \\
+\hline
+\mbox{\texttt{ in}}  & {\em power} & -\/ Should we need active drivers to raise the pin high \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_a71ff538d319b4492e3002e027b07e9fa}\label{class_me_one_wire_a71ff538d319b4492e3002e027b07e9fa} 
+\index{MeOneWire@{MeOneWire}!write\_bit@{write\_bit}}
+\index{write\_bit@{write\_bit}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{write\_bit()}{write\_bit()}}
+{\footnotesize\ttfamily void Me\+One\+Wire\+::write\+\_\+bit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{v }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+write\+\_\+bit 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Write a bit. The bus is always left powered at the end, see note in \doxylink{class_me_one_wire_a50f690ef7f97a23844da2b89e78232d7}{write()} about that. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em v} & -\/ The bit value need be written \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_one_wire_a0f66689a98b50c8fd681ba6a324054a8}\label{class_me_one_wire_a0f66689a98b50c8fd681ba6a324054a8} 
+\index{MeOneWire@{MeOneWire}!write\_bytes@{write\_bytes}}
+\index{write\_bytes@{write\_bytes}!MeOneWire@{MeOneWire}}
+\doxysubsubsection{\texorpdfstring{write\_bytes()}{write\_bytes()}}
+{\footnotesize\ttfamily void Me\+One\+Wire\+::write\+\_\+bytes (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{uint16\+\_\+t}]{count,  }\item[{bool}]{power = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+write\+\_\+bytes 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Write certain number of data 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em buf} & -\/ The buffer used to store the data that need be written \\
+\hline
+\mbox{\texttt{ in}}  & {\em count} & -\/ The count of the bytes we need to write \\
+\hline
+\mbox{\texttt{ in}}  & {\em power} & -\/ Should we need active drivers to raise the pin high \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_one_wire_8h}{Me\+One\+Wire.\+h}}\item 
+src/\mbox{\hyperlink{_me_one_wire_8cpp}{Me\+One\+Wire.\+cpp}}\end{DoxyCompactItemize}

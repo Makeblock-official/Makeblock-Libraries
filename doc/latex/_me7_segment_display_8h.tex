@@ -1,0 +1,151 @@
+\doxysection{src/\+Me7\+Segment\+Display.h File Reference}
+\hypertarget{_me7_segment_display_8h}{}\label{_me7_segment_display_8h}\index{src/Me7SegmentDisplay.h@{src/Me7SegmentDisplay.h}}
+
+
+Header file for \doxylink{_me7_segment_display_8cpp}{Me7\+Segment\+Display.\+cpp}.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me7\+Segment\+Display.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me7_segment_display_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me7_segment_display_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_me7_segment_display}{Me7\+Segment\+Display}}
+\begin{DoxyCompactList}\small\item\em Class for numeric display module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me7_segment_display_8h_a2f8e0a532d150f98a754a6ba912e4d90}\label{_me7_segment_display_8h_a2f8e0a532d150f98a754a6ba912e4d90} 
+const uint8\+\_\+t {\bfseries ADDR\+\_\+\+AUTO} = 0x40
+\item 
+\Hypertarget{_me7_segment_display_8h_a37ccf15c948b58ce72ee4e750d4bdd74}\label{_me7_segment_display_8h_a37ccf15c948b58ce72ee4e750d4bdd74} 
+const uint8\+\_\+t {\bfseries ADDR\+\_\+\+FIXED} = 0x44
+\item 
+\Hypertarget{_me7_segment_display_8h_a7cd15f38298124c6a89bd7c9d0e4db7a}\label{_me7_segment_display_8h_a7cd15f38298124c6a89bd7c9d0e4db7a} 
+const uint8\+\_\+t {\bfseries STARTADDR} = 0xc0
+\item 
+\Hypertarget{_me7_segment_display_8h_af1a422ee9c1f575c767a1a604c1de0bc}\label{_me7_segment_display_8h_af1a422ee9c1f575c767a1a604c1de0bc} 
+const uint8\+\_\+t {\bfseries SEGDIS\+\_\+\+ON} = 0x88
+\item 
+\Hypertarget{_me7_segment_display_8h_a15703f44ffbbe7dd9d7636a64e0cca20}\label{_me7_segment_display_8h_a15703f44ffbbe7dd9d7636a64e0cca20} 
+const uint8\+\_\+t {\bfseries SEGDIS\+\_\+\+OFF} = 0x80
+\item 
+\Hypertarget{_me7_segment_display_8h_a0939f02201eb988526027b9f1e2a1b97}\label{_me7_segment_display_8h_a0939f02201eb988526027b9f1e2a1b97} 
+const uint8\+\_\+t {\bfseries POINT\+\_\+\+ON} = 1
+\item 
+\Hypertarget{_me7_segment_display_8h_af0cadf768e1e53da7be88cb2c3be9bf9}\label{_me7_segment_display_8h_af0cadf768e1e53da7be88cb2c3be9bf9} 
+const uint8\+\_\+t {\bfseries POINT\+\_\+\+OFF} = 0
+\item 
+\Hypertarget{_me7_segment_display_8h_a029941de800a69edd9a3fa2d6a416299}\label{_me7_segment_display_8h_a029941de800a69edd9a3fa2d6a416299} 
+const uint8\+\_\+t {\bfseries BRIGHTNESS\+\_\+0} = 0
+\item 
+\Hypertarget{_me7_segment_display_8h_a10c951a3c69a5cad81c47f803176397e}\label{_me7_segment_display_8h_a10c951a3c69a5cad81c47f803176397e} 
+const uint8\+\_\+t {\bfseries BRIGHTNESS\+\_\+1} = 1
+\item 
+\Hypertarget{_me7_segment_display_8h_afc910b827fd387cfdf1250b473408a70}\label{_me7_segment_display_8h_afc910b827fd387cfdf1250b473408a70} 
+const uint8\+\_\+t {\bfseries BRIGHTNESS\+\_\+2} = 2
+\item 
+\Hypertarget{_me7_segment_display_8h_a29ee46a59b425f8fa4e9921f1841b7b5}\label{_me7_segment_display_8h_a29ee46a59b425f8fa4e9921f1841b7b5} 
+const uint8\+\_\+t {\bfseries BRIGHTNESS\+\_\+3} = 3
+\item 
+\Hypertarget{_me7_segment_display_8h_a8e8e58d0a138ae8183a3f63f4b9baabe}\label{_me7_segment_display_8h_a8e8e58d0a138ae8183a3f63f4b9baabe} 
+const uint8\+\_\+t {\bfseries BRIGHTNESS\+\_\+4} = 4
+\item 
+\Hypertarget{_me7_segment_display_8h_afe6e0e2cfee5ea7c10552fe8364a40ae}\label{_me7_segment_display_8h_afe6e0e2cfee5ea7c10552fe8364a40ae} 
+const uint8\+\_\+t {\bfseries BRIGHTNESS\+\_\+5} = 5
+\item 
+\Hypertarget{_me7_segment_display_8h_ab784a3601832fdefda5068ced347825a}\label{_me7_segment_display_8h_ab784a3601832fdefda5068ced347825a} 
+const uint8\+\_\+t {\bfseries BRIGHTNESS\+\_\+6} = 6
+\item 
+\Hypertarget{_me7_segment_display_8h_abfe1974db16e1c77e34efdc80243c005}\label{_me7_segment_display_8h_abfe1974db16e1c77e34efdc80243c005} 
+const uint8\+\_\+t {\bfseries BRIGHTNESS\+\_\+7} = 7
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for \doxylink{_me7_segment_display_8cpp}{Me7\+Segment\+Display.\+cpp}. 
+
+\begin{DoxyAuthor}{Author}
+Frankie.\+Chu, Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+5 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/07/27 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2018, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Driver for Me 7 Segment Serial Display module. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me7_segment_display_a47525c61c0cdc531272eb50395df3ed1}{Me7\+Segment\+Display\+::init(void)};
+\item void \doxylink{class_me7_segment_display_a761c4852237699b3504f901c3a30166c}{Me7\+Segment\+Display\+::set(uint8\+\_\+t brightness, uint8\+\_\+t Set\+Data, uint8\+\_\+t Set\+Addr)};
+\item void \doxylink{class_me7_segment_display_ac8d890fddfbd86a221d2d990ff8a405a}{Me7\+Segment\+Display\+::reset(uint8\+\_\+t port)};
+\item void \doxylink{class_me7_segment_display_a76d0b14ce4e0146ab1620dd462014caa}{Me7\+Segment\+Display\+::setpin(uint8\+\_\+t data\+Pin, uint8\+\_\+t clk\+Pin)};
+\item void \doxylink{class_me7_segment_display_a4b5cfc6eea577542021edf8f812bff2f}{Me7\+Segment\+Display\+::write(uint8\+\_\+t Seg\+Data\mbox{[}$\,$\mbox{]})};
+\item void \doxylink{class_me7_segment_display_a1057d40d5daa2f12170c95be7412bdb8}{Me7\+Segment\+Display\+::write(uint8\+\_\+t Bit\+Addr, uint8\+\_\+t Seg\+Data)};
+\item void \doxylink{class_me7_segment_display_ac1d7b706bf23e38fbdf60b1caad42a4e}{Me7\+Segment\+Display\+::display(uint16\+\_\+t value)};
+\item void \doxylink{class_me7_segment_display_aa35ed6811fb58e993044cce7ce0e24d6}{Me7\+Segment\+Display\+::display(int16\+\_\+t value)};
+\item void \doxylink{class_me7_segment_display_afb865fca3b56cec660fc78315d5a9268}{Me7\+Segment\+Display\+::display(float value)};
+\item void \doxylink{class_me7_segment_display_a2152dcfb004b08bb5a2c04b7b2ad99c5}{Me7\+Segment\+Display\+::display(long value)};
+\item int16\+\_\+t \doxylink{class_me7_segment_display_a50109f40f87591fbe2a907768b03678c}{Me7\+Segment\+Display\+::check\+Num(float v,int16\+\_\+t b)};
+\item void \doxylink{class_me7_segment_display_a9a45a56ed65a1ecdcc10066825db0130}{Me7\+Segment\+Display\+::display(double value, uint8\+\_\+t digits)};
+\item void \doxylink{class_me7_segment_display_a763ccddf8a9fa6469713451505518808}{Me7\+Segment\+Display\+::display(uint8\+\_\+t Disp\+Data\mbox{[}$\,$\mbox{]})};
+\item void \doxylink{class_me7_segment_display_a2eb95cdb42445ae3f07b4c8bb586e24e}{Me7\+Segment\+Display\+::display(uint8\+\_\+t Bit\+Addr, uint8\+\_\+t Disp\+Data)};
+\item void \doxylink{class_me7_segment_display_aef9737e226fe1158098c3cc35329f2cf}{Me7\+Segment\+Display\+::display(uint8\+\_\+t Bit\+Addr, uint8\+\_\+t Disp\+Data, uint8\+\_\+t point\+\_\+on)};
+\item void \doxylink{class_me7_segment_display_aa7cf32e953eae84bde132cc38e1b91db}{Me7\+Segment\+Display\+::clear\+Display(void)};
+\item void \doxylink{class_me7_segment_display_a7761bf8b50f0a91a3c2b27b1230b1132}{Me7\+Segment\+Display\+::set\+Brightness(uint8\+\_\+t brightness)};
+\item void \doxylink{class_me7_segment_display_ad19ac6b355cc8da9e77c2fee4a908814}{Me7\+Segment\+Display\+::coding(uint8\+\_\+t Disp\+Data\mbox{[}$\,$\mbox{]})};
+\item uint8\+\_\+t \doxylink{class_me7_segment_display_a496b175e3deca8df9709233b09194673}{Me7\+Segment\+Display\+::coding(uint8\+\_\+t Disp\+Data)};
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+makeblock        2013/08/08     0.0.1            According to hardware differences, initial revision                     
+Mark Yan         2015/07/24     1.0.0            Rebuild the old lib.
+Rafael Lee       2015/09/02     1.0.1            Added some comments and macros.
+Mark Yan         2015/10/29     1.0.2            fix issue when display negative data.
+Mark Yan         2015/11/09     1.0.3            fix some comments error.
+Mark Yan         2015/11/12     1.0.4            fix driver API.
+Mark Yan         2016/07/27     1.0.5            add display to support long type.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

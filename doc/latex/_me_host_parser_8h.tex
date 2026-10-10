@@ -1,0 +1,89 @@
+\doxysection{src/\+Me\+Host\+Parser.h File Reference}
+\hypertarget{_me_host_parser_8h}{}\label{_me_host_parser_8h}\index{src/MeHostParser.h@{src/MeHostParser.h}}
+
+
+Header for \doxylink{_me_host_parser_8cpp}{Me\+Host\+Parser.\+cpp} module.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+Include dependency graph for Me\+Host\+Parser.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{_me_host_parser_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{_me_host_parser_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_me_host_parser}{Me\+Host\+Parser}}
+\begin{DoxyCompactList}\small\item\em Driver for Me Host Parser module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_host_parser_8h_a6821bafc3c88dfb2e433a095df9940c6}\label{_me_host_parser_8h_a6821bafc3c88dfb2e433a095df9940c6} 
+\#define {\bfseries BUF\+\_\+\+SIZE}~256
+\item 
+\Hypertarget{_me_host_parser_8h_ae7520c5477c11965aabeedc033c9862b}\label{_me_host_parser_8h_ae7520c5477c11965aabeedc033c9862b} 
+\#define {\bfseries MASK}~255
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for \doxylink{_me_host_parser_8cpp}{Me\+Host\+Parser.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2015/11/12 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me Host Parser device, The Me Host Parser inherited the \doxylink{class_me_serial}{Me\+Serial} class from \doxylink{class_software_serial}{Software\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item uint8\+\_\+t \doxylink{class_me_host_parser_a0103f25edd15026dcf5ae8a19cb25abf}{Me\+Host\+Parser\+::push\+Str(uint8\+\_\+t \texorpdfstring{$\ast$}{*} str, uint32\+\_\+t length)};
+\item uint8\+\_\+t \doxylink{class_me_host_parser_aea2e516581e88dc2f807759bc2a679b2}{Me\+Host\+Parser\+::push\+Byte(uint8\+\_\+t ch)};
+\item uint8\+\_\+t \doxylink{class_me_host_parser_a29f974647d06c7cb1c75db2963958478}{Me\+Host\+Parser\+::run()};
+\item uint8\+\_\+t \doxylink{class_me_host_parser_a4e07eae4722fba03fd463447cb8526d4}{Me\+Host\+Parser\+::get\+Package\+Ready()};
+\item uint8\+\_\+t \doxylink{class_me_host_parser_a653298e64d1ac2633b23e4ae420121c3}{Me\+Host\+Parser\+::get\+Data(uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint32\+\_\+t size)};
+\item void Me\+Host\+Parser\+::print(char \texorpdfstring{$\ast$}{*}str, uint32\+\_\+t \texorpdfstring{$\ast$}{*} cnt);
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+forfish         2015/11/12    1.0.0            Add description
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

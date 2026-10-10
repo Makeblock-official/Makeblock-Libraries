@@ -1,0 +1,47 @@
+\doxysection{Me\+Flame\+Sensor.\+h}
+\hypertarget{_me_flame_sensor_8h_source}{}\label{_me_flame_sensor_8h_source}\index{src/MeFlameSensor.h@{src/MeFlameSensor.h}}
+\mbox{\hyperlink{_me_flame_sensor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifndef\ MeFlameSensor\_H}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ MeFlameSensor\_H}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ Fire\ \ \ (0x00)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ NoFire\ (0x01)}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_flame_sensor}{MeFlameSensor}}}
+\DoxyCodeLine{00063\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00064\ class\ \mbox{\hyperlink{class_me_flame_sensor}{MeFlameSensor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00075\ \ \ \mbox{\hyperlink{class_me_flame_sensor_adc284c980be43010a9dc046ed9ecf03f}{MeFlameSensor}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00082\ \ \ \mbox{\hyperlink{class_me_flame_sensor_adc284c980be43010a9dc046ed9ecf03f}{MeFlameSensor}}(uint8\_t\ port);}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00084\ \ \ \mbox{\hyperlink{class_me_flame_sensor_adc284c980be43010a9dc046ed9ecf03f}{MeFlameSensor}}(uint8\_t\ digital\_pin,uint8\_t\ analog\_pin);}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00102\ \ \ void\ setpin(uint8\_t\ digital\_pin,uint8\_t\ analog\_pin);}
+\DoxyCodeLine{00117\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_flame_sensor_a01b134562c8fff15c7f7f48e18839cd0}{readDigital}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00118\ \ \ }
+\DoxyCodeLine{00131\ \ \ int16\_t\ \mbox{\hyperlink{class_me_flame_sensor_a09baccd24c256f1ad1b59e148f43450a}{readAnalog}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00132\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00133\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_digital\_pin;}
+\DoxyCodeLine{00134\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_analog\_pin;}
+\DoxyCodeLine{00135\ \};}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00137\ }
+
+\end{DoxyCode}

@@ -1,0 +1,159 @@
+\doxysection{src/\+Me\+Auriga.h File Reference}
+\hypertarget{_me_auriga_8h}{}\label{_me_auriga_8h}\index{src/MeAuriga.h@{src/MeAuriga.h}}
+
+
+Driver for Me\+Auriga board.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$Wire.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me7\+Segment\+Display.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Ultrasonic\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+DCMotor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+RGBLed.\+h"{}}\newline
+{\ttfamily \#include "{}Me4\+Button.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Potentiometer.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Joystick.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+PIRMotion\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Shutter.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Line\+Follower.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Sound\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Limit\+Switch.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Light\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Serial.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Bluetooth.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Wifi.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Temperature.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Gyro.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Infrared\+Receiver.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Compass.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+USBHost.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Touch\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Stepper.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Encoder\+Motor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Encoder\+New.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Buzzer.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+LEDMatrix.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Humiture\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Flame\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Gas\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Encoder\+On\+Board.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+On\+Board\+Temp.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Smart\+Servo.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+PS2.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Pm25\+Sensor.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Color\+Sensor.\+h"{}}\newline
+Include dependency graph for Me\+Auriga.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_auriga_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_auriga_8h_afc9954e9524088136943fe3f53b9cce5}\label{_me_auriga_8h_afc9954e9524088136943fe3f53b9cce5} 
+\#define {\bfseries buzzer\+On}()~pin\+Mode(45,OUTPUT),digital\+Write(45, HIGH)
+\item 
+\Hypertarget{_me_auriga_8h_aefe73313c7fa292e68c9693f568fc04c}\label{_me_auriga_8h_aefe73313c7fa292e68c9693f568fc04c} 
+\#define {\bfseries buzzer\+Off}()~pin\+Mode(45,OUTPUT),digital\+Write(45, LOW)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_me_port___sig}{Me\+Port\+\_\+\+Sig}} \mbox{\hyperlink{_me_auriga_8h_a7daa0f0960832f11443da8b53e954056}{me\+Port}} \mbox{[}17\mbox{]}
+\item 
+\mbox{\hyperlink{struct_encoder__port__type}{Encoder\+\_\+port\+\_\+type}} \mbox{\hyperlink{_me_auriga_8h_ad6b20863ba6829393067b5905e339b96}{encoder\+\_\+\+Port}} \mbox{[}6\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Me\+Auriga board. 
+
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+4 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/09/23
+\end{DoxyDate}
+Driver for Me\+Auriga board.
+
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is the driver for Me\+Auriga board by Make\+Block.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan         2016/01/27          1.0.0            Build the New.
+Mark Yan         2016/02/20          1.0.1            Change the port enumeration
+Scott wang       2016/09/18          1.0.2            Add the PORT[15].
+Scott            2016/09/20          1.0.3            Add the PORT[16].
+Scott            2016/09/23          1.0.4            Add the \doxylink{_me_p_s2_8h}{MePS2.h} .
+Zzipeng          2016/12/15          1.0.5            Add the \doxylink{_me_pm25_sensor_8h}{MePm25Sensor.h} .
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{_me_auriga_8h_ad6b20863ba6829393067b5905e339b96}\label{_me_auriga_8h_ad6b20863ba6829393067b5905e339b96} 
+\index{MeAuriga.h@{MeAuriga.h}!encoder\_Port@{encoder\_Port}}
+\index{encoder\_Port@{encoder\_Port}!MeAuriga.h@{MeAuriga.h}}
+\doxysubsubsection{\texorpdfstring{encoder\_Port}{encoder\_Port}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_encoder__port__type}{Encoder\+\_\+port\+\_\+type}} encoder\+\_\+\+Port\mbox{[}6\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \{\ NC,\ \ \ \ \ NC,\ \ \ \ \ NC,\ \ \ \ \ NC,\ \ \ \ \ NC\},}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ \{\ 19,\ \ \ \ \ 42,\ \ \ \ \ 11,\ \ \ \ \ 49,\ \ \ \ \ 48\},}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ \{\ 18,\ \ \ \ \ 43,\ \ \ \ \ 10,\ \ \ \ \ 47,\ \ \ \ \ 46\},}
+\DoxyCodeLine{\ \ \{\ NC,\ \ \ \ \ NC,\ \ \ \ \ NC,\ \ \ \ \ NC,\ \ \ \ \ NC\},}
+\DoxyCodeLine{\ \ \{\ NC,\ \ \ \ \ NC,\ \ \ \ \ NC,\ \ \ \ \ NC,\ \ \ \ \ NC\},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{_me_auriga_8h_a7daa0f0960832f11443da8b53e954056}\label{_me_auriga_8h_a7daa0f0960832f11443da8b53e954056} 
+\index{MeAuriga.h@{MeAuriga.h}!mePort@{mePort}}
+\index{mePort@{mePort}!MeAuriga.h@{MeAuriga.h}}
+\doxysubsubsection{\texorpdfstring{mePort}{mePort}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_me_port___sig}{Me\+Port\+\_\+\+Sig}} me\+Port\mbox{[}17\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \{}
+\DoxyCodeLine{\ \ \ \{\ NC,\ NC\ \},\ \{\ \ \ 5,\ \ \ 4\ \},\ \{\ \ \ 3,\ \ \ 2\ \},\ \{\ \ \ 7,\ \ \ 6\ \},\ \{\ \ \ 9,\ \ \ 8\ \},\ }
+\DoxyCodeLine{\ \ \ \{\ 16,\ 17\ \},\ \{\ A10,\ A15\ \},\ \{\ \ A9,\ A14\ \},\ \{\ \ A8,\ A13\ \},\ \{\ \ A7,\ A12\ \},\ }
+\DoxyCodeLine{\ \ \ }
+\DoxyCodeLine{\ \ \ \{\ A6,A11\ \},\ \{\ \ NC,\ \ A2\ \},\ \{\ \ NC,\ \ A3\ \},\ \{\ \ NC,\ \ A0\ \},\ \{\ \ NC,\ \ A1\ \},}
+\DoxyCodeLine{\ \ \ \{\ NC,\ NC\ \},\ \{\ NC,\ NC\ \},}
+\DoxyCodeLine{\ \}}
+
+\end{DoxyCode}

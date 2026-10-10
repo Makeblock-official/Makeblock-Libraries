@@ -1,0 +1,28 @@
+var class_me_color_sensor =
+[
+    [ "MeColorSensor", "class_me_color_sensor.html#af5fe6429a8b59d988c0edb070cdf66ab", null ],
+    [ "MeColorSensor", "class_me_color_sensor.html#a0c82b287c01d688df13fadedf0737014", null ],
+    [ "MeColorSensor", "class_me_color_sensor.html#a09474c3805cbbff251af6699425d6742", null ],
+    [ "ColorDataRead", "class_me_color_sensor.html#aa033b29d7464ebcbcf74e47794383e09", null ],
+    [ "ColorDataReadOnebyOne", "class_me_color_sensor.html#a88ff70346c30ab33df2f02d964da6c17", null ],
+    [ "ColorIdentify", "class_me_color_sensor.html#a37adb003fab4d09e2cc014c713e35e57", null ],
+    [ "MAX", "class_me_color_sensor.html#a33fedc7e60aad74cf937389b82c1943e", null ],
+    [ "MIN", "class_me_color_sensor.html#a7731131a09e0e0bc4121cd30353db745", null ],
+    [ "readData", "class_me_color_sensor.html#aeb6c09291008af8b013e5462331e5c08", null ],
+    [ "ReportId", "class_me_color_sensor.html#a1728909fc7199b95ad3e35734b3a16a6", null ],
+    [ "ReturnBlueData", "class_me_color_sensor.html#a0a04f1d0592fb21febf7a7583fa9a9d9", null ],
+    [ "ReturnColorCode", "class_me_color_sensor.html#a403b066a178b7c438dab069bfed11dd7", null ],
+    [ "ReturnColorData", "class_me_color_sensor.html#aea344bb117b012fb27ee6ed8ebf17c73", null ],
+    [ "ReturnColorhue", "class_me_color_sensor.html#ae0c377ebb860b67ebf01aae23722dc31", null ],
+    [ "ReturnGrayscale", "class_me_color_sensor.html#af4713622f9fdb6487e9798b47a62e008", null ],
+    [ "ReturnGreenData", "class_me_color_sensor.html#a2ceb9fec73cf92a98421c3606a324320", null ],
+    [ "ReturnRedData", "class_me_color_sensor.html#aa5cf33bebe6d653a7164551629447287", null ],
+    [ "Returnresult", "class_me_color_sensor.html#a96d8182a6239e536fb56792346371734", null ],
+    [ "SensorInit", "class_me_color_sensor.html#a1efe278e3a311adc4239a8ca9042447c", null ],
+    [ "TurnOffLight", "class_me_color_sensor.html#ab686f3e727861bc47ddbabb914f9c3a1", null ],
+    [ "TurnOffmodule", "class_me_color_sensor.html#a836878156e0d4b820b92769cd5df50f5", null ],
+    [ "TurnOnLight", "class_me_color_sensor.html#a51c9c3cbcd5af42ec1f3fac7b4bf3818", null ],
+    [ "TurnOnmodule", "class_me_color_sensor.html#a50a015a94ddab045cde3536a1f9bce44", null ],
+    [ "writeData", "class_me_color_sensor.html#a9ba779e9fc9841177d80abf17cd4f973", null ],
+    [ "writeReg", "class_me_color_sensor.html#aa4a1ce0523ec234b68387d0a38becab4", null ]
+];

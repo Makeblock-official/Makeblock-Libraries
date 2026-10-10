@@ -1,0 +1,71 @@
+\doxysection{src/\+Me\+PS2.cpp File Reference}
+\hypertarget{_me_p_s2_8cpp}{}\label{_me_p_s2_8cpp}\index{src/MePS2.cpp@{src/MePS2.cpp}}
+
+
+Driver for \doxylink{class_me_p_s2}{Me\+PS2} device.  
+
+
+{\ttfamily \#include "{}Me\+PS2.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Serial.\+h"{}}\newline
+Include dependency graph for Me\+PS2.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_p_s2_8cpp__incl}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+Driver for \doxylink{class_me_p_s2}{Me\+PS2} device. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+4 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/10/08 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me PS2 handle device, The \doxylink{class_me_p_s2}{Me\+PS2} inherited the \doxylink{class_me_serial}{Me\+Serial} class from \doxylink{class_software_serial}{Software\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\begin{DoxyEnumerate}
+\item uint8\+\_\+t \doxylink{class_me_p_s2_a4df0b0985f4b63366fc8ed2b6489916b}{Me\+PS2\+::read\+Buffer(int16\+\_\+t index)};
+\item void \doxylink{class_me_p_s2_a89823992bc9d4fef006cc7f9782aa685}{Me\+PS2\+::write\+Buffer(int16\+\_\+t index,uint8\+\_\+t c)};
+\item void \doxylink{class_me_p_s2_a65d5b08003a94c6bc333dec3a6957f37}{Me\+PS2\+::read\+Serial(void)};
+\item boolean \doxylink{class_me_p_s2_a83482bf8ea7f5654ad6af4603045943e}{Me\+PS2\+::readjoystick(void)};
+\item int16\+\_\+t \doxylink{class_me_p_s2_a9418cffcc31f2325b022189d9c02713a}{Me\+PS2\+::\+Me\+Analog(uint8\+\_\+t button)};
+\item boolean \doxylink{class_me_p_s2_af6995881e6754c128b4b978f378f2ef7}{Me\+PS2\+::\+Button\+Pressed(uint8\+\_\+t button)};
+\item void \doxylink{class_me_p_s2_a6801dbef44b2b324731cea5d75215a41}{Me\+PS2\+::loop(void)};
+\end{DoxyEnumerate}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+ Scott wang      2016/09/18         1.0.0            Build the new lib.
+ Scott           2016/09/20         1.0.1            Correct the receive error.
+ Scott           2016/09/22         1.0.2            Correct the connect error.
+ Scott           2016/09/23         1.0.3            Add BUTTON\_L and BUTTON\_R.
+ Mark Yan        2016/10/08         1.0.4            Modify data format.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

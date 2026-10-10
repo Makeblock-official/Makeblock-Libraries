@@ -1,0 +1,164 @@
+\doxysection{Me\+Compass.\+h}
+\hypertarget{_me_compass_8h_source}{}\label{_me_compass_8h_source}\index{src/MeCompass.h@{src/MeCompass.h}}
+\mbox{\hyperlink{_me_compass_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{/*\ Define\ to\ prevent\ recursive\ inclusion\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifndef\ MECOMPASS\_H}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ MECOMPASS\_H}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{/*\ Includes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ME\_PORT\_DEFINED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{/*\ Exported\ macro\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\#define\ COMPASS\_SERIAL\_DEBUG}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ I2C\_ERROR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (-\/1)}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ Me\ Compass\ only\ has\ one\ address}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ COMPASS\_DEFAULT\_ADDRESS\ \ \ \ (0x1E)\ \ \ }}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{//Me\ Compass\ Register\ Address}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ COMPASS\_RA\_CONFIG\_A\ \ \ \ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ COMPASS\_RA\_CONFIG\_B\ \ \ \ \ \ \ \ (0x01)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ COMPASS\_RA\_MODE\ \ \ \ \ \ \ \ \ \ \ \ (0x02)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ COMPASS\_RA\_DATAX\_H\ \ \ \ \ \ \ \ \ (0x03)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ COMPASS\_RA\_DATAX\_L\ \ \ \ \ \ \ \ \ (0x04)}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ COMPASS\_RA\_DATAZ\_H\ \ \ \ \ \ \ \ \ (0x05)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ COMPASS\_RA\_DATAZ\_L\ \ \ \ \ \ \ \ \ (0x06)}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ COMPASS\_RA\_DATAY\_H\ \ \ \ \ \ \ \ \ (0x07)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ COMPASS\_RA\_DATAY\_L\ \ \ \ \ \ \ \ \ (0x08)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ COMPASS\_RA\_STATUS\ \ \ \ \ \ \ \ \ \ (0x09)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ COMPASS\_RA\_ID\_A\ \ \ \ \ \ \ \ \ \ \ \ (0x0A)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ COMPASS\_RA\_ID\_B\ \ \ \ \ \ \ \ \ \ \ \ (0x0B)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ COMPASS\_RA\_ID\_C\ \ \ \ \ \ \ \ \ \ \ \ (0x0C)}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{//define\ number\ of\ samples\ averaged\ per\ measurement}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ COMPASS\_AVERAGING\_1\ \ \ \ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ COMPASS\_AVERAGING\_2\ \ \ \ \ \ \ \ (0x20)}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ COMPASS\_AVERAGING\_4\ \ \ \ \ \ \ \ (0x40)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ COMPASS\_AVERAGING\_8\ \ \ \ \ \ \ \ (0x60)}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{comment}{//define\ data\ output\ rate\ value\ (Hz)}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ COMPASS\_RATE\_0P75\ \ \ \ \ \ \ \ \ \ (0x00)\ \ \ }\textcolor{comment}{//\ 0.75\ (Hz)}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ COMPASS\_RATE\_1P5\ \ \ \ \ \ \ \ \ \ \ (0x40)\ \ \ }\textcolor{comment}{//\ 1.5\ \ (Hz)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ COMPASS\_RATE\_3\ \ \ \ \ \ \ \ \ \ \ \ \ (0x08)\ \ \ }\textcolor{comment}{//\ 3\ \ \ \ (Hz)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ COMPASS\_RATE\_7P5\ \ \ \ \ \ \ \ \ \ \ (0x0C)\ \ \ }\textcolor{comment}{//\ 7.5\ \ (Hz)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ COMPASS\_RATE\_15\ \ \ \ \ \ \ \ \ \ \ \ (0x10)\ \ \ }\textcolor{comment}{//\ 15\ \ \ (Hz)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ COMPASS\_RATE\_30\ \ \ \ \ \ \ \ \ \ \ \ (0x14)\ \ \ }\textcolor{comment}{//\ 30\ \ \ (Hz)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ COMPASS\_RATE\_75\ \ \ \ \ \ \ \ \ \ \ \ (0x18)\ \ \ }\textcolor{comment}{//\ 75\ \ \ (Hz)}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{//define\ measurement\ bias\ value}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ COMPASS\_BIAS\_NORMAL\ \ \ \ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ COMPASS\_BIAS\_POSITIVE\ \ \ \ \ \ (0x01)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ COMPASS\_BIAS\_NEGATIVE\ \ \ \ \ \ (0x02)}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{comment}{//define\ magnetic\ field\ gain\ value}}
+\DoxyCodeLine{00105\ \textcolor{comment}{/*\ -\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00106\ \textcolor{comment}{\ *\ \ |\ Field\ Range\ |\ Gain\ (LSB/Gauss)}}
+\DoxyCodeLine{00107\ \textcolor{comment}{\ *\ -\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00108\ \textcolor{comment}{\ *\ \ |\ +/-\/\ 0.88\ Ga\ |\ 1370}}
+\DoxyCodeLine{00109\ \textcolor{comment}{\ *\ \ |\ +/-\/\ 1.3\ Ga\ \ |\ 1090\ (Default)}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ *\ \ |\ +/-\/\ 1.9\ Ga\ \ |\ 820}}
+\DoxyCodeLine{00111\ \textcolor{comment}{\ *\ \ |\ +/-\/\ 2.5\ Ga\ \ |\ 660}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ *\ \ |\ +/-\/\ 4.0\ Ga\ \ |\ 440}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ *\ \ |\ +/-\/\ 4.7\ Ga\ \ |\ 390}}
+\DoxyCodeLine{00114\ \textcolor{comment}{\ *\ \ |\ +/-\/\ 5.6\ Ga\ \ |\ 330}}
+\DoxyCodeLine{00115\ \textcolor{comment}{\ *\ \ |\ +/-\/\ 8.1\ Ga\ \ |\ 230}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ *\ -\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ COMPASS\_GAIN\_1370\ \ \ \ \ \ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ COMPASS\_GAIN\_1090\ \ \ \ \ \ \ \ \ \ (0x20)}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ COMPASS\_GAIN\_820\ \ \ \ \ \ \ \ \ \ \ (0x40)}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ COMPASS\_GAIN\_660\ \ \ \ \ \ \ \ \ \ \ (0x60)}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ COMPASS\_GAIN\_440\ \ \ \ \ \ \ \ \ \ \ (0x80)}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ COMPASS\_GAIN\_390\ \ \ \ \ \ \ \ \ \ \ (0xA0)}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ COMPASS\_GAIN\_330\ \ \ \ \ \ \ \ \ \ \ (0xC0)}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ COMPASS\_GAIN\_220\ \ \ \ \ \ \ \ \ \ \ (0xE0)}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{comment}{//define\ measurement\ mode}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ COMPASS\_MODE\_CONTINUOUS\ \ \ \ (0x00)}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ COMPASS\_MODE\_SINGLE\ \ \ \ \ \ \ \ (0x01)}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ COMPASS\_MODE\_IDLE\ \ \ \ \ \ \ \ \ \ (0x02)}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{comment}{//define\ others\ parameter}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ COMPASS\_PI\ 3.14159265F}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ START\_ADDRESS\_OF\_EEPROM\_BUFFER\ \ (int16\_t)(0x00)}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{comment}{/*\ define\ a\ struct\ to\ save\ calibration\ parameters-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00136\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_compass___calibration___parameter}{Compass\_Calibration\_Parameter}}}
+\DoxyCodeLine{00137\ \{}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordtype}{float}\ X\_excursion;}
+\DoxyCodeLine{00139\ \ \ \textcolor{keywordtype}{float}\ Y\_excursion;}
+\DoxyCodeLine{00140\ \ \ \textcolor{keywordtype}{float}\ Z\_excursion;}
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordtype}{float}\ X\_gain;}
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordtype}{float}\ Y\_gain;}
+\DoxyCodeLine{00143\ \ \ \textcolor{keywordtype}{float}\ Z\_gain;}
+\DoxyCodeLine{00144\ \ \ uint8\_t\ Rotation\_Axis;\ \ \ \textcolor{comment}{//1:X\_Axis\ \ \ 2:Y\_Axis\ \ \ 3:Z\_Axis}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ uint8\_t\ verify\_flag;}
+\DoxyCodeLine{00147\ \};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00155\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_compass}{MeCompass}}}
+\DoxyCodeLine{00156\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00157\ class\ \mbox{\hyperlink{class_me_compass}{MeCompass}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00159\ \{}
+\DoxyCodeLine{00160\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00166\ \ \ \mbox{\hyperlink{class_me_compass_a2713d01cf20bac751fa1ac0d5ac0e00c}{MeCompass}}();}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00174\ \ \ \mbox{\hyperlink{class_me_compass_a2713d01cf20bac751fa1ac0d5ac0e00c}{MeCompass}}(uint8\_t\ port);}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00185\ \ \ \mbox{\hyperlink{class_me_compass_a2713d01cf20bac751fa1ac0d5ac0e00c}{MeCompass}}(uint8\_t\ port,\ uint8\_t\ address);}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00195\ \ \ \mbox{\hyperlink{class_me_compass_a2713d01cf20bac751fa1ac0d5ac0e00c}{MeCompass}}(uint8\_t\ keyPin,\ uint8\_t\ ledPin);}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00207\ \ \ \mbox{\hyperlink{class_me_compass_a2713d01cf20bac751fa1ac0d5ac0e00c}{MeCompass}}(uint8\_t\ keyPin,\ uint8\_t\ ledPin,\ uint8\_t\ address);}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ \ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00225\ \ \ void\ setpin(uint8\_t\ keyPin,\ uint8\_t\ ledPin);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00241\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_compass_aa514632f78e2095ee341e146789cc6b3}{begin}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00257\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_compass_a20480fba91e33e557ffb210ff06681d6}{testConnection}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00273\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_compass_a544592a96b717dfd4d7f7357d22440a6}{getAngle}}(\textcolor{keywordtype}{void});\ \ }
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00289\ \ \ int16\_t\ \mbox{\hyperlink{class_me_compass_a968a8f7bc7534fefc8aad19b56472be4}{getHeadingX}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00305\ \ \ int16\_t\ \mbox{\hyperlink{class_me_compass_a39e81714f6c14f8dcc0faec9330eaa2c}{getHeadingY}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00321\ \ \ int16\_t\ \mbox{\hyperlink{class_me_compass_ae0cb31dcc67e6a1f25292edd9506046d}{getHeadingZ}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00341\ \ \ int16\_t\ \mbox{\hyperlink{class_me_compass_a151c87c12cdcf667faf5f307bae8e418}{getHeading}}(int16\_t\ *x,\ int16\_t\ *y,\ int16\_t\ *z);}
+\DoxyCodeLine{00342\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00343\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_keyPin;}
+\DoxyCodeLine{00344\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_ledPin;}
+\DoxyCodeLine{00345\ \ \ \textcolor{keywordtype}{bool}\ Calibration\_Flag;}
+\DoxyCodeLine{00346\ \ \ uint8\_t\ buffer[6];}
+\DoxyCodeLine{00347\ \ \ uint8\_t\ Device\_Address;}
+\DoxyCodeLine{00348\ \ \ uint8\_t\ Measurement\_Mode;}
+\DoxyCodeLine{00349\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_compass___calibration___parameter}{Compass\_Calibration\_Parameter}}\ Cal\_parameter;}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00374\ \ \ int8\_t\ writeReg(int16\_t\ reg,\ uint8\_t\ data);}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00401\ \ \ int8\_t\ writeData(uint8\_t\ start,\ \textcolor{keyword}{const}\ uint8\_t\ *pData,\ uint8\_t\ size);}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00428\ \ \ int8\_t\ readData(uint8\_t\ start,\ uint8\_t\ *buffer,\ uint8\_t\ size);\ \ }
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00446\ \ \ \textcolor{keywordtype}{void}\ deviceCalibration(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00463\ \ \ \textcolor{keywordtype}{void}\ read\_EEPROM\_Buffer(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00480\ \ \ \textcolor{keywordtype}{void}\ write\_EEPROM\_Buffer(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_compass___calibration___parameter}{Compass\_Calibration\_Parameter}}\ *parameter\_pointer);}
+\DoxyCodeLine{00481\ \};}
+\DoxyCodeLine{00482\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MECOMPASS\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,5 @@
+<map id="MeTemperature" name="MeTemperature">
+<area shape="rect" id="Node000001" title="Driver for temperature sensor device." alt="" coords="5,80,117,107"/>
+<area shape="rect" id="Node000002" href="$class_me_port.html" title="Port Mapping for RJ25." alt="" coords="29,5,93,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,48,64,80,58,80,58,48"/>
+</map>

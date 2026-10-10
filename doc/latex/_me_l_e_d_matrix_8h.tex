@@ -1,0 +1,127 @@
+\doxysection{src/\+Me\+LEDMatrix.h File Reference}
+\hypertarget{_me_l_e_d_matrix_8h}{}\label{_me_l_e_d_matrix_8h}\index{src/MeLEDMatrix.h@{src/MeLEDMatrix.h}}
+
+
+Header for \doxylink{_me_l_e_d_matrix_8cpp}{Me\+LEDMatrix.\+cpp} module.  
+
+
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+LEDMatrix.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_l_e_d_matrix_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_l_e_d_matrix_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_me_l_e_d_matrix}{Me\+LEDMatrix}}
+\begin{DoxyCompactList}\small\item\em Driver for Me LED Matrix module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_l_e_d_matrix_8h_a6b2ceec059099f7f5f7a71e2883a2a94}\label{_me_l_e_d_matrix_8h_a6b2ceec059099f7f5f7a71e2883a2a94} 
+\#define {\bfseries Point\+On}~1
+\item 
+\Hypertarget{_me_l_e_d_matrix_8h_a1a67988552f5f9f5ae883a3369cf8860}\label{_me_l_e_d_matrix_8h_a1a67988552f5f9f5ae883a3369cf8860} 
+\#define {\bfseries Point\+Off}~0
+\item 
+\Hypertarget{_me_l_e_d_matrix_8h_a398165d967d8a2c8ff57ddd0a081a5ff}\label{_me_l_e_d_matrix_8h_a398165d967d8a2c8ff57ddd0a081a5ff} 
+\#define {\bfseries LED\+\_\+\+BUFFER\+\_\+\+SIZE}~16
+\item 
+\Hypertarget{_me_l_e_d_matrix_8h_a912c1c6e6cec0dfb9177e9894e5f653b}\label{_me_l_e_d_matrix_8h_a912c1c6e6cec0dfb9177e9894e5f653b} 
+\#define {\bfseries STRING\+\_\+\+DISPLAY\+\_\+\+BUFFER\+\_\+\+SIZE}~20
+\item 
+\Hypertarget{_me_l_e_d_matrix_8h_ad512a1617ead9d2c285806bfe9274645}\label{_me_l_e_d_matrix_8h_ad512a1617ead9d2c285806bfe9274645} 
+\#define {\bfseries Mode\+\_\+\+Address\+\_\+\+Auto\+\_\+\+Add\+\_\+1}~0x40
+\item 
+\Hypertarget{_me_l_e_d_matrix_8h_a1c817f97bab325eea4d1464ef3ddce1b}\label{_me_l_e_d_matrix_8h_a1c817f97bab325eea4d1464ef3ddce1b} 
+\#define {\bfseries Mode\+\_\+\+Permanent\+\_\+\+Address}~0x44
+\item 
+\Hypertarget{_me_l_e_d_matrix_8h_ac748d882dd43eac7e01148563858458f}\label{_me_l_e_d_matrix_8h_ac748d882dd43eac7e01148563858458f} 
+\#define {\bfseries ADDRESS}(addr)~(0x\+C0 \texorpdfstring{$\vert$}{|} addr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_l_e_d_matrix_8h_ab24d253abfc504f4820c76f9460c71c3}\label{_me_l_e_d_matrix_8h_ab24d253abfc504f4820c76f9460c71c3} 
+enum {\bfseries LED\+\_\+\+Matrix\+\_\+\+Brightness\+\_\+\+Type\+Def} \{ \newline
+{\bfseries Brightness\+\_\+0} = 0
+, {\bfseries Brightness\+\_\+1}
+, {\bfseries Brightness\+\_\+2}
+, {\bfseries Brightness\+\_\+3}
+, \newline
+{\bfseries Brightness\+\_\+4}
+, {\bfseries Brightness\+\_\+5}
+, {\bfseries Brightness\+\_\+6}
+, {\bfseries Brightness\+\_\+7}
+, \newline
+{\bfseries Brightness\+\_\+8}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for \doxylink{_me_l_e_d_matrix_8cpp}{Me\+LEDMatrix.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+3 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/01/29 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me LED Matrix device
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_l_e_d_matrix_afe559a6e2d6fa09ef27560c472db4131}{Me\+LEDMatrix\+::clear\+Screen()};
+\item void \doxylink{class_me_l_e_d_matrix_af0a710afc6c9314faf92b17484d8b89f}{Me\+LEDMatrix\+::set\+Brightness(uint8\+\_\+t Bright)};
+\item void \doxylink{class_me_l_e_d_matrix_ac32458aff39a381c5b4600fa3cb731ed}{Me\+LEDMatrix\+::set\+Color\+Index(bool Color\+\_\+\+Number)};
+\item void \doxylink{class_me_l_e_d_matrix_a7e41bda67de56c3d8f568d6f31c93d6d}{Me\+LEDMatrix\+::draw\+Bitmap(int8\+\_\+t x, int8\+\_\+t y, uint8\+\_\+t Bitmap\+\_\+\+Width, uint8\+\_\+t \texorpdfstring{$\ast$}{*}\+Bitmap)};
+\item void \doxylink{class_me_l_e_d_matrix_a2bc5822502b9600d838a163a82820c02}{Me\+LEDMatrix\+::draw\+Str(int16\+\_\+t X\+\_\+position, int8\+\_\+t Y\+\_\+position, const char \texorpdfstring{$\ast$}{*}str)};
+\item void \doxylink{class_me_l_e_d_matrix_ae34d06e56a00bd8d1de86a9b500941a6}{Me\+LEDMatrix\+::show\+Clock(uint8\+\_\+t hour, uint8\+\_\+t minute, bool point\+\_\+flag)};
+\item void \doxylink{class_me_l_e_d_matrix_ae2cd6f8f1b7b2077b49a4d05f7af1b79}{Me\+LEDMatrix\+::show\+Num(float value,uint8\+\_\+t digits)};
+\item void \doxylink{class_me_l_e_d_matrix_a54aa7ad77d5ef8d67ce0623431e99f53}{Me\+LEDMatrix\+::reset(uint8\+\_\+t port)};
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+forfish         2015/11/09     1.0.0            Add description
+Mark Yan        2016/01/19     1.0.1            Add some new symbol
+Mark Yan        2016/01/27     1.0.2            Add digital printing
+Mark Yan        2016/01/29     1.0.3            Fix issue when show integer number
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

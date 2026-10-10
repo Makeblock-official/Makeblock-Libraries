@@ -1,0 +1,89 @@
+\doxysection{Me\+Gyro.\+h}
+\hypertarget{_me_gyro_8h_source}{}\label{_me_gyro_8h_source}\index{src/MeGyro.h@{src/MeGyro.h}}
+\mbox{\hyperlink{_me_gyro_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{/*\ Define\ to\ prevent\ recursive\ inclusion\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#ifndef\ MeGyro\_H}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ MeGyro\_H}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{/*\ Includes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{/*\ Exported\ macro\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ I2C\_ERROR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (-\/1)}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ GYRO\_DEFAULT\_ADDRESS\ \ \ \ \ \ \ (0x68)}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_gyro}{MeGyro}}}
+\DoxyCodeLine{00076\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00077\ class\ \mbox{\hyperlink{class_me_gyro}{MeGyro}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00086\ \ \ \mbox{\hyperlink{class_me_gyro_a4a6b3f7485716b1943e15eb554b51ae7}{MeGyro}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00094\ \ \ \mbox{\hyperlink{class_me_gyro_a4a6b3f7485716b1943e15eb554b51ae7}{MeGyro}}(uint8\_t\ port);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00105\ \ \ \mbox{\hyperlink{class_me_gyro_a4a6b3f7485716b1943e15eb554b51ae7}{MeGyro}}(uint8\_t\ port,\ uint8\_t\ address);}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00115\ \ \ \mbox{\hyperlink{class_me_gyro_a4a6b3f7485716b1943e15eb554b51ae7}{MeGyro}}(uint8\_t\ AD0,\ uint8\_t\ INT);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00127\ \ \ \mbox{\hyperlink{class_me_gyro_a4a6b3f7485716b1943e15eb554b51ae7}{MeGyro}}(uint8\_t\ AD0,\ uint8\_t\ INT,\ uint8\_t\ address);}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ \ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00145\ \ \ void\ setpin(uint8\_t\ AD0,\ uint8\_t\ INT);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_gyro_ae12dbf32cc840e0d734dc813d1d3b8cc}{begin}}();}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00179\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_gyro_a85373ad8f4764f9ab9cd0d880fb8dd19}{update}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00197\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_gyro_a01ab455745beef2583a64e83c88e54e0}{fast\_update}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00213\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_gyro_a15122f1ff89422a7aa0f0bb0a7af82ad}{getDevAddr}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00229\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_gyro_a22f9944d93ab6c8b3c09195fcf002675}{getAngleX}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00245\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_gyro_a32858bdbdbc045d5885c8294d811c351}{getAngleY}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00261\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_gyro_aee097463680345da15710d7e2f5bad04}{getAngleZ}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00277\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_gyro_acd4874b1d99d4a79c4194b5f0a2691d1}{getGyroX}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00293\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_gyro_a2409cc23fd683a3f546f1660da49bf8d}{getGyroY}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00309\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_gyro_a973d074ad4c72fec8bf77a43db27da06}{getGyroZ}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00325\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_me_gyro_a7ff55cc89d2507d47d193d659341b6b2}{getAngle}}(uint8\_t\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00343\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_gyro_a1a7b23e100b983b19b83ff78f4a66af0}{resetData}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00346\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_AD0;}
+\DoxyCodeLine{00347\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \ \_INT;}
+\DoxyCodeLine{00348\ \ \ \textcolor{keywordtype}{double}\ \ gSensitivity;\ \textcolor{comment}{/*\ for\ 500\ deg/s,\ check\ data\ sheet\ */}}
+\DoxyCodeLine{00349\ \ \ \textcolor{keywordtype}{double}\ \ gx,\ gy,\ gz;}
+\DoxyCodeLine{00350\ \ \ \textcolor{keywordtype}{double}\ \ gyrX,\ gyrY,\ gyrZ;}
+\DoxyCodeLine{00351\ \ \ int16\_t\ accX,\ accY,\ accZ;}
+\DoxyCodeLine{00352\ \ \ \textcolor{keywordtype}{double}\ \ gyrXoffs,\ gyrYoffs,\ gyrZoffs;}
+\DoxyCodeLine{00353\ \ \ uint8\_t\ i2cData[14];}
+\DoxyCodeLine{00354\ \ \ uint8\_t\ Device\_Address;}
+\DoxyCodeLine{00355\ \ \ }
+\DoxyCodeLine{00371\ \ \ \textcolor{keywordtype}{void}\ deviceCalibration(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00396\ \ \ int8\_t\ writeReg(int16\_t\ reg,\ uint8\_t\ data);}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00423\ \ \ int8\_t\ readData(uint8\_t\ start,\ uint8\_t\ *buffer,\ uint8\_t\ size);}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00450\ \ \ int8\_t\ writeData(uint8\_t\ start,\ \textcolor{keyword}{const}\ uint8\_t\ *pData,\ uint8\_t\ size);}
+\DoxyCodeLine{00451\ \};}
+\DoxyCodeLine{00452\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \ MeGyro\_H}}
+
+\end{DoxyCode}

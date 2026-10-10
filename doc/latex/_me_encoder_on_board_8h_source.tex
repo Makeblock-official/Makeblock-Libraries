@@ -1,0 +1,163 @@
+\doxysection{Me\+Encoder\+On\+Board.\+h}
+\hypertarget{_me_encoder_on_board_8h_source}{}\label{_me_encoder_on_board_8h_source}\index{src/MeEncoderOnBoard.h@{src/MeEncoderOnBoard.h}}
+\mbox{\hyperlink{_me_encoder_on_board_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#ifndef\ ME\_Encoder\_OnBoard\_H}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ ME\_Encoder\_OnBoard\_H}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#include\ <avr/interrupt.h>}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ DIRECT\_MODE\ \ \ \ \ \ \ 0x00}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ PID\_MODE\ \ \ \ \ \ \ \ \ \ 0x01}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ PWM\_MODE\ \ \ \ \ \ \ \ \ \ 0x02}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ MOTION\_WITH\_POS\ \ \ \ \ \ \ \ 0x00}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ MOTION\_WITHOUT\_POS\ \ \ \ \ 0x01}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ PWM\_MIN\_OFFSET\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 25}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ ENCODER\_POS\_DEADBAND\ \ \ \ \ \ \ \ \ \ \ 10}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ DECELERATION\_DISTANCE\_PITCH\ \ \ \ 6\ }}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00092\ \{}
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordtype}{float}\ P,\ I,\ D;}
+\DoxyCodeLine{00094\ \ \ \textcolor{keywordtype}{float}\ Setpoint,\ Output,\ Integral,\ differential,\ last\_error;}
+\DoxyCodeLine{00095\ \}\ \mbox{\hyperlink{struct_p_i_d__internal}{PID\_internal}};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00098\ \{}
+\DoxyCodeLine{00099\ \ \ uint8\_t\ mode;}
+\DoxyCodeLine{00100\ \ \ uint8\_t\ motionState;}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ int16\_t\ pulseEncoder;}
+\DoxyCodeLine{00103\ \ \ int16\_t\ currentPwm;}
+\DoxyCodeLine{00104\ \ \ int16\_t\ targetPwm;}
+\DoxyCodeLine{00105\ \ \ int16\_t\ previousPwm;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \textcolor{keywordtype}{float}\ currentSpeed;}
+\DoxyCodeLine{00108\ \ \ \textcolor{keywordtype}{float}\ targetSpeed;}
+\DoxyCodeLine{00109\ \ \ \textcolor{keywordtype}{float}\ previousSpeed;}
+\DoxyCodeLine{00110\ \ \ \textcolor{keywordtype}{float}\ ratio;}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordtype}{long}\ currentPos;}
+\DoxyCodeLine{00113\ \ \ \textcolor{keywordtype}{long}\ targetPos;}
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordtype}{long}\ previousPos;}
+\DoxyCodeLine{00115\ \ \ \textcolor{keywordtype}{long}\ pulsePos;}
+\DoxyCodeLine{00116\ \ }
+\DoxyCodeLine{00117\ \ \ \mbox{\hyperlink{struct_p_i_d__internal}{PID\_internal}}\ \ PID\_speed;}
+\DoxyCodeLine{00118\ \ \ \mbox{\hyperlink{struct_p_i_d__internal}{PID\_internal}}\ \ PID\_pos;}
+\DoxyCodeLine{00119\ \}\mbox{\hyperlink{struct_me___encoder__type}{Me\_Encoder\_type}};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00122\ \{}
+\DoxyCodeLine{00123\ \ \ uint8\_t\ port\_A;\ \ \ \textcolor{comment}{//INT}}
+\DoxyCodeLine{00124\ \ \ uint8\_t\ port\_B;\ \ \ \textcolor{comment}{//DIR}}
+\DoxyCodeLine{00125\ \ \ uint8\_t\ port\_PWM;\ \textcolor{comment}{//PWM}}
+\DoxyCodeLine{00126\ \ \ uint8\_t\ port\_H1;}
+\DoxyCodeLine{00127\ \ \ uint8\_t\ port\_H2;}
+\DoxyCodeLine{00128\ \}\ \mbox{\hyperlink{struct_encoder__port__type}{Encoder\_port\_type}};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_encoder__port__type}{Encoder\_port\_type}}\ encoder\_Port[6];\ \ \textcolor{comment}{//\ encoder\_Port[0]\ is\ nonsense}}
+\DoxyCodeLine{00131\ \textcolor{keyword}{typedef}\ void\ (*cb)(int16\_t,int16\_t);\ }
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_encoder_on_board}{MeEncoderOnBoard}}\ }
+\DoxyCodeLine{00139\ \{}
+\DoxyCodeLine{00140\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00147\ \ \ \mbox{\hyperlink{class_me_encoder_on_board_afcb6c413e88b685ebe72b0b34b48d32a}{MeEncoderOnBoard}}();}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00154\ \ \ \mbox{\hyperlink{class_me_encoder_on_board_afcb6c413e88b685ebe72b0b34b48d32a}{MeEncoderOnBoard}}(\textcolor{keywordtype}{int}\ slot);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_aeafd81a680a1444e923db41fc5071eca}{reset}}(uint8\_t\ slot);}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00186\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_encoder_on_board_aa6d2efab8f23883b30518c4bd0d9652b}{getSlotNum}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00202\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_encoder_on_board_a25fa2844d59070f897269f929c06c92b}{getIntNum}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00203\ \ \ }
+\DoxyCodeLine{00218\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_encoder_on_board_a6c96dc60288791c12a9071ab72081fdb}{getPortA}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00234\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_encoder_on_board_a51d03721fd727d0066546f0280811f4f}{getPortB}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00250\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_encoder_on_board_ae41f008de63749d140beeda6ecde9080}{getPulsePos}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00267\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_a3fff87c540573fc74038bcf809dc311e}{setPulsePos}}(\textcolor{keywordtype}{long}\ pulse\_pos);}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00283\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_a5860af63894f883a46e7faa448091315}{pulsePosPlus}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00284\ \ \ }
+\DoxyCodeLine{00299\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_a8bf581cccdefbc31950d5ff81ed1cb9c}{pulsePosMinus}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00315\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_a27ca91cfa7df12a997db8a0eb04ab536}{setCurrentSpeed}}(\textcolor{keywordtype}{float}\ speed);}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00331\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_encoder_on_board_a8e9e0142f1c6b864ddbc1c96eea47033}{getCurrentSpeed}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00347\ \ \ int16\_t\ \mbox{\hyperlink{class_me_encoder_on_board_acbf1db8de43fd00edff02218f520e59c}{getCurPwm}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00363\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_a5a5e69839bf4e35865e4c31d443a9d7f}{setTarPWM}}(int16\_t\ pwm\_value);}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00379\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_a35f9d7b4962ff8b1ed1db67896c4ed0e}{setMotorPwm}}(int16\_t\ pwm);}
+\DoxyCodeLine{00380\ \ \ }
+\DoxyCodeLine{00395\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_a7edaebc0c6aa631955d20cf7923e57f2}{updateSpeed}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00411\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_ad4df58c9cbc5646df9223e7560857bec}{updateCurPos}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00427\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_encoder_on_board_a166e2d6d5f8aeb598638b80472b79474}{getCurPos}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00443\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_aa13835d17bf0a523cacc9dc938efa3ca}{runSpeed}}(\textcolor{keywordtype}{float}\ speed);}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00460\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_a9aff7dfc02978f6d066cbd24ce0687b3}{setSpeed}}(\textcolor{keywordtype}{float}\ speed);}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00482\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_afae5f5d060a6bcefbe344b418455a819}{move}}(\textcolor{keywordtype}{long}\ position,\textcolor{keywordtype}{float}\ speed\ =\ 100,int16\_t\ extId=0,cb\ callback=NULL);}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00504\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_a288f72436792c55a8847bfc3fa94b972}{moveTo}}(\textcolor{keywordtype}{long}\ position,\textcolor{keywordtype}{float}\ speed\ =\ 100,int16\_t\ extId=0,cb\ callback=NULL);}
+\DoxyCodeLine{00505\ \ \ }
+\DoxyCodeLine{00521\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_encoder_on_board_a71d703a87bfe15ec2fbe86ab51e44778}{distanceToGo}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00541\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_a5a668410ea2407e80627998161c7452d}{setSpeedPid}}(\textcolor{keywordtype}{float}\ p,\textcolor{keywordtype}{float}\ i,\textcolor{keywordtype}{float}\ d);}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00561\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_ae8203fd1090bd08ccf2612642d6bb8e7}{setPosPid}}(\textcolor{keywordtype}{float}\ p,\textcolor{keywordtype}{float}\ i,\textcolor{keywordtype}{float}\ d);}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00577\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_af1e72c2e0a40b0e8819adb4f3eef42dd}{setPulse}}(int16\_t\ pulseValue);}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00593\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_ab144dd43024fd80fbb251938f50adff6}{setRatio}}(\textcolor{keywordtype}{float}\ RatioValue);}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00609\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_a0d5dc8c4a9c36dbd02236ab2358a37dd}{setMotionMode}}(int16\_t\ motionMode);}
+\DoxyCodeLine{00610\ }
+\DoxyCodeLine{00625\ \ \ int16\_t\ \mbox{\hyperlink{class_me_encoder_on_board_ad22d95cd15408391e5638b5fc9fa6896}{pidPositionToPwm}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00641\ \ \ int16\_t\ \mbox{\hyperlink{class_me_encoder_on_board_a3296a20f1c19ff9c3f6721e5c1a4f0e2}{speedWithoutPos}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00642\ }
+\DoxyCodeLine{00657\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_afae914fcb38cfeff89561ec1667ddb6b}{encoderMove}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00658\ }
+\DoxyCodeLine{00673\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_abf552ba0bf4e6e83dc9a63f510792cd0}{pwmMove}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00674\ }
+\DoxyCodeLine{00690\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_encoder_on_board_a1539ed2b8d1a47b9b5037c114856ad00}{isTarPosReached}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00691\ }
+\DoxyCodeLine{00706\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_encoder_on_board_a40a21255f01a568dbdbdcbfe9236070c}{loop}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00707\ }
+\DoxyCodeLine{00708\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00709\ \ \ \ \textcolor{keyword}{volatile}\ \mbox{\hyperlink{struct_me___encoder__type}{Me\_Encoder\_type}}\ encode\_structure;}
+\DoxyCodeLine{00710\ \ \ \ \textcolor{keywordtype}{boolean}\ \_Lock\_flag;}
+\DoxyCodeLine{00711\ \ \ \ \textcolor{keywordtype}{boolean}\ \_Dir\_lock\_flag;}
+\DoxyCodeLine{00712\ \ \ \ \textcolor{keywordtype}{boolean}\ \_Callback\_flag;}
+\DoxyCodeLine{00713\ \ \ \ uint8\_t\ \_extId;}
+\DoxyCodeLine{00714\ \ \ \ uint8\_t\ \_Port\_A;}
+\DoxyCodeLine{00715\ \ \ \ uint8\_t\ \_Port\_B;}
+\DoxyCodeLine{00716\ \ \ \ uint8\_t\ \_Port\_PWM;}
+\DoxyCodeLine{00717\ \ \ \ uint8\_t\ \_Port\_H1;}
+\DoxyCodeLine{00718\ \ \ \ uint8\_t\ \_Port\_H2;}
+\DoxyCodeLine{00719\ \ \ \ uint8\_t\ \_IntNum;}
+\DoxyCodeLine{00720\ \ \ \ uint8\_t\ \_Slot;}
+\DoxyCodeLine{00721\ \ \ \ int16\_t\ \_Encoder\_output;}
+\DoxyCodeLine{00722\ \ \ \ \textcolor{keywordtype}{long}\ \_Measurement\_speed\_time;}
+\DoxyCodeLine{00723\ \ \ \ \textcolor{keywordtype}{long}\ \_Encoder\_move\_time;}
+\DoxyCodeLine{00724\ \ \ \ \textcolor{keywordtype}{bool}\ \_enabled;}
+\DoxyCodeLine{00725\ \ \ \ cb\ \_callback;}
+\DoxyCodeLine{00726\ \};}
+\DoxyCodeLine{00727\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00728\ }
+\DoxyCodeLine{00729\ }
+\DoxyCodeLine{00730\ }
+
+\end{DoxyCode}

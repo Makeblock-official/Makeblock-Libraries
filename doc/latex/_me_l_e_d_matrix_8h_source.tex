@@ -1,0 +1,92 @@
+\doxysection{Me\+LEDMatrix.\+h}
+\hypertarget{_me_l_e_d_matrix_8h_source}{}\label{_me_l_e_d_matrix_8h_source}\index{src/MeLEDMatrix.h@{src/MeLEDMatrix.h}}
+\mbox{\hyperlink{_me_l_e_d_matrix_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#ifndef\ \_ME\_LED\_MATRIX\_H\_}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ \_ME\_LED\_MATRIX\_H\_}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ PointOn\ \ \ 1}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ PointOff\ \ 0}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ LED\_BUFFER\_SIZE\ \ \ 16}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ STRING\_DISPLAY\_BUFFER\_SIZE\ 20}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//Define\ Data\ Command\ Parameters}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ Mode\_Address\_Auto\_Add\_1\ \ 0x40\ \ \ \ \ }\textcolor{comment}{//0100\ 0000\ B}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ Mode\_Permanent\_Address\ \ \ 0x44\ \ \ \ \ }\textcolor{comment}{//0100\ 0100\ B}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{//Define\ Address\ Command\ Parameters}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ ADDRESS(addr)\ \ (0xC0\ |\ addr)}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ Brightness\_0\ =\ 0,}
+\DoxyCodeLine{00073\ \ \ Brightness\_1,}
+\DoxyCodeLine{00074\ \ \ Brightness\_2,}
+\DoxyCodeLine{00075\ \ \ Brightness\_3,}
+\DoxyCodeLine{00076\ \ \ Brightness\_4,}
+\DoxyCodeLine{00077\ \ \ Brightness\_5,}
+\DoxyCodeLine{00078\ \ \ Brightness\_6,}
+\DoxyCodeLine{00079\ \ \ Brightness\_7,}
+\DoxyCodeLine{00080\ \ \ Brightness\_8}
+\DoxyCodeLine{00081\ \}LED\_Matrix\_Brightness\_TypeDef;}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ Me\ LED\ Matrix\ 8X16\ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00091\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_l_e_d_matrix}{MeLEDMatrix}}:\textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00092\ \{}
+\DoxyCodeLine{00093\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00100\ \ \ \mbox{\hyperlink{class_me_l_e_d_matrix_add0de4df6d4eedf76f259a08df8322f7}{MeLEDMatrix}}();}
+\DoxyCodeLine{00101\ \ \ }
+\DoxyCodeLine{00108\ \ \ \mbox{\hyperlink{class_me_l_e_d_matrix_add0de4df6d4eedf76f259a08df8322f7}{MeLEDMatrix}}(uint8\_t\ port);}
+\DoxyCodeLine{00109\ \ \ }
+\DoxyCodeLine{00118\ \ \ \mbox{\hyperlink{class_me_l_e_d_matrix_add0de4df6d4eedf76f259a08df8322f7}{MeLEDMatrix}}(uint8\_t\ SCK\_Pin,\ uint8\_t\ DIN\_Pin);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00134\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_l_e_d_matrix_afe559a6e2d6fa09ef27560c472db4131}{clearScreen}}();}
+\DoxyCodeLine{00135\ \ \ }
+\DoxyCodeLine{00150\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_l_e_d_matrix_af0a710afc6c9314faf92b17484d8b89f}{setBrightness}}(uint8\_t\ Bright);}
+\DoxyCodeLine{00151\ \ \ }
+\DoxyCodeLine{00166\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_l_e_d_matrix_ac32458aff39a381c5b4600fa3cb731ed}{setColorIndex}}(\textcolor{keywordtype}{bool}\ Color\_Number);}
+\DoxyCodeLine{00167\ \ \ }
+\DoxyCodeLine{00188\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_l_e_d_matrix_a7e41bda67de56c3d8f568d6f31c93d6d}{drawBitmap}}(int8\_t\ x,\ int8\_t\ y,\ uint8\_t\ Bitmap\_Width,\ uint8\_t\ *Bitmap);}
+\DoxyCodeLine{00189\ \ \ }
+\DoxyCodeLine{00208\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_l_e_d_matrix_a2bc5822502b9600d838a163a82820c02}{drawStr}}(int16\_t\ X\_position,\ int8\_t\ Y\_position,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str);}
+\DoxyCodeLine{00209\ \ \ }
+\DoxyCodeLine{00228\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_l_e_d_matrix_ae34d06e56a00bd8d1de86a9b500941a6}{showClock}}(uint8\_t\ hour,\ uint8\_t\ minute,\ \textcolor{keywordtype}{bool}\ =\ PointOn);}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00246\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_l_e_d_matrix_ae2cd6f8f1b7b2077b49a4d05f7af1b79}{showNum}}(\textcolor{keywordtype}{float}\ value,uint8\_t\ =\ 3);}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00262\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_l_e_d_matrix_a54aa7ad77d5ef8d67ce0623431e99f53}{reset}}(uint8\_t\ port);}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00265\ \ \ uint8\_t\ u8\_SCKPin;}
+\DoxyCodeLine{00266\ \ \ uint8\_t\ u8\_DINPin;}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \textcolor{keywordtype}{bool}\ b\_Color\_Index;}
+\DoxyCodeLine{00269\ \ \ \textcolor{keywordtype}{bool}\ b\_Draw\_Str\_Flag;}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ uint8\_t\ u8\_Display\_Buffer[LED\_BUFFER\_SIZE];}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ int16\_t\ i16\_Str\_Display\_X\_Position;}
+\DoxyCodeLine{00274\ \ \ int8\_t\ i8\_Str\_Display\_Y\_Position;}
+\DoxyCodeLine{00275\ \ \ int16\_t\ i16\_Number\_of\_Character\_of\_Str;}
+\DoxyCodeLine{00276\ \ \ \textcolor{keywordtype}{char}\ i8\_Str\_Display\_Buffer[STRING\_DISPLAY\_BUFFER\_SIZE];}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00292\ \ \ \textcolor{keywordtype}{void}\ writeByte(uint8\_t\ data);}
+\DoxyCodeLine{00293\ \ \ }
+\DoxyCodeLine{00312\ \ \ \textcolor{keywordtype}{void}\ writeBytesToAddress(uint8\_t\ Address,\ \textcolor{keyword}{const}\ uint8\_t\ *P\_data,\ uint8\_t\ count\_of\_data);}
+\DoxyCodeLine{00313\ \ \ }
+\DoxyCodeLine{00326\ \ \ \textcolor{keywordtype}{void}\ showStr();}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \};}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

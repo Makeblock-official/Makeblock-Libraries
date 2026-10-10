@@ -1,0 +1,64 @@
+\doxysection{Me\+One\+Wire.\+h}
+\hypertarget{_me_one_wire_8h_source}{}\label{_me_one_wire_8h_source}\index{src/MeOneWire.h@{src/MeOneWire.h}}
+\mbox{\hyperlink{_me_one_wire_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#ifndef\ MeOneWire\_H}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ MeOneWire\_H}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_one_wire}{MeOneWire}}}
+\DoxyCodeLine{00153\ \{}
+\DoxyCodeLine{00154\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00155\ \ \ MeIO\_REG\_TYPE\ \ \ bitmask;}
+\DoxyCodeLine{00156\ \ \ \textcolor{keyword}{volatile}\ MeIO\_REG\_TYPE\ *baseReg;}
+\DoxyCodeLine{00157\ \ \ \textcolor{comment}{/*\ global\ search\ state\ */}}
+\DoxyCodeLine{00158\ \ \ uint8\_t\ ROM\_NO[8];}
+\DoxyCodeLine{00159\ \ \ uint8\_t\ LastDiscrepancy;}
+\DoxyCodeLine{00160\ \ \ uint8\_t\ LastFamilyDiscrepancy;}
+\DoxyCodeLine{00161\ \ \ uint8\_t\ LastDeviceFlag;}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00170\ \ \ \mbox{\hyperlink{class_me_one_wire_a8069007f7070f2f239af17cd824651f2}{MeOneWire}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00178\ \ \ \mbox{\hyperlink{class_me_one_wire_a8069007f7070f2f239af17cd824651f2}{MeOneWire}}(uint8\_t\ pin);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00192\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_one_wire_a8cfacb53d1246333f94c25508e833f22}{readIO}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00208\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_one_wire_afdf58430b9beb67f2ebba55430e7aa3c}{reset}}(uint8\_t\ pin);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00225\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_one_wire_afdf58430b9beb67f2ebba55430e7aa3c}{reset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00241\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_one_wire_afa0cc28fb5fec3b805cc7eeb955ae8d3}{select}}(\textcolor{keyword}{const}\ uint8\_t\ rom[8]);}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00255\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_one_wire_adf1fe69dac4bda2511ce613c0e51d1cf}{skip}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00273\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_one_wire_a50f690ef7f97a23844da2b89e78232d7}{write}}(uint8\_t\ v,\ uint8\_t\ power\ =\ 0);}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00293\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_one_wire_a0f66689a98b50c8fd681ba6a324054a8}{write\_bytes}}(\textcolor{keyword}{const}\ uint8\_t\ *buf,\ uint16\_t\ count,\ \textcolor{keywordtype}{bool}\ power\ =\ 0);}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00307\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_one_wire_a9930a16f2cdc36d15f646e41a1a083a4}{read}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00325\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_one_wire_acbaaa04392b4b406500f4953ef389a6c}{read\_bytes}}(uint8\_t\ *buf,\ uint16\_t\ count);}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00342\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_one_wire_a71ff538d319b4492e3002e027b07e9fa}{write\_bit}}(uint8\_t\ v);}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00357\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_one_wire_abd22dddea19354d857f5e3b33b02add3}{read\_bit}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00375\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_one_wire_af049edcbd9d0f09bc5ce54973c2305eb}{depower}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00390\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_one_wire_a83f6c2c88d9f2fa5c4aabb7f540bc6ac}{reset\_search}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00407\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_one_wire_a72274992cccec07f9ee20525edcd7208}{target\_search}}(uint8\_t\ family\_code);}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00431\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_one_wire_a2d48b3c80326da96b627f7dc15ad1b56}{search}}(uint8\_t\ *newAddr);}
+\DoxyCodeLine{00432\ \};}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00435\ }
+
+\end{DoxyCode}

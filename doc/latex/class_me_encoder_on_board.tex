@@ -1,0 +1,1056 @@
+\doxysection{Me\+Encoder\+On\+Board Class Reference}
+\hypertarget{class_me_encoder_on_board}{}\label{class_me_encoder_on_board}\index{MeEncoderOnBoard@{MeEncoderOnBoard}}
+
+
+Driver for Encoder module on Me\+Auriga and Me\+Mega\+Pi.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Encoder\+On\+Board.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_encoder_on_board_afcb6c413e88b685ebe72b0b34b48d32a}{Me\+Encoder\+On\+Board}} ()
+\item 
+\mbox{\hyperlink{class_me_encoder_on_board_a043ff2bc98d5f271bac28b5ac21d580b}{Me\+Encoder\+On\+Board}} (int slot)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_aeafd81a680a1444e923db41fc5071eca}{reset}} (uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_encoder_on_board_aa6d2efab8f23883b30518c4bd0d9652b}{get\+Slot\+Num}} (void) const
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_encoder_on_board_a25fa2844d59070f897269f929c06c92b}{get\+Int\+Num}} (void) const
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_encoder_on_board_a6c96dc60288791c12a9071ab72081fdb}{get\+PortA}} (void) const
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_encoder_on_board_a51d03721fd727d0066546f0280811f4f}{get\+PortB}} (void) const
+\item 
+long \mbox{\hyperlink{class_me_encoder_on_board_ae41f008de63749d140beeda6ecde9080}{get\+Pulse\+Pos}} (void) const
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_a3fff87c540573fc74038bcf809dc311e}{set\+Pulse\+Pos}} (long pulse\+\_\+pos)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_a5860af63894f883a46e7faa448091315}{pulse\+Pos\+Plus}} (void)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_a8bf581cccdefbc31950d5ff81ed1cb9c}{pulse\+Pos\+Minus}} (void)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_a27ca91cfa7df12a997db8a0eb04ab536}{set\+Current\+Speed}} (float speed)
+\item 
+float \mbox{\hyperlink{class_me_encoder_on_board_a8e9e0142f1c6b864ddbc1c96eea47033}{get\+Current\+Speed}} (void) const
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_encoder_on_board_acbf1db8de43fd00edff02218f520e59c}{get\+Cur\+Pwm}} (void) const
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_a5a5e69839bf4e35865e4c31d443a9d7f}{set\+Tar\+PWM}} (int16\+\_\+t pwm\+\_\+value)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_a35f9d7b4962ff8b1ed1db67896c4ed0e}{set\+Motor\+Pwm}} (int16\+\_\+t pwm)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_a7edaebc0c6aa631955d20cf7923e57f2}{update\+Speed}} (void)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_ad4df58c9cbc5646df9223e7560857bec}{update\+Cur\+Pos}} (void)
+\item 
+long \mbox{\hyperlink{class_me_encoder_on_board_a166e2d6d5f8aeb598638b80472b79474}{get\+Cur\+Pos}} (void) const
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_aa13835d17bf0a523cacc9dc938efa3ca}{run\+Speed}} (float speed)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_a9aff7dfc02978f6d066cbd24ce0687b3}{set\+Speed}} (float speed)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_afae5f5d060a6bcefbe344b418455a819}{move}} (long position, float speed=100, int16\+\_\+t ext\+Id=0, cb callback=NULL)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_a288f72436792c55a8847bfc3fa94b972}{move\+To}} (long position, float speed=100, int16\+\_\+t ext\+Id=0, cb callback=NULL)
+\item 
+long \mbox{\hyperlink{class_me_encoder_on_board_a71d703a87bfe15ec2fbe86ab51e44778}{distance\+To\+Go}} () const
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_a5a668410ea2407e80627998161c7452d}{set\+Speed\+Pid}} (float p, float i, float d)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_ae8203fd1090bd08ccf2612642d6bb8e7}{set\+Pos\+Pid}} (float p, float i, float d)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_af1e72c2e0a40b0e8819adb4f3eef42dd}{set\+Pulse}} (int16\+\_\+t pulse\+Value)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_ab144dd43024fd80fbb251938f50adff6}{set\+Ratio}} (float Ratio\+Value)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_a0d5dc8c4a9c36dbd02236ab2358a37dd}{set\+Motion\+Mode}} (int16\+\_\+t motion\+Mode)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_encoder_on_board_ad22d95cd15408391e5638b5fc9fa6896}{pid\+Position\+To\+Pwm}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_encoder_on_board_a3296a20f1c19ff9c3f6721e5c1a4f0e2}{speed\+Without\+Pos}} (void)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_afae914fcb38cfeff89561ec1667ddb6b}{encoder\+Move}} (void)
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_abf552ba0bf4e6e83dc9a63f510792cd0}{pwm\+Move}} (void)
+\item 
+boolean \mbox{\hyperlink{class_me_encoder_on_board_a1539ed2b8d1a47b9b5037c114856ad00}{is\+Tar\+Pos\+Reached}} (void) const
+\item 
+void \mbox{\hyperlink{class_me_encoder_on_board_a40a21255f01a568dbdbdcbfe9236070c}{loop}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Encoder module on Me\+Auriga and Me\+Mega\+Pi. 
+
+Class\+: \doxylink{class_me_encoder_on_board}{Me\+Encoder\+On\+Board} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_encoder_on_board}{Me\+Encoder\+On\+Board}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_encoder_on_board_afcb6c413e88b685ebe72b0b34b48d32a}\label{class_me_encoder_on_board_afcb6c413e88b685ebe72b0b34b48d32a} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{MeEncoderOnBoard()}{MeEncoderOnBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Me\+Encoder\+On\+Board\+::\+Me\+Encoder\+On\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the Encoder motor to arduino port, no pins are used or initialized here. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_encoder_on_board_a043ff2bc98d5f271bac28b5ac21d580b}\label{class_me_encoder_on_board_a043ff2bc98d5f271bac28b5ac21d580b} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{MeEncoderOnBoard()}{MeEncoderOnBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Me\+Encoder\+On\+Board\+::\+Me\+Encoder\+On\+Board (\begin{DoxyParamCaption}\item[{int}]{slot }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the Encoder motor to arduino port 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em slot} & -\/ megapi slot from SLOT1 to SLOT4(\+Auriga SLOT1 and SLOT2). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_encoder_on_board_a71d703a87bfe15ec2fbe86ab51e44778}\label{class_me_encoder_on_board_a71d703a87bfe15ec2fbe86ab51e44778} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!distanceToGo@{distanceToGo}}
+\index{distanceToGo@{distanceToGo}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{distanceToGo()}{distanceToGo()}}
+{\footnotesize\ttfamily long Me\+Encoder\+On\+Board\+::distance\+To\+Go (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+distance\+To\+Go 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+The distance that encoder should go, units are in degrees.\textbackslash{}r~\newline
+ So 360-\/degree means a circle. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+long -\/ Return the length that encoder need run. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_afae914fcb38cfeff89561ec1667ddb6b}\label{class_me_encoder_on_board_afae914fcb38cfeff89561ec1667ddb6b} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!encoderMove@{encoderMove}}
+\index{encoderMove@{encoderMove}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{encoderMove()}{encoderMove()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::encoder\+Move (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+encoder\+Move 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used for move with PID mode. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a166e2d6d5f8aeb598638b80472b79474}\label{class_me_encoder_on_board_a166e2d6d5f8aeb598638b80472b79474} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!getCurPos@{getCurPos}}
+\index{getCurPos@{getCurPos}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{getCurPos()}{getCurPos()}}
+{\footnotesize\ttfamily long Me\+Encoder\+On\+Board\+::get\+Cur\+Pos (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+Cur\+Pos 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the current position(\+The units are degrees). 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_acbf1db8de43fd00edff02218f520e59c}\label{class_me_encoder_on_board_acbf1db8de43fd00edff02218f520e59c} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!getCurPwm@{getCurPwm}}
+\index{getCurPwm@{getCurPwm}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{getCurPwm()}{getCurPwm()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Encoder\+On\+Board\+::get\+Cur\+Pwm (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+Cur\+Pwm 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the current pwm setting. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+get\+Cur\+Pwm 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the current pwm setting. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+int16\+\_\+t -\/ the pwm setting 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a8e9e0142f1c6b864ddbc1c96eea47033}\label{class_me_encoder_on_board_a8e9e0142f1c6b864ddbc1c96eea47033} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!getCurrentSpeed@{getCurrentSpeed}}
+\index{getCurrentSpeed@{getCurrentSpeed}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{getCurrentSpeed()}{getCurrentSpeed()}}
+{\footnotesize\ttfamily float Me\+Encoder\+On\+Board\+::get\+Current\+Speed (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+Current\+Speed 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the current speed(\+The unit is rpm). 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+float -\/ the speed value(\+The unit is rpm). 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a25fa2844d59070f897269f929c06c92b}\label{class_me_encoder_on_board_a25fa2844d59070f897269f929c06c92b} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!getIntNum@{getIntNum}}
+\index{getIntNum@{getIntNum}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{getIntNum()}{getIntNum()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Encoder\+On\+Board\+::get\+Int\+Num (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+Int\+Num 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the Auriga/\+Mega\+Pi Interrupt number of current objects. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t -\/ The Interrupt number of current objects ~\newline
+
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a6c96dc60288791c12a9071ab72081fdb}\label{class_me_encoder_on_board_a6c96dc60288791c12a9071ab72081fdb} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!getPortA@{getPortA}}
+\index{getPortA@{getPortA}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{getPortA()}{getPortA()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Encoder\+On\+Board\+::get\+PortA (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+PortA 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the GPIO number of current objects\textquotesingle{}s dir port A. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t -\/ The GPIO number of current objects\textquotesingle{}s dir port A ~\newline
+
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a51d03721fd727d0066546f0280811f4f}\label{class_me_encoder_on_board_a51d03721fd727d0066546f0280811f4f} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!getPortB@{getPortB}}
+\index{getPortB@{getPortB}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{getPortB()}{getPortB()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Encoder\+On\+Board\+::get\+PortB (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+PortB 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the GPIO number of current objects\textquotesingle{}s dir port B. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t -\/ The GPIO number of current objects\textquotesingle{}s dir port B ~\newline
+
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_ae41f008de63749d140beeda6ecde9080}\label{class_me_encoder_on_board_ae41f008de63749d140beeda6ecde9080} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!getPulsePos@{getPulsePos}}
+\index{getPulsePos@{getPulsePos}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{getPulsePos()}{getPulsePos()}}
+{\footnotesize\ttfamily long Me\+Encoder\+On\+Board\+::get\+Pulse\+Pos (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+Pulse\+Pos 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the current pos value(pulse counter). 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+long -\/ current pos value ~\newline
+
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_aa6d2efab8f23883b30518c4bd0d9652b}\label{class_me_encoder_on_board_aa6d2efab8f23883b30518c4bd0d9652b} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!getSlotNum@{getSlotNum}}
+\index{getSlotNum@{getSlotNum}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{getSlotNum()}{getSlotNum()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+Encoder\+On\+Board\+::get\+Slot\+Num (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+get\+Slot\+Num 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to get the Auriga/\+Mega\+Pi slot number of current objects. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t -\/ The slot number of current objects ~\newline
+
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a1539ed2b8d1a47b9b5037c114856ad00}\label{class_me_encoder_on_board_a1539ed2b8d1a47b9b5037c114856ad00} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!isTarPosReached@{isTarPosReached}}
+\index{isTarPosReached@{isTarPosReached}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{isTarPosReached()}{isTarPosReached()}}
+{\footnotesize\ttfamily boolean Me\+Encoder\+On\+Board\+::is\+Tar\+Pos\+Reached (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyParagraph}{Function}
+is\+Tar\+Pos\+Reached 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to determine whether the motor come to the target position.~\newline
+ It is mainly applied to function move\+To or function move 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+true -\/ target position is reached, otherwise 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a40a21255f01a568dbdbdcbfe9236070c}\label{class_me_encoder_on_board_a40a21255f01a568dbdbdcbfe9236070c} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!loop@{loop}}
+\index{loop@{loop}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::loop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+loop 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function should be called without Blocked. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_afae5f5d060a6bcefbe344b418455a819}\label{class_me_encoder_on_board_afae5f5d060a6bcefbe344b418455a819} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!move@{move}}
+\index{move@{move}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::move (\begin{DoxyParamCaption}\item[{long}]{position,  }\item[{float}]{speed = {\ttfamily 100},  }\item[{int16\+\_\+t}]{ext\+Id = {\ttfamily 0},  }\item[{cb}]{callback = {\ttfamily NULL} }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+move 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+encoder motor moves to the relative positions. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em position} & -\/ The relative angle encoder motor moves. \\
+\hline
+\mbox{\texttt{ in}}  & {\em speed} & -\/ the speed value(\+The unit is rpm). \\
+\hline
+\mbox{\texttt{ in}}  & {\em ext\+Id} & -\/ It is used to indicate the ID of motor(\+Optional parameters). \\
+\hline
+\mbox{\texttt{ in}}  & {\em callback} & -\/ callback function when the target position has been reached(\+Optional parameters). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a288f72436792c55a8847bfc3fa94b972}\label{class_me_encoder_on_board_a288f72436792c55a8847bfc3fa94b972} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!moveTo@{moveTo}}
+\index{moveTo@{moveTo}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{moveTo()}{moveTo()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::move\+To (\begin{DoxyParamCaption}\item[{long}]{position,  }\item[{float}]{speed = {\ttfamily 100},  }\item[{int16\+\_\+t}]{ext\+Id = {\ttfamily 0},  }\item[{cb}]{callback = {\ttfamily NULL} }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+move\+To 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+encoder motor moves to the absolute position. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em position} & -\/ The absolute angle encoder motor moves. \\
+\hline
+\mbox{\texttt{ in}}  & {\em speed} & -\/ the speed value(\+The unit is rpm). \\
+\hline
+\mbox{\texttt{ in}}  & {\em ext\+Id} & -\/ It is used to indicate the ID of motor(\+Optional parameters). \\
+\hline
+\mbox{\texttt{ in}}  & {\em callback} & -\/ callback function when the target position has been reached(\+Optional parameters). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_ad22d95cd15408391e5638b5fc9fa6896}\label{class_me_encoder_on_board_ad22d95cd15408391e5638b5fc9fa6896} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!pidPositionToPwm@{pidPositionToPwm}}
+\index{pidPositionToPwm@{pidPositionToPwm}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{pidPositionToPwm()}{pidPositionToPwm()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Encoder\+On\+Board\+::pid\+Position\+To\+Pwm (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+pid\+Position\+To\+Pwm 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to calculate the PWM motor value of encoder motor(position \& speed). 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a8bf581cccdefbc31950d5ff81ed1cb9c}\label{class_me_encoder_on_board_a8bf581cccdefbc31950d5ff81ed1cb9c} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!pulsePosMinus@{pulsePosMinus}}
+\index{pulsePosMinus@{pulsePosMinus}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{pulsePosMinus()}{pulsePosMinus()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::pulse\+Pos\+Minus (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+pulse\+Pos\+Minus 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to reduction the current pos value(pulse counter). 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a5860af63894f883a46e7faa448091315}\label{class_me_encoder_on_board_a5860af63894f883a46e7faa448091315} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!pulsePosPlus@{pulsePosPlus}}
+\index{pulsePosPlus@{pulsePosPlus}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{pulsePosPlus()}{pulsePosPlus()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::pulse\+Pos\+Plus (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+pulse\+Pos\+Plus 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to increase the current pos value(pulse counter). 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_abf552ba0bf4e6e83dc9a63f510792cd0}\label{class_me_encoder_on_board_abf552ba0bf4e6e83dc9a63f510792cd0} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!pwmMove@{pwmMove}}
+\index{pwmMove@{pwmMove}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{pwmMove()}{pwmMove()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::pwm\+Move (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+pwm\+Move 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used for move with PWM mode. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_aeafd81a680a1444e923db41fc5071eca}\label{class_me_encoder_on_board_aeafd81a680a1444e923db41fc5071eca} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!reset@{reset}}
+\index{reset@{reset}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::reset (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{slot }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+reset 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the encoder motor available PIN by Auriga/\+Mega\+Pi slot. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em slot} & -\/ Mega\+Pi encoder port from SLOT1 to SLOT4(\+Auriga SLOT1 and SLOT2). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_aa13835d17bf0a523cacc9dc938efa3ca}\label{class_me_encoder_on_board_aa13835d17bf0a523cacc9dc938efa3ca} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!runSpeed@{runSpeed}}
+\index{runSpeed@{runSpeed}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{runSpeed()}{runSpeed()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::run\+Speed (\begin{DoxyParamCaption}\item[{float}]{speed }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+run\+Speed 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+The speed of encode, and encoder motor will running with the setting speed. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em speed} & -\/ the speed value(\+The unit is rpm). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a27ca91cfa7df12a997db8a0eb04ab536}\label{class_me_encoder_on_board_a27ca91cfa7df12a997db8a0eb04ab536} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!setCurrentSpeed@{setCurrentSpeed}}
+\index{setCurrentSpeed@{setCurrentSpeed}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{setCurrentSpeed()}{setCurrentSpeed()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::set\+Current\+Speed (\begin{DoxyParamCaption}\item[{float}]{speed }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Current\+Speed 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to set the current speed(\+The unit is rpm). 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em speed} & -\/ the speed value(\+The unit is rpm). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a0d5dc8c4a9c36dbd02236ab2358a37dd}\label{class_me_encoder_on_board_a0d5dc8c4a9c36dbd02236ab2358a37dd} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!setMotionMode@{setMotionMode}}
+\index{setMotionMode@{setMotionMode}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{setMotionMode()}{setMotionMode()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::set\+Motion\+Mode (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{motion\+Mode }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Motion\+Mode 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to set the motion mode of encoder motor. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em motion\+Mode} & -\/ motion mode \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a35f9d7b4962ff8b1ed1db67896c4ed0e}\label{class_me_encoder_on_board_a35f9d7b4962ff8b1ed1db67896c4ed0e} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!setMotorPwm@{setMotorPwm}}
+\index{setMotorPwm@{setMotorPwm}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{setMotorPwm()}{setMotorPwm()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::set\+Motor\+Pwm (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{pwm }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Motor\+Pwm 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to set current pwm setting. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pwm} & -\/ the pwm setting \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Function}
+set\+Motor\+Pwm 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to execute current pwm setting. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pwm} & -\/ the pwm setting \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_ae8203fd1090bd08ccf2612642d6bb8e7}\label{class_me_encoder_on_board_ae8203fd1090bd08ccf2612642d6bb8e7} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!setPosPid@{setPosPid}}
+\index{setPosPid@{setPosPid}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{setPosPid()}{setPosPid()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::set\+Pos\+Pid (\begin{DoxyParamCaption}\item[{float}]{p,  }\item[{float}]{i,  }\item[{float}]{d }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Pos\+Pid 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to set the PID parameters for encoder motor\textquotesingle{}s pos. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p} & -\/ Proportion parameter \\
+\hline
+\mbox{\texttt{ in}}  & {\em i} & -\/ Integration Parameters \\
+\hline
+\mbox{\texttt{ in}}  & {\em d} & -\/ Differential parameter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_af1e72c2e0a40b0e8819adb4f3eef42dd}\label{class_me_encoder_on_board_af1e72c2e0a40b0e8819adb4f3eef42dd} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!setPulse@{setPulse}}
+\index{setPulse@{setPulse}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{setPulse()}{setPulse()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::set\+Pulse (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{pulse\+Value }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Pulse 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to set the pulse number of encoder code disc. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pulse\+Value} & -\/ pulse number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a3fff87c540573fc74038bcf809dc311e}\label{class_me_encoder_on_board_a3fff87c540573fc74038bcf809dc311e} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!setPulsePos@{setPulsePos}}
+\index{setPulsePos@{setPulsePos}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{setPulsePos()}{setPulsePos()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::set\+Pulse\+Pos (\begin{DoxyParamCaption}\item[{long}]{pulse\+Pos }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Pulse\+Pos 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to Set the current pos value(pulse counter). Generally used for~\newline
+ reset the distance calculation. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pulse\+Pos} & -\/ the value of pos value(pulse counter) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_ab144dd43024fd80fbb251938f50adff6}\label{class_me_encoder_on_board_ab144dd43024fd80fbb251938f50adff6} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!setRatio@{setRatio}}
+\index{setRatio@{setRatio}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{setRatio()}{setRatio()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::set\+Ratio (\begin{DoxyParamCaption}\item[{float}]{Ratio\+Value }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Ratio 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to set the ratio of encoder motor. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em Ratio\+Value} & -\/ ratio number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a9aff7dfc02978f6d066cbd24ce0687b3}\label{class_me_encoder_on_board_a9aff7dfc02978f6d066cbd24ce0687b3} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!setSpeed@{setSpeed}}
+\index{setSpeed@{setSpeed}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{setSpeed()}{setSpeed()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::set\+Speed (\begin{DoxyParamCaption}\item[{float}]{speed }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Speed 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to set the current speed(\+The unit is rpm).~\newline
+ Note\+: used with update function. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em speed} & -\/ the speed value(\+The unit is rpm). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a5a668410ea2407e80627998161c7452d}\label{class_me_encoder_on_board_a5a668410ea2407e80627998161c7452d} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!setSpeedPid@{setSpeedPid}}
+\index{setSpeedPid@{setSpeedPid}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{setSpeedPid()}{setSpeedPid()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::set\+Speed\+Pid (\begin{DoxyParamCaption}\item[{float}]{p,  }\item[{float}]{i,  }\item[{float}]{d }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Speed\+Pid 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to set the PID parameters for encoder motor\textquotesingle{}s speed. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p} & -\/ Proportion parameter \\
+\hline
+\mbox{\texttt{ in}}  & {\em i} & -\/ Integration Parameters \\
+\hline
+\mbox{\texttt{ in}}  & {\em d} & -\/ Differential parameter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a5a5e69839bf4e35865e4c31d443a9d7f}\label{class_me_encoder_on_board_a5a5e69839bf4e35865e4c31d443a9d7f} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!setTarPWM@{setTarPWM}}
+\index{setTarPWM@{setTarPWM}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{setTarPWM()}{setTarPWM()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::set\+Tar\+PWM (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{pwm\+\_\+value }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Tar\+PWM 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used for set the target pwm value. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pwm\+\_\+value} & -\/ the target pwm value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a3296a20f1c19ff9c3f6721e5c1a4f0e2}\label{class_me_encoder_on_board_a3296a20f1c19ff9c3f6721e5c1a4f0e2} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!speedWithoutPos@{speedWithoutPos}}
+\index{speedWithoutPos@{speedWithoutPos}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{speedWithoutPos()}{speedWithoutPos()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Encoder\+On\+Board\+::speed\+Without\+Pos (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+speed\+Without\+Pos 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to calculate the PWM motor value of encoder motor(single speed). 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_ad4df58c9cbc5646df9223e7560857bec}\label{class_me_encoder_on_board_ad4df58c9cbc5646df9223e7560857bec} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!updateCurPos@{updateCurPos}}
+\index{updateCurPos@{updateCurPos}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{updateCurPos()}{updateCurPos()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::update\+Cur\+Pos (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+update\+Cur\+Pos 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to calculate the current position(\+The units are degrees). 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Return}
+None 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_encoder_on_board_a7edaebc0c6aa631955d20cf7923e57f2}\label{class_me_encoder_on_board_a7edaebc0c6aa631955d20cf7923e57f2} 
+\index{MeEncoderOnBoard@{MeEncoderOnBoard}!updateSpeed@{updateSpeed}}
+\index{updateSpeed@{updateSpeed}!MeEncoderOnBoard@{MeEncoderOnBoard}}
+\doxysubsubsection{\texorpdfstring{updateSpeed()}{updateSpeed()}}
+{\footnotesize\ttfamily void Me\+Encoder\+On\+Board\+::update\+Speed (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+update\+Speed 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This function used to update current speed. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_encoder_on_board_8h}{Me\+Encoder\+On\+Board.\+h}}\item 
+src/\mbox{\hyperlink{_me_encoder_on_board_8cpp}{Me\+Encoder\+On\+Board.\+cpp}}\end{DoxyCompactItemize}

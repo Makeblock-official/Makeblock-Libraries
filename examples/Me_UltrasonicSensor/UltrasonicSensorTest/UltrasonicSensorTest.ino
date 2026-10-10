@@ -15,9 +15,16 @@
  * Mark Yan     2015/09/01    1.0.0          rebuild the old lib
  * </pre>
  */
+
+// Do not forget to adapt the include path to your robot
+// #include "MeAuriga.h"
+// #include "MeMCore.h"
+// #include "MeOrion.h"
+// #include "MeMegaPi.h"
 #include "MeOrion.h"
 
-MeUltrasonicSensor ultraSensor(PORT_7); /* Ultrasonic module can ONLY be connected to port 3, 4, 6, 7, 8 of base shield. */
+ /* Orion : Ultrasonic module can ONLY be connected to port 3, 4, 6, 7, 8 of base shield. */
+MeUltrasonicSensor ultraSensor(PORT_7);
 
 void setup()
 {

@@ -1,0 +1,419 @@
+\doxysection{src/\+Me\+USBHost.h File Reference}
+\hypertarget{_me_u_s_b_host_8h}{}\label{_me_u_s_b_host_8h}\index{src/MeUSBHost.h@{src/MeUSBHost.h}}
+
+
+Header for \doxylink{_me_u_s_b_host_8cpp}{Me\+USBHost.\+cpp} module.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Serial.\+h"{}}\newline
+Include dependency graph for Me\+USBHost.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_u_s_b_host_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_u_s_b_host_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___u_s_b___d_e_v_i_c_e___d_escript_o_r}{\+\_\+\+USB\+\_\+\+DEVICE\+\_\+\+DEscript\+OR}}
+\item 
+struct \mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r}{\+\_\+\+USB\+\_\+\+CONFIG\+\_\+\+DEscript\+OR}}
+\item 
+struct \mbox{\hyperlink{struct___u_s_b___i_n_t_e_r_f___d_escript_o_r}{\+\_\+\+USB\+\_\+\+INTERF\+\_\+\+DEscript\+OR}}
+\item 
+struct \mbox{\hyperlink{struct___u_s_b___e_n_d_p_o_i_n_t___d_escript_o_r}{\+\_\+\+USB\+\_\+\+ENDPOINT\+\_\+\+DEscript\+OR}}
+\item 
+struct \mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r___l_o_n_g}{\+\_\+\+USB\+\_\+\+CONFIG\+\_\+\+DEscript\+OR\+\_\+\+LONG}}
+\item 
+class \mbox{\hyperlink{class_me_u_s_b_host}{Me\+USBHost}}
+\begin{DoxyCompactList}\small\item\em Driver for Me USB Host module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ad25a1eca0cb8ad31b7862e847e545bb3}\label{_me_u_s_b_host_8h_ad25a1eca0cb8ad31b7862e847e545bb3} 
+\#define {\bfseries USB2\+\_\+0}~1
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a351e28c3c02bee255948d378a7a31183}\label{_me_u_s_b_host_8h_a351e28c3c02bee255948d378a7a31183} 
+\#define {\bfseries USB1\+\_\+0}~0
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a8c6378f1ea2333cc74d42e0cc5662297}\label{_me_u_s_b_host_8h_a8c6378f1ea2333cc74d42e0cc5662297} 
+\#define {\bfseries CH375\+\_\+\+MAX\+\_\+\+DATA\+\_\+\+LEN}~0x40   /\texorpdfstring{$\ast$}{*} max package length \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ad22a099895e3711d24c702e5008a4020}\label{_me_u_s_b_host_8h_ad22a099895e3711d24c702e5008a4020} 
+\#define {\bfseries CMD\+\_\+\+RESET\+\_\+\+ALL}~0x05   /\texorpdfstring{$\ast$}{*} Reset Device \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a1bbfb296a699bed50bf70a9c6c20c858}\label{_me_u_s_b_host_8h_a1bbfb296a699bed50bf70a9c6c20c858} 
+\#define {\bfseries CMD\+\_\+\+CHECK\+\_\+\+EXIST}~0x06   /\texorpdfstring{$\ast$}{*} Chip check \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ab780084366891e5152b6e996c01561d4}\label{_me_u_s_b_host_8h_ab780084366891e5152b6e996c01561d4} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+USB\+\_\+\+ID}~0x12   /\texorpdfstring{$\ast$}{*} Device Mode\+: Setup the VID and PID in device mode \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a9c8807798c099eadda0709f3bd0a0bdd}\label{_me_u_s_b_host_8h_a9c8807798c099eadda0709f3bd0a0bdd} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+USB\+\_\+\+ADDR}~0x13   /\texorpdfstring{$\ast$}{*} Setup the usb address \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a542c55143ad1d99c5acfc01a6a2c9d94}\label{_me_u_s_b_host_8h_a542c55143ad1d99c5acfc01a6a2c9d94} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+USB\+\_\+\+MODE}~0x15   /\texorpdfstring{$\ast$}{*} Setup the module work mode, with enable or disable state \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ab62c922a62504207f2bdfb162ad3ee2d}\label{_me_u_s_b_host_8h_ab62c922a62504207f2bdfb162ad3ee2d} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+ENDP2}~0x18   /\texorpdfstring{$\ast$}{*} Device Mode\+: setup endpoint 0 receiver \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a62ae73abbfdb0dc54c13365c5a615133}\label{_me_u_s_b_host_8h_a62ae73abbfdb0dc54c13365c5a615133} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+ENDP3}~0x19   /\texorpdfstring{$\ast$}{*} Device Mode\+: setup endpoint 0 transmitter \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ae3b1f5f64a760c1b2313ae36ee14762f}\label{_me_u_s_b_host_8h_ae3b1f5f64a760c1b2313ae36ee14762f} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+ENDP4}~0x1A   /\texorpdfstring{$\ast$}{*} Device Mode\+: setup endpoint 1 receiver \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a38cb313288e226fdfe7889e1735b580b}\label{_me_u_s_b_host_8h_a38cb313288e226fdfe7889e1735b580b} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+ENDP5}~0x1B   /\texorpdfstring{$\ast$}{*} Device Mode\+: setup endpoint 1 transmitter \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a4bde53ba7d4cbdec236af64892c6003d}\label{_me_u_s_b_host_8h_a4bde53ba7d4cbdec236af64892c6003d} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+ENDP6}~0x1C   /\texorpdfstring{$\ast$}{*} Device Mode\+: setup endpoint 2 receiver \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ad1813697d179081db16818608f52d647}\label{_me_u_s_b_host_8h_ad1813697d179081db16818608f52d647} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+ENDP7}~0x1D   /\texorpdfstring{$\ast$}{*} Device Mode\+: setup endpoint 2 transmitter \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a55bf26b5636fcf629358b4dd378fc4d9}\label{_me_u_s_b_host_8h_a55bf26b5636fcf629358b4dd378fc4d9} 
+\#define {\bfseries CMD\+\_\+\+GET\+\_\+\+TOGGLE}~0x0A   /\texorpdfstring{$\ast$}{*} get the out token sync state \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a66f7b6f26a4f3c2ff469ccf6ae05c44a}\label{_me_u_s_b_host_8h_a66f7b6f26a4f3c2ff469ccf6ae05c44a} 
+\#define {\bfseries CMD\+\_\+\+GET\+\_\+\+STATUS}~0x22   /\texorpdfstring{$\ast$}{*} Get interrupt state \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a7fa48bbd077e5377109587cd84c330cb}\label{_me_u_s_b_host_8h_a7fa48bbd077e5377109587cd84c330cb} 
+\#define {\bfseries CMD\+\_\+\+UNLOCK\+\_\+\+USB}~0x23   /\texorpdfstring{$\ast$}{*} Device Mode\+: release buffer \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_af36bbb9148aab4dd5e01c87a63c6e756}\label{_me_u_s_b_host_8h_af36bbb9148aab4dd5e01c87a63c6e756} 
+\#define {\bfseries CMD\+\_\+\+RD\+\_\+\+USB\+\_\+\+DATA}~0x28   /\texorpdfstring{$\ast$}{*} block read from usb device, and release buffer \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a9045a6ede463ad8cbd7464d8d728fe4e}\label{_me_u_s_b_host_8h_a9045a6ede463ad8cbd7464d8d728fe4e} 
+\#define {\bfseries CMD\+\_\+\+WR\+\_\+\+USB\+\_\+\+DATA3}~0x29   /\texorpdfstring{$\ast$}{*} Device Mode\+: write to usb endpoint 0 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ae66cd9ba487038b605633ca10ad4d8c1}\label{_me_u_s_b_host_8h_ae66cd9ba487038b605633ca10ad4d8c1} 
+\#define {\bfseries CMD\+\_\+\+WR\+\_\+\+USB\+\_\+\+DATA5}~0x2A   /\texorpdfstring{$\ast$}{*} Device Mode\+: write to usb endpoint 1 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a31129f53cf885d4ae07c6447beaee7a3}\label{_me_u_s_b_host_8h_a31129f53cf885d4ae07c6447beaee7a3} 
+\#define {\bfseries CMD\+\_\+\+WR\+\_\+\+USB\+\_\+\+DATA7}~0x2B   /\texorpdfstring{$\ast$}{*} write to usb endpoint 2 \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a05cd1a87db802f4c87516fef93872125}\label{_me_u_s_b_host_8h_a05cd1a87db802f4c87516fef93872125} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+BAUDRATE}~0x02   /\texorpdfstring{$\ast$}{*} Serial Mode\+: setup serial baudrate \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_af67709b6da7993f4bd8f220e373594bd}\label{_me_u_s_b_host_8h_af67709b6da7993f4bd8f220e373594bd} 
+\#define {\bfseries CMD\+\_\+\+ABORT\+\_\+\+NAK}~0x17   /\texorpdfstring{$\ast$}{*} Host Mode\+: abort nak retry \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a84cdd0b5f36ea847e9df3e512290b121}\label{_me_u_s_b_host_8h_a84cdd0b5f36ea847e9df3e512290b121} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+RETRY}~0x0B   /\texorpdfstring{$\ast$}{*} Host Mode\+: setup usb token retry times \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_afd7c12b89eb3b6fe510410408264959f}\label{_me_u_s_b_host_8h_afd7c12b89eb3b6fe510410408264959f} 
+\#define {\bfseries CMD\+\_\+\+ISSUE\+\_\+\+TOKEN}~0x4F   /\texorpdfstring{$\ast$}{*} Host Mode\+: issue the token \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ae0e0490db02705423c635aceacd999e3}\label{_me_u_s_b_host_8h_ae0e0490db02705423c635aceacd999e3} 
+\#define {\bfseries CMD\+\_\+\+CLR\+\_\+\+STALL}~0x41   /\texorpdfstring{$\ast$}{*} Host Mode\+: clear the endpoint Error \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a269791e327439c8c3b4893d3b7498c4a}\label{_me_u_s_b_host_8h_a269791e327439c8c3b4893d3b7498c4a} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+ADDRESS}~0x45   /\texorpdfstring{$\ast$}{*} Host Mode\+: Control-\/setup usb address \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a2218ac45dc82449195c224ffe24ded0f}\label{_me_u_s_b_host_8h_a2218ac45dc82449195c224ffe24ded0f} 
+\#define {\bfseries CMD\+\_\+\+GET\+\_\+\+DESCR}~0x46   /\texorpdfstring{$\ast$}{*} Host Mode\+: Control-\/get descriptor \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a8cec63f1c0d443c689128fa497bef22d}\label{_me_u_s_b_host_8h_a8cec63f1c0d443c689128fa497bef22d} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+CONFIG}~0x49   /\texorpdfstring{$\ast$}{*} Host Mode\+: Control-\/config and enable the device \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a8f199e113ea4ac91c11fcacb15baa990}\label{_me_u_s_b_host_8h_a8f199e113ea4ac91c11fcacb15baa990} 
+\#define {\bfseries CMD\+\_\+\+DISK\+\_\+\+INIT}~0x51   /\texorpdfstring{$\ast$}{*} Host Mode\+: init usb storage device \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_af6762b4cb077f69c68135f378eca421a}\label{_me_u_s_b_host_8h_af6762b4cb077f69c68135f378eca421a} 
+\#define {\bfseries CMD\+\_\+\+DISK\+\_\+\+RESET}~0x52   /\texorpdfstring{$\ast$}{*} Host Mode\+: reset usb storage device \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a3a1680d23e758a79af11a0efb1d07aab}\label{_me_u_s_b_host_8h_a3a1680d23e758a79af11a0efb1d07aab} 
+\#define {\bfseries CMD\+\_\+\+DISK\+\_\+\+SIZE}~0x53   /\texorpdfstring{$\ast$}{*} Host Mode\+: get the capacity of usb storage device \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_add5c66ea3a6ace461dae982f4c000ee9}\label{_me_u_s_b_host_8h_add5c66ea3a6ace461dae982f4c000ee9} 
+\#define {\bfseries CMD\+\_\+\+DISK\+\_\+\+READ}~0x54   /\texorpdfstring{$\ast$}{*} Host Mode\+: read from usb storage device(512byte) \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a2276d4cccc50bcb052084ed9f496e431}\label{_me_u_s_b_host_8h_a2276d4cccc50bcb052084ed9f496e431} 
+\#define {\bfseries CMD\+\_\+\+DISK\+\_\+\+RD\+\_\+\+GO}~0x55   /\texorpdfstring{$\ast$}{*} Host Mode\+: continus read \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_abb3868bca33a593772214747ed19fed8}\label{_me_u_s_b_host_8h_abb3868bca33a593772214747ed19fed8} 
+\#define {\bfseries CMD\+\_\+\+DISK\+\_\+\+WRITE}~0x56   /\texorpdfstring{$\ast$}{*} Host Mode\+: write to usb storage device(512byte) \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a914d15b25d363fab4ccfbe9afa69c09f}\label{_me_u_s_b_host_8h_a914d15b25d363fab4ccfbe9afa69c09f} 
+\#define {\bfseries CMD\+\_\+\+DISK\+\_\+\+WR\+\_\+\+GO}~0x57   /\texorpdfstring{$\ast$}{*} Host Mode\+: continus write \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a72ca4213da66b143fc6e89d36de4d4e0}\label{_me_u_s_b_host_8h_a72ca4213da66b143fc6e89d36de4d4e0} 
+\#define {\bfseries CMD\+\_\+\+GET\+\_\+\+IC\+\_\+\+VER}~0x01   /\texorpdfstring{$\ast$}{*} get chip version \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_aba9d3fcf83a73069ab12228b0a786b6e}\label{_me_u_s_b_host_8h_aba9d3fcf83a73069ab12228b0a786b6e} 
+\#define {\bfseries CMD\+\_\+\+ENTER\+\_\+\+SLEEP}~0x03   /\texorpdfstring{$\ast$}{*} into sleep mode \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_aa439fc2469eaafca26fef8e40eab7446}\label{_me_u_s_b_host_8h_aa439fc2469eaafca26fef8e40eab7446} 
+\#define {\bfseries CMD\+\_\+\+RD\+\_\+\+USB\+\_\+\+DATA0}~0x27   /\texorpdfstring{$\ast$}{*} read from usb endpoint \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ae9814f45b48f806a957235bca185821e}\label{_me_u_s_b_host_8h_ae9814f45b48f806a957235bca185821e} 
+\#define {\bfseries CMD\+\_\+\+DELAY\+\_\+100\+US}~0x0F   /\texorpdfstring{$\ast$}{*} Parallel \+: delay 100uS \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a036ebd60dcaef4e73032d923729ab458}\label{_me_u_s_b_host_8h_a036ebd60dcaef4e73032d923729ab458} 
+\#define {\bfseries CMD\+\_\+\+CHK\+\_\+\+SUSPEND}~0x0B   /\texorpdfstring{$\ast$}{*} Device Mode\+: check usb bus hung \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a478c6459b5f439b6d95d6ab5e6b8a8c4}\label{_me_u_s_b_host_8h_a478c6459b5f439b6d95d6ab5e6b8a8c4} 
+\#define {\bfseries CMD\+\_\+\+SET\+\_\+\+SYS\+\_\+\+FREQ}~0x04   /\texorpdfstring{$\ast$}{*} setup system working frequency \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_af5bcba706c63b30f85751bd794ec87bf}\label{_me_u_s_b_host_8h_af5bcba706c63b30f85751bd794ec87bf} 
+\#define {\bfseries CMD\+\_\+\+TEST\+\_\+\+CONNECT}~0x16   /\texorpdfstring{$\ast$}{*} Host Mode\+: check usb device connection \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a9006f8a026743a2e0059fb73bf616085}\label{_me_u_s_b_host_8h_a9006f8a026743a2e0059fb73bf616085} 
+\#define {\bfseries CMD\+\_\+\+AUTO\+\_\+\+SETUP}~0x4D   /\texorpdfstring{$\ast$}{*} Host Mode\+: auto setup usb device \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a05920a669953b47858cdc92163421f6c}\label{_me_u_s_b_host_8h_a05920a669953b47858cdc92163421f6c} 
+\#define {\bfseries CMD\+\_\+\+ISSUE\+\_\+\+TKN\+\_\+X}~0x4E   /\texorpdfstring{$\ast$}{*} Host Mode\+: issue sync token \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a54993d4f36ad5cd2e99a9fbe967f7191}\label{_me_u_s_b_host_8h_a54993d4f36ad5cd2e99a9fbe967f7191} 
+\#define {\bfseries CMD\+\_\+\+RET\+\_\+\+SUCCESS}~0x51   /\texorpdfstring{$\ast$}{*} success \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a7c0f13571f263caac303f4b3ffab57ec}\label{_me_u_s_b_host_8h_a7c0f13571f263caac303f4b3ffab57ec} 
+\#define {\bfseries CMD\+\_\+\+RET\+\_\+\+ABORT}~0x5F   /\texorpdfstring{$\ast$}{*} fail \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a58a657ccb427c2f5d8f272ed5d89fe5d}\label{_me_u_s_b_host_8h_a58a657ccb427c2f5d8f272ed5d89fe5d} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+USB\+\_\+\+SUSPEND}~0x05   /\texorpdfstring{$\ast$}{*} usb bus susspend \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a50fc518f4743628a80b6252d4a7f6b0a}\label{_me_u_s_b_host_8h_a50fc518f4743628a80b6252d4a7f6b0a} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+WAKE\+\_\+\+UP}~0x06   /\texorpdfstring{$\ast$}{*} wake up \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a833e88d7baa475d7643a5665bbb7593b}\label{_me_u_s_b_host_8h_a833e88d7baa475d7643a5665bbb7593b} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+EP0\+\_\+\+SETUP}~0x0C   /\texorpdfstring{$\ast$}{*} USB ep0 SETUP \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a05c8d59b3f3489f92dc09d071226829b}\label{_me_u_s_b_host_8h_a05c8d59b3f3489f92dc09d071226829b} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+EP0\+\_\+\+OUT}~0x00   /\texorpdfstring{$\ast$}{*} USB ep0 OUT \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a0a39ea4955d495accfdf7879a1841f25}\label{_me_u_s_b_host_8h_a0a39ea4955d495accfdf7879a1841f25} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+EP0\+\_\+\+IN}~0x08   /\texorpdfstring{$\ast$}{*} USB ep0 IN \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_aca7e495e20133ac4fd121f99fceb554c}\label{_me_u_s_b_host_8h_aca7e495e20133ac4fd121f99fceb554c} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+EP1\+\_\+\+OUT}~0x01   /\texorpdfstring{$\ast$}{*} USB ep1 OUT \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a104de490a022a32748d40739b8daf804}\label{_me_u_s_b_host_8h_a104de490a022a32748d40739b8daf804} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+EP1\+\_\+\+IN}~0x09   /\texorpdfstring{$\ast$}{*} USB ep1 IN \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a0b21c5350408e648a4e651961a6c1e12}\label{_me_u_s_b_host_8h_a0b21c5350408e648a4e651961a6c1e12} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+EP2\+\_\+\+OUT}~0x02   /\texorpdfstring{$\ast$}{*} USB ep2 OUT \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_af6220ed9780a48c13e9ba36dfc4bfbf0}\label{_me_u_s_b_host_8h_af6220ed9780a48c13e9ba36dfc4bfbf0} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+EP2\+\_\+\+IN}~0x0A   /\texorpdfstring{$\ast$}{*} USB ep2 IN \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_af89555aa52ad955eba63ebee172150e5}\label{_me_u_s_b_host_8h_af89555aa52ad955eba63ebee172150e5} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+BUS\+\_\+\+RESET1}~0x03   /\texorpdfstring{$\ast$}{*} USB BUS RESET \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a7d4e2dd0abb5af2332156153e74eec7f}\label{_me_u_s_b_host_8h_a7d4e2dd0abb5af2332156153e74eec7f} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+BUS\+\_\+\+RESET2}~0x07   /\texorpdfstring{$\ast$}{*} USB BUS RESET \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a9eaff8775aa7ff37504be98eb076362a}\label{_me_u_s_b_host_8h_a9eaff8775aa7ff37504be98eb076362a} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+BUS\+\_\+\+RESET3}~0x0B   /\texorpdfstring{$\ast$}{*} USB BUS RESET \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ab24f08df81c64c9d07b8dee1459839cc}\label{_me_u_s_b_host_8h_ab24f08df81c64c9d07b8dee1459839cc} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+BUS\+\_\+\+RESET4}~0x0F   /\texorpdfstring{$\ast$}{*} USB BUS RESET \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a5d56bd7a08426f6a3c173a035c71c32a}\label{_me_u_s_b_host_8h_a5d56bd7a08426f6a3c173a035c71c32a} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+SUCCESS}~0x14   /\texorpdfstring{$\ast$}{*} token successful sent \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a694219e5138613d5e1160363c9181bbf}\label{_me_u_s_b_host_8h_a694219e5138613d5e1160363c9181bbf} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+CONNECT}~0x15   /\texorpdfstring{$\ast$}{*} detect usb device plug in \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a8389a7e3f4b43887d244d4de0ef62e68}\label{_me_u_s_b_host_8h_a8389a7e3f4b43887d244d4de0ef62e68} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+DISCONNECT}~0x16   /\texorpdfstring{$\ast$}{*} detect usb device plug out \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a737a0775d99ecf2a1a27f474be72a8f9}\label{_me_u_s_b_host_8h_a737a0775d99ecf2a1a27f474be72a8f9} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+BUF\+\_\+\+OVER}~0x17   /\texorpdfstring{$\ast$}{*} USB control buffer overflow \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a20d5b76ed943ae3b5e6adbc6ea8348a9}\label{_me_u_s_b_host_8h_a20d5b76ed943ae3b5e6adbc6ea8348a9} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+DISK\+\_\+\+READ}~0x1D   /\texorpdfstring{$\ast$}{*} USB storage, read request \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_aac272f24fe32909ca48c512dce851f7e}\label{_me_u_s_b_host_8h_aac272f24fe32909ca48c512dce851f7e} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+DISK\+\_\+\+WRITE}~0x1E   /\texorpdfstring{$\ast$}{*} USB storage, write request \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_adf5e1a6a8246cb00c3e1bd25b439cb65}\label{_me_u_s_b_host_8h_adf5e1a6a8246cb00c3e1bd25b439cb65} 
+\#define {\bfseries USB\+\_\+\+INT\+\_\+\+DISK\+\_\+\+ERR}~0x1F   /\texorpdfstring{$\ast$}{*} USB storage, fail \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a6111d995cfbd2c533b7d65fa762a09b4}\label{_me_u_s_b_host_8h_a6111d995cfbd2c533b7d65fa762a09b4} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+PID\+\_\+\+NULL}~0x00   /\texorpdfstring{$\ast$}{*} reserve PID, not defined \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ad228f73845d511b98a4169631625d0f2}\label{_me_u_s_b_host_8h_ad228f73845d511b98a4169631625d0f2} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+PID\+\_\+\+SOF}~0x05
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a824b7e5065e094b555d7793f782637cb}\label{_me_u_s_b_host_8h_a824b7e5065e094b555d7793f782637cb} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+PID\+\_\+\+SETUP}~0x0D
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a626a5567f85de49e7179d4fb96d584cb}\label{_me_u_s_b_host_8h_a626a5567f85de49e7179d4fb96d584cb} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+PID\+\_\+\+IN}~0x09
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a50e7a8752c8a10d32433fc4755bf8548}\label{_me_u_s_b_host_8h_a50e7a8752c8a10d32433fc4755bf8548} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+PID\+\_\+\+OUT}~0x01
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a47834cd3b4002f7c568eb9a593dab758}\label{_me_u_s_b_host_8h_a47834cd3b4002f7c568eb9a593dab758} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+PID\+\_\+\+ACK}~0x02
+\item 
+\Hypertarget{_me_u_s_b_host_8h_aaa5408b0fa688670c52459cc55aadbde}\label{_me_u_s_b_host_8h_aaa5408b0fa688670c52459cc55aadbde} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+PID\+\_\+\+NAK}~0x0A
+\item 
+\Hypertarget{_me_u_s_b_host_8h_aae9cdcc8488385149a971bfdb2bb9dd9}\label{_me_u_s_b_host_8h_aae9cdcc8488385149a971bfdb2bb9dd9} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+PID\+\_\+\+STALL}~0x0E
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a548d2121dfe97184b19c6f5798915ac6}\label{_me_u_s_b_host_8h_a548d2121dfe97184b19c6f5798915ac6} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+PID\+\_\+\+DATA0}~0x03
+\item 
+\Hypertarget{_me_u_s_b_host_8h_acdd0fa08417f02ee846c22e29b7ebeac}\label{_me_u_s_b_host_8h_acdd0fa08417f02ee846c22e29b7ebeac} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+PID\+\_\+\+DATA1}~0x0B
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a89bcd1b3c7c5ab7a06d8a0354141f1a6}\label{_me_u_s_b_host_8h_a89bcd1b3c7c5ab7a06d8a0354141f1a6} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+PID\+\_\+\+PRE}~0x0C
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a22fb22ba1074a74132525afca0fe6368}\label{_me_u_s_b_host_8h_a22fb22ba1074a74132525afca0fe6368} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+REQ\+\_\+\+READ}~0x80   /\texorpdfstring{$\ast$}{*} control read request \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a648507e23e985bf181dc5a581ab19e8a}\label{_me_u_s_b_host_8h_a648507e23e985bf181dc5a581ab19e8a} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+REQ\+\_\+\+WRITE}~0x00   /\texorpdfstring{$\ast$}{*} control write request \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ae40b6f8fb62b04a7ceab3d15425bc3ab}\label{_me_u_s_b_host_8h_ae40b6f8fb62b04a7ceab3d15425bc3ab} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+REQ\+\_\+\+TYPE}~0x60   /\texorpdfstring{$\ast$}{*} control type request \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_aecbee9cd8b530960b3eb9ffc09c84dc6}\label{_me_u_s_b_host_8h_aecbee9cd8b530960b3eb9ffc09c84dc6} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+REQ\+\_\+\+STAND}~0x00   /\texorpdfstring{$\ast$}{*} standard request \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ae9a95ade464690438c355d894e496b68}\label{_me_u_s_b_host_8h_ae9a95ade464690438c355d894e496b68} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+REQ\+\_\+\+CLASS}~0x20   /\texorpdfstring{$\ast$}{*} device class request \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ac991f89e3124255c5164da8a4d31dbea}\label{_me_u_s_b_host_8h_ac991f89e3124255c5164da8a4d31dbea} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+REQ\+\_\+\+VENDOR}~0x40   /\texorpdfstring{$\ast$}{*} vendor request \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_af6f59877146cc6270c8528f818034081}\label{_me_u_s_b_host_8h_af6f59877146cc6270c8528f818034081} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+REQ\+\_\+\+RESERVE}~0x60   /\texorpdfstring{$\ast$}{*} reserved request \texorpdfstring{$\ast$}{*}/
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a963c616b2ca3bb84320c682b17c1a74f}\label{_me_u_s_b_host_8h_a963c616b2ca3bb84320c682b17c1a74f} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+CLR\+\_\+\+FEATURE}~0x01
+\item 
+\Hypertarget{_me_u_s_b_host_8h_abaecd81d809c231b682c6e51332c4f50}\label{_me_u_s_b_host_8h_abaecd81d809c231b682c6e51332c4f50} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+SET\+\_\+\+FEATURE}~0x03
+\item 
+\Hypertarget{_me_u_s_b_host_8h_aedf14178c44bfcc5014f0f4d49ea8423}\label{_me_u_s_b_host_8h_aedf14178c44bfcc5014f0f4d49ea8423} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+GET\+\_\+\+STATUS}~0x00
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ae80138621b6ba1f51b68cdaac9da41a5}\label{_me_u_s_b_host_8h_ae80138621b6ba1f51b68cdaac9da41a5} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+SET\+\_\+\+ADDRESS}~0x05
+\item 
+\Hypertarget{_me_u_s_b_host_8h_adc588c0ddfe43cd12c71b47a56fc3266}\label{_me_u_s_b_host_8h_adc588c0ddfe43cd12c71b47a56fc3266} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+GET\+\_\+\+DESCR}~0x06
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a791b95611ce925b249ceaee5cfe6236c}\label{_me_u_s_b_host_8h_a791b95611ce925b249ceaee5cfe6236c} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+SET\+\_\+\+DESCR}~0x07
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a4fe75a679036fd41b5a1e58fbc08d97f}\label{_me_u_s_b_host_8h_a4fe75a679036fd41b5a1e58fbc08d97f} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+GET\+\_\+\+CONFIG}~0x08
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a1b2050e2b0d6ed4d841c193db847fc8c}\label{_me_u_s_b_host_8h_a1b2050e2b0d6ed4d841c193db847fc8c} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+SET\+\_\+\+CONFIG}~0x09
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ad28ddc301169eeb0303bdbd60803c0b2}\label{_me_u_s_b_host_8h_ad28ddc301169eeb0303bdbd60803c0b2} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+GET\+\_\+\+INTERF}~0x0A
+\item 
+\Hypertarget{_me_u_s_b_host_8h_af1ccb1fd89a08c857fc6fa805318d903}\label{_me_u_s_b_host_8h_af1ccb1fd89a08c857fc6fa805318d903} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+SET\+\_\+\+INTERF}~0x0B
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ad4ef01602f307addc536f256eeb9b559}\label{_me_u_s_b_host_8h_ad4ef01602f307addc536f256eeb9b559} 
+\#define {\bfseries DEF\+\_\+\+USB\+\_\+\+SYNC\+\_\+\+FRAME}~0x0C
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ab0b9a6d264c29a8b9f43765e31b16ac3}\label{_me_u_s_b_host_8h_ab0b9a6d264c29a8b9f43765e31b16ac3} 
+typedef struct \mbox{\hyperlink{struct___u_s_b___d_e_v_i_c_e___d_escript_o_r}{\+\_\+\+USB\+\_\+\+DEVICE\+\_\+\+DEscript\+OR}} {\bfseries USB\+\_\+\+DEV\+\_\+\+DESCR}
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a622767f5e18a484539be485ab1a02741}\label{_me_u_s_b_host_8h_a622767f5e18a484539be485ab1a02741} 
+typedef struct \mbox{\hyperlink{struct___u_s_b___d_e_v_i_c_e___d_escript_o_r}{\+\_\+\+USB\+\_\+\+DEVICE\+\_\+\+DEscript\+OR}} \texorpdfstring{$\ast$}{*} {\bfseries PUSB\+\_\+\+DEV\+\_\+\+DESCR}
+\item 
+\Hypertarget{_me_u_s_b_host_8h_ab3ea2ff57dec511e8ad0714d8adf0d1c}\label{_me_u_s_b_host_8h_ab3ea2ff57dec511e8ad0714d8adf0d1c} 
+typedef struct \mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r}{\+\_\+\+USB\+\_\+\+CONFIG\+\_\+\+DEscript\+OR}} {\bfseries USB\+\_\+\+CFG\+\_\+\+DESCR}
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a6c79ae56f07881a0f0ecd96f9f4ede56}\label{_me_u_s_b_host_8h_a6c79ae56f07881a0f0ecd96f9f4ede56} 
+typedef struct \mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r}{\+\_\+\+USB\+\_\+\+CONFIG\+\_\+\+DEscript\+OR}} \texorpdfstring{$\ast$}{*} {\bfseries PUSB\+\_\+\+CFG\+\_\+\+DESCR}
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a502c139f21b437bcf99c7ddc74cce3a8}\label{_me_u_s_b_host_8h_a502c139f21b437bcf99c7ddc74cce3a8} 
+typedef struct \mbox{\hyperlink{struct___u_s_b___i_n_t_e_r_f___d_escript_o_r}{\+\_\+\+USB\+\_\+\+INTERF\+\_\+\+DEscript\+OR}} {\bfseries USB\+\_\+\+ITF\+\_\+\+DESCR}
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a6793e6fdbb2d519363be4f91d7b06038}\label{_me_u_s_b_host_8h_a6793e6fdbb2d519363be4f91d7b06038} 
+typedef struct \mbox{\hyperlink{struct___u_s_b___i_n_t_e_r_f___d_escript_o_r}{\+\_\+\+USB\+\_\+\+INTERF\+\_\+\+DEscript\+OR}} \texorpdfstring{$\ast$}{*} {\bfseries PUSB\+\_\+\+ITF\+\_\+\+DESCR}
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a2ba9ee00ec9f1b982cc70b834d05f203}\label{_me_u_s_b_host_8h_a2ba9ee00ec9f1b982cc70b834d05f203} 
+typedef struct \mbox{\hyperlink{struct___u_s_b___e_n_d_p_o_i_n_t___d_escript_o_r}{\+\_\+\+USB\+\_\+\+ENDPOINT\+\_\+\+DEscript\+OR}} {\bfseries USB\+\_\+\+ENDP\+\_\+\+DESCR}
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a8ebb747586a931b61742351de91ea89a}\label{_me_u_s_b_host_8h_a8ebb747586a931b61742351de91ea89a} 
+typedef struct \mbox{\hyperlink{struct___u_s_b___e_n_d_p_o_i_n_t___d_escript_o_r}{\+\_\+\+USB\+\_\+\+ENDPOINT\+\_\+\+DEscript\+OR}} \texorpdfstring{$\ast$}{*} {\bfseries PUSB\+\_\+\+ENDP\+\_\+\+DESCR}
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a523d46be59ea89ac394476442d563023}\label{_me_u_s_b_host_8h_a523d46be59ea89ac394476442d563023} 
+typedef struct \mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r___l_o_n_g}{\+\_\+\+USB\+\_\+\+CONFIG\+\_\+\+DEscript\+OR\+\_\+\+LONG}} {\bfseries USB\+\_\+\+CFG\+\_\+\+DESCR\+\_\+\+LONG}
+\item 
+\Hypertarget{_me_u_s_b_host_8h_a530ad478c28c61928822a2cb069d6f73}\label{_me_u_s_b_host_8h_a530ad478c28c61928822a2cb069d6f73} 
+typedef struct \mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r___l_o_n_g}{\+\_\+\+USB\+\_\+\+CONFIG\+\_\+\+DEscript\+OR\+\_\+\+LONG}} \texorpdfstring{$\ast$}{*} {\bfseries PUSB\+\_\+\+CFG\+\_\+\+DESCR\+\_\+\+LONG}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for \doxylink{_me_u_s_b_host_8cpp}{Me\+USBHost.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/01/20 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me USB Host device, The USB Host inherited the \doxylink{class_me_serial}{Me\+Serial} class from \doxylink{class_software_serial}{Software\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_u_s_b_host_a4a05983202d4f7479f3480053543d7e5}{Me\+USBHost\+::init(int8\+\_\+t type)};
+\item int16\+\_\+t \doxylink{class_me_u_s_b_host_ab243f4416f3d91498c3b7a94abf96e0e}{Me\+USBHost\+::init\+HIDDevice()};
+\item int16\+\_\+t \doxylink{class_me_u_s_b_host_a1ec6f4ebdb3f888e04d8ef5c83ff75f0}{Me\+USBHost\+::probe\+Device()};
+\item void \doxylink{class_me_u_s_b_host_a11d5c84408175ade230ef51021c42232}{Me\+USBHost\+::reset\+Bus()};
+\item uint8\+\_\+t \doxylink{class_me_u_s_b_host_afdf22bd1a9c271c87d981b3da4a6e711}{Me\+USBHost\+::host\+\_\+recv()};
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+forfish         2015/11/10     1.0.0            Add description
+Mark Yan        2016/01/20     1.0.1            Support hardware serial automatic Identification
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

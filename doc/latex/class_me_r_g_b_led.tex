@@ -1,0 +1,532 @@
+\doxysection{Me\+RGBLed Class Reference}
+\hypertarget{class_me_r_g_b_led}{}\label{class_me_r_g_b_led}\index{MeRGBLed@{MeRGBLed}}
+
+
+Driver for W2812 full-\/color LED.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+RGBLed.\+h$>$}
+
+
+
+Inheritance diagram for Me\+RGBLed\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=146pt]{class_me_r_g_b_led__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+RGBLed\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=146pt]{class_me_r_g_b_led__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_r_g_b_led_addbe094cefa309fc7a5486f13ba628c0}{Me\+RGBLed}} (void)
+\item 
+\mbox{\hyperlink{class_me_r_g_b_led_ac6bf6ad922bb2e0cb2b1d0763dd25348}{Me\+RGBLed}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_r_g_b_led_a6204f460f613534e783318e7a8e9039d}{Me\+RGBLed}} (uint8\+\_\+t port, uint8\+\_\+t led\+\_\+num)
+\item 
+\mbox{\hyperlink{class_me_r_g_b_led_a5f7c3954ceb5ec785dd6fcb6f64e76ab}{Me\+RGBLed}} (uint8\+\_\+t port, uint8\+\_\+t slot, uint8\+\_\+t led\+\_\+num)
+\item 
+\mbox{\hyperlink{class_me_r_g_b_led_a211af5eeebf2b79f6bc1ba5102a89523}{\texorpdfstring{$\sim$}{\string~}\+Me\+RGBLed}} (void)
+\item 
+void \mbox{\hyperlink{class_me_r_g_b_led_a030e1f328cd19061104369868d5d1b1c}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_r_g_b_led_a08ac8295d2a090a51069f404fd375b29}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+void \mbox{\hyperlink{class_me_r_g_b_led_a8dfb56420333855fee707db26ede3b7e}{setpin}} (uint8\+\_\+t port)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_r_g_b_led_a68784e19385f21058f9b4ffddba82b4d}{get\+Number}} (void)
+\item 
+\mbox{\hyperlink{structc_r_g_b}{c\+RGB}} \mbox{\hyperlink{class_me_r_g_b_led_a2bf63b839691eed62c9a0eac076b290d}{get\+Color\+At}} (uint8\+\_\+t index)
+\item 
+void \mbox{\hyperlink{class_me_r_g_b_led_a25ae4338ba5b885746560fa277c065ba}{fill\+Pixels\+Bak}} (uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)
+\item 
+bool \mbox{\hyperlink{class_me_r_g_b_led_a31f967cfa254d0943b5712925dc381b8}{set\+Color\+At}} (uint8\+\_\+t index, uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)
+\item 
+bool \mbox{\hyperlink{class_me_r_g_b_led_ab7a91e9e4cfe48f1f38bd6ca25953834}{set\+Color}} (uint8\+\_\+t index, uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)
+\item 
+bool \mbox{\hyperlink{class_me_r_g_b_led_a921b6b54e13ffcb8b4d55a830d6cd28e}{set\+Color}} (uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)
+\item 
+bool \mbox{\hyperlink{class_me_r_g_b_led_a04c16004bb6035a004eb5b8042f4aa14}{set\+Color}} (uint8\+\_\+t index, long value)
+\item 
+void \mbox{\hyperlink{class_me_r_g_b_led_ac80f183e41fb3d860ac7100e0639390f}{set\+Number}} (uint8\+\_\+t num\+\_\+led)
+\item 
+void \mbox{\hyperlink{class_me_r_g_b_led_ac3d66e93ecd6dadc953d71e24728c26a}{show}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for W2812 full-\/color LED. 
+
+Driver for W2812 full-\/color LED lights.
+
+Class\+: \doxylink{class_me_r_g_b_led}{Me\+RGBLed}
+
+\begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_r_g_b_led}{Me\+RGBLed}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2014-\/2018, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_r_g_b_led_addbe094cefa309fc7a5486f13ba628c0}\label{class_me_r_g_b_led_addbe094cefa309fc7a5486f13ba628c0} 
+\index{MeRGBLed@{MeRGBLed}!MeRGBLed@{MeRGBLed}}
+\index{MeRGBLed@{MeRGBLed}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{MeRGBLed()}{MeRGBLed()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Me\+RGBLed\+::\+Me\+RGBLed (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_r_g_b_led}{Me\+RGBLed} to arduino port, no pins are used or initialized here, it only assigned the LED display buffer. The default number of light strips is 32. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_r_g_b_led_ac6bf6ad922bb2e0cb2b1d0763dd25348}\label{class_me_r_g_b_led_ac6bf6ad922bb2e0cb2b1d0763dd25348} 
+\index{MeRGBLed@{MeRGBLed}!MeRGBLed@{MeRGBLed}}
+\index{MeRGBLed@{MeRGBLed}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{MeRGBLed()}{MeRGBLed()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Me\+RGBLed\+::\+Me\+RGBLed (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_r_g_b_led}{Me\+RGBLed} to arduino port, it will assigned the LED display buffer and initialization the GPIO of LED lights. The slot2 will be used here, and the default number of light strips is 32. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_r_g_b_led_a6204f460f613534e783318e7a8e9039d}\label{class_me_r_g_b_led_a6204f460f613534e783318e7a8e9039d} 
+\index{MeRGBLed@{MeRGBLed}!MeRGBLed@{MeRGBLed}}
+\index{MeRGBLed@{MeRGBLed}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{MeRGBLed()}{MeRGBLed()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily Me\+RGBLed\+::\+Me\+RGBLed (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{uint8\+\_\+t}]{led\+\_\+num }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_r_g_b_led}{Me\+RGBLed} to arduino port, it will assigned the LED display buffer and initialization the GPIO of LED lights. The slot2 will be used here, you can reset the LED number by this constructor. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\mbox{\texttt{ in}}  & {\em led\+\_\+num} & -\/ The LED number \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_r_g_b_led_a5f7c3954ceb5ec785dd6fcb6f64e76ab}\label{class_me_r_g_b_led_a5f7c3954ceb5ec785dd6fcb6f64e76ab} 
+\index{MeRGBLed@{MeRGBLed}!MeRGBLed@{MeRGBLed}}
+\index{MeRGBLed@{MeRGBLed}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{MeRGBLed()}{MeRGBLed()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily Me\+RGBLed\+::\+Me\+RGBLed (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{uint8\+\_\+t}]{slot,  }\item[{uint8\+\_\+t}]{led\+\_\+num }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_r_g_b_led}{Me\+RGBLed} to arduino port, it will assigned the LED display buffer and initialization the GPIO of LED lights. You can set any slot for the LED data PIN, and reset the LED number by this constructor. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\mbox{\texttt{ in}}  & {\em slot} & -\/ SLOT1 or SLOT2 \\
+\hline
+\mbox{\texttt{ in}}  & {\em led\+\_\+num} & -\/ The LED number \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_r_g_b_led_a211af5eeebf2b79f6bc1ba5102a89523}\label{class_me_r_g_b_led_a211af5eeebf2b79f6bc1ba5102a89523} 
+\index{MeRGBLed@{MeRGBLed}!````~MeRGBLed@{\texorpdfstring{$\sim$}{\string~}MeRGBLed}}
+\index{````~MeRGBLed@{\texorpdfstring{$\sim$}{\string~}MeRGBLed}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MeRGBLed()}{\string~MeRGBLed()}}
+{\footnotesize\ttfamily Me\+RGBLed\+::\texorpdfstring{$\sim$}{\string~}\+Me\+RGBLed (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Destructor which can call your own function, it will release the LED buffer 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_r_g_b_led_a25ae4338ba5b885746560fa277c065ba}\label{class_me_r_g_b_led_a25ae4338ba5b885746560fa277c065ba} 
+\index{MeRGBLed@{MeRGBLed}!fillPixelsBak@{fillPixelsBak}}
+\index{fillPixelsBak@{fillPixelsBak}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{fillPixelsBak()}{fillPixelsBak()}}
+{\footnotesize\ttfamily void Me\+RGBLed\+::fill\+Pixels\+Bak (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{red,  }\item[{uint8\+\_\+t}]{green,  }\item[{uint8\+\_\+t}]{blue }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+fill\+Pixels\+Bak 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+fill the LED color data to pixels\+\_\+bak. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em red} & -\/ Red values \\
+\hline
+\mbox{\texttt{ in}}  & {\em green} & -\/ green values \\
+\hline
+\mbox{\texttt{ in}}  & {\em blue} & -\/ blue values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_r_g_b_led_a2bf63b839691eed62c9a0eac076b290d}\label{class_me_r_g_b_led_a2bf63b839691eed62c9a0eac076b290d} 
+\index{MeRGBLed@{MeRGBLed}!getColorAt@{getColorAt}}
+\index{getColorAt@{getColorAt}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{getColorAt()}{getColorAt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structc_r_g_b}{c\+RGB}} Me\+RGBLed\+::get\+Color\+At (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Color\+At 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the LED color value from its index 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em index} & -\/ The LED index number you want to read its value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The LED color value, include the R,G,B 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+The index value from 1 to the max 
+\end{DoxyParagraph}
+\Hypertarget{class_me_r_g_b_led_a68784e19385f21058f9b4ffddba82b4d}\label{class_me_r_g_b_led_a68784e19385f21058f9b4ffddba82b4d} 
+\index{MeRGBLed@{MeRGBLed}!getNumber@{getNumber}}
+\index{getNumber@{getNumber}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{getNumber()}{getNumber()}}
+{\footnotesize\ttfamily uint8\+\_\+t Me\+RGBLed\+::get\+Number (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Number 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the LED number you can light it. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The total number of LED\textquotesingle{}s 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+The index value from 1 to the max 
+\end{DoxyParagraph}
+\Hypertarget{class_me_r_g_b_led_a030e1f328cd19061104369868d5d1b1c}\label{class_me_r_g_b_led_a030e1f328cd19061104369868d5d1b1c} 
+\index{MeRGBLed@{MeRGBLed}!reset@{reset}}
+\index{reset@{reset}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Me\+RGBLed\+::reset (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+reset 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the LED available data PIN by its RJ25 port, and slot2 will be used as default. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_r_g_b_led_a08ac8295d2a090a51069f404fd375b29}\label{class_me_r_g_b_led_a08ac8295d2a090a51069f404fd375b29} 
+\index{MeRGBLed@{MeRGBLed}!reset@{reset}}
+\index{reset@{reset}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Me\+RGBLed\+::reset (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{uint8\+\_\+t}]{slot }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+reset 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the LED available data PIN by its RJ25 port and slot. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\mbox{\texttt{ in}}  & {\em slot} & -\/ SLOT1 or SLOT2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_r_g_b_led_a04c16004bb6035a004eb5b8042f4aa14}\label{class_me_r_g_b_led_a04c16004bb6035a004eb5b8042f4aa14} 
+\index{MeRGBLed@{MeRGBLed}!setColor@{setColor}}
+\index{setColor@{setColor}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{setColor()}{setColor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily bool Me\+RGBLed\+::set\+Color (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index,  }\item[{long}]{value }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Color 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set the LED color for any LED. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em value} & -\/ the LED color defined as long type, for example (white) = 0x\+FFFFFF \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+TRUE\+: Successful implementation FALSE\+: Wrong execution 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+The index value from 1 to the max, if you set the index 0, all the LED will be lit 
+\end{DoxyParagraph}
+\Hypertarget{class_me_r_g_b_led_ab7a91e9e4cfe48f1f38bd6ca25953834}\label{class_me_r_g_b_led_ab7a91e9e4cfe48f1f38bd6ca25953834} 
+\index{MeRGBLed@{MeRGBLed}!setColor@{setColor}}
+\index{setColor@{setColor}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{setColor()}{setColor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily bool Me\+RGBLed\+::set\+Color (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index,  }\item[{uint8\+\_\+t}]{red,  }\item[{uint8\+\_\+t}]{green,  }\item[{uint8\+\_\+t}]{blue }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Color 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set the LED color for any LED. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em index} & -\/ The LED index number you want to set its color \\
+\hline
+\mbox{\texttt{ in}}  & {\em red} & -\/ Red values \\
+\hline
+\mbox{\texttt{ in}}  & {\em green} & -\/ green values \\
+\hline
+\mbox{\texttt{ in}}  & {\em blue} & -\/ blue values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+TRUE\+: Successful implementation FALSE\+: Wrong execution 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+The index value from 1 to the max, if you set the index 0, all the LED will be lit 
+\end{DoxyParagraph}
+\Hypertarget{class_me_r_g_b_led_a921b6b54e13ffcb8b4d55a830d6cd28e}\label{class_me_r_g_b_led_a921b6b54e13ffcb8b4d55a830d6cd28e} 
+\index{MeRGBLed@{MeRGBLed}!setColor@{setColor}}
+\index{setColor@{setColor}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{setColor()}{setColor()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily bool Me\+RGBLed\+::set\+Color (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{red,  }\item[{uint8\+\_\+t}]{green,  }\item[{uint8\+\_\+t}]{blue }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Color 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set the LED color for all LED. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em red} & -\/ Red values \\
+\hline
+\mbox{\texttt{ in}}  & {\em green} & -\/ green values \\
+\hline
+\mbox{\texttt{ in}}  & {\em blue} & -\/ blue values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+TRUE\+: Successful implementation FALSE\+: Wrong execution 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+All the LED will be lit. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_r_g_b_led_a31f967cfa254d0943b5712925dc381b8}\label{class_me_r_g_b_led_a31f967cfa254d0943b5712925dc381b8} 
+\index{MeRGBLed@{MeRGBLed}!setColorAt@{setColorAt}}
+\index{setColorAt@{setColorAt}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{setColorAt()}{setColorAt()}}
+{\footnotesize\ttfamily bool Me\+RGBLed\+::set\+Color\+At (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index,  }\item[{uint8\+\_\+t}]{red,  }\item[{uint8\+\_\+t}]{green,  }\item[{uint8\+\_\+t}]{blue }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Color\+At 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set the LED color for any LED. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em index} & -\/ The LED index number you want to set its color \\
+\hline
+\mbox{\texttt{ in}}  & {\em red} & -\/ Red values \\
+\hline
+\mbox{\texttt{ in}}  & {\em green} & -\/ green values \\
+\hline
+\mbox{\texttt{ in}}  & {\em blue} & -\/ blue values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+TRUE\+: Successful implementation FALSE\+: Wrong execution 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+The index value from 0 to the max. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_r_g_b_led_ac80f183e41fb3d860ac7100e0639390f}\label{class_me_r_g_b_led_ac80f183e41fb3d860ac7100e0639390f} 
+\index{MeRGBLed@{MeRGBLed}!setNumber@{setNumber}}
+\index{setNumber@{setNumber}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{setNumber()}{setNumber()}}
+{\footnotesize\ttfamily void Me\+RGBLed\+::set\+Number (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{num\+\_\+leds }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+set\+Number 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Assigned the LED display buffer by the LED number 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em num\+\_\+leds} & -\/ The LED number you used \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_r_g_b_led_a8dfb56420333855fee707db26ede3b7e}\label{class_me_r_g_b_led_a8dfb56420333855fee707db26ede3b7e} 
+\index{MeRGBLed@{MeRGBLed}!setpin@{setpin}}
+\index{setpin@{setpin}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{setpin()}{setpin()}}
+{\footnotesize\ttfamily void Me\+RGBLed\+::setpin (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+setpin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Reset the LED available data PIN by its arduino port. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ arduino port(should digital pin) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+\Hypertarget{class_me_r_g_b_led_ac3d66e93ecd6dadc953d71e24728c26a}\label{class_me_r_g_b_led_ac3d66e93ecd6dadc953d71e24728c26a} 
+\index{MeRGBLed@{MeRGBLed}!show@{show}}
+\index{show@{show}!MeRGBLed@{MeRGBLed}}
+\doxysubsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Me\+RGBLed\+::show (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+show 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Transmission the data to WS2812 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+None 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_r_g_b_led_8h}{Me\+RGBLed.\+h}}\item 
+src/\mbox{\hyperlink{_me_r_g_b_led_8cpp}{Me\+RGBLed.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,218 @@
+\doxysection{src/\+Me\+Compass.h File Reference}
+\hypertarget{_me_compass_8h}{}\label{_me_compass_8h}\index{src/MeCompass.h@{src/MeCompass.h}}
+
+
+Header for \doxylink{_me_compass_8cpp}{Me\+Compass.\+cpp} module.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+Compass.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_compass_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_compass_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_compass___calibration___parameter}{Compass\+\_\+\+Calibration\+\_\+\+Parameter}}
+\item 
+class \mbox{\hyperlink{class_me_compass}{Me\+Compass}}
+\begin{DoxyCompactList}\small\item\em Driver for \doxylink{class_me_compass}{Me\+Compass} module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_compass_8h_a516d5566e4ac72ba5138db73c6e4da09}\label{_me_compass_8h_a516d5566e4ac72ba5138db73c6e4da09} 
+\#define {\bfseries I2\+C\+\_\+\+ERROR}~(-\/1)
+\item 
+\Hypertarget{_me_compass_8h_a58215de2d2d1be889b22f750853fc38e}\label{_me_compass_8h_a58215de2d2d1be889b22f750853fc38e} 
+\#define {\bfseries COMPASS\+\_\+\+DEFAULT\+\_\+\+ADDRESS}~(0x1E)
+\item 
+\Hypertarget{_me_compass_8h_af1e619a74b82e11c2eeeb6f26231e2dd}\label{_me_compass_8h_af1e619a74b82e11c2eeeb6f26231e2dd} 
+\#define {\bfseries COMPASS\+\_\+\+RA\+\_\+\+CONFIG\+\_\+A}~(0x00)
+\item 
+\Hypertarget{_me_compass_8h_a14ca26d15c80e640956f65264a53df6d}\label{_me_compass_8h_a14ca26d15c80e640956f65264a53df6d} 
+\#define {\bfseries COMPASS\+\_\+\+RA\+\_\+\+CONFIG\+\_\+B}~(0x01)
+\item 
+\Hypertarget{_me_compass_8h_a11069d7a56c51638167cdedba97d360d}\label{_me_compass_8h_a11069d7a56c51638167cdedba97d360d} 
+\#define {\bfseries COMPASS\+\_\+\+RA\+\_\+\+MODE}~(0x02)
+\item 
+\Hypertarget{_me_compass_8h_a22efa02dc3a66b28bd062c2b38dcf3c1}\label{_me_compass_8h_a22efa02dc3a66b28bd062c2b38dcf3c1} 
+\#define {\bfseries COMPASS\+\_\+\+RA\+\_\+\+DATAX\+\_\+H}~(0x03)
+\item 
+\Hypertarget{_me_compass_8h_aaa8e3ddc183d0c65824d6b7e953aacdf}\label{_me_compass_8h_aaa8e3ddc183d0c65824d6b7e953aacdf} 
+\#define {\bfseries COMPASS\+\_\+\+RA\+\_\+\+DATAX\+\_\+L}~(0x04)
+\item 
+\Hypertarget{_me_compass_8h_a8ce067274f1fa7704f45b9d3049f2865}\label{_me_compass_8h_a8ce067274f1fa7704f45b9d3049f2865} 
+\#define {\bfseries COMPASS\+\_\+\+RA\+\_\+\+DATAZ\+\_\+H}~(0x05)
+\item 
+\Hypertarget{_me_compass_8h_aa5114c863d2becad25e9636c12de6f67}\label{_me_compass_8h_aa5114c863d2becad25e9636c12de6f67} 
+\#define {\bfseries COMPASS\+\_\+\+RA\+\_\+\+DATAZ\+\_\+L}~(0x06)
+\item 
+\Hypertarget{_me_compass_8h_a0bd2f4f7d0593dd3ba09565e1d521b49}\label{_me_compass_8h_a0bd2f4f7d0593dd3ba09565e1d521b49} 
+\#define {\bfseries COMPASS\+\_\+\+RA\+\_\+\+DATAY\+\_\+H}~(0x07)
+\item 
+\Hypertarget{_me_compass_8h_aa1472de1df2a371a30b29d8c6b4e670f}\label{_me_compass_8h_aa1472de1df2a371a30b29d8c6b4e670f} 
+\#define {\bfseries COMPASS\+\_\+\+RA\+\_\+\+DATAY\+\_\+L}~(0x08)
+\item 
+\Hypertarget{_me_compass_8h_a976a9bfa69c0b8d959b59f62517ff312}\label{_me_compass_8h_a976a9bfa69c0b8d959b59f62517ff312} 
+\#define {\bfseries COMPASS\+\_\+\+RA\+\_\+\+STATUS}~(0x09)
+\item 
+\Hypertarget{_me_compass_8h_a46ad60179d537b46e546f32265a81884}\label{_me_compass_8h_a46ad60179d537b46e546f32265a81884} 
+\#define {\bfseries COMPASS\+\_\+\+RA\+\_\+\+ID\+\_\+A}~(0x0A)
+\item 
+\Hypertarget{_me_compass_8h_ab2ebdfcaa7a93470a3b8e39e0dabbc13}\label{_me_compass_8h_ab2ebdfcaa7a93470a3b8e39e0dabbc13} 
+\#define {\bfseries COMPASS\+\_\+\+RA\+\_\+\+ID\+\_\+B}~(0x0B)
+\item 
+\Hypertarget{_me_compass_8h_a7e3fc097d7a69cd362d314f4ec9aec5f}\label{_me_compass_8h_a7e3fc097d7a69cd362d314f4ec9aec5f} 
+\#define {\bfseries COMPASS\+\_\+\+RA\+\_\+\+ID\+\_\+C}~(0x0C)
+\item 
+\Hypertarget{_me_compass_8h_a6f7b5629a96f1f3efe06e6ad605b0261}\label{_me_compass_8h_a6f7b5629a96f1f3efe06e6ad605b0261} 
+\#define {\bfseries COMPASS\+\_\+\+AVERAGING\+\_\+1}~(0x00)
+\item 
+\Hypertarget{_me_compass_8h_a2428f4cdce9889dd7273c8bd4a7ff00e}\label{_me_compass_8h_a2428f4cdce9889dd7273c8bd4a7ff00e} 
+\#define {\bfseries COMPASS\+\_\+\+AVERAGING\+\_\+2}~(0x20)
+\item 
+\Hypertarget{_me_compass_8h_aaf9ddbd2e66ec8521118288638e53e24}\label{_me_compass_8h_aaf9ddbd2e66ec8521118288638e53e24} 
+\#define {\bfseries COMPASS\+\_\+\+AVERAGING\+\_\+4}~(0x40)
+\item 
+\Hypertarget{_me_compass_8h_a4558e3e2332589010fdf68fe17811162}\label{_me_compass_8h_a4558e3e2332589010fdf68fe17811162} 
+\#define {\bfseries COMPASS\+\_\+\+AVERAGING\+\_\+8}~(0x60)
+\item 
+\Hypertarget{_me_compass_8h_ab96e0d8adc71fa853701466bf234542e}\label{_me_compass_8h_ab96e0d8adc71fa853701466bf234542e} 
+\#define {\bfseries COMPASS\+\_\+\+RATE\+\_\+0\+P75}~(0x00)
+\item 
+\Hypertarget{_me_compass_8h_a18bd3cb590313aa9c72fd08dd7cc64a0}\label{_me_compass_8h_a18bd3cb590313aa9c72fd08dd7cc64a0} 
+\#define {\bfseries COMPASS\+\_\+\+RATE\+\_\+1\+P5}~(0x40)
+\item 
+\Hypertarget{_me_compass_8h_a34e26a89412fe6556b8c47b7822cbe6c}\label{_me_compass_8h_a34e26a89412fe6556b8c47b7822cbe6c} 
+\#define {\bfseries COMPASS\+\_\+\+RATE\+\_\+3}~(0x08)
+\item 
+\Hypertarget{_me_compass_8h_af6ff04613a44edbf07d95e694867504a}\label{_me_compass_8h_af6ff04613a44edbf07d95e694867504a} 
+\#define {\bfseries COMPASS\+\_\+\+RATE\+\_\+7\+P5}~(0x0C)
+\item 
+\Hypertarget{_me_compass_8h_aa1e4268b36acc643d6d203c4b909a515}\label{_me_compass_8h_aa1e4268b36acc643d6d203c4b909a515} 
+\#define {\bfseries COMPASS\+\_\+\+RATE\+\_\+15}~(0x10)
+\item 
+\Hypertarget{_me_compass_8h_a0d16997654218263db481ef665956ca8}\label{_me_compass_8h_a0d16997654218263db481ef665956ca8} 
+\#define {\bfseries COMPASS\+\_\+\+RATE\+\_\+30}~(0x14)
+\item 
+\Hypertarget{_me_compass_8h_a408e429f9a77f4999581f3ff707c154b}\label{_me_compass_8h_a408e429f9a77f4999581f3ff707c154b} 
+\#define {\bfseries COMPASS\+\_\+\+RATE\+\_\+75}~(0x18)
+\item 
+\Hypertarget{_me_compass_8h_a815ce5d3d55b35af109996e52a791467}\label{_me_compass_8h_a815ce5d3d55b35af109996e52a791467} 
+\#define {\bfseries COMPASS\+\_\+\+BIAS\+\_\+\+NORMAL}~(0x00)
+\item 
+\Hypertarget{_me_compass_8h_a071cf2227b9754887a342f5e45cb829a}\label{_me_compass_8h_a071cf2227b9754887a342f5e45cb829a} 
+\#define {\bfseries COMPASS\+\_\+\+BIAS\+\_\+\+POSITIVE}~(0x01)
+\item 
+\Hypertarget{_me_compass_8h_abec91238cbba205d45b9b509942333da}\label{_me_compass_8h_abec91238cbba205d45b9b509942333da} 
+\#define {\bfseries COMPASS\+\_\+\+BIAS\+\_\+\+NEGATIVE}~(0x02)
+\item 
+\Hypertarget{_me_compass_8h_a00d3bba418d47a907602c8d2999080f1}\label{_me_compass_8h_a00d3bba418d47a907602c8d2999080f1} 
+\#define {\bfseries COMPASS\+\_\+\+GAIN\+\_\+1370}~(0x00)
+\item 
+\Hypertarget{_me_compass_8h_a29b9154896ef99794b8beafffdb0c609}\label{_me_compass_8h_a29b9154896ef99794b8beafffdb0c609} 
+\#define {\bfseries COMPASS\+\_\+\+GAIN\+\_\+1090}~(0x20)
+\item 
+\Hypertarget{_me_compass_8h_acb2acdb43b3bd00b6d5c568e154007ec}\label{_me_compass_8h_acb2acdb43b3bd00b6d5c568e154007ec} 
+\#define {\bfseries COMPASS\+\_\+\+GAIN\+\_\+820}~(0x40)
+\item 
+\Hypertarget{_me_compass_8h_aa53cd5cb2ae1a3507d681496be518f78}\label{_me_compass_8h_aa53cd5cb2ae1a3507d681496be518f78} 
+\#define {\bfseries COMPASS\+\_\+\+GAIN\+\_\+660}~(0x60)
+\item 
+\Hypertarget{_me_compass_8h_ad92a9e3929a4f33acdb27b559eef7f8b}\label{_me_compass_8h_ad92a9e3929a4f33acdb27b559eef7f8b} 
+\#define {\bfseries COMPASS\+\_\+\+GAIN\+\_\+440}~(0x80)
+\item 
+\Hypertarget{_me_compass_8h_ae60ec2c656869091ac1cd00d3e86770a}\label{_me_compass_8h_ae60ec2c656869091ac1cd00d3e86770a} 
+\#define {\bfseries COMPASS\+\_\+\+GAIN\+\_\+390}~(0x\+A0)
+\item 
+\Hypertarget{_me_compass_8h_ab336a6e0f69bcb195c1d67b297500a62}\label{_me_compass_8h_ab336a6e0f69bcb195c1d67b297500a62} 
+\#define {\bfseries COMPASS\+\_\+\+GAIN\+\_\+330}~(0x\+C0)
+\item 
+\Hypertarget{_me_compass_8h_a2172c615ee9720e7d7526330fc8b975d}\label{_me_compass_8h_a2172c615ee9720e7d7526330fc8b975d} 
+\#define {\bfseries COMPASS\+\_\+\+GAIN\+\_\+220}~(0x\+E0)
+\item 
+\Hypertarget{_me_compass_8h_a2621ae3de93da2c9bd508501e6ef8fd6}\label{_me_compass_8h_a2621ae3de93da2c9bd508501e6ef8fd6} 
+\#define {\bfseries COMPASS\+\_\+\+MODE\+\_\+\+CONTINUOUS}~(0x00)
+\item 
+\Hypertarget{_me_compass_8h_a9d1025584d048407ca87b98870deff59}\label{_me_compass_8h_a9d1025584d048407ca87b98870deff59} 
+\#define {\bfseries COMPASS\+\_\+\+MODE\+\_\+\+SINGLE}~(0x01)
+\item 
+\Hypertarget{_me_compass_8h_a489237813fb9595d9e0f811579239cef}\label{_me_compass_8h_a489237813fb9595d9e0f811579239cef} 
+\#define {\bfseries COMPASS\+\_\+\+MODE\+\_\+\+IDLE}~(0x02)
+\item 
+\Hypertarget{_me_compass_8h_ad7dba06f74c986dac7efe9c5ed52c46e}\label{_me_compass_8h_ad7dba06f74c986dac7efe9c5ed52c46e} 
+\#define {\bfseries COMPASS\+\_\+\+PI}~3.\+14159265F
+\item 
+\Hypertarget{_me_compass_8h_a83d9fa921488ba63d638c0c0b18a9abd}\label{_me_compass_8h_a83d9fa921488ba63d638c0c0b18a9abd} 
+\#define {\bfseries START\+\_\+\+ADDRESS\+\_\+\+OF\+\_\+\+EEPROM\+\_\+\+BUFFER}~(int16\+\_\+t)(0x00)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for \doxylink{_me_compass_8cpp}{Me\+Compass.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2015/09/08 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for \doxylink{class_me_compass}{Me\+Compass} module, It supports \doxylink{class_me_compass}{Me\+Compass} V1.\+0 device provided by Make\+Block.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_compass_acb63b0ff0fdfb216718b827f66f2915e}{Me\+Compass\+::setpin(uint8\+\_\+t key\+Pin, uint8\+\_\+t led\+Pin)}
+\item void \doxylink{class_me_compass_aa514632f78e2095ee341e146789cc6b3}{Me\+Compass\+::begin(void)}
+\item bool \doxylink{class_me_compass_a20480fba91e33e557ffb210ff06681d6}{Me\+Compass\+::test\+Connection(void)}
+\item double \doxylink{class_me_compass_a544592a96b717dfd4d7f7357d22440a6}{Me\+Compass\+::get\+Angle(void)}
+\item int16\+\_\+t \doxylink{class_me_compass_a968a8f7bc7534fefc8aad19b56472be4}{Me\+Compass\+::get\+Heading\+X(void)}
+\item int16\+\_\+t \doxylink{class_me_compass_a39e81714f6c14f8dcc0faec9330eaa2c}{Me\+Compass\+::get\+Heading\+Y(void)}
+\item int16\+\_\+t \doxylink{class_me_compass_ae0cb31dcc67e6a1f25292edd9506046d}{Me\+Compass\+::get\+Heading\+Z(void)}
+\item int16\+\_\+t \doxylink{class_me_compass_a151c87c12cdcf667faf5f307bae8e418}{Me\+Compass\+::get\+Heading(int16\+\_\+t \texorpdfstring{$\ast$}{*}x, int16\+\_\+t \texorpdfstring{$\ast$}{*}y, int16\+\_\+t \texorpdfstring{$\ast$}{*}z)}
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Lawrence         2015/09/03           1.0.0       Rebuild the old lib.
+Lawrence         2015/09/08           1.0.1       Added some comments and macros.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

@@ -1,0 +1,115 @@
+\doxysection{src/\+Me\+Stepper\+On\+Board.cpp File Reference}
+\hypertarget{_me_stepper_on_board_8cpp}{}\label{_me_stepper_on_board_8cpp}\index{src/MeStepperOnBoard.cpp@{src/MeStepperOnBoard.cpp}}
+
+
+Driver for Stepper device.  
+
+
+{\ttfamily \#include "{}Me\+Stepper\+On\+Board.\+h"{}}\newline
+Include dependency graph for Me\+Stepper\+On\+Board.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=283pt]{_me_stepper_on_board_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_me_stepper_on_board_8cpp_a224b9163917ac32fc95a60d8c1eec3aa}{Direction}} \{ \mbox{\hyperlink{_me_stepper_on_board_8cpp_a224b9163917ac32fc95a60d8c1eec3aaad8096a357e6a61f6746147d0b19467c2}{DIRECTION\+\_\+\+CCW}} = 0
+, \mbox{\hyperlink{_me_stepper_on_board_8cpp_a224b9163917ac32fc95a60d8c1eec3aaa0f98509d24ebeef4508c20b9d8bfa0a6}{DIRECTION\+\_\+\+CW}} = 1
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for Stepper device. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+3 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2018/01/03 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Me Stepper device.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_stepper_on_board_a8cb61d386f7b800f1a2f752c46cfff54}{Me\+Stepper\+On\+Board\+::set\+Micro\+Step(int8\+\_\+t value)};
+\item void \doxylink{class_me_stepper_on_board_a881cf1984ee0cfcb773b5ab6265c40cf}{Me\+Stepper\+On\+Board\+::setpin(int slot)};
+\item void \doxylink{class_me_stepper_on_board_a52fd44017b98f6f557321483f98dda71}{Me\+Stepper\+On\+Board\+::move\+To(long absolute)};
+\item void \doxylink{class_me_stepper_on_board_a952049fc3361c7f33f5bfb2c8f78707e}{Me\+Stepper\+On\+Board\+::move\+To(long absolute, int16\+\_\+t ext\+Id, cb callback)};
+\item void \doxylink{class_me_stepper_on_board_aad362da829622be269f2903cf2000b3e}{Me\+Stepper\+On\+Board\+::move(long relative)};
+\item void \doxylink{class_me_stepper_on_board_a6f0502cf085c9a108cd7c0f29eb18273}{Me\+Stepper\+On\+Board\+::move(long relative, int16\+\_\+t ext\+Id, cb callback)};
+\item boolean \doxylink{class_me_stepper_on_board_a49e9754f36126eee4b63403dc581822f}{Me\+Stepper\+On\+Board\+::run(void)};
+\item boolean \doxylink{class_me_stepper_on_board_a0f376d74435f5cf1f6adece94c372d71}{Me\+Stepper\+On\+Board\+::run\+Speed(void)};
+\item void \doxylink{class_me_stepper_on_board_ab8d690efadd05acd2f453989990872b5}{Me\+Stepper\+On\+Board\+::set\+Max\+Speed(float speed)};
+\item void \doxylink{class_me_stepper_on_board_a568dff526477425da5dd7640dd6f8dca}{Me\+Stepper\+On\+Board\+::set\+Acceleration(float acceleration)};
+\item void \doxylink{class_me_stepper_on_board_a61eea9139c60f539c7e439676d819ba0}{Me\+Stepper\+On\+Board\+::set\+Speed(float speed)};
+\item float \doxylink{class_me_stepper_on_board_aa7bd0bc1c0dd3a147398ec654b4cf8ac}{Me\+Stepper\+On\+Board\+::speed(void)};
+\item long \doxylink{class_me_stepper_on_board_aaa90efc7806ed103617729527bf3f7f7}{Me\+Stepper\+On\+Board\+::distance\+To\+Go(void)};
+\item long \doxylink{class_me_stepper_on_board_a2ad468c8d4083b29aa445d8ee516a16b}{Me\+Stepper\+On\+Board\+::target\+Position(void)};
+\item long \doxylink{class_me_stepper_on_board_a836435093e011021ba4c0db7a3896617}{Me\+Stepper\+On\+Board\+::current\+Position(void)}; ~\newline
+
+\item void \doxylink{class_me_stepper_on_board_af8e05271185ffe7c3bd520c8483d930d}{Me\+Stepper\+On\+Board\+::set\+Current\+Position(long position)}; ~\newline
+
+\item void \doxylink{class_me_stepper_on_board_a951f051a706bdda80961766ce5f2e388}{Me\+Stepper\+On\+Board\+::run\+To\+Position(void)};
+\item boolean \doxylink{class_me_stepper_on_board_ada03839c1d65ef9ffd1bb64db5da0bc9}{Me\+Stepper\+On\+Board\+::run\+Speed\+To\+Position(void)};
+\item void \doxylink{class_me_stepper_on_board_a20298c8fc1fb1ef4998fbcd2dd7c52ba}{Me\+Stepper\+On\+Board\+::run\+To\+New\+Position(long position)};
+\item void \doxylink{class_me_stepper_on_board_ad663fa9672bc29c860558ab65884f51b}{Me\+Stepper\+On\+Board\+::disable\+Outputs(void)};
+\item void \doxylink{class_me_stepper_on_board_af749d02703cca7e3651ee273e918308b}{Me\+Stepper\+On\+Board\+::enable\+Outputs(void)};
+\item void \doxylink{class_me_stepper_on_board_a1f6128e6d2943f70fd9431a0df08fa01}{Me\+Stepper\+On\+Board\+::update(void)};
+\item int16\+\_\+t \doxylink{class_me_stepper_on_board_a3f0d66021a8967ad91b7ed7cd62a8123}{Me\+Stepper\+On\+Board\+::get\+Port(void)};
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan        2016/03/05     1.0.0            Bulid the new
+Mark Yan        2016/05/06     1.0.1            Add function move and moveTo
+Zzipeng         2017/02/20     1.0.2            put the array megaPi\_slots[4] to MegaPi.h/MegaPiPro.h
+Mark Yan        2018/01/03     1.0.3            Change the parameters order of moveTo/move
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_me_stepper_on_board_8cpp_a224b9163917ac32fc95a60d8c1eec3aa}\label{_me_stepper_on_board_8cpp_a224b9163917ac32fc95a60d8c1eec3aa} 
+\index{MeStepperOnBoard.cpp@{MeStepperOnBoard.cpp}!Direction@{Direction}}
+\index{Direction@{Direction}!MeStepperOnBoard.cpp@{MeStepperOnBoard.cpp}}
+\doxysubsubsection{\texorpdfstring{Direction}{Direction}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_me_stepper_8cpp_a224b9163917ac32fc95a60d8c1eec3aa}{Direction}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIRECTION\_CCW@{DIRECTION\_CCW}!MeStepperOnBoard.cpp@{MeStepperOnBoard.cpp}}\index{MeStepperOnBoard.cpp@{MeStepperOnBoard.cpp}!DIRECTION\_CCW@{DIRECTION\_CCW}}}\Hypertarget{_me_stepper_on_board_8cpp_a224b9163917ac32fc95a60d8c1eec3aaad8096a357e6a61f6746147d0b19467c2}\label{_me_stepper_on_board_8cpp_a224b9163917ac32fc95a60d8c1eec3aaad8096a357e6a61f6746147d0b19467c2} 
+DIRECTION\+\_\+\+CCW&Clockwise. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIRECTION\_CW@{DIRECTION\_CW}!MeStepperOnBoard.cpp@{MeStepperOnBoard.cpp}}\index{MeStepperOnBoard.cpp@{MeStepperOnBoard.cpp}!DIRECTION\_CW@{DIRECTION\_CW}}}\Hypertarget{_me_stepper_on_board_8cpp_a224b9163917ac32fc95a60d8c1eec3aaa0f98509d24ebeef4508c20b9d8bfa0a6}\label{_me_stepper_on_board_8cpp_a224b9163917ac32fc95a60d8c1eec3aaa0f98509d24ebeef4508c20b9d8bfa0a6} 
+DIRECTION\+\_\+\+CW&Counter-\/\+Clockwise. \\
+\hline
+
+\end{DoxyEnumFields}

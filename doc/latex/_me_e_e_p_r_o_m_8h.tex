@@ -1,0 +1,164 @@
+\doxysection{src/\+Me\+EEPROM.h File Reference}
+\hypertarget{_me_e_e_p_r_o_m_8h}{}\label{_me_e_e_p_r_o_m_8h}\index{src/MeEEPROM.h@{src/MeEEPROM.h}}
+
+
+Location map for EEPROM.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+EEPROM.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_e_e_p_r_o_m_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a34144c4cd3f85164d543f75a0e03a714}\label{_me_e_e_p_r_o_m_8h_a34144c4cd3f85164d543f75a0e03a714} 
+\#define {\bfseries EEPROM\+\_\+\+START\+\_\+\+POS}~0
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_af3fccf92a7e03012d7bc6bcf73b87038}\label{_me_e_e_p_r_o_m_8h_af3fccf92a7e03012d7bc6bcf73b87038} 
+\#define {\bfseries EEPROM\+\_\+\+IF\+\_\+\+HAVEPID\+\_\+\+CHECK1}~0x\+AB
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a87ccb53f2d5d258d384750caa7e31e02}\label{_me_e_e_p_r_o_m_8h_a87ccb53f2d5d258d384750caa7e31e02} 
+\#define {\bfseries EEPROM\+\_\+\+IF\+\_\+\+HAVEPID\+\_\+\+CHECK2}~0x\+CD
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a82a833298e5d461b4cad2b284ada0098}\label{_me_e_e_p_r_o_m_8h_a82a833298e5d461b4cad2b284ada0098} 
+\#define {\bfseries EEPROM\+\_\+\+CHECK\+\_\+\+START}~0x\+AB
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a04267a6825c5c569836456bd32bb15e4}\label{_me_e_e_p_r_o_m_8h_a04267a6825c5c569836456bd32bb15e4} 
+\#define {\bfseries EEPROM\+\_\+\+CHECK\+\_\+\+MID}~0x\+CD
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_add1ff69e4927b48a36255f79dd0f3ecb}\label{_me_e_e_p_r_o_m_8h_add1ff69e4927b48a36255f79dd0f3ecb} 
+\#define {\bfseries EEPROM\+\_\+\+CHECK\+\_\+\+END}~0x\+EF
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a2fca414a5b064fb5356c7153dcf23192}\label{_me_e_e_p_r_o_m_8h_a2fca414a5b064fb5356c7153dcf23192} 
+\#define {\bfseries ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+PARTITION\+\_\+\+CHECK}~EEPROM\+\_\+\+START\+\_\+\+POS
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_ae81f08a06a30414f75619886669e79f8}\label{_me_e_e_p_r_o_m_8h_ae81f08a06a30414f75619886669e79f8} 
+\#define {\bfseries ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+START\+\_\+\+ADDR}~ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+PARTITION\+\_\+\+CHECK  + 2
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a50b0d366e65727931116e25ae3256ebd}\label{_me_e_e_p_r_o_m_8h_a50b0d366e65727931116e25ae3256ebd} 
+\#define {\bfseries ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+PID\+\_\+\+ADDR}~ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+START\+\_\+\+ADDR + 1
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a220472b186a4e5e16e18bad289a1eea6}\label{_me_e_e_p_r_o_m_8h_a220472b186a4e5e16e18bad289a1eea6} 
+\#define {\bfseries ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+RATIO\+\_\+\+ADDR}~ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+PID\+\_\+\+ADDR + 16
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a10108b201b91b3634fa6006a022fcaa6}\label{_me_e_e_p_r_o_m_8h_a10108b201b91b3634fa6006a022fcaa6} 
+\#define {\bfseries ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+PLUS\+\_\+\+ADDR}~ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+RATIO\+\_\+\+ADDR + 4
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a01ab7d6e15c256cc0021f7da223ed2e4}\label{_me_e_e_p_r_o_m_8h_a01ab7d6e15c256cc0021f7da223ed2e4} 
+\#define {\bfseries ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+END\+\_\+\+ADDR}~ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+PLUS\+\_\+\+ADDR + 2
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_ad577be199a4d8ba43585cc85384539d0}\label{_me_e_e_p_r_o_m_8h_ad577be199a4d8ba43585cc85384539d0} 
+\#define {\bfseries ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT1\+\_\+\+PARTITION\+\_\+\+CHECK}~ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+END\+\_\+\+ADDR + 1
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a7bb4ab0e6538d9bbf34d24f6736b665d}\label{_me_e_e_p_r_o_m_8h_a7bb4ab0e6538d9bbf34d24f6736b665d} 
+\#define {\bfseries ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT1\+\_\+\+START\+\_\+\+ADDR}~ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT1\+\_\+\+PARTITION\+\_\+\+CHECK  + 2
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a39b7e331fbf387b0297bbd299a5cd4b3}\label{_me_e_e_p_r_o_m_8h_a39b7e331fbf387b0297bbd299a5cd4b3} 
+\#define {\bfseries ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT1\+\_\+\+PID\+\_\+\+ADDR}~ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT1\+\_\+\+START\+\_\+\+ADDR + 1
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a9a2957a1e1ea0679bb5d5bbe28b4fbe1}\label{_me_e_e_p_r_o_m_8h_a9a2957a1e1ea0679bb5d5bbe28b4fbe1} 
+\#define {\bfseries ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT1\+\_\+\+RATIO\+\_\+\+ADDR}~ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT1\+\_\+\+PID\+\_\+\+ADDR + 16
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_abdded3a4a5eeae4e85e516931747a187}\label{_me_e_e_p_r_o_m_8h_abdded3a4a5eeae4e85e516931747a187} 
+\#define {\bfseries ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT1\+\_\+\+PLUS\+\_\+\+ADDR}~ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT1\+\_\+\+RATIO\+\_\+\+ADDR + 4
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a01ab7d6e15c256cc0021f7da223ed2e4}\label{_me_e_e_p_r_o_m_8h_a01ab7d6e15c256cc0021f7da223ed2e4} 
+\#define {\bfseries ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+END\+\_\+\+ADDR}~ON\+\_\+\+BOARD\+\_\+\+ENCODER\+\_\+\+SLOT0\+\_\+\+PLUS\+\_\+\+ADDR + 2
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a684c01e5dd97302d771a52afbd8d9f47}\label{_me_e_e_p_r_o_m_8h_a684c01e5dd97302d771a52afbd8d9f47} 
+\#define {\bfseries BALANCED\+\_\+\+CAR\+\_\+\+PARTITION\+\_\+\+CHECK}~0x50
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_afe2be7c1d888995b6ea292e4a511d10f}\label{_me_e_e_p_r_o_m_8h_afe2be7c1d888995b6ea292e4a511d10f} 
+\#define {\bfseries BALANCED\+\_\+\+CAR\+\_\+\+START\+\_\+\+ADDR}~BALANCED\+\_\+\+CAR\+\_\+\+PARTITION\+\_\+\+CHECK + 2
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a22c0802209cd85fb2643d8f52a063bd4}\label{_me_e_e_p_r_o_m_8h_a22c0802209cd85fb2643d8f52a063bd4} 
+\#define {\bfseries BALANCED\+\_\+\+CAR\+\_\+\+NATURAL\+\_\+\+BALANCE}~BALANCED\+\_\+\+CAR\+\_\+\+START\+\_\+\+ADDR + 1
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_af25b36d9530fae8873be4d846fef7c65}\label{_me_e_e_p_r_o_m_8h_af25b36d9530fae8873be4d846fef7c65} 
+\#define {\bfseries BALANCED\+\_\+\+CAR\+\_\+\+ANGLE\+\_\+\+PID\+\_\+\+ADDR}~BALANCED\+\_\+\+CAR\+\_\+\+NATURAL\+\_\+\+BALANCE + 4
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_ace1a298671f9b4bd9aec7c091907923f}\label{_me_e_e_p_r_o_m_8h_ace1a298671f9b4bd9aec7c091907923f} 
+\#define {\bfseries BALANCED\+\_\+\+CAR\+\_\+\+SPEED\+\_\+\+PID\+\_\+\+ADDR}~BALANCED\+\_\+\+CAR\+\_\+\+ANGLE\+\_\+\+PID\+\_\+\+ADDR + 12
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a71c4916b7741924ac06d450f923747e6}\label{_me_e_e_p_r_o_m_8h_a71c4916b7741924ac06d450f923747e6} 
+\#define {\bfseries BALANCED\+\_\+\+CAR\+\_\+\+DIR\+\_\+\+PID\+\_\+\+ADDR}~BALANCED\+\_\+\+CAR\+\_\+\+SPEED\+\_\+\+PID\+\_\+\+ADDR + 12
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_ac7e128034f8effe9c4305db901166765}\label{_me_e_e_p_r_o_m_8h_ac7e128034f8effe9c4305db901166765} 
+\#define {\bfseries BALANCED\+\_\+\+CAR\+\_\+\+END\+\_\+\+ADDR}~BALANCED\+\_\+\+CAR\+\_\+\+DIR\+\_\+\+PID\+\_\+\+ADDR + 4
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a6a0a5261d62fabc081eb475d45732540}\label{_me_e_e_p_r_o_m_8h_a6a0a5261d62fabc081eb475d45732540} 
+\#define {\bfseries AURIGA\+\_\+\+MODE\+\_\+\+PARTITION\+\_\+\+CHECK}~0x80
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a5663babe5a782d9166da254cc22287bc}\label{_me_e_e_p_r_o_m_8h_a5663babe5a782d9166da254cc22287bc} 
+\#define {\bfseries AURIGA\+\_\+\+MODE\+\_\+\+START\+\_\+\+ADDR}~AURIGA\+\_\+\+MODE\+\_\+\+PARTITION\+\_\+\+CHECK + 2
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_ae61189a84838e491f662521c144b7622}\label{_me_e_e_p_r_o_m_8h_ae61189a84838e491f662521c144b7622} 
+\#define {\bfseries AURIGA\+\_\+\+MODE\+\_\+\+CONFIGURE}~AURIGA\+\_\+\+MODE\+\_\+\+START\+\_\+\+ADDR + 1
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a6f12558a07d8c58ed6aaffbf578761e4}\label{_me_e_e_p_r_o_m_8h_a6f12558a07d8c58ed6aaffbf578761e4} 
+\#define {\bfseries AURIGA\+\_\+\+MODE\+\_\+\+END\+\_\+\+ADDR}~AURIGA\+\_\+\+MODE\+\_\+\+CONFIGURE + 1
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a08b14e666a658aad052118856139d03c}\label{_me_e_e_p_r_o_m_8h_a08b14e666a658aad052118856139d03c} 
+\#define {\bfseries MEGAPI\+\_\+\+MODE\+\_\+\+PARTITION\+\_\+\+CHECK}~0x90
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a805298f3ad9bff3aadc146ece897f4d3}\label{_me_e_e_p_r_o_m_8h_a805298f3ad9bff3aadc146ece897f4d3} 
+\#define {\bfseries MEGAPI\+\_\+\+MODE\+\_\+\+START\+\_\+\+ADDR}~MEGAPI\+\_\+\+MODE\+\_\+\+PARTITION\+\_\+\+CHECK + 2
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_ab447053a0b4dad99468861dd43350a44}\label{_me_e_e_p_r_o_m_8h_ab447053a0b4dad99468861dd43350a44} 
+\#define {\bfseries MEGAPI\+\_\+\+MODE\+\_\+\+CONFIGURE}~MEGAPI\+\_\+\+MODE\+\_\+\+START\+\_\+\+ADDR + 1
+\item 
+\Hypertarget{_me_e_e_p_r_o_m_8h_a9fd728662b0e38cea41c47095d220952}\label{_me_e_e_p_r_o_m_8h_a9fd728662b0e38cea41c47095d220952} 
+\#define {\bfseries MEGAPI\+\_\+\+MODE\+\_\+\+END\+\_\+\+ADDR}~MEGAPI\+\_\+\+MODE\+\_\+\+CONFIGURE + 1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Location map for EEPROM. 
+
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0. 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/01/21
+\end{DoxyDate}
+EEPROM location map.
+
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a location map for EEPROM that used by makeblock libraries.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+ Mark Yan         2015/09/02          1.0.0         build the new
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

@@ -1,0 +1,380 @@
+\doxysection{Me\+Compass Class Reference}
+\hypertarget{class_me_compass}{}\label{class_me_compass}\index{MeCompass@{MeCompass}}
+
+
+Driver for \doxylink{class_me_compass}{Me\+Compass} module.  
+
+
+
+
+{\ttfamily \#include $<$src/\+Me\+Compass.\+h$>$}
+
+
+
+Inheritance diagram for Me\+Compass\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=151pt]{class_me_compass__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Me\+Compass\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=151pt]{class_me_compass__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_compass_a2713d01cf20bac751fa1ac0d5ac0e00c}{Me\+Compass}} ()
+\item 
+\mbox{\hyperlink{class_me_compass_af6727a5bdba3f2042adeec5d5a61285d}{Me\+Compass}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_compass_ab15cfe4fdf45cc69008bef9cf39f4abf}{Me\+Compass}} (uint8\+\_\+t port, uint8\+\_\+t address)
+\item 
+void \mbox{\hyperlink{class_me_compass_acb63b0ff0fdfb216718b827f66f2915e}{setpin}} (uint8\+\_\+t key\+Pin, uint8\+\_\+t led\+Pin)
+\item 
+void \mbox{\hyperlink{class_me_compass_aa514632f78e2095ee341e146789cc6b3}{begin}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_compass_a20480fba91e33e557ffb210ff06681d6}{test\+Connection}} (void)
+\item 
+double \mbox{\hyperlink{class_me_compass_a544592a96b717dfd4d7f7357d22440a6}{get\+Angle}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_compass_a968a8f7bc7534fefc8aad19b56472be4}{get\+HeadingX}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_compass_a39e81714f6c14f8dcc0faec9330eaa2c}{get\+HeadingY}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_compass_ae0cb31dcc67e6a1f25292edd9506046d}{get\+HeadingZ}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_compass_a151c87c12cdcf667faf5f307bae8e418}{get\+Heading}} (int16\+\_\+t \texorpdfstring{$\ast$}{*}x, int16\+\_\+t \texorpdfstring{$\ast$}{*}y, int16\+\_\+t \texorpdfstring{$\ast$}{*}z)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_me_port_ae4b9e8e718b626d0ce4017a430878210}{Me\+Port}} (void)
+\item 
+\mbox{\hyperlink{class_me_port_a7a1d7cdf061740148cd893ba481420a3}{Me\+Port}} (uint8\+\_\+t port)
+\item 
+\mbox{\hyperlink{class_me_port_a1458b606f98da409d7ab4fa7d09c6816}{Me\+Port}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8d9ca22e35477573b27c4165ac61def0}{get\+Port}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4c73dec349340e958b9567b06fa6f27c}{get\+Slot}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a8b7b990f5fa85dfc28f7f3d0d7ba46b9}{d\+Read1}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_ab4fd13565335bd781da8f44bae803031}{d\+Read2}} (uint8\+\_\+t mode=INPUT)
+\item 
+bool \mbox{\hyperlink{class_me_port_aabcb0e1dc89942cf302b8cbac2cbd0a5}{dp\+Read1}} (void)
+\item 
+bool \mbox{\hyperlink{class_me_port_a2e4b6faf3e9494e819ccee47dfb8010e}{dp\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_a9d5f60427202c26bc8da4b1e6a66c5c2}{d\+Write1}} (bool value)
+\item 
+void \mbox{\hyperlink{class_me_port_a0d9ee041f8361f45bcc83bed9577415f}{d\+Write2}} (bool value)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_acfd28b1ab8cc6af5bf8223446022525c}{a\+Read1}} (void)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_me_port_a63709dcbe9850c0d3baec1fed72809bf}{a\+Read2}} (void)
+\item 
+void \mbox{\hyperlink{class_me_port_adb4d7959f2059bf9986a8e5a631988ae}{a\+Write1}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a3834f0f30618ec31789d524dd367e44f}{a\+Write2}} (int16\+\_\+t value)
+\item 
+void \mbox{\hyperlink{class_me_port_a7b82ce913d98ecff906569d795073892}{reset}} (uint8\+\_\+t port)
+\item 
+void \mbox{\hyperlink{class_me_port_a91e3cca62e5f8fffead56f8104488d4d}{reset}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a1ed16a0f863a618cc9f32b27015107e7}{pin1}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a8a1b3cd06dffbb48d40c3adf25011803}{pin2}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_aea7dad0142d940c0395b1782fe5adeae}{pin}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a637d42b5a62d655b8517bc8a363206f3}{pin}} (uint8\+\_\+t port, uint8\+\_\+t slot)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_me_port}{Me\+Port}}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_adc9cdd4e574061d41244fc662974544f}{\+\_\+port}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{class_me_port_a4159543b593b047cd82fedab30b178b7}{\+\_\+slot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for \doxylink{class_me_compass}{Me\+Compass} module. 
+
+Class\+: \doxylink{class_me_compass}{Me\+Compass} \begin{DoxyParagraph}{Description}
+Declaration of Class \doxylink{class_me_compass}{Me\+Compass}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright (C), 2012-\/2016, Make\+Block}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_me_compass_a2713d01cf20bac751fa1ac0d5ac0e00c}\label{class_me_compass_a2713d01cf20bac751fa1ac0d5ac0e00c} 
+\index{MeCompass@{MeCompass}!MeCompass@{MeCompass}}
+\index{MeCompass@{MeCompass}!MeCompass@{MeCompass}}
+\doxysubsubsection{\texorpdfstring{MeCompass()}{MeCompass()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Me\+Compass\+::\+Me\+Compass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_compass}{Me\+Compass} to arduino port, no pins are used or initialized here \Hypertarget{class_me_compass_af6727a5bdba3f2042adeec5d5a61285d}\label{class_me_compass_af6727a5bdba3f2042adeec5d5a61285d} 
+\index{MeCompass@{MeCompass}!MeCompass@{MeCompass}}
+\index{MeCompass@{MeCompass}!MeCompass@{MeCompass}}
+\doxysubsubsection{\texorpdfstring{MeCompass()}{MeCompass()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Me\+Compass\+::\+Me\+Compass (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_compass}{Me\+Compass} to arduino port, no pins are used or initialized here, but PWM frequency set to 976 Hz 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_me_compass_ab15cfe4fdf45cc69008bef9cf39f4abf}\label{class_me_compass_ab15cfe4fdf45cc69008bef9cf39f4abf} 
+\index{MeCompass@{MeCompass}!MeCompass@{MeCompass}}
+\index{MeCompass@{MeCompass}!MeCompass@{MeCompass}}
+\doxysubsubsection{\texorpdfstring{MeCompass()}{MeCompass()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Me\+Compass\+::\+Me\+Compass (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{uint8\+\_\+t}]{address }\end{DoxyParamCaption})}
+
+Alternate Constructor which can call your own function to map the \doxylink{class_me_compass}{Me\+Compass} to arduino port and change the i2c device address no pins are used or initialized here, but PWM frequency set to 976 Hz 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & -\/ RJ25 port from PORT\+\_\+1 to M2 \\
+\hline
+\mbox{\texttt{ in}}  & {\em address} & -\/ the i2c address you want to set \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_me_compass_aa514632f78e2095ee341e146789cc6b3}\label{class_me_compass_aa514632f78e2095ee341e146789cc6b3} 
+\index{MeCompass@{MeCompass}!begin@{begin}}
+\index{begin@{begin}!MeCompass@{MeCompass}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily void Me\+Compass\+::begin (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+begin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Initialize the \doxylink{class_me_compass}{Me\+Compass}. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+You can check the HMC5883 datasheet for the macro definition. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_compass_a544592a96b717dfd4d7f7357d22440a6}\label{class_me_compass_a544592a96b717dfd4d7f7357d22440a6} 
+\index{MeCompass@{MeCompass}!getAngle@{getAngle}}
+\index{getAngle@{getAngle}!MeCompass@{MeCompass}}
+\doxysubsubsection{\texorpdfstring{getAngle()}{getAngle()}}
+{\footnotesize\ttfamily double Me\+Compass\+::get\+Angle (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Angle 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Calculate the yaw angle by the calibrated sensor value. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The angle value from 0 to 360 degrees. If not success, return an error code. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+Will return a correct angle when you keep the \doxylink{class_me_compass}{Me\+Compass} working in the plane which have calibrated. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_compass_a151c87c12cdcf667faf5f307bae8e418}\label{class_me_compass_a151c87c12cdcf667faf5f307bae8e418} 
+\index{MeCompass@{MeCompass}!getHeading@{getHeading}}
+\index{getHeading@{getHeading}!MeCompass@{MeCompass}}
+\doxysubsubsection{\texorpdfstring{getHeading()}{getHeading()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Compass\+::get\+Heading (\begin{DoxyParamCaption}\item[{int16\+\_\+t \texorpdfstring{$\ast$}{*}}]{x,  }\item[{int16\+\_\+t \texorpdfstring{$\ast$}{*}}]{y,  }\item[{int16\+\_\+t \texorpdfstring{$\ast$}{*}}]{z }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+Heading 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the sensor value of 3 axes including X-\/axis, Y-\/axis and Z-\/axis. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em x} & -\/ the address of the variable you want to store the value in. \\
+\hline
+\mbox{\texttt{ in}}  & {\em y} & -\/ the address of the variable you want to store the value in. \\
+\hline
+\mbox{\texttt{ in}}  & {\em z} & -\/ the address of the variable you want to store the value in. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+If error, will return a error code, else return 0. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+The sequence of the sensor data registors of HMC5883 is X, Z, Y. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_compass_a968a8f7bc7534fefc8aad19b56472be4}\label{class_me_compass_a968a8f7bc7534fefc8aad19b56472be4} 
+\index{MeCompass@{MeCompass}!getHeadingX@{getHeadingX}}
+\index{getHeadingX@{getHeadingX}!MeCompass@{MeCompass}}
+\doxysubsubsection{\texorpdfstring{getHeadingX()}{getHeadingX()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Compass\+::get\+HeadingX (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+HeadingX 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the sensor value of X-\/axis. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The sensor value of X-\/axis. If error, will return a error code. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+The sensor value is a 16 bits signed integer. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_compass_a39e81714f6c14f8dcc0faec9330eaa2c}\label{class_me_compass_a39e81714f6c14f8dcc0faec9330eaa2c} 
+\index{MeCompass@{MeCompass}!getHeadingY@{getHeadingY}}
+\index{getHeadingY@{getHeadingY}!MeCompass@{MeCompass}}
+\doxysubsubsection{\texorpdfstring{getHeadingY()}{getHeadingY()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Compass\+::get\+HeadingY (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+HeadingY 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the sensor value of Y-\/axis. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The sensor value of Y-\/axis. If error, will return a error code. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+The sensor value is a 16 bits signed integer. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_compass_ae0cb31dcc67e6a1f25292edd9506046d}\label{class_me_compass_ae0cb31dcc67e6a1f25292edd9506046d} 
+\index{MeCompass@{MeCompass}!getHeadingZ@{getHeadingZ}}
+\index{getHeadingZ@{getHeadingZ}!MeCompass@{MeCompass}}
+\doxysubsubsection{\texorpdfstring{getHeadingZ()}{getHeadingZ()}}
+{\footnotesize\ttfamily int16\+\_\+t Me\+Compass\+::get\+HeadingZ (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+get\+HeadingZ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Get the sensor value of Z-\/axis. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+The sensor value of Z-\/axis. If error, will return a error code. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+The sensor value is a 16 bits signed integer. 
+\end{DoxyParagraph}
+\Hypertarget{class_me_compass_acb63b0ff0fdfb216718b827f66f2915e}\label{class_me_compass_acb63b0ff0fdfb216718b827f66f2915e} 
+\index{MeCompass@{MeCompass}!setpin@{setpin}}
+\index{setpin@{setpin}!MeCompass@{MeCompass}}
+\doxysubsubsection{\texorpdfstring{setpin()}{setpin()}}
+{\footnotesize\ttfamily void Me\+Compass\+::setpin (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{key\+Pin,  }\item[{uint8\+\_\+t}]{led\+Pin }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+setpin 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Set the PIN of the button module. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em key\+Pin} & -\/ pin mapping for arduino \\
+\hline
+\mbox{\texttt{ in}}  & {\em led\+Pin} & -\/ pin mapping for arduino \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+None. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+Set global variable \+\_\+\+Key\+Pin, \+\_\+led\+Pin, s1 and s2 
+\end{DoxyParagraph}
+\Hypertarget{class_me_compass_a20480fba91e33e557ffb210ff06681d6}\label{class_me_compass_a20480fba91e33e557ffb210ff06681d6} 
+\index{MeCompass@{MeCompass}!testConnection@{testConnection}}
+\index{testConnection@{testConnection}!MeCompass@{MeCompass}}
+\doxysubsubsection{\texorpdfstring{testConnection()}{testConnection()}}
+{\footnotesize\ttfamily bool Me\+Compass\+::test\+Connection (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\begin{DoxyParagraph}{Function}
+test\+Connection 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+Identify the device whether is the \doxylink{class_me_compass}{Me\+Compass}. 
+\end{DoxyParagraph}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Output}
+None 
+\end{DoxyParagraph}
+\begin{DoxyReturn}{Returns}
+true or false 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Others}
+You can check the HMC5883 datasheet for the identification code. 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_me_compass_8h}{Me\+Compass.\+h}}\item 
+src/\mbox{\hyperlink{_me_compass_8cpp}{Me\+Compass.\+cpp}}\end{DoxyCompactItemize}

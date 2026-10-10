@@ -1,0 +1,330 @@
+\doxysection{SPI.\+h}
+\hypertarget{_s_p_i_8h_source}{}\label{_s_p_i_8h_source}\index{src/utility/SPI.h@{src/utility/SPI.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2010\ by\ Cristian\ Maglie\ <c.maglie@arduino.cc>}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2014\ by\ Paul\ Stoffregen\ <paul@pjrc.com>\ (Transaction\ API)}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2014\ by\ Matthijs\ Kooijman\ <matthijs@stdin.nl>\ (SPISettings\ AVR)}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2014\ by\ Andrew\ J.\ Kroll\ <xxxajk@gmail.com>\ (atomicity\ fixes)}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ SPI\ Master\ library\ for\ arduino.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ This\ file\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ it\ under\ the\ terms\ of\ either\ the\ GNU\ General\ Public\ License\ version\ 2}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ or\ the\ GNU\ Lesser\ General\ Public\ License\ version\ 2.1,\ both\ as}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ published\ by\ the\ Free\ Software\ Foundation.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#ifndef\ \_SPI\_H\_INCLUDED}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ \_SPI\_H\_INCLUDED}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ SPI\_HAS\_TRANSACTION\ means\ SPI\ has\ beginTransaction(),\ endTransaction(),}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ usingInterrupt(),\ and\ SPISetting(clock,\ bitOrder,\ dataMode)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ SPI\_HAS\_TRANSACTION\ 1}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ SPI\_HAS\_NOTUSINGINTERRUPT\ means\ that\ SPI\ has\ notUsingInterrupt()\ method}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ SPI\_HAS\_NOTUSINGINTERRUPT\ 1}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ SPI\_ATOMIC\_VERSION\ means\ that\ SPI\ has\ atomicity\ fixes\ and\ what\ version.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ This\ way\ when\ there\ is\ a\ bug\ fix\ you\ can\ check\ this\ define\ to\ alert\ users}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ of\ your\ code\ if\ it\ uses\ better\ version\ of\ this\ library.}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ This\ also\ implies\ everything\ that\ SPI\_HAS\_TRANSACTION\ as\ documented\ above\ is}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ available\ too.}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ SPI\_ATOMIC\_VERSION\ 1}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ Uncomment\ this\ line\ to\ add\ detection\ of\ mismatched\ begin/end\ transactions.}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ A\ mismatch\ occurs\ if\ other\ libraries\ fail\ to\ use\ SPI.endTransaction()\ for}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ each\ SPI.beginTransaction().\ \ Connect\ an\ LED\ to\ this\ pin.\ \ The\ LED\ will\ turn}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ on\ if\ any\ mismatch\ is\ ever\ detected.}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\#define\ SPI\_TRANSACTION\_MISMATCH\_LED\ 5}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifndef\ LSBFIRST}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ LSBFIRST\ 0}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#ifndef\ MSBFIRST}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ MSBFIRST\ 1}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ SPI\_CLOCK\_DIV4\ 0x00}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ SPI\_CLOCK\_DIV16\ 0x01}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ SPI\_CLOCK\_DIV64\ 0x02}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ SPI\_CLOCK\_DIV128\ 0x03}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ SPI\_CLOCK\_DIV2\ 0x04}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ SPI\_CLOCK\_DIV8\ 0x05}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ SPI\_CLOCK\_DIV32\ 0x06}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ SPI\_MODE0\ 0x00}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ SPI\_MODE1\ 0x04}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ SPI\_MODE2\ 0x08}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ SPI\_MODE3\ 0x0C}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ SPI\_MODE\_MASK\ 0x0C\ \ }\textcolor{comment}{//\ CPOL\ =\ bit\ 3,\ CPHA\ =\ bit\ 2\ on\ SPCR}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ SPI\_CLOCK\_MASK\ 0x03\ \ }\textcolor{comment}{//\ SPR1\ =\ bit\ 1,\ SPR0\ =\ bit\ 0\ on\ SPCR}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ SPI\_2XCLOCK\_MASK\ 0x01\ \ }\textcolor{comment}{//\ SPI2X\ =\ bit\ 0\ on\ SPSR}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ define\ SPI\_AVR\_EIMSK\ for\ AVR\ boards\ with\ external\ interrupt\ pins}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#if\ defined(EIMSK)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\ \ \#define\ SPI\_AVR\_EIMSK\ \ EIMSK}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#elif\ defined(GICR)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \#define\ SPI\_AVR\_EIMSK\ \ GICR}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#elif\ defined(GIMSK)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \#define\ SPI\_AVR\_EIMSK\ \ GIMSK}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_p_i_settings}{SPISettings}}\ \{}
+\DoxyCodeLine{00073\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00074\ \ \ \mbox{\hyperlink{class_s_p_i_settings}{SPISettings}}(uint32\_t\ clock,\ uint8\_t\ bitOrder,\ uint8\_t\ dataMode)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_\_builtin\_constant\_p(clock))\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ init\_AlwaysInline(clock,\ bitOrder,\ dataMode);}
+\DoxyCodeLine{00077\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ init\_MightInline(clock,\ bitOrder,\ dataMode);}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \mbox{\hyperlink{class_s_p_i_settings}{SPISettings}}()\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ init\_AlwaysInline(4000000,\ MSBFIRST,\ SPI\_MODE0);}
+\DoxyCodeLine{00083\ \ \ \}}
+\DoxyCodeLine{00084\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordtype}{void}\ init\_MightInline(uint32\_t\ clock,\ uint8\_t\ bitOrder,\ uint8\_t\ dataMode)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ init\_AlwaysInline(clock,\ bitOrder,\ dataMode);}
+\DoxyCodeLine{00087\ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordtype}{void}\ init\_AlwaysInline(uint32\_t\ clock,\ uint8\_t\ bitOrder,\ uint8\_t\ dataMode)}
+\DoxyCodeLine{00089\ \ \ \ \ \_\_attribute\_\_((\_\_always\_inline\_\_))\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ Clock\ settings\ are\ defined\ as\ follows.\ Note\ that\ this\ shows\ SPI2X}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ inverted,\ so\ the\ bits\ form\ increasing\ numbers.\ Also\ note\ that}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ fosc/64\ appears\ twice}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ SPR1\ SPR0\ \string~SPI2X\ Freq}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ \ \ 0\ \ \ \ 0\ \ \ \ \ 0\ \ \ fosc/2}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ \ \ 0\ \ \ \ 0\ \ \ \ \ 1\ \ \ fosc/4}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ \ \ 0\ \ \ \ 1\ \ \ \ \ 0\ \ \ fosc/8}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ \ \ 0\ \ \ \ 1\ \ \ \ \ 1\ \ \ fosc/16}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ \ \ 1\ \ \ \ 0\ \ \ \ \ 0\ \ \ fosc/32}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ \ \ 1\ \ \ \ 0\ \ \ \ \ 1\ \ \ fosc/64}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ \ \ 1\ \ \ \ 1\ \ \ \ \ 0\ \ \ fosc/64}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ \ \ 1\ \ \ \ 1\ \ \ \ \ 1\ \ \ fosc/128}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ We\ find\ the\ fastest\ clock\ that\ is\ less\ than\ or\ equal\ to\ the}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ given\ clock\ rate.\ The\ clock\ divider\ that\ results\ in\ clock\_setting}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ is\ 2\ \string^\string^\ (clock\_div\ +\ 1).\ If\ nothing\ is\ slow\ enough,\ we'll\ use\ the}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ slowest\ (128\ ==\ 2\ \string^\string^\ 7,\ so\ clock\_div\ =\ 6).}}
+\DoxyCodeLine{00107\ \ \ \ \ uint8\_t\ clockDiv;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ When\ the\ clock\ is\ known\ at\ compiletime,\ use\ this\ if-\/then-\/else}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ cascade,\ which\ the\ compiler\ knows\ how\ to\ completely\ optimize}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ away.\ When\ clock\ is\ not\ known,\ use\ a\ loop\ instead,\ which\ generates}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ shorter\ code.}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_\_builtin\_constant\_p(clock))\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (clock\ >=\ F\_CPU\ /\ 2)\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ clockDiv\ =\ 0;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (clock\ >=\ F\_CPU\ /\ 4)\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ clockDiv\ =\ 1;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (clock\ >=\ F\_CPU\ /\ 8)\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ clockDiv\ =\ 2;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (clock\ >=\ F\_CPU\ /\ 16)\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ clockDiv\ =\ 3;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (clock\ >=\ F\_CPU\ /\ 32)\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ clockDiv\ =\ 4;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (clock\ >=\ F\_CPU\ /\ 64)\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ clockDiv\ =\ 5;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ clockDiv\ =\ 6;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ uint32\_t\ clockSetting\ =\ F\_CPU\ /\ 2;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ clockDiv\ =\ 0;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (clockDiv\ <\ 6\ \&\&\ clock\ <\ clockSetting)\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ clockSetting\ /=\ 2;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ clockDiv++;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//\ Compensate\ for\ the\ duplicate\ fosc/64}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{if}\ (clockDiv\ ==\ 6)}
+\DoxyCodeLine{00140\ \ \ \ \ clockDiv\ =\ 7;}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ Invert\ the\ SPI2X\ bit}}
+\DoxyCodeLine{00143\ \ \ \ \ clockDiv\ \string^=\ 0x1;}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{//\ Pack\ into\ the\ SPISettings\ class}}
+\DoxyCodeLine{00146\ \ \ \ \ spcr\ =\ \_BV(SPE)\ |\ \_BV(MSTR)\ |\ ((bitOrder\ ==\ LSBFIRST)\ ?\ \_BV(DORD)\ :\ 0)\ |}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ (dataMode\ \&\ SPI\_MODE\_MASK)\ |\ ((clockDiv\ >>\ 1)\ \&\ SPI\_CLOCK\_MASK);}
+\DoxyCodeLine{00148\ \ \ \ \ spsr\ =\ clockDiv\ \&\ SPI\_2XCLOCK\_MASK;}
+\DoxyCodeLine{00149\ \ \ \}}
+\DoxyCodeLine{00150\ \ \ uint8\_t\ spcr;}
+\DoxyCodeLine{00151\ \ \ uint8\_t\ spsr;}
+\DoxyCodeLine{00152\ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_p_i_class}{SPIClass}};}
+\DoxyCodeLine{00153\ \};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_p_i_class}{SPIClass}}\ \{}
+\DoxyCodeLine{00157\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00158\ \ \ \textcolor{comment}{//\ Initialize\ the\ SPI\ library}}
+\DoxyCodeLine{00159\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ begin();}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{comment}{//\ If\ SPI\ is\ used\ from\ within\ an\ interrupt,\ this\ function\ registers}}
+\DoxyCodeLine{00162\ \ \ \textcolor{comment}{//\ that\ interrupt\ with\ the\ SPI\ library,\ so\ beginTransaction()\ can}}
+\DoxyCodeLine{00163\ \ \ \textcolor{comment}{//\ prevent\ conflicts.\ \ The\ input\ interruptNumber\ is\ the\ number\ used}}
+\DoxyCodeLine{00164\ \ \ \textcolor{comment}{//\ with\ attachInterrupt.\ \ If\ SPI\ is\ used\ from\ a\ different\ interrupt}}
+\DoxyCodeLine{00165\ \ \ \textcolor{comment}{//\ (eg,\ a\ timer),\ interruptNumber\ should\ be\ 255.}}
+\DoxyCodeLine{00166\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ usingInterrupt(uint8\_t\ interruptNumber);}
+\DoxyCodeLine{00167\ \ \ \textcolor{comment}{//\ And\ this\ does\ the\ opposite.}}
+\DoxyCodeLine{00168\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ notUsingInterrupt(uint8\_t\ interruptNumber);}
+\DoxyCodeLine{00169\ \ \ \textcolor{comment}{//\ Note:\ the\ usingInterrupt\ and\ notUsingInterrupt\ functions\ should}}
+\DoxyCodeLine{00170\ \ \ \textcolor{comment}{//\ not\ to\ be\ called\ from\ ISR\ context\ or\ inside\ a\ transaction.}}
+\DoxyCodeLine{00171\ \ \ \textcolor{comment}{//\ For\ details\ see:}}
+\DoxyCodeLine{00172\ \ \ \textcolor{comment}{//\ https://github.com/arduino/Arduino/pull/2381}}
+\DoxyCodeLine{00173\ \ \ \textcolor{comment}{//\ https://github.com/arduino/Arduino/pull/2449}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \textcolor{comment}{//\ Before\ using\ SPI.transfer()\ or\ asserting\ chip\ select\ pins,}}
+\DoxyCodeLine{00176\ \ \ \textcolor{comment}{//\ this\ function\ is\ used\ to\ gain\ exclusive\ access\ to\ the\ SPI\ bus}}
+\DoxyCodeLine{00177\ \ \ \textcolor{comment}{//\ and\ configure\ the\ correct\ settings.}}
+\DoxyCodeLine{00178\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ beginTransaction(\mbox{\hyperlink{class_s_p_i_settings}{SPISettings}}\ settings)\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{if}\ (interruptMode\ >\ 0)\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ uint8\_t\ sreg\ =\ SREG;}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ noInterrupts();}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\ \ \ \ \ \ \#ifdef\ SPI\_AVR\_EIMSK}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (interruptMode\ ==\ 1)\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ interruptSave\ =\ SPI\_AVR\_EIMSK;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ SPI\_AVR\_EIMSK\ \&=\ \string~interruptMask;}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ SREG\ =\ sreg;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ interruptSave\ =\ sreg;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ SPI\_TRANSACTION\_MISMATCH\_LED}}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordflow}{if}\ (inTransactionFlag)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ pinMode(SPI\_TRANSACTION\_MISMATCH\_LED,\ OUTPUT);}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ digitalWrite(SPI\_TRANSACTION\_MISMATCH\_LED,\ HIGH);}
+\DoxyCodeLine{00199\ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ inTransactionFlag\ =\ 1;}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ SPCR\ =\ settings.spcr;}
+\DoxyCodeLine{00204\ \ \ \ \ SPSR\ =\ settings.spsr;}
+\DoxyCodeLine{00205\ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \textcolor{comment}{//\ Write\ to\ the\ SPI\ bus\ (MOSI\ pin)\ and\ also\ receive\ (MISO\ pin)}}
+\DoxyCodeLine{00208\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ uint8\_t\ transfer(uint8\_t\ data)\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ SPDR\ =\ data;}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00211\ \textcolor{comment}{\ \ \ \ \ *\ The\ following\ NOP\ introduces\ a\ small\ delay\ that\ can\ prevent\ the\ wait}}
+\DoxyCodeLine{00212\ \textcolor{comment}{\ \ \ \ \ *\ loop\ form\ iterating\ when\ running\ at\ the\ maximum\ speed.\ This\ gives}}
+\DoxyCodeLine{00213\ \textcolor{comment}{\ \ \ \ \ *\ about\ 10\%\ more\ speed,\ even\ if\ it\ seems\ counter-\/intuitive.\ At\ lower}}
+\DoxyCodeLine{00214\ \textcolor{comment}{\ \ \ \ \ *\ speeds\ it\ is\ unnoticed.}}
+\DoxyCodeLine{00215\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}nop"{}});}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordflow}{while}\ (!(SPSR\ \&\ \_BV(SPIF)))\ ;\ \textcolor{comment}{//\ wait}}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{return}\ SPDR;}
+\DoxyCodeLine{00219\ \ \ \}}
+\DoxyCodeLine{00220\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ uint16\_t\ transfer16(uint16\_t\ data)\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{union\ }\{\ uint16\_t\ val;\ \textcolor{keyword}{struct\ }\{\ uint8\_t\ lsb;\ uint8\_t\ msb;\ \};\ \}\ in,\ out;}
+\DoxyCodeLine{00222\ \ \ \ \ in.val\ =\ data;}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(SPCR\ \&\ \_BV(DORD)))\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ SPDR\ =\ in.msb;}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}nop"{}});\ \textcolor{comment}{//\ See\ transfer(uint8\_t)\ function}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!(SPSR\ \&\ \_BV(SPIF)))\ ;}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ out.msb\ =\ SPDR;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ SPDR\ =\ in.lsb;}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}nop"{}});}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!(SPSR\ \&\ \_BV(SPIF)))\ ;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ out.lsb\ =\ SPDR;}
+\DoxyCodeLine{00232\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ SPDR\ =\ in.lsb;}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}nop"{}});}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!(SPSR\ \&\ \_BV(SPIF)))\ ;}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ out.lsb\ =\ SPDR;}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ SPDR\ =\ in.msb;}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}nop"{}});}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!(SPSR\ \&\ \_BV(SPIF)))\ ;}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ out.msb\ =\ SPDR;}
+\DoxyCodeLine{00241\ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordflow}{return}\ out.val;}
+\DoxyCodeLine{00243\ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ transfer(\textcolor{keywordtype}{void}\ *buf,\ \textcolor{keywordtype}{size\_t}\ count)\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ ==\ 0)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00246\ \ \ \ \ uint8\_t\ *p\ =\ (uint8\_t\ *)buf;}
+\DoxyCodeLine{00247\ \ \ \ \ SPDR\ =\ *p;}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordflow}{while}\ (-\/-\/count\ >\ 0)\ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ uint8\_t\ out\ =\ *(p\ +\ 1);}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!(SPSR\ \&\ \_BV(SPIF)))\ ;}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ uint8\_t\ in\ =\ SPDR;}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ SPDR\ =\ out;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ *p++\ =\ in;}
+\DoxyCodeLine{00254\ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordflow}{while}\ (!(SPSR\ \&\ \_BV(SPIF)))\ ;}
+\DoxyCodeLine{00256\ \ \ \ \ *p\ =\ SPDR;}
+\DoxyCodeLine{00257\ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \textcolor{comment}{//\ After\ performing\ a\ group\ of\ transfers\ and\ releasing\ the\ chip\ select}}
+\DoxyCodeLine{00259\ \ \ \textcolor{comment}{//\ signal,\ this\ function\ allows\ others\ to\ access\ the\ SPI\ bus}}
+\DoxyCodeLine{00260\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ endTransaction(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ SPI\_TRANSACTION\_MISMATCH\_LED}}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordflow}{if}\ (!inTransactionFlag)\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ pinMode(SPI\_TRANSACTION\_MISMATCH\_LED,\ OUTPUT);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ digitalWrite(SPI\_TRANSACTION\_MISMATCH\_LED,\ HIGH);}
+\DoxyCodeLine{00265\ \ \ \ \ \}}
+\DoxyCodeLine{00266\ \ \ \ \ inTransactionFlag\ =\ 0;}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordflow}{if}\ (interruptMode\ >\ 0)\ \{}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\ \ \ \ \ \ \#ifdef\ SPI\_AVR\_EIMSK}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ uint8\_t\ sreg\ =\ SREG;}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ noInterrupts();}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\ \ \ \ \ \ \#ifdef\ SPI\_AVR\_EIMSK}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (interruptMode\ ==\ 1)\ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ SPI\_AVR\_EIMSK\ =\ interruptSave;}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ SREG\ =\ sreg;}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ SREG\ =\ interruptSave;}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \ \ \ \ \}}
+\DoxyCodeLine{00284\ \ \ \}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \textcolor{comment}{//\ Disable\ the\ SPI\ bus}}
+\DoxyCodeLine{00287\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ end();}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \textcolor{comment}{//\ This\ function\ is\ deprecated.\ \ New\ applications\ should\ use}}
+\DoxyCodeLine{00290\ \ \ \textcolor{comment}{//\ beginTransaction()\ to\ configure\ SPI\ settings.}}
+\DoxyCodeLine{00291\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setBitOrder(uint8\_t\ bitOrder)\ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keywordflow}{if}\ (bitOrder\ ==\ LSBFIRST)\ SPCR\ |=\ \_BV(DORD);}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordflow}{else}\ SPCR\ \&=\ \string~(\_BV(DORD));}
+\DoxyCodeLine{00294\ \ \ \}}
+\DoxyCodeLine{00295\ \ \ \textcolor{comment}{//\ This\ function\ is\ deprecated.\ \ New\ applications\ should\ use}}
+\DoxyCodeLine{00296\ \ \ \textcolor{comment}{//\ beginTransaction()\ to\ configure\ SPI\ settings.}}
+\DoxyCodeLine{00297\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setDataMode(uint8\_t\ dataMode)\ \{}
+\DoxyCodeLine{00298\ \ \ \ \ SPCR\ =\ (SPCR\ \&\ \string~SPI\_MODE\_MASK)\ |\ dataMode;}
+\DoxyCodeLine{00299\ \ \ \}}
+\DoxyCodeLine{00300\ \ \ \textcolor{comment}{//\ This\ function\ is\ deprecated.\ \ New\ applications\ should\ use}}
+\DoxyCodeLine{00301\ \ \ \textcolor{comment}{//\ beginTransaction()\ to\ configure\ SPI\ settings.}}
+\DoxyCodeLine{00302\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setClockDivider(uint8\_t\ clockDiv)\ \{}
+\DoxyCodeLine{00303\ \ \ \ \ SPCR\ =\ (SPCR\ \&\ \string~SPI\_CLOCK\_MASK)\ |\ (clockDiv\ \&\ SPI\_CLOCK\_MASK);}
+\DoxyCodeLine{00304\ \ \ \ \ SPSR\ =\ (SPSR\ \&\ \string~SPI\_2XCLOCK\_MASK)\ |\ ((clockDiv\ >>\ 2)\ \&\ SPI\_2XCLOCK\_MASK);}
+\DoxyCodeLine{00305\ \ \ \}}
+\DoxyCodeLine{00306\ \ \ \textcolor{comment}{//\ These\ undocumented\ functions\ should\ not\ be\ used.\ \ SPI.transfer()}}
+\DoxyCodeLine{00307\ \ \ \textcolor{comment}{//\ polls\ the\ hardware\ flag\ which\ is\ automatically\ cleared\ as\ the}}
+\DoxyCodeLine{00308\ \ \ \textcolor{comment}{//\ AVR\ responds\ to\ SPI's\ interrupt}}
+\DoxyCodeLine{00309\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ attachInterrupt()\ \{\ SPCR\ |=\ \_BV(SPIE);\ \}}
+\DoxyCodeLine{00310\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ detachInterrupt()\ \{\ SPCR\ \&=\ \string~\_BV(SPIE);\ \}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00313\ \ \ \textcolor{keyword}{static}\ uint8\_t\ initialized;}
+\DoxyCodeLine{00314\ \ \ \textcolor{keyword}{static}\ uint8\_t\ interruptMode;\ \textcolor{comment}{//\ 0=none,\ 1=mask,\ 2=global}}
+\DoxyCodeLine{00315\ \ \ \textcolor{keyword}{static}\ uint8\_t\ interruptMask;\ \textcolor{comment}{//\ which\ interrupts\ to\ mask}}
+\DoxyCodeLine{00316\ \ \ \textcolor{keyword}{static}\ uint8\_t\ interruptSave;\ \textcolor{comment}{//\ temp\ storage,\ to\ restore\ state}}
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\ \ \#ifdef\ SPI\_TRANSACTION\_MISMATCH\_LED}}
+\DoxyCodeLine{00318\ \ \ \textcolor{keyword}{static}\ uint8\_t\ inTransactionFlag;}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00320\ \};}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{class_s_p_i_class}{SPIClass}}\ SPI;}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

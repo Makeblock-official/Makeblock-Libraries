@@ -1,0 +1,91 @@
+\doxysection{Me\+Stepper.\+h}
+\hypertarget{_me_stepper_8h_source}{}\label{_me_stepper_8h_source}\index{src/MeStepper.h@{src/MeStepper.h}}
+\mbox{\hyperlink{_me_stepper_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#ifndef\ MeStepper\_h}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ MeStepper\_h}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#if\ ARDUINO\ >=\ 100}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \#include\ "{}Arduino.h"{}}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \#include\ "{}WProgram.h"{}}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\ \#include\ "{}stdlib.h"{}}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\ \#include\ "{}wiring.h"{}}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ These\ defs\ cause\ trouble\ on\ some\ versions\ of\ Arduino}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#undef\ round}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_stepper}{MeStepper}}:\textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00093\ \ \ \mbox{\hyperlink{class_me_stepper_a34e8a0c1b7eb99ff9fe6a0d805cc12d1}{MeStepper}}();}
+\DoxyCodeLine{00094\ \ \ }
+\DoxyCodeLine{00101\ \ \ \mbox{\hyperlink{class_me_stepper_a34e8a0c1b7eb99ff9fe6a0d805cc12d1}{MeStepper}}(uint8\_t\ port);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00119\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_a4ca8dff894ce12f5639afbc276345435}{setpin}}(uint8\_t\ dir\_data,\ uint8\_t\ step\_data);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00135\ \ \ \textcolor{keywordtype}{void}\ \ \mbox{\hyperlink{class_me_stepper_a2bf300dfaa8901eac1fe334a3d01bb50}{moveTo}}(\textcolor{keywordtype}{long}\ absolute);\ }
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00151\ \ \ \textcolor{keywordtype}{void}\ \ \mbox{\hyperlink{class_me_stepper_aa8020356bb0c793c2ea78737f9c5f387}{move}}(\textcolor{keywordtype}{long}\ relative);}
+\DoxyCodeLine{00152\ \ \ }
+\DoxyCodeLine{00167\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_stepper_aab1323d0500213e02ddc17527b7487a2}{run}}();}
+\DoxyCodeLine{00168\ \ \ }
+\DoxyCodeLine{00183\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_stepper_ad615be6e513b7d519e1b546ae9f2aac6}{runSpeed}}();}
+\DoxyCodeLine{00184\ \ \ }
+\DoxyCodeLine{00199\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_a5bbeb502699499f95116ba48ee690978}{setMaxSpeed}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_stepper_aebc944454624fecb1c1d676a08990f08}{speed}});}
+\DoxyCodeLine{00200\ \ \ }
+\DoxyCodeLine{00215\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_ac9ed9b7961f4812b4cb3455aa0987f64}{setAcceleration}}(\textcolor{keywordtype}{float}\ acceleration);}
+\DoxyCodeLine{00216\ \ \ }
+\DoxyCodeLine{00231\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_aa938e51919218e49bfc89b95e1bff27a}{setSpeed}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_stepper_aebc944454624fecb1c1d676a08990f08}{speed}});}
+\DoxyCodeLine{00232\ \ \ }
+\DoxyCodeLine{00247\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_stepper_aebc944454624fecb1c1d676a08990f08}{speed}}();}
+\DoxyCodeLine{00248\ \ \ }
+\DoxyCodeLine{00263\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_stepper_ace0023e3e3dcb3fed6dee4754211a64d}{distanceToGo}}();}
+\DoxyCodeLine{00264\ \ \ }
+\DoxyCodeLine{00279\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_stepper_a48397cd52c4edf5d5c4c8b23df4f86de}{targetPosition}}();}
+\DoxyCodeLine{00280\ \ \ }
+\DoxyCodeLine{00295\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_me_stepper_a98ecf9b60b9c5bc588963a27d141106a}{currentPosition}}();}
+\DoxyCodeLine{00296\ \ \ }
+\DoxyCodeLine{00311\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_a3a3a66d03b75a43d6f33cf5cfcfe63ca}{setCurrentPosition}}(\textcolor{keywordtype}{long}\ position);}
+\DoxyCodeLine{00312\ \ \ }
+\DoxyCodeLine{00327\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_a6076bbfe63621dc4f08a83756a3fd570}{runToPosition}}();}
+\DoxyCodeLine{00328\ \ \ }
+\DoxyCodeLine{00343\ \ \ \textcolor{keywordtype}{boolean}\ \mbox{\hyperlink{class_me_stepper_a901a56566194e21be9ebacc5e2bd9dfc}{runSpeedToPosition}}();}
+\DoxyCodeLine{00344\ \ \ }
+\DoxyCodeLine{00359\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_a5b936d0e8e9684e89de40c4740a95952}{runToNewPosition}}(\textcolor{keywordtype}{long}\ position);}
+\DoxyCodeLine{00360\ \ \ }
+\DoxyCodeLine{00361\ \ \ \textcolor{keywordtype}{void}\ disableOutputs();}
+\DoxyCodeLine{00362\ \ \ \textcolor{keywordtype}{void}\ enableOutputs();}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00379\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_a231aef8a0a448f194f19a6ef5ddcbbc9}{computeNewSpeed}}();}
+\DoxyCodeLine{00380\ \ \ }
+\DoxyCodeLine{00395\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_stepper_a5dd329462fb6ca6421790f2fed2024ae}{step}}();}
+\DoxyCodeLine{00396\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00397\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ uint8\_t\ \_dir\_data;}
+\DoxyCodeLine{00398\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ uint8\_t\ \_step\_data;}
+\DoxyCodeLine{00399\ \ \ uint8\_t\ \_dir;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2\ or\ 4}}
+\DoxyCodeLine{00400\ \ \ \textcolor{keywordtype}{long}\ \_currentPos;\ \ \ \ \ \textcolor{comment}{//\ Steps}}
+\DoxyCodeLine{00401\ \ \ \textcolor{keywordtype}{long}\ \_targetPos;\ \ \ \ \ \ \textcolor{comment}{//\ Steps}}
+\DoxyCodeLine{00402\ \ \ \textcolor{keywordtype}{float}\ \_speed;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Steps\ per\ second}}
+\DoxyCodeLine{00403\ \ \ \textcolor{keywordtype}{float}\ \_maxSpeed;}
+\DoxyCodeLine{00404\ \ \ \textcolor{keywordtype}{float}\ \_acceleration;}
+\DoxyCodeLine{00405\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \_stepInterval;}
+\DoxyCodeLine{00406\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \_lastStepTime;}
+\DoxyCodeLine{00408\ \ \ \textcolor{keywordtype}{long}\ \_n;}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00411\ \ \ \textcolor{keywordtype}{float}\ \_c0;}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00414\ \ \ \textcolor{keywordtype}{float}\ \_cn;}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00417\ \ \ \textcolor{keywordtype}{float}\ \_cmin;\ \textcolor{comment}{//\ at\ max\ speed}}
+\DoxyCodeLine{00418\ \ \ uint8\_t\ \_dirPin,\ \_stpPin;}
+\DoxyCodeLine{00419\ \};}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{\#endif\ }}
+
+\end{DoxyCode}

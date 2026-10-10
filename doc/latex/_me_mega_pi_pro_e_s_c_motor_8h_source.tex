@@ -1,0 +1,54 @@
+\doxysection{Me\+Mega\+Pi\+Pro\+ESCMotor.\+h}
+\hypertarget{_me_mega_pi_pro_e_s_c_motor_8h_source}{}\label{_me_mega_pi_pro_e_s_c_motor_8h_source}\index{src/MeMegaPiProESCMotor.h@{src/MeMegaPiProESCMotor.h}}
+\mbox{\hyperlink{_me_mega_pi_pro_e_s_c_motor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#ifndef\ MeMegaPiProESCMotor\_H}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ MeMegaPiProESCMotor\_H}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ uint8\_t\ pwm\_pin;\ \textcolor{comment}{//PWM}}
+\DoxyCodeLine{00055\ \}\ \mbox{\hyperlink{structmegapipro__esc__type}{megapipro\_esc\_type}};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structmegapipro__esc__type}{megapipro\_esc\_type}}\ megapi\_esc\_Port[5];\ \ \textcolor{comment}{//\ megapipro\_esc\_Port[0]\ is\ nonsense}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ THROTTLE\_OFFSET\ 137}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ THROTTLE\_MIN\ 137}\textcolor{comment}{//0.55ms\string~0.95ms\ throttle\ scale,970hz,1.024ms.}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//255\ *\ (0.55/1.024)\ =\ 137}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ THROTTLE\_MAX\ 237}\textcolor{comment}{//255\ *\ (0.95/1.024)\ =\ 237}}
+\DoxyCodeLine{00069\ class\ MeMegaPiProESCMotor}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00079\ \ \ \mbox{\hyperlink{class_me_mega_pi_pro_e_s_c_motor}{MeMegaPiProESCMotor}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00086\ \ \ \mbox{\hyperlink{class_me_mega_pi_pro_e_s_c_motor}{MeMegaPiProESCMotor}}(uint8\_t\ port);}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00094\ \ \ MeMegaPiProESCMotorPWMpin(uint8\_t\ pwm\_pin);}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00110\ \ \ \textcolor{keywordtype}{void}\ reset(uint8\_t\ port);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00126\ \ \ \textcolor{keywordtype}{void}\ setpin(uint8\_t\ pwm\_pin);}
+\DoxyCodeLine{00139\ \ \ \textcolor{keywordtype}{void}\ init(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordtype}{void}\ run(int16\_t\ speed);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00168\ \ \ \textcolor{keywordtype}{void}\ stop(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00169\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00170\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_esc\_pwm\_pin;}
+\DoxyCodeLine{00171\ \ \ \textcolor{keyword}{volatile}\ int16\_t\ last\_speed;}
+\DoxyCodeLine{00172\ \};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//MeMegaPiProESCMotor\_H}}
+\DoxyCodeLine{00175\ }
+
+\end{DoxyCode}

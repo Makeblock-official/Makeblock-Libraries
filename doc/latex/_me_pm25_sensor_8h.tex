@@ -1,0 +1,115 @@
+\doxysection{src/\+Me\+Pm25\+Sensor.h File Reference}
+\hypertarget{_me_pm25_sensor_8h}{}\label{_me_pm25_sensor_8h}\index{src/MePm25Sensor.h@{src/MePm25Sensor.h}}
+
+
+Header for for \doxylink{_me_pm25_sensor_8cpp}{Me\+Pm25\+Sensor.\+cpp} module.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Serial.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+Pm25\+Sensor.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_pm25_sensor_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{_me_pm25_sensor_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_p_m25_d_a_t_a_s_t_r_u_c_t}{PM25\+DATASTRUCT}}
+\item 
+union \mbox{\hyperlink{union_p_m25_d_a_t_a_u_i_n_o}{PM25\+DATAUINO}}
+\item 
+class \mbox{\hyperlink{class_me_pm25_sensor}{Me\+Pm25\+Sensor}}
+\begin{DoxyCompactList}\small\item\em Driver for Me PM2.\+5 sensor device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_pm25_sensor_8h_af62817173402b25b5400a4a062764a7e}\label{_me_pm25_sensor_8h_af62817173402b25b5400a4a062764a7e} 
+\#define {\bfseries START\+\_\+\+SYSEX1}~0x32
+\item 
+\Hypertarget{_me_pm25_sensor_8h_a6fd1ecd46dcfe0ca69c6b0eb68d23701}\label{_me_pm25_sensor_8h_a6fd1ecd46dcfe0ca69c6b0eb68d23701} 
+\#define {\bfseries START\+\_\+\+SYSEX2}~0x3d
+\item 
+\Hypertarget{_me_pm25_sensor_8h_a30362161c93e3f1a4ee4c673f535b5a8}\label{_me_pm25_sensor_8h_a30362161c93e3f1a4ee4c673f535b5a8} 
+\#define {\bfseries LENGTH}~28
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for for \doxylink{_me_pm25_sensor_8cpp}{Me\+Pm25\+Sensor.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2016/12/12 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for Smart \doxylink{class_servo}{Servo} device, The Smart \doxylink{class_servo}{Servo} inherited the \doxylink{class_me_serial}{Me\+Serial} class from \doxylink{class_software_serial}{Software\+Serial}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\begin{DoxyEnumerate}
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_a3ab7cc63abcb3d89abf615d3c8f68f78}{Me\+Pm25\+Sensor\+::read\+Pm1\+\_\+0\+Concentration(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_ad4f1efe5497f5e2978fc2a3d2fcfcfe8}{Me\+Pm25\+Sensor\+::read\+Pm2\+\_\+5\+Concentration(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_a3835d73853146cbbedb10bf35b24469a}{Me\+Pm25\+Sensor\+::read\+Pm10\+Concentration(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_aef664694c3ca8512d694795dd704e5a3}{Me\+Pm25\+Sensor\+::read0\+\_\+3\+Num\+In100ml(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_aae4537c8e8a21c6304221193b9f35472}{Me\+Pm25\+Sensor\+::read0\+\_\+5\+Num\+In100ml(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_ad07e4c9369d6def86457816936e4ce1e}{Me\+Pm25\+Sensor\+::read1\+\_\+0\+Num\+In100ml(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_a5e6ad588c26febcdf79d53231d492553}{Me\+Pm25\+Sensor\+::read2\+\_\+5\+Num\+In100ml(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_ac780e647570499912c45802baaee8dc2}{Me\+Pm25\+Sensor\+::read5\+\_\+0\+Num\+In100ml(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_a7abb152fbb1530757a3b4e6994b4a578}{Me\+Pm25\+Sensor\+::read10\+Num\+In100ml(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_af061f8c09a9e3bfb4509f7f8cb6b59c6}{Me\+Pm25\+Sensor\+::set\+Ouput\+Compatibility(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_a15457eb6a96687f86ed148e593a94a33}{Me\+Pm25\+Sensor\+::turn\+On\+Fan\+Laser(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_ae2c91a85f42874ba1f9a4b2cc985ad24}{Me\+Pm25\+Sensor\+::turn\+Off\+Fan\+Laser(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_a98a6e7af47ae69ffd23fdae581aef083}{Me\+Pm25\+Sensor\+::\+Output\+Intime\+On(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_a255b47a6afeeac32f7dd9d50a97241e7}{Me\+Pm25\+Sensor\+::\+Output\+Intime\+Off(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_ac126c70ddc9816cac9eedbb9b4387c33}{Me\+Pm25\+Sensor\+::set\+Output\+Intime\+Period(uint16\+\_\+t settime)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_abcec24407e3cbc74c6e47ca2abdd082a}{Me\+Pm25\+Sensor\+::ask\+For\+Data(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_a8c2cb9ec0e5e254eb20639e3167e9d14}{Me\+Pm25\+Sensor\+::core\+Self\+Test(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_a59a38b9cfb0a6145308dfef3a73db42e}{Me\+Pm25\+Sensor\+::set\+Core\+Self\+Test\+Time(uint8\+\_\+t settime)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_aa25fb8cdc6c8ea19f5d8495a3844fb42}{Me\+Pm25\+Sensor\+::set\+Core\+Efficient(uint8\+\_\+t efficent)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_a17bf2e8a068c549f0be44465735899cb}{Me\+Pm25\+Sensor\+::rxloop(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_af756cb35791d5643cebcac6a7ae06514}{Me\+Pm25\+Sensor\+::returnlen(void)};
+\item uint16\+\_\+t \doxylink{class_me_pm25_sensor_ae8e7a458edbc826dd1b75f3d135540bf}{Me\+Pm25\+Sensor\+::returnchecksum(void)};
+\end{DoxyEnumerate}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Zzipeng          2016/12/13     1.0.0            Build the new.
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

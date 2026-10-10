@@ -1,0 +1,5 @@
+<map id="sysex_message" name="sysex_message">
+<area shape="rect" id="Node000001" title=" " alt="" coords="21,96,138,123"/>
+<area shape="rect" id="Node000002" href="$structsysex__message__type.html" title=" " alt="" coords="5,5,154,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,48,82,95,77,95,77,48"/>
+</map>

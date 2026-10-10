@@ -1,0 +1,56 @@
+\doxysection{Me\+Joystick.\+h}
+\hypertarget{_me_joystick_8h_source}{}\label{_me_joystick_8h_source}\index{src/MeJoystick.h@{src/MeJoystick.h}}
+\mbox{\hyperlink{_me_joystick_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#ifndef\ MeJoystick\_H}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ MeJoystick\_H}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ CENTER\_VALUE\ \ \ \ (490)}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00064\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_joystick}{MeJoystick}}}
+\DoxyCodeLine{00065\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00066\ class\ \mbox{\hyperlink{class_me_joystick}{MeJoystick}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{class_me_joystick_a1fdc2f7f587fc30f7fce0b4efcb6fa1c}{MeJoystick}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{class_me_joystick_a1fdc2f7f587fc30f7fce0b4efcb6fa1c}{MeJoystick}}(uint8\_t\ port);}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00094\ \ \ \ \ MeJoystick(uint8\_t\ x\_port,uint8\_t\ y\_port);}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_joystick_a250f11087c929f5e892b5670f5fdb7d4}{setpin}}(uint8\_t\ x\_port,\ uint8\_t\ y\_port);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00127\ \ \ \ \ int16\_t\ \mbox{\hyperlink{class_me_joystick_a0dea00e7568e3c2d4fd3c50d5b79cf90}{readX}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00141\ \ \ \ \ int16\_t\ \mbox{\hyperlink{class_me_joystick_a0ff4c70c343dcec6f3dc1b7a0d9caace}{readY}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00157\ \ \ int16\_t\ \mbox{\hyperlink{class_me_joystick_a5a690937c49c9ee5623006d2acfe0766}{read}}(uint8\_t\ index);}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_joystick_ac229685677e2195d2bed8edc9a5308d1}{CalCenterValue}}(int16\_t\ =\ 0,\ int16\_t\ =\ 0);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_joystick_ae6ce1a51a3023c9017a560de91497adf}{angle}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_joystick_a6402a4343716a84282366e25035f4297}{OffCenter}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00205\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ int16\_t\ \_X\_offset;}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ int16\_t\ \_Y\_offset;}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ uint8\_t\ \_X\_port;}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ uint8\_t\ \_Y\_port;}
+\DoxyCodeLine{00210\ \};}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

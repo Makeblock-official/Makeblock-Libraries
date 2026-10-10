@@ -1,0 +1,48 @@
+\doxysection{Me\+On\+Board\+Temp.\+h}
+\hypertarget{_me_on_board_temp_8h_source}{}\label{_me_on_board_temp_8h_source}\index{src/MeOnBoardTemp.h@{src/MeOnBoardTemp.h}}
+\mbox{\hyperlink{_me_on_board_temp_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifndef\ MeOnBoardTemp\_H}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ MeOnBoardTemp\_H}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ Gas\_Exceeded\ \ \ \ \ (0x00)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ Gas\_not\_Exceeded\ (0x01)}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED\ \ }}
+\DoxyCodeLine{00061\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_on_board_temp}{MeOnBoardTemp}}}
+\DoxyCodeLine{00062\ \#else\ \textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00063\ class\ \mbox{\hyperlink{class_me_on_board_temp}{MeOnBoardTemp}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ !ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00074\ \ \ \mbox{\hyperlink{class_me_on_board_temp_a06f4cfe51ec0c2dbc372a5f21188b499}{MeOnBoardTemp}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \ \ \mbox{\hyperlink{class_me_on_board_temp_a06f4cfe51ec0c2dbc372a5f21188b499}{MeOnBoardTemp}}(uint8\_t\ port);}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00089\ \ \ MeOnBoardTemp(uint8\_t\ analog\_pin)}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00105\ \ \ void\ setpin(uint8\_t\ analog\_pin);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00119\ \ \ int16\_t\ \mbox{\hyperlink{class_me_on_board_temp_ada9bb788ed99094df48dbd9536193362}{readAnalog}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00133\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_me_on_board_temp_a590a42d0aab644a6c7108d3f47b477b3}{readValue}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00136\ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \_analog\_pin;}
+\DoxyCodeLine{00137\ \};}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00139\ }
+
+\end{DoxyCode}

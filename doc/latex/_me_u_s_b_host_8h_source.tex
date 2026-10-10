@@ -1,0 +1,381 @@
+\doxysection{Me\+USBHost.\+h}
+\hypertarget{_me_u_s_b_host_8h_source}{}\label{_me_u_s_b_host_8h_source}\index{src/MeUSBHost.h@{src/MeUSBHost.h}}
+\mbox{\hyperlink{_me_u_s_b_host_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#ifndef\ MeUSBHost\_H}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ MeUSBHost\_H}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_serial_8h}{MeSerial.h}}"{}}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ USB2\_0\ 1}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ USB1\_0\ 0}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ CH375\_MAX\_DATA\_LEN\ \ 0x40\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ max\ package\ length\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{/*\ *********************************************************************************************************************\ */}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{/*\ Commands\ */}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ CMD\_RESET\_ALL\ \ \ \ \ \ \ 0x05\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Reset\ Device\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ CMD\_CHECK\_EXIST\ \ \ \ \ 0x06\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Chip\ check\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{/*\ Input:\ any\ (ep:0x12)*/}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{/*\ Output:\ output\ inverse\ of\ input\ (ep:0x21)\ */}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ CMD\_SET\_USB\_ID\ \ \ \ \ \ 0x12\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Device\ Mode:\ Setup\ the\ VID\ and\ PID\ in\ device\ mode\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{/*\ Input:\ VID\ lower\ byte,\ VID\ higher\ byte,\ PID\ lower\ byte,\ PID\ higher\ byte\ */}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ CMD\_SET\_USB\_ADDR\ \ \ \ 0x13\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Setup\ the\ usb\ address\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{/*\ Input:\ address\ value\ */}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ CMD\_SET\_USB\_MODE\ \ \ \ 0x15\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Setup\ the\ module\ work\ mode,\ with\ enable\ or\ disable\ state\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{/*\ Input:\ mode\ */}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ 00H=Device\ mode\ disabled,\ 01H=Device\ mode\ enabled\ with\ external\ firmware,\ 02H=Device\ mode\ enabled\ with\ internal\ firmware,\ 03H=Device\ mode\ enabled\ with\ internal\ firmware\ and\ interrupt\ endpoint\ */}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ 04H=Host\ Mode\ disabled,\ 05H=Host\ Mode\ enabled,\ 06H=Host\ Mode\ enabled\ with\ SOF\ package,\ 07H=Host\ Mode\ enabled\ and\ reset\ USB\ bus\ */}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{/*\ Output:\ status(\ CMD\_RET\_SUCCESS\ or\ CMD\_RET\_ABORT,\ otherswise\ unfinished\ )\ */}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ CMD\_SET\_ENDP2\ \ \ \ \ \ \ 0x18\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Device\ Mode:\ setup\ endpoint\ 0\ receiver\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{/*\ Input:\ Workmode\ */}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ Bit\ 7\string~6:\ 1x\ set\ sync\ trigger\ flag\ to\ x,\ 0x\ don't\ change\ the\ sync\ flag\ */}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ Bit3\string~0\ token\ ack\ type:\ \ 0000-\/Ready\ ACK,\ 1110-\/Busy\ NAK,\ 1111-\/Error\ STALL\ */}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ CMD\_SET\_ENDP3\ \ \ \ \ \ \ 0x19\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Device\ Mode:\ setup\ endpoint\ 0\ transmitter\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ CMD\_SET\_ENDP4\ \ \ \ \ \ \ 0x1A\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Device\ Mode:\ setup\ endpoint\ 1\ receiver\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ CMD\_SET\_ENDP5\ \ \ \ \ \ \ 0x1B\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Device\ Mode:\ setup\ endpoint\ 1\ transmitter\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ CMD\_SET\_ENDP6\ \ \ \ \ \ \ 0x1C\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Device\ Mode:\ setup\ endpoint\ 2\ receiver\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ CMD\_SET\_ENDP7\ \ \ \ \ \ \ 0x1D\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Device\ Mode:\ setup\ endpoint\ 2\ transmitter\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ CMD\_GET\_TOGGLE\ \ \ \ \ \ 0x0A\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ get\ the\ out\ token\ sync\ state\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{/*\ Input:\ 0x1A\ */}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{/*\ Output:\ sync\ state\ */}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ bit4:\ 1:OUT\ token\ synced,\ 0:OUT\ token\ unsync\ */}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ CMD\_GET\_STATUS\ \ \ \ \ \ 0x22\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Get\ interrupt\ state\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{/*\ Output:\ interrupt\ state\ */}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ CMD\_UNLOCK\_USB\ \ \ \ \ \ 0x23\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Device\ Mode:\ release\ buffer\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ CMD\_RD\_USB\_DATA\ \ \ \ \ 0x28\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ block\ read\ from\ usb\ device,\ and\ release\ buffer\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{/*\ Output:\ length,\ data\ stream\ */}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ CMD\_WR\_USB\_DATA3\ \ \ \ 0x29\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Device\ Mode:\ write\ to\ usb\ endpoint\ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{/*\ Input:\ length,\ data\ stream\ */}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ CMD\_WR\_USB\_DATA5\ \ \ \ 0x2A\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Device\ Mode:\ write\ to\ usb\ endpoint\ 1\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{/*\ Input:\ length,\ data\ stream\ */}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ CMD\_WR\_USB\_DATA7\ \ \ \ 0x2B\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ write\ to\ usb\ endpoint\ 2\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{/*\ Input:\ length,\ data\ stream\ */}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{/*\ **************************************************************************\ */}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{/*\ Host\ Mode,\ only\ for\ CH375\ */}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ CMD\_SET\_BAUDRATE\ \ \ \ 0x02\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Serial\ Mode:\ setup\ serial\ baudrate\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{comment}{/*\ Input:\ baudrate\ pll\ divider\ */}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{/*\ Output:\ State(\ CMD\_RET\_SUCCESS\ or\ CMD\_RET\_ABORT,\ otherswise\ unfinished\ )\ */}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ CMD\_ABORT\_NAK\ \ \ \ \ \ \ 0x17\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ abort\ nak\ retry\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ CMD\_SET\_RETRY\ \ \ \ \ \ \ 0x0B\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ setup\ usb\ token\ retry\ times\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{/*\ Input:\ 0x25,\ setup\ retry\ times\ */}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bit7=1\ for\ infinite\ retry,\ bit3\string~0\ retry\ times*/}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ CMD\_ISSUE\_TOKEN\ \ \ \ \ 0x4F\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ issue\ the\ token\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{/*\ Input:\ token\ */}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ bit3\string~0:token\ type,\ bit7\string~4:endpoint\ */}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ CMD\_CLR\_STALL\ \ \ \ \ \ \ 0x41\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ clear\ the\ endpoint\ Error\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{/*\ Input:\ endpoint\ index\ */}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ CMD\_SET\_ADDRESS\ \ \ \ \ 0x45\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ Control-\/setup\ usb\ address\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{/*\ Input:\ address\ */}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#define\ CMD\_GET\_DESCR\ \ \ \ \ \ \ 0x46\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ Control-\/get\ descriptor\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{/*\ Input:\ descriptor\ type\ 0:config\ 1:device\ */}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ CMD\_SET\_CONFIG\ \ \ \ \ \ 0x49\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ Control-\/config\ and\ enable\ the\ device\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{/*\ Input:\ config\ */}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#define\ CMD\_DISK\_INIT\ \ \ \ \ \ \ 0x51\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ init\ usb\ storage\ device\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#define\ CMD\_DISK\_RESET\ \ \ \ \ \ 0x52\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ reset\ usb\ storage\ device\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#define\ CMD\_DISK\_SIZE\ \ \ \ \ \ \ 0x53\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ get\ the\ capacity\ of\ usb\ storage\ device\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#define\ CMD\_DISK\_READ\ \ \ \ \ \ \ 0x54\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ read\ from\ usb\ storage\ device(512byte)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{comment}{/*\ Input:\ LBA\ sector\ address(32bit,\ LSB),\ Sector(01H\string~FFH)\ */}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#define\ CMD\_DISK\_RD\_GO\ \ \ \ \ \ 0x55\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ continus\ read\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#define\ CMD\_DISK\_WRITE\ \ \ \ \ \ 0x56\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ write\ to\ usb\ storage\ device(512byte)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{comment}{/*\ Input:\ LBA\ sector\ address(32bit,\ LSB),\ Sector(01H\string~FFH)\ */}}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#define\ CMD\_DISK\_WR\_GO\ \ \ \ \ \ 0x57\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ continus\ write\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{/*\ **************************************************************************\ */}}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{comment}{/*\ only\ for\ CH372A/CH375A\ */}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#define\ CMD\_GET\_IC\_VER\ \ \ \ \ \ 0x01\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ get\ chip\ version\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{/*\ Output:\ Version(\ bit7:1,\ bit6:0,\ bit5\string~0:Version\ )\ */}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ CH375:5FH(invalid),\ CH375A:0A2H\ */}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\#define\ CMD\_ENTER\_SLEEP\ \ \ \ \ 0x03\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ into\ sleep\ mode\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#define\ CMD\_RD\_USB\_DATA0\ \ \ \ 0x27\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ read\ from\ usb\ endpoint\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{comment}{/*\ Output:\ length,\ data\ stream\ */}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#define\ CMD\_DELAY\_100US\ \ \ \ \ 0x0F\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Parallel\ :\ delay\ 100uS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{comment}{/*\ Output:\ 0\ during\ delay,\ none\ zero\ after\ delay\ */}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#define\ CMD\_CHK\_SUSPEND\ \ \ \ \ 0x0B\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Device\ Mode:\ check\ usb\ bus\ hung\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{comment}{/*\ Input:\ 10H,\ TYPE\ */}}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ TYPE:00H=don't\ check\ usb\ hung,\ 04H=check\ hung\ every\ 50ms,\ 05H=check\ hung\ every\ 10ms\ */}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#define\ CMD\_SET\_SYS\_FREQ\ \ \ \ 0x04\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ setup\ system\ working\ frequency\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{comment}{/*\ Input:\ frequency\ */}}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ 00H=12MHz,\ 01H=1.5MHz\ */}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{/*\ **************************************************************************\ */}}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{comment}{/*\ \ only\ for\ CH375A\ */}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\#define\ CMD\_TEST\_CONNECT\ \ \ \ 0x16\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ check\ usb\ device\ connection\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{comment}{/*\ Output:\ state(\ USB\_INT\_CONNECT\ of\ USB\_INT\_DISCONNECT,\ otherswise\ unfinished\ )\ */}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#define\ CMD\_AUTO\_SETUP\ \ \ \ \ \ 0x4D\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ auto\ setup\ usb\ device\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#define\ CMD\_ISSUE\_TKN\_X\ \ \ \ \ 0x4E\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Host\ Mode:\ issue\ sync\ token\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{comment}{/*\ Input:\ sync\ flag,\ token\ */}}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ sync\ flag:\ bit7:IN\ endpoint\ sync\ flag,\ OUT\ endpoint\ sync\ flag,\ bit5\string~0:should\ be\ zero\ */}}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ token:bit3\string~0:token\ type,\ bit7\string~4:endpoint\ */}}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{comment}{/*\ Output\ interrupt\ state\ */}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{comment}{/*\ *********************************************************************************************************************\ */}}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{comment}{/*\ operate\ mode\ */}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#define\ CMD\_RET\_SUCCESS\ \ \ \ \ 0x51\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ success\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#define\ CMD\_RET\_ABORT\ \ \ \ \ \ \ 0x5F\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ fail\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{comment}{/*\ *********************************************************************************************************************\ */}}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{comment}{/*\ USB\ interrupt\ state\ */}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{comment}{/*\ special\ interrupt\ state,\ only\ for\ CH372A/CH375A\ */}}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\#define\ USB\_INT\_USB\_SUSPEND\ 0x05\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ usb\ bus\ susspend\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#define\ USB\_INT\_WAKE\_UP\ \ \ \ \ 0x06\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ wake\ up\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{comment}{/*\ 0XH\ for\ USBDevice\ Mode\ */}}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\#define\ USB\_INT\_EP0\_SETUP\ \ \ 0x0C\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ ep0\ SETUP\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#define\ USB\_INT\_EP0\_OUT\ \ \ \ \ 0x00\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ ep0\ OUT\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#define\ USB\_INT\_EP0\_IN\ \ \ \ \ \ 0x08\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ ep0\ IN\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#define\ USB\_INT\_EP1\_OUT\ \ \ \ \ 0x01\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ ep1\ OUT\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#define\ USB\_INT\_EP1\_IN\ \ \ \ \ \ 0x09\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ ep1\ IN\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#define\ USB\_INT\_EP2\_OUT\ \ \ \ \ 0x02\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ ep2\ OUT\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#define\ USB\_INT\_EP2\_IN\ \ \ \ \ \ 0x0A\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ ep2\ IN\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{comment}{/*\ USB\_INT\_BUS\_RESET\ \ \ \ 0x0000XX11B\ */}\ \ \ \ \ \ \textcolor{comment}{/*\ USB\ BUS\ RESET\ */}}
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\#define\ USB\_INT\_BUS\_RESET1\ \ 0x03\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ BUS\ RESET\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#define\ USB\_INT\_BUS\_RESET2\ \ 0x07\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ BUS\ RESET\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#define\ USB\_INT\_BUS\_RESET3\ \ 0x0B\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ BUS\ RESET\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\#define\ USB\_INT\_BUS\_RESET4\ \ 0x0F\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ BUS\ RESET\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{comment}{/*\ 2XH-\/3XH\ fail\ state\ response,\ only\ for\ CH375/CH375A\ */}}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{comment}{/*\ \ \ bit7\string~6\ 00\ */}}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{comment}{/*\ \ \ bit5\ 1\ */}}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{comment}{/*\ \ \ bit4\ if\ package\ sync\ */}}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{comment}{/*\ \ \ bit3\string~0\ fail\ response\ from\ usb\ device:\ 0010=ACK,\ 1010=NAK,\ 1110=STALL,\ 0011=DATA0,\ 1011=DATA1,\ XX00=TimeOut\ */}}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{comment}{/*\ USB\_INT\_RET\_ACK\ \ 0x001X0010B\ */}\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Error:Ack\ to\ IN\ token\ */}}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{comment}{/*\ USB\_INT\_RET\_NAK\ \ 0x001X1010B\ */}\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Error:NAK\ */}}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{comment}{/*\ USB\_INT\_RET\_STALL\ \ \ \ 0x001X1110B\ */}\ \ \ \ \ \ \textcolor{comment}{/*\ Error:STALL\ */}}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{comment}{/*\ USB\_INT\_RET\_DATA0\ \ \ \ 0x001X0011B\ */}\ \ \ \ \ \ \textcolor{comment}{/*\ Error:DATA0\ to\ OUT/SETUP*/}}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{comment}{/*\ USB\_INT\_RET\_DATA1\ \ \ \ 0x001X1011B\ */}\ \ \ \ \ \ \textcolor{comment}{/*\ Error:DATA1\ to\ OUT/SETUP\ */}}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{comment}{/*\ USB\_INT\_RET\_TOUT\ 0x001XXX00B\ */}\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Error:TimeOut\ */}}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{comment}{/*\ USB\_INT\_RET\_TOGX\ 0x0010X011B\ */}\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Error:Unsync\ to\ IN\ */}}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{comment}{/*\ USB\_INT\_RET\_PID\ \ 0x001XXXXXB\ */}\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Error:refer\ to\ PID\ */}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{comment}{/*\ 0x1X\ control\ state,\ only\ for\ CH375/CH375A\ */}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\#define\ USB\_INT\_SUCCESS\ \ \ \ \ 0x14\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ token\ successful\ sent\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\#define\ USB\_INT\_CONNECT\ \ \ \ \ 0x15\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ detect\ usb\ device\ plug\ in\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#define\ USB\_INT\_DISCONNECT\ \ 0x16\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ detect\ usb\ device\ plug\ out\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#define\ USB\_INT\_BUF\_OVER\ \ \ \ 0x17\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ control\ buffer\ overflow\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#define\ USB\_INT\_DISK\_READ\ \ \ 0x1D\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ storage,\ read\ request\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#define\ USB\_INT\_DISK\_WRITE\ \ 0x1E\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ storage,\ write\ request\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#define\ USB\_INT\_DISK\_ERR\ \ \ \ 0x1F\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ USB\ storage,\ fail\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{comment}{/*\ *********************************************************************************************************************\ */}}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{comment}{/*\ USB\ package\ identifer\ PID,\ for\ host\ mode\ */}}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\#define\ DEF\_USB\_PID\_NULL\ \ \ \ 0x00\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ reserve\ PID,\ not\ defined\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#define\ DEF\_USB\_PID\_SOF\ \ \ \ \ 0x05}}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\#define\ DEF\_USB\_PID\_SETUP\ \ \ 0x0D}}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#define\ DEF\_USB\_PID\_IN\ \ \ \ \ \ 0x09}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#define\ DEF\_USB\_PID\_OUT\ \ \ \ \ 0x01}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\#define\ DEF\_USB\_PID\_ACK\ \ \ \ \ 0x02}}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#define\ DEF\_USB\_PID\_NAK\ \ \ \ \ 0x0A}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#define\ DEF\_USB\_PID\_STALL\ \ \ 0x0E}}
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\#define\ DEF\_USB\_PID\_DATA0\ \ \ 0x03}}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#define\ DEF\_USB\_PID\_DATA1\ \ \ 0x0B}}
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\#define\ DEF\_USB\_PID\_PRE\ \ \ \ \ 0x0C}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{comment}{/*\ USB\ request\ type,\ for\ external\ firmware\ mode\ */}}
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#define\ DEF\_USB\_REQ\_READ\ \ \ \ 0x80\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ control\ read\ request\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\#define\ DEF\_USB\_REQ\_WRITE\ \ \ 0x00\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ control\ write\ request\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\#define\ DEF\_USB\_REQ\_TYPE\ \ \ \ 0x60\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ control\ type\ request\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\#define\ DEF\_USB\_REQ\_STAND\ \ \ 0x00\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ standard\ request\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\#define\ DEF\_USB\_REQ\_CLASS\ \ \ 0x20\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ device\ class\ request\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\#define\ DEF\_USB\_REQ\_VENDOR\ \ 0x40\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ vendor\ request\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#define\ DEF\_USB\_REQ\_RESERVE\ 0x60\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ reserved\ request\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{comment}{/*\ USB\ standard\ device\ request,\ RequestType\ bit6\string~5=00(Standard),\ for\ external\ firmware\ mode\ */}}
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\#define\ DEF\_USB\_CLR\_FEATURE\ 0x01}}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#define\ DEF\_USB\_SET\_FEATURE\ 0x03}}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\#define\ DEF\_USB\_GET\_STATUS\ \ 0x00}}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#define\ DEF\_USB\_SET\_ADDRESS\ 0x05}}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#define\ DEF\_USB\_GET\_DESCR\ \ \ 0x06}}
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#define\ DEF\_USB\_SET\_DESCR\ \ \ 0x07}}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#define\ DEF\_USB\_GET\_CONFIG\ \ 0x08}}
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\#define\ DEF\_USB\_SET\_CONFIG\ \ 0x09}}
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#define\ DEF\_USB\_GET\_INTERF\ \ 0x0A}}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#define\ DEF\_USB\_SET\_INTERF\ \ 0x0B}}
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#define\ DEF\_USB\_SYNC\_FRAME\ \ 0x0C}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \textcolor{comment}{//Define\ struct}}
+\DoxyCodeLine{00302\ \textcolor{comment}{/*\ *********************************************************************************************************************\ */}}
+\DoxyCodeLine{00303\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___u_s_b___d_e_v_i_c_e___d_escript_o_r}{\_USB\_DEVICE\_DEscriptOR}}\ \{}
+\DoxyCodeLine{00304\ \ \ \ \ uint8\_t\ bLength;}
+\DoxyCodeLine{00305\ \ \ \ \ uint8\_t\ bDescriptorType;}
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ bcdUSB;}
+\DoxyCodeLine{00307\ \ \ \ \ uint8\_t\ bDeviceClass;}
+\DoxyCodeLine{00308\ \ \ \ \ uint8\_t\ bDeviceSubClass;}
+\DoxyCodeLine{00309\ \ \ \ \ uint8\_t\ bDeviceProtocol;}
+\DoxyCodeLine{00310\ \ \ \ \ uint8\_t\ bMaxPacketSize0;}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ idVendor;}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ idProduct;}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ bcdDevice;}
+\DoxyCodeLine{00314\ \ \ \ \ uint8\_t\ iManufacturer;}
+\DoxyCodeLine{00315\ \ \ \ \ uint8\_t\ iProduct;}
+\DoxyCodeLine{00316\ \ \ \ \ uint8\_t\ iSerialNumber;}
+\DoxyCodeLine{00317\ \ \ \ \ uint8\_t\ bNumConfigurations;}
+\DoxyCodeLine{00318\ \}\ \mbox{\hyperlink{struct___u_s_b___d_e_v_i_c_e___d_escript_o_r}{USB\_DEV\_DESCR}},\ *\mbox{\hyperlink{struct___u_s_b___d_e_v_i_c_e___d_escript_o_r}{PUSB\_DEV\_DESCR}};}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r}{\_USB\_CONFIG\_DEscriptOR}}\ \{}
+\DoxyCodeLine{00321\ \ \ \ \ uint8\_t\ bLength;}
+\DoxyCodeLine{00322\ \ \ \ \ uint8\_t\ bDescriptorType;}
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ wTotalLength;}
+\DoxyCodeLine{00324\ \ \ \ \ uint8\_t\ bNumInterfaces;}
+\DoxyCodeLine{00325\ \ \ \ \ uint8\_t\ bConfigurationvalue;}
+\DoxyCodeLine{00326\ \ \ \ \ uint8\_t\ iConfiguration;}
+\DoxyCodeLine{00327\ \ \ \ \ uint8\_t\ bmAttributes;}
+\DoxyCodeLine{00328\ \ \ \ \ uint8\_t\ MaxPower;}
+\DoxyCodeLine{00329\ \}\ \mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r}{USB\_CFG\_DESCR}},\ *\mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r}{PUSB\_CFG\_DESCR}};}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___u_s_b___i_n_t_e_r_f___d_escript_o_r}{\_USB\_INTERF\_DEscriptOR}}\ \{}
+\DoxyCodeLine{00332\ \ \ \ \ uint8\_t\ bLength;}
+\DoxyCodeLine{00333\ \ \ \ \ uint8\_t\ bDescriptorType;}
+\DoxyCodeLine{00334\ \ \ \ \ uint8\_t\ bInterfaceNumber;}
+\DoxyCodeLine{00335\ \ \ \ \ uint8\_t\ bAlternateSetting;}
+\DoxyCodeLine{00336\ \ \ \ \ uint8\_t\ bNumEndpoints;}
+\DoxyCodeLine{00337\ \ \ \ \ uint8\_t\ bInterfaceClass;}
+\DoxyCodeLine{00338\ \ \ \ \ uint8\_t\ bInterfaceSubClass;}
+\DoxyCodeLine{00339\ \ \ \ \ uint8\_t\ bInterfaceProtocol;}
+\DoxyCodeLine{00340\ \ \ \ \ uint8\_t\ iInterface;}
+\DoxyCodeLine{00341\ \}\ \mbox{\hyperlink{struct___u_s_b___i_n_t_e_r_f___d_escript_o_r}{USB\_ITF\_DESCR}},\ *\mbox{\hyperlink{struct___u_s_b___i_n_t_e_r_f___d_escript_o_r}{PUSB\_ITF\_DESCR}};}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___u_s_b___e_n_d_p_o_i_n_t___d_escript_o_r}{\_USB\_ENDPOINT\_DEscriptOR}}\ \{}
+\DoxyCodeLine{00344\ \ \ \ \ uint8\_t\ bLength;}
+\DoxyCodeLine{00345\ \ \ \ \ uint8\_t\ bDescriptorType;}
+\DoxyCodeLine{00346\ \ \ \ \ uint8\_t\ bEndpointAddress;}
+\DoxyCodeLine{00347\ \ \ \ \ uint8\_t\ bmAttributes;}
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ wMaxPacketSize;}
+\DoxyCodeLine{00349\ \ \ \ \ uint8\_t\ bInterval;}
+\DoxyCodeLine{00350\ \}\ \mbox{\hyperlink{struct___u_s_b___e_n_d_p_o_i_n_t___d_escript_o_r}{USB\_ENDP\_DESCR}},\ *\mbox{\hyperlink{struct___u_s_b___e_n_d_p_o_i_n_t___d_escript_o_r}{PUSB\_ENDP\_DESCR}};}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r___l_o_n_g}{\_USB\_CONFIG\_DEscriptOR\_LONG}}\ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r}{USB\_CFG\_DESCR}}\ cfg\_descr;}
+\DoxyCodeLine{00354\ \ \ \ \ \mbox{\hyperlink{struct___u_s_b___i_n_t_e_r_f___d_escript_o_r}{USB\_ITF\_DESCR}}\ itf\_descr;}
+\DoxyCodeLine{00355\ \ \ \ \ \mbox{\hyperlink{struct___u_s_b___e_n_d_p_o_i_n_t___d_escript_o_r}{USB\_ENDP\_DESCR}}\ endp\_descr[4];}
+\DoxyCodeLine{00356\ \}\ \mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r___l_o_n_g}{USB\_CFG\_DESCR\_LONG}},\ *\mbox{\hyperlink{struct___u_s_b___c_o_n_f_i_g___d_escript_o_r___l_o_n_g}{PUSB\_CFG\_DESCR\_LONG}};}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00363\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_u_s_b_host}{MeUSBHost}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_port}{MePort}}}
+\DoxyCodeLine{00364\ \{}
+\DoxyCodeLine{00365\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00366\ \ \ \textcolor{keywordtype}{bool}\ ch375\_online;}
+\DoxyCodeLine{00367\ \ \ \textcolor{keywordtype}{bool}\ device\_online;}
+\DoxyCodeLine{00368\ \ \ \textcolor{keywordtype}{bool}\ device\_ready;}
+\DoxyCodeLine{00369\ \ \ uint8\_t\ RECV\_BUFFER[\ CH375\_MAX\_DATA\_LEN\ ];}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00377\ \ \ \mbox{\hyperlink{class_me_u_s_b_host_a046694bf0110a4fed7650f2c370e167c}{MeUSBHost}}();}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \mbox{\hyperlink{class_me_u_s_b_host_a046694bf0110a4fed7650f2c370e167c}{MeUSBHost}}(uint8\_t\ \mbox{\hyperlink{class_me_port_ab5295b9e84ecedf3f93ab47cf8f10284}{s1}},\ uint8\_t\ \mbox{\hyperlink{class_me_port_a6c09cece23372a6ab340512a0db3e37d}{s2}});}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00387\ \ \ \mbox{\hyperlink{class_me_u_s_b_host_a046694bf0110a4fed7650f2c370e167c}{MeUSBHost}}(uint8\_t\ port);}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00403\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_u_s_b_host_a4a05983202d4f7479f3480053543d7e5}{init}}(int8\_t\ type);}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00419\ \ \ int16\_t\ \mbox{\hyperlink{class_me_u_s_b_host_ab243f4416f3d91498c3b7a94abf96e0e}{initHIDDevice}}();}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00435\ \ \ int16\_t\ \mbox{\hyperlink{class_me_u_s_b_host_a1ec6f4ebdb3f888e04d8ef5c83ff75f0}{probeDevice}}();}
+\DoxyCodeLine{00436\ }
+\DoxyCodeLine{00451\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_u_s_b_host_a11d5c84408175ade230ef51021c42232}{resetBus}}();}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00467\ \ \ uint8\_t\ \mbox{\hyperlink{class_me_u_s_b_host_afdf22bd1a9c271c87d981b3da4a6e711}{host\_recv}}();}
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00469\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00470\ \ \ \mbox{\hyperlink{class_me_serial}{MeSerial}}\ *HSerial;}
+\DoxyCodeLine{00471\ \ \ int16\_t\ stallCount;}
+\DoxyCodeLine{00472\ \ \ int8\_t\ usbtype;}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00488\ \ \ uint8\_t\ CH375\_RD();}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00504\ \ \ \textcolor{keywordtype}{void}\ CH375\_WR(uint8\_t\ c);}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00520\ \ \ int16\_t\ set\_usb\_mode(int16\_t\ mode);}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00536\ \ \ uint8\_t\ getIrq();}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00552\ \ \ \textcolor{keywordtype}{void}\ toggle\_send();}
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00568\ \ \ \textcolor{keywordtype}{void}\ toggle\_recv();}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00584\ \ \ uint8\_t\ issue\_token(\ uint8\_t\ endp\_and\_pid\ );}
+\DoxyCodeLine{00585\ }
+\DoxyCodeLine{00602\ \ \ \textcolor{keywordtype}{void}\ wr\_usb\_data(\ uint8\_t\ len,\ uint8\_t\ *buf\ );}
+\DoxyCodeLine{00603\ }
+\DoxyCodeLine{00620\ \ \ uint8\_t\ rd\_usb\_data(\ uint8\_t\ *buf\ );}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00636\ \ \ int16\_t\ get\_version();}
+\DoxyCodeLine{00637\ }
+\DoxyCodeLine{00652\ \ \ \textcolor{keywordtype}{void}\ set\_freq(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00653\ }
+\DoxyCodeLine{00668\ \ \ uint8\_t\ set\_addr(\ uint8\_t\ addr\ );}
+\DoxyCodeLine{00669\ }
+\DoxyCodeLine{00684\ \ \ uint8\_t\ set\_config(uint8\_t\ cfg);}
+\DoxyCodeLine{00685\ }
+\DoxyCodeLine{00700\ \ \ uint8\_t\ clr\_stall6(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00701\ }
+\DoxyCodeLine{00716\ \ \ uint8\_t\ get\_desr(uint8\_t\ type);}
+\DoxyCodeLine{00717\ \};}
+\DoxyCodeLine{00718\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00719\ }
+
+\end{DoxyCode}

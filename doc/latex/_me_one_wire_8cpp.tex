@@ -1,0 +1,83 @@
+\doxysection{src/\+Me\+One\+Wire.cpp File Reference}
+\hypertarget{_me_one_wire_8cpp}{}\label{_me_one_wire_8cpp}\index{src/MeOneWire.cpp@{src/MeOneWire.cpp}}
+
+
+Driver for 1-\/wire protocol.  
+
+
+{\ttfamily \#include "{}Me\+One\+Wire.\+h"{}}\newline
+Include dependency graph for Me\+One\+Wire.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_one_wire_8cpp__incl}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+Driver for 1-\/wire protocol. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2015/09/04 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Description}
+This file is a drive for 1-\/wire protocol, 1-\/Wire communication protocol was developed by Dallas Semiconductor owned by Maxim. This protocol allows communication of multiple chips to one host with minimal pin count. The protocol is called 1-\/Wire because it uses 1 wire to transfer data. 1-\/Wire architecture uses pull up resistor to pull voltage of data line at master side.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item bool \doxylink{class_me_one_wire_a8cfacb53d1246333f94c25508e833f22}{Me\+One\+Wire\+::read\+IO(void)}
+\item void \doxylink{class_me_one_wire_ac7ae473bec8198fba76040fe8422cea7}{Me\+One\+Wire\+::reset(uint8\+\_\+t pin)}
+\item uint8\+\_\+t \doxylink{class_me_one_wire_afdf58430b9beb67f2ebba55430e7aa3c}{Me\+One\+Wire\+::reset(void)}
+\item void \doxylink{class_me_one_wire_afa0cc28fb5fec3b805cc7eeb955ae8d3}{Me\+One\+Wire\+::select(const uint8\+\_\+t rom\mbox{[}8\mbox{]})}
+\item void \doxylink{class_me_one_wire_adf1fe69dac4bda2511ce613c0e51d1cf}{Me\+One\+Wire\+::skip(void)}()
+\item void \doxylink{class_me_one_wire_a50f690ef7f97a23844da2b89e78232d7}{Me\+One\+Wire\+::write(uint8\+\_\+t v, uint8\+\_\+t power)}
+\item void \doxylink{class_me_one_wire_a0f66689a98b50c8fd681ba6a324054a8}{Me\+One\+Wire\+::write\+\_\+bytes(const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t count, bool power)}
+\item uint8\+\_\+t \doxylink{class_me_one_wire_a9930a16f2cdc36d15f646e41a1a083a4}{Me\+One\+Wire\+::read(void)}
+\item void \doxylink{class_me_one_wire_acbaaa04392b4b406500f4953ef389a6c}{Me\+One\+Wire\+::read\+\_\+bytes(uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t count)}
+\item void \doxylink{class_me_one_wire_a71ff538d319b4492e3002e027b07e9fa}{Me\+One\+Wire\+::write\+\_\+bit(uint8\+\_\+t v)}
+\item uint8\+\_\+t \doxylink{class_me_one_wire_abd22dddea19354d857f5e3b33b02add3}{Me\+One\+Wire\+::read\+\_\+bit(void)}
+\item void \doxylink{class_me_one_wire_af049edcbd9d0f09bc5ce54973c2305eb}{Me\+One\+Wire\+::depower(void)}
+\item void \doxylink{class_me_one_wire_a83f6c2c88d9f2fa5c4aabb7f540bc6ac}{Me\+One\+Wire\+::reset\+\_\+search(void)}
+\item void \doxylink{class_me_one_wire_a72274992cccec07f9ee20525edcd7208}{Me\+One\+Wire\+::target\+\_\+search(uint8\+\_\+t family\+\_\+code)}
+\item uint8\+\_\+t \doxylink{class_me_one_wire_a2d48b3c80326da96b627f7dc15ad1b56}{Me\+One\+Wire\+::search(uint8\+\_\+t \texorpdfstring{$\ast$}{*}new\+Addr)}
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan         2015/09/04     1.0.0            Rebuild the old lib.
+\end{DoxyPre}
+
+\end{DoxyParagraph}
+DERIVED FROM Copyright (c) 2007, Jim Studt (original old version -\/ many contributors since) The latest version of this library may be found at\+: \href{http://www.pjrc.com/teensy/td_libs_OneWire.html}{\texttt{ http\+://www.\+pjrc.\+com/teensy/td\+\_\+libs\+\_\+\+One\+Wire.\+html}} Version 2.\+1\+: Arduino 1.\+0 compatibility, Paul Stoffregen Improve temperature example, Paul Stoffregen DS250x\+\_\+\+PROM example, Guillermo Lovato PIC32 (chip\+Kit) compatibility, Jason Dangel, dangel.\+jason AT gmail.\+com Improvements from Glenn Trewitt\+:
+\begin{DoxyItemize}
+\item crc16() now works
+\item check\+\_\+crc16() does all of calculation/checking work.
+\item Added read\+\_\+bytes() and write\+\_\+bytes(), to reduce tedious loops.
+\item Added ds2408 example. Delete very old, out-\/of-\/date readme file (info is here) Version 2.\+0\+: Modifications by Paul Stoffregen, January 2010\+: \href{http://www.pjrc.com/teensy/td_libs_OneWire.html}{\texttt{ http\+://www.\+pjrc.\+com/teensy/td\+\_\+libs\+\_\+\+One\+Wire.\+html}} Search fix from Robin James \href{http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1238032295/27\#27}{\texttt{ http\+://www.\+arduino.\+cc/cgi-\/bin/yabb2/\+Ya\+BB.\+pl?num=1238032295/27\#27}} Use direct optimized I/O in all cases Disable interrupts during timing critical sections (this solves many random communication errors) Disable interrupts during read-\/modify-\/write I/O Reduce RAM consumption by eliminating unnecessary variables and trimming many to 8 bits Optimize both crc8 -\/ table version moved to flash Modified to work with larger numbers of devices -\/ avoids loop. Tested in Arduino 11 alpha with 12 sensors. 26 Sept 2008 -- Robin James \href{http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1238032295/27\#27}{\texttt{ http\+://www.\+arduino.\+cc/cgi-\/bin/yabb2/\+Ya\+BB.\+pl?num=1238032295/27\#27}} Updated to work with arduino-\/0008 and to include skip() as of 2007/07/06. --RJL20 Modified to calculate the 8-\/bit CRC directly, avoiding the need for the 256-\/byte lookup table to be loaded in RAM. Tested in arduino-\/0010 -- Tom Pollard, Jan 23, 2008 Jim Studt\textquotesingle{}s original library was modified by Josh Larios. Tom Pollard, \href{mailto:pollard@alum.mit.edu}{\texttt{ pollard@alum.\+mit.\+edu}}, contributed around May 20, 2008 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "{}\+Software"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "{}\+AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. Much of the code was inspired by Derek Yerger\textquotesingle{}s code, though I don\textquotesingle{}t think much of that remains. In any event that was.. (copyleft) 2006 by Derek Yerger -\/ Free to distribute freely. The CRC code was excerpted and inspired by the Dallas Semiconductor sample code bearing this copyright. //-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- // Copyright (C) 2000 Dallas Semiconductor Corporation, All Rights Reserved. // // Permission is hereby granted, free of charge, to any person obtaining a // copy of this software and associated documentation files (the "{}\+Software"{}), // to deal in the Software without restriction, including without limitation // the rights to use, copy, modify, merge, publish, distribute, sublicense, // and/or sell copies of the Software, and to permit persons to whom the // Software is furnished to do so, subject to the following conditions\+: // // The above copyright notice and this permission notice shall be included // in all copies or substantial portions of the Software. // // THE SOFTWARE IS PROVIDED "{}\+AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS // OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF // MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. // IN NO EVENT SHALL DALLAS SEMICONDUCTOR BE LIABLE FOR ANY CLAIM, DAMAGES // OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR // OTHER DEALINGS IN THE SOFTWARE. // // Except as contained in this notice, the name of Dallas Semiconductor // shall not be used except as stated in the Dallas Semiconductor // Branding Policy. //-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- 
+\end{DoxyItemize}

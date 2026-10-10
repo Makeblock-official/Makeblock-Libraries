@@ -1,0 +1,107 @@
+\doxysection{src/\+Me\+Voice.h File Reference}
+\hypertarget{_me_voice_8h}{}\label{_me_voice_8h}\index{src/MeVoice.h@{src/MeVoice.h}}
+
+
+Header for for \doxylink{_me_voice_8cpp}{Me\+Voice.\+cpp} module.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Me\+Config.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Serial.\+h"{}}\newline
+{\ttfamily \#include "{}Me\+Port.\+h"{}}\newline
+Include dependency graph for Me\+Voice.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_me_voice_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{_me_voice_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_me_voice}{Me\+Voice}}
+\begin{DoxyCompactList}\small\item\em Driver for Me voice device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_me_voice_8h_a72b246f80468e7dbaab91990b9c12d37}\label{_me_voice_8h_a72b246f80468e7dbaab91990b9c12d37} 
+\#define {\bfseries CMD\+\_\+\+FORWARD}~(11)
+\item 
+\Hypertarget{_me_voice_8h_aaf637dbc94c9258bcebfb0a9ae88846a}\label{_me_voice_8h_aaf637dbc94c9258bcebfb0a9ae88846a} 
+\#define {\bfseries CMD\+\_\+\+BACK}~(13)
+\item 
+\Hypertarget{_me_voice_8h_a835de9dd1022f9fc43dae5b3a82fbe06}\label{_me_voice_8h_a835de9dd1022f9fc43dae5b3a82fbe06} 
+\#define {\bfseries CMD\+\_\+\+LEFT}~(7)
+\item 
+\Hypertarget{_me_voice_8h_a431bba18c9f11965521b433608ca9298}\label{_me_voice_8h_a431bba18c9f11965521b433608ca9298} 
+\#define {\bfseries CMD\+\_\+\+RIGHT}~(9)
+\item 
+\Hypertarget{_me_voice_8h_a8fc9e2677d3f34fada567e899521ef47}\label{_me_voice_8h_a8fc9e2677d3f34fada567e899521ef47} 
+\#define {\bfseries CMD\+\_\+\+DIS\+\_\+\+ON}~(3)
+\item 
+\Hypertarget{_me_voice_8h_af17dcc7d1745139b92dcfa43c71ee4c0}\label{_me_voice_8h_af17dcc7d1745139b92dcfa43c71ee4c0} 
+\#define {\bfseries CMD\+\_\+\+DIS\+\_\+\+OFF}~(5)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for for \doxylink{_me_voice_8cpp}{Me\+Voice.\+cpp} module. 
+
+\begin{DoxyAuthor}{Author}
+Make\+Block 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+V1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2015/09/09 
+\end{DoxyDate}
+\begin{DoxyParagraph}{Description}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright}
+This software is Copyright (C), 2012-\/2016, Make\+Block. Use is subject to license ~\newline
+conditions. The main licensing options available are GPL V2 or Commercial\+: ~\newline
+ 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Open Source Licensing GPL V2}
+This is the appropriate option if you want to share the source code of your ~\newline
+application with everyone you distribute it to, and you also want to give them ~\newline
+the right to share who uses it. If you wish to use this software under Open ~\newline
+Source Licensing, you must contribute all your source code to the open source ~\newline
+community in accordance with the GPL Version 2 when your application is ~\newline
+distributed. See \href{http://www.gnu.org/copyleft/gpl.html}{\texttt{ http\+://www.\+gnu.\+org/copyleft/gpl.\+html}}
+\end{DoxyParagraph}
+Description\+: this file is a drive for Me voice device, It supports the voice device provided by the Make\+Block company.
+
+\begin{DoxyParagraph}{Method List\+:}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item void \doxylink{class_me_voice_a54a988d062a82fa0514a2c268043bf7c}{Me\+Voice\+::begin(long speed)}
+\item int16\+\_\+t \doxylink{class_me_voice_a8e03afa2722be68289d8e5d7963935e9}{Me\+Voice\+::read(void)}
+\item bool Me\+Voice\+::button\+State(void)
+\item uint8\+\_\+t \doxylink{class_me_voice_a0ea6a575219b569d2c093cf50838e30b}{Me\+Voice\+::get\+Code(void)}
+\item void \doxylink{class_me_voice_ae31f0be6411947ecef97104bf26bf646}{Me\+Voice\+::loop(void)}
+\end{DoxyEnumerate}
+
+\begin{DoxyParagraph}{History\+:}
+
+\begin{DoxyPre}
+`<Author>`         `<Time>`        `<Version>`        `<Descr>`
+Mark Yan         2015/12/15     1.0.0            Bulid the new .
+\end{DoxyPre}
+ 
+\end{DoxyParagraph}

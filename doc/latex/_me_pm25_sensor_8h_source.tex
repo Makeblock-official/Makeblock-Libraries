@@ -1,0 +1,100 @@
+\doxysection{Me\+Pm25\+Sensor.\+h}
+\hypertarget{_me_pm25_sensor_8h_source}{}\label{_me_pm25_sensor_8h_source}\index{src/MePm25Sensor.h@{src/MePm25Sensor.h}}
+\mbox{\hyperlink{_me_pm25_sensor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#ifndef\ MePm25Sensor\_H}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ MePm25Sensor\_H}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_config_8h}{MeConfig.h}}"{}}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_serial_8h}{MeSerial.h}}"{}}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ START\_SYSEX1\ 0x32}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ START\_SYSEX2\ 0x3d}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ LENGTH\ \ \ \ \ \ \ 28}\textcolor{comment}{//帧长度}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{comment}{//\#define\ DEFAULT\_UART\_BUF\_SIZE\ \ \ \ \ \ 32}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ \ uint16\_t\ head;//0x323d}}
+\DoxyCodeLine{00076\ \ \ uint16\_t\ len;}
+\DoxyCodeLine{00077\ \ \ uint16\_t\ data1;}
+\DoxyCodeLine{00078\ \ \ uint16\_t\ data2;}
+\DoxyCodeLine{00079\ \ \ uint16\_t\ data3;}
+\DoxyCodeLine{00080\ \ \ uint16\_t\ data4;}
+\DoxyCodeLine{00081\ \ \ uint16\_t\ data5;}
+\DoxyCodeLine{00082\ \ \ uint16\_t\ data6;}
+\DoxyCodeLine{00083\ \ \ uint16\_t\ data7;}
+\DoxyCodeLine{00084\ \ \ uint16\_t\ data8;}
+\DoxyCodeLine{00085\ \ \ uint16\_t\ data9;}
+\DoxyCodeLine{00086\ \ \ uint16\_t\ data10;\textcolor{comment}{//default}}
+\DoxyCodeLine{00087\ \ \ uint16\_t\ data11;\textcolor{comment}{//default}}
+\DoxyCodeLine{00088\ \ \ uint16\_t\ data12;\textcolor{comment}{//default}}
+\DoxyCodeLine{00089\ \ \ uint16\_t\ data13;\textcolor{comment}{//default}}
+\DoxyCodeLine{00090\ \ \ uint16\_t\ checksum;}
+\DoxyCodeLine{00091\ \}\mbox{\hyperlink{struct_p_m25_d_a_t_a_s_t_r_u_c_t}{PM25DATASTRUCT}};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{union\ }\mbox{\hyperlink{union_p_m25_d_a_t_a_u_i_n_o}{PM25DATAUINO}}\{}
+\DoxyCodeLine{00095\ \ \ uint8\_t\ storedInputData[31];}
+\DoxyCodeLine{00096\ \ \ \mbox{\hyperlink{struct_p_m25_d_a_t_a_s_t_r_u_c_t}{PM25DATASTRUCT}}\ val;}
+\DoxyCodeLine{00097\ \};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_me_port_8h}{MePort.h}}"{}}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ME\_PORT\_DEFINED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#ifndef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00109\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_pm25_sensor}{MePm25Sensor}}}
+\DoxyCodeLine{00110\ \#else\ \textcolor{comment}{/*\ !ME\_PORT\_DEFINED\ */}}
+\DoxyCodeLine{00111\ class\ \mbox{\hyperlink{class_me_pm25_sensor}{MePm25Sensor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_me_serial}{MeSerial}}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#endif\ }}
+\DoxyCodeLine{00113\ \textcolor{comment}{/*\ !ME\_PORT\_DEFINED\ */}}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00115\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#ifdef\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00123\ \ \ \mbox{\hyperlink{class_me_pm25_sensor_a1cc18797bdc8959a726025fbb8ea888a}{MePm25Sensor}}();}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00131\ \ \ \mbox{\hyperlink{class_me_pm25_sensor_a1cc18797bdc8959a726025fbb8ea888a}{MePm25Sensor}}(uint8\_t\ port);}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00143\ \ \ MePm25Sensor(uint8\_t\ receivePin,\ uint8\_t\ transmitPin,\ bool\ inverse\_logic);}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ME\_PORT\_DEFINED}}
+\DoxyCodeLine{00161\ \ \ uint16\_t\ readPm1\_0Concentration(void);\textcolor{comment}{//PM1.0\ ug/m\string^3}}
+\DoxyCodeLine{00178\ \ \ uint16\_t\ readPm2\_5Concentration(void);\textcolor{comment}{//PM2.5\ ug/m\string^3}}
+\DoxyCodeLine{00195\ \ \ uint16\_t\ readPm10Concentration(void);\textcolor{comment}{//PM10\ ug/m\string^3}}
+\DoxyCodeLine{00212\ \ \ uint16\_t\ read0\_3NumIn100ml(void);\textcolor{comment}{//0.1L空气中直径在0.3um的颗粒物个数}}
+\DoxyCodeLine{00229\ \ \ uint16\_t\ read0\_5NumIn100ml(void);\textcolor{comment}{//0.1L空气中直径在0.5um的颗粒物个数}}
+\DoxyCodeLine{00246\ \ \ uint16\_t\ read1\_0NumIn100ml(void);\textcolor{comment}{//0.1L空气中直径在1.0um的颗粒物个数}}
+\DoxyCodeLine{00263\ \ \ uint16\_t\ read2\_5NumIn100ml(void);\textcolor{comment}{//0.1L空气中直径在2.5um的颗粒物个数}}
+\DoxyCodeLine{00280\ \ \ uint16\_t\ read5\_0NumIn100ml(void);\textcolor{comment}{//0.1L空气中直径在5.0um的颗粒物个数}}
+\DoxyCodeLine{00297\ \ \ uint16\_t\ read10NumIn100ml(void);\textcolor{comment}{//0.1L空气中直径在10um的颗粒物个数}}
+\DoxyCodeLine{00314\ \ \ uint16\_t\ setOuputCompatibility(void);\textcolor{comment}{//设置输出兼容}}
+\DoxyCodeLine{00331\ \ \ uint16\_t\ turnOnFanLaser(void);\textcolor{comment}{//打开风扇激光}}
+\DoxyCodeLine{00348\ \ \ uint16\_t\ turnOffFanLaser(void);\textcolor{comment}{//关闭风扇激光}}
+\DoxyCodeLine{00365\ \ \ uint16\_t\ OutputIntimeOn(void);\textcolor{comment}{//定时输出开}}
+\DoxyCodeLine{00382\ \ \ uint16\_t\ OutputIntimeOff(void);\textcolor{comment}{//定时输出关}}
+\DoxyCodeLine{00399\ \ \ uint16\_t\ setOutputIntimePeriod(uint16\_t\ settime);\textcolor{comment}{//设定定时输出间隔}}
+\DoxyCodeLine{00416\ \ \ uint16\_t\ askForData(void);\textcolor{comment}{//请求输出数据}}
+\DoxyCodeLine{00433\ \ \ uint16\_t\ coreSelfTest(void);\textcolor{comment}{//滤芯检测}}
+\DoxyCodeLine{00450\ \ \ uint16\_t\ returnCoreSelfTest(void);\textcolor{comment}{//返回自检结果}}
+\DoxyCodeLine{00467\ \ \ uint16\_t\ setCoreSelfTestTime(uint8\_t\ settime);\textcolor{comment}{//设定检测时间\ 0\string~255s}}
+\DoxyCodeLine{00484\ \ \ uint16\_t\ setCoreEfficient(uint8\_t\ efficent);\textcolor{comment}{//设定滤芯使用效率}}
+\DoxyCodeLine{00499\ \ \ void\ rxloop(void);}
+\DoxyCodeLine{00514\ \ \ uint16\_t\ \mbox{\hyperlink{class_me_pm25_sensor_af756cb35791d5643cebcac6a7ae06514}{returnlen}}(\textcolor{keywordtype}{void});\textcolor{comment}{//返回有效数据长度}}
+\DoxyCodeLine{00529\ \ \ uint16\_t\ \mbox{\hyperlink{class_me_pm25_sensor_ae8e7a458edbc826dd1b75f3d135540bf}{returnchecksum}}(\textcolor{keywordtype}{void});\textcolor{comment}{//返回校验值}}
+\DoxyCodeLine{00530\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00531\ \ \ \ \ \textcolor{keyword}{union\ }\mbox{\hyperlink{union_p_m25_d_a_t_a_u_i_n_o}{PM25DATAUINO}}\ sysex,rxbuf;}
+\DoxyCodeLine{00532\ \ \ \ \textcolor{comment}{//\ uint8\_t\ buffer\_flag;}}
+\DoxyCodeLine{00533\ \ \ \ \ \textcolor{keyword}{volatile}\ int16\_t\ sysexBytesRead;}
+\DoxyCodeLine{00534\ \ \ \ \ \textcolor{comment}{//\ volatile\ uint16\_t\ resFlag;}}
+\DoxyCodeLine{00535\ \ \ \ \ \textcolor{comment}{//\ volatile\ servo\_device\_type\ servo\_dev\_list[8];}}
+\DoxyCodeLine{00536\ \ \ \ \ \textcolor{comment}{//\ volatile\ long\ cmdTimeOutValue;}}
+\DoxyCodeLine{00537\ \ \ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{boolean}\ parsingSysex;}
+\DoxyCodeLine{00538\ \};}
+\DoxyCodeLine{00539\ }
+\DoxyCodeLine{00540\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
