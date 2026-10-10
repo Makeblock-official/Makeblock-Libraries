@@ -91,7 +91,8 @@
  */
 MeEncoderOnBoard::MeEncoderOnBoard()
 {
-
+  _posDeadBand = DEFAULT_ENCODER_POS_DEADBAND;
+  _fullPositionPidEnabled = false;
 }
 
 /**
@@ -101,6 +102,8 @@ MeEncoderOnBoard::MeEncoderOnBoard()
  */
 MeEncoderOnBoard::MeEncoderOnBoard(int slot)
 {
+  _posDeadBand = DEFAULT_ENCODER_POS_DEADBAND;
+  _fullPositionPidEnabled = false;
   _enabled = false;
   _Slot = slot;
   _Port_A = encoder_Port[slot].port_A;
@@ -115,6 +118,11 @@ MeEncoderOnBoard::MeEncoderOnBoard(int slot)
   pinMode(_Port_H1, OUTPUT);
   pinMode(_Port_H2, OUTPUT);
   
+  /*
+   * NOTE: this is the canonical default state for a freshly created encoder.
+   * The reset() method below does not restore these values, so a reset can
+   * leave stale motion/PID state behind if the intent is a true reinit.
+   */
   encode_structure.pulsePos = 0;
   encode_structure.previousPwm = 500;
   encode_structure.mode = DIRECT_MODE;
@@ -181,11 +189,16 @@ void MeEncoderOnBoard::reset(uint8_t slot)
   pinMode(_Port_H1, OUTPUT);
   pinMode(_Port_H2, OUTPUT);
   
+  // Keep encoder configuration and position, but clear accumulated PID history.
   // encode_structure.pulsePos = 0;
   // encode_structure.previousPwm = 500;
   // encode_structure.mode = DIRECT_MODE;
   // encode_structure.pulseEncoder = 9;
   // encode_structure.ratio = 39.267;
+  encode_structure.PID_speed.Integral = 0;
+  encode_structure.PID_speed.last_error = 0;
+  encode_structure.PID_pos.Integral = 0;
+  encode_structure.PID_pos.last_error = 0;
   
   if(_Port_A == 18)
   {
@@ -443,7 +456,7 @@ int16_t MeEncoderOnBoard::getCurPwm(void) const
 void MeEncoderOnBoard::setTarPWM(int16_t pwm_value)
 {
   encode_structure.mode = PWM_MODE;
-  encode_structure.targetPwm = constrain(pwm_value,-255,255);;
+  encode_structure.targetPwm = constrain(pwm_value,-255,255);
 }
 
 /**
@@ -476,18 +489,18 @@ void MeEncoderOnBoard::setMotorPwm(int16_t pwm)
   if(pwm < 0)
   {
     // As per the datasheet, counter clock wise
-    digitalWrite(MeEncoderOnBoard::_Port_H1, LOW);
+    digitalWrite(_Port_H1, LOW);
     delayMicroseconds(5);
-    digitalWrite(MeEncoderOnBoard::_Port_H2, HIGH);
-    analogWrite(MeEncoderOnBoard::_Port_PWM, abs(pwm));
+    digitalWrite(_Port_H2, HIGH);
+    analogWrite(_Port_PWM, abs(pwm));
   }
   else
   {
     // As per the datasheet, clock wise
-    digitalWrite(MeEncoderOnBoard::_Port_H1, HIGH);
+    digitalWrite(_Port_H1, HIGH);
     delayMicroseconds(5);
-    digitalWrite(MeEncoderOnBoard::_Port_H2, LOW);
-    analogWrite(MeEncoderOnBoard::_Port_PWM, abs(pwm));
+    digitalWrite(_Port_H2, LOW);
+    analogWrite(_Port_PWM, abs(pwm));
   }
 }
 
@@ -575,6 +588,8 @@ void MeEncoderOnBoard::runSpeed(float speed)
   encode_structure.mode = PID_MODE;
   encode_structure.motionState = MOTION_WITHOUT_POS;
   encode_structure.targetSpeed = speed;
+  encode_structure.PID_speed.Integral = 0;
+  encode_structure.PID_speed.last_error = 0;
   _Lock_flag = false;
 }
 
@@ -597,6 +612,8 @@ void MeEncoderOnBoard::setSpeed(float speed)
 {
   encode_structure.motionState = MOTION_WITHOUT_POS;
   encode_structure.targetSpeed = speed;
+  encode_structure.PID_speed.Integral = 0;
+  encode_structure.PID_speed.last_error = 0;
   _Lock_flag = false;
 }
 
@@ -655,6 +672,10 @@ void MeEncoderOnBoard::moveTo(long position,float speed,int16_t extId,cb callbac
   encode_structure.mode = PID_MODE;
   encode_structure.motionState = MOTION_WITH_POS;
   encode_structure.targetPos = position;
+  encode_structure.PID_speed.Integral = 0;
+  encode_structure.PID_speed.last_error = 0;
+  encode_structure.PID_pos.Integral = 0;
+  encode_structure.PID_pos.last_error = position - encode_structure.currentPos;
   _callback = callback;
   if(distanceToGo() > 0)
   {
@@ -709,6 +730,8 @@ void MeEncoderOnBoard::setSpeedPid(float p,float i,float d)
   encode_structure.PID_speed.P = p;
   encode_structure.PID_speed.I = i;
   encode_structure.PID_speed.D = d;
+  encode_structure.PID_speed.Integral = 0;
+  encode_structure.PID_speed.last_error = 0;
 }
 
 /**
@@ -734,6 +757,23 @@ void MeEncoderOnBoard::setPosPid(float p,float i,float d)
   encode_structure.PID_pos.P = p;
   encode_structure.PID_pos.I = i;
   encode_structure.PID_pos.D = d;
+  encode_structure.PID_pos.Integral = 0;
+  encode_structure.PID_pos.last_error = 0;
+}
+
+void MeEncoderOnBoard::setPosDeadBand(long deadBand)
+{
+  _posDeadBand = (deadBand < 0) ? 0 : deadBand;
+}
+
+long MeEncoderOnBoard::getPosDeadBand(void) const
+{
+  return _posDeadBand;
+}
+
+void MeEncoderOnBoard::setFullPositionPidEnabled(boolean enabled)
+{
+  _fullPositionPidEnabled = enabled;
 }
 
 /**
@@ -810,57 +850,121 @@ void MeEncoderOnBoard::setMotionMode(int16_t motionMode)
 int16_t MeEncoderOnBoard::pidPositionToPwm(void)
 {
   float seek_speed = 0;
-  float pos_error = 0;
-  float speed_error = 0;
+  float pos_error = distanceToGo();
   float d_component = 0;
+  float position_derivative = 0;
+  float position_speed = 0;
+  float max_speed = encode_structure.targetSpeed;
+  float candidate_integral = 0;
+  float speed_error = 0;
   float out_put_offset = 0;
 
-  pos_error = distanceToGo();
+  if(max_speed < 0)
+  {
+    max_speed = -max_speed;
+  }
 
-  if((_Lock_flag == false) && (_Dir_lock_flag == true) && (pos_error < 0))
+  boolean in_deadband = (abs(pos_error) <= _posDeadBand);
+
+  /*
+   * Full cascaded mode: the PWM is cut inside the deadband, so the motor can
+   * coast past it. If the error leaves the deadband again, release the lock
+   * and resume control. The callback is not called a second time.
+   */
+  if(_fullPositionPidEnabled && (_Lock_flag == true) && !in_deadband)
   {
-    d_component = encode_structure.currentSpeed;
-    out_put_offset = encode_structure.PID_pos.D * d_component;
-    encode_structure.PID_pos.Output = -out_put_offset;
-    _Encoder_output = encode_structure.PID_pos.Output;
+    _Lock_flag = false;
+    encode_structure.PID_pos.last_error = pos_error;
+  }
+
+  if((_Lock_flag == true) || in_deadband)
+  {
     _Lock_flag = true;
-    encode_structure.currentPwm = _Encoder_output;
-    return _Encoder_output;
-  }
-  else if((_Lock_flag == false) && (_Dir_lock_flag == false) && (pos_error > 0))
-  {
-    d_component = encode_structure.currentSpeed;
-    out_put_offset = encode_structure.PID_pos.D * d_component;
-    encode_structure.PID_pos.Output = -out_put_offset;
-    _Encoder_output = encode_structure.PID_pos.Output;
-    _Lock_flag = true;
-    encode_structure.currentPwm = _Encoder_output;
-    return _Encoder_output;
-  }
-      
-  //speed pid;
-  if((_Lock_flag == false) && (abs(pos_error) >= encode_structure.targetSpeed * DECELERATION_DISTANCE_PITCH))
-  {
-    speed_error = encode_structure.currentSpeed - encode_structure.targetSpeed * (pos_error/abs(pos_error));
-    out_put_offset = encode_structure.PID_speed.P * speed_error;
-    out_put_offset = constrain(out_put_offset,-25,25);
-    encode_structure.PID_speed.Output = _Encoder_output;
-    encode_structure.PID_speed.Output -= out_put_offset;  
-    encode_structure.PID_speed.Output = constrain(encode_structure.PID_speed.Output,-255,255);
-    _Encoder_output = encode_structure.PID_speed.Output;
-  }
-  //position pid;
-  else
-  {
-    if((_Lock_flag == false) && (abs(pos_error) > ENCODER_POS_DEADBAND))
+    _Encoder_output = 0;
+    encode_structure.currentPwm = 0;
+    encode_structure.PID_pos.Output = 0;
+    encode_structure.PID_pos.Integral = 0;
+    encode_structure.PID_pos.last_error = 0;
+    encode_structure.PID_speed.Output = 0;
+    encode_structure.PID_speed.Integral = 0;
+    encode_structure.PID_speed.last_error = 0;
+    if((_callback != NULL) && (_Callback_flag == false))
     {
-      seek_speed = sqrt(abs(encode_structure.targetSpeed * DECELERATION_DISTANCE_PITCH * (pos_error-ENCODER_POS_DEADBAND)))/DECELERATION_DISTANCE_PITCH;
+      _Callback_flag = true;
+      _callback(_Slot,_extId);
+    }
+
+    /*
+     * Legacy behavior (pre 3.30.0): once the target is reached, keep actively
+     * holding the position with a P term and a D brake on the current speed.
+     * The motor resists external load and pulls back after an overshoot.
+     * The PWM is cut inside the deadband in both modes: a small hold PWM
+     * cannot move the motor and only makes it whine.
+     */
+    if(!_fullPositionPidEnabled && !in_deadband)
+    {
+      d_component = encode_structure.currentSpeed;
+      out_put_offset = encode_structure.PID_pos.D * d_component;
+      out_put_offset = constrain(out_put_offset,-20,20);
+      encode_structure.PID_pos.Output = pos_error * encode_structure.PID_pos.P;
+      encode_structure.PID_pos.Output -= out_put_offset;
+      encode_structure.PID_pos.Output = constrain(encode_structure.PID_pos.Output,-255,255);
+      _Encoder_output = encode_structure.PID_pos.Output;
+      encode_structure.currentPwm = _Encoder_output;
+      return _Encoder_output;
+    }
+    return 0;
+  }
+
+  if(!_fullPositionPidEnabled)
+  {
+    if((_Dir_lock_flag == true) && (pos_error < 0))
+    {
+      d_component = encode_structure.currentSpeed;
+      out_put_offset = encode_structure.PID_pos.D * d_component;
+      encode_structure.PID_pos.Output = -out_put_offset;
+      _Encoder_output = encode_structure.PID_pos.Output;
+      _Lock_flag = true;
+      encode_structure.currentPwm = _Encoder_output;
+      return _Encoder_output;
+    }
+    else if((_Dir_lock_flag == false) && (pos_error > 0))
+    {
+      d_component = encode_structure.currentSpeed;
+      out_put_offset = encode_structure.PID_pos.D * d_component;
+      encode_structure.PID_pos.Output = -out_put_offset;
+      _Encoder_output = encode_structure.PID_pos.Output;
+      _Lock_flag = true;
+      encode_structure.currentPwm = _Encoder_output;
+      return _Encoder_output;
+    }
+
+    if(abs(pos_error) >= encode_structure.targetSpeed * DECELERATION_DISTANCE_PITCH)
+    {
+      speed_error = encode_structure.currentSpeed - encode_structure.targetSpeed * (pos_error/abs(pos_error));
+      const float integral_limit = 500.0f;
+      if(abs(_Encoder_output) < 255.0f)
+      {
+        encode_structure.PID_speed.Integral += speed_error;
+        encode_structure.PID_speed.Integral = constrain(encode_structure.PID_speed.Integral,-integral_limit,integral_limit);
+      }
+      out_put_offset = encode_structure.PID_speed.P * speed_error;
+      out_put_offset += encode_structure.PID_speed.I * encode_structure.PID_speed.Integral;
+      out_put_offset += encode_structure.PID_speed.D * (speed_error - encode_structure.PID_speed.last_error);
+      encode_structure.PID_speed.last_error = speed_error;
+      out_put_offset = constrain(out_put_offset,-25,25);
+      encode_structure.PID_speed.Output = _Encoder_output - out_put_offset;
+      encode_structure.PID_speed.Output = constrain(encode_structure.PID_speed.Output,-255,255);
+      _Encoder_output = encode_structure.PID_speed.Output;
+    }
+    else
+    {
+      seek_speed = sqrt(abs(encode_structure.targetSpeed * DECELERATION_DISTANCE_PITCH * (abs(pos_error)-_posDeadBand)))/DECELERATION_DISTANCE_PITCH;
       d_component = encode_structure.currentSpeed - seek_speed * (pos_error/abs(pos_error));
       out_put_offset = encode_structure.PID_pos.D * d_component;
       out_put_offset = constrain(out_put_offset,-20,20);
 
-      encode_structure.PID_pos.Output = _Encoder_output;
-      encode_structure.PID_pos.Output -= out_put_offset;
+      encode_structure.PID_pos.Output = _Encoder_output - out_put_offset;
       if(pos_error >= 0)
       {
         encode_structure.PID_pos.Output = constrain(encode_structure.PID_pos.Output,PWM_MIN_OFFSET,255);
@@ -871,22 +975,50 @@ int16_t MeEncoderOnBoard::pidPositionToPwm(void)
       }
       _Encoder_output = encode_structure.PID_pos.Output;
     }
-    else
+  }
+  else if(max_speed == 0)
+  {
+    _Encoder_output = 0;
+    encode_structure.currentPwm = 0;
+    return 0;
+  }
+  else
+  {
+    position_derivative = pos_error - encode_structure.PID_pos.last_error;
+    candidate_integral = constrain(encode_structure.PID_pos.Integral + pos_error,-500.0f,500.0f);
+    position_speed = encode_structure.PID_pos.P * pos_error;
+    position_speed += encode_structure.PID_pos.I * candidate_integral;
+    position_speed += encode_structure.PID_pos.D * position_derivative;
+
+    if((position_speed <= max_speed && position_speed >= -max_speed) ||
+       (position_speed > max_speed && pos_error < 0) ||
+       (position_speed < -max_speed && pos_error > 0))
     {
-      _Lock_flag = true;
-      if((_callback != NULL) && (_Callback_flag == false))
-      {
-        _Callback_flag = true;
-        _callback(_Slot,_extId);
-      }
-      d_component = encode_structure.currentSpeed;
-      out_put_offset = encode_structure.PID_pos.D * d_component;
-      out_put_offset = constrain(out_put_offset,-20,20);
-      encode_structure.PID_pos.Output = pos_error * encode_structure.PID_pos.P;
-      encode_structure.PID_pos.Output -= out_put_offset;
-      encode_structure.PID_pos.Output = constrain(encode_structure.PID_pos.Output,-255,255);
-      _Encoder_output = encode_structure.PID_pos.Output;
+      encode_structure.PID_pos.Integral = candidate_integral;
     }
+
+    position_speed = encode_structure.PID_pos.P * pos_error;
+    position_speed += encode_structure.PID_pos.I * encode_structure.PID_pos.Integral;
+    position_speed += encode_structure.PID_pos.D * position_derivative;
+    position_speed = constrain(position_speed,-max_speed,max_speed);
+    encode_structure.PID_pos.Output = position_speed;
+    encode_structure.PID_pos.last_error = pos_error;
+
+    speed_error = encode_structure.currentSpeed - position_speed;
+    const float integral_limit = 500.0f;
+    if(abs(_Encoder_output) < 255.0f)
+    {
+      encode_structure.PID_speed.Integral += speed_error;
+      encode_structure.PID_speed.Integral = constrain(encode_structure.PID_speed.Integral,-integral_limit,integral_limit);
+    }
+    out_put_offset = encode_structure.PID_speed.P * speed_error;
+    out_put_offset += encode_structure.PID_speed.I * encode_structure.PID_speed.Integral;
+    out_put_offset += encode_structure.PID_speed.D * (speed_error - encode_structure.PID_speed.last_error);
+    encode_structure.PID_speed.last_error = speed_error;
+    out_put_offset = constrain(out_put_offset,-25,25);
+    encode_structure.PID_speed.Output = _Encoder_output - out_put_offset;
+    encode_structure.PID_speed.Output = constrain(encode_structure.PID_speed.Output,-255,255);
+    _Encoder_output = encode_structure.PID_speed.Output;
   }
 #ifdef DEBUG_INFO
   Serial.print("targetPos:");
@@ -899,8 +1031,8 @@ int16_t MeEncoderOnBoard::pidPositionToPwm(void)
   Serial.print(encode_structure.currentSpeed);
   Serial.print(" ,pos_error:");
   Serial.print(pos_error);
-  Serial.print(" ,d_component:");
-  Serial.print(d_component);
+  Serial.print(" ,position_speed:");
+  Serial.print(position_speed);
   Serial.print(" ,motion_state:");
   Serial.print(encode_structure.motionState);
   Serial.print(" ,out1:");
@@ -928,7 +1060,18 @@ int16_t MeEncoderOnBoard::speedWithoutPos(void)
   float speed_error;
   float out_put_offset;
   speed_error = encode_structure.currentSpeed - encode_structure.targetSpeed;
+  const float integral_limit = 500.0f;
+  if(abs(_Encoder_output) < 255.0f)
+  {
+    encode_structure.PID_speed.Integral += speed_error;
+    encode_structure.PID_speed.Integral = constrain(encode_structure.PID_speed.Integral,-integral_limit,integral_limit);
+  }
+  float derivative = speed_error - encode_structure.PID_speed.last_error;
+  encode_structure.PID_speed.last_error = speed_error;
+
   out_put_offset = encode_structure.PID_speed.P * speed_error;
+  out_put_offset += encode_structure.PID_speed.I * encode_structure.PID_speed.Integral;
+  out_put_offset += encode_structure.PID_speed.D * derivative;
 
   out_put_offset = constrain(out_put_offset,-25,25);
   encode_structure.PID_speed.Output = _Encoder_output;

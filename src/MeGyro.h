@@ -310,6 +310,78 @@ public:
 
 /**
  * \par Function
+ *   getAccX
+ * \par Description
+ *   Get the acceleration value of X-axis.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The acceleration value of X-axis in g (gravity units)
+ * \par Others
+ *   X-axis acceleration value is calculated from raw sensor data.
+ * \author
+ *   Nick B
+ */
+  double getAccX(void) const;
+
+/**
+ * \par Function
+ *   getAccY
+ * \par Description
+ *   Get the acceleration value of Y-axis.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The acceleration value of Y-axis in g (gravity units)
+ * \par Others
+ *   Y-axis acceleration value is calculated from raw sensor data.
+ * \author
+ *   Nick B
+ */
+  double getAccY(void) const;
+
+/**
+ * \par Function
+ *   getAccZ
+ * \par Description
+ *   Get the acceleration value of Z-axis.
+ * \param[in]
+ *   None
+ * \par Output
+ *   None
+ * \return
+ *   The acceleration value of Z-axis in g (gravity units)
+ * \par Others
+ *   Z-axis acceleration value is calculated from raw sensor data.
+ * \author
+ *   Nick B
+ */
+  double getAccZ(void) const;
+
+/**
+ * \par Function
+ *   getAcc
+ * \par Description
+ *   Get the acceleration value of setting axis.
+ * \param[in]
+ *   index - Axis settings(1:X-axis, 2:Y-axis, 3:Z-axis)
+ * \par Output
+ *   None
+ * \return
+ *   The acceleration value of setting axis in g (gravity units)
+ * \par Others
+ *   Acceleration values are calculated from raw sensor data.
+ * \author
+ *   Nick B
+ */
+  double getAcc(uint8_t index) const;
+
+/**
+ * \par Function
  *   getAngle
  * \par Description
  *   Get the angle value of setting axis.
@@ -366,9 +438,11 @@ private:
   volatile uint8_t  _AD0;
   volatile uint8_t  _INT;
   double  gSensitivity; /* for 500 deg/s, check data sheet */
+  double  accSensitivity; /* for 2g, check data sheet */
   double  gx, gy, gz;
   double  gyrX, gyrY, gyrZ;
-  int16_t accX, accY, accZ, rawTemp;
+  double  accX, accY, accZ;
+  int16_t rawAccX, rawAccY, rawAccZ, rawTemp;
   double  gyrXoffs, gyrYoffs, gyrZoffs;
   uint8_t i2cData[14];
   uint8_t Device_Address;
